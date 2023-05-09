@@ -1,0 +1,7 @@
+[configuration]
+
+entry_symbol = "init_library"
+
+[libraries]
+
+linux.64.debug = "lib/libdemo.so"

@@ -1,0 +1,17 @@
+import std/macros
+import core/gdextensionInterface
+
+macro exportgd*(someProc: untyped): untyped =
+  someProc.addPragma ident"exportc"
+  someProc.addPragma ident"dynlib"
+  someProc.addPragma ident do:
+    when (defined windows): "stdcall"
+    elif true or (defined linux) or (defined macosx): "cdecl"
+  return someProc
+
+
+template bitfield* {.pragma.}
+template hash*(hash: int) {.pragma.}
+template index*(index: int) {.pragma.}
+template loadfrom*(name: string; hash: int) {.pragma.}
+template operator*(`type`: GdVariantOperator) {.pragma.}

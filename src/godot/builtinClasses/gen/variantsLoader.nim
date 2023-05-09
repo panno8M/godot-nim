@@ -1,0 +1,40 @@
+## This module is generated automatically.
+import ../gen
+import ../../typedefs/variants
+
+proc load_Variants* =
+  load GdBool
+  load GdInt
+  load GdFloat
+  load GdString
+  load GdVector2i
+  load GdRect2
+  load GdRect2i
+  load GdVector3
+  load GdVector3i
+  load GdTransform2D
+  load GdVector4
+  load GdVector4i
+  load GdPlane
+  load GdQuaternion
+  load GdAABB
+  load GdBasis
+  load GdTransform3D
+  load GdProjection
+  load GdColor
+  load GdStringName
+  load GdNodePath
+  load GdRID
+  load GdCallable
+  load GdSignal
+  load GdDictionary
+  load GdArray
+  load GdPackedByteArray
+  load GdPackedInt32Array
+  load GdPackedInt64Array
+  load GdPackedFloat32Array
+  load GdPackedFloat64Array
+  load GdPackedStringArray
+  load GdPackedVector2Array
+  load GdPackedVector3Array
+  load GdPackedColorArray
