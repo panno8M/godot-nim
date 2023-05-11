@@ -2,7 +2,12 @@ import std/[
   logging,
   os,
 ]
+import beyond/defects
 import godot
+
+defects.unimplementedCallback =
+  proc(msg: string) =
+    warn "[libinternal]", msg
 
 proc newDemoLogger: FileLogger =
   createDir("log")
