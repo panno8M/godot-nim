@@ -117,7 +117,9 @@ func render*(self: NimOperator): Statement =
   result = Statement.header(fmt"""proc {self.name}*({self.args}): {self.return_type} {{.{self.pragmas.join(", ")}.}}""")
 
 func render*(self: NimConstructor): Statement =
-  let name = self.self_type.normalize
+  var name = self.self_type
+  if name[0] in 'A'..'Z': 
+    name[0] = chr(name[0].ord - 'A'.ord + 'a'.ord)
   result = Statement.header(fmt"proc {name}*({self.arguments}): {self.self_type} {{.index: {self.index}.}}")
 
 

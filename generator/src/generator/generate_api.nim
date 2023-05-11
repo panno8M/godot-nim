@@ -36,15 +36,14 @@ proc obtain_keys(node: JsonNode): HashSet[string] =
   else:
     return
 
-proc modulate_globalEnums(globalEnums: JsonNode): Module =
-  result = Module.module("enums")
-    .importModules(moduleTree.pragmas)
-
+proc modulate_globalEnums(globalEnums: JsonNode) =
+  let body = Statement.dummy
   const ignore = "Variant"
   for item in globalEnums.items:
     var gdenum = item.to GdEnum
     if ignore in gdenum.name: continue
-    result.addContents gdenum.toNim.render
+    body.add gdenum.toNim.render
+  moduleTree.enums.contents = body
 
 proc define_class(class: GdClass): Statement =
   result = Statement.header fmt"type {class.name}* = object"
@@ -68,13 +67,9 @@ proc generate*(api: JsonNode) =
       me.notice "This block has been pre-converted manually. No files created."
 
     of "global_enums":
-      (moduleTree.root).takeSubmodules value.modulate_globalEnums
+      modulate_globalEnums value
     of "builtin_classes":
-      let md = modulate value.to(GdBuiltinClasses)
-      moduleTree.builtin_classes.takeSubmodules md.modules
-      moduleTree.builtin_classes.takeSubmodules md.loader
-        .importModules(moduleTree.builtinClasses, moduleTree.variantDefs)
-        .dontExport()
+      moduleTree.variantDetails.takeSubmodules modulate value.to(GdBuiltinClasses)
     of "classes":
       for class in value.items:
         let gdc = class.to GdClass

@@ -1,7 +1,6 @@
 import std/[
   options,
   sequtils,
-  strutils,
   strformat,
   algorithm,
   sugar,
@@ -49,12 +48,15 @@ type
     methods*: seq[NimMethod]
     base*: GdBuiltinClass
 
+const constructorIgnores = [
+  "GdVector2", "GdVector2i",
+  "GdVector3", "GdVector3i",
+  "GdVector4", "GdVector4i",
+  "GdColor",
+  ]
+const moduleIgnores = ["GdNil", "GdVector2"]
+
 func toNim*(self: GdBuiltinClass): NimBuiltinClass =
-  const constructorIgnores = [
-    "GdVector2", "GdVector2i",
-    "GdVector3", "GdVector3i",
-    "GdVector4", "GdVector4i",
-    ]
 
   result = NimBuiltinClass()
   result.classname = self.name.className
@@ -76,8 +78,9 @@ func toNim*(self: GdBuiltinClass): NimBuiltinClass =
 func moduleName*(self: NimBuiltinClass): string =
   self.base.name.moduleName
 
-func render*(self: NimBuiltinClass): Statement =
-  result = Statement.dummy
+func render*(self: NimBuiltinClass): tuple[body, constructor, loader: Statement] =
+  result.body = Statement.dummy
+  result.constructor = Statement.dummy
   let classHeader = Statement.header(&"type {self.classname}* = object").commentout
   let staticHeader = Statement.header(&"{self.classname}.statics:")
   classHeader.add(
@@ -106,47 +109,62 @@ func render*(self: NimBuiltinClass): Statement =
     operators.add nimop.render
     
 
-  result.add [
+  result.body.add [
     classHeader]
 
   let loader = Statement.header fmt"proc load*(_:typedesc[{self.classname}]) ="
 
   if constructors.children.len != 0:
-    result.add Statement.blank, constructors
-    loader.add Statement.sentence fmt"loadConstructors_{self.classname}()"
+    result.constructor = constructors
   if procs.children.len != 0:
-    result.add Statement.blank, procs
+    result.body.add Statement.blank, procs
     loader.add Statement.sentence fmt"loadProcs_{self.classname}()"
   if staticProcs.children.len != 0:
-    result.add Statement.blank, staticProcs
+    result.body.add Statement.blank, staticProcs
     loader.add Statement.sentence fmt"loadStaticProcs_{self.classname}()"
   if operators.children.len != 0:
-    result.add Statement.blank, operators
+    result.body.add Statement.blank, operators
     loader.add Statement.sentence fmt"loadOperators_{self.classname}()"
 
   if staticHeader.children.len != 0:
-    result.add Statement.blank, staticHeader
+    result.body.add Statement.blank, staticHeader
   
-  if loader.children.len != 0:
-    result.add Statement.blank, loader
+  result.loader =
+    if loader.children.len != 0: loader
+    else: Statement.dummy
+  
 
-proc modulate*(self: NimBuiltinClass): Module =
-  Module.module(self.moduleName)
-    .`contents=`(self.render)
-    .importModules(moduleTree.builtinClassEssentials)
+proc modulate*(self: NimBuiltinClass): tuple[module: Module; constructor: Statement] =
+  let rendered = self.render
+  result.module = Module.module(self.moduleName)
+    .importModules(moduleTree.variantEssentials)
+  result.module.contents = rendered.body
+  result.module.contents.add rendered.loader
+  result.constructor = rendered.constructor
 
-proc modulate*(self: GdBuiltinClass): Module {.inline.} = self.toNim.modulate
+proc modulateLoader*(classes: seq[NimBuiltinClass]) =
+  let loader = Statement.header "proc load_Variants* ="
+  loader.add Statement.sentence("debug \"load methods of all variants...\"")
+  for class in classes:
+    loader.add Statement.sentence("load " & class.className)
 
-proc modulate*(self: seq[GdBuiltinClass]): tuple[modules: seq[Module]; loader: Module] {.inline.} =
-  const ignores = ["Nil", "Vector2"]
+  let constructorLoader = Statement.header("proc load_variant_native_constructors* =")
+  constructorLoader.add Statement.sentence("debug \"load constructors of all variants...\"")
+  for class in classes:
+    if class.className notin constructorIgnores:
+      constructorLoader.add Statement.sentence("loadConstructors_" & class.className & "()")
+
+  moduleTree.variantLoader.contents.add loader, constructorLoader
+
+proc modulate*(self: seq[GdBuiltinClass]): seq[Module] {.inline.} =
   let me = LogUser(title: "Godot-Builtin-Classes")
 
   me.todo """We could not convert these json-tags yet:
   [is_keyed, has_destructor, indexing_return_type, constants]"""
 
-  result.modules = self.filterIt(it.name notin ignores).mapIt(it.modulate)
+  let nimClasses = self.mapIt(it.toNim).filterIt(it.className notin moduleIgnores)
+  let modules = nimClasses.mapIt(it.modulate)
+  result = modules.mapIt it.module
 
-  result.loader = Module.module("variantsLoader")
-  result.loader.contents = Statement.header "proc load_Variants* ="
-  for module in result.modules:
-    result.loader.contents.add Statement.sentence("load " & module.name.replace("gd", "Gd"))
+  moduleTree.variantNativeConstructors.contents.add modules.mapit(it.constructor)
+  modulateLoader nimClasses

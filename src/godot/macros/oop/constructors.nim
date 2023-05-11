@@ -20,7 +20,7 @@ func constructor(Type, node: NimNode): ConstructorResult =
     cast[pointer](unsafeAddr(`it`))
 
   let
-    constructorName = ident fmt"constructor{index.intVal}"
+    constructorName = ident fmt"constructor{Type}{index.intVal}"
     variantType = ident ($Type).replace("Gd", "GdVariantType")
 
   result.init_sentence = quoteExpr do:
@@ -40,7 +40,10 @@ func constructor(Type, node: NimNode): ConstructorResult =
   
 macro constructors*[T](Type: typedesc[T]; loader, body): untyped =
   result = newStmtList()
+  let debuglit = newLit fmt"loading constructors of {Type}..."
   var initProcStmt = newStmtList()
+  initProcStmt.add quoteExpr do:
+    when DetailedLoggingAboutLoadingEnabled: debug `debuglit`
   for cnst in body:
     let r = constructor(Type, cnst)
     result.add r.container_define

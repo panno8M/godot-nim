@@ -9,7 +9,7 @@ import
   typedefs,
   core,
   core/internal,
-  builtinClasses/gen/variantsLoader
+  variants/variantsLoader
 
 proc load*(_:typedesc[GdVariant]) {.unimplemented.}
 
@@ -46,8 +46,9 @@ proc init(pInterface: ptr GDInterface; pLibrary: GDClassLibraryPtr; rInitializat
     rInitialization.deinitialize = terminateLevel
     rInitialization.minimumInitializationLevel = config.minimumInitializationLevel
 
-    load GdVariant
+    load_variant_native_constructors()
     load_Variants()
+    load GdVariant
 
   except:
     error getCurrentExceptionMsg()

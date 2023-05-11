@@ -15,22 +15,59 @@ var root* = pkg"../src/godot":
     dontTouch mdl"class_db"
     dontExport dontTouch mdl"internal"
   
-  pkg"builtinClasses":
+  pkg"variants":
+    pkg"nativeDetails"
+    dontTouch pkg"customDetails"
+
+    mdl"nativeConstructors"
+    dontTouch mdl"customConstructors"
+
     dontTouch mdl"essentials"
-    dontTouch mdl"constructors"
-    pkg"gen"
-    dontTouch pkg"opt"
+    dontExport mdl"variantsLoader"
+  
+  mdl"enums"
   
   pkg"classes"
 
   dontTouch mdl"macros"
   dontTouch mdl"pragmas"
+  dontTouch mdl"compileTimeSwitch"
   dontTouch mdl"init"
 
 let
-  builtinClasses* = root/"builtinClasses"/"gen"
-  builtinClassEssentials* = root/"builtinClasses"/"essentials"
+  variants* = root/"variants"
+  variantDefs* = root/"typedefs"/"variants"
+  variantDetails* = root/"variants"/"nativeDetails"
+  variantEssentials* = root/"variants"/"essentials"
+  variantNativeConstructors* = root/"variants"/"nativeConstructors"
+  variantLoader* = root/"variants"/"variantsLoader"
+
   classes* = root/"classes"
   classDefs* = root/"typedefs"/"classes"
-  variantDefs* = root/"typedefs"/"variants"
+
+  enums* = root/"enums"
+
   pragmas* = root/"pragmas"
+  macros* = root/"macros"
+  interfaces* = root/"core"/"gdextensionInterface"
+  internal* = root/"core"/"internal"
+  compileTimeSwitch* = root/"compileTimeSwitch"
+
+enums.importModules(
+  pragmas,
+)
+variantNativeConstructors.importModules(
+  variantDefs,
+  macros,
+  pragmas,
+  interfaces,
+  internal,
+  compileTimeSwitch,
+  Module.module("std/logging"),
+)
+variantLoader.importModules(
+  variantDetails,
+  variantDefs,
+  variantNativeConstructors,
+  Module.module("std/logging"),
+)
