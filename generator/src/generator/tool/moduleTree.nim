@@ -28,8 +28,9 @@ var root* = pkg"../src/godot":
   dontTouch mdl"init"
 
 let
-  builtinClasses* = root/builtinClasses/gen
-  builtinClassEssentials* = root/builtinClasses/essentials
-  classes* = root/classes
-  classDefs* = root/typedefs/classes
-  variantDefs* = root/typedefs/variants
+  builtinClasses* = root/"builtinClasses"/"gen"
+  builtinClassEssentials* = root/"builtinClasses"/"essentials"
+  classes* = root/"classes"
+  classDefs* = root/"typedefs"/"classes"
+  variantDefs* = root/"typedefs"/"variants"
+  pragmas* = root/"pragmas"

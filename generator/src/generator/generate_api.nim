@@ -38,9 +38,7 @@ proc obtain_keys(node: JsonNode): HashSet[string] =
 
 proc modulate_globalEnums(globalEnums: JsonNode): Module =
   result = Module.module("enums")
-    .importModules(
-      moduleTree.root/pragmas
-    )
+    .importModules(moduleTree.pragmas)
 
   const ignore = "Variant"
   for item in globalEnums.items:
