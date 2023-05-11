@@ -49,7 +49,7 @@ proc procedures_impl(Type, loader, body: NimNode; is_static: bool): NimNode =
   let debuglit = newLit "loading" & (if is_static: " static" else: "") & " procs of " & repr(Type) & "..."
   var initProcStmt = newStmtList()
   initProcStmt.add quoteExpr do:
-    when DetailedLoggingAboutLoadingEnabled: debug `debuglit`
+    when DetailedLoggingAboutLoadingEnabled: iam($`Type` & "-load-procs", stgLibrary).debug `debuglit`
   for statement in body:
     let p = procedure(Type, statement, is_static)
     result.add p.containerDefine
@@ -101,7 +101,7 @@ macro operators*[T](Type: typedesc[T]; loader, body): untyped =
   let debuglit = newLit "loading operators of " & repr(Type) & "..."
   var initProcStmt = newStmtList()
   initProcStmt.add quoteExpr do:
-    when DetailedLoggingAboutLoadingEnabled: debug `debuglit`
+    when DetailedLoggingAboutLoadingEnabled: iam($`type` & "-load-ops", stgLibrary).debug `debuglit`
   for statement in body:
     let p = operator(Type, statement)
     result.add p.containerDefine

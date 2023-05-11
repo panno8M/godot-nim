@@ -1,10 +1,8 @@
-import std/[
-  logging,
-]
 import beyond/[
   defects,
 ]
 import
+  logging,
   pragmas,
   typedefs,
   core,
@@ -51,7 +49,7 @@ proc init(pInterface: ptr GDInterface; pLibrary: GDClassLibraryPtr; rInitializat
     load GdVariant
 
   except:
-    error getCurrentExceptionMsg()
+    iam("unhandled-exception", stgLibrary).error getCurrentExceptionMsg()
     return false
 
   return true

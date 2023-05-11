@@ -144,12 +144,12 @@ proc modulate*(self: NimBuiltinClass): tuple[module: Module; constructor: Statem
 
 proc modulateLoader*(classes: seq[NimBuiltinClass]) =
   let loader = Statement.header "proc load_Variants* ="
-  loader.add Statement.sentence("debug \"load methods of all variants...\"")
+  loader.add Statement.sentence("iam(\"load-variants\", stgLibrary).debug \"load methods of all variants...\"")
   for class in classes:
     loader.add Statement.sentence("load " & class.className)
 
   let constructorLoader = Statement.header("proc load_variant_native_constructors* =")
-  constructorLoader.add Statement.sentence("debug \"load constructors of all variants...\"")
+  constructorLoader.add Statement.sentence("iam(\"load-variant-constructors\", stgLibrary).debug \"load constructors of all variants...\"")
   for class in classes:
     if class.className notin constructorIgnores:
       constructorLoader.add Statement.sentence("loadConstructors_" & class.className & "()")

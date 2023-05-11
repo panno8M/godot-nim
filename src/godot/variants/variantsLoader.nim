@@ -2,10 +2,10 @@
 import nativeDetails
 import ../typedefs/variants
 import nativeConstructors
-import std/logging
+import ../logging
 
 proc load_Variants* =
-  debug "load methods of all variants..."
+  iam("load-variants", stgLibrary).debug "load methods of all variants..."
   load GdBool
   load GdInt
   load GdFloat
@@ -42,7 +42,7 @@ proc load_Variants* =
   load GdPackedVector3Array
   load GdPackedColorArray
 proc load_variant_native_constructors* =
-  debug "load constructors of all variants..."
+  iam("load-variant-constructors", stgLibrary).debug "load constructors of all variants..."
   loadConstructors_GdBool()
   loadConstructors_GdInt()
   loadConstructors_GdFloat()

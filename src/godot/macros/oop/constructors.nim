@@ -43,7 +43,7 @@ macro constructors*[T](Type: typedesc[T]; loader, body): untyped =
   let debuglit = newLit fmt"loading constructors of {Type}..."
   var initProcStmt = newStmtList()
   initProcStmt.add quoteExpr do:
-    when DetailedLoggingAboutLoadingEnabled: debug `debuglit`
+    when DetailedLoggingAboutLoadingEnabled: iam($`Type` & "-load-constructor", stgLibrary).debug `debuglit`
   for cnst in body:
     let r = constructor(Type, cnst)
     result.add r.container_define

@@ -5,7 +5,7 @@ import ../pragmas
 import ../core/gdextensionInterface
 import ../core/internal
 import ../compileTimeSwitch
-import std/logging
+import ../logging
 
 GdBool.constructors(loader= loadConstructors_GdBool):
   proc gdBool*(): GdBool {.index: 0.}

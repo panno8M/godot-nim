@@ -1,23 +1,22 @@
 import std/[
-  logging,
   os,
 ]
 import beyond/defects
 import godot
+import godot/logging
 
 defects.unimplementedCallback =
   proc(msg: string) =
-    warn "[libinternal]", msg
+    iam("unimplemented", stgLibrary).warn msg
 
 proc newDemoLogger: FileLogger =
   createDir("log")
-  result = newFileLogger("log/demo.log", fmWrite, fmtstr= "[$time] - $levelname: ")
-  result.flushThreshold = lvlAll
+  newFileLogger("log/demo.log", fmWrite)
 
-addHandler newDemoLogger()
+Global.handlers.add newDemoLogger()
 
 proc initialize(lvl: GDInitializationLevel): void =
-  debug "demo.initialize was called, level = " & $lvl
+  iam("initialize-module").debug "demo.initialize was called, level = " & $lvl
   # var v = Variant(Vec2(10,2))
   # GD.print(v)
   # GD.print(Variant(true))
@@ -27,7 +26,7 @@ proc initialize(lvl: GDInitializationLevel): void =
   
 
 proc terminate(lvl: GDInitializationLevel): void =
-  debug "demo.terminate was called, level = " & $lvl
+  iam("terminate-module").debug "demo.terminate was called, level = " & $lvl
   # GD.print(Variant(false))
 
 let cfg = GDExtensionConfig(
@@ -37,4 +36,4 @@ let cfg = GDExtensionConfig(
 )
 
 gdEntryPoint init_library, cfg:
-  debug "EntryPoint was called"
+  iam("entry").debug "EntryPoint was called"

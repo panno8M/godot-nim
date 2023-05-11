@@ -22,7 +22,7 @@ var root* = pkg"../src/godot":
     mdl"nativeConstructors"
     dontTouch mdl"customConstructors"
 
-    dontTouch mdl"essentials"
+    dontExport dontTouch mdl"essentials"
     dontExport mdl"variantsLoader"
   
   mdl"enums"
@@ -33,6 +33,7 @@ var root* = pkg"../src/godot":
   dontTouch mdl"pragmas"
   dontTouch mdl"compileTimeSwitch"
   dontTouch mdl"init"
+  dontExport dontTouch mdl"logging"
 
 let
   variants* = root/"variants"
@@ -52,6 +53,7 @@ let
   interfaces* = root/"core"/"gdextensionInterface"
   internal* = root/"core"/"internal"
   compileTimeSwitch* = root/"compileTimeSwitch"
+  logging* = root/"logging"
 
 enums.importModules(
   pragmas,
@@ -63,11 +65,11 @@ variantNativeConstructors.importModules(
   interfaces,
   internal,
   compileTimeSwitch,
-  Module.module("std/logging"),
+  logging,
 )
 variantLoader.importModules(
   variantDetails,
   variantDefs,
   variantNativeConstructors,
-  Module.module("std/logging"),
+  logging,
 )
