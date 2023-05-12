@@ -38,14 +38,14 @@ GdProjection.staticProcedures(loader= loadStaticProcs_GdProjection):
   proc `getFovy`*(_:typedesc[GdProjection]; `fovx`:GdFloat; `aspect`:GdFloat): GdFloat {.loadfrom("get_fovy", 3514207532).}
 
 GdProjection.operators(loader= loadOperators_GdProjection):
-  proc `!=`*(left:GdProjection; right:GdVariant): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `!=`*(left:GdProjection; right:GdProjection): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `*`*(left:GdProjection; right:GdVector4): GdVector4 {.operator: GdVariantOpMultiply.}
-  proc `*`*(left:GdProjection; right:GdProjection): GdProjection {.operator: GdVariantOpMultiply.}
-  proc `==`*(left:GdProjection; right:GdVariant): GdBool {.operator: GdVariantOpEqual.}
-  proc `==`*(left:GdProjection; right:GdProjection): GdBool {.operator: GdVariantOpEqual.}
-  proc contains*(left:GdDictionary; right:GdProjection): GdBool {.operator: GdVariantOpIn.}
-  proc contains*(left:GdArray; right:GdProjection): GdBool {.operator: GdVariantOpIn.}
+  proc `!=`*(left:GdProjection; right:GdVariant): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `!=`*(left:GdProjection; right:GdProjection): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `*`*(left:GdProjection; right:GdVector4): GdVector4 {.operator: GdVariantOperator.Multiply.}
+  proc `*`*(left:GdProjection; right:GdProjection): GdProjection {.operator: GdVariantOperator.Multiply.}
+  proc `==`*(left:GdProjection; right:GdVariant): GdBool {.operator: GdVariantOperator.Equal.}
+  proc `==`*(left:GdProjection; right:GdProjection): GdBool {.operator: GdVariantOperator.Equal.}
+  proc contains*(left:GdDictionary; right:GdProjection): GdBool {.operator: GdVariantOperator.In.}
+  proc contains*(left:GdArray; right:GdProjection): GdBool {.operator: GdVariantOperator.In.}
 
 GdProjection.statics:
   type `Planes`* {.pure.} = enum

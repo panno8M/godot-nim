@@ -25,13 +25,13 @@ GdRect2.procedures(loader= loadProcs_GdRect2):
   proc `merge`*(self:GdRect2; `b`:GdRect2): GdRect2 {.loadfrom("merge", 2282977743).}
 
 GdRect2.operators(loader= loadOperators_GdRect2):
-  proc `!=`*(left:GdRect2; right:GdVariant): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `!=`*(left:GdRect2; right:GdRect2): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `*`*(left:GdRect2; right:GdTransform2D): GdRect2 {.operator: GdVariantOpMultiply.}
-  proc `==`*(left:GdRect2; right:GdVariant): GdBool {.operator: GdVariantOpEqual.}
-  proc `==`*(left:GdRect2; right:GdRect2): GdBool {.operator: GdVariantOpEqual.}
-  proc contains*(left:GdDictionary; right:GdRect2): GdBool {.operator: GdVariantOpIn.}
-  proc contains*(left:GdArray; right:GdRect2): GdBool {.operator: GdVariantOpIn.}
+  proc `!=`*(left:GdRect2; right:GdVariant): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `!=`*(left:GdRect2; right:GdRect2): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `*`*(left:GdRect2; right:GdTransform2D): GdRect2 {.operator: GdVariantOperator.Multiply.}
+  proc `==`*(left:GdRect2; right:GdVariant): GdBool {.operator: GdVariantOperator.Equal.}
+  proc `==`*(left:GdRect2; right:GdRect2): GdBool {.operator: GdVariantOperator.Equal.}
+  proc contains*(left:GdDictionary; right:GdRect2): GdBool {.operator: GdVariantOperator.In.}
+  proc contains*(left:GdArray; right:GdRect2): GdBool {.operator: GdVariantOperator.In.}
 proc load*(_:typedesc[GdRect2]) =
   loadProcs_GdRect2()
   loadOperators_GdRect2()

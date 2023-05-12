@@ -23,19 +23,19 @@ GdTransform3D.procedures(loader= loadProcs_GdTransform3D):
   proc `translated`*(self:GdTransform3D; `offset`:GdVector3): GdTransform3D {.loadfrom("translated", 1405596198).}
 
 GdTransform3D.operators(loader= loadOperators_GdTransform3D):
-  proc `!=`*(left:GdTransform3D; right:GdVariant): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `!=`*(left:GdTransform3D; right:GdTransform3D): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `*`*(left:GdTransform3D; right:GdInt): GdTransform3D {.operator: GdVariantOpMultiply.}
-  proc `*`*(left:GdTransform3D; right:GdFloat): GdTransform3D {.operator: GdVariantOpMultiply.}
-  proc `*`*(left:GdTransform3D; right:GdVector3): GdVector3 {.operator: GdVariantOpMultiply.}
-  proc `*`*(left:GdTransform3D; right:GdPlane): GdPlane {.operator: GdVariantOpMultiply.}
-  proc `*`*(left:GdTransform3D; right:GdAABB): GdAABB {.operator: GdVariantOpMultiply.}
-  proc `*`*(left:GdTransform3D; right:GdTransform3D): GdTransform3D {.operator: GdVariantOpMultiply.}
-  proc `*`*(left:GdTransform3D; right:GdPackedVector3Array): GdPackedVector3Array {.operator: GdVariantOpMultiply.}
-  proc `==`*(left:GdTransform3D; right:GdVariant): GdBool {.operator: GdVariantOpEqual.}
-  proc `==`*(left:GdTransform3D; right:GdTransform3D): GdBool {.operator: GdVariantOpEqual.}
-  proc contains*(left:GdDictionary; right:GdTransform3D): GdBool {.operator: GdVariantOpIn.}
-  proc contains*(left:GdArray; right:GdTransform3D): GdBool {.operator: GdVariantOpIn.}
+  proc `!=`*(left:GdTransform3D; right:GdVariant): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `!=`*(left:GdTransform3D; right:GdTransform3D): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `*`*(left:GdTransform3D; right:GdInt): GdTransform3D {.operator: GdVariantOperator.Multiply.}
+  proc `*`*(left:GdTransform3D; right:GdFloat): GdTransform3D {.operator: GdVariantOperator.Multiply.}
+  proc `*`*(left:GdTransform3D; right:GdVector3): GdVector3 {.operator: GdVariantOperator.Multiply.}
+  proc `*`*(left:GdTransform3D; right:GdPlane): GdPlane {.operator: GdVariantOperator.Multiply.}
+  proc `*`*(left:GdTransform3D; right:GdAABB): GdAABB {.operator: GdVariantOperator.Multiply.}
+  proc `*`*(left:GdTransform3D; right:GdTransform3D): GdTransform3D {.operator: GdVariantOperator.Multiply.}
+  proc `*`*(left:GdTransform3D; right:GdPackedVector3Array): GdPackedVector3Array {.operator: GdVariantOperator.Multiply.}
+  proc `==`*(left:GdTransform3D; right:GdVariant): GdBool {.operator: GdVariantOperator.Equal.}
+  proc `==`*(left:GdTransform3D; right:GdTransform3D): GdBool {.operator: GdVariantOperator.Equal.}
+  proc contains*(left:GdDictionary; right:GdTransform3D): GdBool {.operator: GdVariantOperator.In.}
+  proc contains*(left:GdArray; right:GdTransform3D): GdBool {.operator: GdVariantOperator.In.}
 proc load*(_:typedesc[GdTransform3D]) =
   loadProcs_GdTransform3D()
   loadOperators_GdTransform3D()

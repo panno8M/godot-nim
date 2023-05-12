@@ -31,14 +31,14 @@ GdPackedVector3Array.procedures(loader= loadProcs_GdPackedVector3Array):
   proc `toByteArray`*(self:GdPackedVector3Array): GdPackedByteArray {.loadfrom("to_byte_array", 247621236).}
 
 GdPackedVector3Array.operators(loader= loadOperators_GdPackedVector3Array):
-  proc `!=`*(left:GdPackedVector3Array; right:GdVariant): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `!=`*(left:GdPackedVector3Array; right:GdPackedVector3Array): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `*`*(left:GdPackedVector3Array; right:GdTransform3D): GdPackedVector3Array {.operator: GdVariantOpMultiply.}
-  proc `+`*(left:GdPackedVector3Array; right:GdPackedVector3Array): GdPackedVector3Array {.operator: GdVariantOpAdd.}
-  proc `==`*(left:GdPackedVector3Array; right:GdVariant): GdBool {.operator: GdVariantOpEqual.}
-  proc `==`*(left:GdPackedVector3Array; right:GdPackedVector3Array): GdBool {.operator: GdVariantOpEqual.}
-  proc contains*(left:GdDictionary; right:GdPackedVector3Array): GdBool {.operator: GdVariantOpIn.}
-  proc contains*(left:GdArray; right:GdPackedVector3Array): GdBool {.operator: GdVariantOpIn.}
+  proc `!=`*(left:GdPackedVector3Array; right:GdVariant): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `!=`*(left:GdPackedVector3Array; right:GdPackedVector3Array): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `*`*(left:GdPackedVector3Array; right:GdTransform3D): GdPackedVector3Array {.operator: GdVariantOperator.Multiply.}
+  proc `+`*(left:GdPackedVector3Array; right:GdPackedVector3Array): GdPackedVector3Array {.operator: GdVariantOperator.Add.}
+  proc `==`*(left:GdPackedVector3Array; right:GdVariant): GdBool {.operator: GdVariantOperator.Equal.}
+  proc `==`*(left:GdPackedVector3Array; right:GdPackedVector3Array): GdBool {.operator: GdVariantOperator.Equal.}
+  proc contains*(left:GdDictionary; right:GdPackedVector3Array): GdBool {.operator: GdVariantOperator.In.}
+  proc contains*(left:GdArray; right:GdPackedVector3Array): GdBool {.operator: GdVariantOperator.In.}
 proc load*(_:typedesc[GdPackedVector3Array]) =
   loadProcs_GdPackedVector3Array()
   loadOperators_GdPackedVector3Array()

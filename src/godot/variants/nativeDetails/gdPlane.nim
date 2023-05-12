@@ -21,15 +21,15 @@ GdPlane.procedures(loader= loadProcs_GdPlane):
   proc `project`*(self:GdPlane; `point`:GdVector3): GdVector3 {.loadfrom("project", 2923479887).}
 
 GdPlane.operators(loader= loadOperators_GdPlane):
-  proc `!=`*(left:GdPlane; right:GdVariant): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `!=`*(left:GdPlane; right:GdPlane): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `*`*(left:GdPlane; right:GdTransform3D): GdPlane {.operator: GdVariantOpMultiply.}
-  proc `+`*(left:GdPlane): GdPlane {.operator: GdVariantOpPositive.}
-  proc `-`*(left:GdPlane): GdPlane {.operator: GdVariantOpNegate.}
-  proc `==`*(left:GdPlane; right:GdVariant): GdBool {.operator: GdVariantOpEqual.}
-  proc `==`*(left:GdPlane; right:GdPlane): GdBool {.operator: GdVariantOpEqual.}
-  proc contains*(left:GdDictionary; right:GdPlane): GdBool {.operator: GdVariantOpIn.}
-  proc contains*(left:GdArray; right:GdPlane): GdBool {.operator: GdVariantOpIn.}
+  proc `!=`*(left:GdPlane; right:GdVariant): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `!=`*(left:GdPlane; right:GdPlane): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `*`*(left:GdPlane; right:GdTransform3D): GdPlane {.operator: GdVariantOperator.Multiply.}
+  proc `+`*(left:GdPlane): GdPlane {.operator: GdVariantOperator.Positive.}
+  proc `-`*(left:GdPlane): GdPlane {.operator: GdVariantOperator.Negate.}
+  proc `==`*(left:GdPlane; right:GdVariant): GdBool {.operator: GdVariantOperator.Equal.}
+  proc `==`*(left:GdPlane; right:GdPlane): GdBool {.operator: GdVariantOperator.Equal.}
+  proc contains*(left:GdDictionary; right:GdPlane): GdBool {.operator: GdVariantOperator.In.}
+  proc contains*(left:GdArray; right:GdPlane): GdBool {.operator: GdVariantOperator.In.}
 proc load*(_:typedesc[GdPlane]) =
   loadProcs_GdPlane()
   loadOperators_GdPlane()

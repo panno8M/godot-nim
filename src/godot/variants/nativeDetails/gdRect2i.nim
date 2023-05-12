@@ -23,12 +23,12 @@ GdRect2i.procedures(loader= loadProcs_GdRect2i):
   proc `merge`*(self:GdRect2i; `b`:GdRect2i): GdRect2i {.loadfrom("merge", 717431873).}
 
 GdRect2i.operators(loader= loadOperators_GdRect2i):
-  proc `!=`*(left:GdRect2i; right:GdVariant): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `!=`*(left:GdRect2i; right:GdRect2i): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `==`*(left:GdRect2i; right:GdVariant): GdBool {.operator: GdVariantOpEqual.}
-  proc `==`*(left:GdRect2i; right:GdRect2i): GdBool {.operator: GdVariantOpEqual.}
-  proc contains*(left:GdDictionary; right:GdRect2i): GdBool {.operator: GdVariantOpIn.}
-  proc contains*(left:GdArray; right:GdRect2i): GdBool {.operator: GdVariantOpIn.}
+  proc `!=`*(left:GdRect2i; right:GdVariant): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `!=`*(left:GdRect2i; right:GdRect2i): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `==`*(left:GdRect2i; right:GdVariant): GdBool {.operator: GdVariantOperator.Equal.}
+  proc `==`*(left:GdRect2i; right:GdRect2i): GdBool {.operator: GdVariantOperator.Equal.}
+  proc contains*(left:GdDictionary; right:GdRect2i): GdBool {.operator: GdVariantOperator.In.}
+  proc contains*(left:GdArray; right:GdRect2i): GdBool {.operator: GdVariantOperator.In.}
 proc load*(_:typedesc[GdRect2i]) =
   loadProcs_GdRect2i()
   loadOperators_GdRect2i()

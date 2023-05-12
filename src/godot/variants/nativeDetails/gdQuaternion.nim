@@ -31,22 +31,22 @@ GdQuaternion.staticProcedures(loader= loadStaticProcs_GdQuaternion):
   proc `fromEuler`*(_:typedesc[GdQuaternion]; `euler`:GdVector3): GdQuaternion {.loadfrom("from_euler", 4053467903).}
 
 GdQuaternion.operators(loader= loadOperators_GdQuaternion):
-  proc `!=`*(left:GdQuaternion; right:GdVariant): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `!=`*(left:GdQuaternion; right:GdQuaternion): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `*`*(left:GdQuaternion; right:GdInt): GdQuaternion {.operator: GdVariantOpMultiply.}
-  proc `*`*(left:GdQuaternion; right:GdFloat): GdQuaternion {.operator: GdVariantOpMultiply.}
-  proc `*`*(left:GdQuaternion; right:GdVector3): GdVector3 {.operator: GdVariantOpMultiply.}
-  proc `*`*(left:GdQuaternion; right:GdQuaternion): GdQuaternion {.operator: GdVariantOpMultiply.}
-  proc `+`*(left:GdQuaternion): GdQuaternion {.operator: GdVariantOpPositive.}
-  proc `+`*(left:GdQuaternion; right:GdQuaternion): GdQuaternion {.operator: GdVariantOpAdd.}
-  proc `-`*(left:GdQuaternion): GdQuaternion {.operator: GdVariantOpNegate.}
-  proc `-`*(left:GdQuaternion; right:GdQuaternion): GdQuaternion {.operator: GdVariantOpSubtract.}
-  proc `/`*(left:GdQuaternion; right:GdInt): GdQuaternion {.operator: GdVariantOpDivide.}
-  proc `/`*(left:GdQuaternion; right:GdFloat): GdQuaternion {.operator: GdVariantOpDivide.}
-  proc `==`*(left:GdQuaternion; right:GdVariant): GdBool {.operator: GdVariantOpEqual.}
-  proc `==`*(left:GdQuaternion; right:GdQuaternion): GdBool {.operator: GdVariantOpEqual.}
-  proc contains*(left:GdDictionary; right:GdQuaternion): GdBool {.operator: GdVariantOpIn.}
-  proc contains*(left:GdArray; right:GdQuaternion): GdBool {.operator: GdVariantOpIn.}
+  proc `!=`*(left:GdQuaternion; right:GdVariant): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `!=`*(left:GdQuaternion; right:GdQuaternion): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `*`*(left:GdQuaternion; right:GdInt): GdQuaternion {.operator: GdVariantOperator.Multiply.}
+  proc `*`*(left:GdQuaternion; right:GdFloat): GdQuaternion {.operator: GdVariantOperator.Multiply.}
+  proc `*`*(left:GdQuaternion; right:GdVector3): GdVector3 {.operator: GdVariantOperator.Multiply.}
+  proc `*`*(left:GdQuaternion; right:GdQuaternion): GdQuaternion {.operator: GdVariantOperator.Multiply.}
+  proc `+`*(left:GdQuaternion): GdQuaternion {.operator: GdVariantOperator.Positive.}
+  proc `+`*(left:GdQuaternion; right:GdQuaternion): GdQuaternion {.operator: GdVariantOperator.Add.}
+  proc `-`*(left:GdQuaternion): GdQuaternion {.operator: GdVariantOperator.Negate.}
+  proc `-`*(left:GdQuaternion; right:GdQuaternion): GdQuaternion {.operator: GdVariantOperator.Subtract.}
+  proc `/`*(left:GdQuaternion; right:GdInt): GdQuaternion {.operator: GdVariantOperator.Divide.}
+  proc `/`*(left:GdQuaternion; right:GdFloat): GdQuaternion {.operator: GdVariantOperator.Divide.}
+  proc `==`*(left:GdQuaternion; right:GdVariant): GdBool {.operator: GdVariantOperator.Equal.}
+  proc `==`*(left:GdQuaternion; right:GdQuaternion): GdBool {.operator: GdVariantOperator.Equal.}
+  proc contains*(left:GdDictionary; right:GdQuaternion): GdBool {.operator: GdVariantOperator.In.}
+  proc contains*(left:GdArray; right:GdQuaternion): GdBool {.operator: GdVariantOperator.In.}
 proc load*(_:typedesc[GdQuaternion]) =
   loadProcs_GdQuaternion()
   loadStaticProcs_GdQuaternion()

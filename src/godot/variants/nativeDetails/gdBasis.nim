@@ -30,16 +30,16 @@ GdBasis.staticProcedures(loader= loadStaticProcs_GdBasis):
   proc `lookingAt`*(_:typedesc[GdBasis]; `target`:GdVector3; `up`:GdVector3= gdvec(0, 1, 0)): GdBasis {.loadfrom("looking_at", 419916660).}
 
 GdBasis.operators(loader= loadOperators_GdBasis):
-  proc `!=`*(left:GdBasis; right:GdVariant): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `!=`*(left:GdBasis; right:GdBasis): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `*`*(left:GdBasis; right:GdInt): GdBasis {.operator: GdVariantOpMultiply.}
-  proc `*`*(left:GdBasis; right:GdFloat): GdBasis {.operator: GdVariantOpMultiply.}
-  proc `*`*(left:GdBasis; right:GdVector3): GdVector3 {.operator: GdVariantOpMultiply.}
-  proc `*`*(left:GdBasis; right:GdBasis): GdBasis {.operator: GdVariantOpMultiply.}
-  proc `==`*(left:GdBasis; right:GdVariant): GdBool {.operator: GdVariantOpEqual.}
-  proc `==`*(left:GdBasis; right:GdBasis): GdBool {.operator: GdVariantOpEqual.}
-  proc contains*(left:GdDictionary; right:GdBasis): GdBool {.operator: GdVariantOpIn.}
-  proc contains*(left:GdArray; right:GdBasis): GdBool {.operator: GdVariantOpIn.}
+  proc `!=`*(left:GdBasis; right:GdVariant): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `!=`*(left:GdBasis; right:GdBasis): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `*`*(left:GdBasis; right:GdInt): GdBasis {.operator: GdVariantOperator.Multiply.}
+  proc `*`*(left:GdBasis; right:GdFloat): GdBasis {.operator: GdVariantOperator.Multiply.}
+  proc `*`*(left:GdBasis; right:GdVector3): GdVector3 {.operator: GdVariantOperator.Multiply.}
+  proc `*`*(left:GdBasis; right:GdBasis): GdBasis {.operator: GdVariantOperator.Multiply.}
+  proc `==`*(left:GdBasis; right:GdVariant): GdBool {.operator: GdVariantOperator.Equal.}
+  proc `==`*(left:GdBasis; right:GdBasis): GdBool {.operator: GdVariantOperator.Equal.}
+  proc contains*(left:GdDictionary; right:GdBasis): GdBool {.operator: GdVariantOperator.In.}
+  proc contains*(left:GdArray; right:GdBasis): GdBool {.operator: GdVariantOperator.In.}
 proc load*(_:typedesc[GdBasis]) =
   loadProcs_GdBasis()
   loadStaticProcs_GdBasis()

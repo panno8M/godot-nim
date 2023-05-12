@@ -7,7 +7,8 @@ import
   typedefs,
   core,
   core/internal,
-  variants/variantsLoader
+  variants/variantsLoader,
+  classes/customDetails/classDB
 
 proc load*(_:typedesc[GdVariant]) {.unimplemented.}
 
@@ -17,7 +18,7 @@ type
   GDExtensionConfig* = object
     initializer*: InitCallback
     terminator*: InitCallback
-    minimumInitializationLevel* = GdInitializationScene
+    minimumInitializationLevel* = GdInitializationLevel.Scene
 
 var extcfg: GDExtensionConfig
 

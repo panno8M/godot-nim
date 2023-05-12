@@ -32,7 +32,7 @@ proc gdColor*(`from`: GdColor; alpha: float32): GdColor = gdColor(`from`.r, `fro
 proc gdColor*(`from`: string): GdColor {.unimplemented.}
 
 proc gdString*(str: string): GdString =
-  gdinterface.stringNewWithLatin1Chars(cast[cstring](addr result.bytes[0]), cstring str)
+  gdinterface.stringNewWithLatin1Chars(addr result, cstring str)
 proc gdStringName*(str: string): GdStringName =
   gdStringName gdString str
 proc gdVariant*: GdVariant {.unimplemented.}

@@ -32,7 +32,7 @@ proc terminate(lvl: GDInitializationLevel): void =
 let cfg = GDExtensionConfig(
   initializer: initialize,
   terminator: terminate,
-  minimumInitializationLevel: GDInitializationEditor
+  minimumInitializationLevel: GDInitializationLevel.Editor
 )
 
 gdEntryPoint init_library, cfg:

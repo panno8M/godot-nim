@@ -29,18 +29,18 @@ GdTransform2D.procedures(loader= loadProcs_GdTransform2D):
   proc `translated`*(self:GdTransform2D; `offset`:GdVector2): GdTransform2D {.loadfrom("translated", 1446323263).}
 
 GdTransform2D.operators(loader= loadOperators_GdTransform2D):
-  proc `!=`*(left:GdTransform2D; right:GdVariant): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `!=`*(left:GdTransform2D; right:GdTransform2D): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `*`*(left:GdTransform2D; right:GdInt): GdTransform2D {.operator: GdVariantOpMultiply.}
-  proc `*`*(left:GdTransform2D; right:GdFloat): GdTransform2D {.operator: GdVariantOpMultiply.}
-  proc `*`*(left:GdTransform2D; right:GdVector2): GdVector2 {.operator: GdVariantOpMultiply.}
-  proc `*`*(left:GdTransform2D; right:GdRect2): GdRect2 {.operator: GdVariantOpMultiply.}
-  proc `*`*(left:GdTransform2D; right:GdTransform2D): GdTransform2D {.operator: GdVariantOpMultiply.}
-  proc `*`*(left:GdTransform2D; right:GdPackedVector2Array): GdPackedVector2Array {.operator: GdVariantOpMultiply.}
-  proc `==`*(left:GdTransform2D; right:GdVariant): GdBool {.operator: GdVariantOpEqual.}
-  proc `==`*(left:GdTransform2D; right:GdTransform2D): GdBool {.operator: GdVariantOpEqual.}
-  proc contains*(left:GdDictionary; right:GdTransform2D): GdBool {.operator: GdVariantOpIn.}
-  proc contains*(left:GdArray; right:GdTransform2D): GdBool {.operator: GdVariantOpIn.}
+  proc `!=`*(left:GdTransform2D; right:GdVariant): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `!=`*(left:GdTransform2D; right:GdTransform2D): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `*`*(left:GdTransform2D; right:GdInt): GdTransform2D {.operator: GdVariantOperator.Multiply.}
+  proc `*`*(left:GdTransform2D; right:GdFloat): GdTransform2D {.operator: GdVariantOperator.Multiply.}
+  proc `*`*(left:GdTransform2D; right:GdVector2): GdVector2 {.operator: GdVariantOperator.Multiply.}
+  proc `*`*(left:GdTransform2D; right:GdRect2): GdRect2 {.operator: GdVariantOperator.Multiply.}
+  proc `*`*(left:GdTransform2D; right:GdTransform2D): GdTransform2D {.operator: GdVariantOperator.Multiply.}
+  proc `*`*(left:GdTransform2D; right:GdPackedVector2Array): GdPackedVector2Array {.operator: GdVariantOperator.Multiply.}
+  proc `==`*(left:GdTransform2D; right:GdVariant): GdBool {.operator: GdVariantOperator.Equal.}
+  proc `==`*(left:GdTransform2D; right:GdTransform2D): GdBool {.operator: GdVariantOperator.Equal.}
+  proc contains*(left:GdDictionary; right:GdTransform2D): GdBool {.operator: GdVariantOperator.In.}
+  proc contains*(left:GdArray; right:GdTransform2D): GdBool {.operator: GdVariantOperator.In.}
 proc load*(_:typedesc[GdTransform2D]) =
   loadProcs_GdTransform2D()
   loadOperators_GdTransform2D()

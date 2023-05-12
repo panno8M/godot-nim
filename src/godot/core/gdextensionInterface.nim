@@ -3,37 +3,78 @@ import ../typedefs/variants
 type
   char32_t* = uint32
   char16_t* = uint16
-type
-  GdVariantType* {.pure.} = enum
-    GdVariantTypeNil, GdVariantTypeBool, GdVariantTypeInt, GdVariantTypeFloat,
-    GdVariantTypeString, GdVariantTypeVector2, GdVariantTypeVector2i,
-    GdVariantTypeRect2, GdVariantTypeRect2i, GdVariantTypeVector3,
-    GdVariantTypeVector3i, GdVariantTypeTransform2d, GdVariantTypeVector4,
-    GdVariantTypeVector4i, GdVariantTypePlane, GdVariantTypeQuaternion,
-    GdVariantTypeAabb, GdVariantTypeBasis, GdVariantTypeTransform3d,
-    GdVariantTypeProjection, GdVariantTypeColor, GdVariantTypeStringName,
-    GdVariantTypeNodePath, GdVariantTypeRid, GdVariantTypeObject,
-    GdVariantTypeCallable, GdVariantTypeSignal, GdVariantTypeDictionary,
-    GdVariantTypeArray, GdVariantTypePackedByteArray,
-    GdVariantTypePackedInt32Array, GdVariantTypePackedInt64Array,
-    GdVariantTypePackedFloat32Array, GdVariantTypePackedFloat64Array,
-    GdVariantTypePackedStringArray, GdVariantTypePackedVector2Array,
-    GdVariantTypePackedVector3Array, GdVariantTypePackedColorArray,
-    GdVariantTypeVariantMax
-  GdVariantOperator* {.pure.} = enum
-    GdVariantOpEqual, GdVariantOpNotEqual, GdVariantOpLess,
-    GdVariantOpLessEqual, GdVariantOpGreater, GdVariantOpGreaterEqual,
-    GdVariantOpAdd, GdVariantOpSubtract, GdVariantOpMultiply, GdVariantOpDivide,
-    GdVariantOpNegate, GdVariantOpPositive, GdVariantOpModule, GdVariantOpPower,
-    GdVariantOpShiftLeft, GdVariantOpShiftRight, GdVariantOpBitAnd,
-    GdVariantOpBitOr, GdVariantOpBitXor, GdVariantOpBitNegate, GdVariantOpAnd,
-    GdVariantOpOr, GdVariantOpXor, GdVariantOpNot, GdVariantOpIn, GdVariantOpMax
+
+  GdVariantType* = enum
+    Nil
+    Bool
+    Int
+    Float
+    String
+    Vector2
+    Vector2i
+    Rect2
+    Rect2i
+    Vector3
+    Vector3i
+    Transform2d
+    Vector4
+    Vector4i
+    Plane
+    Quaternion
+    Aabb
+    Basis
+    Transform3d
+    Projection
+    Color
+    StringName
+    NodePath
+    Rid
+    Object
+    Callable
+    Signal
+    Dictionary
+    Array
+    PackedByteArray
+    PackedInt32Array
+    PackedInt64Array
+    PackedFloat32Array
+    PackedFloat64Array
+    PackedStringArray
+    PackedVector2Array
+    PackedVector3Array
+    PackedColorArray
+
+  GdVariantOperator* = enum
+    Equal
+    NotEqual
+    Less
+    LessEqual
+    Greater
+    GreaterEqual
+    Add
+    Subtract
+    Multiply
+    Divide
+    Negate
+    Positive
+    Module
+    Power
+    ShiftLeft
+    ShiftRight
+    BitAnd
+    BitOr
+    BitXor
+    BitNegate
+    And
+    Or
+    Xor
+    Not
+    In
+
   GdVariantPtr* = pointer
   GdConstVariantPtr* = pointer
-  GdStringNamePtr* = cstring
-  GdConstStringNamePtr* = cstring
-  GdStringPtr* = cstring
-  GdConstStringPtr* = cstring
+  GdConstStringNamePtr* = ptr GdStringName
+  GdConstStringPtr* = ptr GdString
   GdObjectPtr* = pointer
   GdConstObjectPtr* = pointer
   GdTypePtr* = pointer
@@ -42,11 +83,16 @@ type
   GdObjectInstanceID* = uint64
   GdRefPtr* = pointer
   GdConstRefPtr* = pointer
-type
+
   GdCallErrorType* {.pure.} = enum
-    GdCallOk, GdCallErrorInvalidMethod, GdCallErrorInvalidArgument,
-    GdCallErrorTooManyArguments, GdCallErrorTooFewArguments,
-    GdCallErrorInstanceIsNull, GdCallErrorMethodNotConst
+    Ok
+    InvalidMethod
+    InvalidArgument
+    TooManyArguments
+    TooFewArguments
+    InstanceIsNull
+    MethodNotConst
+
   GdCallError* {.bycopy.} = object
     error*: GdCallErrorType
     argument*: int32
@@ -102,14 +148,14 @@ type
   GdClassGetRID* = proc (p_instance: GdClassInstancePtr): uint64 {.cdecl.}
   GdPropertyInfo* {.bycopy.} = object
     `type`*: GdVariantType
-    name*: GdStringNamePtr
-    className*: GdStringNamePtr
+    name*: ptr GdStringName
+    className*: ptr GdStringName
     hint*: uint32            ## Bitfield of `PropertyHint` (defined in `extension_api.json`).
-    hintString*: GdStringPtr
+    hintString*: ptr GdString
     usage*: uint32           ## Bitfield of `PropertyUsageFlags` (defined in `extension_api.json`).
   
   GdMethodInfo* {.bycopy.} = object
-    name*: GdStringNamePtr
+    name*: ptr GdStringName
     returnValue*: GdPropertyInfo
     flags*: uint32           ## Bitfield of `GdClassMethodFlags`.
     id*: int32               ## Arguments: `default_arguments` is an array of size `argument_count`.
@@ -132,7 +178,7 @@ type
   GdClassNotification* = proc (p_instance: GdClassInstancePtr; p_what: int32) {.
       cdecl.}
   GdClassToString* = proc (pInstance: GdClassInstancePtr;
-                           r_is_valid: ptr GdBool; p_out: GdStringPtr) {.cdecl.}
+                           r_is_valid: ptr GdBool; p_out: ptr GdString) {.cdecl.}
   GdClassReference* = proc (p_instance: GdClassInstancePtr) {.cdecl.}
   GdClassUnreference* = proc (p_instance: GdClassInstancePtr) {.cdecl.}
   GdClassCallVirtual* = proc (pInstance: GdClassInstancePtr;
@@ -184,7 +230,7 @@ type
                                 p_args: ptr GdConstTypePtr; r_ret: GdTypePtr) {.
       cdecl.}
   GdClassMethodInfo* {.bycopy.} = object
-    name*: GdStringNamePtr
+    name*: ptr GdStringName
     methodUserdata*: pointer
     callFunc*: GdClassMethodCall
     ptrcallFunc*: GdClassMethodPtrCall
@@ -245,7 +291,7 @@ type
   GdScriptInstanceNotification* = proc (p_instance: GdScriptInstanceDataPtr;
                                         p_what: int32) {.cdecl.}
   GdScriptInstanceToString* = proc (pInstance: GdScriptInstanceDataPtr;
-                                    r_is_valid: ptr GdBool; r_out: GdStringPtr) {.
+                                    r_is_valid: ptr GdBool; r_out: ptr GdString) {.
       cdecl.}
   GdScriptInstanceRefCountIncremented* = proc (
       p_instance: GdScriptInstanceDataPtr) {.cdecl.}
@@ -369,7 +415,7 @@ type
     variantBooleanize*: proc (p_self: GdConstVariantPtr): GdBool {.cdecl.}
     variantDuplicate*: proc (pSelf: GdConstVariantPtr; r_ret: GdVariantPtr;
                              p_deep: GdBool) {.cdecl.}
-    variantStringify*: proc (p_self: GdConstVariantPtr; r_ret: GdStringPtr) {.
+    variantStringify*: proc (p_self: GdConstVariantPtr; r_ret: ptr GdString) {.
         cdecl.}
     variantGetType*: proc (p_self: GdConstVariantPtr): GdVariantType {.cdecl.}
     variantHasMethod*: proc (p_self: GdConstVariantPtr;
@@ -378,7 +424,7 @@ type
                              p_member: GdConstStringNamePtr): GdBool {.cdecl.}
     variantHasKey*: proc (pSelf: GdConstVariantPtr; p_key: GdConstVariantPtr;
                           r_valid: ptr GdBool): GdBool {.cdecl.}
-    variantGetTypeName*: proc (p_type: GdVariantType; r_name: GdStringPtr) {.
+    variantGetTypeName*: proc (p_type: GdVariantType; r_name: ptr GdString) {.
         cdecl.}
     variantCanConvert*: proc (p_from: GdVariantType; p_to: GdVariantType): GdBool {.
         cdecl.}
@@ -424,25 +470,25 @@ type
                                     r_ret: GdVariantPtr) {.cdecl.}
     variantGetPtrUtilityFunction*: proc (p_function: GdConstStringNamePtr;
         p_hash: GdInt): GdPtrUtilityFunction {.cdecl.} ## extra utilities
-    stringNewWithLatin1Chars*: proc (r_dest: GdStringPtr; p_contents: cstring) {.
+    stringNewWithLatin1Chars*: proc (r_dest: ptr GdString; p_contents: cstring) {.
         cdecl.}
-    stringNewWithUtf8Chars*: proc (r_dest: GdStringPtr; p_contents: cstring) {.
+    stringNewWithUtf8Chars*: proc (r_dest: ptr GdString; p_contents: cstring) {.
         cdecl.}
-    stringNewWithUtf16Chars*: proc (r_dest: GdStringPtr;
+    stringNewWithUtf16Chars*: proc (r_dest: ptr GdString;
                                     p_contents: ptr char16_t) {.cdecl.}
-    stringNewWithUtf32Chars*: proc (r_dest: GdStringPtr;
+    stringNewWithUtf32Chars*: proc (r_dest: ptr GdString;
                                     p_contents: ptr char32_t) {.cdecl.}
-    stringNewWithWideChars*: proc (r_dest: GdStringPtr; p_contents: WideCstring) {.
+    stringNewWithWideChars*: proc (r_dest: ptr GdString; p_contents: WideCstring) {.
         cdecl.}
-    stringNewWithLatin1CharsAndLen*: proc (rDest: GdStringPtr;
+    stringNewWithLatin1CharsAndLen*: proc (rDest: ptr GdString;
         p_contents: cstring; p_size: GdInt) {.cdecl.}
-    stringNewWithUtf8CharsAndLen*: proc (rDest: GdStringPtr;
+    stringNewWithUtf8CharsAndLen*: proc (rDest: ptr GdString;
         p_contents: cstring; p_size: GdInt) {.cdecl.}
-    stringNewWithUtf16CharsAndLen*: proc (rDest: GdStringPtr;
+    stringNewWithUtf16CharsAndLen*: proc (rDest: ptr GdString;
         p_contents: ptr char16_t; p_size: GdInt) {.cdecl.}
-    stringNewWithUtf32CharsAndLen*: proc (rDest: GdStringPtr;
+    stringNewWithUtf32CharsAndLen*: proc (rDest: ptr GdString;
         p_contents: ptr char32_t; p_size: GdInt) {.cdecl.}
-    stringNewWithWideCharsAndLen*: proc (rDest: GdStringPtr;
+    stringNewWithWideCharsAndLen*: proc (rDest: ptr GdString;
         p_contents: WideCstring; p_size: GdInt) {.cdecl.} ## Information about the following functions:
                                                           ## - The return value is the resulting encoded string length.
                                                           ## - The length returned is in characters, not in bytes. It also does not include a trailing zero.
@@ -461,17 +507,17 @@ type
                                p_max_write_length: GdInt): GdInt {.cdecl.}
     stringToWideChars*: proc (pSelf: GdConstStringPtr; r_text: WideCstring;
                               p_max_write_length: GdInt): GdInt {.cdecl.}
-    stringOperatorIndex*: proc (p_self: GdStringPtr; p_index: GdInt): ptr char32T {.
+    stringOperatorIndex*: proc (p_self: ptr GdString; p_index: GdInt): ptr char32T {.
         cdecl.}
     stringOperatorIndexConst*: proc (p_self: GdConstStringPtr; p_index: GdInt): ptr char32T {.
         cdecl.}
-    stringOperatorPlusEqString*: proc (p_self: GdStringPtr;
+    stringOperatorPlusEqString*: proc (p_self: ptr GdString;
                                        p_b: GdConstStringPtr) {.cdecl.}
-    stringOperatorPlusEqChar*: proc (p_self: GdStringPtr; p_b: char32_t) {.cdecl.}
-    stringOperatorPlusEqCstr*: proc (p_self: GdStringPtr; p_b: cstring) {.cdecl.}
-    stringOperatorPlusEqWcstr*: proc (p_self: GdStringPtr; p_b: WideCstring) {.
+    stringOperatorPlusEqChar*: proc (p_self: ptr GdString; p_b: char32_t) {.cdecl.}
+    stringOperatorPlusEqCstr*: proc (p_self: ptr GdString; p_b: cstring) {.cdecl.}
+    stringOperatorPlusEqWcstr*: proc (p_self: ptr GdString; p_b: WideCstring) {.
         cdecl.}
-    stringOperatorPlusEqC32str*: proc (p_self: GdStringPtr; p_b: ptr char32_t) {.
+    stringOperatorPlusEqC32str*: proc (p_self: ptr GdString; p_b: ptr char32_t) {.
         cdecl.}              ## XMLParser extra utilities
     xmlParserOpenBuffer*: proc (pInstance: GdObjectPtr; p_buffer: ptr uint8;
                                 p_size: csize_t): GdInt {.cdecl.} ## FileAccess extra utilities
@@ -510,10 +556,10 @@ type
         cdecl.}              ## p_self should be a PackedInt32Array
     packedInt64ArrayOperatorIndexConst*: proc (p_self: GdConstTypePtr;
         p_index: GdInt): ptr int64 {.cdecl.} ## p_self should be a PackedInt32Array
-    packedStringArrayOperatorIndex*: proc (p_self: GdTypePtr; p_index: GdInt): GdStringPtr {.
+    packedStringArrayOperatorIndex*: proc (p_self: GdTypePtr; p_index: GdInt): ptr GdString {.
         cdecl.}              ## p_self should be a PackedStringArray
     packedStringArrayOperatorIndexConst*: proc (p_self: GdConstTypePtr;
-        p_index: GdInt): GdStringPtr {.cdecl.} ## p_self should be a PackedStringArray
+        p_index: GdInt): ptr GdString {.cdecl.} ## p_self should be a PackedStringArray
     packedVector2ArrayOperatorIndex*: proc (p_self: GdTypePtr; p_index: GdInt): GdTypePtr {.
         cdecl.}              ## p_self should be a PackedVector2Array, returns Vector2 ptr
     packedVector2ArrayOperatorIndexConst*: proc (p_self: GdConstTypePtr;
@@ -600,18 +646,18 @@ type
         p_argument_info: ptr GdPropertyInfo; p_argument_count: GdInt) {.cdecl.}
     classdbUnregisterExtensionClass*: proc (p_library: GdClassLibraryPtr;
         p_class_name: GdConstStringNamePtr) {.cdecl.} ## Unregistering a parent class before a class that inherits it will result in failure. Inheritors must be unregistered first.
-    getLibraryPath*: proc (p_library: GdClassLibraryPtr; r_path: GdStringPtr) {.
+    getLibraryPath*: proc (p_library: GdClassLibraryPtr; r_path: ptr GdString) {.
         cdecl.}
 
 type
-  GdInitializationLevel* {.pure.} = enum
-    GdInitializationCore, GdInitializationServers, GdInitializationScene,
-    GdInitializationEditor, GdMaxInitializationLevel
-  GdInitialization* {.bycopy.} = object
-    minimumInitializationLevel*: GdInitializationLevel ## Minimum initialization level required.
-                                                       ## If Core or Servers, the extension needs editor or game restart to take effect
-    ## Up to the user to supply when initializing
-    userdata*: pointer       ## This function will be called multiple times for each initialization level.
+  GdInitializationLevel* = enum
+    Core
+    Servers
+    Scene
+    Editor
+  GdInitialization* = object
+    minimumInitializationLevel*: GdInitializationLevel
+    userdata*: pointer
     initialize*: proc (userdata: pointer; p_level: GdInitializationLevel) {.
         cdecl.}
     deinitialize*: proc (userdata: pointer; p_level: GdInitializationLevel) {.

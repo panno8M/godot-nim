@@ -56,17 +56,17 @@ GdArray.procedures(loader= loadProcs_GdArray):
   proc `sort`*(self:GdArray): void {.loadfrom("sort", 3218959716).}
 
 GdArray.operators(loader= loadOperators_GdArray):
-  proc `!=`*(left:GdArray; right:GdVariant): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `!=`*(left:GdArray; right:GdArray): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `+`*(left:GdArray; right:GdArray): GdArray {.operator: GdVariantOpAdd.}
-  proc `<=`*(left:GdArray; right:GdArray): GdBool {.operator: GdVariantOpLessEqual.}
-  proc `<`*(left:GdArray; right:GdArray): GdBool {.operator: GdVariantOpLess.}
-  proc `==`*(left:GdArray; right:GdVariant): GdBool {.operator: GdVariantOpEqual.}
-  proc `==`*(left:GdArray; right:GdArray): GdBool {.operator: GdVariantOpEqual.}
-  proc `>=`*(left:GdArray; right:GdArray): GdBool {.operator: GdVariantOpGreaterEqual.}
-  proc `>`*(left:GdArray; right:GdArray): GdBool {.operator: GdVariantOpGreater.}
-  proc contains*(left:GdDictionary; right:GdArray): GdBool {.operator: GdVariantOpIn.}
-  proc contains*(left:GdArray; right:GdArray): GdBool {.operator: GdVariantOpIn.}
+  proc `!=`*(left:GdArray; right:GdVariant): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `!=`*(left:GdArray; right:GdArray): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `+`*(left:GdArray; right:GdArray): GdArray {.operator: GdVariantOperator.Add.}
+  proc `<=`*(left:GdArray; right:GdArray): GdBool {.operator: GdVariantOperator.LessEqual.}
+  proc `<`*(left:GdArray; right:GdArray): GdBool {.operator: GdVariantOperator.Less.}
+  proc `==`*(left:GdArray; right:GdVariant): GdBool {.operator: GdVariantOperator.Equal.}
+  proc `==`*(left:GdArray; right:GdArray): GdBool {.operator: GdVariantOperator.Equal.}
+  proc `>=`*(left:GdArray; right:GdArray): GdBool {.operator: GdVariantOperator.GreaterEqual.}
+  proc `>`*(left:GdArray; right:GdArray): GdBool {.operator: GdVariantOperator.Greater.}
+  proc contains*(left:GdDictionary; right:GdArray): GdBool {.operator: GdVariantOperator.In.}
+  proc contains*(left:GdArray; right:GdArray): GdBool {.operator: GdVariantOperator.In.}
 proc load*(_:typedesc[GdArray]) =
   loadProcs_GdArray()
   loadOperators_GdArray()

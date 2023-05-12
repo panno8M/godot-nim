@@ -20,12 +20,12 @@ GdNodePath.procedures(loader= loadProcs_GdNodePath):
   proc `isEmpty`*(self:GdNodePath): GdBool {.loadfrom("is_empty", 3918633141).}
 
 GdNodePath.operators(loader= loadOperators_GdNodePath):
-  proc `!=`*(left:GdNodePath; right:GdVariant): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `!=`*(left:GdNodePath; right:GdNodePath): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `==`*(left:GdNodePath; right:GdVariant): GdBool {.operator: GdVariantOpEqual.}
-  proc `==`*(left:GdNodePath; right:GdNodePath): GdBool {.operator: GdVariantOpEqual.}
-  proc contains*(left:GdDictionary; right:GdNodePath): GdBool {.operator: GdVariantOpIn.}
-  proc contains*(left:GdArray; right:GdNodePath): GdBool {.operator: GdVariantOpIn.}
+  proc `!=`*(left:GdNodePath; right:GdVariant): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `!=`*(left:GdNodePath; right:GdNodePath): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `==`*(left:GdNodePath; right:GdVariant): GdBool {.operator: GdVariantOperator.Equal.}
+  proc `==`*(left:GdNodePath; right:GdNodePath): GdBool {.operator: GdVariantOperator.Equal.}
+  proc contains*(left:GdDictionary; right:GdNodePath): GdBool {.operator: GdVariantOperator.In.}
+  proc contains*(left:GdArray; right:GdNodePath): GdBool {.operator: GdVariantOperator.In.}
 proc load*(_:typedesc[GdNodePath]) =
   loadProcs_GdNodePath()
   loadOperators_GdNodePath()

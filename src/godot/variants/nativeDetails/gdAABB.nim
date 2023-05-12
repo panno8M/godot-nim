@@ -35,13 +35,13 @@ GdAABB.procedures(loader= loadProcs_GdAABB):
   proc `merge`*(self:GdAABB; `with`:GdAABB): GdAABB {.loadfrom("merge", 1271470306).}
 
 GdAABB.operators(loader= loadOperators_GdAABB):
-  proc `!=`*(left:GdAABB; right:GdVariant): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `!=`*(left:GdAABB; right:GdAABB): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `*`*(left:GdAABB; right:GdTransform3D): GdAABB {.operator: GdVariantOpMultiply.}
-  proc `==`*(left:GdAABB; right:GdVariant): GdBool {.operator: GdVariantOpEqual.}
-  proc `==`*(left:GdAABB; right:GdAABB): GdBool {.operator: GdVariantOpEqual.}
-  proc contains*(left:GdDictionary; right:GdAABB): GdBool {.operator: GdVariantOpIn.}
-  proc contains*(left:GdArray; right:GdAABB): GdBool {.operator: GdVariantOpIn.}
+  proc `!=`*(left:GdAABB; right:GdVariant): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `!=`*(left:GdAABB; right:GdAABB): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `*`*(left:GdAABB; right:GdTransform3D): GdAABB {.operator: GdVariantOperator.Multiply.}
+  proc `==`*(left:GdAABB; right:GdVariant): GdBool {.operator: GdVariantOperator.Equal.}
+  proc `==`*(left:GdAABB; right:GdAABB): GdBool {.operator: GdVariantOperator.Equal.}
+  proc contains*(left:GdDictionary; right:GdAABB): GdBool {.operator: GdVariantOperator.In.}
+  proc contains*(left:GdArray; right:GdAABB): GdBool {.operator: GdVariantOperator.In.}
 proc load*(_:typedesc[GdAABB]) =
   loadProcs_GdAABB()
   loadOperators_GdAABB()

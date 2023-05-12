@@ -21,7 +21,8 @@ func constructor(Type, node: NimNode): ConstructorResult =
 
   let
     constructorName = ident fmt"constructor{Type}{index.intVal}"
-    variantType = ident ($Type).replace("Gd", "GdVariantType")
+    variantTypeMem = ident ($Type).replace("Gd", "")
+    variantType = quoteExpr do: GdVariantType.`variantTypeMem`
 
   result.init_sentence = quoteExpr do:
     `constructorname` = gdinterface.variantGetPtrConstructor(`variantType`, `index`)

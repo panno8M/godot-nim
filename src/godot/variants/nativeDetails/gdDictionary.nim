@@ -25,12 +25,12 @@ GdDictionary.procedures(loader= loadProcs_GdDictionary):
   proc `values`*(self:GdDictionary): GdArray {.loadfrom("values", 4144163970).}
 
 GdDictionary.operators(loader= loadOperators_GdDictionary):
-  proc `!=`*(left:GdDictionary; right:GdVariant): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `!=`*(left:GdDictionary; right:GdDictionary): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `==`*(left:GdDictionary; right:GdVariant): GdBool {.operator: GdVariantOpEqual.}
-  proc `==`*(left:GdDictionary; right:GdDictionary): GdBool {.operator: GdVariantOpEqual.}
-  proc contains*(left:GdDictionary; right:GdDictionary): GdBool {.operator: GdVariantOpIn.}
-  proc contains*(left:GdArray; right:GdDictionary): GdBool {.operator: GdVariantOpIn.}
+  proc `!=`*(left:GdDictionary; right:GdVariant): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `!=`*(left:GdDictionary; right:GdDictionary): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `==`*(left:GdDictionary; right:GdVariant): GdBool {.operator: GdVariantOperator.Equal.}
+  proc `==`*(left:GdDictionary; right:GdDictionary): GdBool {.operator: GdVariantOperator.Equal.}
+  proc contains*(left:GdDictionary; right:GdDictionary): GdBool {.operator: GdVariantOperator.In.}
+  proc contains*(left:GdArray; right:GdDictionary): GdBool {.operator: GdVariantOperator.In.}
 proc load*(_:typedesc[GdDictionary]) =
   loadProcs_GdDictionary()
   loadOperators_GdDictionary()

@@ -54,30 +54,30 @@ GdVector3.staticProcedures(loader= loadStaticProcs_GdVector3):
   proc `octahedronDecode`*(_:typedesc[GdVector3]; `uv`:GdVector2): GdVector3 {.loadfrom("octahedron_decode", 3991820552).}
 
 GdVector3.operators(loader= loadOperators_GdVector3):
-  proc `!=`*(left:GdVector3; right:GdVariant): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `!=`*(left:GdVector3; right:GdVector3): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `*`*(left:GdVector3; right:GdInt): GdVector3 {.operator: GdVariantOpMultiply.}
-  proc `*`*(left:GdVector3; right:GdFloat): GdVector3 {.operator: GdVariantOpMultiply.}
-  proc `*`*(left:GdVector3; right:GdVector3): GdVector3 {.operator: GdVariantOpMultiply.}
-  proc `*`*(left:GdVector3; right:GdQuaternion): GdVector3 {.operator: GdVariantOpMultiply.}
-  proc `*`*(left:GdVector3; right:GdBasis): GdVector3 {.operator: GdVariantOpMultiply.}
-  proc `*`*(left:GdVector3; right:GdTransform3D): GdVector3 {.operator: GdVariantOpMultiply.}
-  proc `+`*(left:GdVector3): GdVector3 {.operator: GdVariantOpPositive.}
-  proc `+`*(left:GdVector3; right:GdVector3): GdVector3 {.operator: GdVariantOpAdd.}
-  proc `-`*(left:GdVector3): GdVector3 {.operator: GdVariantOpNegate.}
-  proc `-`*(left:GdVector3; right:GdVector3): GdVector3 {.operator: GdVariantOpSubtract.}
-  proc `/`*(left:GdVector3; right:GdInt): GdVector3 {.operator: GdVariantOpDivide.}
-  proc `/`*(left:GdVector3; right:GdFloat): GdVector3 {.operator: GdVariantOpDivide.}
-  proc `/`*(left:GdVector3; right:GdVector3): GdVector3 {.operator: GdVariantOpDivide.}
-  proc `<=`*(left:GdVector3; right:GdVector3): GdBool {.operator: GdVariantOpLessEqual.}
-  proc `<`*(left:GdVector3; right:GdVector3): GdBool {.operator: GdVariantOpLess.}
-  proc `==`*(left:GdVector3; right:GdVariant): GdBool {.operator: GdVariantOpEqual.}
-  proc `==`*(left:GdVector3; right:GdVector3): GdBool {.operator: GdVariantOpEqual.}
-  proc `>=`*(left:GdVector3; right:GdVector3): GdBool {.operator: GdVariantOpGreaterEqual.}
-  proc `>`*(left:GdVector3; right:GdVector3): GdBool {.operator: GdVariantOpGreater.}
-  proc contains*(left:GdDictionary; right:GdVector3): GdBool {.operator: GdVariantOpIn.}
-  proc contains*(left:GdArray; right:GdVector3): GdBool {.operator: GdVariantOpIn.}
-  proc contains*(left:GdPackedVector3Array; right:GdVector3): GdBool {.operator: GdVariantOpIn.}
+  proc `!=`*(left:GdVector3; right:GdVariant): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `!=`*(left:GdVector3; right:GdVector3): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `*`*(left:GdVector3; right:GdInt): GdVector3 {.operator: GdVariantOperator.Multiply.}
+  proc `*`*(left:GdVector3; right:GdFloat): GdVector3 {.operator: GdVariantOperator.Multiply.}
+  proc `*`*(left:GdVector3; right:GdVector3): GdVector3 {.operator: GdVariantOperator.Multiply.}
+  proc `*`*(left:GdVector3; right:GdQuaternion): GdVector3 {.operator: GdVariantOperator.Multiply.}
+  proc `*`*(left:GdVector3; right:GdBasis): GdVector3 {.operator: GdVariantOperator.Multiply.}
+  proc `*`*(left:GdVector3; right:GdTransform3D): GdVector3 {.operator: GdVariantOperator.Multiply.}
+  proc `+`*(left:GdVector3): GdVector3 {.operator: GdVariantOperator.Positive.}
+  proc `+`*(left:GdVector3; right:GdVector3): GdVector3 {.operator: GdVariantOperator.Add.}
+  proc `-`*(left:GdVector3): GdVector3 {.operator: GdVariantOperator.Negate.}
+  proc `-`*(left:GdVector3; right:GdVector3): GdVector3 {.operator: GdVariantOperator.Subtract.}
+  proc `/`*(left:GdVector3; right:GdInt): GdVector3 {.operator: GdVariantOperator.Divide.}
+  proc `/`*(left:GdVector3; right:GdFloat): GdVector3 {.operator: GdVariantOperator.Divide.}
+  proc `/`*(left:GdVector3; right:GdVector3): GdVector3 {.operator: GdVariantOperator.Divide.}
+  proc `<=`*(left:GdVector3; right:GdVector3): GdBool {.operator: GdVariantOperator.LessEqual.}
+  proc `<`*(left:GdVector3; right:GdVector3): GdBool {.operator: GdVariantOperator.Less.}
+  proc `==`*(left:GdVector3; right:GdVariant): GdBool {.operator: GdVariantOperator.Equal.}
+  proc `==`*(left:GdVector3; right:GdVector3): GdBool {.operator: GdVariantOperator.Equal.}
+  proc `>=`*(left:GdVector3; right:GdVector3): GdBool {.operator: GdVariantOperator.GreaterEqual.}
+  proc `>`*(left:GdVector3; right:GdVector3): GdBool {.operator: GdVariantOperator.Greater.}
+  proc contains*(left:GdDictionary; right:GdVector3): GdBool {.operator: GdVariantOperator.In.}
+  proc contains*(left:GdArray; right:GdVector3): GdBool {.operator: GdVariantOperator.In.}
+  proc contains*(left:GdPackedVector3Array; right:GdVector3): GdBool {.operator: GdVariantOperator.In.}
 
 GdVector3.statics:
   type `Axis`* {.pure.} = enum

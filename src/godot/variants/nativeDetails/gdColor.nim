@@ -37,23 +37,23 @@ GdColor.staticProcedures(loader= loadStaticProcs_GdColor):
   proc `html`*(_:typedesc[GdColor]; `rgba`:GdString): GdColor {.loadfrom("html", 2500054655).}
 
 GdColor.operators(loader= loadOperators_GdColor):
-  proc `!=`*(left:GdColor; right:GdVariant): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `!=`*(left:GdColor; right:GdColor): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `*`*(left:GdColor; right:GdInt): GdColor {.operator: GdVariantOpMultiply.}
-  proc `*`*(left:GdColor; right:GdFloat): GdColor {.operator: GdVariantOpMultiply.}
-  proc `*`*(left:GdColor; right:GdColor): GdColor {.operator: GdVariantOpMultiply.}
-  proc `+`*(left:GdColor): GdColor {.operator: GdVariantOpPositive.}
-  proc `+`*(left:GdColor; right:GdColor): GdColor {.operator: GdVariantOpAdd.}
-  proc `-`*(left:GdColor): GdColor {.operator: GdVariantOpNegate.}
-  proc `-`*(left:GdColor; right:GdColor): GdColor {.operator: GdVariantOpSubtract.}
-  proc `/`*(left:GdColor; right:GdInt): GdColor {.operator: GdVariantOpDivide.}
-  proc `/`*(left:GdColor; right:GdFloat): GdColor {.operator: GdVariantOpDivide.}
-  proc `/`*(left:GdColor; right:GdColor): GdColor {.operator: GdVariantOpDivide.}
-  proc `==`*(left:GdColor; right:GdVariant): GdBool {.operator: GdVariantOpEqual.}
-  proc `==`*(left:GdColor; right:GdColor): GdBool {.operator: GdVariantOpEqual.}
-  proc contains*(left:GdDictionary; right:GdColor): GdBool {.operator: GdVariantOpIn.}
-  proc contains*(left:GdArray; right:GdColor): GdBool {.operator: GdVariantOpIn.}
-  proc contains*(left:GdPackedColorArray; right:GdColor): GdBool {.operator: GdVariantOpIn.}
+  proc `!=`*(left:GdColor; right:GdVariant): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `!=`*(left:GdColor; right:GdColor): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `*`*(left:GdColor; right:GdInt): GdColor {.operator: GdVariantOperator.Multiply.}
+  proc `*`*(left:GdColor; right:GdFloat): GdColor {.operator: GdVariantOperator.Multiply.}
+  proc `*`*(left:GdColor; right:GdColor): GdColor {.operator: GdVariantOperator.Multiply.}
+  proc `+`*(left:GdColor): GdColor {.operator: GdVariantOperator.Positive.}
+  proc `+`*(left:GdColor; right:GdColor): GdColor {.operator: GdVariantOperator.Add.}
+  proc `-`*(left:GdColor): GdColor {.operator: GdVariantOperator.Negate.}
+  proc `-`*(left:GdColor; right:GdColor): GdColor {.operator: GdVariantOperator.Subtract.}
+  proc `/`*(left:GdColor; right:GdInt): GdColor {.operator: GdVariantOperator.Divide.}
+  proc `/`*(left:GdColor; right:GdFloat): GdColor {.operator: GdVariantOperator.Divide.}
+  proc `/`*(left:GdColor; right:GdColor): GdColor {.operator: GdVariantOperator.Divide.}
+  proc `==`*(left:GdColor; right:GdVariant): GdBool {.operator: GdVariantOperator.Equal.}
+  proc `==`*(left:GdColor; right:GdColor): GdBool {.operator: GdVariantOperator.Equal.}
+  proc contains*(left:GdDictionary; right:GdColor): GdBool {.operator: GdVariantOperator.In.}
+  proc contains*(left:GdArray; right:GdColor): GdBool {.operator: GdVariantOperator.In.}
+  proc contains*(left:GdPackedColorArray; right:GdColor): GdBool {.operator: GdVariantOperator.In.}
 proc load*(_:typedesc[GdColor]) =
   loadProcs_GdColor()
   loadStaticProcs_GdColor()

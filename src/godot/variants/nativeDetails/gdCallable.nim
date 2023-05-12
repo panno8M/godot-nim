@@ -28,12 +28,12 @@ GdCallable.procedures(loader= loadProcs_GdCallable):
   proc `unbind`*(self:GdCallable; `argcount`:GdInt): GdCallable {.loadfrom("unbind", 755001590).}
 
 GdCallable.operators(loader= loadOperators_GdCallable):
-  proc `!=`*(left:GdCallable; right:GdVariant): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `!=`*(left:GdCallable; right:GdCallable): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `==`*(left:GdCallable; right:GdVariant): GdBool {.operator: GdVariantOpEqual.}
-  proc `==`*(left:GdCallable; right:GdCallable): GdBool {.operator: GdVariantOpEqual.}
-  proc contains*(left:GdDictionary; right:GdCallable): GdBool {.operator: GdVariantOpIn.}
-  proc contains*(left:GdArray; right:GdCallable): GdBool {.operator: GdVariantOpIn.}
+  proc `!=`*(left:GdCallable; right:GdVariant): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `!=`*(left:GdCallable; right:GdCallable): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `==`*(left:GdCallable; right:GdVariant): GdBool {.operator: GdVariantOperator.Equal.}
+  proc `==`*(left:GdCallable; right:GdCallable): GdBool {.operator: GdVariantOperator.Equal.}
+  proc contains*(left:GdDictionary; right:GdCallable): GdBool {.operator: GdVariantOperator.In.}
+  proc contains*(left:GdArray; right:GdCallable): GdBool {.operator: GdVariantOperator.In.}
 proc load*(_:typedesc[GdCallable]) =
   loadProcs_GdCallable()
   loadOperators_GdCallable()

@@ -19,12 +19,12 @@ GdSignal.procedures(loader= loadProcs_GdSignal):
   proc `isNull`*(self:GdSignal): GdBool {.loadfrom("is_null", 3918633141).}
 
 GdSignal.operators(loader= loadOperators_GdSignal):
-  proc `!=`*(left:GdSignal; right:GdVariant): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `!=`*(left:GdSignal; right:GdSignal): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `==`*(left:GdSignal; right:GdVariant): GdBool {.operator: GdVariantOpEqual.}
-  proc `==`*(left:GdSignal; right:GdSignal): GdBool {.operator: GdVariantOpEqual.}
-  proc contains*(left:GdDictionary; right:GdSignal): GdBool {.operator: GdVariantOpIn.}
-  proc contains*(left:GdArray; right:GdSignal): GdBool {.operator: GdVariantOpIn.}
+  proc `!=`*(left:GdSignal; right:GdVariant): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `!=`*(left:GdSignal; right:GdSignal): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `==`*(left:GdSignal; right:GdVariant): GdBool {.operator: GdVariantOperator.Equal.}
+  proc `==`*(left:GdSignal; right:GdSignal): GdBool {.operator: GdVariantOperator.Equal.}
+  proc contains*(left:GdDictionary; right:GdSignal): GdBool {.operator: GdVariantOperator.In.}
+  proc contains*(left:GdArray; right:GdSignal): GdBool {.operator: GdVariantOperator.In.}
 proc load*(_:typedesc[GdSignal]) =
   loadProcs_GdSignal()
   loadOperators_GdSignal()

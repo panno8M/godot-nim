@@ -75,5 +75,5 @@ func variantOperator*(sign: string): string =
     "not": "Not",
     "and": "And",
     "in": "In" }
-  "GdVariantOp" & VariantOpSignToEnum[sign]
+  "GdVariantOperator." & VariantOpSignToEnum[sign]
 func variantType*(nimtype: string): string = nimtype.replace("Gd", "GdVariantType")

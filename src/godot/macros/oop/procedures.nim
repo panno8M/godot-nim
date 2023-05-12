@@ -16,7 +16,8 @@ proc procedure*(Type, node: NimNode; isStatic = false): ProcedureResult =
     params = node.params[2..^1]
     argptrarr = nnkBracket.newTree params.mapIt(it[0]).mapIt quoteExpr do:
       cast[pointer](unsafeAddr(`it`))
-    variantType = ident ($Type).replace("Gd", "GdVariantType")
+    variantTypeMem = ident(($Type).replace("Gd", ""))
+    variantType = quoteExpr do: GdVariantType.`variantTypeMem`
 
     loadfrom = node.getPragma("loadfrom")
     nativename = loadfrom[1]
@@ -69,22 +70,27 @@ macro staticProcedures*[T](Type: typedesc[T]; loader, body): untyped =
 proc operator*(Type, node: NimNode): ProcedureResult =
   let op = node.getPragma("operator")[1]
   let params = node.params[1..^1]
-  let containerName = ident($op & "_" & params.mapIt($it[1]).join("_"))
+  let containerName = ident($op[1] & "_" & params.mapIt($it[1]).join("_"))
+
   let left = params[0][0]
-  let hasRight = params.len == 2
-  let right =
-    if hasRight: params[1][0]
-    else: quoteExpr do: nil
   let leftValue = quoteExpr do: unsafeAddr `left`
+  let leftTypeMem = ident params[0][1].`$`.replace("Gd", "")
+  let leftType = quoteExpr do: GdVariantType.`leftTypeMem`
+
+  let hasRight = params.len == 2
+
+  var right: NimNode
+  if hasRight: right = params[1][0]
   let rightValue =
     if hasRight: quoteExpr do: unsafeAddr `right`
-    else: right
-  let leftType = ident params[0][1].`$`.replace("Gd", "GdVariantType")
+    else: ident"nil"
   let rightType =
     if (not hasRight) or (params[1][1].eqIdent "GdVariant"):
-      ident"GdVariantTypeNil"
+      quoteExpr do: GdVariantType.Nil
     else:
-      ident ($params[1][1]).replace("Gd", "GdVariantType")
+      let mem = ident ($params[1][1]).replace("Gd", "")
+      quoteExpr do: GdVariantType.`mem`
+
   result.containerDefine = quoteExpr do:
     var `containerName`: GdPtrOperatorEvaluator
   let callget = quoteExpr do:

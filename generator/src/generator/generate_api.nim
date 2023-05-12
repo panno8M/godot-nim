@@ -74,6 +74,6 @@ proc generate*(api: JsonNode) =
       for class in value.items:
         let gdc = class.to GdClass
         moduleTree.classDefs.addContents gdc.define_class
-        moduleTree.classes.takeSubmodules gdc.modulate_classDetail
+        moduleTree.classDetails.takeSubmodules gdc.modulate_classDetail
     else:
       me.todo fmt"now we do not have the way to generate binding of this."

@@ -68,13 +68,13 @@ GdPackedByteArray.procedures(loader= loadProcs_GdPackedByteArray):
   proc `toInt64Array`*(self:GdPackedByteArray): GdPackedInt64Array {.loadfrom("to_int64_array", 1961294120).}
 
 GdPackedByteArray.operators(loader= loadOperators_GdPackedByteArray):
-  proc `!=`*(left:GdPackedByteArray; right:GdVariant): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `!=`*(left:GdPackedByteArray; right:GdPackedByteArray): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `+`*(left:GdPackedByteArray; right:GdPackedByteArray): GdPackedByteArray {.operator: GdVariantOpAdd.}
-  proc `==`*(left:GdPackedByteArray; right:GdVariant): GdBool {.operator: GdVariantOpEqual.}
-  proc `==`*(left:GdPackedByteArray; right:GdPackedByteArray): GdBool {.operator: GdVariantOpEqual.}
-  proc contains*(left:GdDictionary; right:GdPackedByteArray): GdBool {.operator: GdVariantOpIn.}
-  proc contains*(left:GdArray; right:GdPackedByteArray): GdBool {.operator: GdVariantOpIn.}
+  proc `!=`*(left:GdPackedByteArray; right:GdVariant): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `!=`*(left:GdPackedByteArray; right:GdPackedByteArray): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `+`*(left:GdPackedByteArray; right:GdPackedByteArray): GdPackedByteArray {.operator: GdVariantOperator.Add.}
+  proc `==`*(left:GdPackedByteArray; right:GdVariant): GdBool {.operator: GdVariantOperator.Equal.}
+  proc `==`*(left:GdPackedByteArray; right:GdPackedByteArray): GdBool {.operator: GdVariantOperator.Equal.}
+  proc contains*(left:GdDictionary; right:GdPackedByteArray): GdBool {.operator: GdVariantOperator.In.}
+  proc contains*(left:GdArray; right:GdPackedByteArray): GdBool {.operator: GdVariantOperator.In.}
 proc load*(_:typedesc[GdPackedByteArray]) =
   loadProcs_GdPackedByteArray()
   loadOperators_GdPackedByteArray()

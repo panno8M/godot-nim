@@ -31,13 +31,13 @@ GdPackedColorArray.procedures(loader= loadProcs_GdPackedColorArray):
   proc `toByteArray`*(self:GdPackedColorArray): GdPackedByteArray {.loadfrom("to_byte_array", 247621236).}
 
 GdPackedColorArray.operators(loader= loadOperators_GdPackedColorArray):
-  proc `!=`*(left:GdPackedColorArray; right:GdVariant): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `!=`*(left:GdPackedColorArray; right:GdPackedColorArray): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `+`*(left:GdPackedColorArray; right:GdPackedColorArray): GdPackedColorArray {.operator: GdVariantOpAdd.}
-  proc `==`*(left:GdPackedColorArray; right:GdVariant): GdBool {.operator: GdVariantOpEqual.}
-  proc `==`*(left:GdPackedColorArray; right:GdPackedColorArray): GdBool {.operator: GdVariantOpEqual.}
-  proc contains*(left:GdDictionary; right:GdPackedColorArray): GdBool {.operator: GdVariantOpIn.}
-  proc contains*(left:GdArray; right:GdPackedColorArray): GdBool {.operator: GdVariantOpIn.}
+  proc `!=`*(left:GdPackedColorArray; right:GdVariant): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `!=`*(left:GdPackedColorArray; right:GdPackedColorArray): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `+`*(left:GdPackedColorArray; right:GdPackedColorArray): GdPackedColorArray {.operator: GdVariantOperator.Add.}
+  proc `==`*(left:GdPackedColorArray; right:GdVariant): GdBool {.operator: GdVariantOperator.Equal.}
+  proc `==`*(left:GdPackedColorArray; right:GdPackedColorArray): GdBool {.operator: GdVariantOperator.Equal.}
+  proc contains*(left:GdDictionary; right:GdPackedColorArray): GdBool {.operator: GdVariantOperator.In.}
+  proc contains*(left:GdArray; right:GdPackedColorArray): GdBool {.operator: GdVariantOperator.In.}
 proc load*(_:typedesc[GdPackedColorArray]) =
   loadProcs_GdPackedColorArray()
   loadOperators_GdPackedColorArray()

@@ -12,7 +12,7 @@ var root* = pkg"../src/godot":
     mdl"classes"
   pkg"core":
     dontTouch mdl"gdextensionInterface"
-    dontTouch mdl"class_db"
+    dontTouch mdl"memories"
     dontExport dontTouch mdl"internal"
   
   pkg"variants":
@@ -27,7 +27,10 @@ var root* = pkg"../src/godot":
   
   mdl"enums"
   
-  pkg"classes"
+  pkg"classes":
+    pkg"nativeDetails"
+    dontTouch do: pkg"customDetails":
+      dontTouch mdl"classDB"
 
   dontTouch mdl"macros"
   dontTouch mdl"pragmas"
@@ -36,22 +39,24 @@ var root* = pkg"../src/godot":
   dontExport dontTouch mdl"logging"
 
 let
-  variants* = root/"variants"
   variantDefs* = root/"typedefs"/"variants"
-  variantDetails* = root/"variants"/"nativeDetails"
-  variantEssentials* = root/"variants"/"essentials"
-  variantNativeConstructors* = root/"variants"/"nativeConstructors"
-  variantLoader* = root/"variants"/"variantsLoader"
+  variants* = root/"variants"
+  variantDetails* = variants/"nativeDetails"
+  variantEssentials* = variants/"essentials"
+  variantNativeConstructors* = variants/"nativeConstructors"
+  variantLoader* = variants/"variantsLoader"
 
-  classes* = root/"classes"
   classDefs* = root/"typedefs"/"classes"
+  classes* = root/"classes"
+  classDetails* = classes/"nativeDetails"
 
   enums* = root/"enums"
 
   pragmas* = root/"pragmas"
   macros* = root/"macros"
-  interfaces* = root/"core"/"gdextensionInterface"
-  internal* = root/"core"/"internal"
+  core* = root/"core"
+  interfaces* = core/"gdextensionInterface"
+  internal* = core/"internal"
   compileTimeSwitch* = root/"compileTimeSwitch"
   logging* = root/"logging"
 

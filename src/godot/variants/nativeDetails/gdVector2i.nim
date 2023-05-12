@@ -19,28 +19,28 @@ GdVector2i.procedures(loader= loadProcs_GdVector2i):
   proc `snapped`*(self:GdVector2i; `step`:GdVector2i): GdVector2i {.loadfrom("snapped", 1735278196).}
 
 GdVector2i.operators(loader= loadOperators_GdVector2i):
-  proc `!=`*(left:GdVector2i; right:GdVariant): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `!=`*(left:GdVector2i; right:GdVector2i): GdBool {.operator: GdVariantOpNotEqual.}
-  proc `%`*(left:GdVector2i; right:GdInt): GdVector2i {.operator: GdVariantOpModule.}
-  proc `%`*(left:GdVector2i; right:GdVector2i): GdVector2i {.operator: GdVariantOpModule.}
-  proc `*`*(left:GdVector2i; right:GdInt): GdVector2i {.operator: GdVariantOpMultiply.}
-  proc `*`*(left:GdVector2i; right:GdFloat): GdVector2 {.operator: GdVariantOpMultiply.}
-  proc `*`*(left:GdVector2i; right:GdVector2i): GdVector2i {.operator: GdVariantOpMultiply.}
-  proc `+`*(left:GdVector2i): GdVector2i {.operator: GdVariantOpPositive.}
-  proc `+`*(left:GdVector2i; right:GdVector2i): GdVector2i {.operator: GdVariantOpAdd.}
-  proc `-`*(left:GdVector2i): GdVector2i {.operator: GdVariantOpNegate.}
-  proc `-`*(left:GdVector2i; right:GdVector2i): GdVector2i {.operator: GdVariantOpSubtract.}
-  proc `/`*(left:GdVector2i; right:GdInt): GdVector2i {.operator: GdVariantOpDivide.}
-  proc `/`*(left:GdVector2i; right:GdFloat): GdVector2 {.operator: GdVariantOpDivide.}
-  proc `/`*(left:GdVector2i; right:GdVector2i): GdVector2i {.operator: GdVariantOpDivide.}
-  proc `<=`*(left:GdVector2i; right:GdVector2i): GdBool {.operator: GdVariantOpLessEqual.}
-  proc `<`*(left:GdVector2i; right:GdVector2i): GdBool {.operator: GdVariantOpLess.}
-  proc `==`*(left:GdVector2i; right:GdVariant): GdBool {.operator: GdVariantOpEqual.}
-  proc `==`*(left:GdVector2i; right:GdVector2i): GdBool {.operator: GdVariantOpEqual.}
-  proc `>=`*(left:GdVector2i; right:GdVector2i): GdBool {.operator: GdVariantOpGreaterEqual.}
-  proc `>`*(left:GdVector2i; right:GdVector2i): GdBool {.operator: GdVariantOpGreater.}
-  proc contains*(left:GdDictionary; right:GdVector2i): GdBool {.operator: GdVariantOpIn.}
-  proc contains*(left:GdArray; right:GdVector2i): GdBool {.operator: GdVariantOpIn.}
+  proc `!=`*(left:GdVector2i; right:GdVariant): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `!=`*(left:GdVector2i; right:GdVector2i): GdBool {.operator: GdVariantOperator.NotEqual.}
+  proc `%`*(left:GdVector2i; right:GdInt): GdVector2i {.operator: GdVariantOperator.Module.}
+  proc `%`*(left:GdVector2i; right:GdVector2i): GdVector2i {.operator: GdVariantOperator.Module.}
+  proc `*`*(left:GdVector2i; right:GdInt): GdVector2i {.operator: GdVariantOperator.Multiply.}
+  proc `*`*(left:GdVector2i; right:GdFloat): GdVector2 {.operator: GdVariantOperator.Multiply.}
+  proc `*`*(left:GdVector2i; right:GdVector2i): GdVector2i {.operator: GdVariantOperator.Multiply.}
+  proc `+`*(left:GdVector2i): GdVector2i {.operator: GdVariantOperator.Positive.}
+  proc `+`*(left:GdVector2i; right:GdVector2i): GdVector2i {.operator: GdVariantOperator.Add.}
+  proc `-`*(left:GdVector2i): GdVector2i {.operator: GdVariantOperator.Negate.}
+  proc `-`*(left:GdVector2i; right:GdVector2i): GdVector2i {.operator: GdVariantOperator.Subtract.}
+  proc `/`*(left:GdVector2i; right:GdInt): GdVector2i {.operator: GdVariantOperator.Divide.}
+  proc `/`*(left:GdVector2i; right:GdFloat): GdVector2 {.operator: GdVariantOperator.Divide.}
+  proc `/`*(left:GdVector2i; right:GdVector2i): GdVector2i {.operator: GdVariantOperator.Divide.}
+  proc `<=`*(left:GdVector2i; right:GdVector2i): GdBool {.operator: GdVariantOperator.LessEqual.}
+  proc `<`*(left:GdVector2i; right:GdVector2i): GdBool {.operator: GdVariantOperator.Less.}
+  proc `==`*(left:GdVector2i; right:GdVariant): GdBool {.operator: GdVariantOperator.Equal.}
+  proc `==`*(left:GdVector2i; right:GdVector2i): GdBool {.operator: GdVariantOperator.Equal.}
+  proc `>=`*(left:GdVector2i; right:GdVector2i): GdBool {.operator: GdVariantOperator.GreaterEqual.}
+  proc `>`*(left:GdVector2i; right:GdVector2i): GdBool {.operator: GdVariantOperator.Greater.}
+  proc contains*(left:GdDictionary; right:GdVector2i): GdBool {.operator: GdVariantOperator.In.}
+  proc contains*(left:GdArray; right:GdVector2i): GdBool {.operator: GdVariantOperator.In.}
 
 GdVector2i.statics:
   type `Axis`* {.pure.} = enum
