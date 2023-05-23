@@ -1,4 +1,4 @@
-import ./typedefs
+import ../typedefs/geometrics
 import std/math
 
 func lerp*[T: SomeFloat](pFrom,pTo: T; t: T): T {.inline.} =

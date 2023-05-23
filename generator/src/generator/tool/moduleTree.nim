@@ -70,7 +70,6 @@ variantNativeConstructors.importModules(
   interfaces,
   internal,
   compileTimeSwitch,
-  logging,
 )
 variantLoader.importModules(
   variantDetails,

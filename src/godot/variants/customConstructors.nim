@@ -4,7 +4,6 @@ import beyond/[
 ]
 import std/[
   sequtils,
-  logging,
 ]
 import ../typedefs
 from ../typedefs/geometrics {.all.} import makeVec

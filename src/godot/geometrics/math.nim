@@ -106,20 +106,17 @@ const UNIT_EPSILON = 0.00001
 # Functions reproduced as in Godot's source code `math_funcs.h`.
 # Some are overloads to automatically support changing real_t into either double or float in the way Godot does.
 
-func fposMod*[T: SomeFloat](pX, pY: T): T {.inline.} =
-  result = floorMod(pX, pY)
+func posmod*[T: SomeNumber](pX, pY: T): T {.inline.} =
+  result =
+    when T is SomeInteger: pX mod pY
+    else: floorMod(pX, pY)
   if ((result < 0 and pY > 0) or (result > 0 and pY < 0)):
-    result += pY
+    return result + pY
 
-func fposModp*[T: SomeFloat](pX, pY: T): T {.inline.} =
+func fposmodp*[T: SomeFloat](pX, pY: T): T {.inline.} =
   result = floorMod(pX, pY)
   if result < 0:
-    result += pY
-
-func posMod*[T: SomeInteger](pX, pY: T): T {.inline.} =
-  result = pX mod pY
-  if ((result < 0 and pY > 0) or (result > 0 and pY < 0)):
-    result += pY
+    return result + pY
 
 {.push, inline.}
 func sin*[T: SomeFloat](pX: Radian[T]): T = stdmath.sin T(pX)
@@ -219,32 +216,14 @@ inline float bezier_interpolate(float p_start, float p_control_1, float p_contro
 
   return p_start * omt3 + p_control_1 * omt2 * p_t * 3.0f + p_control_2 * omt * t2 * 3.0f + p_end * t3;
 }
+]#
 
-template <typename T>
-inline T clamp(T x, T minv, T maxv) {
-  if (x < minv) {
-    return minv;
-  }
-  if (x > maxv) {
-    return maxv;
-  }
-  return x;
-}
+func clamp01*[T: SomeFloat](x: T): T = x.clamp(0, 1)
 
-inline double deg_to_rad(double p_y) {
-  return p_y * Math_PI / 180.0;
-}
-inline float deg_to_rad(float p_y) {
-  return p_y * static_cast<float>(Math_PI) / 180.f;
-}
+func degToRad*[T: SomeFloat](degree: T): Radian[T] = Radian[T](degree * PI / 180)
+func degree*[T: SomeFloat](rad: Radian[T]): T = rad * 180 / PI
 
-inline double rad_to_deg(double p_y) {
-  return p_y * 180.0 / Math_PI;
-}
-inline float rad_to_deg(float p_y) {
-  return p_y * 180.f / static_cast<float>(Math_PI);
-}
-
+#[
 inline double inverse_lerp(double p_from, double p_to, double p_value) {
   return (p_value - p_from) / (p_to - p_from);
 }
@@ -258,80 +237,26 @@ inline double remap(double p_value, double p_istart, double p_istop, double p_os
 inline float remap(float p_value, float p_istart, float p_istop, float p_ostart, float p_ostop) {
   return Math::lerp(p_ostart, p_ostop, Math::inverse_lerp(p_istart, p_istop, p_value));
 }
+]#
 
-inline bool is_equal_approx(float a, float b) {
-  # Check for exact equality first, required to handle "infinity" values.
-  if (a == b) {
-    return true;
-  }
-  # Then check for approximate equality.
-  float tolerance = (float)CMP_EPSILON * abs(a);
-  if (tolerance < (float)CMP_EPSILON) {
-    tolerance = (float)CMP_EPSILON;
-  }
-  return abs(a - b) < tolerance;
-}
 
-inline bool is_equal_approx(float a, float b, float tolerance) {
-  # Check for exact equality first, required to handle "infinity" values.
-  if (a == b) {
-    return true;
-  }
-  # Then check for approximate equality.
-  return abs(a - b) < tolerance;
-}
+# Equalabilities
+# --------------
+template `~=`*(a, b: typed): bool = isEqualApprox(a, b)
 
-inline bool is_zero_approx(float s) {
-  return abs(s) < (float)CMP_EPSILON;
-}
+proc isEqualApprox*[T: SomeFloat](a, b: T): bool {.inline.} =
+  if a == b: return true
+  let tolerance = max(T(CMP_EPSILON) * abs(a), T(CMP_EPSILON))
+  abs(a - b) < tolerance
 
-inline bool is_equal_approx(double a, double b) {
-  # Check for exact equality first, required to handle "infinity" values.
-  if (a == b) {
-    return true;
-  }
-  # Then check for approximate equality.
-  double tolerance = CMP_EPSILON * abs(a);
-  if (tolerance < CMP_EPSILON) {
-    tolerance = CMP_EPSILON;
-  }
-  return abs(a - b) < tolerance;
-}
+proc isEqualApprox*(a, b, tolerance: float): bool {.inline.} =
+  if a == b: return true
+  abs(a - b) < tolerance
 
-inline bool is_equal_approx(double a, double b, double tolerance) {
-  # Check for exact equality first, required to handle "infinity" values.
-  if (a == b) {
-    return true;
-  }
-  # Then check for approximate equality.
-  return abs(a - b) < tolerance;
-}
+proc isZeroApprox*[T: SomeFloat](s: T): bool {.inline.} = abs(s) < T(CMP_EPSILON)
 
-inline bool is_zero_approx(double s) {
-  return abs(s) < CMP_EPSILON;
-}
 
-inline float absf(float g) {
-  union {
-    float f;
-    uint32_t i;
-  } u;
-
-  u.f = g;
-  u.i &= 2147483647u;
-  return u.f;
-}
-
-inline double absd(double g) {
-  union {
-    double d;
-    uint64_t i;
-  } u;
-  u.d = g;
-  u.i &= (uint64_t)9223372036854775807ull;
-  return u.d;
-}
-
+#[
 inline double smoothstep(double p_from, double p_to, double p_weight) {
   if (is_equal_approx(static_cast<real_t>(p_from), static_cast<real_t>(p_to))) {
     return p_from;
@@ -368,14 +293,6 @@ inline double db2linear(double p_db) {
 inline float db2linear(float p_db) {
   return exp(p_db * 0.11512925464970228420089957273422f);
 }
-
-inline double round(double p_val) {
-  return (p_val >= 0) ? floor(p_val + 0.5) : -floor(-p_val + 0.5);
-}
-inline float round(float p_val) {
-  return (p_val >= 0) ? floor(p_val + 0.5f) : -floor(-p_val + 0.5f);
-}
-
 inline int64_t wrapi(int64_t value, int64_t min, int64_t max) {
   int64_t range = max - min;
   return range == 0 ? min : min + ((((value - min) % range) + range) % range);

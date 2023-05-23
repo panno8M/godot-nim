@@ -1,12 +1,10 @@
-import std/[
-  math,
-]
 import beyond/[
   macros,
 ]
 
 type
   Vector* [I: static int; T] = array[I, T]
+  NVector* [I: static int; T: SomeFloat] = distinct Vector[I, T]
   Radian*[T: SomeFloat] = distinct T
 
 type
@@ -51,7 +49,3 @@ macro vec*(exp: varargs[typed]): untyped =
   result = newStmtList()
   result.add res.lets
   result.add nnkBracket.newTree res.brackets
-
-# func degToRad*[T: SomeFloat](degree: T): Radian[T] = Radian[T](degree * PI / 180)
-func degToRad*(degree: float32): Radian[float32] = Radian[float32](degree * PI / 180)
-func degToRad*(degree: float64): Radian[float64] = Radian[float64](degree * PI / 180)
