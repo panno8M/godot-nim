@@ -11,16 +11,16 @@ const SQRT12* = 0.7071067811865475244008443621048490
 const SQRT2* = 1.4142135623730950488016887242
 const LN2* = 0.6931471805599453094172321215
 
-# Make room for our constexpr's below by overriding potential system-specific macros.
-#undef ABS
-#undef SIGN
-#undef MIN
-#undef MAX
-#undef CLAMP
+template `+`*[F: SomeFLoat; I: SomeInteger](f:F; i:I): F = f+F(i)
+template `+`*[F: SomeFLoat; I: SomeInteger](i:I; f:F): F = F(i)+i
+template `-`*[F: SomeFLoat; I: SomeInteger](f:F; i:I): F = f-F(i)
+template `-`*[F: SomeFLoat; I: SomeInteger](i:I; f:F): F = F(i)-i
+template `*`*[F: SomeFLoat; I: SomeInteger](f:F; i:I): F = f*F(i)
+template `*`*[F: SomeFLoat; I: SomeInteger](i:I; f:F): F = F(i)*i
+template `/`*[F: SomeFLoat; I: SomeInteger](f:F; i:I): F = f/F(i)
+template `/`*[F: SomeFLoat; I: SomeInteger](i:I; f:F): F = F(i)/i
 
-# Generic ABS function, for math uses please use Math::abs.
-
-template sign*[T](x: T): T = cmp(T, 0)
+template sign*[T](x: T): int = cmp(x, 0)
 
 func min*[T](x: T; xs: varargs[T]): T =
   result = x
@@ -97,7 +97,7 @@ func getNumBits*[T](x: T): T = floor_log2(x)
 
 # This epsilon should match the one used by Godot for consistency.
 # Using `f` when `real_t` is float.
-const CMP_EPSILON = 0.00001f
+const CMP_EPSILON* = 0.00001f
 const CMP_EPSILON2 = (CMP_EPSILON * CMP_EPSILON)
 
 # This epsilon is for values related to a unit size (scalar or vector len).
@@ -271,15 +271,13 @@ inline float smoothstep(float p_from, float p_to, float p_weight) {
   float x = clamp((p_weight - p_from) / (p_to - p_from), 0.0f, 1.0f);
   return x * x * (3.0f - 2.0f * x);
 }
+]#
+proc moveToward*[T: SomeFloat](`from`, to, delta: T): T =
+  let dist = to - `from`
+  if abs(dist) <= delta: return to
+  `from` + sign(dist) * delta
 
-inline double move_toward(double p_from, double p_to, double p_delta) {
-  return std::abs(p_to - p_from) <= p_delta ? p_to : p_from + sign(p_to - p_from) * p_delta;
-}
-
-inline float move_toward(float p_from, float p_to, float p_delta) {
-  return std::abs(p_to - p_from) <= p_delta ? p_to : p_from + sign(p_to - p_from) * p_delta;
-}
-
+#[
 inline double linear2db(double p_linear) {
   return log(p_linear) * 8.6858896380650365530225783783321;
 }
@@ -342,14 +340,14 @@ inline int fast_ftoi(float a) {
 #endif
   return b;
 }
-
-inline double snapped(double p_value, double p_step) {
-  if (p_step != 0) {
-    p_value = Math::floor(p_value / p_step + 0.5) * p_step;
-  }
-  return p_value;
-}
-
+]#
+proc snapped*[T: SomeFLoat](value, step: T): T =
+  if step == 0: return value
+  floor(value / step + 0.5) * step
+proc snapped*[T: SomeInteger](value, step: T): T =
+  if step == 0: return value
+  ((value + int(step / 2)) div step) * step
+#[
 inline float snap_scalar(float p_offset, float p_step, float p_target) {
   return p_step != 0 ? Math::snapped(p_target - p_offset, p_step) + p_offset : p_target;
 }

@@ -3,13 +3,15 @@ import beyond/[
 ]
 
 type
-  Vector* [I: static int; T] = array[I, T]
-  NVector* [I: static int; T: SomeFloat] = distinct Vector[I, T]
+  Vector*[N: static int; T] = array[N, T]
+  NVector*[N: static int; T: SomeFloat] = distinct Vector[N, T]
   Radian*[T: SomeFloat] = distinct T
 
 type
   Radian32* = Radian[float32]
   Radian64* = Radian[float64]
+
+template asNormalized*[N: static int; T: SomeFloat](vec: Vector[N,T]): NVector[N,T] = NVector[N,T](vec)
 
 func makeVec(components: seq[NimNode]): tuple[lets: seq[NimNode]; brackets: seq[NimNode]] =
   for i, e in components:
@@ -44,7 +46,7 @@ macro vec*(exp: varargs[typed]): untyped =
   ## vec([1, 2], 3) -> [1, 2, 3]
   ## (let x = [1, 2]; vec(x, 3)) -> [x[0], x[1], 3]
   ## vec(vec(1, 2), 3) -> [1, 2, 3]
-  ## vec(gen(), 3) -> (let arg0 = gen(); [arg0[0], arg1[1], 3])
+  ## vec(gen(), 3) -> (let arg0 = gen(); [arg0[0], arg0[1], 3])
   let res = makeVec(exp[0..^1])
   result = newStmtList()
   result.add res.lets

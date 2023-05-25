@@ -1,5 +1,6 @@
 ## This module is generated automatically.
 import nativeDetails
+import customDetails
 import ../typedefs/variants
 import nativeConstructors
 import ../logging
@@ -10,14 +11,9 @@ proc load_Variants* =
   load GdInt
   load GdFloat
   load GdString
-  load GdVector2i
   load GdRect2
   load GdRect2i
-  load GdVector3
-  load GdVector3i
   load GdTransform2D
-  load GdVector4
-  load GdVector4i
   load GdPlane
   load GdQuaternion
   load GdAABB
@@ -41,6 +37,12 @@ proc load_Variants* =
   load GdPackedVector2Array
   load GdPackedVector3Array
   load GdPackedColorArray
+  load GdVector2
+  load GdVector2i
+  load GdVector3
+  load GdVector3i
+  load GdVector4
+  load GdVector4i
 proc load_variant_native_constructors* =
   iam("load-variant-constructors", stgLibrary).debug "load constructors of all variants..."
   loadConstructors_GdBool()

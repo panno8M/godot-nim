@@ -54,7 +54,6 @@ const constructorIgnores = [
   "GdVector4", "GdVector4i",
   "GdColor",
   ]
-const moduleIgnores = ["GdNil", "GdVector2"]
 
 func toNim*(self: GdBuiltinClass): NimBuiltinClass =
 
@@ -147,6 +146,8 @@ proc modulateLoader*(classes: seq[NimBuiltinClass]) =
   loader.add Statement.sentence("iam(\"load-variants\", stgLibrary).debug \"load methods of all variants...\"")
   for class in classes:
     loader.add Statement.sentence("load " & class.className)
+  for custom in moduleTree.variantCustomLoaders:
+    loader.add Statement.sentence("load " & custom)
 
   let constructorLoader = Statement.header("proc load_variant_native_constructors* =")
   constructorLoader.add Statement.sentence("iam(\"load-variant-constructors\", stgLibrary).debug \"load constructors of all variants...\"")
@@ -162,7 +163,7 @@ proc modulate*(self: seq[GdBuiltinClass]): seq[Module] {.inline.} =
   me.todo """We could not convert these json-tags yet:
   [is_keyed, has_destructor, indexing_return_type, constants]"""
 
-  let nimClasses = self.mapIt(it.toNim).filterIt(it.className notin moduleIgnores)
+  let nimClasses = self.mapIt(it.toNim).filterIt(it.className notin moduleTree.variantIgnores)
   let modules = nimClasses.mapIt(it.modulate)
   result = modules.mapIt it.module
 

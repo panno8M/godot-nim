@@ -11,7 +11,7 @@ type ProcedureResult* = object
 
 proc procedure*(Type, node: NimNode; isStatic = false): ProcedureResult =
   let
-    containerName = ident("proc_" & $node[0].basename)
+    containerName = ident("proc_" & $node[0].basename & "_" & $node.params[0])
     self_name = node.params[1][0]
     params = node.params[2..^1]
     argptrarr = nnkBracket.newTree params.mapIt(it[0]).mapIt quoteExpr do:

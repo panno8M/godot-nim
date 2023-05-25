@@ -14,7 +14,7 @@ var root* = pkg"../src/godot":
     dontTouch mdl"gdextensionInterface"
     dontTouch mdl"memories"
     dontExport dontTouch mdl"internal"
-  
+
   pkg"variants":
     pkg"nativeDetails"
     dontTouch pkg"customDetails"
@@ -24,9 +24,9 @@ var root* = pkg"../src/godot":
 
     dontExport dontTouch mdl"essentials"
     dontExport mdl"variantsLoader"
-  
+
   mdl"enums"
-  
+
   pkg"classes":
     pkg"nativeDetails"
     dontTouch do: pkg"customDetails":
@@ -42,6 +42,7 @@ let
   variantDefs* = root/"typedefs"/"variants"
   variants* = root/"variants"
   variantDetails* = variants/"nativeDetails"
+  variantCustomDetails* = variants/"customDetails"
   variantEssentials* = variants/"essentials"
   variantNativeConstructors* = variants/"nativeConstructors"
   variantLoader* = variants/"variantsLoader"
@@ -73,7 +74,21 @@ variantNativeConstructors.importModules(
 )
 variantLoader.importModules(
   variantDetails,
+  variantCustomDetails,
   variantDefs,
   variantNativeConstructors,
   logging,
 )
+
+const
+  variantIgnores* = [
+    "GdNil",
+    "GdVector2", "GdVector2i",
+    "GdVector3", "GdVector3i",
+    "GdVector4", "GdVector4i",
+  ]
+  variantCustomLoaders* = [
+    "GdVector2", "GdVector2i",
+    "GdVector3", "GdVector3i",
+    "GdVector4", "GdVector4i",
+  ]

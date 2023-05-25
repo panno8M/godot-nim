@@ -22,8 +22,14 @@ func makeAccessor(v: NimNode; length: int; name: string): tuple[letval: Option[N
 
 template `<$>`*(exp: untyped; x: untyped): untyped = x.fmap(exp)
 
-macro fmap*[N: static int; T](_: typedesc[array[N,T]]; exp: untyped): array[N,T] =
-  nnkBracket.newTree exp.repeat(N)
+macro fmap*[N: static int; T](Type: typedesc[array[N,T]]; pred): untyped =
+  let typeofT = Type.getType[1][2]
+  let elem = genSym(nskLet, "elem")
+  let vec = nnkBracket.newTree elem.repeat(N)
+
+  result = newStmtList(
+    newLetStmt(elem, typeofT.newCall(pred)),
+    vec)
 
 macro fmap*[N: static int; T](v: array[N,T]; exp: untyped): untyped =
   var letsec = newNimNode nnkLetSection

@@ -1,5 +1,6 @@
 import std/[
   json,
+  os,
 ]
 import beyond/[
   statements,
@@ -11,6 +12,7 @@ import generator/tool/[
 import generator/generate_api
 
 when isMainModule:
+  createDir("log")
   logging.addhandler newFileLogger("log/generator.log", mode=fmWrite)
 
   info "start generating..."
