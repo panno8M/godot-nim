@@ -6,8 +6,6 @@
 import ../core
 import ../core/internal
 
-func nativePtr*(self: GdVariant): GdVariantPtr = unsafeAddr self.bytes[0]
-
 var
   fromTypeConstructor: array[GdVariantType.high, GDVariantFromTypeConstructorFunc]
   toTypeConstructor: array[GdVariantType.high, GDTypeFromVariantConstructorFunc]

@@ -15,12 +15,12 @@ macro gdvec*(exp: varargs[typed]): untyped =
   let res = makeVec(exp[0..^1])
   result = newStmtList()
   result.add res.lets
-  result.add nnkBracket.newTree res.brackets.mapIt quoteExpr do: floatGD(`it`)
+  result.add nnkBracket.newTree res.brackets.mapIt quoteExpr do: real_elem(`it`)
 macro gdveci*(exp: varargs[typed]): untyped =
   let res = makeVec(exp[0..^1])
   result = newStmtList()
   result.add res.lets
-  result.add nnkBracket.newTree res.brackets.mapIt quoteExpr do: int32(`it`)
+  result.add nnkBracket.newTree res.brackets.mapIt quoteExpr do: int_elem(`it`)
 
 
 proc gdColor*(r,g,b,a: float32): GdColor = GdColor(r: r, g: g, b: b, a: a)

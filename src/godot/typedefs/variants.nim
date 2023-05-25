@@ -1,30 +1,29 @@
 import ../compileTimeSwitch
 import geometrics
 
-when EPrecision == Precisions.Double32:
-  type floatGD* = float64
-  const ByteSize = 1
-elif EPrecision == Precisions.Float32:
-  type floatGD* = float32
-  const ByteSize = 1
-when EPrecision == Precisions.Double64:
-  type floatGD* = float64
-  const ByteSize = 2
-elif EPrecision == Precisions.Float64:
-  type floatGD* = float32
-  const ByteSize = 2
+when PointerByteSize == 4:
+  const SizeofPtr = 4
+elif PointerByteSize == 8 or true:
+  const SizeofPtr = 8
+
+when DecimalPrecision == "double":
+  type real_elem* = float64
+elif DecimalPrecision == "float" or true:
+  type real_elem* = float32
+
+type int_elem* = int32
+type float_elem* = float32
 
 type
-  GdVector*[N: static int] = Vector[N, floatGD]
-  GdVectori*[N: static int] = Vector[N, int32]
-  RadianGD* = Radian[floatGD]
+  GdVector*[N: static int] = Vector[N, real_elem]
+  GdVectori*[N: static int] = Vector[N, int_elem]
 
 type
   GdBool* = bool
   GdInt* = int64
   GdFloat* = float64
   GdString* = object
-    bytes*: array[ByteSize*4, byte]
+    bytes*: array[SizeOfPtr, byte]
   GdVector2* = GdVector[2]
   GdVector3* = GdVector[3]
   GdVector4* = GdVector[4]
@@ -43,12 +42,12 @@ type
     origin*: GdVector2
   GdPlane* = object
     normal*: GdVector3
-    d*: floatGD
+    d*: real_elem
   GdQuaternion* = object
-    x*: floatGD
-    y*: floatGD
-    z*: floatGD
-    w*: floatGD
+    x*: real_elem
+    y*: real_elem
+    z*: real_elem
+    w*: real_elem
   GdAABB* = object
     position*: GdVector3
     size*: GdVector3
@@ -65,43 +64,43 @@ type
     z*: GdVector4
     w*: GdVector4
   GdColor* = object
-    r*: float32
-    g*: float32
-    b*: float32
-    a*: float32
+    r*: float_elem
+    g*: float_elem
+    b*: float_elem
+    a*: float_elem
   GdStringName* = object
-    bytes*: array[ByteSize*4, byte]
+    bytes*: array[SizeofPtr, byte]
   GdNodePath* = object
-    bytes*: array[ByteSize*4, byte]
+    bytes*: array[SizeofPtr, byte]
   GdRID* = object
-    bytes*: array[ByteSize*8, byte]
+    bytes*: array[SizeofPtr*2, byte]
   GdObject* = object
-    bytes*: array[ByteSize*4, byte]
+    bytes*: array[SizeofPtr, byte]
   GdCallable* = object
-    bytes*: array[ByteSize*16, byte]
+    bytes*: array[SizeofPtr*4, byte]
   GdSignal* = object
-    bytes*: array[ByteSize*16, byte]
+    bytes*: array[SizeofPtr*4, byte]
   GdDictionary* = object
-    bytes*: array[ByteSize*4, byte]
+    bytes*: array[SizeofPtr, byte]
   GdArray* = object
-    bytes*: array[ByteSize*4, byte]
+    bytes*: array[SizeofPtr, byte]
   GdPackedByteArray* = object
-    bytes*: array[ByteSize*8, byte]
+    bytes*: array[SizeofPtr*2, byte]
   GdPackedInt32Array* = object
-    bytes*: array[ByteSize*8, byte]
+    bytes*: array[SizeofPtr*2, byte]
   GdPackedInt64Array* = object
-    bytes*: array[ByteSize*8, byte]
+    bytes*: array[SizeofPtr*2, byte]
   GdPackedFloat32Array* = object
-    bytes*: array[ByteSize*8, byte]
+    bytes*: array[SizeofPtr*2, byte]
   GdPackedFloat64Array* = object
-    bytes*: array[ByteSize*8, byte]
+    bytes*: array[SizeofPtr*2, byte]
   GdPackedStringArray* = object
-    bytes*: array[ByteSize*8, byte]
+    bytes*: array[SizeofPtr*2, byte]
   GdPackedVector2Array* = object
-    bytes*: array[ByteSize*8, byte]
+    bytes*: array[SizeofPtr*2, byte]
   GdPackedVector3Array* = object
-    bytes*: array[ByteSize*8, byte]
+    bytes*: array[SizeofPtr*2, byte]
   GdPackedColorArray* = object
-    bytes*: array[ByteSize*8, byte]
+    bytes*: array[SizeofPtr*2, byte]
   GdVariant* = object
-    bytes*: array[ByteSize*8*2 + 8, byte]
+    bytes*: array[SizeofPtr*4 + 8, byte]
