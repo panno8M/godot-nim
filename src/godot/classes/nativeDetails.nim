@@ -1,1 +1,1 @@
-## This module is generated automatically.
+## This module was generated automatically. Changes will be lost.

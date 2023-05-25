@@ -1,5 +1,5 @@
 import std/macros
-import core/gdextensionInterface
+import godotInterface
 
 macro exportgd*(someProc: untyped): untyped =
   someProc.addPragma ident"exportc"
@@ -10,8 +10,7 @@ macro exportgd*(someProc: untyped): untyped =
   return someProc
 
 
-template bitfield* {.pragma.}
 template hash*(hash: int) {.pragma.}
 template index*(index: int) {.pragma.}
 template loadfrom*(name: string; hash: int) {.pragma.}
-template operator*(`type`: GdVariantOperator) {.pragma.}
+template operator*(`type`: VariantOperator) {.pragma.}

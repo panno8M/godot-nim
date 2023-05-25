@@ -1,12 +1,11 @@
 import beyond/oop; export oop
 import beyond/defects; export defects
-import ../core; export core
-import ../core/internal; export internal
+import ../godotInterface; export godotInterface
 import ../macros; export macros
 import ../pragmas; export pragmas
-import ../compileTimeSwitch; export compileTimeSwitch
+import ../pure/compileTimeSwitch; export compileTimeSwitch
 import ../logging;export logging
+import ../helper/variantTypeSolver; export variantTypeSolver
 
-import ../typedefs; export typedefs
-import customConstructors; export customConstructors
-import nativeConstructors; export nativeConstructors
+import variantsConstr_custom; export variantsConstr_custom
+import variantsConstr_native; export variantsConstr_native

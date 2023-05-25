@@ -7,9 +7,6 @@ import std/[
   sets,
   options,
 ]
-import beyond/[
-  statements,
-]
 import components/[
   gd_enum,
   classes,
@@ -37,22 +34,25 @@ proc obtain_keys(node: JsonNode): HashSet[string] =
     return
 
 proc modulate_globalEnums(globalEnums: JsonNode) =
-  let body = Statement.dummy
+  let body = ParagraphSt()
   const ignore = "Variant"
   for item in globalEnums.items:
     var gdenum = item.to GdEnum
     if ignore in gdenum.name: continue
-    body.add gdenum.toNim.render
+    discard body.add gdenum.toNim.render
   moduleTree.enums.contents = body
 
 proc define_class(class: GdClass): Statement =
-  result = Statement.header fmt"type {class.name}* = object"
+  var classdef = ParagraphSt()
   if class.properties.isSome:
-    let props = get class.properties
-    for prop in props:
-      result.add commentout Statement.sentence repr prop
+    for prop in (get class.properties):
+      discard classdef.add CommentSt.nim(execute= true).add repr prop
+  +$$..ParagraphSt():
+    fmt"type {class.name}* = object"
+    +$$..IndentSt(level: 2):
+      classdef
 proc modulate_classDetail(class: GdClass): Module =
-  dontExport dontTouch mdl ""
+  internal dummy mdl""
 
 proc generate*(api: JsonNode) =
   var me: LogUser
@@ -69,11 +69,11 @@ proc generate*(api: JsonNode) =
     of "global_enums":
       modulate_globalEnums value
     of "builtin_classes":
-      moduleTree.variantDetails.takeSubmodules modulate value.to(GdBuiltinClasses)
+      moduleTree.d_variantsDetail_native.take modulate value.to(GdBuiltinClasses)
     of "classes":
       for class in value.items:
         let gdc = class.to GdClass
-        moduleTree.classDefs.addContents gdc.define_class
-        moduleTree.classDetails.takeSubmodules gdc.modulate_classDetail
+        discard moduleTree.classDefs.contents.add gdc.define_class
+        moduleTree.d_classDetails.take gdc.modulate_classDetail
     else:
       me.todo fmt"now we do not have the way to generate binding of this."

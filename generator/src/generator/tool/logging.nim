@@ -13,7 +13,7 @@ type LogUser* = object
   title*: string
 
 template make(msgs: openArray[string]): string =
-  msgs.join("").split('\n').mapIt("  | " & it).join("\n")
+  msgs.join("").splitLines.mapIt("  | " & it).join("\n")
 
 func todo*(user: LogUser; msgs: varargs[string, `$`]) = {.noSideEffect.}:
   when noTodos: return

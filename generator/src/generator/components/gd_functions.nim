@@ -1,22 +1,19 @@
 import std/[
   options,
   strformat,
-  strutils,
   sequtils,
   sugar,
 ]
-import beyond/[
-  statements,
-]
 import ../tool/[
+  moduleTree,
   name_rules,
 ]
+proc concat[T](s: seq[T]; o: Option[T]): seq[T] =
+  if o.isSome: concat(s, @[o.get])
+  else: s
+
 type
   GdArgument* = object
-    name*: string
-    `type`*: string
-    default_value*: Option[string]
-  NimArgument* = ref object
     name*: string
     `type`*: string
     default_value*: Option[string]
@@ -29,99 +26,58 @@ type
     hash*: int
     arguments*: Option[seq[GdArgument]]
     return_type*: Option[string]
-  NimMethod* = ref object
-    name*: string
-    is_static*: bool
-    arguments*: seq[NimArgument]
-    pragmas*: seq[string]
-    return_type*: string
-    hash*: int
 
   GdOperator* = object
     name*: string
     return_type*: string
     right_type*: Option[string]
-  NimOperator* = ref object
-    id*: string
-    name*: string
-    return_type*: string
-    args*: seq[NimArgument]
-    pragmas*: seq[string]
 
   GdConstructor* = object
     index*: int
     arguments*: Option[seq[GdArgument]]
-  NimConstructor* = ref object
-    self_type*: string
-    index*: int
-    arguments*: seq[NimArgument]
 
-func `$`*(self: NimArgument): string =
-  result = &"{self.name}:{self.`type`}"
-  if self.default_value.isSome:
-    result &= &"= {self.default_value.get}"
-func `$`*(args: seq[NimArgument]): string =
-  args.mapIt($it).join("; ")
-func arg*(name, `type`: string; default: string): NimArgument =
-  NimArgument( name: name, `type`: `type`, default_value: some default)
-func arg*(name, `type`: string): NimArgument =
-  NimArgument( name: name, `type`: `type`, default_value: none string)
+func toNim(self: GdArgument): NimIdentDef =
+  idef(self.name.ident, self.`type`.className,
+    self.default_value.map(x => x.defaultValue(self.`type`.className)))
 
-func toNim(self: GdArgument): NimArgument =
-  NimArgument(
+func toNim*(self: GdMethod; self_type: string): NimProcSt =
+  var args: seq[NimIdentDef]
+  var pragmas = @[&"loadfrom(\"{self.name}\", {self.hash})"]
+  if self.is_static:
+    pragmas.add fmt"staticOf({self_type})"
+  else:
+    args.add idef("self", self_type)
+
+  if self.arguments.isSome:
+    args.add self.arguments.get.mapIt it.toNim
+
+  NimProcSt(
+    kind: NimProcKind.PublicProc,
     name: self.name.ident,
-    `type`: self.`type`.className,
-    default_value: self.default_value.map(x => x.defaultValue(self.`type`.className)),
+    args: args,
+    return_type: self.return_type.map(x => x.classname),
+    pragmas: pragmas,
   )
 
-func toNim*(self: GdMethod; self_type: string): NimMethod =
-  result = NimMethod()
-  if self.is_static:
-    result.arguments = @[arg("_", fmt"typedesc[{self_type}]")]
-  else:
-    result.arguments = @[arg("self", self_type)]
-  result.is_static = self.is_static
-  result.name = self.name.ident
-  if self.arguments.isSome:
-    result.arguments.add self.arguments.get.mapIt it.toNim
-  result.return_type =
-    if self.return_type.isSome: self.return_type.get.className
-    else: "void"
-  result.hash = self.hash
-  result.pragmas = @[&"loadfrom(\"{self.name}\", {self.hash})"]
-
-func toNim*(self: GdOperator; classname: string): NimOperator =
-  var args = @[arg("left", classname)]
+func toNim*(self: GdOperator; classname: string): NimProcSt =
+  var args = @[idef("left", classname)]
   if self.right_type.isSome:
-    args.add arg("right", self.right_type.get.className)
+    args.add idef("right", self.right_type.get.className)
   if self.name == "in":
-    swap(args[0].`type`, args[1].`type`)
-  NimOperator(
-    id: self.name,
+    swap args[0].`type`, args[1].`type`
+  NimProcSt(
+    kind: NimProcKind.PublicProc,
     name: self.name.operator,
-    return_type: self.return_type.className,
+    return_type: some self.return_type.className,
     args: args,
     pragmas: @["operator: " & self.name.variantOperator]
   )
 
-func toNim*(self: GdConstructor; classname: string): NimConstructor =
-  result = NimConstructor(
-    index: self.index,
-    self_type: classname,
-    arguments: newSeq[NimArgument](),
+func toNim*(self: GdConstructor; classname: string): NimProcSt =
+  result = NimProcSt(
+    kind: NimProcKind.PublicProc,
+    name: "init",
+    args: self.arguments.get(@[]).mapIt it.toNim,
+    return_type: some classname,
+    pragmas: @[fmt"index: {self.index}", fmt"staticOf: {classname}"]
   )
-  if self.arguments.isSome:
-    result.arguments.add self.arguments.get.mapIt it.toNim
-
-func render*(self: NimOperator): Statement =
-  result = Statement.header(fmt"""proc {self.name}*({self.args}): {self.return_type} {{.{self.pragmas.join(", ")}.}}""")
-
-func render*(self: NimConstructor): Statement =
-  var name = self.self_type
-  if name[0] in 'A'..'Z': 
-    name[0] = chr(name[0].ord - 'A'.ord + 'a'.ord)
-  result = Statement.header(fmt"proc {name}*({self.arguments}): {self.self_type} {{.index: {self.index}.}}")
-
-
-func render*(self: NimMethod): Statement =
-  result = Statement.header(fmt"""proc {self.name}*({self.arguments}): {self.return_type} {{.{self.pragmas.join(", ")}.}}""")

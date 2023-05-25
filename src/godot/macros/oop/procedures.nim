@@ -1,61 +1,61 @@
 import std/[
   sequtils,
   strutils,
+  strformat,
 ]
 import beyond/macros
 
-type ProcedureResult* = object
-  containerDefine*: NimNode
-  procDefine*: NimNode
-  initSentence*: NimNode
+type ProcedureResult* = tuple
+  containerDefine, procDefine, initSentence: NimNode
 
 proc procedure*(Type, node: NimNode; isStatic = false): ProcedureResult =
+  node.expectKind nnkProcDef
+
   let
-    containerName = ident("proc_" & $node[0].basename & "_" & $node.params[0])
-    self_name = node.params[1][0]
-    params = node.params[2..^1]
-    argptrarr = nnkBracket.newTree params.mapIt(it[0]).mapIt quoteExpr do:
-      cast[pointer](unsafeAddr(`it`))
-    variantTypeMem = ident(($Type).replace("Gd", ""))
-    variantType = quoteExpr do: GdVariantType.`variantTypeMem`
+    args =
+      if is_static:
+        node.params[1..^1] # [0: result, 1..: args]
+      else:
+        node.params[2..^1] # [0: result, 1: self, 2..: args]
 
     loadfrom = node.getPragma("loadfrom")
     nativename = loadfrom[1]
     hash = loadfrom[2]
-  
-  let return_value =
-    if node.params[0].eqIdent "void": quoteExpr do: nil
-    else:                             quoteExpr do: addr result
-  let base_value =
-    if is_static: quoteExpr do: nil
-    else: quoteExpr do: unsafeAddr `self_name`
 
-  result.containerDefine = quoteExpr do:
-    var `containerName`: GdPtrBuiltinMethod
+  let p_result =
+    if node.hasNoReturn: newNilLit()
+    else:                newAddr(ident"result")
+  let p_self =
+    if is_static: newNilLit()
+    else: newUnsafeAddr(node.params[1][0])
+
+  let containerName = ident fmt"proc_{Type}_{node[0].basename}"
+
+  result.containerDefine = quote do:
+    var `containerName`: PtrBuiltinMethod
   result.initSentence = quote do:
-    let name = gdStringName(`nativeName`)
-    `containerName` = gdinterface.variantGetPtrBuiltinMethod(`variantType`, cast[GdConstStringNamePtr](unsafeAddr name), `hash`)
+    let name = StringName|>init(`nativeName`)
+    `containerName` = interface_variantGetPtrBuiltinMethod(`Type`.variantType, cast[ConstStringNamePtr](unsafeAddr name), `hash`)
   result.procDefine = node.copy
-  if params.len == 0:
+  if args.len == 0:
     result.procDefine.body = quote do:
-      `containerName`(`base_value`, nil, `return_value`, 0)
+      `containerName`(`p_self`, nil, `p_result`, 0)
   else:
+    let argptrarr = nnkBracket.newTree args.mapIt(it[0]).mapIt quote do:
+      cast[pointer](unsafeAddr(`it`))
     result.procDefine.body = quote do:
       let call_args = `argptrarr`
-      `containerName`(`base_value`, unsafeAddr call_args[0], `return_value`, cint call_args.len)
+      `containerName`(`p_self`, unsafeAddr call_args[0], `p_result`, cint call_args.len)
 
 proc procedures_impl(Type, loader, body: NimNode; is_static: bool): NimNode =
   result = newStmtList()
 
-  let debuglit = newLit "loading" & (if is_static: " static" else: "") & " procs of " & repr(Type) & "..."
   var initProcStmt = newStmtList()
-  initProcStmt.add quoteExpr do:
-    when DetailedLoggingAboutLoadingEnabled: iam($`Type` & "-load-procs", stgLibrary).debug `debuglit`
   for statement in body:
-    let p = procedure(Type, statement, is_static)
-    result.add p.containerDefine
-    result.add p.procDefine
-    initProcStmt.add p.initSentence[0..^1]
+    let (containerDefine, procDefine, initSentence) = procedure(Type, statement, is_static)
+    result.add containerdefine
+    result.add procdefine
+    initProcStmt.add initSentence[0..^1]
 
   result.add newProc(
     name = loader.postfix("*"),
@@ -67,52 +67,52 @@ macro procedures*[T](Type: typedesc[T]; loader, body): untyped =
 macro staticProcedures*[T](Type: typedesc[T]; loader, body): untyped =
   procedures_impl(Type, loader, body, is_static= true)
 
-proc operator*(Type, node: NimNode): ProcedureResult =
+proc elements_from_identdef(identdef: NimNode): tuple[t, address, variantType: NimNode] =
+  if identdef.isNil or identdef.kind == nnkEmpty:
+    result.t = nil
+    result.address = newNilLit()
+    result.variantType = ident"VariantType_Nil"
+  else:
+    result.t = identdef[1]
+    result.address = newUnsafeAddr identdef[0]
+    result.variantType = "variantType".newCall(result.t)
+
+
+proc operator*(node: NimNode): ProcedureResult =
   let op = node.getPragma("operator")[1]
-  let params = node.params[1..^1]
-  let containerName = ident($op[1] & "_" & params.mapIt($it[1]).join("_"))
 
-  let left = params[0][0]
-  let leftValue = quoteExpr do: unsafeAddr `left`
-  let leftTypeMem = ident params[0][1].`$`.replace("Gd", "")
-  let leftType = quoteExpr do: GdVariantType.`leftTypeMem`
+  let has_right = node.params.len == 3
+  let left = node.params[1]
+  let right = if has_right: node.params[2] else: nil
 
-  let hasRight = params.len == 2
+  let (t_left, leftAddress, leftVariantType) = elements_from_identdef(left)
+  let (t_right, rightAddress, rightVariantType) = elements_from_identdef(right)
 
-  var right: NimNode
-  if hasRight: right = params[1][0]
-  let rightValue =
-    if hasRight: quoteExpr do: unsafeAddr `right`
-    else: ident"nil"
-  let rightType =
-    if (not hasRight) or (params[1][1].eqIdent "GdVariant"):
-      quoteExpr do: GdVariantType.Nil
+  let containerName =
+    if has_right:
+      ident &"{t_left}_{op}_{t_right}"
     else:
-      let mem = ident ($params[1][1]).replace("Gd", "")
-      quoteExpr do: GdVariantType.`mem`
+      ident &"{op}_{t_left}"
 
-  result.containerDefine = quoteExpr do:
-    var `containerName`: GdPtrOperatorEvaluator
-  let callget = quoteExpr do:
-    gdinterface.variantGetPtrOperatorEvaluator(`op`, `leftType`, `rightType`)
+  result.containerDefine = quote do:
+    var `containerName`: PtrOperatorEvaluator
+  let callget = quote do:
+    interface_variantGetPtrOperatorEvaluator(`op`, `leftVariantType`, `rightVariantType`)
   result.initSentence = newStmtList(
     nnkAsgn.newTree(containerName, callget)
   )
   result.procDefine = node
   result.procDefine.body = quote do:
-    `containerName`(`leftValue`, `rightValue`, addr `result`)
+    `containerName`(`leftAddress`, `rightAddress`, addr result)
 
-macro operators*[T](Type: typedesc[T]; loader, body): untyped =
+macro operators*(loader, body): untyped =
   result = newStmtList()
-  let debuglit = newLit "loading operators of " & repr(Type) & "..."
   var initProcStmt = newStmtList()
-  initProcStmt.add quoteExpr do:
-    when DetailedLoggingAboutLoadingEnabled: iam($`type` & "-load-ops", stgLibrary).debug `debuglit`
   for statement in body:
-    let p = operator(Type, statement)
-    result.add p.containerDefine
-    # result.add p.procDefine
-    initProcStmt.add p.initSentence[0..^1]
+    let (containerDefine, procDefine, initSentence) = operator(statement)
+    result.add containerDefine
+    result.add procDefine
+    initProcStmt.add initSentence
   result.add newProc(
     name = loader.postfix("*"),
     body = initProcStmt)
