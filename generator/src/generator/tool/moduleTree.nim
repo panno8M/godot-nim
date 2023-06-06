@@ -6,14 +6,9 @@ export modules
 export treesugars
 
 var root* = pkg"../src/godot":
-  pkg"typedefs":
-    dontTouch mdl"variants"
-    dontTouch mdl"geometrics"
-    mdl"classes"
+  dontTouch mdl"godotInterface"
   pkg"core":
-    dontTouch mdl"gdextensionInterface"
     dontTouch mdl"memories"
-    dontExport dontTouch mdl"internal"
 
   pkg"variants":
     pkg"nativeDetails"
@@ -28,9 +23,13 @@ var root* = pkg"../src/godot":
   mdl"enums"
 
   pkg"classes":
+    mdl"typedef"
     pkg"nativeDetails"
     dontTouch do: pkg"customDetails":
       dontTouch mdl"classDB"
+
+  dontTouch do: pkg"geometrics":
+    dontTouch mdl"typedef"
 
   dontTouch mdl"macros"
   dontTouch mdl"pragmas"
@@ -39,7 +38,8 @@ var root* = pkg"../src/godot":
   dontExport dontTouch mdl"logging"
 
 let
-  variantDefs* = root/"typedefs"/"variants"
+  gdinterface* = root/"godotInterface"
+
   variants* = root/"variants"
   variantDetails* = variants/"nativeDetails"
   variantCustomDetails* = variants/"customDetails"
@@ -47,8 +47,8 @@ let
   variantNativeConstructors* = variants/"nativeConstructors"
   variantLoader* = variants/"variantsLoader"
 
-  classDefs* = root/"typedefs"/"classes"
   classes* = root/"classes"
+  classDefs* = classes/"typedef"
   classDetails* = classes/"nativeDetails"
 
   enums* = root/"enums"
@@ -56,8 +56,6 @@ let
   pragmas* = root/"pragmas"
   macros* = root/"macros"
   core* = root/"core"
-  interfaces* = core/"gdextensionInterface"
-  internal* = core/"internal"
   compileTimeSwitch* = root/"compileTimeSwitch"
   logging* = root/"logging"
 
@@ -65,17 +63,15 @@ enums.importModules(
   pragmas,
 )
 variantNativeConstructors.importModules(
-  variantDefs,
+  gdinterface,
   macros,
   pragmas,
-  interfaces,
-  internal,
   compileTimeSwitch,
 )
 variantLoader.importModules(
+  gdinterface,
   variantDetails,
   variantCustomDetails,
-  variantDefs,
   variantNativeConstructors,
   logging,
 )

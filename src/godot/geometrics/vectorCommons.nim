@@ -1,4 +1,4 @@
-import ../typedefs
+import ./typedef
 import ./fmaps
 import ./math
 import ./interpolations
@@ -93,7 +93,7 @@ func `mod`*[N: static int; T,S: SomeInteger](left: T; right: Vector[N,S]): auto 
 func dot*[N: static int; T: SomeNumber](left, right: Vector[N,T]): T = sum (left * right)
 func lengthSquared*[N: static int; T: SomeNumber](self:Vector[N,T]): T = dot(self, self)
 func length*[N: static int; T: SomeFloat](self: Vector[N,T]): T = sqrt self.lengthSquared
-func length*[N: static int; T: SomeInteger](self: Vector[N,T]): GdFloat = sqrt GdFloat(self.lengthSquared)
+func length*[N: static int; T: SomeInteger](self: Vector[N,T]): float = sqrt float(self.lengthSquared)
 func normalized*[N: static int; T: SomeFloat](self: Vector[N,T]): NVector[N,T] = asNormalized(self / self.length)
 converter unwrapped*[N: static int; T: SomeFloat](v: NVector[N,T]): Vector[N,T] = Vector[N,T](v)
 

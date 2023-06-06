@@ -50,7 +50,7 @@ proc define_class(class: GdClass): Statement =
   if class.properties.isSome:
     let props = get class.properties
     for prop in props:
-      result.add commentout Statement.sentence repr prop
+      result.add asComment Statement.sentence repr prop
 proc modulate_classDetail(class: GdClass): Module =
   dontExport dontTouch mdl ""
 

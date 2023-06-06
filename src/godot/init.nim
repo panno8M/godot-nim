@@ -4,10 +4,9 @@ import beyond/[
 import
   logging,
   pragmas,
-  typedefs,
-  core,
-  core/internal,
+  godotInterface,
   variants/variantsLoader,
+  classes/typedef,
   classes/customDetails/classDB
 
 proc load*(_:typedesc[GdVariant]) {.unimplemented.}
@@ -36,9 +35,9 @@ proc terminateLevel(userdata: pointer; p_level: GDInitializationLevel) {.exportg
 
 proc init(pInterface: ptr GDInterface; pLibrary: GDClassLibraryPtr; rInitialization: ptr GDInitialization; config: GDExtensionConfig) : bool =
   try:
-    internal.gdinterface = pInterface
-    internal.library = pLibrary
-    internal.token = pLibrary
+    gdinterface = pInterface
+    godotInterface.library = pLibrary
+    godotInterface.token = pLibrary
     extcfg = config
 
     rInitialization.initialize = initializeLevel

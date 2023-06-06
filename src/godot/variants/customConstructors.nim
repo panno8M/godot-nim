@@ -5,9 +5,8 @@ import beyond/[
 import std/[
   sequtils,
 ]
-import ../typedefs
-from ../typedefs/geometrics {.all.} import makeVec
-import ../core/internal
+import ../godotInterface
+from ../geometrics/typedef {.all.} import makeVec
 import nativeConstructors
 
 

@@ -4,11 +4,10 @@ import std/[
 ]
 import beyond/[
   oop,
-  defects,
 ]
+import ../typedef
+import ../../godotInterface
 import ../../core
-import ../../core/internal
-import ../../typedefs
 
 {.warning: "TODO: type \"MethodBind\" has no define.".}
 type
@@ -39,6 +38,6 @@ ClassDB.statics:
     for name, info in classes:
       if info.level != lvl: continue
 
-      gdinterface.classdb_unregister_extension_class(internal.library, unsafeAddr info.name)
+      gdinterface.classdb_unregister_extension_class(library, unsafeAddr info.name)
       for name, `method` in info.methodMap:
         GdMemory.delete(`method`)

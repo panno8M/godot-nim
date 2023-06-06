@@ -1,5 +1,5 @@
 import std/macros
-import core/gdextensionInterface
+import godotInterface
 
 macro exportgd*(someProc: untyped): untyped =
   someProc.addPragma ident"exportc"

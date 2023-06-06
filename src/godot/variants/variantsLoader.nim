@@ -1,7 +1,7 @@
 ## This module is generated automatically.
+import ../godotInterface
 import nativeDetails
 import customDetails
-import ../typedefs/variants
 import nativeConstructors
 import ../logging
 

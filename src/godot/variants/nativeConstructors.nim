@@ -1,9 +1,7 @@
 ## This module is generated automatically.
-import ../typedefs/variants
+import ../godotInterface
 import ../macros
 import ../pragmas
-import ../core/gdextensionInterface
-import ../core/internal
 import ../compileTimeSwitch
 
 GdBool.constructors(loader= loadConstructors_GdBool):

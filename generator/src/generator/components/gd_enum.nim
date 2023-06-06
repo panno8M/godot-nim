@@ -69,5 +69,5 @@ func render*(self: NimEnum): Statement =
   var idx = int.low
   for item in self.orderedValues:
     result.add Statement.sentence(fmt"`{item.name}` = {item.value}")
-      .commentout(item.value == idx)
+      .asComment(item.value == idx)
     idx = item.value

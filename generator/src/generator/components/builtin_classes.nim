@@ -80,13 +80,13 @@ func moduleName*(self: NimBuiltinClass): string =
 func render*(self: NimBuiltinClass): tuple[body, constructor, loader: Statement] =
   result.body = Statement.dummy
   result.constructor = Statement.dummy
-  let classHeader = Statement.header(&"type {self.classname}* = object").commentout
+  let classHeader = Statement.header(&"type {self.classname}* = object").asComment
   let staticHeader = Statement.header(&"{self.classname}.statics:")
   classHeader.add(
-    Statement.sentence(&"{self.base.is_keyed=}").commentout,
-    Statement.sentence(&"{self.base.has_destructor=}").commentout,
-    Statement.sentence(&"{self.base.indexing_return_type=}").commentout,
-    Statement.sentence(&"{self.base.constants=}").commentout,
+    Statement.sentence(&"{self.base.is_keyed=}").asComment,
+    Statement.sentence(&"{self.base.has_destructor=}").asComment,
+    Statement.sentence(&"{self.base.indexing_return_type=}").asComment,
+    Statement.sentence(&"{self.base.constants=}").asComment,
   )
   for nimenum in self.enums:
     staticHeader.add nimenum.render

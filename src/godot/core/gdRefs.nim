@@ -1,5 +1,12 @@
+import beyond/[
+  defects,
+]
+import ../godotInterface
+import ../typedefs
 import ../core/errorHandlings
 import ../core
+
+proc reference*(x: RefCounted) {.unimplemented.}
 
 type GdRef*[T: RefCounted] = object
   reference*: ptr T
@@ -23,27 +30,24 @@ func `=copy`*[T, S: RefCounted](self: var GdRef[T]; other: GdRef[S]) =
   if r.isNil: return
   self.reference = r
   reference self[]
-  
-  
 
 
 
-proc unrefer*[T: object](self: var GdRef[T]) =
+proc unrefer[T: object](self: var GdRef[T]) =
   if self.reference != nil and self.reference.unreference():
-    memde
+    GdMemory.delete(self.reference)
+  self.reference = nil
 
-proc refer*[T: object](self: var GdRef[T]; pFrom: GdRef[T]) =
+proc refer[T: object](self: var GdRef[T]; pFrom: GdRef[T]) =
   if pFrom.reference == self.reference: return
 
   unrefer self
 
   self.reference = pFrom.reference
-  if (self.reference != nil) self.reference.reference()
+  if self.reference != nil: self.reference.reference()
 
-proc refPointer*[T](self: var GdRef[T]; pref: ptr T) =
+proc refPointer[T](self: var GdRef[T]; pref: ptr T) =
   returnWithErrorMsgIf pref.isNil:
     printError(msg)
   if pref.initRef():
     self.reference = pref
-
-

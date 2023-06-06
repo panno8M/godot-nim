@@ -1,8 +1,6 @@
 import std/macros
 import std/strformat
-import ../typedefs
-import gdextensionInterface
-import internal
+import ../godotInterface
 
 proc printError*(msg: cstring; frame = getFrame(); editorNotify: GdBool = false) =
   gdinterface.printError( msg, frame.procName, frame.fileName, int32 frame.line, editorNotify)

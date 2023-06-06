@@ -3,45 +3,25 @@
 #include <godot_cpp/variant/variant_size.hpp>
 #include <gdextension_interface.h>
 #include <array>
-import ../core
-import ../core/internal
+import ../../godotInterface
 
 var
-  fromTypeConstructor: array[GdVariantType.high, GDVariantFromTypeConstructorFunc]
-  toTypeConstructor: array[GdVariantType.high, GDTypeFromVariantConstructorFunc]
+  fromTypeConstructor: array[GdVariantType, GDVariantFromTypeConstructorFunc]
+  toTypeConstructor: array[GdVariantType, GDTypeFromVariantConstructorFunc]
 
-proc init_bindings(_: typedesc[GdVariant]) =
-  # Start from 1 to skip NIL.
-  for i in 0..<GdVariantType.high:
+proc load*(_: typedesc[GdVariant]) =
+  for i in (GdVariantType.Nil+1)..<GdVariantType.high:
     fromTypeConstructor[i] = gdinterface.getVariant_fromTypeConstructor(GDVariantType i)
     toTypeConstructor[i] = gdinterface.getVariantToTypeConstructor(GDVariantType i)
 
-  initBindings GdStringName
-  initBindings GdString
-  initBindings GdNodePath
-  initBindings GdRID
-  initBindings GdCallable
-  initBindings GdSignal
-  initBindings GdDictionary
-  initBindings GdArray
-  initBindings GdPackedByteArray
-  initBindings GdPackedInt32Array
-  initBindings GdPackedInt64Array
-  initBindings GdPackedFloat32Array
-  initBindings GdPackedFloat64Array
-  initBindings GdPackedStringArray
-  initBindings GdPackedVector2Array
-  initBindings GdPackedVector3Array
-  initBindings GdPackedColorArray
+proc variant*(): GdVariant = gdinterface.variantNewNil(addr result)
+proc variant*[T: RefCounted](r: Ref[T]): GdVariant {.unimplemented.}
 
-# public:
-proc variant*(): GdVariant = gdinterface.variantNewNil(result.nativePtr)
-proc variant*(nativePtr: GdConstVariantPtr): GdVariant = gdinterface.variantNewCopy(result.nativePtr, nativePtr)
-proc variant*(other: GdVariant): GdVariant = gdinterface.variantNewCopy(result.nativePtr, nativePtr)
-proc variant*(other: var GdVariant): GdVariant = gdinterface.variantNewCopy(result.nativePtr, nativePtr)
-
-
-  Variant(bool v);
+proc variant*(v: bool): GdVariant =
+  var encoded: bool
+  PtrToArg<bool>::encode(v, addr encoded)
+  fromTypeconstructor[BOOL](addr result, addr encoded)
+when false:
   Variant(int64_t v);
   Variant(int32_t v) :
       Variant(static_cast<int64_t>(v)) {}

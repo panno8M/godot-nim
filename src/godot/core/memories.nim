@@ -1,5 +1,5 @@
 import ../compileTimeSwitch
-import ../core/internal
+import ../godotInterface
 import ../core/errorHandlings
 import ../core/wrapped
 

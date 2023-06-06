@@ -1,10 +1,5 @@
 import ../essentials
-import ../../geometrics/[
-  math,
-  fmaps,
-  swizzles,
-  vectorCommons,
-]
+import ../../geometrics
 
 {.push, inline.}
 
