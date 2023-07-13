@@ -47,18 +47,19 @@ discard +/%..d_beyond:
   beyond_oop
 
 discard +/%..d_root:
-  exportAllowedRequires godot
+  godot
+    .importExportModules_allowedExports
     .incl(d_godot)
   +/%..d_godot:
     gdinterface
     core
     variants
-      .exportAllowedRequires
+      .exportModules_allowed
       .incl(d_variants)
     +/%..internal d_variants:
       dummy mdl"variantsDetail_Variant"
       variantsDetail_native
-        .exportAllowedRequires
+        .exportModules_allowed
         .incl(d_variantsDetail_native)
       internal d_variantsDetail_native
       variantsDetail_custom

@@ -13,34 +13,8 @@ template define_godot_class_essencials*(GDClass, m_inherits: typedesc): untyped 
   # ----------
   method get_extension_class_name*(self: GDClass): ptr GDStringName =
     unsafeAddr GDClass|>className
-
   method get_bindings_callbacks*(self: GDClass): ptr GdInstanceBindingCallbacks =
     unsafeAddr GDClass|>binding_callbacks
-
-
-  staticOf GDClass:
-    proc get_bind_methods*: proc() = GDClass|>bind_methods
-    proc get_notification*: proc(int) = GDClass|>notification
-    static void (::godot::Wrapped::*_get_notification())(int) {
-      return (void(::godot::Wrapped::*)(int)) & GDClass::_notification;
-
-  static bool (::godot::Wrapped::*_get_set())(const ::godot::StringName &p_name, const ::godot::Variant &p_property) {
-    return (bool(::godot::Wrapped::*)(const ::godot::StringName &p_name, const ::godot::Variant &p_property)) & GDClass::_set;
-
-  static bool (::godot::Wrapped::*_get_get())(const ::godot::StringName &p_name, ::godot::Variant &r_ret) const {
-    return (bool(::godot::Wrapped::*)(const ::godot::StringName &p_name, ::godot::Variant &r_ret) const) & GDClass::_get;
-
-  static void (::godot::Wrapped::*_get_get_property_list())(::godot::List<::godot::PropertyInfo> * p_list) const {
-    return (void(::godot::Wrapped::*)(::godot::List<::godot::PropertyInfo> * p_list) const) & GDClass::_get_property_list;
-
-  static bool (::godot::Wrapped::*_get_property_can_revert())(const ::godot::StringName &p_name) {
-    return (bool(::godot::Wrapped::*)(const ::godot::StringName &p_name)) & GDClass::_property_can_revert;
-
-  static bool (::godot::Wrapped::*_get_property_get_revert())(const ::godot::StringName &p_name, ::godot::Variant &) {
-    return (bool(::godot::Wrapped::*)(const ::godot::StringName &p_name, ::godot::Variant &)) & GDClass::_property_get_revert;
-
-  static ::godot::String (::godot::Wrapped::*_get_to_string())() {
-    return (::godot::String(::godot::Wrapped::*)()) & GDClass::_to_string;
 
   template <class T, class B>
   static void register_virtuals() {
