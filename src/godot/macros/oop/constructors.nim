@@ -16,35 +16,33 @@ func constructor(Type, node: NimNode): ConstructorResult =
   var index = node.getPragma("index")[1]
 
   let args = node[3][1..^1]
-  let argptrarr = nnkBracket.newTree args.mapIt(it[0]).mapIt quoteExpr do:
+  let argptrarr = nnkBracket.newTree args.mapIt(it[0]).mapIt quote do:
     cast[pointer](unsafeAddr(`it`))
 
   let
     constructorName = ident fmt"constructor{Type}{index.intVal}"
-    variantTypeMem = ident ($Type).replace("Gd", "")
-    variantType = quoteExpr do: GdVariantType.`variantTypeMem`
 
-  result.init_sentence = quoteExpr do:
-    `constructorname` = gdinterface.variantGetPtrConstructor(`variantType`, `index`)
+  result.init_sentence = quote do:
+    `constructorname` = interface_variantGetPtrConstructor(`Type`.variantType, `index`)
 
-  result.container_define = quoteExpr do:
-    var `constructorName`: GdPtrConstructor
+  result.container_define = quote do:
+    var `constructorName`: PtrConstructor
 
   result.constructor_define = copy node
   if argptrarr.len == 0:
-    result.constructor_define[6] = quote do:
-      `constructorName`(GdTypePtr(addr result), nil)
+    result.constructor_define.body = quote do:
+      `constructorName`(TypePtr(addr result), nil)
   else:
-    result.constructor_define[6] = quote do:
+    result.constructor_define.body = quote do:
       let call_args = `argptrarr`
-      `constructorName`(GdTypePtr(addr result), unsafeAddr call_args[0])
-  
+      `constructorName`(TypePtr(addr result), unsafeAddr call_args[0])
+
 macro constructors*[T](Type: typedesc[T]; loader, body): untyped =
   result = newStmtList()
   let debuglit = newLit fmt"loading constructors of {Type}..."
   var initProcStmt = newStmtList()
-  initProcStmt.add quoteExpr do:
-    when DetailedLoggingAboutLoadingEnabled: iam($`Type` & "-load-constructor", stgLibrary).debug `debuglit`
+  initProcStmt.add quote do:
+    when DebugApiLoading.isEnabled: iam($`Type` & "-load-constructor", stgLibrary).debug `debuglit`
   for cnst in body:
     let r = constructor(Type, cnst)
     result.add r.container_define

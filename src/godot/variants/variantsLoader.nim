@@ -1,76 +1,71 @@
-## This module is generated automatically.
-import ../godotInterface
-import nativeDetails
-import customDetails
-import nativeConstructors
-import ../logging
+## This module was generated automatically. Changes will be lost.
+import ./../godotInterface
+import ./../logging
+import ./variantsConstr_custom
+import ./variantsConstr_native
+import ./variantsDetail_custom
+import ./variantsDetail_native
 
 proc load_Variants* =
-  iam("load-variants", stgLibrary).debug "load methods of all variants..."
-  load GdBool
-  load GdInt
-  load GdFloat
-  load GdString
-  load GdRect2
-  load GdRect2i
-  load GdTransform2D
-  load GdPlane
-  load GdQuaternion
-  load GdAABB
-  load GdBasis
-  load GdTransform3D
-  load GdProjection
-  load GdColor
-  load GdStringName
-  load GdNodePath
-  load GdRID
-  load GdCallable
-  load GdSignal
-  load GdDictionary
-  load GdArray
-  load GdPackedByteArray
-  load GdPackedInt32Array
-  load GdPackedInt64Array
-  load GdPackedFloat32Array
-  load GdPackedFloat64Array
-  load GdPackedStringArray
-  load GdPackedVector2Array
-  load GdPackedVector3Array
-  load GdPackedColorArray
-  load GdVector2
-  load GdVector2i
-  load GdVector3
-  load GdVector3i
-  load GdVector4
-  load GdVector4i
-proc load_variant_native_constructors* =
-  iam("load-variant-constructors", stgLibrary).debug "load constructors of all variants..."
-  loadConstructors_GdBool()
-  loadConstructors_GdInt()
-  loadConstructors_GdFloat()
-  loadConstructors_GdString()
-  loadConstructors_GdRect2()
-  loadConstructors_GdRect2i()
-  loadConstructors_GdTransform2D()
-  loadConstructors_GdPlane()
-  loadConstructors_GdQuaternion()
-  loadConstructors_GdAABB()
-  loadConstructors_GdBasis()
-  loadConstructors_GdTransform3D()
-  loadConstructors_GdProjection()
-  loadConstructors_GdStringName()
-  loadConstructors_GdNodePath()
-  loadConstructors_GdRID()
-  loadConstructors_GdCallable()
-  loadConstructors_GdSignal()
-  loadConstructors_GdDictionary()
-  loadConstructors_GdArray()
-  loadConstructors_GdPackedByteArray()
-  loadConstructors_GdPackedInt32Array()
-  loadConstructors_GdPackedInt64Array()
-  loadConstructors_GdPackedFloat32Array()
-  loadConstructors_GdPackedFloat64Array()
-  loadConstructors_GdPackedStringArray()
-  loadConstructors_GdPackedVector2Array()
-  loadConstructors_GdPackedVector3Array()
-  loadConstructors_GdPackedColorArray()
+  let me = iam("load-Variants", stgLibrary)
+  me.debug "load constructors of all variants..."
+  load_String_constr()
+  load_Rect2_constr()
+  load_Rect2i_constr()
+  load_Transform2D_constr()
+  load_Plane_constr()
+  load_Quaternion_constr()
+  load_AABB_constr()
+  load_Basis_constr()
+  load_Transform3D_constr()
+  load_Projection_constr()
+  load_Color_constr()
+  load_StringName_constr()
+  load_NodePath_constr()
+  load_RID_constr()
+  load_Callable_constr()
+  load_Signal_constr()
+  load_Dictionary_constr()
+  load_Array_constr()
+  load_PackedByteArray_constr()
+  load_PackedInt32Array_constr()
+  load_PackedInt64Array_constr()
+  load_PackedFloat32Array_constr()
+  load_PackedFloat64Array_constr()
+  load_PackedStringArray_constr()
+  load_PackedVector2Array_constr()
+  load_PackedVector3Array_constr()
+  load_PackedColorArray_constr()
+  me.debug "load functions of all variants..."
+  load_String_allmethod()
+  load_Rect2_allmethod()
+  load_Rect2i_allmethod()
+  load_Transform2D_allmethod()
+  load_Plane_allmethod()
+  load_Quaternion_allmethod()
+  load_AABB_allmethod()
+  load_Basis_allmethod()
+  load_Transform3D_allmethod()
+  load_Projection_allmethod()
+  load_Color_allmethod()
+  load_StringName_allmethod()
+  load_NodePath_allmethod()
+  load_RID_allmethod()
+  load_Callable_allmethod()
+  load_Signal_allmethod()
+  load_Dictionary_allmethod()
+  load_Array_allmethod()
+  load_PackedByteArray_allmethod()
+  load_PackedInt32Array_allmethod()
+  load_PackedInt64Array_allmethod()
+  load_PackedFloat32Array_allmethod()
+  load_PackedFloat64Array_allmethod()
+  load_PackedStringArray_allmethod()
+  load_PackedVector2Array_allmethod()
+  load_PackedVector3Array_allmethod()
+  load_PackedColorArray_allmethod()
+  me.debug "load destructors of all variants..."
+  load_Variants_destr()
+  me.debug "load tuned functions of all variants..."
+  load_vectors()
+  load_primitives()

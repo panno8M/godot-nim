@@ -5,9 +5,6 @@ import std/[
   algorithm,
   sugar,
 ]
-import beyond/[
-  statements,
-]
 import ./[
   gd_enum,
   gd_functions,
@@ -43,9 +40,10 @@ type
   NimBuiltinClass* = ref object
     classname*: string
     enums*: seq[NimEnum]
-    constructors*: seq[NimConstructor]
-    operators*: seq[NimOperator]
-    methods*: seq[NimMethod]
+    constructors*: seq[NimProcSt]
+    operators*: seq[NimProcSt]
+    methods*: seq[NimProcSt]
+    staticMethods*: seq[NimProcSt]
     base*: GdBuiltinClass
 
 const constructorIgnores = [
@@ -65,8 +63,13 @@ func toNim*(self: GdBuiltinClass): NimBuiltinClass =
     result.constructors = self.constructors.mapIt it.toNim(result.classname)
   if self.methods.isSome:
     result.methods = self.methods.get
+      .filterIt(not it.is_static)
       .mapIt(it.toNim(result.classname))
-      .sorted((x,y) => cmp(x.arguments[0].name, y.arguments[0].name)*2 +  cmp(x.name, y.name))
+      .sorted((x,y) => cmp(x.args[0].name, y.args[0].name)*2 + cmp(x.name, y.name))
+    result.staticmethods = self.methods.get
+      .filterIt(it.is_static)
+      .mapIt(it.toNim(result.classname))
+      .sorted((x,y) => cmp(x.args[0].name, y.args[0].name)*2 + cmp(x.name, y.name))
   if self.operators.isSome:
     result.operators = self.operators.get
       .mapIt(it.toNim(result.classname))
@@ -77,85 +80,86 @@ func toNim*(self: GdBuiltinClass): NimBuiltinClass =
 func moduleName*(self: NimBuiltinClass): string =
   self.base.name.moduleName
 
-func render*(self: NimBuiltinClass): tuple[body, constructor, loader: Statement] =
-  result.body = Statement.dummy
-  result.constructor = Statement.dummy
-  let classHeader = Statement.header(&"type {self.classname}* = object").asComment
-  let staticHeader = Statement.header(&"{self.classname}.statics:")
-  classHeader.add(
-    Statement.sentence(&"{self.base.is_keyed=}").asComment,
-    Statement.sentence(&"{self.base.has_destructor=}").asComment,
-    Statement.sentence(&"{self.base.indexing_return_type=}").asComment,
-    Statement.sentence(&"{self.base.constants=}").asComment,
-  )
-  for nimenum in self.enums:
-    staticHeader.add nimenum.render
+func render*(self: NimBuiltinClass): tuple[classdef, constructor, loader: Statement] =
+  result.constructor = +$$..OptionSt(eval: self.constructors.len != 0):
+    fmt"{self.classname}.constructors(loader= {constrLoader self.classname}):"
+    IndentSt(level: 2).add self.constructors
 
-  let constructors = Statement.header(fmt"{self.classname}.constructors(loader= loadConstructors_{self.classname}):")
-  for constructor in self.constructors:
-    constructors.add constructor.render
+  result.classdef = +$$..ParagraphSt():
+    +$$..CommentSt.nim(execute= true):
+      fmt"type {self.classname}* = object"
+      +$$..IndentSt(level: 2):
+        fmt"{self.base.is_keyed=}"
+        fmt"{self.base.has_destructor=}"
+        fmt"{self.base.indexing_return_type=}"
+        fmt"{self.base.constants=}"
 
-  let procs = Statement.header(fmt"{self.classname}.procedures(loader= loadProcs_{self.classname}):")
-  let staticProcs = Statement.header(fmt"{self.classname}.staticProcedures(loader= loadStaticProcs_{self.classname}):")
-  for nimmethod in self.methods:
-    if nimmethod.is_static:
-      staticProcs.add nimmethod.render
-    else:
-      procs.add nimmethod.render
-  
-  let operators = Statement.header(fmt"{self.classname}.operators(loader= loadOperators_{self.classname}):")
-  for nimop in self.operators:
-    operators.add nimop.render
-    
+    +$$..OptionSt(eval: self.methods.len != 0):
+      ""
+      fmt"{self.classname}.procedures(loader= {procLoader self.classname}):"
+      +$$..IndentSt(level: 2): self.methods
 
-  result.body.add [
-    classHeader]
+    +$$..OptionSt(eval: self.staticmethods.len != 0):
+      ""
+      fmt"{self.classname}.staticProcedures(loader= {sprocLoader self.classname}):"
+      +$$..IndentSt(level: 2): self.staticMethods
 
-  let loader = Statement.header fmt"proc load*(_:typedesc[{self.classname}]) ="
+    +$$..OptionSt(eval: self.operators.len != 0):
+      ""
+      fmt"operators(loader= {opLoader self.classname}):"
+      +$$..IndentSt(level: 2): self.operators
 
-  if constructors.children.len != 0:
-    result.constructor = constructors
-  if procs.children.len != 0:
-    result.body.add Statement.blank, procs
-    loader.add Statement.sentence fmt"loadProcs_{self.classname}()"
-  if staticProcs.children.len != 0:
-    result.body.add Statement.blank, staticProcs
-    loader.add Statement.sentence fmt"loadStaticProcs_{self.classname}()"
-  if operators.children.len != 0:
-    result.body.add Statement.blank, operators
-    loader.add Statement.sentence fmt"loadOperators_{self.classname}()"
+    +$$..OptionSt(eval: self.enums.len != 0):
+      ""
+      fmt"staticOf {self.classname}:"
+      +$$..IndentSt(level: 2): self.enums.mapit it.render
 
-  if staticHeader.children.len != 0:
-    result.body.add Statement.blank, staticHeader
-  
-  result.loader =
-    if loader.children.len != 0: loader
-    else: Statement.dummy
-  
+  result.loader = +$$..OptionSt(eval: (self.methods.len+self.staticmethods.len+self.operators.len) != 0):
+    +$$..NimProcSt(
+          kind: NimProcKind.PublicProc,
+          name: allMethodLoader self.classname):
+      +$$..OptionSt(eval: self.methods.len != 0):
+        fmt"{procLoader self.classname}()"
+      +$$..OptionSt(eval: self.staticmethods.len != 0):
+        fmt"{sprocLoader self.classname}()"
+      +$$..OptionSt(eval: self.operators.len != 0):
+        fmt"{opLoader self.classname}()"
 
 proc modulate*(self: NimBuiltinClass): tuple[module: Module; constructor: Statement] =
-  let rendered = self.render
-  result.module = Module.module(self.moduleName)
-    .importModules(moduleTree.variantEssentials)
-  result.module.contents = rendered.body
-  result.module.contents.add rendered.loader
-  result.constructor = rendered.constructor
+  let (classdef, constructor, loader) = self.render
+  result.module = mdl(self.moduleName)
+    .incl(moduleTree.variantEssentials)
+  result.module.contents = classdef
+  discard result.module.contents.add loader
+  result.constructor = constructor
 
 proc modulateLoader*(classes: seq[NimBuiltinClass]) =
-  let loader = Statement.header "proc load_Variants* ="
-  loader.add Statement.sentence("iam(\"load-variants\", stgLibrary).debug \"load methods of all variants...\"")
-  for class in classes:
-    loader.add Statement.sentence("load " & class.className)
-  for custom in moduleTree.variantCustomLoaders:
-    loader.add Statement.sentence("load " & custom)
+  let loaderBody = +$$..ParagraphSt():
+    "let me = iam(\"load-Variants\", stgLibrary)"
 
-  let constructorLoader = Statement.header("proc load_variant_native_constructors* =")
-  constructorLoader.add Statement.sentence("iam(\"load-variant-constructors\", stgLibrary).debug \"load constructors of all variants...\"")
+    "me.debug \"load constructors of all variants...\""
   for class in classes:
     if class.className notin constructorIgnores:
-      constructorLoader.add Statement.sentence("loadConstructors_" & class.className & "()")
+      discard loaderBody.add:
+        &"{constrLoader class.className}()"
 
-  moduleTree.variantLoader.contents.add loader, constructorLoader
+  discard +$$..loaderBody:
+    "me.debug \"load functions of all variants...\""
+  for class in classes:
+    discard loaderBody.add &"{allMethodLoader class.className}()"
+  discard +$$..loaderBody:
+    "me.debug \"load destructors of all variants...\""
+    &"{destrLoader \"Variants\"}()"
+
+  discard +$$..loaderBody:
+    "me.debug \"load tuned functions of all variants...\""
+  for loader in moduleTree.variantAdditionalLoaders:
+    discard loaderBody.add loader
+
+  moduleTree.variantLoader.contents = +$$..NimProcSt(
+      kind: NimProcKind.PublicProc,
+      name: "load_Variants"):
+    loaderBody
 
 proc modulate*(self: seq[GdBuiltinClass]): seq[Module] {.inline.} =
   let me = LogUser(title: "Godot-Builtin-Classes")
@@ -167,5 +171,5 @@ proc modulate*(self: seq[GdBuiltinClass]): seq[Module] {.inline.} =
   let modules = nimClasses.mapIt(it.modulate)
   result = modules.mapIt it.module
 
-  moduleTree.variantNativeConstructors.contents.add modules.mapit(it.constructor)
+  moduleTree.variantsConstr_native.contents = ParagraphSt().add modules.mapit(it.constructor)
   modulateLoader nimClasses

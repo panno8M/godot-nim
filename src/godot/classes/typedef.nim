@@ -1,9 +1,10 @@
-## This module is generated automatically.
+## This module was generated automatically. Changes will be lost.
 
 type AESContext* = object
 type AStar2D* = object
 type AStar3D* = object
 type AStarGrid2D* = object
+  # GdProperty(type: "Rect2i", name: "region", setter: Option[system.string](val: "set_region", has: true), getter: "get_region", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "Vector2i", name: "size", setter: Option[system.string](val: "set_size", has: true), getter: "get_size", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "Vector2", name: "offset", setter: Option[system.string](val: "set_offset", has: true), getter: "get_offset", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "Vector2", name: "cell_size", setter: Option[system.string](val: "set_cell_size", has: true), getter: "get_cell_size", index: Option[system.int](val: 0, has: false))
@@ -82,13 +83,17 @@ type AnimationNodeBlendTree* = object
 type AnimationNodeOneShot* = object
   # GdProperty(type: "int", name: "mix_mode", setter: Option[system.string](val: "set_mix_mode", has: true), getter: "get_mix_mode", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "fadein_time", setter: Option[system.string](val: "set_fadein_time", has: true), getter: "get_fadein_time", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "Curve", name: "fadein_curve", setter: Option[system.string](val: "set_fadein_curve", has: true), getter: "get_fadein_curve", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "fadeout_time", setter: Option[system.string](val: "set_fadeout_time", has: true), getter: "get_fadeout_time", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "Curve", name: "fadeout_curve", setter: Option[system.string](val: "set_fadeout_curve", has: true), getter: "get_fadeout_curve", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "autorestart", setter: Option[system.string](val: "set_autorestart", has: true), getter: "has_autorestart", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "autorestart_delay", setter: Option[system.string](val: "set_autorestart_delay", has: true), getter: "get_autorestart_delay", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "autorestart_random_delay", setter: Option[system.string](val: "set_autorestart_random_delay", has: true), getter: "get_autorestart_random_delay", index: Option[system.int](val: 0, has: false))
 type AnimationNodeOutput* = object
 type AnimationNodeStateMachine* = object
+  # GdProperty(type: "int", name: "state_machine_type", setter: Option[system.string](val: "set_state_machine_type", has: true), getter: "get_state_machine_type", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "allow_transition_to_self", setter: Option[system.string](val: "set_allow_transition_to_self", has: true), getter: "is_allow_transition_to_self", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "bool", name: "reset_ends", setter: Option[system.string](val: "set_reset_ends", has: true), getter: "are_ends_reset", index: Option[system.int](val: 0, has: false))
 type AnimationNodeStateMachinePlayback* = object
 type AnimationNodeStateMachineTransition* = object
   # GdProperty(type: "float", name: "xfade_time", setter: Option[system.string](val: "set_xfade_time", has: true), getter: "get_xfade_time", index: Option[system.int](val: 0, has: false))
@@ -99,6 +104,7 @@ type AnimationNodeStateMachineTransition* = object
   # GdProperty(type: "int", name: "advance_mode", setter: Option[system.string](val: "set_advance_mode", has: true), getter: "get_advance_mode", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "StringName", name: "advance_condition", setter: Option[system.string](val: "set_advance_condition", has: true), getter: "get_advance_condition", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "String", name: "advance_expression", setter: Option[system.string](val: "set_advance_expression", has: true), getter: "get_advance_expression", index: Option[system.int](val: 0, has: false))
+type AnimationNodeSub2* = object
 type AnimationNodeSync* = object
   # GdProperty(type: "bool", name: "sync", setter: Option[system.string](val: "set_use_sync", has: true), getter: "is_using_sync", index: Option[system.int](val: 0, has: false))
 type AnimationNodeTimeScale* = object
@@ -124,7 +130,6 @@ type AnimationPlayer* = object
   # GdProperty(type: "int", name: "audio_max_polyphony", setter: Option[system.string](val: "set_audio_max_polyphony", has: true), getter: "get_audio_max_polyphony", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "movie_quit_on_finish", setter: Option[system.string](val: "set_movie_quit_on_finish_enabled", has: true), getter: "is_movie_quit_on_finish_enabled", index: Option[system.int](val: 0, has: false))
 type AnimationRootNode* = object
-type AnimationTrackEditPlugin* = object
 type AnimationTree* = object
   # GdProperty(type: "AnimationRootNode", name: "tree_root", setter: Option[system.string](val: "set_tree_root", has: true), getter: "get_tree_root", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "NodePath", name: "anim_player", setter: Option[system.string](val: "set_animation_player", has: true), getter: "get_animation_player", index: Option[system.int](val: 0, has: false))
@@ -532,10 +537,12 @@ type Button* = object
   # GdProperty(type: "int", name: "text_overrun_behavior", setter: Option[system.string](val: "set_text_overrun_behavior", has: true), getter: "get_text_overrun_behavior", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "clip_text", setter: Option[system.string](val: "set_clip_text", has: true), getter: "get_clip_text", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "icon_alignment", setter: Option[system.string](val: "set_icon_alignment", has: true), getter: "get_icon_alignment", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "vertical_icon_alignment", setter: Option[system.string](val: "set_vertical_icon_alignment", has: true), getter: "get_vertical_icon_alignment", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "expand_icon", setter: Option[system.string](val: "set_expand_icon", has: true), getter: "is_expand_icon", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "text_direction", setter: Option[system.string](val: "set_text_direction", has: true), getter: "get_text_direction", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "String", name: "language", setter: Option[system.string](val: "set_language", has: true), getter: "get_language", index: Option[system.int](val: 0, has: false))
 type ButtonGroup* = object
+  # GdProperty(type: "bool", name: "allow_unpress", setter: Option[system.string](val: "set_allow_unpress", has: true), getter: "is_allow_unpress", index: Option[system.int](val: 0, has: false))
 type CPUParticles2D* = object
   # GdProperty(type: "bool", name: "emitting", setter: Option[system.string](val: "set_emitting", has: true), getter: "is_emitting", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "amount", setter: Option[system.string](val: "set_amount", has: true), getter: "get_amount", index: Option[system.int](val: 0, has: false))
@@ -1149,6 +1156,13 @@ type EditorCommandPalette* = object
 type EditorDebuggerPlugin* = object
 type EditorDebuggerSession* = object
 type EditorExportPlatform* = object
+type EditorExportPlatformAndroid* = object
+type EditorExportPlatformIOS* = object
+type EditorExportPlatformLinuxBSD* = object
+type EditorExportPlatformMacOS* = object
+type EditorExportPlatformPC* = object
+type EditorExportPlatformWeb* = object
+type EditorExportPlatformWindows* = object
 type EditorExportPlugin* = object
 type EditorFeatureProfile* = object
 type EditorFileDialog* = object
@@ -1169,6 +1183,7 @@ type EditorInspector* = object
 type EditorInspectorPlugin* = object
 type EditorInterface* = object
   # GdProperty(type: "bool", name: "distraction_free_mode", setter: Option[system.string](val: "set_distraction_free_mode", has: true), getter: "is_distraction_free_mode_enabled", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "bool", name: "movie_maker_enabled", setter: Option[system.string](val: "set_movie_maker_enabled", has: true), getter: "is_movie_maker_enabled", index: Option[system.int](val: 0, has: false))
 type EditorNode3DGizmo* = object
 type EditorNode3DGizmoPlugin* = object
 type EditorPaths* = object
@@ -1189,6 +1204,7 @@ type EditorResourcePicker* = object
   # GdProperty(type: "bool", name: "toggle_mode", setter: Option[system.string](val: "set_toggle_mode", has: true), getter: "is_toggle_mode", index: Option[system.int](val: 0, has: false))
 type EditorResourcePreview* = object
 type EditorResourcePreviewGenerator* = object
+type EditorResourceTooltipPlugin* = object
 type EditorSceneFormatImporter* = object
 type EditorSceneFormatImporterBlend* = object
 type EditorSceneFormatImporterFBX* = object
@@ -1430,6 +1446,8 @@ type GLTFCamera* = object
 type GLTFDocument* = object
 type GLTFDocumentExtension* = object
 type GLTFDocumentExtensionConvertImporterMesh* = object
+type GLTFDocumentExtensionPhysics* = object
+type GLTFDocumentExtensionTextureWebP* = object
 type GLTFLight* = object
   # GdProperty(type: "Color", name: "color", setter: Option[system.string](val: "set_color", has: true), getter: "get_color", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "intensity", setter: Option[system.string](val: "set_intensity", has: true), getter: "get_intensity", index: Option[system.int](val: 0, has: false))
@@ -1454,6 +1472,20 @@ type GLTFNode* = object
   # GdProperty(type: "Vector3", name: "scale", setter: Option[system.string](val: "set_scale", has: true), getter: "get_scale", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "PackedInt32Array", name: "children", setter: Option[system.string](val: "set_children", has: true), getter: "get_children", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "light", setter: Option[system.string](val: "set_light", has: true), getter: "get_light", index: Option[system.int](val: 0, has: false))
+type GLTFPhysicsBody* = object
+  # GdProperty(type: "String", name: "body_type", setter: Option[system.string](val: "set_body_type", has: true), getter: "get_body_type", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "float", name: "mass", setter: Option[system.string](val: "set_mass", has: true), getter: "get_mass", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "Vector3", name: "linear_velocity", setter: Option[system.string](val: "set_linear_velocity", has: true), getter: "get_linear_velocity", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "Vector3", name: "angular_velocity", setter: Option[system.string](val: "set_angular_velocity", has: true), getter: "get_angular_velocity", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "Basis", name: "inertia_tensor", setter: Option[system.string](val: "set_inertia_tensor", has: true), getter: "get_inertia_tensor", index: Option[system.int](val: 0, has: false))
+type GLTFPhysicsShape* = object
+  # GdProperty(type: "String", name: "shape_type", setter: Option[system.string](val: "set_shape_type", has: true), getter: "get_shape_type", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "Vector3", name: "size", setter: Option[system.string](val: "set_size", has: true), getter: "get_size", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "float", name: "radius", setter: Option[system.string](val: "set_radius", has: true), getter: "get_radius", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "float", name: "height", setter: Option[system.string](val: "set_height", has: true), getter: "get_height", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "bool", name: "is_trigger", setter: Option[system.string](val: "set_is_trigger", has: true), getter: "get_is_trigger", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "mesh_index", setter: Option[system.string](val: "set_mesh_index", has: true), getter: "get_mesh_index", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "ImporterMesh", name: "importer_mesh", setter: Option[system.string](val: "set_importer_mesh", has: true), getter: "get_importer_mesh", index: Option[system.int](val: 0, has: false))
 type GLTFSkeleton* = object
   # GdProperty(type: "PackedInt32Array", name: "joints", setter: Option[system.string](val: "set_joints", has: true), getter: "get_joints", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "PackedInt32Array", name: "roots", setter: Option[system.string](val: "set_roots", has: true), getter: "get_roots", index: Option[system.int](val: 0, has: false))
@@ -1469,7 +1501,7 @@ type GLTFSkin* = object
   # GdProperty(type: "int", name: "skeleton", setter: Option[system.string](val: "set_skeleton", has: true), getter: "get_skeleton", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "Dictionary", name: "joint_i_to_bone_i", setter: Option[system.string](val: "set_joint_i_to_bone_i", has: true), getter: "get_joint_i_to_bone_i", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "Dictionary", name: "joint_i_to_name", setter: Option[system.string](val: "set_joint_i_to_name", has: true), getter: "get_joint_i_to_name", index: Option[system.int](val: 0, has: false))
-  # GdProperty(type: "Object", name: "godot_skin", setter: Option[system.string](val: "set_godot_skin", has: true), getter: "get_godot_skin", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "Skin", name: "godot_skin", setter: Option[system.string](val: "set_godot_skin", has: true), getter: "get_godot_skin", index: Option[system.int](val: 0, has: false))
 type GLTFSpecGloss* = object
   # GdProperty(type: "Object", name: "diffuse_img", setter: Option[system.string](val: "set_diffuse_img", has: true), getter: "get_diffuse_img", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "Color", name: "diffuse_factor", setter: Option[system.string](val: "set_diffuse_factor", has: true), getter: "get_diffuse_factor", index: Option[system.int](val: 0, has: false))
@@ -1613,6 +1645,7 @@ type GodotPhysicsServer2D* = object
 type GodotPhysicsServer3D* = object
 type Gradient* = object
   # GdProperty(type: "int", name: "interpolation_mode", setter: Option[system.string](val: "set_interpolation_mode", has: true), getter: "get_interpolation_mode", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "interpolation_color_space", setter: Option[system.string](val: "set_interpolation_color_space", has: true), getter: "get_interpolation_color_space", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "PackedFloat32Array", name: "offsets", setter: Option[system.string](val: "set_offsets", has: true), getter: "get_offsets", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "PackedColorArray", name: "colors", setter: Option[system.string](val: "set_colors", has: true), getter: "get_colors", index: Option[system.int](val: 0, has: false))
 type GradientTexture1D* = object
@@ -1761,6 +1794,7 @@ type InputEventMouse* = object
 type InputEventMouseButton* = object
   # GdProperty(type: "float", name: "factor", setter: Option[system.string](val: "set_factor", has: true), getter: "get_factor", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "button_index", setter: Option[system.string](val: "set_button_index", has: true), getter: "get_button_index", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "bool", name: "canceled", setter: Option[system.string](val: "set_canceled", has: true), getter: "is_canceled", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "pressed", setter: Option[system.string](val: "set_pressed", has: true), getter: "is_pressed", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "double_click", setter: Option[system.string](val: "set_double_click", has: true), getter: "is_double_click", index: Option[system.int](val: 0, has: false))
 type InputEventMouseMotion* = object
@@ -1782,6 +1816,7 @@ type InputEventScreenDrag* = object
 type InputEventScreenTouch* = object
   # GdProperty(type: "int", name: "index", setter: Option[system.string](val: "set_index", has: true), getter: "get_index", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "Vector2", name: "position", setter: Option[system.string](val: "set_position", has: true), getter: "get_position", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "bool", name: "canceled", setter: Option[system.string](val: "set_canceled", has: true), getter: "is_canceled", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "pressed", setter: Option[system.string](val: "set_pressed", has: true), getter: "is_pressed", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "double_tap", setter: Option[system.string](val: "set_double_tap", has: true), getter: "is_double_tap", index: Option[system.int](val: 0, has: false))
 type InputEventShortcut* = object
@@ -1799,6 +1834,7 @@ type ItemList* = object
   # GdProperty(type: "int", name: "select_mode", setter: Option[system.string](val: "set_select_mode", has: true), getter: "get_select_mode", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "allow_reselect", setter: Option[system.string](val: "set_allow_reselect", has: true), getter: "get_allow_reselect", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "allow_rmb_select", setter: Option[system.string](val: "set_allow_rmb_select", has: true), getter: "get_allow_rmb_select", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "bool", name: "allow_search", setter: Option[system.string](val: "set_allow_search", has: true), getter: "get_allow_search", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "max_text_lines", setter: Option[system.string](val: "set_max_text_lines", has: true), getter: "get_max_text_lines", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "auto_height", setter: Option[system.string](val: "set_auto_height", has: true), getter: "has_auto_height", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "text_overrun_behavior", setter: Option[system.string](val: "set_text_overrun_behavior", has: true), getter: "get_text_overrun_behavior", index: Option[system.int](val: 0, has: false))
@@ -1835,9 +1871,11 @@ type Label* = object
   # GdProperty(type: "int", name: "horizontal_alignment", setter: Option[system.string](val: "set_horizontal_alignment", has: true), getter: "get_horizontal_alignment", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "vertical_alignment", setter: Option[system.string](val: "set_vertical_alignment", has: true), getter: "get_vertical_alignment", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "autowrap_mode", setter: Option[system.string](val: "set_autowrap_mode", has: true), getter: "get_autowrap_mode", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "justification_flags", setter: Option[system.string](val: "set_justification_flags", has: true), getter: "get_justification_flags", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "clip_text", setter: Option[system.string](val: "set_clip_text", has: true), getter: "is_clipping_text", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "text_overrun_behavior", setter: Option[system.string](val: "set_text_overrun_behavior", has: true), getter: "get_text_overrun_behavior", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "uppercase", setter: Option[system.string](val: "set_uppercase", has: true), getter: "is_uppercase", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "PackedFloat32Array", name: "tab_stops", setter: Option[system.string](val: "set_tab_stops", has: true), getter: "get_tab_stops", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "lines_skipped", setter: Option[system.string](val: "set_lines_skipped", has: true), getter: "get_lines_skipped", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "max_lines_visible", setter: Option[system.string](val: "set_max_lines_visible", has: true), getter: "get_max_lines_visible", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "visible_characters", setter: Option[system.string](val: "set_visible_characters", has: true), getter: "get_visible_characters", index: Option[system.int](val: 0, has: false))
@@ -1874,6 +1912,7 @@ type Label3D* = object
   # GdProperty(type: "bool", name: "uppercase", setter: Option[system.string](val: "set_uppercase", has: true), getter: "is_uppercase", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "line_spacing", setter: Option[system.string](val: "set_line_spacing", has: true), getter: "get_line_spacing", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "autowrap_mode", setter: Option[system.string](val: "set_autowrap_mode", has: true), getter: "get_autowrap_mode", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "justification_flags", setter: Option[system.string](val: "set_justification_flags", has: true), getter: "get_justification_flags", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "width", setter: Option[system.string](val: "set_width", has: true), getter: "get_width", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "text_direction", setter: Option[system.string](val: "set_text_direction", has: true), getter: "get_text_direction", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "String", name: "language", setter: Option[system.string](val: "set_language", has: true), getter: "get_language", index: Option[system.int](val: 0, has: false))
@@ -2034,6 +2073,20 @@ type MenuButton* = object
   # GdProperty(type: "int", name: "item_count", setter: Option[system.string](val: "set_item_count", has: true), getter: "get_item_count", index: Option[system.int](val: 0, has: false))
 type Mesh* = object
   # GdProperty(type: "Vector2i", name: "lightmap_size_hint", setter: Option[system.string](val: "set_lightmap_size_hint", has: true), getter: "get_lightmap_size_hint", index: Option[system.int](val: 0, has: false))
+type MeshConvexDecompositionSettings* = object
+  # GdProperty(type: "float", name: "max_concavity", setter: Option[system.string](val: "set_max_concavity", has: true), getter: "get_max_concavity", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "float", name: "symmetry_planes_clipping_bias", setter: Option[system.string](val: "set_symmetry_planes_clipping_bias", has: true), getter: "get_symmetry_planes_clipping_bias", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "float", name: "revolution_axes_clipping_bias", setter: Option[system.string](val: "set_revolution_axes_clipping_bias", has: true), getter: "get_revolution_axes_clipping_bias", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "float", name: "min_volume_per_convex_hull", setter: Option[system.string](val: "set_min_volume_per_convex_hull", has: true), getter: "get_min_volume_per_convex_hull", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "resolution", setter: Option[system.string](val: "set_resolution", has: true), getter: "get_resolution", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "max_num_vertices_per_convex_hull", setter: Option[system.string](val: "set_max_num_vertices_per_convex_hull", has: true), getter: "get_max_num_vertices_per_convex_hull", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "plane_downsampling", setter: Option[system.string](val: "set_plane_downsampling", has: true), getter: "get_plane_downsampling", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "convex_hull_downsampling", setter: Option[system.string](val: "set_convex_hull_downsampling", has: true), getter: "get_convex_hull_downsampling", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "bool", name: "normalize_mesh", setter: Option[system.string](val: "set_normalize_mesh", has: true), getter: "get_normalize_mesh", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "mode", setter: Option[system.string](val: "set_mode", has: true), getter: "get_mode", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "bool", name: "convex_hull_approximation", setter: Option[system.string](val: "set_convex_hull_approximation", has: true), getter: "get_convex_hull_approximation", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "max_convex_hulls", setter: Option[system.string](val: "set_max_convex_hulls", has: true), getter: "get_max_convex_hulls", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "bool", name: "project_hull_vertices", setter: Option[system.string](val: "set_project_hull_vertices", has: true), getter: "get_project_hull_vertices", index: Option[system.int](val: 0, has: false))
 type MeshDataTool* = object
 type MeshInstance2D* = object
   # GdProperty(type: "Mesh", name: "mesh", setter: Option[system.string](val: "set_mesh", has: true), getter: "get_mesh", index: Option[system.int](val: 0, has: false))
@@ -2097,6 +2150,7 @@ type MultiplayerSpawner* = object
 type MultiplayerSynchronizer* = object
   # GdProperty(type: "NodePath", name: "root_path", setter: Option[system.string](val: "set_root_path", has: true), getter: "get_root_path", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "replication_interval", setter: Option[system.string](val: "set_replication_interval", has: true), getter: "get_replication_interval", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "float", name: "delta_interval", setter: Option[system.string](val: "set_delta_interval", has: true), getter: "get_delta_interval", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "SceneReplicationConfig", name: "replication_config", setter: Option[system.string](val: "set_replication_config", has: true), getter: "get_replication_config", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "visibility_update_mode", setter: Option[system.string](val: "set_visibility_update_mode", has: true), getter: "get_visibility_update_mode", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "public_visibility", setter: Option[system.string](val: "set_visibility_public", has: true), getter: "is_visibility_public", index: Option[system.int](val: 0, has: false))
@@ -2107,13 +2161,20 @@ type NavigationAgent2D* = object
   # GdProperty(type: "float", name: "target_desired_distance", setter: Option[system.string](val: "set_target_desired_distance", has: true), getter: "get_target_desired_distance", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "path_max_distance", setter: Option[system.string](val: "set_path_max_distance", has: true), getter: "get_path_max_distance", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "navigation_layers", setter: Option[system.string](val: "set_navigation_layers", has: true), getter: "get_navigation_layers", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "pathfinding_algorithm", setter: Option[system.string](val: "set_pathfinding_algorithm", has: true), getter: "get_pathfinding_algorithm", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "path_postprocessing", setter: Option[system.string](val: "set_path_postprocessing", has: true), getter: "get_path_postprocessing", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "path_metadata_flags", setter: Option[system.string](val: "set_path_metadata_flags", has: true), getter: "get_path_metadata_flags", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "avoidance_enabled", setter: Option[system.string](val: "set_avoidance_enabled", has: true), getter: "get_avoidance_enabled", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "Vector2", name: "velocity", setter: Option[system.string](val: "set_velocity", has: true), getter: "get_velocity", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "radius", setter: Option[system.string](val: "set_radius", has: true), getter: "get_radius", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "neighbor_distance", setter: Option[system.string](val: "set_neighbor_distance", has: true), getter: "get_neighbor_distance", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "max_neighbors", setter: Option[system.string](val: "set_max_neighbors", has: true), getter: "get_max_neighbors", index: Option[system.int](val: 0, has: false))
-  # GdProperty(type: "float", name: "time_horizon", setter: Option[system.string](val: "set_time_horizon", has: true), getter: "get_time_horizon", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "float", name: "time_horizon_agents", setter: Option[system.string](val: "set_time_horizon_agents", has: true), getter: "get_time_horizon_agents", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "float", name: "time_horizon_obstacles", setter: Option[system.string](val: "set_time_horizon_obstacles", has: true), getter: "get_time_horizon_obstacles", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "max_speed", setter: Option[system.string](val: "set_max_speed", has: true), getter: "get_max_speed", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "avoidance_layers", setter: Option[system.string](val: "set_avoidance_layers", has: true), getter: "get_avoidance_layers", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "avoidance_mask", setter: Option[system.string](val: "set_avoidance_mask", has: true), getter: "get_avoidance_mask", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "float", name: "avoidance_priority", setter: Option[system.string](val: "set_avoidance_priority", has: true), getter: "get_avoidance_priority", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "debug_enabled", setter: Option[system.string](val: "set_debug_enabled", has: true), getter: "get_debug_enabled", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "debug_use_custom", setter: Option[system.string](val: "set_debug_use_custom", has: true), getter: "get_debug_use_custom", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "Color", name: "debug_path_custom_color", setter: Option[system.string](val: "set_debug_path_custom_color", has: true), getter: "get_debug_path_custom_color", index: Option[system.int](val: 0, has: false))
@@ -2123,17 +2184,25 @@ type NavigationAgent3D* = object
   # GdProperty(type: "Vector3", name: "target_position", setter: Option[system.string](val: "set_target_position", has: true), getter: "get_target_position", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "path_desired_distance", setter: Option[system.string](val: "set_path_desired_distance", has: true), getter: "get_path_desired_distance", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "target_desired_distance", setter: Option[system.string](val: "set_target_desired_distance", has: true), getter: "get_target_desired_distance", index: Option[system.int](val: 0, has: false))
-  # GdProperty(type: "float", name: "agent_height_offset", setter: Option[system.string](val: "set_agent_height_offset", has: true), getter: "get_agent_height_offset", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "float", name: "path_height_offset", setter: Option[system.string](val: "set_path_height_offset", has: true), getter: "get_path_height_offset", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "path_max_distance", setter: Option[system.string](val: "set_path_max_distance", has: true), getter: "get_path_max_distance", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "navigation_layers", setter: Option[system.string](val: "set_navigation_layers", has: true), getter: "get_navigation_layers", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "pathfinding_algorithm", setter: Option[system.string](val: "set_pathfinding_algorithm", has: true), getter: "get_pathfinding_algorithm", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "path_postprocessing", setter: Option[system.string](val: "set_path_postprocessing", has: true), getter: "get_path_postprocessing", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "path_metadata_flags", setter: Option[system.string](val: "set_path_metadata_flags", has: true), getter: "get_path_metadata_flags", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "avoidance_enabled", setter: Option[system.string](val: "set_avoidance_enabled", has: true), getter: "get_avoidance_enabled", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "Vector3", name: "velocity", setter: Option[system.string](val: "set_velocity", has: true), getter: "get_velocity", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "float", name: "height", setter: Option[system.string](val: "set_height", has: true), getter: "get_height", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "radius", setter: Option[system.string](val: "set_radius", has: true), getter: "get_radius", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "neighbor_distance", setter: Option[system.string](val: "set_neighbor_distance", has: true), getter: "get_neighbor_distance", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "max_neighbors", setter: Option[system.string](val: "set_max_neighbors", has: true), getter: "get_max_neighbors", index: Option[system.int](val: 0, has: false))
-  # GdProperty(type: "float", name: "time_horizon", setter: Option[system.string](val: "set_time_horizon", has: true), getter: "get_time_horizon", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "float", name: "time_horizon_agents", setter: Option[system.string](val: "set_time_horizon_agents", has: true), getter: "get_time_horizon_agents", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "float", name: "time_horizon_obstacles", setter: Option[system.string](val: "set_time_horizon_obstacles", has: true), getter: "get_time_horizon_obstacles", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "max_speed", setter: Option[system.string](val: "set_max_speed", has: true), getter: "get_max_speed", index: Option[system.int](val: 0, has: false))
-  # GdProperty(type: "bool", name: "ignore_y", setter: Option[system.string](val: "set_ignore_y", has: true), getter: "get_ignore_y", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "bool", name: "use_3d_avoidance", setter: Option[system.string](val: "set_use_3d_avoidance", has: true), getter: "get_use_3d_avoidance", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "avoidance_layers", setter: Option[system.string](val: "set_avoidance_layers", has: true), getter: "get_avoidance_layers", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "avoidance_mask", setter: Option[system.string](val: "set_avoidance_mask", has: true), getter: "get_avoidance_mask", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "float", name: "avoidance_priority", setter: Option[system.string](val: "set_avoidance_priority", has: true), getter: "get_avoidance_priority", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "debug_enabled", setter: Option[system.string](val: "set_debug_enabled", has: true), getter: "get_debug_enabled", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "debug_use_custom", setter: Option[system.string](val: "set_debug_use_custom", has: true), getter: "get_debug_use_custom", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "Color", name: "debug_path_custom_color", setter: Option[system.string](val: "set_debug_path_custom_color", has: true), getter: "get_debug_path_custom_color", index: Option[system.int](val: 0, has: false))
@@ -2181,12 +2250,23 @@ type NavigationMesh* = object
   # GdProperty(type: "AABB", name: "filter_baking_aabb", setter: Option[system.string](val: "set_filter_baking_aabb", has: true), getter: "get_filter_baking_aabb", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "Vector3", name: "filter_baking_aabb_offset", setter: Option[system.string](val: "set_filter_baking_aabb_offset", has: true), getter: "get_filter_baking_aabb_offset", index: Option[system.int](val: 0, has: false))
 type NavigationMeshGenerator* = object
+type NavigationMeshSourceGeometryData3D* = object
+  # GdProperty(type: "PackedVector3Array", name: "vertices", setter: Option[system.string](val: "set_vertices", has: true), getter: "get_vertices", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "PackedInt32Array", name: "indices", setter: Option[system.string](val: "set_indices", has: true), getter: "get_indices", index: Option[system.int](val: 0, has: false))
 type NavigationObstacle2D* = object
-  # GdProperty(type: "bool", name: "estimate_radius", setter: Option[system.string](val: "set_estimate_radius", has: true), getter: "is_radius_estimated", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "bool", name: "avoidance_enabled", setter: Option[system.string](val: "set_avoidance_enabled", has: true), getter: "get_avoidance_enabled", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "Vector2", name: "velocity", setter: Option[system.string](val: "set_velocity", has: true), getter: "get_velocity", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "radius", setter: Option[system.string](val: "set_radius", has: true), getter: "get_radius", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "PackedVector2Array", name: "vertices", setter: Option[system.string](val: "set_vertices", has: true), getter: "get_vertices", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "avoidance_layers", setter: Option[system.string](val: "set_avoidance_layers", has: true), getter: "get_avoidance_layers", index: Option[system.int](val: 0, has: false))
 type NavigationObstacle3D* = object
-  # GdProperty(type: "bool", name: "estimate_radius", setter: Option[system.string](val: "set_estimate_radius", has: true), getter: "is_radius_estimated", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "bool", name: "avoidance_enabled", setter: Option[system.string](val: "set_avoidance_enabled", has: true), getter: "get_avoidance_enabled", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "Vector3", name: "velocity", setter: Option[system.string](val: "set_velocity", has: true), getter: "get_velocity", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "radius", setter: Option[system.string](val: "set_radius", has: true), getter: "get_radius", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "float", name: "height", setter: Option[system.string](val: "set_height", has: true), getter: "get_height", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "PackedVector3Array", name: "vertices", setter: Option[system.string](val: "set_vertices", has: true), getter: "get_vertices", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "avoidance_layers", setter: Option[system.string](val: "set_avoidance_layers", has: true), getter: "get_avoidance_layers", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "bool", name: "use_3d_avoidance", setter: Option[system.string](val: "set_use_3d_avoidance", has: true), getter: "get_use_3d_avoidance", index: Option[system.int](val: 0, has: false))
 type NavigationPathQueryParameters2D* = object
   # GdProperty(type: "RID", name: "map", setter: Option[system.string](val: "set_map", has: true), getter: "get_map", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "Vector2", name: "start_position", setter: Option[system.string](val: "set_start_position", has: true), getter: "get_start_position", index: Option[system.int](val: 0, has: false))
@@ -2217,15 +2297,20 @@ type NavigationPolygon* = object
   # GdProperty(type: "PackedVector2Array", name: "vertices", setter: Option[system.string](val: "set_vertices", has: true), getter: "get_vertices", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "Array", name: "polygons", setter: Option[system.string](val: "_set_polygons", has: true), getter: "_get_polygons", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "Array", name: "outlines", setter: Option[system.string](val: "_set_outlines", has: true), getter: "_get_outlines", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "float", name: "cell_size", setter: Option[system.string](val: "set_cell_size", has: true), getter: "get_cell_size", index: Option[system.int](val: 0, has: false))
 type NavigationRegion2D* = object
   # GdProperty(type: "NavigationPolygon", name: "navigation_polygon", setter: Option[system.string](val: "set_navigation_polygon", has: true), getter: "get_navigation_polygon", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "enabled", setter: Option[system.string](val: "set_enabled", has: true), getter: "is_enabled", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "bool", name: "use_edge_connections", setter: Option[system.string](val: "set_use_edge_connections", has: true), getter: "get_use_edge_connections", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "navigation_layers", setter: Option[system.string](val: "set_navigation_layers", has: true), getter: "get_navigation_layers", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "enter_cost", setter: Option[system.string](val: "set_enter_cost", has: true), getter: "get_enter_cost", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "travel_cost", setter: Option[system.string](val: "set_travel_cost", has: true), getter: "get_travel_cost", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "bool", name: "constrain_avoidance", setter: Option[system.string](val: "set_constrain_avoidance", has: true), getter: "get_constrain_avoidance", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "avoidance_layers", setter: Option[system.string](val: "set_avoidance_layers", has: true), getter: "get_avoidance_layers", index: Option[system.int](val: 0, has: false))
 type NavigationRegion3D* = object
   # GdProperty(type: "NavigationMesh", name: "navigation_mesh", setter: Option[system.string](val: "set_navigation_mesh", has: true), getter: "get_navigation_mesh", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "enabled", setter: Option[system.string](val: "set_enabled", has: true), getter: "is_enabled", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "bool", name: "use_edge_connections", setter: Option[system.string](val: "set_use_edge_connections", has: true), getter: "get_use_edge_connections", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "navigation_layers", setter: Option[system.string](val: "set_navigation_layers", has: true), getter: "get_navigation_layers", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "enter_cost", setter: Option[system.string](val: "set_enter_cost", has: true), getter: "get_enter_cost", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "travel_cost", setter: Option[system.string](val: "set_travel_cost", has: true), getter: "get_travel_cost", index: Option[system.int](val: 0, has: false))
@@ -2249,6 +2334,10 @@ type Node* = object
   # GdProperty(type: "MultiplayerAPI", name: "multiplayer", setter: Option[system.string](val: "", has: false), getter: "get_multiplayer", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "process_mode", setter: Option[system.string](val: "set_process_mode", has: true), getter: "get_process_mode", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "process_priority", setter: Option[system.string](val: "set_process_priority", has: true), getter: "get_process_priority", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "process_physics_priority", setter: Option[system.string](val: "set_physics_process_priority", has: true), getter: "get_physics_process_priority", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "process_thread_group", setter: Option[system.string](val: "set_process_thread_group", has: true), getter: "get_process_thread_group", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "process_thread_group_order", setter: Option[system.string](val: "set_process_thread_group_order", has: true), getter: "get_process_thread_group_order", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "process_thread_messages", setter: Option[system.string](val: "set_process_thread_messages", has: true), getter: "get_process_thread_messages", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "String", name: "editor_description", setter: Option[system.string](val: "set_editor_description", has: true), getter: "get_editor_description", index: Option[system.int](val: 0, has: false))
 type Node2D* = object
   # GdProperty(type: "Vector2", name: "position", setter: Option[system.string](val: "set_position", has: true), getter: "get_position", index: Option[system.int](val: 0, has: false))
@@ -2295,10 +2384,21 @@ type NoiseTexture2D* = object
   # GdProperty(type: "bool", name: "normalize", setter: Option[system.string](val: "set_normalize", has: true), getter: "is_normalized", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "Gradient", name: "color_ramp", setter: Option[system.string](val: "set_color_ramp", has: true), getter: "get_color_ramp", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "Noise", name: "noise", setter: Option[system.string](val: "set_noise", has: true), getter: "get_noise", index: Option[system.int](val: 0, has: false))
+type NoiseTexture3D* = object
+  # GdProperty(type: "int", name: "width", setter: Option[system.string](val: "set_width", has: true), getter: "get_width", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "height", setter: Option[system.string](val: "set_height", has: true), getter: "get_height", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "depth", setter: Option[system.string](val: "set_depth", has: true), getter: "get_depth", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "bool", name: "invert", setter: Option[system.string](val: "set_invert", has: true), getter: "get_invert", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "bool", name: "seamless", setter: Option[system.string](val: "set_seamless", has: true), getter: "get_seamless", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "float", name: "seamless_blend_skirt", setter: Option[system.string](val: "set_seamless_blend_skirt", has: true), getter: "get_seamless_blend_skirt", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "bool", name: "normalize", setter: Option[system.string](val: "set_normalize", has: true), getter: "is_normalized", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "Gradient", name: "color_ramp", setter: Option[system.string](val: "set_color_ramp", has: true), getter: "get_color_ramp", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "Noise", name: "noise", setter: Option[system.string](val: "set_noise", has: true), getter: "get_noise", index: Option[system.int](val: 0, has: false))
 type ORMMaterial3D* = object
 type OS* = object
   # GdProperty(type: "bool", name: "low_processor_usage_mode", setter: Option[system.string](val: "set_low_processor_usage_mode", has: true), getter: "is_in_low_processor_usage_mode", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "low_processor_usage_mode_sleep_usec", setter: Option[system.string](val: "set_low_processor_usage_mode_sleep_usec", has: true), getter: "get_low_processor_usage_mode_sleep_usec", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "bool", name: "delta_smoothing", setter: Option[system.string](val: "set_delta_smoothing", has: true), getter: "is_delta_smoothing_enabled", index: Option[system.int](val: 0, has: false))
 type Object* = object
 type Occluder3D* = object
 type OccluderInstance3D* = object
@@ -2342,11 +2442,13 @@ type OpenXRInteractionProfile* = object
   # GdProperty(type: "OpenXRIPBinding", name: "bindings", setter: Option[system.string](val: "set_bindings", has: true), getter: "get_bindings", index: Option[system.int](val: 0, has: false))
 type OpenXRInterface* = object
   # GdProperty(type: "float", name: "display_refresh_rate", setter: Option[system.string](val: "set_display_refresh_rate", has: true), getter: "get_display_refresh_rate", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "float", name: "render_target_size_multiplier", setter: Option[system.string](val: "set_render_target_size_multiplier", has: true), getter: "get_render_target_size_multiplier", index: Option[system.int](val: 0, has: false))
 type OptimizedTranslation* = object
 type OptionButton* = object
   # GdProperty(type: "int", name: "item_count", setter: Option[system.string](val: "set_item_count", has: true), getter: "get_item_count", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "selected", setter: Option[system.string](val: "_select_int", has: true), getter: "get_selected", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "fit_to_longest_item", setter: Option[system.string](val: "set_fit_to_longest_item", has: true), getter: "is_fit_to_longest_item", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "bool", name: "allow_reselect", setter: Option[system.string](val: "set_allow_reselect", has: true), getter: "get_allow_reselect", index: Option[system.int](val: 0, has: false))
 type PCKPacker* = object
 type PackedDataContainer* = object
 type PackedDataContainerRef* = object
@@ -2466,13 +2568,13 @@ type PathFollow2D* = object
   # GdProperty(type: "bool", name: "rotates", setter: Option[system.string](val: "set_rotates", has: true), getter: "is_rotating", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "cubic_interp", setter: Option[system.string](val: "set_cubic_interpolation", has: true), getter: "get_cubic_interpolation", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "loop", setter: Option[system.string](val: "set_loop", has: true), getter: "has_loop", index: Option[system.int](val: 0, has: false))
-  # GdProperty(type: "float", name: "lookahead", setter: Option[system.string](val: "set_lookahead", has: true), getter: "get_lookahead", index: Option[system.int](val: 0, has: false))
 type PathFollow3D* = object
   # GdProperty(type: "float", name: "progress", setter: Option[system.string](val: "set_progress", has: true), getter: "get_progress", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "progress_ratio", setter: Option[system.string](val: "set_progress_ratio", has: true), getter: "get_progress_ratio", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "h_offset", setter: Option[system.string](val: "set_h_offset", has: true), getter: "get_h_offset", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "v_offset", setter: Option[system.string](val: "set_v_offset", has: true), getter: "get_v_offset", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "rotation_mode", setter: Option[system.string](val: "set_rotation_mode", has: true), getter: "get_rotation_mode", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "bool", name: "use_model_front", setter: Option[system.string](val: "set_use_model_front", has: true), getter: "is_using_model_front", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "cubic_interp", setter: Option[system.string](val: "set_cubic_interpolation", has: true), getter: "get_cubic_interpolation", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "loop", setter: Option[system.string](val: "set_loop", has: true), getter: "has_loop", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "tilt_enabled", setter: Option[system.string](val: "set_tilt_enabled", has: true), getter: "is_tilt_enabled", index: Option[system.int](val: 0, has: false))
@@ -3041,6 +3143,8 @@ type SceneMultiplayer* = object
   # GdProperty(type: "bool", name: "allow_object_decoding", setter: Option[system.string](val: "set_allow_object_decoding", has: true), getter: "is_object_decoding_allowed", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "refuse_new_connections", setter: Option[system.string](val: "set_refuse_new_connections", has: true), getter: "is_refusing_new_connections", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "server_relay", setter: Option[system.string](val: "set_server_relay_enabled", has: true), getter: "is_server_relay_enabled", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "max_sync_packet_size", setter: Option[system.string](val: "set_max_sync_packet_size", has: true), getter: "get_max_sync_packet_size", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "max_delta_packet_size", setter: Option[system.string](val: "set_max_delta_packet_size", has: true), getter: "get_max_delta_packet_size", index: Option[system.int](val: 0, has: false))
 type SceneReplicationConfig* = object
 type SceneState* = object
 type SceneTree* = object
@@ -3070,6 +3174,8 @@ type ScrollContainer* = object
   # GdProperty(type: "bool", name: "follow_focus", setter: Option[system.string](val: "set_follow_focus", has: true), getter: "is_following_focus", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "scroll_horizontal", setter: Option[system.string](val: "set_h_scroll", has: true), getter: "get_h_scroll", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "scroll_vertical", setter: Option[system.string](val: "set_v_scroll", has: true), getter: "get_v_scroll", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "float", name: "scroll_horizontal_custom_step", setter: Option[system.string](val: "set_horizontal_custom_step", has: true), getter: "get_horizontal_custom_step", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "float", name: "scroll_vertical_custom_step", setter: Option[system.string](val: "set_vertical_custom_step", has: true), getter: "get_vertical_custom_step", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "horizontal_scroll_mode", setter: Option[system.string](val: "set_horizontal_scroll_mode", has: true), getter: "get_horizontal_scroll_mode", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "vertical_scroll_mode", setter: Option[system.string](val: "set_vertical_scroll_mode", has: true), getter: "get_vertical_scroll_mode", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "scroll_deadzone", setter: Option[system.string](val: "set_deadzone", has: true), getter: "get_deadzone", index: Option[system.int](val: 0, has: false))
@@ -3408,6 +3514,7 @@ type TextEdit* = object
   # GdProperty(type: "bool", name: "virtual_keyboard_enabled", setter: Option[system.string](val: "set_virtual_keyboard_enabled", has: true), getter: "is_virtual_keyboard_enabled", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "middle_mouse_paste_enabled", setter: Option[system.string](val: "set_middle_mouse_paste_enabled", has: true), getter: "is_middle_mouse_paste_enabled", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "wrap_mode", setter: Option[system.string](val: "set_line_wrapping_mode", has: true), getter: "get_line_wrapping_mode", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "autowrap_mode", setter: Option[system.string](val: "set_autowrap_mode", has: true), getter: "get_autowrap_mode", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "highlight_all_occurrences", setter: Option[system.string](val: "set_highlight_all_occurrences", has: true), getter: "is_highlight_all_occurrences_enabled", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "highlight_current_line", setter: Option[system.string](val: "set_highlight_current_line", has: true), getter: "is_highlight_current_line_enabled", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "draw_control_chars", setter: Option[system.string](val: "set_draw_control_chars", has: true), getter: "get_draw_control_chars", index: Option[system.int](val: 0, has: false))
@@ -3425,6 +3532,7 @@ type TextEdit* = object
   # GdProperty(type: "int", name: "caret_type", setter: Option[system.string](val: "set_caret_type", has: true), getter: "get_caret_type", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "caret_blink", setter: Option[system.string](val: "set_caret_blink_enabled", has: true), getter: "is_caret_blink_enabled", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "caret_blink_interval", setter: Option[system.string](val: "set_caret_blink_interval", has: true), getter: "get_caret_blink_interval", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "bool", name: "caret_draw_when_editable_disabled", setter: Option[system.string](val: "set_draw_caret_when_editable_disabled", has: true), getter: "is_drawing_caret_when_editable_disabled", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "caret_move_on_right_click", setter: Option[system.string](val: "set_move_caret_on_right_click_enabled", has: true), getter: "is_move_caret_on_right_click_enabled", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "caret_mid_grapheme", setter: Option[system.string](val: "set_caret_mid_grapheme_enabled", has: true), getter: "is_caret_mid_grapheme_enabled", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "caret_multiple", setter: Option[system.string](val: "set_multiple_carets_enabled", has: true), getter: "is_multiple_carets_enabled", index: Option[system.int](val: 0, has: false))
@@ -3450,6 +3558,7 @@ type TextMesh* = object
   # GdProperty(type: "bool", name: "uppercase", setter: Option[system.string](val: "set_uppercase", has: true), getter: "is_uppercase", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "line_spacing", setter: Option[system.string](val: "set_line_spacing", has: true), getter: "get_line_spacing", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "autowrap_mode", setter: Option[system.string](val: "set_autowrap_mode", has: true), getter: "get_autowrap_mode", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "justification_flags", setter: Option[system.string](val: "set_justification_flags", has: true), getter: "get_justification_flags", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "pixel_size", setter: Option[system.string](val: "set_pixel_size", has: true), getter: "get_pixel_size", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "curve_step", setter: Option[system.string](val: "set_curve_step", has: true), getter: "get_curve_step", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "float", name: "depth", setter: Option[system.string](val: "set_depth", has: true), getter: "get_depth", index: Option[system.int](val: 0, has: false))
@@ -3592,6 +3701,7 @@ type Tree* = object
   # GdProperty(type: "bool", name: "column_titles_visible", setter: Option[system.string](val: "set_column_titles_visible", has: true), getter: "are_column_titles_visible", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "allow_reselect", setter: Option[system.string](val: "set_allow_reselect", has: true), getter: "get_allow_reselect", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "allow_rmb_select", setter: Option[system.string](val: "set_allow_rmb_select", has: true), getter: "get_allow_rmb_select", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "bool", name: "allow_search", setter: Option[system.string](val: "set_allow_search", has: true), getter: "get_allow_search", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "hide_folding", setter: Option[system.string](val: "set_hide_folding", has: true), getter: "is_folding_hidden", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "enable_recursive_folding", setter: Option[system.string](val: "set_enable_recursive_folding", has: true), getter: "is_recursive_folding_enabled", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "hide_root", setter: Option[system.string](val: "set_hide_root", has: true), getter: "is_root_hidden", index: Option[system.int](val: 0, has: false))
@@ -3984,11 +4094,11 @@ type WebXRInterface* = object
   # GdProperty(type: "String", name: "reference_space_type", setter: Option[system.string](val: "", has: false), getter: "get_reference_space_type", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "String", name: "visibility_state", setter: Option[system.string](val: "", has: false), getter: "get_visibility_state", index: Option[system.int](val: 0, has: false))
 type Window* = object
-  # GdProperty(type: "int", name: "initial_position", setter: Option[system.string](val: "set_initial_position", has: true), getter: "get_initial_position", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "mode", setter: Option[system.string](val: "set_mode", has: true), getter: "get_mode", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "String", name: "title", setter: Option[system.string](val: "set_title", has: true), getter: "get_title", index: Option[system.int](val: 0, has: false))
+  # GdProperty(type: "int", name: "initial_position", setter: Option[system.string](val: "set_initial_position", has: true), getter: "get_initial_position", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "Vector2i", name: "position", setter: Option[system.string](val: "set_position", has: true), getter: "get_position", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "Vector2i", name: "size", setter: Option[system.string](val: "set_size", has: true), getter: "get_size", index: Option[system.int](val: 0, has: false))
-  # GdProperty(type: "int", name: "mode", setter: Option[system.string](val: "set_mode", has: true), getter: "get_mode", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "current_screen", setter: Option[system.string](val: "set_current_screen", has: true), getter: "get_current_screen", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "PackedVector2Array", name: "mouse_passthrough_polygon", setter: Option[system.string](val: "set_mouse_passthrough_polygon", has: true), getter: "get_mouse_passthrough_polygon", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "visible", setter: Option[system.string](val: "set_visible", has: true), getter: "is_visible", index: Option[system.int](val: 0, has: false))

@@ -1,181 +1,74 @@
-import std/strutils
-import std/times
+import beyond/logging_api; export logging_api
 import std/os
+import std/times
+import std/strutils
 
 type
-  Level* = enum
-    lvlAll    = "DEBUG "
-    lvlDebug  = "DEBUG "
-    lvlInfo   = "INFO  "
-    lvlNotice = "NOTICE"
-    lvlWarn   = "WARN  "
-    lvlError  = "ERROR "
-    lvlFatal  = "FATAL "
-    lvlNone   = "NONE  "
   Stage* = enum
-    stgUser    = "USER   "
+    stgEngine  = "ENGINE"
     stgLibrary = "LIBRARY"
-    stgEngine  = "ENGINE "
-
-const
-  defaultFmtStr* = "|$time | @$stagename-$levelname| $appname/$handlename: "
-  defaultFlushThreshold = lvlAll
-
-type
-  LogUser* = object
-    name*: string
+    stgUser    = "USER"
+  GDLogData* = object of LogData
     stage*: Stage
+    handler*: string
+    summary*: string
+func iam*(handler: string; stage: Stage = stgUser; summary: string = ""): GDLogData =
+  GDLogData(handler: handler, stage: stage, summary: summary)
 
-  Logger* = ref object of RootObj
-    levelThreshold*: Level
-    flushThreshold*: Level
-    fmtStr*: string ## Format string to prepend to each log message;
-                    ## defaultFmtStr is the default
+proc parseToken(data: GDLogData; level: Level; token: string; res: var string): bool {.gcsafe.} =
+  let app = getAppFilename()
+  case token
+  of "date"     : res= getDateStr()
+  of "time"     : res= getClockStr()
+  of "datetime" : res= getDateStr() & "T" & getClockStr()
+  of "app"      : res= app
+  of "appdir"   : res= app.splitFile.dir
+  of "appname"  : res= app.splitFile.name
+  of "levelid"  : res= $LevelNames[level][0]
+  of "levelname": res= LevelNames[level]
+  of "stage"    : res= $data.stage
+  of "summary"  : res= data.summary
+  of "handler"  : res= data.handler
+  else:
+    return false
+  return true
 
-  ConsoleLogger* = ref object of Logger
-    useStderr*: bool
-
-  FileLogger* = ref object of Logger
-    file*: File
-
-var
-  Global* {.threadvar.}: tuple[
-    levelThreshold: Level,
-    handlers: seq[Logger]
-  ]
-
-proc iam*(name: string; stage= stgUser): LogUser = LogUser(name: name, stage: stage)
-
-proc substituteLog*(frmt: string; level: Level; user: LogUser;
-                    args: varargs[string, `$`]): string =
+method parse*(data: GDLogData; level: Level; frmt: string;
+                    args: varargs[string, `$`]): string {.gcsafe.} =
   var msgLen = 0
   for arg in args:
     msgLen += arg.len
-  result = newStringOfCap(frmt.len + msgLen + 20)
-  var i = 0
-  while i < frmt.len:
-    if frmt[i] != '$':
-      result.add(frmt[i])
-      inc(i)
-    else:
-      inc(i)
-      var v = ""
-      let app = when defined(js): "" else: getAppFilename()
-      while i < frmt.len and frmt[i] in IdentChars:
-        v.add(toLowerAscii(frmt[i]))
-        inc(i)
-      case v
-      of "date": result.add(getDateStr())
-      of "time": result.add(getClockStr())
-      of "datetime": result.add(getDateStr() & "T" & getClockStr())
-      of "app": result.add(app)
-      of "appdir": result.add(app.splitFile.dir)
-      of "appname": result.add(app.splitFile.name)
-      of "levelid": result.add(($level)[0])
-      of "levelname": result.add($level)
-      of "stageid": result.add(($user.stage)[0])
-      of "stagename": result.add($user.stage)
-      of "handlename": result.add(user.name)
-      else: discard
-  for arg in args:
-    result.add(arg)
+  result = newStringOfCap(frmt.len + data.summary.len + msgLen + 20)
+  var token: string
+  for symbol, kind in frmt.lex:
+    case kind
+    of skText:
+      result.add symbol
+    of skToken:
+      if data.parseToken(level, symbol, token):
+        result.add token
+      else:
+        result.add "$"&symbol
+  result.add "\n"
+  for line in args.join("").splitLines:
+    result.add " :: " & line
 
-method log*(logger: Logger; level: Level;  user: LogUser; args: varargs[string, `$`]) {.
-            gcsafe, tags: [RootEffect], base.} =
-  discard
+when isMainModule:
+  import std/strformat
 
-method log*(logger: ConsoleLogger, level: Level; user: LogUser; args: varargs[string, `$`]) =
-  if level < Global.levelThreshold or level < logger.levelThreshold: return
-  let ln = substituteLog(logger.fmtStr, level, user, args)
-  try:
-    var handle = stdout
-    if logger.useStderr:
-      handle = stderr
-    writeLine(handle, ln)
-    if level >= logger.flushThreshold: flushFile(handle)
-  except IOError:
-    discard
+  const myFormat = "$levelname-$stage @$handler >>> $summary"
+  var L = newConsoleLogger(fmtStr = myFormat)
+  var fL = newFileLogger("test.log", fmtStr = myFormat)
+  var rL = newRollingFileLogger("rolling.log", fmtStr = myFormat)
 
-proc newConsoleLogger*(levelThreshold = lvlAll, fmtStr = defaultFmtStr,
-    useStderr = false, flushThreshold = defaultFlushThreshold): ConsoleLogger =
-  new result
-  result.fmtStr = fmtStr
-  result.levelThreshold = levelThreshold
-  result.flushThreshold = flushThreshold
-  result.useStderr = useStderr
+  defaultGroup.loggers.add(@[fL, rL, L])
 
-method log*(logger: FileLogger, level: Level; user: LogUser; args: varargs[string, `$`]) =
-  if level < Global.levelThreshold or level < logger.levelThreshold: return
-  writeLine(logger.file, substituteLog(logger.fmtStr, level, user, args))
-  if level >= logger.flushThreshold: flushFile(logger.file)
+  block:
+    var data = GDLogData(handler: "for-loop", stage: stgUser)
+    for i in 0 .. 5:
+      data.summary = fmt"HELLO-{i}"
+      data.info("hello, my-logging! ", i)
 
-proc defaultFilename*(): string =
-  var (path, name, _) = splitFile(getAppFilename())
-  result = changeFileExt(path / name, "log")
-
-proc newFileLogger*(file: File,
-                    levelThreshold = lvlAll,
-                    fmtStr = defaultFmtStr,
-                    flushThreshold = defaultFlushThreshold): FileLogger =
-  new(result)
-  result.file = file
-  result.levelThreshold = levelThreshold
-  result.flushThreshold = flushThreshold
-  result.fmtStr = fmtStr
-
-proc newFileLogger*(filename = defaultFilename(),
-                    mode: FileMode = fmAppend,
-                    levelThreshold = lvlAll,
-                    fmtStr = defaultFmtStr,
-                    bufSize: int = -1,
-                    flushThreshold = defaultFlushThreshold): FileLogger =
-  let file = open(filename, mode, bufSize = bufSize)
-  newFileLogger(file, levelThreshold, fmtStr, flushThreshold)
-
-
-# --------
-
-proc logLoop(user: LogUser; level: Level; args: varargs[string, `$`]) =
-  for logger in items(Global.handlers):
-    if level >= logger.levelThreshold:
-      log(logger, level, user, args)
-
-template log*(user: LogUser; level: Level; args: varargs[string, `$`]) =
-  bind logLoop
-  bind `%`
-
-  if level >= Global.levelThreshold:
-    logLoop(user, level, args)
-
-template debug*(self: LogUser; args: varargs[string, `$`]) =
-  self.log(lvlDebug, args)
-
-template info*(self: LogUser; args: varargs[string, `$`]) =
-  self.log(lvlInfo, args)
-
-template notice*(self: LogUser; args: varargs[string, `$`]) =
-  self.log(lvlNotice, args)
-
-template warn*(self: LogUser; args: varargs[string, `$`]) =
-  self.log(lvlWarn, args)
-
-template error*(self: LogUser; args: varargs[string, `$`]) =
-  self.log(lvlError, args)
-
-template fatal*(self: LogUser; args: varargs[string, `$`]) =
-  self.log(lvlFatal, args)
-
-# --------------
-
-when not defined(testing) and isMainModule:
-  let me = LogUser()
-  var L = newConsoleLogger()
-  when not defined(js):
-    var fL = newFileLogger("test.log")
-    Global.handlers.add(fL)
-  Global.handlers.add(L)
-  for i in 0 .. 25:
-    me.info("hello", i)
-
-  var nilString: string
-  me.info "hello ", nilString
+  block:
+    var nilString: string
+    GDLogData(handler: "single-call", stage: stgUser, summary: "HELLO").info("hello", nilString)

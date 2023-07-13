@@ -2,9 +2,6 @@ import std/[
   json,
   os,
 ]
-import beyond/[
-  statements,
-]
 import generator/tool/[
   moduleTree,
   logging
@@ -22,7 +19,7 @@ when isMainModule:
 
   block:
     let me = LogUser(title: "Generated-API-Structure")
-    me.notice dumpTree moduleTree.root
-  dropModule moduleTree.root
-  exportModule moduleTree.root
+    me.notice dumpTree moduleTree.d_root
+  drop moduleTree.d_root
+  generate moduleTree.d_root
   info "complete to generate."

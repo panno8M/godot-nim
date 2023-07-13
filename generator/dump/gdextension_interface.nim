@@ -1,810 +1,843 @@
-## ***********************************************************************
-##   gdextension_interface.h
-## ***********************************************************************
-##                          This file is part of:
-##                              GODOT ENGINE
-##                         https://godotengine.org
-## ***********************************************************************
-##  Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md).
-##  Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.
-##
-##  Permission is hereby granted, free of charge, to any person obtaining
-##  a copy of this software and associated documentation files (the
-##  "Software"), to deal in the Software without restriction, including
-##  without limitation the rights to use, copy, modify, merge, publish,
-##  distribute, sublicense, and/or sell copies of the Software, and to
-##  permit persons to whom the Software is furnished to do so, subject to
-##  the following conditions:
-##
-##  The above copyright notice and this permission notice shall be
-##  included in all copies or substantial portions of the Software.
-##
-##  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-##  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-##  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-##  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-##  CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-##  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-##  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-## ***********************************************************************
-
-##  This is a C class header, you can copy it and use it directly in your own binders.
-##  Together with the JSON file, you should be able to generate any binder.
-##
-
 type
   char32_t* = uint32_t
   char16_t* = uint16_t
-
-##  VARIANT TYPES
-
-type                          ##  comparison
-  GDExtensionVariantType* = enum
-    GDEXTENSION_VARIANT_TYPE_NIL, ##   atomic types
-    GDEXTENSION_VARIANT_TYPE_BOOL, GDEXTENSION_VARIANT_TYPE_INT,
-    GDEXTENSION_VARIANT_TYPE_FLOAT, GDEXTENSION_VARIANT_TYPE_STRING, ##  math types
-    GDEXTENSION_VARIANT_TYPE_VECTOR2, GDEXTENSION_VARIANT_TYPE_VECTOR2I,
-    GDEXTENSION_VARIANT_TYPE_RECT2, GDEXTENSION_VARIANT_TYPE_RECT2I,
-    GDEXTENSION_VARIANT_TYPE_VECTOR3, GDEXTENSION_VARIANT_TYPE_VECTOR3I,
-    GDEXTENSION_VARIANT_TYPE_TRANSFORM2D, GDEXTENSION_VARIANT_TYPE_VECTOR4,
-    GDEXTENSION_VARIANT_TYPE_VECTOR4I, GDEXTENSION_VARIANT_TYPE_PLANE,
-    GDEXTENSION_VARIANT_TYPE_QUATERNION, GDEXTENSION_VARIANT_TYPE_AABB,
-    GDEXTENSION_VARIANT_TYPE_BASIS, GDEXTENSION_VARIANT_TYPE_TRANSFORM3D, GDEXTENSION_VARIANT_TYPE_PROJECTION, ##  misc types
-    GDEXTENSION_VARIANT_TYPE_COLOR, GDEXTENSION_VARIANT_TYPE_STRING_NAME,
-    GDEXTENSION_VARIANT_TYPE_NODE_PATH, GDEXTENSION_VARIANT_TYPE_RID,
-    GDEXTENSION_VARIANT_TYPE_OBJECT, GDEXTENSION_VARIANT_TYPE_CALLABLE,
-    GDEXTENSION_VARIANT_TYPE_SIGNAL, GDEXTENSION_VARIANT_TYPE_DICTIONARY, GDEXTENSION_VARIANT_TYPE_ARRAY, ##  typed arrays
-    GDEXTENSION_VARIANT_TYPE_PACKED_BYTE_ARRAY,
-    GDEXTENSION_VARIANT_TYPE_PACKED_INT32_ARRAY,
-    GDEXTENSION_VARIANT_TYPE_PACKED_INT64_ARRAY,
-    GDEXTENSION_VARIANT_TYPE_PACKED_FLOAT32_ARRAY,
-    GDEXTENSION_VARIANT_TYPE_PACKED_FLOAT64_ARRAY,
-    GDEXTENSION_VARIANT_TYPE_PACKED_STRING_ARRAY,
-    GDEXTENSION_VARIANT_TYPE_PACKED_VECTOR2_ARRAY,
-    GDEXTENSION_VARIANT_TYPE_PACKED_VECTOR3_ARRAY,
-    GDEXTENSION_VARIANT_TYPE_PACKED_COLOR_ARRAY,
-    GDEXTENSION_VARIANT_TYPE_VARIANT_MAX
-  GDExtensionVariantOperator* = enum
-    GDEXTENSION_VARIANT_OP_EQUAL, GDEXTENSION_VARIANT_OP_NOT_EQUAL,
-    GDEXTENSION_VARIANT_OP_LESS, GDEXTENSION_VARIANT_OP_LESS_EQUAL,
-    GDEXTENSION_VARIANT_OP_GREATER, GDEXTENSION_VARIANT_OP_GREATER_EQUAL, ##  mathematic
-    GDEXTENSION_VARIANT_OP_ADD, GDEXTENSION_VARIANT_OP_SUBTRACT,
-    GDEXTENSION_VARIANT_OP_MULTIPLY, GDEXTENSION_VARIANT_OP_DIVIDE,
-    GDEXTENSION_VARIANT_OP_NEGATE, GDEXTENSION_VARIANT_OP_POSITIVE,
-    GDEXTENSION_VARIANT_OP_MODULE, GDEXTENSION_VARIANT_OP_POWER, ##  bitwise
-    GDEXTENSION_VARIANT_OP_SHIFT_LEFT, GDEXTENSION_VARIANT_OP_SHIFT_RIGHT,
-    GDEXTENSION_VARIANT_OP_BIT_AND, GDEXTENSION_VARIANT_OP_BIT_OR,
-    GDEXTENSION_VARIANT_OP_BIT_XOR, GDEXTENSION_VARIANT_OP_BIT_NEGATE, ##  logic
-    GDEXTENSION_VARIANT_OP_AND, GDEXTENSION_VARIANT_OP_OR,
-    GDEXTENSION_VARIANT_OP_XOR, GDEXTENSION_VARIANT_OP_NOT, ##  containment
-    GDEXTENSION_VARIANT_OP_IN, GDEXTENSION_VARIANT_OP_MAX
-  GDExtensionVariantPtr* = pointer
-  GDExtensionConstVariantPtr* = pointer
-  GDExtensionStringNamePtr* = pointer
-  GDExtensionConstStringNamePtr* = pointer
-  GDExtensionStringPtr* = pointer
-  GDExtensionConstStringPtr* = pointer
-  GDExtensionObjectPtr* = pointer
-  GDExtensionConstObjectPtr* = pointer
-  GDExtensionTypePtr* = pointer
-  GDExtensionConstTypePtr* = pointer
-  GDExtensionMethodBindPtr* = pointer
-  GDExtensionInt* = int64_t
-  GDExtensionBool* = uint8_t
-  GDObjectInstanceID* = uint64_t
-  GDExtensionRefPtr* = pointer
-  GDExtensionConstRefPtr* = pointer
-
-
-
-##  VARIANT DATA I/O
-
 type
-  GDExtensionCallErrorType* = enum
-    GDEXTENSION_CALL_OK, GDEXTENSION_CALL_ERROR_INVALID_METHOD, GDEXTENSION_CALL_ERROR_INVALID_ARGUMENT, ##  Expected a different variant type.
-    GDEXTENSION_CALL_ERROR_TOO_MANY_ARGUMENTS, ##  Expected lower number of arguments.
-    GDEXTENSION_CALL_ERROR_TOO_FEW_ARGUMENTS, ##  Expected higher number of arguments.
-    GDEXTENSION_CALL_ERROR_INSTANCE_IS_NULL, GDEXTENSION_CALL_ERROR_METHOD_NOT_CONST ##  Used for const call.
-  GDExtensionCallError* {.bycopy.} = object
-    error*: GDExtensionCallErrorType
+  VariantType* {.size: sizeof(cuint).} = enum
+    VariantType_Nil,
+    VariantType_Bool, VariantType_Int,
+    VariantType_Float, VariantType_String,
+    VariantType_Vector2, VariantType_Vector2i,
+    VariantType_Rect2, VariantType_Rect2i,
+    VariantType_Vector3, VariantType_Vector3i,
+    VariantType_Transform2d, VariantType_Vector4,
+    VariantType_Vector4i, VariantType_Plane,
+    VariantType_Quaternion, VariantType_AABB,
+    VariantType_Basis, VariantType_Transform3d, VariantType_Projection,
+    VariantType_Color, VariantType_StringName,
+    VariantType_NodePath, VariantType_RID,
+    VariantType_Object, VariantType_Callable,
+    VariantType_Signal, VariantType_Dictionary, VariantType_Array,
+    VariantType_PackedByteArray,
+    VariantType_PackedInt32Array,
+    VariantType_PackedInt64Array,
+    VariantType_PackedFloat32Array,
+    VariantType_PackedFloat64Array,
+    VariantType_PackedStringArray,
+    VariantType_PackedVector2Array,
+    VariantType_PackedVector3Array,
+    VariantType_PackedColorArray,
+  VariantOperator* {.size: sizeof(cuint).} = enum
+    VariantOP_Equal, VariantOP_NotEqual,
+    VariantOP_Less, VariantOP_LessEqual,
+    VariantOP_Greater, VariantOP_GreaterEqual,
+    VariantOP_Add, VariantOP_Subtract,
+    VariantOP_Multiply, VariantOP_Divide,
+    VariantOP_Negate, VariantOP_Positive,
+    VariantOP_Module, VariantOP_Power,
+    VariantOP_ShiftLeft, VariantOP_ShiftRight,
+    VariantOP_BitAnd, VariantOP_BitOr,
+    VariantOP_BitXor, VariantOP_BitNegate,
+    VariantOP_And, VariantOP_Or,
+    VariantOP_Xor, VariantOP_Not,
+    VariantOP_In
+type
+  VariantPtr* = pointer
+  ConstVariantPtr* = pointer
+  UninitializedVariantPtr* = pointer
+  StringNamePtr* = pointer
+  ConstStringNamePtr* = pointer
+  UninitializedStringNamePtr* = pointer
+  StringPtr* = pointer
+  ConstStringPtr* = pointer
+  UninitializedStringPtr* = pointer
+  ObjectPtr* = pointer
+  ConstObjectPtr* = pointer
+  UninitializedObjectPtr* = pointer
+  TypePtr* = pointer
+  ConstTypePtr* = pointer
+  UninitializedTypePtr* = pointer
+  MethodBindPtr* = pointer
+  Int* = int64_t
+  Bool* = uint8_t
+  GDObjectInstanceID* = uint64_t
+  RefPtr* = pointer
+  ConstRefPtr* = pointer
+type
+  CallErrorType* {.size: sizeof(cuint).} = enum
+    Call_OK, CallError_InvalidMethod, CallError_InvalidArgument,
+    CallError_TooManyArguments,
+    CallError_TooFewArguments,
+    CallError_InstanceIsNull, CallError_MethodNotConst
+  CallError* {.bycopy.} = object
+    error*: CallErrorType
     argument*: int32_t
     expected*: int32_t
-
-  GDExtensionVariantFromTypeConstructorFunc* = proc (a1: GDExtensionVariantPtr;
-      a2: GDExtensionTypePtr)
-  GDExtensionTypeFromVariantConstructorFunc* = proc (a1: GDExtensionTypePtr;
-      a2: GDExtensionVariantPtr)
-  GDExtensionPtrOperatorEvaluator* = proc (p_left: GDExtensionConstTypePtr;
-                                        p_right: GDExtensionConstTypePtr;
-                                        r_result: GDExtensionTypePtr)
-  GDExtensionPtrBuiltInMethod* = proc (p_base: GDExtensionTypePtr;
-                                    p_args: ptr GDExtensionConstTypePtr;
-                                    r_return: GDExtensionTypePtr;
+  VariantFromTypeConstructorFunc* = proc (
+      a1: UninitializedVariantPtr; a2: TypePtr)
+  TypeFromVariantConstructorFunc* = proc (
+      a1: UninitializedTypePtr; a2: VariantPtr)
+  PtrOperatorEvaluator* = proc (p_left: ConstTypePtr;
+                                        p_right: ConstTypePtr;
+                                        r_result: TypePtr)
+  PtrBuiltInMethod* = proc (p_base: TypePtr;
+                                    p_args: ptr ConstTypePtr;
+                                    r_return: TypePtr;
                                     p_argument_count: cint)
-  GDExtensionPtrConstructor* = proc (p_base: GDExtensionTypePtr;
-                                  p_args: ptr GDExtensionConstTypePtr)
-  GDExtensionPtrDestructor* = proc (p_base: GDExtensionTypePtr)
-  GDExtensionPtrSetter* = proc (p_base: GDExtensionTypePtr;
-                             p_value: GDExtensionConstTypePtr)
-  GDExtensionPtrGetter* = proc (p_base: GDExtensionConstTypePtr;
-                             r_value: GDExtensionTypePtr)
-  GDExtensionPtrIndexedSetter* = proc (p_base: GDExtensionTypePtr;
-                                    p_index: GDExtensionInt;
-                                    p_value: GDExtensionConstTypePtr)
-  GDExtensionPtrIndexedGetter* = proc (p_base: GDExtensionConstTypePtr;
-                                    p_index: GDExtensionInt;
-                                    r_value: GDExtensionTypePtr)
-  GDExtensionPtrKeyedSetter* = proc (p_base: GDExtensionTypePtr;
-                                  p_key: GDExtensionConstTypePtr;
-                                  p_value: GDExtensionConstTypePtr)
-  GDExtensionPtrKeyedGetter* = proc (p_base: GDExtensionConstTypePtr;
-                                  p_key: GDExtensionConstTypePtr;
-                                  r_value: GDExtensionTypePtr)
-  GDExtensionPtrKeyedChecker* = proc (p_base: GDExtensionConstVariantPtr;
-                                   p_key: GDExtensionConstVariantPtr): uint32_t
-  GDExtensionPtrUtilityFunction* = proc (r_return: GDExtensionTypePtr;
-                                      p_args: ptr GDExtensionConstTypePtr;
+  PtrConstructor* = proc (p_base: UninitializedTypePtr;
+                                  p_args: ptr ConstTypePtr)
+  PtrDestructor* = proc (p_base: TypePtr)
+  PtrSetter* = proc (p_base: TypePtr;
+                             p_value: ConstTypePtr)
+  PtrGetter* = proc (p_base: ConstTypePtr;
+                             r_value: TypePtr)
+  PtrIndexedSetter* = proc (p_base: TypePtr;
+                                    p_index: Int;
+                                    p_value: ConstTypePtr)
+  PtrIndexedGetter* = proc (p_base: ConstTypePtr;
+                                    p_index: Int;
+                                    r_value: TypePtr)
+  PtrKeyedSetter* = proc (p_base: TypePtr;
+                                  p_key: ConstTypePtr;
+                                  p_value: ConstTypePtr)
+  PtrKeyedGetter* = proc (p_base: ConstTypePtr;
+                                  p_key: ConstTypePtr;
+                                  r_value: TypePtr)
+  PtrKeyedChecker* = proc (p_base: ConstVariantPtr;
+                                   p_key: ConstVariantPtr): uint32_t
+  PtrUtilityFunction* = proc (r_return: TypePtr;
+                                      p_args: ptr ConstTypePtr;
                                       p_argument_count: cint)
-  GDExtensionClassConstructor* = proc (): GDExtensionObjectPtr
-  GDExtensionInstanceBindingCreateCallback* = proc (p_token: pointer;
+  ClassConstructor* = proc (): ObjectPtr
+  InstanceBindingCreateCallback* = proc (p_token: pointer;
       p_instance: pointer): pointer
-  GDExtensionInstanceBindingFreeCallback* = proc (p_token: pointer;
+  InstanceBindingFreeCallback* = proc (p_token: pointer;
       p_instance: pointer; p_binding: pointer)
-  GDExtensionInstanceBindingReferenceCallback* = proc (p_token: pointer;
-      p_binding: pointer; p_reference: GDExtensionBool): GDExtensionBool
-  GDExtensionInstanceBindingCallbacks* {.bycopy.} = object
-    create_callback*: GDExtensionInstanceBindingCreateCallback
-    free_callback*: GDExtensionInstanceBindingFreeCallback
-    reference_callback*: GDExtensionInstanceBindingReferenceCallback
-
-
-
-##  EXTENSION CLASSES
-
+  InstanceBindingReferenceCallback* = proc (p_token: pointer;
+      p_binding: pointer; p_reference: Bool): Bool
+  InstanceBindingCallbacks* {.bycopy.} = object
+    create_callback*: InstanceBindingCreateCallback
+    free_callback*: InstanceBindingFreeCallback
+    reference_callback*: InstanceBindingReferenceCallback
 type
-  GDExtensionClassInstancePtr* = pointer
-  GDExtensionClassSet* = proc (p_instance: GDExtensionClassInstancePtr;
-                            p_name: GDExtensionConstStringNamePtr;
-                            p_value: GDExtensionConstVariantPtr): GDExtensionBool
-  GDExtensionClassGet* = proc (p_instance: GDExtensionClassInstancePtr;
-                            p_name: GDExtensionConstStringNamePtr;
-                            r_ret: GDExtensionVariantPtr): GDExtensionBool
-  GDExtensionClassGetRID* = proc (p_instance: GDExtensionClassInstancePtr): uint64_t
-  GDExtensionPropertyInfo* {.bycopy.} = object
-    `type`*: GDExtensionVariantType
-    name*: GDExtensionStringNamePtr
-    class_name*: GDExtensionStringNamePtr
+  ClassInstancePtr* = pointer
+  ClassSet* = proc (p_instance: ClassInstancePtr;
+                            p_name: ConstStringNamePtr;
+                            p_value: ConstVariantPtr): Bool
+  ClassGet* = proc (p_instance: ClassInstancePtr;
+                            p_name: ConstStringNamePtr;
+                            r_ret: VariantPtr): Bool
+  ClassGetRID* = proc (p_instance: ClassInstancePtr): uint64_t
+  PropertyInfo* {.bycopy.} = object
+    `type`*: VariantType
+    name*: StringNamePtr
+    class_name*: StringNamePtr
     hint*: uint32_t
-    ##  Bitfield of `PropertyHint` (defined in `extension_api.json`).
-    hint_string*: GDExtensionStringPtr
+
+    hint_string*: StringPtr
     usage*: uint32_t
-    ##  Bitfield of `PropertyUsageFlags` (defined in `extension_api.json`).
 
-  GDExtensionMethodInfo* {.bycopy.} = object
-    name*: GDExtensionStringNamePtr
-    return_value*: GDExtensionPropertyInfo
+  MethodInfo* {.bycopy.} = object
+    name*: StringNamePtr
+    return_value*: PropertyInfo
     flags*: uint32_t
-    ##  Bitfield of `GDExtensionClassMethodFlags`.
+
     id*: int32_t
-    ##  Arguments: `default_arguments` is an array of size `argument_count`.
-    argument_count*: uint32_t
-    arguments*: ptr GDExtensionPropertyInfo
-    ##  Default arguments: `default_arguments` is an array of size `default_argument_count`.
-    default_argument_count*: uint32_t
-    default_arguments*: ptr GDExtensionVariantPtr
 
-  GDExtensionClassGetPropertyList* = proc (p_instance: GDExtensionClassInstancePtr;
-                                        r_count: ptr uint32_t): ptr GDExtensionPropertyInfo
-  GDExtensionClassFreePropertyList* = proc (
-      p_instance: GDExtensionClassInstancePtr; p_list: ptr GDExtensionPropertyInfo)
-  GDExtensionClassPropertyCanRevert* = proc (
-      p_instance: GDExtensionClassInstancePtr;
-      p_name: GDExtensionConstStringNamePtr): GDExtensionBool
-  GDExtensionClassPropertyGetRevert* = proc (
-      p_instance: GDExtensionClassInstancePtr;
-      p_name: GDExtensionConstStringNamePtr; r_ret: GDExtensionVariantPtr): GDExtensionBool
-  GDExtensionClassNotification* = proc (p_instance: GDExtensionClassInstancePtr;
+    argument_count*: uint32_t
+    arguments*: ptr PropertyInfo
+
+    default_argument_count*: uint32_t
+    default_arguments*: ptr VariantPtr
+  ClassGetPropertyList* = proc (p_instance: ClassInstancePtr;
+                                        r_count: ptr uint32_t): ptr PropertyInfo
+  ClassFreePropertyList* = proc (
+      p_instance: ClassInstancePtr; p_list: ptr PropertyInfo)
+  ClassPropertyCanRevert* = proc (
+      p_instance: ClassInstancePtr;
+      p_name: ConstStringNamePtr): Bool
+  ClassPropertyGetRevert* = proc (
+      p_instance: ClassInstancePtr;
+      p_name: ConstStringNamePtr; r_ret: VariantPtr): Bool
+  ClassNotification* = proc (p_instance: ClassInstancePtr;
                                      p_what: int32_t)
-  GDExtensionClassToString* = proc (p_instance: GDExtensionClassInstancePtr;
-                                 r_is_valid: ptr GDExtensionBool;
-                                 p_out: GDExtensionStringPtr)
-  GDExtensionClassReference* = proc (p_instance: GDExtensionClassInstancePtr)
-  GDExtensionClassUnreference* = proc (p_instance: GDExtensionClassInstancePtr)
-  GDExtensionClassCallVirtual* = proc (p_instance: GDExtensionClassInstancePtr;
-                                    p_args: ptr GDExtensionConstTypePtr;
-                                    r_ret: GDExtensionTypePtr)
-  GDExtensionClassCreateInstance* = proc (p_userdata: pointer): GDExtensionObjectPtr
-  GDExtensionClassFreeInstance* = proc (p_userdata: pointer;
-                                     p_instance: GDExtensionClassInstancePtr)
-  GDExtensionClassGetVirtual* = proc (p_userdata: pointer;
-                                   p_name: GDExtensionConstStringNamePtr): GDExtensionClassCallVirtual
-  GDExtensionClassCreationInfo* {.bycopy.} = object
-    is_virtual*: GDExtensionBool
-    is_abstract*: GDExtensionBool
-    set_func*: GDExtensionClassSet
-    get_func*: GDExtensionClassGet
-    get_property_list_func*: GDExtensionClassGetPropertyList
-    free_property_list_func*: GDExtensionClassFreePropertyList
-    property_can_revert_func*: GDExtensionClassPropertyCanRevert
-    property_get_revert_func*: GDExtensionClassPropertyGetRevert
-    notification_func*: GDExtensionClassNotification
-    to_string_func*: GDExtensionClassToString
-    reference_func*: GDExtensionClassReference
-    unreference_func*: GDExtensionClassUnreference
-    create_instance_func*: GDExtensionClassCreateInstance
-    ##  (Default) constructor; mandatory. If the class is not instantiable, consider making it virtual or abstract.
-    free_instance_func*: GDExtensionClassFreeInstance
-    ##  Destructor; mandatory.
-    get_virtual_func*: GDExtensionClassGetVirtual
-    ##  Queries a virtual function by name and returns a callback to invoke the requested virtual function.
-    get_rid_func*: GDExtensionClassGetRID
+  ClassToString* = proc (p_instance: ClassInstancePtr;
+                                 r_is_valid: ptr Bool;
+                                 p_out: StringPtr)
+  ClassReference* = proc (p_instance: ClassInstancePtr)
+  ClassUnreference* = proc (p_instance: ClassInstancePtr)
+  ClassCallVirtual* = proc (p_instance: ClassInstancePtr;
+                                    p_args: ptr ConstTypePtr;
+                                    r_ret: TypePtr)
+  ClassCreateInstance* = proc (p_userdata: pointer): ObjectPtr
+  ClassFreeInstance* = proc (p_userdata: pointer;
+                                     p_instance: ClassInstancePtr)
+  ClassGetVirtual* = proc (p_userdata: pointer;
+                                   p_name: ConstStringNamePtr): ClassCallVirtual
+  ClassCreationInfo* {.bycopy.} = object
+    is_virtual*: Bool
+    is_abstract*: Bool
+    set_func*: ClassSet
+    get_func*: ClassGet
+    get_property_list_func*: ClassGetPropertyList
+    free_property_list_func*: ClassFreePropertyList
+    property_can_revert_func*: ClassPropertyCanRevert
+    property_get_revert_func*: ClassPropertyGetRevert
+    notification_func*: ClassNotification
+    to_string_func*: ClassToString
+    reference_func*: ClassReference
+    unreference_func*: ClassUnreference
+    create_instance_func*: ClassCreateInstance
+
+    free_instance_func*: ClassFreeInstance
+
+    get_virtual_func*: ClassGetVirtual
+
+    get_rid_func*: ClassGetRID
     class_userdata*: pointer
-    ##  Per-class user data, later accessible in instance bindings.
 
-  GDExtensionClassLibraryPtr* = pointer
-
-##  Method
-
+  ClassLibraryPtr* = pointer
 type
-  GDExtensionClassMethodFlags* = enum
-    GDEXTENSION_METHOD_FLAG_NORMAL = 1, GDEXTENSION_METHOD_FLAG_EDITOR = 2,
-    GDEXTENSION_METHOD_FLAG_CONST = 4, GDEXTENSION_METHOD_FLAG_VIRTUAL = 8,
-    GDEXTENSION_METHOD_FLAG_VARARG = 16, GDEXTENSION_METHOD_FLAG_STATIC = 32
-  GDExtensionClassMethodArgumentMetadata* = enum
-    GDEXTENSION_METHOD_ARGUMENT_METADATA_NONE,
-    GDEXTENSION_METHOD_ARGUMENT_METADATA_INT_IS_INT8,
-    GDEXTENSION_METHOD_ARGUMENT_METADATA_INT_IS_INT16,
-    GDEXTENSION_METHOD_ARGUMENT_METADATA_INT_IS_INT32,
-    GDEXTENSION_METHOD_ARGUMENT_METADATA_INT_IS_INT64,
-    GDEXTENSION_METHOD_ARGUMENT_METADATA_INT_IS_UINT8,
-    GDEXTENSION_METHOD_ARGUMENT_METADATA_INT_IS_UINT16,
-    GDEXTENSION_METHOD_ARGUMENT_METADATA_INT_IS_UINT32,
-    GDEXTENSION_METHOD_ARGUMENT_METADATA_INT_IS_UINT64,
-    GDEXTENSION_METHOD_ARGUMENT_METADATA_REAL_IS_FLOAT,
-    GDEXTENSION_METHOD_ARGUMENT_METADATA_REAL_IS_DOUBLE
-  GDExtensionClassMethodCall* = proc (method_userdata: pointer;
-                                   p_instance: GDExtensionClassInstancePtr;
-                                   p_args: ptr GDExtensionConstVariantPtr;
-                                   p_argument_count: GDExtensionInt;
-                                   r_return: GDExtensionVariantPtr;
-                                   r_error: ptr GDExtensionCallError)
-  GDExtensionClassMethodPtrCall* = proc (method_userdata: pointer;
-                                      p_instance: GDExtensionClassInstancePtr;
-                                      p_args: ptr GDExtensionConstTypePtr;
-                                      r_ret: GDExtensionTypePtr)
-  GDExtensionClassMethodInfo* {.bycopy.} = object
-    name*: GDExtensionStringNamePtr
+  ClassMethodFlags* {.size: sizeof(cuint).} = enum
+    MethodFlag_Normal = 0
+    MethodFlag_Editor = 1
+    MethodFlag_Const = 2
+    MethodFlag_Virtual = 3
+    MethodFlag_Vararg = 4
+    MethodFlag_Static = 5
+    `--PADDING_MAX--` = 31 # To align size-of set[ClassMethodFlags] to size-of cuint.
+  ClassMethodArgumentMetadata* {.size: sizeof(cuint).} = enum
+    MethodArgumentMetadata_None
+    MethodArgumentMetadata_Int_is_Int8
+    MethodArgumentMetadata_Int_is_Int16
+    MethodArgumentMetadata_Int_is_Int32
+    MethodArgumentMetadata_Int_is_Int64
+    MethodArgumentMetadata_Int_is_Uint8
+    MethodArgumentMetadata_Int_is_Uint16
+    MethodArgumentMetadata_Int_is_Uint32
+    MethodArgumentMetadata_Int_is_Uint64
+    MethodArgumentMetadata_Real_is_Float
+    MethodArgumentMetadata_Real_is_Double
+  ClassMethodCall* = proc (method_userdata: pointer;
+                                   p_instance: ClassInstancePtr;
+                                   p_args: ptr ConstVariantPtr;
+                                   p_argument_count: Int;
+                                   r_return: VariantPtr;
+                                   r_error: ptr CallError)
+  ClassMethodValidatedCall* = proc (method_userdata: pointer;
+      p_instance: ClassInstancePtr;
+      p_args: ptr ConstVariantPtr; r_return: VariantPtr)
+  ClassMethodPtrCall* = proc (method_userdata: pointer;
+                                      p_instance: ClassInstancePtr;
+                                      p_args: ptr ConstTypePtr;
+                                      r_ret: TypePtr)
+  ClassMethodInfo* {.bycopy.} = object
+    name*: StringNamePtr
     method_userdata*: pointer
-    call_func*: GDExtensionClassMethodCall
-    ptrcall_func*: GDExtensionClassMethodPtrCall
+    call_func*: ClassMethodCall
+    ptrcall_func*: ClassMethodPtrCall
     method_flags*: uint32_t
-    ##  Bitfield of `GDExtensionClassMethodFlags`.
-    ##  If `has_return_value` is false, `return_value_info` and `return_value_metadata` are ignored.
-    has_return_value*: GDExtensionBool
-    return_value_info*: ptr GDExtensionPropertyInfo
-    return_value_metadata*: GDExtensionClassMethodArgumentMetadata
-    ##  Arguments: `arguments_info` and `arguments_metadata` are array of size `argument_count`.
-    ##  Name and hint information for the argument can be omitted in release builds. Class name should always be present if it applies.
-    ##
+
+
+    has_return_value*: Bool
+    return_value_info*: ptr PropertyInfo
+    return_value_metadata*: ClassMethodArgumentMetadata
+
+
+
     argument_count*: uint32_t
-    arguments_info*: ptr GDExtensionPropertyInfo
-    arguments_metadata*: ptr GDExtensionClassMethodArgumentMetadata
-    ##  Default arguments: `default_arguments` is an array of size `default_argument_count`.
+    arguments_info*: ptr PropertyInfo
+    arguments_metadata*: ptr ClassMethodArgumentMetadata
+
     default_argument_count*: uint32_t
-    default_arguments*: ptr GDExtensionVariantPtr
-
-
+    default_arguments*: ptr VariantPtr
 const
-  GDEXTENSION_METHOD_FLAGS_DEFAULT* = GDEXTENSION_METHOD_FLAG_NORMAL
-
-
-##  SCRIPT INSTANCE EXTENSION
-
+  METHOD_FLAGS_DEFAULT* = METHOD_FLAG_NORMAL
 type
-  GDExtensionScriptInstanceDataPtr* = pointer
-
-##  Pointer to custom ScriptInstance native implementation.
-
+  ScriptInstanceDataPtr* = pointer
 type
-  GDExtensionScriptInstanceSet* = proc (p_instance: GDExtensionScriptInstanceDataPtr;
-                                     p_name: GDExtensionConstStringNamePtr;
-                                     p_value: GDExtensionConstVariantPtr): GDExtensionBool
-  GDExtensionScriptInstanceGet* = proc (p_instance: GDExtensionScriptInstanceDataPtr;
-                                     p_name: GDExtensionConstStringNamePtr;
-                                     r_ret: GDExtensionVariantPtr): GDExtensionBool
-  GDExtensionScriptInstanceGetPropertyList* = proc (
-      p_instance: GDExtensionScriptInstanceDataPtr; r_count: ptr uint32_t): ptr GDExtensionPropertyInfo
-  GDExtensionScriptInstanceFreePropertyList* = proc (
-      p_instance: GDExtensionScriptInstanceDataPtr;
-      p_list: ptr GDExtensionPropertyInfo)
-  GDExtensionScriptInstanceGetPropertyType* = proc (
-      p_instance: GDExtensionScriptInstanceDataPtr;
-      p_name: GDExtensionConstStringNamePtr; r_is_valid: ptr GDExtensionBool): GDExtensionVariantType
-  GDExtensionScriptInstancePropertyCanRevert* = proc (
-      p_instance: GDExtensionScriptInstanceDataPtr;
-      p_name: GDExtensionConstStringNamePtr): GDExtensionBool
-  GDExtensionScriptInstancePropertyGetRevert* = proc (
-      p_instance: GDExtensionScriptInstanceDataPtr;
-      p_name: GDExtensionConstStringNamePtr; r_ret: GDExtensionVariantPtr): GDExtensionBool
-  GDExtensionScriptInstanceGetOwner* = proc (
-      p_instance: GDExtensionScriptInstanceDataPtr): GDExtensionObjectPtr
-  GDExtensionScriptInstancePropertyStateAdd* = proc (
-      p_name: GDExtensionConstStringNamePtr; p_value: GDExtensionConstVariantPtr;
+  ScriptInstanceSet* = proc (p_instance: ScriptInstanceDataPtr;
+                                     p_name: ConstStringNamePtr;
+                                     p_value: ConstVariantPtr): Bool
+  ScriptInstanceGet* = proc (p_instance: ScriptInstanceDataPtr;
+                                     p_name: ConstStringNamePtr;
+                                     r_ret: VariantPtr): Bool
+  ScriptInstanceGetPropertyList* = proc (
+      p_instance: ScriptInstanceDataPtr; r_count: ptr uint32_t): ptr PropertyInfo
+  ScriptInstanceFreePropertyList* = proc (
+      p_instance: ScriptInstanceDataPtr;
+      p_list: ptr PropertyInfo)
+  ScriptInstanceGetPropertyType* = proc (
+      p_instance: ScriptInstanceDataPtr;
+      p_name: ConstStringNamePtr; r_is_valid: ptr Bool): VariantType
+  ScriptInstancePropertyCanRevert* = proc (
+      p_instance: ScriptInstanceDataPtr;
+      p_name: ConstStringNamePtr): Bool
+  ScriptInstancePropertyGetRevert* = proc (
+      p_instance: ScriptInstanceDataPtr;
+      p_name: ConstStringNamePtr; r_ret: VariantPtr): Bool
+  ScriptInstanceGetOwner* = proc (
+      p_instance: ScriptInstanceDataPtr): ObjectPtr
+  ScriptInstancePropertyStateAdd* = proc (
+      p_name: ConstStringNamePtr; p_value: ConstVariantPtr;
       p_userdata: pointer)
-  GDExtensionScriptInstanceGetPropertyState* = proc (
-      p_instance: GDExtensionScriptInstanceDataPtr;
-      p_add_func: GDExtensionScriptInstancePropertyStateAdd; p_userdata: pointer)
-  GDExtensionScriptInstanceGetMethodList* = proc (
-      p_instance: GDExtensionScriptInstanceDataPtr; r_count: ptr uint32_t): ptr GDExtensionMethodInfo
-  GDExtensionScriptInstanceFreeMethodList* = proc (
-      p_instance: GDExtensionScriptInstanceDataPtr;
-      p_list: ptr GDExtensionMethodInfo)
-  GDExtensionScriptInstanceHasMethod* = proc (
-      p_instance: GDExtensionScriptInstanceDataPtr;
-      p_name: GDExtensionConstStringNamePtr): GDExtensionBool
-  GDExtensionScriptInstanceCall* = proc (p_self: GDExtensionScriptInstanceDataPtr;
-                                      p_method: GDExtensionConstStringNamePtr;
-                                      p_args: ptr GDExtensionConstVariantPtr;
-                                      p_argument_count: GDExtensionInt;
-                                      r_return: GDExtensionVariantPtr;
-                                      r_error: ptr GDExtensionCallError)
-  GDExtensionScriptInstanceNotification* = proc (
-      p_instance: GDExtensionScriptInstanceDataPtr; p_what: int32_t)
-  GDExtensionScriptInstanceToString* = proc (
-      p_instance: GDExtensionScriptInstanceDataPtr;
-      r_is_valid: ptr GDExtensionBool; r_out: GDExtensionStringPtr)
-  GDExtensionScriptInstanceRefCountIncremented* = proc (
-      p_instance: GDExtensionScriptInstanceDataPtr)
-  GDExtensionScriptInstanceRefCountDecremented* = proc (
-      p_instance: GDExtensionScriptInstanceDataPtr): GDExtensionBool
-  GDExtensionScriptInstanceGetScript* = proc (
-      p_instance: GDExtensionScriptInstanceDataPtr): GDExtensionObjectPtr
-  GDExtensionScriptInstanceIsPlaceholder* = proc (
-      p_instance: GDExtensionScriptInstanceDataPtr): GDExtensionBool
-  GDExtensionScriptLanguagePtr* = pointer
-  GDExtensionScriptInstanceGetLanguage* = proc (
-      p_instance: GDExtensionScriptInstanceDataPtr): GDExtensionScriptLanguagePtr
-  GDExtensionScriptInstanceFree* = proc (p_instance: GDExtensionScriptInstanceDataPtr)
-  GDExtensionScriptInstancePtr* = pointer
-
-##  Pointer to ScriptInstance.
-
+  ScriptInstanceGetPropertyState* = proc (
+      p_instance: ScriptInstanceDataPtr;
+      p_add_func: ScriptInstancePropertyStateAdd; p_userdata: pointer)
+  ScriptInstanceGetMethodList* = proc (
+      p_instance: ScriptInstanceDataPtr; r_count: ptr uint32_t): ptr MethodInfo
+  ScriptInstanceFreeMethodList* = proc (
+      p_instance: ScriptInstanceDataPtr;
+      p_list: ptr MethodInfo)
+  ScriptInstanceHasMethod* = proc (
+      p_instance: ScriptInstanceDataPtr;
+      p_name: ConstStringNamePtr): Bool
+  ScriptInstanceCall* = proc (p_self: ScriptInstanceDataPtr;
+                                      p_method: ConstStringNamePtr;
+                                      p_args: ptr ConstVariantPtr;
+                                      p_argument_count: Int;
+                                      r_return: VariantPtr;
+                                      r_error: ptr CallError)
+  ScriptInstanceNotification* = proc (
+      p_instance: ScriptInstanceDataPtr; p_what: int32_t)
+  ScriptInstanceToString* = proc (
+      p_instance: ScriptInstanceDataPtr;
+      r_is_valid: ptr Bool; r_out: StringPtr)
+  ScriptInstanceRefCountIncremented* = proc (
+      p_instance: ScriptInstanceDataPtr)
+  ScriptInstanceRefCountDecremented* = proc (
+      p_instance: ScriptInstanceDataPtr): Bool
+  ScriptInstanceGetScript* = proc (
+      p_instance: ScriptInstanceDataPtr): ObjectPtr
+  ScriptInstanceIsPlaceholder* = proc (
+      p_instance: ScriptInstanceDataPtr): Bool
+  ScriptLanguagePtr* = pointer
+  ScriptInstanceGetLanguage* = proc (
+      p_instance: ScriptInstanceDataPtr): ScriptLanguagePtr
+  ScriptInstanceFree* = proc (p_instance: ScriptInstanceDataPtr)
+  ScriptInstancePtr* = pointer
 type
-  GDExtensionScriptInstanceInfo* {.bycopy.} = object
-    set_func*: GDExtensionScriptInstanceSet
-    get_func*: GDExtensionScriptInstanceGet
-    get_property_list_func*: GDExtensionScriptInstanceGetPropertyList
-    free_property_list_func*: GDExtensionScriptInstanceFreePropertyList
-    property_can_revert_func*: GDExtensionScriptInstancePropertyCanRevert
-    property_get_revert_func*: GDExtensionScriptInstancePropertyGetRevert
-    get_owner_func*: GDExtensionScriptInstanceGetOwner
-    get_property_state_func*: GDExtensionScriptInstanceGetPropertyState
-    get_method_list_func*: GDExtensionScriptInstanceGetMethodList
-    free_method_list_func*: GDExtensionScriptInstanceFreeMethodList
-    get_property_type_func*: GDExtensionScriptInstanceGetPropertyType
-    has_method_func*: GDExtensionScriptInstanceHasMethod
-    call_func*: GDExtensionScriptInstanceCall
-    notification_func*: GDExtensionScriptInstanceNotification
-    to_string_func*: GDExtensionScriptInstanceToString
-    refcount_incremented_func*: GDExtensionScriptInstanceRefCountIncremented
-    refcount_decremented_func*: GDExtensionScriptInstanceRefCountDecremented
-    get_script_func*: GDExtensionScriptInstanceGetScript
-    is_placeholder_func*: GDExtensionScriptInstanceIsPlaceholder
-    set_fallback_func*: GDExtensionScriptInstanceSet
-    get_fallback_func*: GDExtensionScriptInstanceGet
-    get_language_func*: GDExtensionScriptInstanceGetLanguage
-    free_func*: GDExtensionScriptInstanceFree
-
-
-##  INTERFACE
-
+  ScriptInstanceInfo* {.bycopy.} = object
+    set_func*: ScriptInstanceSet
+    get_func*: ScriptInstanceGet
+    get_property_list_func*: ScriptInstanceGetPropertyList
+    free_property_list_func*: ScriptInstanceFreePropertyList
+    property_can_revert_func*: ScriptInstancePropertyCanRevert
+    property_get_revert_func*: ScriptInstancePropertyGetRevert
+    get_owner_func*: ScriptInstanceGetOwner
+    get_property_state_func*: ScriptInstanceGetPropertyState
+    get_method_list_func*: ScriptInstanceGetMethodList
+    free_method_list_func*: ScriptInstanceFreeMethodList
+    get_property_type_func*: ScriptInstanceGetPropertyType
+    has_method_func*: ScriptInstanceHasMethod
+    call_func*: ScriptInstanceCall
+    notification_func*: ScriptInstanceNotification
+    to_string_func*: ScriptInstanceToString
+    refcount_incremented_func*: ScriptInstanceRefCountIncremented
+    refcount_decremented_func*: ScriptInstanceRefCountDecremented
+    get_script_func*: ScriptInstanceGetScript
+    is_placeholder_func*: ScriptInstanceIsPlaceholder
+    set_fallback_func*: ScriptInstanceSet
+    get_fallback_func*: ScriptInstanceGet
+    get_language_func*: ScriptInstanceGetLanguage
+    free_func*: ScriptInstanceFree
 type
-  GDExtensionInterface* {.bycopy.} = object
-    version_major*: uint32_t
-    version_minor*: uint32_t
-    version_patch*: uint32_t
-    version_string*: cstring
-    ##  GODOT CORE
-    mem_alloc*: proc (p_bytes: csize_t): pointer
-    mem_realloc*: proc (p_ptr: pointer; p_bytes: csize_t): pointer
-    mem_free*: proc (p_ptr: pointer)
-    print_error*: proc (p_description: cstring; p_function: cstring; p_file: cstring;
-                      p_line: int32_t; p_editor_notify: GDExtensionBool)
-    print_error_with_message*: proc (p_description: cstring; p_message: cstring;
-                                   p_function: cstring; p_file: cstring;
-                                   p_line: int32_t;
-                                   p_editor_notify: GDExtensionBool)
-    print_warning*: proc (p_description: cstring; p_function: cstring;
-                        p_file: cstring; p_line: int32_t;
-                        p_editor_notify: GDExtensionBool)
-    print_warning_with_message*: proc (p_description: cstring; p_message: cstring;
-                                     p_function: cstring; p_file: cstring;
-                                     p_line: int32_t;
-                                     p_editor_notify: GDExtensionBool)
-    print_script_error*: proc (p_description: cstring; p_function: cstring;
-                             p_file: cstring; p_line: int32_t;
-                             p_editor_notify: GDExtensionBool)
-    print_script_error_with_message*: proc (p_description: cstring;
-        p_message: cstring; p_function: cstring; p_file: cstring; p_line: int32_t;
-        p_editor_notify: GDExtensionBool)
-    get_native_struct_size*: proc (p_name: GDExtensionConstStringNamePtr): uint64_t
-    ##  GODOT VARIANT
-    ##  variant general
-    variant_new_copy*: proc (r_dest: GDExtensionVariantPtr;
-                           p_src: GDExtensionConstVariantPtr)
-    variant_new_nil*: proc (r_dest: GDExtensionVariantPtr)
-    variant_destroy*: proc (p_self: GDExtensionVariantPtr)
-    ##  variant type
-    variant_call*: proc (p_self: GDExtensionVariantPtr;
-                       p_method: GDExtensionConstStringNamePtr;
-                       p_args: ptr GDExtensionConstVariantPtr;
-                       p_argument_count: GDExtensionInt;
-                       r_return: GDExtensionVariantPtr;
-                       r_error: ptr GDExtensionCallError)
-    variant_call_static*: proc (p_type: GDExtensionVariantType;
-                              p_method: GDExtensionConstStringNamePtr;
-                              p_args: ptr GDExtensionConstVariantPtr;
-                              p_argument_count: GDExtensionInt;
-                              r_return: GDExtensionVariantPtr;
-                              r_error: ptr GDExtensionCallError)
-    variant_evaluate*: proc (p_op: GDExtensionVariantOperator;
-                           p_a: GDExtensionConstVariantPtr;
-                           p_b: GDExtensionConstVariantPtr;
-                           r_return: GDExtensionVariantPtr;
-                           r_valid: ptr GDExtensionBool)
-    variant_set*: proc (p_self: GDExtensionVariantPtr;
-                      p_key: GDExtensionConstVariantPtr;
-                      p_value: GDExtensionConstVariantPtr;
-                      r_valid: ptr GDExtensionBool)
-    variant_set_named*: proc (p_self: GDExtensionVariantPtr;
-                            p_key: GDExtensionConstStringNamePtr;
-                            p_value: GDExtensionConstVariantPtr;
-                            r_valid: ptr GDExtensionBool)
-    variant_set_keyed*: proc (p_self: GDExtensionVariantPtr;
-                            p_key: GDExtensionConstVariantPtr;
-                            p_value: GDExtensionConstVariantPtr;
-                            r_valid: ptr GDExtensionBool)
-    variant_set_indexed*: proc (p_self: GDExtensionVariantPtr;
-                              p_index: GDExtensionInt;
-                              p_value: GDExtensionConstVariantPtr;
-                              r_valid: ptr GDExtensionBool;
-                              r_oob: ptr GDExtensionBool)
-    variant_get*: proc (p_self: GDExtensionConstVariantPtr;
-                      p_key: GDExtensionConstVariantPtr;
-                      r_ret: GDExtensionVariantPtr; r_valid: ptr GDExtensionBool)
-    variant_get_named*: proc (p_self: GDExtensionConstVariantPtr;
-                            p_key: GDExtensionConstStringNamePtr;
-                            r_ret: GDExtensionVariantPtr;
-                            r_valid: ptr GDExtensionBool)
-    variant_get_keyed*: proc (p_self: GDExtensionConstVariantPtr;
-                            p_key: GDExtensionConstVariantPtr;
-                            r_ret: GDExtensionVariantPtr;
-                            r_valid: ptr GDExtensionBool)
-    variant_get_indexed*: proc (p_self: GDExtensionConstVariantPtr;
-                              p_index: GDExtensionInt;
-                              r_ret: GDExtensionVariantPtr;
-                              r_valid: ptr GDExtensionBool;
-                              r_oob: ptr GDExtensionBool)
-    variant_iter_init*: proc (p_self: GDExtensionConstVariantPtr;
-                            r_iter: GDExtensionVariantPtr;
-                            r_valid: ptr GDExtensionBool): GDExtensionBool
-    variant_iter_next*: proc (p_self: GDExtensionConstVariantPtr;
-                            r_iter: GDExtensionVariantPtr;
-                            r_valid: ptr GDExtensionBool): GDExtensionBool
-    variant_iter_get*: proc (p_self: GDExtensionConstVariantPtr;
-                           r_iter: GDExtensionVariantPtr;
-                           r_ret: GDExtensionVariantPtr;
-                           r_valid: ptr GDExtensionBool)
-    variant_hash*: proc (p_self: GDExtensionConstVariantPtr): GDExtensionInt
-    variant_recursive_hash*: proc (p_self: GDExtensionConstVariantPtr;
-                                 p_recursion_count: GDExtensionInt): GDExtensionInt
-    variant_hash_compare*: proc (p_self: GDExtensionConstVariantPtr;
-                               p_other: GDExtensionConstVariantPtr): GDExtensionBool
-    variant_booleanize*: proc (p_self: GDExtensionConstVariantPtr): GDExtensionBool
-    variant_duplicate*: proc (p_self: GDExtensionConstVariantPtr;
-                            r_ret: GDExtensionVariantPtr; p_deep: GDExtensionBool)
-    variant_stringify*: proc (p_self: GDExtensionConstVariantPtr;
-                            r_ret: GDExtensionStringPtr)
-    variant_get_type*: proc (p_self: GDExtensionConstVariantPtr): GDExtensionVariantType
-    variant_has_method*: proc (p_self: GDExtensionConstVariantPtr;
-                             p_method: GDExtensionConstStringNamePtr): GDExtensionBool
-    variant_has_member*: proc (p_type: GDExtensionVariantType;
-                             p_member: GDExtensionConstStringNamePtr): GDExtensionBool
-    variant_has_key*: proc (p_self: GDExtensionConstVariantPtr;
-                          p_key: GDExtensionConstVariantPtr;
-                          r_valid: ptr GDExtensionBool): GDExtensionBool
-    variant_get_type_name*: proc (p_type: GDExtensionVariantType;
-                                r_name: GDExtensionStringPtr)
-    variant_can_convert*: proc (p_from: GDExtensionVariantType;
-                              p_to: GDExtensionVariantType): GDExtensionBool
-    variant_can_convert_strict*: proc (p_from: GDExtensionVariantType;
-                                     p_to: GDExtensionVariantType): GDExtensionBool
-    ##  ptrcalls
-    get_variant_from_type_constructor*: proc (p_type: GDExtensionVariantType): GDExtensionVariantFromTypeConstructorFunc
-    get_variant_to_type_constructor*: proc (p_type: GDExtensionVariantType): GDExtensionTypeFromVariantConstructorFunc
-    variant_get_ptr_operator_evaluator*: proc (
-        p_operator: GDExtensionVariantOperator; p_type_a: GDExtensionVariantType;
-        p_type_b: GDExtensionVariantType): GDExtensionPtrOperatorEvaluator
-    variant_get_ptr_builtin_method*: proc (p_type: GDExtensionVariantType;
-        p_method: GDExtensionConstStringNamePtr; p_hash: GDExtensionInt): GDExtensionPtrBuiltInMethod
-    variant_get_ptr_constructor*: proc (p_type: GDExtensionVariantType;
-                                      p_constructor: int32_t): GDExtensionPtrConstructor
-    variant_get_ptr_destructor*: proc (p_type: GDExtensionVariantType): GDExtensionPtrDestructor
-    variant_construct*: proc (p_type: GDExtensionVariantType;
-                            p_base: GDExtensionVariantPtr;
-                            p_args: ptr GDExtensionConstVariantPtr;
-                            p_argument_count: int32_t;
-                            r_error: ptr GDExtensionCallError)
-    variant_get_ptr_setter*: proc (p_type: GDExtensionVariantType;
-                                 p_member: GDExtensionConstStringNamePtr): GDExtensionPtrSetter
-    variant_get_ptr_getter*: proc (p_type: GDExtensionVariantType;
-                                 p_member: GDExtensionConstStringNamePtr): GDExtensionPtrGetter
-    variant_get_ptr_indexed_setter*: proc (p_type: GDExtensionVariantType): GDExtensionPtrIndexedSetter
-    variant_get_ptr_indexed_getter*: proc (p_type: GDExtensionVariantType): GDExtensionPtrIndexedGetter
-    variant_get_ptr_keyed_setter*: proc (p_type: GDExtensionVariantType): GDExtensionPtrKeyedSetter
-    variant_get_ptr_keyed_getter*: proc (p_type: GDExtensionVariantType): GDExtensionPtrKeyedGetter
-    variant_get_ptr_keyed_checker*: proc (p_type: GDExtensionVariantType): GDExtensionPtrKeyedChecker
-    variant_get_constant_value*: proc (p_type: GDExtensionVariantType;
-                                     p_constant: GDExtensionConstStringNamePtr;
-                                     r_ret: GDExtensionVariantPtr)
-    variant_get_ptr_utility_function*: proc (
-        p_function: GDExtensionConstStringNamePtr; p_hash: GDExtensionInt): GDExtensionPtrUtilityFunction
-    ##   extra utilities
-    string_new_with_latin1_chars*: proc (r_dest: GDExtensionStringPtr;
-                                       p_contents: cstring)
-    string_new_with_utf8_chars*: proc (r_dest: GDExtensionStringPtr;
-                                     p_contents: cstring)
-    string_new_with_utf16_chars*: proc (r_dest: GDExtensionStringPtr;
-                                      p_contents: ptr char16_t)
-    string_new_with_utf32_chars*: proc (r_dest: GDExtensionStringPtr;
-                                      p_contents: ptr char32_t)
-    string_new_with_wide_chars*: proc (r_dest: GDExtensionStringPtr;
-                                     p_contents: ptr wchar_t)
-    string_new_with_latin1_chars_and_len*: proc (r_dest: GDExtensionStringPtr;
-        p_contents: cstring; p_size: GDExtensionInt)
-    string_new_with_utf8_chars_and_len*: proc (r_dest: GDExtensionStringPtr;
-        p_contents: cstring; p_size: GDExtensionInt)
-    string_new_with_utf16_chars_and_len*: proc (r_dest: GDExtensionStringPtr;
-        p_contents: ptr char16_t; p_size: GDExtensionInt)
-    string_new_with_utf32_chars_and_len*: proc (r_dest: GDExtensionStringPtr;
-        p_contents: ptr char32_t; p_size: GDExtensionInt)
-    string_new_with_wide_chars_and_len*: proc (r_dest: GDExtensionStringPtr;
-        p_contents: ptr wchar_t; p_size: GDExtensionInt)
-    ##  Information about the following functions:
-    ##  - The return value is the resulting encoded string length.
-    ##  - The length returned is in characters, not in bytes. It also does not include a trailing zero.
-    ##  - These functions also do not write trailing zero, If you need it, write it yourself at the position indicated by the length (and make sure to allocate it).
-    ##  - Passing NULL in r_text means only the length is computed (again, without including trailing zero).
-    ##  - p_max_write_length argument is in characters, not bytes. It will be ignored if r_text is NULL.
-    ##  - p_max_write_length argument does not affect the return value, it's only to cap write length.
-    ##
-    string_to_latin1_chars*: proc (p_self: GDExtensionConstStringPtr;
-                                 r_text: cstring;
-                                 p_max_write_length: GDExtensionInt): GDExtensionInt
-    string_to_utf8_chars*: proc (p_self: GDExtensionConstStringPtr; r_text: cstring;
-                               p_max_write_length: GDExtensionInt): GDExtensionInt
-    string_to_utf16_chars*: proc (p_self: GDExtensionConstStringPtr;
-                                r_text: ptr char16_t;
-                                p_max_write_length: GDExtensionInt): GDExtensionInt
-    string_to_utf32_chars*: proc (p_self: GDExtensionConstStringPtr;
-                                r_text: ptr char32_t;
-                                p_max_write_length: GDExtensionInt): GDExtensionInt
-    string_to_wide_chars*: proc (p_self: GDExtensionConstStringPtr;
-                               r_text: ptr wchar_t;
-                               p_max_write_length: GDExtensionInt): GDExtensionInt
-    string_operator_index*: proc (p_self: GDExtensionStringPtr;
-                                p_index: GDExtensionInt): ptr char32_t
-    string_operator_index_const*: proc (p_self: GDExtensionConstStringPtr;
-                                      p_index: GDExtensionInt): ptr char32_t
-    string_operator_plus_eq_string*: proc (p_self: GDExtensionStringPtr;
-        p_b: GDExtensionConstStringPtr)
-    string_operator_plus_eq_char*: proc (p_self: GDExtensionStringPtr; p_b: char32_t)
-    string_operator_plus_eq_cstr*: proc (p_self: GDExtensionStringPtr; p_b: cstring)
-    string_operator_plus_eq_wcstr*: proc (p_self: GDExtensionStringPtr;
-                                        p_b: ptr wchar_t)
-    string_operator_plus_eq_c32str*: proc (p_self: GDExtensionStringPtr;
-        p_b: ptr char32_t)
-    ##   XMLParser extra utilities
-    xml_parser_open_buffer*: proc (p_instance: GDExtensionObjectPtr;
-                                 p_buffer: ptr uint8_t; p_size: csize_t): GDExtensionInt
-    ##   FileAccess extra utilities
-    file_access_store_buffer*: proc (p_instance: GDExtensionObjectPtr;
-                                   p_src: ptr uint8_t; p_length: uint64_t)
-    file_access_get_buffer*: proc (p_instance: GDExtensionConstObjectPtr;
-                                 p_dst: ptr uint8_t; p_length: uint64_t): uint64_t
-    ##   WorkerThreadPool extra utilities
-    worker_thread_pool_add_native_group_task*: proc (
-        p_instance: GDExtensionObjectPtr;
-        p_func: proc (a1: pointer; a2: uint32_t); p_userdata: pointer; p_elements: cint;
-        p_tasks: cint; p_high_priority: GDExtensionBool;
-        p_description: GDExtensionConstStringPtr): int64_t
-    worker_thread_pool_add_native_task*: proc (p_instance: GDExtensionObjectPtr;
-        p_func: proc (a1: pointer); p_userdata: pointer;
-        p_high_priority: GDExtensionBool; p_description: GDExtensionConstStringPtr): int64_t
-    ##  Packed array functions
-    packed_byte_array_operator_index*: proc (p_self: GDExtensionTypePtr;
-        p_index: GDExtensionInt): ptr uint8_t
-    ##  p_self should be a PackedByteArray
-    packed_byte_array_operator_index_const*: proc (
-        p_self: GDExtensionConstTypePtr; p_index: GDExtensionInt): ptr uint8_t
-    ##  p_self should be a PackedByteArray
-    packed_color_array_operator_index*: proc (p_self: GDExtensionTypePtr;
-        p_index: GDExtensionInt): GDExtensionTypePtr
-    ##  p_self should be a PackedColorArray, returns Color ptr
-    packed_color_array_operator_index_const*: proc (
-        p_self: GDExtensionConstTypePtr; p_index: GDExtensionInt): GDExtensionTypePtr
-    ##  p_self should be a PackedColorArray, returns Color ptr
-    packed_float32_array_operator_index*: proc (p_self: GDExtensionTypePtr;
-        p_index: GDExtensionInt): ptr cfloat
-    ##  p_self should be a PackedFloat32Array
-    packed_float32_array_operator_index_const*: proc (
-        p_self: GDExtensionConstTypePtr; p_index: GDExtensionInt): ptr cfloat
-    ##  p_self should be a PackedFloat32Array
-    packed_float64_array_operator_index*: proc (p_self: GDExtensionTypePtr;
-        p_index: GDExtensionInt): ptr cdouble
-    ##  p_self should be a PackedFloat64Array
-    packed_float64_array_operator_index_const*: proc (
-        p_self: GDExtensionConstTypePtr; p_index: GDExtensionInt): ptr cdouble
-    ##  p_self should be a PackedFloat64Array
-    packed_int32_array_operator_index*: proc (p_self: GDExtensionTypePtr;
-        p_index: GDExtensionInt): ptr int32_t
-    ##  p_self should be a PackedInt32Array
-    packed_int32_array_operator_index_const*: proc (
-        p_self: GDExtensionConstTypePtr; p_index: GDExtensionInt): ptr int32_t
-    ##  p_self should be a PackedInt32Array
-    packed_int64_array_operator_index*: proc (p_self: GDExtensionTypePtr;
-        p_index: GDExtensionInt): ptr int64_t
-    ##  p_self should be a PackedInt32Array
-    packed_int64_array_operator_index_const*: proc (
-        p_self: GDExtensionConstTypePtr; p_index: GDExtensionInt): ptr int64_t
-    ##  p_self should be a PackedInt32Array
-    packed_string_array_operator_index*: proc (p_self: GDExtensionTypePtr;
-        p_index: GDExtensionInt): GDExtensionStringPtr
-    ##  p_self should be a PackedStringArray
-    packed_string_array_operator_index_const*: proc (
-        p_self: GDExtensionConstTypePtr; p_index: GDExtensionInt): GDExtensionStringPtr
-    ##  p_self should be a PackedStringArray
-    packed_vector2_array_operator_index*: proc (p_self: GDExtensionTypePtr;
-        p_index: GDExtensionInt): GDExtensionTypePtr
-    ##  p_self should be a PackedVector2Array, returns Vector2 ptr
-    packed_vector2_array_operator_index_const*: proc (
-        p_self: GDExtensionConstTypePtr; p_index: GDExtensionInt): GDExtensionTypePtr
-    ##  p_self should be a PackedVector2Array, returns Vector2 ptr
-    packed_vector3_array_operator_index*: proc (p_self: GDExtensionTypePtr;
-        p_index: GDExtensionInt): GDExtensionTypePtr
-    ##  p_self should be a PackedVector3Array, returns Vector3 ptr
-    packed_vector3_array_operator_index_const*: proc (
-        p_self: GDExtensionConstTypePtr; p_index: GDExtensionInt): GDExtensionTypePtr
-    ##  p_self should be a PackedVector3Array, returns Vector3 ptr
-    array_operator_index*: proc (p_self: GDExtensionTypePtr; p_index: GDExtensionInt): GDExtensionVariantPtr
-    ##  p_self should be an Array ptr
-    array_operator_index_const*: proc (p_self: GDExtensionConstTypePtr;
-                                     p_index: GDExtensionInt): GDExtensionVariantPtr
-    ##  p_self should be an Array ptr
-    array_ref*: proc (p_self: GDExtensionTypePtr; p_from: GDExtensionConstTypePtr)
-    ##  p_self should be an Array ptr
-    array_set_typed*: proc (p_self: GDExtensionTypePtr;
-                          p_type: GDExtensionVariantType;
-                          p_class_name: GDExtensionConstStringNamePtr;
-                          p_script: GDExtensionConstVariantPtr)
-    ##  p_self should be an Array ptr
-    ##  Dictionary functions
-    dictionary_operator_index*: proc (p_self: GDExtensionTypePtr;
-                                    p_key: GDExtensionConstVariantPtr): GDExtensionVariantPtr
-    ##  p_self should be an Dictionary ptr
-    dictionary_operator_index_const*: proc (p_self: GDExtensionConstTypePtr;
-        p_key: GDExtensionConstVariantPtr): GDExtensionVariantPtr
-    ##  p_self should be an Dictionary ptr
-    ##  OBJECT
-    object_method_bind_call*: proc (p_method_bind: GDExtensionMethodBindPtr;
-                                  p_instance: GDExtensionObjectPtr;
-                                  p_args: ptr GDExtensionConstVariantPtr;
-                                  p_arg_count: GDExtensionInt;
-                                  r_ret: GDExtensionVariantPtr;
-                                  r_error: ptr GDExtensionCallError)
-    object_method_bind_ptrcall*: proc (p_method_bind: GDExtensionMethodBindPtr;
-                                     p_instance: GDExtensionObjectPtr;
-                                     p_args: ptr GDExtensionConstTypePtr;
-                                     r_ret: GDExtensionTypePtr)
-    object_destroy*: proc (p_o: GDExtensionObjectPtr)
-    global_get_singleton*: proc (p_name: GDExtensionConstStringNamePtr): GDExtensionObjectPtr
-    object_get_instance_binding*: proc (p_o: GDExtensionObjectPtr; p_token: pointer;
-        p_callbacks: ptr GDExtensionInstanceBindingCallbacks): pointer
-    object_set_instance_binding*: proc (p_o: GDExtensionObjectPtr; p_token: pointer;
-                                      p_binding: pointer; p_callbacks: ptr GDExtensionInstanceBindingCallbacks)
-    object_set_instance*: proc (p_o: GDExtensionObjectPtr;
-                              p_classname: GDExtensionConstStringNamePtr;
-                              p_instance: GDExtensionClassInstancePtr)
-    ##  p_classname should be a registered extension class and should extend the p_o object's class.
-    object_cast_to*: proc (p_object: GDExtensionConstObjectPtr; p_class_tag: pointer): GDExtensionObjectPtr
-    object_get_instance_from_id*: proc (p_instance_id: GDObjectInstanceID): GDExtensionObjectPtr
-    object_get_instance_id*: proc (p_object: GDExtensionConstObjectPtr): GDObjectInstanceID
-    ##  REFERENCE
-    ref_get_object*: proc (p_ref: GDExtensionConstRefPtr): GDExtensionObjectPtr
-    ref_set_object*: proc (p_ref: GDExtensionRefPtr; p_object: GDExtensionObjectPtr)
-    ##  SCRIPT INSTANCE
-    script_instance_create*: proc (p_info: ptr GDExtensionScriptInstanceInfo;
-        p_instance_data: GDExtensionScriptInstanceDataPtr): GDExtensionScriptInstancePtr
-    ##  CLASSDB
-    classdb_construct_object*: proc (p_classname: GDExtensionConstStringNamePtr): GDExtensionObjectPtr
-    ##  The passed class must be a built-in godot class, or an already-registered extension class. In both case, object_set_instance should be called to fully initialize the object.
-    classdb_get_method_bind*: proc (p_classname: GDExtensionConstStringNamePtr;
-                                  p_methodname: GDExtensionConstStringNamePtr;
-                                  p_hash: GDExtensionInt): GDExtensionMethodBindPtr
-    classdb_get_class_tag*: proc (p_classname: GDExtensionConstStringNamePtr): pointer
-    ##  CLASSDB EXTENSION
-    ##  Provided parameters for `classdb_register_extension_*` can be safely freed once the function returns.
-    classdb_register_extension_class*: proc (
-        p_library: GDExtensionClassLibraryPtr;
-        p_class_name: GDExtensionConstStringNamePtr;
-        p_parent_class_name: GDExtensionConstStringNamePtr;
-        p_extension_funcs: ptr GDExtensionClassCreationInfo)
-    classdb_register_extension_class_method*: proc (
-        p_library: GDExtensionClassLibraryPtr;
-        p_class_name: GDExtensionConstStringNamePtr;
-        p_method_info: ptr GDExtensionClassMethodInfo)
-    classdb_register_extension_class_integer_constant*: proc (
-        p_library: GDExtensionClassLibraryPtr;
-        p_class_name: GDExtensionConstStringNamePtr;
-        p_enum_name: GDExtensionConstStringNamePtr;
-        p_constant_name: GDExtensionConstStringNamePtr;
-        p_constant_value: GDExtensionInt; p_is_bitfield: GDExtensionBool)
-    classdb_register_extension_class_property*: proc (
-        p_library: GDExtensionClassLibraryPtr;
-        p_class_name: GDExtensionConstStringNamePtr;
-        p_info: ptr GDExtensionPropertyInfo;
-        p_setter: GDExtensionConstStringNamePtr;
-        p_getter: GDExtensionConstStringNamePtr)
-    classdb_register_extension_class_property_group*: proc (
-        p_library: GDExtensionClassLibraryPtr;
-        p_class_name: GDExtensionConstStringNamePtr;
-        p_group_name: GDExtensionConstStringPtr;
-        p_prefix: GDExtensionConstStringPtr)
-    classdb_register_extension_class_property_subgroup*: proc (
-        p_library: GDExtensionClassLibraryPtr;
-        p_class_name: GDExtensionConstStringNamePtr;
-        p_subgroup_name: GDExtensionConstStringPtr;
-        p_prefix: GDExtensionConstStringPtr)
-    classdb_register_extension_class_signal*: proc (
-        p_library: GDExtensionClassLibraryPtr;
-        p_class_name: GDExtensionConstStringNamePtr;
-        p_signal_name: GDExtensionConstStringNamePtr;
-        p_argument_info: ptr GDExtensionPropertyInfo;
-        p_argument_count: GDExtensionInt)
-    classdb_unregister_extension_class*: proc (
-        p_library: GDExtensionClassLibraryPtr;
-        p_class_name: GDExtensionConstStringNamePtr)
-    ##  Unregistering a parent class before a class that inherits it will result in failure. Inheritors must be unregistered first.
-    get_library_path*: proc (p_library: GDExtensionClassLibraryPtr;
-                           r_path: GDExtensionStringPtr)
+  InitializationLevel* {.size: sizeof(cuint).} = enum
+    Initialization_Core
+    Initialization_Servers
+    Initialization_Scene
+    Initialization_Editor
+  Initialization* {.bycopy.} = object
 
 
-##  INITIALIZATION
+    minimum_initialization_level*: InitializationLevel
 
-type
-  GDExtensionInitializationLevel* = enum
-    GDEXTENSION_INITIALIZATION_CORE, GDEXTENSION_INITIALIZATION_SERVERS,
-    GDEXTENSION_INITIALIZATION_SCENE, GDEXTENSION_INITIALIZATION_EDITOR,
-    GDEXTENSION_MAX_INITIALIZATION_LEVEL
-  GDExtensionInitialization* {.bycopy.} = object
-    ##  Minimum initialization level required.
-    ##  If Core or Servers, the extension needs editor or game restart to take effect
-    minimum_initialization_level*: GDExtensionInitializationLevel
-    ##  Up to the user to supply when initializing
     userdata*: pointer
-    ##  This function will be called multiple times for each initialization level.
-    initialize*: proc (userdata: pointer; p_level: GDExtensionInitializationLevel)
-    deinitialize*: proc (userdata: pointer; p_level: GDExtensionInitializationLevel)
 
-
-
-##  Define a C function prototype that implements the function below and expose it to dlopen() (or similar).
-##  This is the entry point of the GDExtension library and will be called on initialization.
-##  It can be used to set up different init levels, which are called during various stages of initialization/shutdown.
-##  The function name must be a unique one specified in the .gdextension config file.
-##
-
+    initialize*: proc (userdata: pointer; p_level: InitializationLevel)
+    deinitialize*: proc (userdata: pointer; p_level: InitializationLevel)
+  InterfaceFunctionPtr* = proc ()
+  InterfaceGetProcAddress* = proc (p_function_name: cstring): InterfaceFunctionPtr
 type
-  GDExtensionInitializationFunction* = proc (p_interface: ptr GDExtensionInterface;
-      p_library: GDExtensionClassLibraryPtr;
-      r_initialization: ptr GDExtensionInitialization): GDExtensionBool
+  InitializationFunction* = proc (
+      p_get_proc_address: InterfaceGetProcAddress;
+      p_library: ClassLibraryPtr;
+      r_initialization: ptr Initialization): Bool
+type
+  GodotVersion* {.bycopy.} = object
+    major*: uint32_t
+    minor*: uint32_t
+    patch*: uint32_t
+    string*: cstring
+type
+  InterfaceGetGodotVersion* = proc (
+      r_godot_version: ptr GodotVersion)
+type
+  InterfaceMemAlloc* = proc (p_bytes: csize_t): pointer
+type
+  InterfaceMemRealloc* = proc (p_ptr: pointer; p_bytes: csize_t): pointer
+type
+  InterfaceMemFree* = proc (p_ptr: pointer)
+type
+  InterfacePrintError* = proc (p_description: cstring;
+                                       p_function: cstring; p_file: cstring;
+                                       p_line: int32_t;
+                                       p_editor_notify: Bool)
+type
+  InterfacePrintErrorWithMessage* = proc (p_description: cstring;
+      p_message: cstring; p_function: cstring; p_file: cstring; p_line: int32_t;
+      p_editor_notify: Bool)
+type
+  InterfacePrintWarning* = proc (p_description: cstring;
+      p_function: cstring; p_file: cstring; p_line: int32_t;
+      p_editor_notify: Bool)
+type
+  InterfacePrintWarningWithMessage* = proc (p_description: cstring;
+      p_message: cstring; p_function: cstring; p_file: cstring; p_line: int32_t;
+      p_editor_notify: Bool)
+type
+  InterfacePrintScriptError* = proc (p_description: cstring;
+      p_function: cstring; p_file: cstring; p_line: int32_t;
+      p_editor_notify: Bool)
+type
+  InterfacePrintScriptErrorWithMessage* = proc (p_description: cstring;
+      p_message: cstring; p_function: cstring; p_file: cstring; p_line: int32_t;
+      p_editor_notify: Bool)
+type
+  InterfaceGetNativeStructSize* = proc (
+      p_name: ConstStringNamePtr): uint64_t
+type
+  InterfaceVariantNewCopy* = proc (
+      r_dest: UninitializedVariantPtr;
+      p_src: ConstVariantPtr)
+type
+  InterfaceVariantNewNil* = proc (
+      r_dest: UninitializedVariantPtr)
+type
+  InterfaceVariantDestroy* = proc (p_self: VariantPtr)
+type
+  InterfaceVariantCall* = proc (p_self: VariantPtr; p_method: ConstStringNamePtr;
+                                        p_args: ptr ConstVariantPtr;
+                                        p_argument_count: Int; r_return: UninitializedVariantPtr;
+                                        r_error: ptr CallError)
+type
+  InterfaceVariantCallStatic* = proc (p_type: VariantType;
+      p_method: ConstStringNamePtr;
+      p_args: ptr ConstVariantPtr; p_argument_count: Int;
+      r_return: UninitializedVariantPtr;
+      r_error: ptr CallError)
+type
+  InterfaceVariantEvaluate* = proc (p_op: VariantOperator;
+      p_a: ConstVariantPtr; p_b: ConstVariantPtr;
+      r_return: UninitializedVariantPtr; r_valid: ptr Bool)
+type
+  InterfaceVariantSet* = proc (p_self: VariantPtr;
+                                       p_key: ConstVariantPtr;
+                                       p_value: ConstVariantPtr;
+                                       r_valid: ptr Bool)
+type
+  InterfaceVariantSetNamed* = proc (p_self: VariantPtr;
+      p_key: ConstStringNamePtr; p_value: ConstVariantPtr;
+      r_valid: ptr Bool)
+type
+  InterfaceVariantSetKeyed* = proc (p_self: VariantPtr;
+      p_key: ConstVariantPtr; p_value: ConstVariantPtr;
+      r_valid: ptr Bool)
+type
+  InterfaceVariantSetIndexed* = proc (p_self: VariantPtr;
+      p_index: Int; p_value: ConstVariantPtr;
+      r_valid: ptr Bool; r_oob: ptr Bool)
+type
+  InterfaceVariantGet* = proc (p_self: ConstVariantPtr;
+                                       p_key: ConstVariantPtr; r_ret: UninitializedVariantPtr;
+                                       r_valid: ptr Bool)
+type
+  InterfaceVariantGetNamed* = proc (p_self: ConstVariantPtr;
+      p_key: ConstStringNamePtr;
+      r_ret: UninitializedVariantPtr; r_valid: ptr Bool)
+type
+  InterfaceVariantGetKeyed* = proc (p_self: ConstVariantPtr;
+      p_key: ConstVariantPtr;
+      r_ret: UninitializedVariantPtr; r_valid: ptr Bool)
+type
+  InterfaceVariantGetIndexed* = proc (
+      p_self: ConstVariantPtr; p_index: Int;
+      r_ret: UninitializedVariantPtr; r_valid: ptr Bool;
+      r_oob: ptr Bool)
+type
+  InterfaceVariantIterInit* = proc (p_self: ConstVariantPtr;
+      r_iter: UninitializedVariantPtr; r_valid: ptr Bool): Bool
+type
+  InterfaceVariantIterNext* = proc (p_self: ConstVariantPtr;
+      r_iter: VariantPtr; r_valid: ptr Bool): Bool
+type
+  InterfaceVariantIterGet* = proc (p_self: ConstVariantPtr;
+      r_iter: VariantPtr; r_ret: UninitializedVariantPtr;
+      r_valid: ptr Bool)
+type
+  InterfaceVariantHash* = proc (p_self: ConstVariantPtr): Int
+type
+  InterfaceVariantRecursiveHash* = proc (
+      p_self: ConstVariantPtr; p_recursion_count: Int): Int
+type
+  InterfaceVariantHashCompare* = proc (
+      p_self: ConstVariantPtr; p_other: ConstVariantPtr): Bool
+type
+  InterfaceVariantBooleanize* = proc (p_self: ConstVariantPtr): Bool
+type
+  InterfaceVariantDuplicate* = proc (p_self: ConstVariantPtr;
+      r_ret: VariantPtr; p_deep: Bool)
+type
+  InterfaceVariantStringify* = proc (p_self: ConstVariantPtr;
+      r_ret: StringPtr)
+type
+  InterfaceVariantGetType* = proc (p_self: ConstVariantPtr): VariantType
+type
+  InterfaceVariantHasMethod* = proc (p_self: ConstVariantPtr;
+      p_method: ConstStringNamePtr): Bool
+type
+  InterfaceVariantHasMember* = proc (p_type: VariantType;
+      p_member: ConstStringNamePtr): Bool
+type
+  InterfaceVariantHasKey* = proc (p_self: ConstVariantPtr;
+      p_key: ConstVariantPtr; r_valid: ptr Bool): Bool
+type
+  InterfaceVariantGetTypeName* = proc (p_type: VariantType;
+      r_name: UninitializedStringPtr)
+type
+  InterfaceVariantCanConvert* = proc (p_from: VariantType;
+      p_to: VariantType): Bool
+type
+  InterfaceVariantCanConvertStrict* = proc (
+      p_from: VariantType; p_to: VariantType): Bool
+type
+  InterfaceGetVariantFromTypeConstructor* = proc (
+      p_type: VariantType): VariantFromTypeConstructorFunc
+type
+  InterfaceGetVariantToTypeConstructor* = proc (
+      p_type: VariantType): TypeFromVariantConstructorFunc
+type
+  InterfaceVariantGetPtrOperatorEvaluator* = proc (
+      p_operator: VariantOperator; p_type_a: VariantType;
+      p_type_b: VariantType): PtrOperatorEvaluator
+type
+  InterfaceVariantGetPtrBuiltinMethod* = proc (
+      p_type: VariantType; p_method: ConstStringNamePtr;
+      p_hash: Int): PtrBuiltInMethod
+type
+  InterfaceVariantGetPtrConstructor* = proc (
+      p_type: VariantType; p_constructor: int32_t): PtrConstructor
+type
+  InterfaceVariantGetPtrDestructor* = proc (
+      p_type: VariantType): PtrDestructor
+type
+  InterfaceVariantConstruct* = proc (p_type: VariantType;
+      r_base: UninitializedVariantPtr;
+      p_args: ptr ConstVariantPtr; p_argument_count: int32_t;
+      r_error: ptr CallError)
+type
+  InterfaceVariantGetPtrSetter* = proc (p_type: VariantType;
+      p_member: ConstStringNamePtr): PtrSetter
+type
+  InterfaceVariantGetPtrGetter* = proc (p_type: VariantType;
+      p_member: ConstStringNamePtr): PtrGetter
+type
+  InterfaceVariantGetPtrIndexedSetter* = proc (
+      p_type: VariantType): PtrIndexedSetter
+type
+  InterfaceVariantGetPtrIndexedGetter* = proc (
+      p_type: VariantType): PtrIndexedGetter
+type
+  InterfaceVariantGetPtrKeyedSetter* = proc (
+      p_type: VariantType): PtrKeyedSetter
+type
+  InterfaceVariantGetPtrKeyedGetter* = proc (
+      p_type: VariantType): PtrKeyedGetter
+type
+  InterfaceVariantGetPtrKeyedChecker* = proc (
+      p_type: VariantType): PtrKeyedChecker
+type
+  InterfaceVariantGetConstantValue* = proc (
+      p_type: VariantType; p_constant: ConstStringNamePtr;
+      r_ret: UninitializedVariantPtr)
+type
+  InterfaceVariantGetPtrUtilityFunction* = proc (
+      p_function: ConstStringNamePtr; p_hash: Int): PtrUtilityFunction
+type
+  InterfaceStringNewWithLatin1Chars* = proc (
+      r_dest: UninitializedStringPtr; p_contents: cstring)
+type
+  InterfaceStringNewWithUtf8Chars* = proc (
+      r_dest: UninitializedStringPtr; p_contents: cstring)
+type
+  InterfaceStringNewWithUtf16Chars* = proc (
+      r_dest: UninitializedStringPtr; p_contents: ptr char16_t)
+type
+  InterfaceStringNewWithUtf32Chars* = proc (
+      r_dest: UninitializedStringPtr; p_contents: ptr char32_t)
+type
+  InterfaceStringNewWithWideChars* = proc (
+      r_dest: UninitializedStringPtr; p_contents: ptr wchar_t)
+type
+  InterfaceStringNewWithLatin1CharsAndLen* = proc (
+      r_dest: UninitializedStringPtr; p_contents: cstring;
+      p_size: Int)
+type
+  InterfaceStringNewWithUtf8CharsAndLen* = proc (
+      r_dest: UninitializedStringPtr; p_contents: cstring;
+      p_size: Int)
+type
+  InterfaceStringNewWithUtf16CharsAndLen* = proc (
+      r_dest: UninitializedStringPtr; p_contents: ptr char16_t;
+      p_size: Int)
+type
+  InterfaceStringNewWithUtf32CharsAndLen* = proc (
+      r_dest: UninitializedStringPtr; p_contents: ptr char32_t;
+      p_size: Int)
+type
+  InterfaceStringNewWithWideCharsAndLen* = proc (
+      r_dest: UninitializedStringPtr; p_contents: ptr wchar_t;
+      p_size: Int)
+type
+  InterfaceStringToLatin1Chars* = proc (
+      p_self: ConstStringPtr; r_text: cstring;
+      p_max_write_length: Int): Int
+type
+  InterfaceStringToUtf8Chars* = proc (p_self: ConstStringPtr;
+      r_text: cstring; p_max_write_length: Int): Int
+type
+  InterfaceStringToUtf16Chars* = proc (
+      p_self: ConstStringPtr; r_text: ptr char16_t;
+      p_max_write_length: Int): Int
+type
+  InterfaceStringToUtf32Chars* = proc (
+      p_self: ConstStringPtr; r_text: ptr char32_t;
+      p_max_write_length: Int): Int
+type
+  InterfaceStringToWideChars* = proc (p_self: ConstStringPtr;
+      r_text: ptr wchar_t; p_max_write_length: Int): Int
+type
+  InterfaceStringOperatorIndex* = proc (p_self: StringPtr;
+      p_index: Int): ptr char32_t
+type
+  InterfaceStringOperatorIndexConst* = proc (
+      p_self: ConstStringPtr; p_index: Int): ptr char32_t
+type
+  InterfaceStringOperatorPlusEqString* = proc (
+      p_self: StringPtr; p_b: ConstStringPtr)
+type
+  InterfaceStringOperatorPlusEqChar* = proc (
+      p_self: StringPtr; p_b: char32_t)
+type
+  InterfaceStringOperatorPlusEqCstr* = proc (
+      p_self: StringPtr; p_b: cstring)
+type
+  InterfaceStringOperatorPlusEqWcstr* = proc (
+      p_self: StringPtr; p_b: ptr wchar_t)
+type
+  InterfaceStringOperatorPlusEqC32str* = proc (
+      p_self: StringPtr; p_b: ptr char32_t)
+type
+  InterfaceXmlParserOpenBuffer* = proc (
+      p_instance: ObjectPtr; p_buffer: ptr uint8_t; p_size: csize_t): Int
+type
+  InterfaceFileAccessStoreBuffer* = proc (
+      p_instance: ObjectPtr; p_src: ptr uint8_t; p_length: uint64_t)
+type
+  InterfaceFileAccessGetBuffer* = proc (
+      p_instance: ConstObjectPtr; p_dst: ptr uint8_t; p_length: uint64_t): uint64_t
+type
+  InterfaceWorkerThreadPoolAddNativeGroupTask* = proc (
+      p_instance: ObjectPtr; p_func: proc (a1: pointer; a2: uint32_t);
+      p_userdata: pointer; p_elements: cint; p_tasks: cint;
+      p_high_priority: Bool; p_description: ConstStringPtr): int64_t
+type
+  InterfaceWorkerThreadPoolAddNativeTask* = proc (
+      p_instance: ObjectPtr; p_func: proc (a1: pointer);
+      p_userdata: pointer; p_high_priority: Bool;
+      p_description: ConstStringPtr): int64_t
+type
+  InterfacePackedByteArrayOperatorIndex* = proc (
+      p_self: TypePtr; p_index: Int): ptr uint8_t
+type
+  InterfacePackedByteArrayOperatorIndexConst* = proc (
+      p_self: ConstTypePtr; p_index: Int): ptr uint8_t
+type
+  InterfacePackedColorArrayOperatorIndex* = proc (
+      p_self: TypePtr; p_index: Int): TypePtr
+type
+  InterfacePackedColorArrayOperatorIndexConst* = proc (
+      p_self: ConstTypePtr; p_index: Int): TypePtr
+type
+  InterfacePackedFloat32ArrayOperatorIndex* = proc (
+      p_self: TypePtr; p_index: Int): ptr cfloat
+type
+  InterfacePackedFloat32ArrayOperatorIndexConst* = proc (
+      p_self: ConstTypePtr; p_index: Int): ptr cfloat
+type
+  InterfacePackedFloat64ArrayOperatorIndex* = proc (
+      p_self: TypePtr; p_index: Int): ptr cdouble
+type
+  InterfacePackedFloat64ArrayOperatorIndexConst* = proc (
+      p_self: ConstTypePtr; p_index: Int): ptr cdouble
+type
+  InterfacePackedInt32ArrayOperatorIndex* = proc (
+      p_self: TypePtr; p_index: Int): ptr int32_t
+type
+  InterfacePackedInt32ArrayOperatorIndexConst* = proc (
+      p_self: ConstTypePtr; p_index: Int): ptr int32_t
+type
+  InterfacePackedInt64ArrayOperatorIndex* = proc (
+      p_self: TypePtr; p_index: Int): ptr int64_t
+type
+  InterfacePackedInt64ArrayOperatorIndexConst* = proc (
+      p_self: ConstTypePtr; p_index: Int): ptr int64_t
+type
+  InterfacePackedStringArrayOperatorIndex* = proc (
+      p_self: TypePtr; p_index: Int): StringPtr
+type
+  InterfacePackedStringArrayOperatorIndexConst* = proc (
+      p_self: ConstTypePtr; p_index: Int): StringPtr
+type
+  InterfacePackedVector2ArrayOperatorIndex* = proc (
+      p_self: TypePtr; p_index: Int): TypePtr
+type
+  InterfacePackedVector2ArrayOperatorIndexConst* = proc (
+      p_self: ConstTypePtr; p_index: Int): TypePtr
+type
+  InterfacePackedVector3ArrayOperatorIndex* = proc (
+      p_self: TypePtr; p_index: Int): TypePtr
+type
+  InterfacePackedVector3ArrayOperatorIndexConst* = proc (
+      p_self: ConstTypePtr; p_index: Int): TypePtr
+type
+  InterfaceArrayOperatorIndex* = proc (p_self: TypePtr;
+      p_index: Int): VariantPtr
+type
+  InterfaceArrayOperatorIndexConst* = proc (
+      p_self: ConstTypePtr; p_index: Int): VariantPtr
+type
+  InterfaceArrayRef* = proc (p_self: TypePtr;
+                                     p_from: ConstTypePtr)
+type
+  InterfaceArraySetTyped* = proc (p_self: TypePtr;
+      p_type: VariantType; p_class_name: ConstStringNamePtr;
+      p_script: ConstVariantPtr)
+type
+  InterfaceDictionaryOperatorIndex* = proc (p_self: TypePtr;
+      p_key: ConstVariantPtr): VariantPtr
+type
+  InterfaceDictionaryOperatorIndexConst* = proc (
+      p_self: ConstTypePtr; p_key: ConstVariantPtr): VariantPtr
+type
+  InterfaceObjectMethodBindCall* = proc (
+      p_method_bind: MethodBindPtr; p_instance: ObjectPtr;
+      p_args: ptr ConstVariantPtr; p_arg_count: Int;
+      r_ret: UninitializedVariantPtr; r_error: ptr CallError)
+type
+  InterfaceObjectMethodBindPtrcall* = proc (
+      p_method_bind: MethodBindPtr; p_instance: ObjectPtr;
+      p_args: ptr ConstTypePtr; r_ret: TypePtr)
+type
+  InterfaceObjectDestroy* = proc (p_o: ObjectPtr)
+type
+  InterfaceGlobalGetSingleton* = proc (
+      p_name: ConstStringNamePtr): ObjectPtr
+type
+  InterfaceObjectGetInstanceBinding* = proc (p_o: ObjectPtr;
+      p_token: pointer; p_callbacks: ptr InstanceBindingCallbacks): pointer
+type
+  InterfaceObjectSetInstanceBinding* = proc (p_o: ObjectPtr;
+      p_token: pointer; p_binding: pointer;
+      p_callbacks: ptr InstanceBindingCallbacks)
+type
+  InterfaceObjectSetInstance* = proc (p_o: ObjectPtr;
+      p_classname: ConstStringNamePtr;
+      p_instance: ClassInstancePtr)
+type
+  InterfaceObjectGetClassName* = proc (
+      p_object: ConstObjectPtr; p_library: ClassLibraryPtr;
+      r_class_name: UninitializedStringNamePtr): Bool
+type
+  InterfaceObjectCastTo* = proc (p_object: ConstObjectPtr;
+      p_class_tag: pointer): ObjectPtr
+type
+  InterfaceObjectGetInstanceFromId* = proc (
+      p_instance_id: GDObjectInstanceID): ObjectPtr
+type
+  InterfaceObjectGetInstanceId* = proc (
+      p_object: ConstObjectPtr): GDObjectInstanceID
+type
+  InterfaceRefGetObject* = proc (p_ref: ConstRefPtr): ObjectPtr
+type
+  InterfaceRefSetObject* = proc (p_ref: RefPtr;
+      p_object: ObjectPtr)
+type
+  InterfaceScriptInstanceCreate* = proc (
+      p_info: ptr ScriptInstanceInfo;
+      p_instance_data: ScriptInstanceDataPtr): ScriptInstancePtr
+type
+  InterfaceClassdbConstructObject* = proc (
+      p_classname: ConstStringNamePtr): ObjectPtr
+type
+  InterfaceClassdbGetMethodBind* = proc (
+      p_classname: ConstStringNamePtr;
+      p_methodname: ConstStringNamePtr; p_hash: Int): MethodBindPtr
+type
+  InterfaceClassdbGetClassTag* = proc (
+      p_classname: ConstStringNamePtr): pointer
+type
+  InterfaceClassdbRegisterExtensionClass* = proc (
+      p_library: ClassLibraryPtr;
+      p_class_name: ConstStringNamePtr;
+      p_parent_class_name: ConstStringNamePtr;
+      p_extension_funcs: ptr ClassCreationInfo)
+type
+  InterfaceClassdbRegisterExtensionClassMethod* = proc (
+      p_library: ClassLibraryPtr;
+      p_class_name: ConstStringNamePtr;
+      p_method_info: ptr ClassMethodInfo)
+type
+  InterfaceClassdbRegisterExtensionClassIntegerConstant* = proc (
+      p_library: ClassLibraryPtr;
+      p_class_name: ConstStringNamePtr;
+      p_enum_name: ConstStringNamePtr;
+      p_constant_name: ConstStringNamePtr;
+      p_constant_value: Int; p_is_bitfield: Bool)
+type
+  InterfaceClassdbRegisterExtensionClassProperty* = proc (
+      p_library: ClassLibraryPtr;
+      p_class_name: ConstStringNamePtr;
+      p_info: ptr PropertyInfo; p_setter: ConstStringNamePtr;
+      p_getter: ConstStringNamePtr)
+type
+  InterfaceClassdbRegisterExtensionClassPropertyGroup* = proc (
+      p_library: ClassLibraryPtr;
+      p_class_name: ConstStringNamePtr;
+      p_group_name: ConstStringPtr; p_prefix: ConstStringPtr)
+type
+  InterfaceClassdbRegisterExtensionClassPropertySubgroup* = proc (
+      p_library: ClassLibraryPtr;
+      p_class_name: ConstStringNamePtr;
+      p_subgroup_name: ConstStringPtr;
+      p_prefix: ConstStringPtr)
+type
+  InterfaceClassdbRegisterExtensionClassSignal* = proc (
+      p_library: ClassLibraryPtr;
+      p_class_name: ConstStringNamePtr;
+      p_signal_name: ConstStringNamePtr;
+      p_argument_info: ptr PropertyInfo;
+      p_argument_count: Int)
+type
+  InterfaceClassdbUnregisterExtensionClass* = proc (
+      p_library: ClassLibraryPtr;
+      p_class_name: ConstStringNamePtr)
+type
+  InterfaceGetLibraryPath* = proc (
+      p_library: ClassLibraryPtr;
+      r_path: UninitializedStringPtr)
+type
+  InterfaceEditorAddPlugin* = proc (
+      p_class_name: ConstStringNamePtr)
+type
+  InterfaceEditorRemovePlugin* = proc (
+      p_class_name: ConstStringNamePtr)

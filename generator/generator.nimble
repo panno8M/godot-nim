@@ -12,6 +12,7 @@ binDir        = "bin"
 # Dependencies
 
 requires "nim >= 1.9.3"
-requires "https://github.com/panno8M/nim-beyond >= 0.1.0"
+# requires "https://github.com/panno8M/nim-beyond == 0.11.1"
+requires "beyond"
 
 include "tasks.nims"

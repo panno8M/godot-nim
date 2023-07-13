@@ -1,90 +1,120 @@
-import beyond/[
-  modules,
-  modules/treesugars
-]
-export modules
-export treesugars
-
-var root* = pkg"../src/godot":
-  dontTouch mdl"godotInterface"
-  pkg"core":
-    dontTouch mdl"memories"
-
-  pkg"variants":
-    pkg"nativeDetails"
-    dontTouch pkg"customDetails"
-
-    mdl"nativeConstructors"
-    dontTouch mdl"customConstructors"
-
-    dontExport dontTouch mdl"essentials"
-    dontExport mdl"variantsLoader"
-
-  mdl"enums"
-
-  pkg"classes":
-    mdl"typedef"
-    pkg"nativeDetails"
-    dontTouch do: pkg"customDetails":
-      dontTouch mdl"classDB"
-
-  dontTouch do: pkg"geometrics":
-    dontTouch mdl"typedef"
-
-  dontTouch mdl"macros"
-  dontTouch mdl"pragmas"
-  dontTouch mdl"compileTimeSwitch"
-  dontTouch mdl"init"
-  dontExport dontTouch mdl"logging"
+import beyond/meta/modules; export modules
+import beyond/meta/statements; export statements
+import beyond/meta/statements/nimtraits; export nimtraits
 
 let
-  gdinterface* = root/"godotInterface"
+  d_root* = dir"../src"
+  d_godot* = dir"godot"
+  d_variants* = dir"variants"
+  d_variantsDetail_native* = dir"variantsDetail_native"
+  d_classes* = dir"classes"
+  d_classDetails* = dir"nativeDetails"
+  d_helper* = dir"helper"
+  d_pure* = dir"pure"
 
-  variants* = root/"variants"
-  variantDetails* = variants/"nativeDetails"
-  variantCustomDetails* = variants/"customDetails"
-  variantEssentials* = variants/"essentials"
-  variantNativeConstructors* = variants/"nativeConstructors"
-  variantLoader* = variants/"variantsLoader"
 
-  classes* = root/"classes"
-  classDefs* = classes/"typedef"
-  classDetails* = classes/"nativeDetails"
+let
+  godot* = mdl"godot"
+  gdinterface* = dummy mdl"godotInterface"
+  core* = dummy mdl"core"
 
-  enums* = root/"enums"
+  variants* = mdl"variants"
+  variantsDetail_native* = mdl"variantsDetail_native"
+  variantsDetail_custom* = dummy mdl"variantsDetail_custom"
+  variantsConstr_native* = mdl"variantsConstr_native"
+  variantsConstr_custom* = dummy mdl"variantsConstr_custom"
+  variantEssentials* = dummy mdl"essentials"
+  variantLoader* = mdl"variantsLoader"
 
-  pragmas* = root/"pragmas"
-  macros* = root/"macros"
-  core* = root/"core"
-  compileTimeSwitch* = root/"compileTimeSwitch"
-  logging* = root/"logging"
+  classDefs* = mdl"typedef"
+  classDetails* = mdl"nativeDetails"
 
-enums.importModules(
-  pragmas,
-)
-variantNativeConstructors.importModules(
-  gdinterface,
-  macros,
-  pragmas,
-  compileTimeSwitch,
-)
-variantLoader.importModules(
-  gdinterface,
-  variantDetails,
-  variantCustomDetails,
-  variantNativeConstructors,
-  logging,
-)
+  enums* = mdl"enums"
+
+  variantTypeSolver* = dummy mdl"variantTypeSolver"
+
+  pragmas* = dummy mdl"pragmas"
+  macros* = dummy mdl"macros"
+  compileTimeSwitch* = dummy mdl"compileTimeSwitch"
+  logging* = dummy mdl"logging"
+
+
+let
+  d_beyond = dir"beyond"
+  beyond_oop = dummy mdl"oop"
+
+discard +/%..d_beyond:
+  beyond_oop
+
+discard +/%..d_root:
+  godot
+    .importExportModules_allowedExports
+    .incl(d_godot)
+  +/%..d_godot:
+    gdinterface
+    core
+    variants
+      .exportModules_allowed
+      .incl(d_variants)
+    +/%..internal d_variants:
+      dummy mdl"variantsDetail_Variant"
+      variantsDetail_native
+        .exportModules_allowed
+        .incl(d_variantsDetail_native)
+      internal d_variantsDetail_native
+      variantsDetail_custom
+      variantsConstr_native
+        .incl(
+          variantTypeSolver,
+          gdinterface,
+          macros,
+          pragmas,
+          compileTimeSwitch,
+          beyond_oop,
+        )
+      variantsConstr_custom
+      internal variantEssentials
+      internal variantLoader
+        .incl(
+          gdinterface,
+          variantsDetail_native,
+          variantsDetail_custom,
+          variantsConstr_native,
+          variantsConstr_custom,
+          logging,
+        )
+
+    enums
+
+    +/%..d_classes:
+      classDefs
+      classDetails.incl(d_classDetails)
+      internal d_classDetails
+      +/%..dummy dir"customDetails":
+        dummy mdl"classDB"
+
+    +/%..d_helper:
+      variantTypeSolver
+
+    +/%..d_pure:
+      compileTimeSwitch
+      (let geometrics* = dummy mdl"geometrics"; geometrics)
+
+    macros
+    pragmas
+    internal logging
+    dummy mdl"init"
+
 
 const
-  variantIgnores* = [
-    "GdNil",
-    "GdVector2", "GdVector2i",
-    "GdVector3", "GdVector3i",
-    "GdVector4", "GdVector4i",
+  variantIgnores* : seq[string] = @[
+    "Nil",
+    "Bool", "Int", "Float",
+    "Vector2", "Vector2i",
+    "Vector3", "Vector3i",
+    "Vector4", "Vector4i",
   ]
-  variantCustomLoaders* = [
-    "GdVector2", "GdVector2i",
-    "GdVector3", "GdVector3i",
-    "GdVector4", "GdVector4i",
+  variantAdditionalLoaders* : seq[string] = @[
+    "load_vectors()",
+    "load_primitives()",
   ]
