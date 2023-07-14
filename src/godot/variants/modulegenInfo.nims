@@ -3,7 +3,6 @@ let modules: seq[string] = @[
   "variantsConstr_native.nim",
   "variantsLoader.nim",
   "(variantsDetail_custom.nim)",
-  "(essentials.nim)",
   "(variantsConstr_custom.nim)",
   "(variantsDetail_Variant.nim)",
   "variantsDetail_native.nim",

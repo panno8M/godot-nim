@@ -128,7 +128,7 @@ func render*(self: NimBuiltinClass): tuple[classdef, constructor, loader: Statem
 proc modulate*(self: NimBuiltinClass): tuple[module: Module; constructor: Statement] =
   let (classdef, constructor, loader) = self.render
   result.module = mdl(self.moduleName)
-    .incl(moduleTree.variantEssentials)
+    .incl(moduleTree.variants_forge)
   result.module.contents = classdef
   discard result.module.contents.add loader
   result.constructor = constructor

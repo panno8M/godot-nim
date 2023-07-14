@@ -2,7 +2,7 @@ import beyond/meta/modules; export modules
 import beyond/meta/statements; export statements
 import beyond/meta/statements/nimtraits; export nimtraits
 
-let
+let # directories
   d_root* = dir"../src"
   d_godot* = dir"godot"
   d_variants* = dir"variants"
@@ -13,7 +13,7 @@ let
   d_pure* = dir"pure"
 
 
-let
+let # modules
   godot* = mdl"godot"
   gdinterface* = dummy mdl"godotInterface"
   core* = dummy mdl"core"
@@ -23,7 +23,6 @@ let
   variantsDetail_custom* = dummy mdl"variantsDetail_custom"
   variantsConstr_native* = mdl"variantsConstr_native"
   variantsConstr_custom* = dummy mdl"variantsConstr_custom"
-  variantEssentials* = dummy mdl"essentials"
   variantLoader* = mdl"variantsLoader"
 
   classDefs* = mdl"typedef"
@@ -32,6 +31,7 @@ let
   enums* = mdl"enums"
 
   variantTypeSolver* = dummy mdl"variantTypeSolver"
+  variants_forge* = mdl"variants_forge"
 
   pragmas* = dummy mdl"pragmas"
   macros* = dummy mdl"macros"
@@ -39,50 +39,81 @@ let
   logging* = dummy mdl"logging"
 
 
-let
+let # externals
   d_beyond = dir"beyond"
   beyond_oop = dummy mdl"oop"
+  beyond_defects = dummy mdl"defects"
+
+let # clouds
+  variantsConstr* = cloud"variantsConstr".incl(
+    variantsConstr_custom,
+    variantsConstr_native,
+  )
+
+# Dependencies
+# ============
+
+discard godot
+  .importExportModules_allowedExports
+  .incl(d_godot)
+discard variants
+  .exportModules_allowed
+  .incl(d_variants)
+discard variants_forge
+  .exportModules_all
+  .incl(variantsConstr)
+  .incl(
+    beyond_oop,
+    beyond_defects,
+    gdinterface,
+    macros,
+    pragmas,
+    compileTimeSwitch,
+    logging,
+    variantTypeSolver,
+  )
+discard variantLoader
+  .incl(variantsConstr)
+  .incl(
+    gdinterface,
+    logging,
+    variantsDetail_native,
+    variantsDetail_custom,
+  )
+discard variantsDetail_native
+  .exportModules_allowed
+  .incl(d_variantsDetail_native)
+discard variantsConstr_native
+  .incl(
+    variantTypeSolver,
+    gdinterface,
+    macros,
+    pragmas,
+    compileTimeSwitch,
+    beyond_oop,
+  )
+
+# Tree-Diagram
+# ============
 
 discard +/%..d_beyond:
   beyond_oop
+  beyond_defects
 
 discard +/%..d_root:
   godot
-    .importExportModules_allowedExports
-    .incl(d_godot)
   +/%..d_godot:
     gdinterface
     core
     variants
-      .exportModules_allowed
-      .incl(d_variants)
     +/%..internal d_variants:
       dummy mdl"variantsDetail_Variant"
       variantsDetail_native
-        .exportModules_allowed
-        .incl(d_variantsDetail_native)
       internal d_variantsDetail_native
       variantsDetail_custom
       variantsConstr_native
-        .incl(
-          variantTypeSolver,
-          gdinterface,
-          macros,
-          pragmas,
-          compileTimeSwitch,
-          beyond_oop,
-        )
       variantsConstr_custom
-      internal variantEssentials
       internal variantLoader
-        .incl(
-          gdinterface,
-          variantsDetail_native,
-          variantsDetail_custom,
-          variantsConstr_native,
-          variantsConstr_custom,
-          logging,
-        )
 
     enums
 
@@ -95,6 +126,7 @@ discard +/%..d_root:
 
     +/%..d_helper:
       variantTypeSolver
+      internal variants_forge
 
     +/%..d_pure:
       compileTimeSwitch
