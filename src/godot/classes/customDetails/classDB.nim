@@ -5,6 +5,7 @@ import std/[
 ]
 import beyond/[
   oop,
+  annotativeblocks,
 ]
 import ../typedef
 import ../../godotInterface
@@ -68,7 +69,7 @@ proc bind_method_godot(class_name: StringName; `method`: var MethodBind) {.stati
 
   let method_info = ClassMethodInfo(
     name: addr `method`.name,
-    methodUserdata: cast[pointer](`method`),
+    methodUserdata: addr `method`,
     callFunc: methodBinds.bindCall,
     ptrcallFunc: methodBinds.bindPtrcall,
     methodFlags: `method`.hint_flags,
@@ -176,7 +177,24 @@ proc register_class_internal[T](Type: typedesc[T]; is_abstract: static bool; is_
 proc register_class*[T](Type: typedesc[T]; is_virtual: bool = false) {.staticOf: ClassDB.} =
   `ClassDB|>register_class_internal`(Type, is_abstract= false, is_virtual)
 
-{.warning: "TODO: conversion imcompleted".}
+proc bind_virtual_method*(p_class, p_method: StringName; p_call: ClassCallVirtual) {.staticOf: ClassDB.} =
+  var classInfo = classes.getOrDefault(p_class, nil)
+  withMakeErrmsg_if classInfo.isNil:
+    printError(msg, cstring fmt"Class '{p_class}' doesn't exist.")
+
+  withMakeErrmsg_if classInfo.method_map.hasKey(p_method):
+    printError(msg, cstring fmt"Method '{p_class}::{p_method}()' already registered as non-virtual.")
+  withMakeErrmsg_if classInfo.virtual_methods.hasKey(p_method):
+    printError(msg, cstring fmt"Virtual '{p_class}::{p_method}()' method already registered.")
+
+  classInfo.virtual_methods[p_method] = p_call;
+
+template BIND_VIRTUAL_METHOD*(m_class, m_method): untyped =
+  let `call m_method` = proc(p_instance: ObjectPtr; p_args: ptr UncheckedArray[ConstTypePtr]; p_ret: TypePtr) =
+    call_with_ptr_args(reinterpret_cast<m_class *>(p_instance), &m_class|>m_method, p_args, p_ret)
+  ClassDB|>bind_virtual_method($m_class, $m_method, `call m_method`)
+
+TODO subject"conversion imcompleted"
 #[
 public:
   template <class T>
@@ -217,13 +235,6 @@ public:
 #define BIND_BITFIELD_FLAG(m_constant) \
   godot::ClassDB::bind_integer_constant(get_class_static(), godot::__constant_get_bitfield_name(m_constant, #m_constant), #m_constant, m_constant, true);
 
-#define BIND_VIRTUAL_METHOD(m_class, m_method)                                                                                                  \
-  {                                                                                                                                           \
-    auto ___call##m_method = [](ExtensionObjectPtr p_instance, const ExtensionConstTypePtr *p_args, ExtensionTypePtr p_ret) -> void { \
-      call_with_ptr_args(reinterpret_cast<m_class *>(p_instance), &m_class::m_method, p_args, p_ret);                                     \
-    };                                                                                                                                      \
-    godot::ClassDB::bind_virtual_method(m_class::get_class_static(), #m_method, ___call##m_method);                                         \
-  }
 
 template <class T, bool is_abstract>
 

@@ -12,7 +12,7 @@
 
 #include <iostream>
 
-import beyond/[oop, typetraits]
+import beyond/[oop, typetraits, annotativeblocks]
 import ../godotInterface
 import ../variants
 import ../core/errorHandlings
@@ -108,7 +108,7 @@ ClassMethodPtrCall =>* bindPtrCall:
   b.ptrcall(pInstance, pArgs, r_ret)
 
 # ==============================================================
-{.hint: "TODO: Defines the inheritance type of MethodBind.".}
+TODO subject"Define the inheritance type of MethodBind."
 #[
 type MethodBindVarArgBase*[T,R; should_returns: static bool] = object of MethodBind
 # protected:

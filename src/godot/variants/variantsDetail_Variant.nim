@@ -3,7 +3,7 @@
 #include <godot_cpp/variant/variant_size.hpp>
 #include <gdextension_interface.h>
 #include <array>
-import beyond/[oop]
+import beyond/[oop, annotativeblocks]
 import ../[godotInterface]
 import variantsLoader
 var
@@ -17,7 +17,7 @@ proc load* {.staticOf: Variant.} =
 
   load_Variants()
 
-{.warning: "TODO: needs to convert following clang-programs".}
+TODO subject"needs to convert following clang-programs"
 #[
 proc variant*[T: RefCounted](r: Ref[T]): GdVariant {.unimplemented.}
 proc variant*(v: bool): GdVariant =

@@ -1,7 +1,7 @@
 ## This module was generated automatically. Changes will be lost.
 import ./../godotInterface
+import ./../helper/variantDefiner
 import ./../helper/variantTypeSolver
-import ./../macros
 import ./../pragmas
 import ./../pure/compileTimeSwitch
 import beyond/oop

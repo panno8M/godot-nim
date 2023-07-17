@@ -80,11 +80,11 @@ type
                                         p_right: ConstTypePtr;
                                         r_result: TypePtr)
   PtrBuiltInMethod* = proc (p_base: TypePtr;
-                                    p_args: ptr ConstTypePtr;
+                                    p_args: ptr UncheckedArray[ConstTypePtr];
                                     r_return: TypePtr;
                                     p_argument_count: cint)
   PtrConstructor* = proc (p_base: UninitializedTypePtr;
-                                  p_args: ptr ConstTypePtr)
+                                  p_args: ptr UncheckedArray[ConstTypePtr])
   PtrDestructor* = proc (p_base: TypePtr)
   PtrSetter* = proc (p_base: TypePtr;
                              p_value: ConstTypePtr)
@@ -105,7 +105,7 @@ type
   PtrKeyedChecker* = proc (p_base: ConstVariantPtr;
                                    p_key: ConstVariantPtr): uint32_t
   PtrUtilityFunction* = proc (r_return: TypePtr;
-                                      p_args: ptr ConstTypePtr;
+                                      p_args: ptr UncheckedArray[ConstTypePtr];
                                       p_argument_count: cint)
   ClassConstructor* = proc (): ObjectPtr
   InstanceBindingCreateCallback* = proc (p_token: pointer;
@@ -166,7 +166,7 @@ type
   ClassReference* = proc (p_instance: ClassInstancePtr)
   ClassUnreference* = proc (p_instance: ClassInstancePtr)
   ClassCallVirtual* = proc (p_instance: ClassInstancePtr;
-                                    p_args: ptr ConstTypePtr;
+                                    p_args: ptr UncheckedArray[ConstTypePtr];
                                     r_ret: TypePtr)
   ClassCreateInstance* = proc (p_userdata: pointer): ObjectPtr
   ClassFreeInstance* = proc (p_userdata: pointer;
@@ -219,16 +219,16 @@ type
     MethodArgumentMetadata_Real_is_Double
   ClassMethodCall* = proc (method_userdata: pointer;
                                    p_instance: ClassInstancePtr;
-                                   p_args: ptr ConstVariantPtr;
+                                   p_args: ptr UncheckedArray[ConstVariantPtr];
                                    p_argument_count: Int;
                                    r_return: VariantPtr;
                                    r_error: ptr CallError)
   ClassMethodValidatedCall* = proc (method_userdata: pointer;
       p_instance: ClassInstancePtr;
-      p_args: ptr ConstVariantPtr; r_return: VariantPtr)
+      p_args: ptr UncheckedArray[ConstVariantPtr]; r_return: VariantPtr)
   ClassMethodPtrCall* = proc (method_userdata: pointer;
                                       p_instance: ClassInstancePtr;
-                                      p_args: ptr ConstTypePtr;
+                                      p_args: ptr UncheckedArray[ConstTypePtr];
                                       r_ret: TypePtr)
   ClassMethodInfo* {.bycopy.} = object
     name*: StringNamePtr
@@ -293,7 +293,7 @@ type
       p_name: ConstStringNamePtr): Bool
   ScriptInstanceCall* = proc (p_self: ScriptInstanceDataPtr;
                                       p_method: ConstStringNamePtr;
-                                      p_args: ptr ConstVariantPtr;
+                                      p_args: ptr UncheckedArray[ConstVariantPtr];
                                       p_argument_count: Int;
                                       r_return: VariantPtr;
                                       r_error: ptr CallError)
@@ -416,13 +416,13 @@ type
   InterfaceVariantDestroy* = proc (p_self: VariantPtr)
 type
   InterfaceVariantCall* = proc (p_self: VariantPtr; p_method: ConstStringNamePtr;
-                                        p_args: ptr ConstVariantPtr;
+                                        p_args: ptr UncheckedArray[ConstVariantPtr];
                                         p_argument_count: Int; r_return: UninitializedVariantPtr;
                                         r_error: ptr CallError)
 type
   InterfaceVariantCallStatic* = proc (p_type: VariantType;
       p_method: ConstStringNamePtr;
-      p_args: ptr ConstVariantPtr; p_argument_count: Int;
+      p_args: ptr UncheckedArray[ConstVariantPtr]; p_argument_count: Int;
       r_return: UninitializedVariantPtr;
       r_error: ptr CallError)
 type
@@ -532,7 +532,7 @@ type
 type
   InterfaceVariantConstruct* = proc (p_type: VariantType;
       r_base: UninitializedVariantPtr;
-      p_args: ptr ConstVariantPtr; p_argument_count: int32_t;
+      p_args: ptr UncheckedArray[ConstVariantPtr]; p_argument_count: int32_t;
       r_error: ptr CallError)
 type
   InterfaceVariantGetPtrSetter* = proc (p_type: VariantType;
@@ -570,13 +570,13 @@ type
       r_dest: UninitializedStringPtr; p_contents: cstring)
 type
   InterfaceStringNewWithUtf16Chars* = proc (
-      r_dest: UninitializedStringPtr; p_contents: ptr char16_t)
+      r_dest: UninitializedStringPtr; p_contents: ptr UncheckedArray[char16_t])
 type
   InterfaceStringNewWithUtf32Chars* = proc (
-      r_dest: UninitializedStringPtr; p_contents: ptr char32_t)
+      r_dest: UninitializedStringPtr; p_contents: ptr UncheckedArray[char32_t])
 type
   InterfaceStringNewWithWideChars* = proc (
-      r_dest: UninitializedStringPtr; p_contents: ptr wchar_t)
+      r_dest: UninitializedStringPtr; p_contents: ptr UncheckedArray[wchar_t])
 type
   InterfaceStringNewWithLatin1CharsAndLen* = proc (
       r_dest: UninitializedStringPtr; p_contents: cstring;
@@ -587,15 +587,15 @@ type
       p_size: Int)
 type
   InterfaceStringNewWithUtf16CharsAndLen* = proc (
-      r_dest: UninitializedStringPtr; p_contents: ptr char16_t;
+      r_dest: UninitializedStringPtr; p_contents: ptr UncheckedArray[char16_t];
       p_size: Int)
 type
   InterfaceStringNewWithUtf32CharsAndLen* = proc (
-      r_dest: UninitializedStringPtr; p_contents: ptr char32_t;
+      r_dest: UninitializedStringPtr; p_contents: ptr UncheckedArray[char32_t];
       p_size: Int)
 type
   InterfaceStringNewWithWideCharsAndLen* = proc (
-      r_dest: UninitializedStringPtr; p_contents: ptr wchar_t;
+      r_dest: UninitializedStringPtr; p_contents: ptr UncheckedArray[wchar_t];
       p_size: Int)
 type
   InterfaceStringToLatin1Chars* = proc (
@@ -731,12 +731,12 @@ type
 type
   InterfaceObjectMethodBindCall* = proc (
       p_method_bind: MethodBindPtr; p_instance: ObjectPtr;
-      p_args: ptr ConstVariantPtr; p_arg_count: Int;
+      p_args: ptr UncheckedArray[ConstVariantPtr]; p_arg_count: Int;
       r_ret: UninitializedVariantPtr; r_error: ptr CallError)
 type
   InterfaceObjectMethodBindPtrcall* = proc (
       p_method_bind: MethodBindPtr; p_instance: ObjectPtr;
-      p_args: ptr ConstTypePtr; r_ret: TypePtr)
+      p_args: ptr UncheckedArray[ConstTypePtr]; r_ret: TypePtr)
 type
   InterfaceObjectDestroy* = proc (p_o: ObjectPtr)
 type

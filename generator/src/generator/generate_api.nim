@@ -1,5 +1,6 @@
 #!/usr/bin/env -S nim c -r --gc:orc
 
+import beyond/logging
 import std/[
   json,
   strformat,
@@ -14,7 +15,6 @@ import components/[
 ]
 import tool/[
   moduleTree,
-  logging,
 ]
 
 
@@ -47,24 +47,20 @@ proc define_class(class: GdClass): Statement =
   if class.properties.isSome:
     for prop in (get class.properties):
       discard classdef.add CommentSt.nim(execute= true).add repr prop
-  +$$..ParagraphSt():
-    fmt"type {class.name}* = object"
-    +$$..IndentSt(level: 2):
-      classdef
+  +$$..BlockSt(head: CommentSt.nim(execute= class.name == "Object").add fmt"type {class.name}* = object"):
+    classdef
 proc modulate_classDetail(class: GdClass): Module =
   internal dummy mdl""
 
 proc generate*(api: JsonNode) =
-  var me: LogUser
   const preConverteds = [
     "builtin_class_sizes",
     "builtin_class_member_offsets",
   ]
   for key, value in api.pairs:
-    me.title = key
     case key
     of preConverteds:
-      me.notice "This block has been pre-converted manually. No files created."
+      notice key & ": This block has been pre-converted manually. No files created."
 
     of "global_enums":
       modulate_globalEnums value
@@ -76,4 +72,4 @@ proc generate*(api: JsonNode) =
         discard moduleTree.classDefs.contents.add gdc.define_class
         moduleTree.d_classDetails.take gdc.modulate_classDetail
     else:
-      me.todo fmt"now we do not have the way to generate binding of this."
+      warn key & ": now we do not have the way to generate binding of this."

@@ -193,7 +193,7 @@ type
     major*: uint32
     minor*: uint32
     patch*: uint32
-    string*: cstring
+    `string`*: cstring
 
 # Godot Procedures
 # ================
@@ -350,7 +350,7 @@ type
       r_initialization: ptr Initialization): Bool
 
 parseInterface:
-  type #TODO - Needs to get address at initialization
+  type
     InterfaceGetGodotVersion* = proc (
         r_godot_version: ptr GodotVersion)
     InterfaceMemAlloc* = proc (p_bytes: csize_t): pointer

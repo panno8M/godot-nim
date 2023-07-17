@@ -5,10 +5,10 @@ import std/[
 ]
 import beyond/macros
 
-type ProcedureResult* = tuple
-  containerDefine, procDefine, initSentence: NimNode
+type MethodDefinition = tuple
+  container_define, proc_define, init_sentence: NimNode
 
-proc procedure*(Type, node: NimNode; isStatic = false): ProcedureResult =
+proc procedure(Type, node: NimNode; isStatic = false): MethodDefinition =
   node.expectKind nnkProcDef
 
   let
@@ -47,26 +47,6 @@ proc procedure*(Type, node: NimNode; isStatic = false): ProcedureResult =
       let call_args = `argptrarr`
       `containerName`(`p_self`, unsafeAddr call_args[0], `p_result`, cint call_args.len)
 
-proc procedures_impl(Type, loader, body: NimNode; is_static: bool): NimNode =
-  result = newStmtList()
-
-  var initProcStmt = newStmtList()
-  for statement in body:
-    let (containerDefine, procDefine, initSentence) = procedure(Type, statement, is_static)
-    result.add containerdefine
-    result.add procdefine
-    initProcStmt.add initSentence[0..^1]
-
-  result.add newProc(
-    name = loader.postfix("*"),
-    body = initProcStmt)
-
-macro procedures*[T](Type: typedesc[T]; loader, body): untyped =
-  procedures_impl(Type, loader, body, is_static= false)
-
-macro staticProcedures*[T](Type: typedesc[T]; loader, body): untyped =
-  procedures_impl(Type, loader, body, is_static= true)
-
 proc elements_from_identdef(identdef: NimNode): tuple[t, address, variantType: NimNode] =
   if identdef.isNil or identdef.kind == nnkEmpty:
     result.t = nil
@@ -78,7 +58,7 @@ proc elements_from_identdef(identdef: NimNode): tuple[t, address, variantType: N
     result.variantType = "variantType".newCall(result.t)
 
 
-proc operator*(node: NimNode): ProcedureResult =
+proc operator(node: NimNode): MethodDefinition =
   let op = node.getPragma("operator")[1]
 
   let has_right = node.params.len == 3
@@ -105,6 +85,53 @@ proc operator*(node: NimNode): ProcedureResult =
   result.procDefine.body = quote do:
     `containerName`(`leftAddress`, `rightAddress`, addr result)
 
+func constructor(Type, node: NimNode): MethodDefinition =
+  node.expectKind nnkProcDef
+
+  var index = node.getPragma("index")[1]
+
+  let args = node[3][1..^1]
+  let argptrarr = nnkBracket.newTree args.mapIt(it[0]).mapIt quote do:
+    cast[pointer](unsafeAddr(`it`))
+
+  let
+    constructorName = ident fmt"constructor{Type}{index.intVal}"
+
+  result.init_sentence = quote do:
+    `constructorname` = interface_variantGetPtrConstructor(`Type`.variantType, `index`)
+
+  result.container_define = quote do:
+    var `constructorName`: PtrConstructor
+
+  result.proc_define = copy node
+  if argptrarr.len == 0:
+    result.proc_define.body = quote do:
+      `constructorName`(TypePtr(addr result), nil)
+  else:
+    result.proc_define.body = quote do:
+      let call_args = `argptrarr`
+      `constructorName`(TypePtr(addr result), unsafeAddr call_args[0])
+
+
+proc procedures_impl(Type, loader, body: NimNode; is_static: bool): NimNode =
+  result = newStmtList()
+  var initProcStmt = newStmtList()
+  for statement in body:
+    let (containerDefine, procDefine, initSentence) = procedure(Type, statement, is_static)
+    result.add containerdefine
+    result.add procdefine
+    initProcStmt.add initSentence[0..^1]
+
+  result.add newProc(
+    name = loader.postfix("*"),
+    body = initProcStmt)
+
+macro procedures*[T](Type: typedesc[T]; loader, body): untyped =
+  procedures_impl(Type, loader, body, is_static= false)
+
+macro staticProcedures*[T](Type: typedesc[T]; loader, body): untyped =
+  procedures_impl(Type, loader, body, is_static= true)
+
 macro operators*(loader, body): untyped =
   result = newStmtList()
   var initProcStmt = newStmtList()
@@ -112,7 +139,23 @@ macro operators*(loader, body): untyped =
     let (containerDefine, procDefine, initSentence) = operator(statement)
     result.add containerDefine
     result.add procDefine
-    initProcStmt.add initSentence
+    initProcStmt.add initSentence[0..^1]
   result.add newProc(
     name = loader.postfix("*"),
     body = initProcStmt)
+
+macro constructors*[T](Type: typedesc[T]; loader, body): untyped =
+  result = newStmtList()
+  let debuglit = newLit fmt"loading constructors of {Type}..."
+  var initProcStmt = newStmtList()
+  initProcStmt.add quote do:
+    when DebugApiLoading.isEnabled: iam($`Type` & "-load-constructor", stgLibrary).debug `debuglit`
+  for cnst in body:
+    let definition = constructor(Type, cnst)
+    result.add definition.container_define
+    result.add definition.proc_define
+    initProcStmt.add definition.init_sentence
+  result.add newProc(
+    name = loader.postfix("*"),
+    body = initProcStmt,
+  )

@@ -1,3 +1,4 @@
+import beyond/logging
 import std/[
   options,
   sequtils,
@@ -12,7 +13,6 @@ import ./[
 import ../tool/[
   moduleTree,
   name_rules,
-  logging,
 ]
 
 type
@@ -143,18 +143,15 @@ proc modulateLoader*(classes: seq[NimBuiltinClass]) =
       discard loaderBody.add:
         &"{constrLoader class.className}()"
 
-  discard +$$..loaderBody:
-    "me.debug \"load functions of all variants...\""
+  loaderBody.children.add "me.debug \"load functions of all variants...\""
   for class in classes:
     discard loaderBody.add &"{allMethodLoader class.className}()"
-  discard +$$..loaderBody:
-    "me.debug \"load destructors of all variants...\""
-    &"{destrLoader \"Variants\"}()"
+  loaderBody.children.add "me.debug \"load destructors of all variants...\""
+  loaderBody.children.add destrLoader("Variants") & "()"
 
-  discard +$$..loaderBody:
-    "me.debug \"load tuned functions of all variants...\""
+  loaderBody.children.add "me.debug \"load tuned functions of all variants...\""
   for loader in moduleTree.variantAdditionalLoaders:
-    discard loaderBody.add loader
+    loaderBody.children.add loader
 
   moduleTree.variantLoader.contents = +$$..NimProcSt(
       kind: NimProcKind.PublicProc,
@@ -162,9 +159,8 @@ proc modulateLoader*(classes: seq[NimBuiltinClass]) =
     loaderBody
 
 proc modulate*(self: seq[GdBuiltinClass]): seq[Module] {.inline.} =
-  let me = LogUser(title: "Godot-Builtin-Classes")
 
-  me.todo """We could not convert these json-tags yet:
+  warn """We could not convert these json-tags yet:
   [is_keyed, has_destructor, indexing_return_type, constants]"""
 
   let nimClasses = self.mapIt(it.toNim).filterIt(it.className notin moduleTree.variantIgnores)

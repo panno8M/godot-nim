@@ -7,7 +7,6 @@ import ./godot/enums; export enums
 import ./godot/godotInterface; export godotInterface
 import ./godot/helper/variantTypeSolver; export variantTypeSolver
 import ./godot/init; export init
-import ./godot/macros; export macros
 import ./godot/pragmas; export pragmas
 import ./godot/pure/compileTimeSwitch; export compileTimeSwitch
 import ./godot/pure/geometrics; export geometrics

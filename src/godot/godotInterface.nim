@@ -163,6 +163,7 @@ var
   getProcAddress*: InterfaceGetProcAddress
   library*: ClassLibraryPtr
   token*: pointer
+  godotVersion*: GodotVersion
 
 proc `=destroy`(x: VariantObj) =
   interface_variantDestroy(unsafeAddr x)

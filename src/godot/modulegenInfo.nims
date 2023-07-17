@@ -8,7 +8,6 @@ let modules: seq[string] = @[
   "(init.nim)",
   "(godotInterface.nim)",
   "variants.nim",
-  "(macros.nim)",
   "(logging.nim)",
   "(core.nim)",
 ]

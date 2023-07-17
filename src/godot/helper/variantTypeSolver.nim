@@ -1,8 +1,8 @@
+import beyond/[annotativeblocks]
 import std/macros
-import ../godotInterface
+import ../godotInterface {.all.}
 
-macro variantType*(Type: typedesc[SomeVariants]): VariantType =
-  ident "VariantType_" & $Type
+export variantType
 template variantType*(Type: typedesc): VariantType =
   VariantType_Nil
 
@@ -27,4 +27,4 @@ template propertyInfo*(Type: typedesc[SomeVariants]): PropertyInfo =
     className: addr className
   )
 
-{.warning: "TODO: Needs to return VariantType_Object when the type inherits godot.Object.".}
+TODO subject"Needs to return VariantType_Object when the type inherits godot.Object."

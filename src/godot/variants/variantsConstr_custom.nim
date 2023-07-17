@@ -9,7 +9,6 @@ import std/[
 import ../godotInterface
 from ../pure/geometrics_typedef {.all.} import makeVec
 import variantsConstr_native
-import ./../macros
 
 
 macro gdvec*(exp: varargs[typed]): untyped =

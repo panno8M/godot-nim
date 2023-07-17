@@ -1,5 +1,3 @@
-{.warning: "TODO: there are no implementation of wrapped here.".}
-
 import beyond/oop
 import std/lists
 import ../godotInterface

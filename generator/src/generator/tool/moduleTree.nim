@@ -1,6 +1,6 @@
 import beyond/meta/modules; export modules
 import beyond/meta/statements; export statements
-import beyond/meta/statements/nimtraits; export nimtraits
+import beyond/meta/statements/nimkit; export nimkit
 
 let # directories
   d_root* = dir"../src"
@@ -31,10 +31,10 @@ let # modules
   enums* = mdl"enums"
 
   variantTypeSolver* = dummy mdl"variantTypeSolver"
+  variantDefiner* = dummy mdl"variantDefiner"
   variants_forge* = mdl"variants_forge"
 
   pragmas* = dummy mdl"pragmas"
-  macros* = dummy mdl"macros"
   compileTimeSwitch* = dummy mdl"compileTimeSwitch"
   logging* = dummy mdl"logging"
 
@@ -66,7 +66,7 @@ discard variants_forge
     beyond_oop,
     beyond_defects,
     gdinterface,
-    macros,
+    variantDefiner,
     pragmas,
     compileTimeSwitch,
     logging,
@@ -87,7 +87,7 @@ discard variantsConstr_native
   .incl(
     variantTypeSolver,
     gdinterface,
-    macros,
+    variantDefiner,
     pragmas,
     compileTimeSwitch,
     beyond_oop,
@@ -127,12 +127,12 @@ discard +/%..d_root:
     +/%..d_helper:
       variantTypeSolver
       internal variants_forge
+      internal variantDefiner
 
     +/%..d_pure:
       compileTimeSwitch
       (let geometrics* = dummy mdl"geometrics"; geometrics)
 
-    macros
     pragmas
     internal logging
     dummy mdl"init"
