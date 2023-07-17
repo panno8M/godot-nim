@@ -77,7 +77,7 @@ type
 
 # Godot Types
 # ===========
-  VariantPtr* = Variant
+  VariantPtr* = ptr Variant
   ConstVariantPtr* = VariantPtr
   UninitializedVariantPtr* = VariantPtr
   StringNamePtr* = ptr StringName
@@ -86,8 +86,8 @@ type
   StringPtr* = ptr String
   ConstStringPtr* = StringPtr
   UninitializedStringPtr* = StringPtr
-  ObjectPtr* = pointer
-  ConstObjectPtr* = pointer
+  ObjectPtr* = ptr Object
+  ConstObjectPtr* = ObjectPtr
   UninitializedObjectPtr* = pointer
   TypePtr* = pointer
   ConstTypePtr* = pointer

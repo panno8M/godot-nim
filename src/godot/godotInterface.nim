@@ -18,6 +18,8 @@ elif DecimalPrecision == "float" or true:
 type int_elem* = int32
 type float_elem* = float32
 
+type Opaque[I: static int] = array[I, byte]
+
 type
   VectorR*[N: static int] = Vector[N, real_elem]
   VectorI*[N: static int] = Vector[N, int_elem]
@@ -26,8 +28,6 @@ type
   Bool* = bool
   Int* = int64
   Float* = float64
-  String* = object
-    bytes*: array[SizeOfPtr, byte]
   Vector2* = VectorR[2]
   Vector3* = VectorR[3]
   Vector4* = VectorR[4]
@@ -72,44 +72,48 @@ type
     g*: float_elem
     b*: float_elem
     a*: float_elem
+  String* = object
+    opaque: Opaque[SizeOfPtr]
   StringName* = object
-    bytes*: array[SizeofPtr, byte]
+    opaque: Opaque[SizeOfPtr]
   NodePath* = object
-    bytes*: array[SizeofPtr, byte]
+    opaque: Opaque[SizeOfPtr]
   RID* = object
-    bytes*: array[SizeofPtr*2, byte]
+    opaque: Opaque[SizeofPtr*2]
   Object* = object
-    bytes*: array[SizeofPtr, byte]
+    opaque: Opaque[SizeOfPtr]
   Callable* = object
-    bytes*: array[SizeofPtr*4, byte]
+    opaque: Opaque[SizeofPtr*4]
   Signal* = object
-    bytes*: array[SizeofPtr*4, byte]
+    opaque: Opaque[SizeofPtr*4]
   Dictionary* = object
-    bytes*: array[SizeofPtr, byte]
+    opaque: Opaque[SizeOfPtr]
   Array* = object
-    bytes*: array[SizeofPtr, byte]
+    opaque: Opaque[SizeOfPtr]
   PackedByteArray* = object
-    bytes*: array[SizeofPtr*2, byte]
+    opaque: Opaque[SizeofPtr*2]
   PackedInt32Array* = object
-    bytes*: array[SizeofPtr*2, byte]
+    opaque: Opaque[SizeofPtr*2]
   PackedInt64Array* = object
-    bytes*: array[SizeofPtr*2, byte]
+    opaque: Opaque[SizeofPtr*2]
   PackedFloat32Array* = object
-    bytes*: array[SizeofPtr*2, byte]
+    opaque: Opaque[SizeofPtr*2]
   PackedFloat64Array* = object
-    bytes*: array[SizeofPtr*2, byte]
+    opaque: Opaque[SizeofPtr*2]
   PackedStringArray* = object
-    bytes*: array[SizeofPtr*2, byte]
+    opaque: Opaque[SizeofPtr*2]
   PackedVector2Array* = object
-    bytes*: array[SizeofPtr*2, byte]
+    opaque: Opaque[SizeofPtr*2]
   PackedVector3Array* = object
-    bytes*: array[SizeofPtr*2, byte]
+    opaque: Opaque[SizeofPtr*2]
   PackedColorArray* = object
-    bytes*: array[SizeofPtr*2, byte]
+    opaque: Opaque[SizeofPtr*2]
 
-  VariantObj* = object
-    bytes*: array[SizeofPtr*4 + 8, byte]
-  Variant* = ptr VariantObj
+  Variant* = object
+    opaque: Opaque[SizeofPtr*4 + 8]
+
+  GDRootObject* {.inheritable.} = object
+    `object`: Object
 
 type SomePackedArray* =
   PackedByteArray    |
@@ -129,24 +133,26 @@ type SomeIntVector* =
   Vector2i |
   Vector3i |
   Vector4i
-
-type SomeVariants* =
-  Bool            |
-  Int             |
-  Float           |
-  String          |
+type SomeVector* =
   SomeFloatVector |
-  SomeIntVector   |
-  Rect2           |
-  Rect2i          |
-  Transform2D     |
-  Plane           |
-  Quaternion      |
-  AABB            |
-  Basis           |
-  Transform3D     |
-  Projection      |
-  Color           |
+  SomeIntVector
+type SomePrimitives* =
+  Bool         |
+  Int          |
+  Float        |
+  SomeVector   |
+  Rect2        |
+  Rect2i       |
+  Transform2D  |
+  Plane        |
+  Quaternion   |
+  AABB         |
+  Basis        |
+  Transform3D  |
+  Projection   |
+  Color
+type SomeGodotUniques* =
+  String          |
   StringName      |
   NodePath        |
   RID             |
@@ -156,6 +162,7 @@ type SomeVariants* =
   Dictionary      |
   Array           |
   SomePackedArray
+type SomeVariants* = SomePrimitives|SomeGodotUniques
 
 include "include/gdextension_interface"
 
@@ -165,16 +172,16 @@ var
   token*: pointer
   godotVersion*: GodotVersion
 
-proc `=destroy`(x: VariantObj) =
+proc `=destroy`(x: Variant) =
   interface_variantDestroy(unsafeAddr x)
-proc `=copy`(dest: var VariantObj; source: VariantObj) =
+proc `=copy`(dest: var Variant; source: Variant) =
   `=destroy` dest
   wasMoved(dest)
   interface_variantNewCopy(addr dest, unsafeAddr source)
 
 
-macro variantType(Type: typedesc[SomeVariants]): VariantType =
-  ident "VariantType_" & ($Type)
+template variantType(Type: typedesc[SomeVariants]): VariantType =
+  `VariantType Type`
 
 template define_destructor(Type: typedesc): untyped =
   staticOf Type:

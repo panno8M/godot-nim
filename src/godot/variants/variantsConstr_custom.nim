@@ -39,4 +39,4 @@ staticOf StringName:
     StringName|>init String|>init str
 
 staticOf Variant:
-  proc init*: Variant = interface_variantNewNil(result)
+  proc init*: Variant = interface_variantNewNil(addr result)
