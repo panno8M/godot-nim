@@ -10,7 +10,7 @@ type GodotList[T] = DoublyLinkedList[T]
 # Base for all engine classes, to contain the pointer to the engine instance.
 type Wrapped* = object
   # Must be public but you should not touch this.
-  owner*: pointer
+  owner*: ObjectPtr
 
   proplist: seq[PropertyInfo]
   proplist_owned: GodotList[PropertyInfo]
@@ -31,8 +31,8 @@ staticOf Wrapped:
   # public:
   # -------
   proc init*(godot_class: StringName): Wrapped =
-    result.owner = interface_classdb_construct_object(cast[ConstStringNamePtr](addr godot_class))
-  proc init*(godot_object: pointer): Wrapped =
+    result.owner = interface_classdb_construct_object(unsafeaddr godot_class)
+  proc init*(godot_object: ptr GodotObject): Wrapped =
     result.owner = godot_object
 
   let className* = StringName|>init($Wrapped)

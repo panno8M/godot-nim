@@ -15,6 +15,7 @@ import components/[
 ]
 import tool/[
   moduleTree,
+  name_rules,
 ]
 
 
@@ -47,8 +48,15 @@ proc define_class(class: GdClass): Statement =
   if class.properties.isSome:
     for prop in (get class.properties):
       discard classdef.add CommentSt.nim(execute= true).add repr prop
-  +$$..BlockSt(head: CommentSt.nim(execute= class.name == "Object").add fmt"type {class.name}* = object"):
-    classdef
+  if class.name == "Object":
+    +$$..ParagraphSt():
+      +$$..BlockSt(head: fmt"type OBjectEntity* = object"):
+        classdef
+      "type Object* = ptr ObjectEntity"
+  else:
+    +$$..BlockSt(head: fmt"type {className class.name}* = object"):
+      classdef
+
 proc modulate_classDetail(class: GdClass): Module =
   internal dummy mdl""
 

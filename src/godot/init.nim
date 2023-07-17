@@ -9,7 +9,7 @@ import
   classes/typedef,
   classes/customDetails/classDB,
   variants,
-  pure/helper/todos
+  pure/todos
 
 type
   InitCallback = proc(lvl: InitializationLevel) {.nimcall.}

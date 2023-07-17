@@ -6,7 +6,7 @@ export stdmath except
 export builtin_bswap16, builtin_bswap32, builtin_bswap64
 
 import ./geometrics_typedef
-import ./helper/todos
+import ./todos
 
 const SQRT12* = 0.7071067811865475244008443621048490
 const SQRT2* = 1.4142135623730950488016887242

@@ -86,9 +86,9 @@ type
   StringPtr* = ptr String
   ConstStringPtr* = StringPtr
   UninitializedStringPtr* = StringPtr
-  ObjectPtr* = ptr Object
+  ObjectPtr* = ptr GodotObject
   ConstObjectPtr* = ObjectPtr
-  UninitializedObjectPtr* = pointer
+  UninitializedObjectPtr* = ObjectPtr
   TypePtr* = pointer
   ConstTypePtr* = pointer
   UninitializedTypePtr* = pointer

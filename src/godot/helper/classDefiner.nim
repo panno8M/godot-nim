@@ -1,3 +1,4 @@
+import ../pure/todos
 
 template define_godot_class_essencials*(GDClass, m_inherits: typedesc): untyped =
   staticOf GDClass:
@@ -16,9 +17,12 @@ template define_godot_class_essencials*(GDClass, m_inherits: typedesc): untyped 
   method get_bindings_callbacks*(self: GDClass): ptr GdInstanceBindingCallbacks =
     unsafeAddr GDClass|>binding_callbacks
 
-  template <class T, class B>
-  static void register_virtuals() {
-    m_inherits::register_virtuals<T, B>();
+  TODO Define_godot_class, "implement `register_virtuals", false:
+    ##[
+    template <class T, class B>
+    static void register_virtuals() {
+      m_inherits::register_virtuals<T, B>();
+    ]##
 
   # public:
   # -------

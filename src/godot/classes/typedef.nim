@@ -2399,7 +2399,8 @@ type OS* = object
   # GdProperty(type: "bool", name: "low_processor_usage_mode", setter: Option[system.string](val: "set_low_processor_usage_mode", has: true), getter: "is_in_low_processor_usage_mode", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "int", name: "low_processor_usage_mode_sleep_usec", setter: Option[system.string](val: "set_low_processor_usage_mode_sleep_usec", has: true), getter: "get_low_processor_usage_mode_sleep_usec", index: Option[system.int](val: 0, has: false))
   # GdProperty(type: "bool", name: "delta_smoothing", setter: Option[system.string](val: "set_delta_smoothing", has: true), getter: "is_delta_smoothing_enabled", index: Option[system.int](val: 0, has: false))
-# type Object* = object
+type OBjectEntity* = object
+type Object* = ptr ObjectEntity
 type Occluder3D* = object
 type OccluderInstance3D* = object
   # GdProperty(type: "Occluder3D", name: "occluder", setter: Option[system.string](val: "set_occluder", has: true), getter: "get_occluder", index: Option[system.int](val: 0, has: false))

@@ -2,10 +2,13 @@ import beyond/[annotativeblocks]
 import std/macros
 import ../godotInterface {.all.}
 
-export variantType
+export godotInterface.variantType
 template variantType*(Type: typedesc): VariantType =
   VariantType_Nil
+template variantType*(Type: typedesc[ObjectPtr]): VariantType =
+  VariantType_Object
 
+TODO subject"variants.propertyinfo", "Insufficient kinds handled"
 template propertyInfo*(Type: typedesc[SomeVariants]): PropertyInfo =
   let
     name: StringName = ""
@@ -26,5 +29,3 @@ template propertyInfo*(Type: typedesc[SomeVariants]): PropertyInfo =
     usage: usage,
     className: addr className
   )
-
-TODO subject"Needs to return VariantType_Object when the type inherits godot.Object."

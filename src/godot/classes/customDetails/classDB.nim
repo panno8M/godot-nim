@@ -62,7 +62,8 @@ proc defineMethod*(name: StringName; args: varargs[StringName]): MethodDefinitio
 
 # private:
 proc bind_method_godot(class_name: StringName; `method`: var MethodBind) {.staticOf: ClassDB.} =
-  var def_args = `method`.default_arguments
+  var def_args = newSeq[ptr Variant](`method`.default_arguments.len)
+  for i, arg in `method`.default_arguments.mpairs: def_args[i] = addr arg
 
   let (retval_info, arguments_info) = `method`.get_arguments_info_list()
   let (retval_metadata, arguments_metadata) = `method`.get_arguments_metadata_list()

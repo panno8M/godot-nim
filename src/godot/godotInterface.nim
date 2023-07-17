@@ -1,9 +1,7 @@
 import beyond/[oop]
-import std/macros
-import std/strutils
 
 import ./enums
-import ./pure/[compileTimeSwitch, geometrics]
+import ./pure/[compileTimeSwitch, geometrics, todos]
 
 when PointerByteSize == 4:
   const SizeofPtr = 4
@@ -23,6 +21,9 @@ type Opaque[I: static int] = array[I, byte]
 type
   VectorR*[N: static int] = Vector[N, real_elem]
   VectorI*[N: static int] = Vector[N, int_elem]
+
+type
+  GodotObject* = object
 
 type
   Bool* = bool
@@ -80,8 +81,8 @@ type
     opaque: Opaque[SizeOfPtr]
   RID* = object
     opaque: Opaque[SizeofPtr*2]
-  Object* = object
-    opaque: Opaque[SizeOfPtr]
+  # Object* = object
+  #   opaque: Opaque[SizeOfPtr]
   Callable* = object
     opaque: Opaque[SizeofPtr*4]
   Signal* = object
@@ -111,9 +112,6 @@ type
 
   Variant* = object
     opaque: Opaque[SizeofPtr*4 + 8]
-
-  GDRootObject* {.inheritable.} = object
-    `object`: Object
 
 type SomePackedArray* =
   PackedByteArray    |
@@ -156,7 +154,7 @@ type SomeGodotUniques* =
   StringName      |
   NodePath        |
   RID             |
-  Object          |
+  # Object          |
   Callable        |
   Signal          |
   Dictionary      |
@@ -173,6 +171,7 @@ var
   godotVersion*: GodotVersion
 
 proc `=destroy`(x: Variant) =
+  TODO Variants_destruction, "inject here to call `=destroy` of an having"
   interface_variantDestroy(unsafeAddr x)
 proc `=copy`(dest: var Variant; source: Variant) =
   `=destroy` dest
@@ -225,3 +224,5 @@ proc load_Variants_destr* =
   load_destructor PackedVector2Array
   load_destructor PackedVector3Array
   load_destructor PackedColorArray
+
+import classes/typedef; export typedef

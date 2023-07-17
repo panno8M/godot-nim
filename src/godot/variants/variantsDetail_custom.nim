@@ -1,4 +1,4 @@
-import ../pure/helper/todos
+import ../pure/todos
 import variantsDetail_custom/variantsDetail_vectors; export variantsDetail_vectors
 import variantsDetail_custom/variantsDetail_primitives; export variantsDetail_primitives
 
