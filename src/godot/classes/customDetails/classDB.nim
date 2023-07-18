@@ -45,7 +45,7 @@ staticOf ClassDB:
     for name, info in classes.mpairs:
       if info.level != lvl: continue
 
-      interface_classdb_unregister_extension_class(library, unsafeAddr info.name)
+      interface_classdb_unregister_extension_class(library, addr info.name)
       for `method` in info.methodMap.mvalues:
         `=destroy`(`method`)
 
@@ -163,7 +163,7 @@ proc register_class_internal[T](Type: typedesc[T]; is_abstract: static bool; is_
     free_instance_func: Type|>free, # ExtensionClassFreeInstance /* this one is mandatory */
     get_virtual_func: ClassDB.get_virtual_func, # ExtensionClassGetVirtual
     get_rid: nil, # ExtensionClassGetRID
-    class_userdata: Type|>get_class_static(), # void*
+    class_userdata: addr Type|>classname, # void*
   )
 
   interface_classdb_register_extension_class(library, cl.name, cl.parent_name, class_info);

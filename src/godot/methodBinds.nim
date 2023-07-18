@@ -102,7 +102,7 @@ ClassMethodCall =>* bindCall:
   let ret = b.call(pInstance, pArgs, pArgumentCount, r_error)
   # This assumes the return value is an empty Variant, so it doesn't need to call the destructor first.
   # Since only MethodBind calls this from the Godot side, it should always be the case.
-  interface_variant_new_copy(r_return, unsafeAddr ret)
+  interface_variant_new_copy(r_return, addr ret)
 ClassMethodPtrCall =>* bindPtrCall:
   let b = cast[MethodBind](methodUserdata)
   b.ptrcall(pInstance, pArgs, r_ret)

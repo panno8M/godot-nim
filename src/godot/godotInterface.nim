@@ -36,82 +36,80 @@ type
   Vector2i* = VectorI[2]
   Vector3i* = VectorI[3]
   Vector4i* = VectorI[4]
-  Rect2* = object
+  Rect2* {.byref.} = object
     position*: Vector2
     size*: Vector2
-  Rect2i* = object
+  Rect2i* {.byref.} = object
     position*: Vector2i
     size*: Vector2i
-  Transform2D* = object
+  Transform2D* {.byref.} = object
     x*: Vector2
     y*: Vector2
     origin*: Vector2
-  Plane* = object
+  Plane* {.byref.} = object
     normal*: Vector3
     d*: real_elem
-  Quaternion* = object
+  Quaternion* {.byref.} = object
     x*: real_elem
     y*: real_elem
     z*: real_elem
     w*: real_elem
-  AABB* = object
+  AABB* {.byref.} = object
     position*: Vector3
     size*: Vector3
-  Basis* = object
+  Basis* {.byref.} = object
     x*: Vector3
     y*: Vector3
     z*: Vector3
-  Transform3D* = object
+  Transform3D* {.byref.} = object
     basis*: Basis
     origin*: Vector3
-  Projection* = object
+  Projection* {.byref.} = object
     x*: Vector4
     y*: Vector4
     z*: Vector4
     w*: Vector4
-  Color* = object
+  Color* {.byref.} = object
     r*: float_elem
     g*: float_elem
     b*: float_elem
     a*: float_elem
-  String* = object
+  String* {.bycopy.} = object
     opaque: Opaque[SizeOfPtr]
-  StringName* = object
+  StringName* {.bycopy.} = object
     opaque: Opaque[SizeOfPtr]
-  NodePath* = object
+  NodePath* {.bycopy.} = object
     opaque: Opaque[SizeOfPtr]
-  RID* = object
+  RID* {.bycopy.} = object
     opaque: Opaque[SizeofPtr*2]
-  # Object* = object
-  #   opaque: Opaque[SizeOfPtr]
-  Callable* = object
+  Callable* {.bycopy.} = object
     opaque: Opaque[SizeofPtr*4]
-  Signal* = object
+  Signal* {.bycopy.} = object
     opaque: Opaque[SizeofPtr*4]
-  Dictionary* = object
+  Dictionary* {.bycopy.} = object
     opaque: Opaque[SizeOfPtr]
-  Array* = object
+  Array* {.bycopy.} = object
     opaque: Opaque[SizeOfPtr]
-  PackedByteArray* = object
+  PackedByteArray* {.bycopy.} = object
     opaque: Opaque[SizeofPtr*2]
-  PackedInt32Array* = object
+  PackedInt32Array* {.bycopy.} = object
     opaque: Opaque[SizeofPtr*2]
-  PackedInt64Array* = object
+  PackedInt64Array* {.bycopy.} = object
     opaque: Opaque[SizeofPtr*2]
-  PackedFloat32Array* = object
+  PackedFloat32Array* {.bycopy.} = object
     opaque: Opaque[SizeofPtr*2]
-  PackedFloat64Array* = object
+  PackedFloat64Array* {.bycopy.} = object
     opaque: Opaque[SizeofPtr*2]
-  PackedStringArray* = object
+  PackedStringArray* {.bycopy.} = object
     opaque: Opaque[SizeofPtr*2]
-  PackedVector2Array* = object
+  PackedVector2Array* {.bycopy.} = object
     opaque: Opaque[SizeofPtr*2]
-  PackedVector3Array* = object
+  PackedVector3Array* {.bycopy.} = object
     opaque: Opaque[SizeofPtr*2]
-  PackedColorArray* = object
+  PackedColorArray* {.bycopy.} = object
     opaque: Opaque[SizeofPtr*2]
 
-  Variant* = object
+  Variant* {.byref.} = object
     opaque: Opaque[SizeofPtr*4 + 8]
 
 type SomePackedArray* =
@@ -155,7 +153,6 @@ type SomeGodotUniques* =
   StringName      |
   NodePath        |
   RID             |
-  # Object          |
   Callable        |
   Signal          |
   Dictionary      |
@@ -173,11 +170,11 @@ var
 
 proc `=destroy`(x: Variant) =
   TODO Variants_destruction, "inject here to call `=destroy` of an having"
-  interface_variantDestroy(unsafeAddr x)
+  interface_variantDestroy(addr x)
 proc `=copy`(dest: var Variant; source: Variant) =
   `=destroy` dest
   wasMoved(dest)
-  interface_variantNewCopy(addr dest, unsafeAddr source)
+  interface_variantNewCopy(addr dest, addr source)
 
 
 template variantType(Type: typedesc[SomeVariants]): VariantType =

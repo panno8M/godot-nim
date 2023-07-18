@@ -28,7 +28,7 @@ proc procedure(Type, node: NimNode; isStatic = false): MethodDefinition =
     else:                newAddr(ident"result")
   let p_self =
     if is_static: newNilLit()
-    else: newUnsafeAddr(node.params[1][0])
+    else: newAddr(node.params[1][0])
 
   let containerName = ident fmt"proc_{Type}_{node[0].basename}"
 
@@ -36,17 +36,17 @@ proc procedure(Type, node: NimNode; isStatic = false): MethodDefinition =
     var `containerName`: PtrBuiltinMethod
   result.initSentence = quote do:
     let name = StringName|>init(`nativeName`)
-    `containerName` = interface_variantGetPtrBuiltinMethod(`Type`.variantType, cast[ConstStringNamePtr](unsafeAddr name), `hash`)
+    `containerName` = interface_variantGetPtrBuiltinMethod(`Type`.variantType, cast[ConstStringNamePtr](addr name), `hash`)
   result.procDefine = node.copy
   if args.len == 0:
     result.procDefine.body = quote do:
       `containerName`(`p_self`, nil, `p_result`, 0)
   else:
     let argptrarr = nnkBracket.newTree args.mapIt(it[0]).mapIt quote do:
-      cast[pointer](unsafeAddr(`it`))
+      cast[pointer](addr(`it`))
     result.procDefine.body = quote do:
       let call_args = `argptrarr`
-      `containerName`(`p_self`, unsafeAddr call_args[0], `p_result`, cint call_args.len)
+      `containerName`(`p_self`, addr call_args[0], `p_result`, cint call_args.len)
 
 proc elements_from_identdef(identdef: NimNode): tuple[t, address, variantType: NimNode] =
   if identdef.isNil or identdef.kind == nnkEmpty:
@@ -55,7 +55,7 @@ proc elements_from_identdef(identdef: NimNode): tuple[t, address, variantType: N
     result.variantType = ident"VariantType_Nil"
   else:
     result.t = identdef[1]
-    result.address = newUnsafeAddr identdef[0]
+    result.address = newAddr identdef[0]
     result.variantType = "variantType".newCall(result.t)
 
 
@@ -93,7 +93,7 @@ func constructor(Type, node: NimNode): MethodDefinition =
 
   let args = node[3][1..^1]
   let argptrarr = nnkBracket.newTree args.mapIt(it[0]).mapIt quote do:
-    cast[pointer](unsafeAddr(`it`))
+    cast[pointer](addr(`it`))
 
   let
     constructorName = ident fmt"constructor{Type}{index.intVal}"
@@ -111,7 +111,7 @@ func constructor(Type, node: NimNode): MethodDefinition =
   else:
     result.proc_define.body = quote do:
       let call_args = `argptrarr`
-      `constructorName`(TypePtr(addr result), unsafeAddr call_args[0])
+      `constructorName`(TypePtr(addr result), addr call_args[0])
 
 
 proc procedures_impl(Type, loader, body: NimNode; is_static: bool): NimNode =

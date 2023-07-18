@@ -13,9 +13,9 @@ template define_godot_class_essencials*(GDClass, m_inherits: typedesc): untyped 
   # protected:
   # ----------
   method get_extension_class_name*(self: GDClass): ptr GDStringName =
-    unsafeAddr GDClass|>className
+    addr GDClass|>className
   method get_bindings_callbacks*(self: GDClass): ptr GdInstanceBindingCallbacks =
-    unsafeAddr GDClass|>binding_callbacks
+    addr GDClass|>binding_callbacks
 
   TODO Define_godot_class, "implement `register_virtuals", false:
     ##[

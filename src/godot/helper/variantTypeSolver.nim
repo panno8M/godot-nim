@@ -23,9 +23,9 @@ template propertyInfo*(Type: typedesc[SomeVariants]): PropertyInfo =
     className = ""
   PropertyInfo(
     `type`: Type.variantType,
-    name: unsafeAddr name,
+    name: addr name,
     hint: hint,
-    hintString: unsafeAddr hintString,
+    hintString: addr hintString,
     usage: usage,
     className: addr className
   )

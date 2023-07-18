@@ -31,7 +31,7 @@ staticOf Wrapped:
   # public:
   # -------
   proc init*(godot_class: StringName): Wrapped =
-    result.owner = interface_classdb_construct_object(unsafeaddr godot_class)
+    result.owner = interface_classdb_construct_object(addr godot_class)
   proc init*(godot_object: ptr GodotObject): Wrapped =
     result.owner = godot_object
 
@@ -66,10 +66,6 @@ proc postinitialize*(self: Wrapped) =
   if not extension_class.isNil:
     interface_object_set_instance(self.owner, cast[ConstStringNamePtr](extension_class), addr self)
   interface_object_set_instance_binding(self.owner, token, addr self, self.get_bindings_callbacks())
-
-
-proc postinitialize_handler*(wrapped: ptr Wrapped) =
-  wrapped[].postinitialize()
 
 proc `=destroy`(self: Wrapped) {.raises: [Exception].} =
   interface_object_destroy self.owner
