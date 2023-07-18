@@ -13,9 +13,9 @@
 #include <iostream>
 
 import beyond/[oop, typetraits, annotativeblocks]
-import ../godotInterface
-import ../variants
-import ../core/errorHandlings
+import ./godotInterface
+import ./variants
+import ./helper/errorHandlings
 
 type MethodBind* = ref object of RootObj
   name*: StringName

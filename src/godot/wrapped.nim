@@ -1,7 +1,7 @@
 import beyond/oop
 import std/lists
-import ../godotInterface
-import ../variants
+import godotInterface
+import variants
 
 type GodotList[T] = DoublyLinkedList[T]
 

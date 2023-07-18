@@ -11,12 +11,12 @@ let # directories
   d_classDetails* = dir"nativeDetails"
   d_helper* = dir"helper"
   d_pure* = dir"pure"
+  d_godotInterface* = dir"godotInterface"
 
 
 let # modules
   godot* = mdl"godot"
-  gdinterface* = dummy mdl"godotInterface"
-  core* = dummy mdl"core"
+  godotInterface* = dummy mdl"godotInterface"
 
   variants* = mdl"variants"
   variantsDetail_native* = mdl"variantsDetail_native"
@@ -25,10 +25,10 @@ let # modules
   variantsConstr_custom* = dummy mdl"variantsConstr_custom"
   variantLoader* = mdl"variantsLoader"
 
-  classDefs* = mdl"typedef"
   classDetails* = mdl"nativeDetails"
 
-  enums* = mdl"enums"
+  globalEnums* = mdl"globalEnums"
+  engineClassDefines* = mdl"engineClassDefines"
 
   variantTypeSolver* = dummy mdl"variantTypeSolver"
   variantDefiner* = dummy mdl"variantDefiner"
@@ -65,7 +65,7 @@ discard variants_forge
   .incl(
     beyond_oop,
     beyond_defects,
-    gdinterface,
+    godotInterface,
     variantDefiner,
     pragmas,
     compileTimeSwitch,
@@ -75,7 +75,7 @@ discard variants_forge
 discard variantLoader
   .incl(variantsConstr)
   .incl(
-    gdinterface,
+    godotInterface,
     logging,
     variantsDetail_native,
     variantsDetail_custom,
@@ -86,7 +86,7 @@ discard variantsDetail_native
 discard variantsConstr_native
   .incl(
     variantTypeSolver,
-    gdinterface,
+    godotInterface,
     variantDefiner,
     pragmas,
     compileTimeSwitch,
@@ -103,8 +103,10 @@ discard +/%..d_beyond:
 discard +/%..d_root:
   godot
   +/%..d_godot:
-    gdinterface
-    core
+    godotInterface
+    +/%..internal d_godotInterface:
+      globalEnums
+      engineClassDefines
     variants
     +/%..internal d_variants:
       dummy mdl"variantsDetail_Variant"
@@ -115,10 +117,7 @@ discard +/%..d_root:
       variantsConstr_custom
       internal variantLoader
 
-    enums
-
     +/%..d_classes:
-      classDefs
       classDetails.incl(d_classDetails)
       internal d_classDetails
       +/%..dummy dir"customDetails":

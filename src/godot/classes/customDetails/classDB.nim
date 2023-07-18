@@ -7,10 +7,9 @@ import beyond/[
   oop,
   annotativeblocks,
 ]
-import ../typedef
 import ../../godotInterface
-import ../../core/[errorHandlings]
-import ../../helper/methodBinds
+import ../../methodBinds
+import ../../helper/[errorHandlings]
 
 type
   PropertySetGet* = object

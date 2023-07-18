@@ -4,6 +4,7 @@ import std/[
   strformat,
 ]
 import beyond/macros
+import ../logging
 
 type MethodDefinition = tuple
   container_define, proc_define, init_sentence: NimNode
@@ -149,7 +150,7 @@ macro constructors*[T](Type: typedesc[T]; loader, body): untyped =
   let debuglit = newLit fmt"loading constructors of {Type}..."
   var initProcStmt = newStmtList()
   initProcStmt.add quote do:
-    when DebugApiLoading.isEnabled: iam($`Type` & "-load-constructor", stgLibrary).debug `debuglit`
+    when DebugApiLoading == on: iam($`Type` & "-load-constructor", stgLibrary).debug `debuglit`
   for cnst in body:
     let definition = constructor(Type, cnst)
     result.add definition.container_define

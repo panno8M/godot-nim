@@ -41,7 +41,7 @@ proc modulate_globalEnums(globalEnums: JsonNode) =
     var gdenum = item.to GdEnum
     if ignore in gdenum.name: continue
     discard body.add gdenum.toNim.render
-  moduleTree.enums.contents = body
+  moduleTree.globalEnums.contents = body
 
 proc define_class(class: GdClass): Statement =
   var classdef = ParagraphSt()
@@ -77,7 +77,7 @@ proc generate*(api: JsonNode) =
     of "classes":
       for class in value.items:
         let gdc = class.to GdClass
-        discard moduleTree.classDefs.contents.add gdc.define_class
+        discard moduleTree.engineClassDefines.contents.add gdc.define_class
         moduleTree.d_classDetails.take gdc.modulate_classDetail
     else:
       warn key & ": now we do not have the way to generate binding of this."

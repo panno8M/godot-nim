@@ -2,7 +2,6 @@ let modules: seq[string] = @[
   "(customDetails/)",
   "nativeDetails/",
   "nativeDetails.nim",
-  "typedef.nim",
 ]
 import strformat, os
 const cYELLOW = "\x1b[33m"

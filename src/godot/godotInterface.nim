@@ -1,6 +1,7 @@
 import beyond/[oop]
 
-import ./enums
+import ./godotInterface/globalEnums; export globalEnums
+import ./godotInterface/engineClassDefines; export engineClassDefines
 import ./pure/[compileTimeSwitch, geometrics, todos]
 
 when PointerByteSize == 4:
@@ -224,5 +225,3 @@ proc load_Variants_destr* =
   load_destructor PackedVector2Array
   load_destructor PackedVector3Array
   load_destructor PackedColorArray
-
-import classes/typedef; export typedef

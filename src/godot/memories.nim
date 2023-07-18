@@ -3,7 +3,7 @@ import beyond/ptrtraits
 import ../pure/compileTimeSwitch
 import ../godotInterface
 import ../core/errorHandlings
-import ../helper/wrapped
+import ../wrapped
 
 when DebugMemory.isEnabled:
   import ../helper/memoryTracer
