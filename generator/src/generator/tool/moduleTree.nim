@@ -8,7 +8,7 @@ let # directories
   d_variants* = dir"variants"
   d_variantsDetail_native* = dir"variantsDetail_native"
   d_classes* = dir"classes"
-  d_classDetails* = dir"nativeDetails"
+  d_classDetail_native* = dir"classDetail_native"
   d_helper* = dir"helper"
   d_pure* = dir"pure"
   d_godotInterface* = dir"godotInterface"
@@ -25,7 +25,8 @@ let # modules
   variantsConstr_custom* = dummy mdl"variantsConstr_custom"
   variantLoader* = mdl"variantsLoader"
 
-  classDetails* = mdl"nativeDetails"
+  classes* = mdl"classes"
+  classDetail_native* = mdl"classDetail_native"
 
   globalEnums* = mdl"globalEnums"
   engineClassDefines* = mdl"engineClassDefines"
@@ -59,6 +60,9 @@ discard godot
 discard variants
   .exportModules_allowed
   .incl(d_variants)
+discard classes
+  .exportModules_allowed
+  .incl(d_classes)
 discard variants_forge
   .exportModules_all
   .incl(variantsConstr)
@@ -92,6 +96,8 @@ discard variantsConstr_native
     compileTimeSwitch,
     beyond_oop,
   )
+discard classDetail_native
+  .incl(d_classDetail_native)
 
 # Tree-Diagram
 # ============
@@ -117,11 +123,12 @@ discard +/%..d_root:
       variantsConstr_custom
       internal variantLoader
 
-    +/%..d_classes:
-      classDetails.incl(d_classDetails)
-      internal d_classDetails
-      +/%..dummy dir"customDetails":
-        dummy mdl"classDB"
+    classes
+    +/%..internal d_classes:
+      classDetail_native
+      internal d_classDetail_native
+      +/%..dummy dir"classDetail_custom":
+        dummy mdl"classDetail_ClassDB"
 
     +/%..d_helper:
       variantTypeSolver

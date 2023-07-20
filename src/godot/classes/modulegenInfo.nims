@@ -1,7 +1,7 @@
 let modules: seq[string] = @[
-  "(customDetails/)",
-  "nativeDetails/",
-  "nativeDetails.nim",
+  "classDetail_native/",
+  "(classDetail_custom/)",
+  "classDetail_native.nim",
 ]
 import strformat, os
 const cYELLOW = "\x1b[33m"

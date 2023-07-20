@@ -5,6 +5,7 @@ let modules: seq[string] = @[
   "godotInterface/",
   "variants/",
   "(pragmas.nim)",
+  "classes.nim",
   "(init.nim)",
   "(godotInterface.nim)",
   "variants.nim",

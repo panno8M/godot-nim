@@ -6,7 +6,7 @@ import
   logging,
   pragmas,
   godotInterface,
-  classes/customDetails/classDB,
+  classes/classDetail_custom/classDetail_ClassDB,
   variants,
   pure/todos
 

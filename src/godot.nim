@@ -1,6 +1,5 @@
 ## This module was generated automatically. Changes will be lost.
-import ./godot/classes/customDetails/classDB; export classDB
-import ./godot/classes/nativeDetails; export nativeDetails
+import ./godot/classes; export classes
 import ./godot/godotInterface; export godotInterface
 import ./godot/helper/variantTypeSolver; export variantTypeSolver
 import ./godot/init; export init
