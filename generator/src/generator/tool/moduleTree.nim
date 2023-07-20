@@ -1,106 +1,144 @@
 import beyond/meta/modules; export modules
 import beyond/meta/statements; export statements
-import beyond/meta/statements/nimtraits; export nimtraits
+import beyond/meta/statements/nimkit; export nimkit
 
-let
+let # directories
   d_root* = dir"../src"
   d_godot* = dir"godot"
   d_variants* = dir"variants"
   d_variantsDetail_native* = dir"variantsDetail_native"
   d_classes* = dir"classes"
-  d_classDetails* = dir"nativeDetails"
+  d_classDetail_native* = dir"classDetail_native"
   d_helper* = dir"helper"
   d_pure* = dir"pure"
+  d_godotInterface* = dir"godotInterface"
 
 
-let
+let # modules
   godot* = mdl"godot"
-  gdinterface* = dummy mdl"godotInterface"
-  core* = dummy mdl"core"
+  godotInterface* = dummy mdl"godotInterface"
 
   variants* = mdl"variants"
   variantsDetail_native* = mdl"variantsDetail_native"
   variantsDetail_custom* = dummy mdl"variantsDetail_custom"
   variantsConstr_native* = mdl"variantsConstr_native"
   variantsConstr_custom* = dummy mdl"variantsConstr_custom"
-  variantEssentials* = dummy mdl"essentials"
   variantLoader* = mdl"variantsLoader"
 
-  classDefs* = mdl"typedef"
-  classDetails* = mdl"nativeDetails"
+  classes* = mdl"classes"
+  classDetail_native* = mdl"classDetail_native"
 
-  enums* = mdl"enums"
+  globalEnums* = mdl"globalEnums"
+  engineClassDefines* = mdl"engineClassDefines"
 
   variantTypeSolver* = dummy mdl"variantTypeSolver"
+  variantDefiner* = dummy mdl"variantDefiner"
+  variants_forge* = mdl"variants_forge"
 
   pragmas* = dummy mdl"pragmas"
-  macros* = dummy mdl"macros"
   compileTimeSwitch* = dummy mdl"compileTimeSwitch"
   logging* = dummy mdl"logging"
 
 
-let
+let # externals
   d_beyond = dir"beyond"
   beyond_oop = dummy mdl"oop"
+  beyond_defects = dummy mdl"defects"
+
+let # clouds
+  variantsConstr* = cloud"variantsConstr".incl(
+    variantsConstr_custom,
+    variantsConstr_native,
+  )
+
+# Dependencies
+# ============
+
+discard godot
+  .importExportModules_allowedExports
+  .incl(d_godot)
+discard variants
+  .exportModules_allowed
+  .incl(d_variants)
+discard classes
+  .exportModules_allowed
+  .incl(d_classes)
+discard variants_forge
+  .exportModules_all
+  .incl(variantsConstr)
+  .incl(
+    beyond_oop,
+    beyond_defects,
+    godotInterface,
+    variantDefiner,
+    pragmas,
+    compileTimeSwitch,
+    logging,
+    variantTypeSolver,
+  )
+discard variantLoader
+  .incl(variantsConstr)
+  .incl(
+    godotInterface,
+    logging,
+    variantsDetail_native,
+    variantsDetail_custom,
+  )
+discard variantsDetail_native
+  .exportModules_allowed
+  .incl(d_variantsDetail_native)
+discard variantsConstr_native
+  .incl(
+    variantTypeSolver,
+    godotInterface,
+    variantDefiner,
+    pragmas,
+    compileTimeSwitch,
+    beyond_oop,
+  )
+discard classDetail_native
+  .incl(d_classDetail_native)
+
+# Tree-Diagram
+# ============
 
 discard +/%..d_beyond:
   beyond_oop
+  beyond_defects
 
 discard +/%..d_root:
   godot
-    .importExportModules_allowedExports
-    .incl(d_godot)
   +/%..d_godot:
-    gdinterface
-    core
+    godotInterface
+    +/%..internal d_godotInterface:
+      globalEnums
+      engineClassDefines
     variants
-      .exportModules_allowed
-      .incl(d_variants)
     +/%..internal d_variants:
       dummy mdl"variantsDetail_Variant"
       variantsDetail_native
-        .exportModules_allowed
-        .incl(d_variantsDetail_native)
       internal d_variantsDetail_native
       variantsDetail_custom
       variantsConstr_native
-        .incl(
-          variantTypeSolver,
-          gdinterface,
-          macros,
-          pragmas,
-          compileTimeSwitch,
-          beyond_oop,
-        )
       variantsConstr_custom
-      internal variantEssentials
       internal variantLoader
-        .incl(
-          gdinterface,
-          variantsDetail_native,
-          variantsDetail_custom,
-          variantsConstr_native,
-          variantsConstr_custom,
-          logging,
-        )
 
-    enums
-
-    +/%..d_classes:
-      classDefs
-      classDetails.incl(d_classDetails)
-      internal d_classDetails
-      +/%..dummy dir"customDetails":
-        dummy mdl"classDB"
+    classes
+    +/%..internal d_classes:
+      classDetail_native
+      internal d_classDetail_native
+      +/%..dummy dir"classDetail_custom":
+        dummy mdl"classDetail_ClassDB"
 
     +/%..d_helper:
       variantTypeSolver
+      internal variants_forge
+      internal variantDefiner
 
     +/%..d_pure:
       compileTimeSwitch
       (let geometrics* = dummy mdl"geometrics"; geometrics)
 
-    macros
     pragmas
     internal logging
     dummy mdl"init"

@@ -1,11 +1,12 @@
 import std/math as stdmath
-import std/endians {.all.}
+from std/endians {.all.} import builtin_bswap16, builtin_bswap32, builtin_bswap64
 export stdmath except
   sin, cos, tan,
   arcsin, arccos, arctan, arctan2
 export builtin_bswap16, builtin_bswap32, builtin_bswap64
 
 import ./geometrics_typedef
+import ./todos
 
 const SQRT12* = 0.7071067811865475244008443621048490
 const SQRT2* = 1.4142135623730950488016887242
@@ -137,7 +138,7 @@ func arctan2*[T: SomeFloat](pY, pX: T): Radian[T] = Radian stdmath.arctan2(pY, p
 
 func isFinite*[T: SomeFloat](pX: T): bool = pX == NaN or pX == Inf or pX == NegInf
 
-{.warning: "TODO: importing from c++ is not done yet.".}
+TODO with subject"importing from c++ is not done yet."
 #[
 inline double cubic_interpolate_in_time(double p_from, double p_to, double p_pre, double p_post, double p_weight,
     double p_to_t, double p_pre_t, double p_post_t) {

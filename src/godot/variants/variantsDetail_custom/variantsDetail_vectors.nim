@@ -1,4 +1,4 @@
-import ../essentials
+import ./../../helper/variants_forge
 import ../../pure/geometrics
 
 {.push, inline.}

@@ -2,7 +2,7 @@
 
 version       = "0.1.0"
 author        = "la .panon."
-description   = "Godot 4.0 GDExtension binding for nim language."
+description   = "It enable us to work godot-4.x with Nim."
 license       = "MIT"
 srcDir        = "src"
 

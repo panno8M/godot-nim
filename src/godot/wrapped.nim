@@ -1,9 +1,7 @@
-{.warning: "TODO: there are no implementation of wrapped here.".}
-
 import beyond/oop
 import std/lists
-import ../godotInterface
-import ../variants
+import godotInterface
+import variants
 
 type GodotList[T] = DoublyLinkedList[T]
 
@@ -12,7 +10,7 @@ type GodotList[T] = DoublyLinkedList[T]
 # Base for all engine classes, to contain the pointer to the engine instance.
 type Wrapped* = object
   # Must be public but you should not touch this.
-  owner*: pointer
+  owner*: ObjectPtr
 
   proplist: seq[PropertyInfo]
   proplist_owned: GodotList[PropertyInfo]
@@ -33,8 +31,8 @@ staticOf Wrapped:
   # public:
   # -------
   proc init*(godot_class: StringName): Wrapped =
-    result.owner = interface_classdb_construct_object(cast[ConstStringNamePtr](addr godot_class))
-  proc init*(godot_object: pointer): Wrapped =
+    result.owner = interface_classdb_construct_object(addr godot_class)
+  proc init*(godot_object: ptr GodotObject): Wrapped =
     result.owner = godot_object
 
   let className* = StringName|>init($Wrapped)
@@ -48,8 +46,6 @@ proc get_instance_id(self: Wrapped) : uint64 = 0
 # protected
 # ---------
 
-# This is needed to retrieve the class name before the godot object has its _extension and _extension_instance members assigned.
-method get_extension_class_name*(self: Wrapped): ptr StringName {.base.} = nil
 # virtual const InstanceBindingCallbacks *_get_bindings_callbacks() const = 0;
 method get_bindings_callbacks*(self: Wrapped): ptr InstanceBindingCallbacks {.base.} = discard
 
@@ -68,10 +64,6 @@ proc postinitialize*(self: Wrapped) =
   if not extension_class.isNil:
     interface_object_set_instance(self.owner, cast[ConstStringNamePtr](extension_class), addr self)
   interface_object_set_instance_binding(self.owner, token, addr self, self.get_bindings_callbacks())
-
-
-proc postinitialize_handler*(wrapped: ptr Wrapped) =
-  wrapped[].postinitialize()
 
 proc `=destroy`(self: Wrapped) {.raises: [Exception].} =
   interface_object_destroy self.owner

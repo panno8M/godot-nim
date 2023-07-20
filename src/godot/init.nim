@@ -6,9 +6,9 @@ import
   logging,
   pragmas,
   godotInterface,
-  classes/typedef,
-  classes/customDetails/classDB,
-  variants
+  classes/classDetail_custom/classDetail_ClassDB,
+  variants,
+  pure/todos
 
 type
   InitCallback = proc(lvl: InitializationLevel) {.nimcall.}
@@ -30,6 +30,8 @@ Initialization.deinitialize => deinitialize:
   ClassDB|>currentLevel = p_level
   if extcfg.terminator != nil:
     extcfg.terminator(p_level)
+  TODO with(Support_edtior_plugin_development, false):
+    EditorPlugins|>deinitialize(p_level)
   ClassDB|>deinitialize(p_level)
 
 proc init(getProcAddress: InterfaceGetProcAddress; library: ClassLibraryPtr; initialization: ptr Initialization; config: GDExtensionConfig): Bool =
@@ -38,6 +40,9 @@ proc init(getProcAddress: InterfaceGetProcAddress; library: ClassLibraryPtr; ini
     godotInterface.library = library
     godotInterface.token = library
     extcfg = config
+
+    init_interface(getProcAddress)
+    interfaceGetGodotVersion addr godotVersion
 
     initialization.initialize = initialize
     initialization.deinitialize = deinitialize

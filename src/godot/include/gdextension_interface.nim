@@ -77,7 +77,7 @@ type
 
 # Godot Types
 # ===========
-  VariantPtr* = Variant
+  VariantPtr* = ptr Variant
   ConstVariantPtr* = VariantPtr
   UninitializedVariantPtr* = VariantPtr
   StringNamePtr* = ptr StringName
@@ -86,9 +86,9 @@ type
   StringPtr* = ptr String
   ConstStringPtr* = StringPtr
   UninitializedStringPtr* = StringPtr
-  ObjectPtr* = pointer
-  ConstObjectPtr* = pointer
-  UninitializedObjectPtr* = pointer
+  ObjectPtr* = ptr GodotObject
+  ConstObjectPtr* = ObjectPtr
+  UninitializedObjectPtr* = ObjectPtr
   TypePtr* = pointer
   ConstTypePtr* = pointer
   UninitializedTypePtr* = pointer
@@ -193,7 +193,7 @@ type
     major*: uint32
     minor*: uint32
     patch*: uint32
-    string*: cstring
+    `string`*: cstring
 
 # Godot Procedures
 # ================
@@ -350,7 +350,7 @@ type
       r_initialization: ptr Initialization): Bool
 
 parseInterface:
-  type #TODO - Needs to get address at initialization
+  type
     InterfaceGetGodotVersion* = proc (
         r_godot_version: ptr GodotVersion)
     InterfaceMemAlloc* = proc (p_bytes: csize_t): pointer

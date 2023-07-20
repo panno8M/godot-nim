@@ -1,11 +1,6 @@
 let modules: seq[string] = @[
-  "variantsDetail_native/",
-  "variantsConstr_native.nim",
-  "variantsLoader.nim",
-  "(variantsDetail_custom.nim)",
-  "(variantsConstr_custom.nim)",
-  "(variantsDetail_Variant.nim)",
-  "variantsDetail_native.nim",
+  "globalEnums.nim",
+  "engineClassDefines.nim",
 ]
 import strformat, os
 const cYELLOW = "\x1b[33m"

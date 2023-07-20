@@ -9,7 +9,6 @@ import std/[
 import ../godotInterface
 from ../pure/geometrics_typedef {.all.} import makeVec
 import variantsConstr_native
-import ./../macros
 
 
 macro gdvec*(exp: varargs[typed]): untyped =
@@ -40,4 +39,4 @@ staticOf StringName:
     StringName|>init String|>init str
 
 staticOf Variant:
-  proc init*: Variant = interface_variantNewNil(result)
+  proc init*: Variant = interface_variantNewNil(addr result)

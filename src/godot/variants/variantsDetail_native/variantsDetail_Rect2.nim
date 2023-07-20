@@ -1,5 +1,5 @@
 ## This module was generated automatically. Changes will be lost.
-import ./../essentials
+import ./../../helper/variants_forge
 
 # type Rect2* = object
 #   self.base.is_keyed=false

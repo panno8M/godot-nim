@@ -1,4 +1,4 @@
-import ./../essentials
+import ./../../helper/variants_forge
 
 operators(loader= load_primitives):
   proc contains*(left: Dictionary; right: Bool): Bool {.operator: VariantOP_In.}

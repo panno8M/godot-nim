@@ -1,0 +1,1 @@
+import classDetail_custom/classDetail_ClassDB; export classDetail_ClassDB

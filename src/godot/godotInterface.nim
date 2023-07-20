@@ -1,9 +1,8 @@
 import beyond/[oop]
-import std/macros
-import std/strutils
 
-import ./enums
-import ./pure/[compileTimeSwitch, geometrics]
+import ./godotInterface/globalEnums; export globalEnums
+import ./godotInterface/engineClassDefines; export engineClassDefines
+import ./pure/[compileTimeSwitch, geometrics, todos]
 
 when PointerByteSize == 4:
   const SizeofPtr = 4
@@ -18,98 +17,100 @@ elif DecimalPrecision == "float" or true:
 type int_elem* = int32
 type float_elem* = float32
 
+type Opaque[I: static int] = array[I, byte]
+
 type
   VectorR*[N: static int] = Vector[N, real_elem]
   VectorI*[N: static int] = Vector[N, int_elem]
 
 type
+  GodotObject* = object
+
+type
   Bool* = bool
   Int* = int64
   Float* = float64
-  String* = object
-    bytes*: array[SizeOfPtr, byte]
   Vector2* = VectorR[2]
   Vector3* = VectorR[3]
   Vector4* = VectorR[4]
   Vector2i* = VectorI[2]
   Vector3i* = VectorI[3]
   Vector4i* = VectorI[4]
-  Rect2* = object
+  Rect2* {.byref.} = object
     position*: Vector2
     size*: Vector2
-  Rect2i* = object
+  Rect2i* {.byref.} = object
     position*: Vector2i
     size*: Vector2i
-  Transform2D* = object
+  Transform2D* {.byref.} = object
     x*: Vector2
     y*: Vector2
     origin*: Vector2
-  Plane* = object
+  Plane* {.byref.} = object
     normal*: Vector3
     d*: real_elem
-  Quaternion* = object
+  Quaternion* {.byref.} = object
     x*: real_elem
     y*: real_elem
     z*: real_elem
     w*: real_elem
-  AABB* = object
+  AABB* {.byref.} = object
     position*: Vector3
     size*: Vector3
-  Basis* = object
+  Basis* {.byref.} = object
     x*: Vector3
     y*: Vector3
     z*: Vector3
-  Transform3D* = object
+  Transform3D* {.byref.} = object
     basis*: Basis
     origin*: Vector3
-  Projection* = object
+  Projection* {.byref.} = object
     x*: Vector4
     y*: Vector4
     z*: Vector4
     w*: Vector4
-  Color* = object
+  Color* {.byref.} = object
     r*: float_elem
     g*: float_elem
     b*: float_elem
     a*: float_elem
-  StringName* = object
-    bytes*: array[SizeofPtr, byte]
-  NodePath* = object
-    bytes*: array[SizeofPtr, byte]
-  RID* = object
-    bytes*: array[SizeofPtr*2, byte]
-  Object* = object
-    bytes*: array[SizeofPtr, byte]
-  Callable* = object
-    bytes*: array[SizeofPtr*4, byte]
-  Signal* = object
-    bytes*: array[SizeofPtr*4, byte]
-  Dictionary* = object
-    bytes*: array[SizeofPtr, byte]
-  Array* = object
-    bytes*: array[SizeofPtr, byte]
-  PackedByteArray* = object
-    bytes*: array[SizeofPtr*2, byte]
-  PackedInt32Array* = object
-    bytes*: array[SizeofPtr*2, byte]
-  PackedInt64Array* = object
-    bytes*: array[SizeofPtr*2, byte]
-  PackedFloat32Array* = object
-    bytes*: array[SizeofPtr*2, byte]
-  PackedFloat64Array* = object
-    bytes*: array[SizeofPtr*2, byte]
-  PackedStringArray* = object
-    bytes*: array[SizeofPtr*2, byte]
-  PackedVector2Array* = object
-    bytes*: array[SizeofPtr*2, byte]
-  PackedVector3Array* = object
-    bytes*: array[SizeofPtr*2, byte]
-  PackedColorArray* = object
-    bytes*: array[SizeofPtr*2, byte]
+  String* {.bycopy.} = object
+    opaque: Opaque[SizeOfPtr]
+  StringName* {.bycopy.} = object
+    opaque: Opaque[SizeOfPtr]
+  NodePath* {.bycopy.} = object
+    opaque: Opaque[SizeOfPtr]
+  RID* {.bycopy.} = object
+    opaque: Opaque[SizeofPtr*2]
+  Callable* {.bycopy.} = object
+    opaque: Opaque[SizeofPtr*4]
+  Signal* {.bycopy.} = object
+    opaque: Opaque[SizeofPtr*4]
+  Dictionary* {.bycopy.} = object
+    opaque: Opaque[SizeOfPtr]
+  Array* {.bycopy.} = object
+    opaque: Opaque[SizeOfPtr]
+  PackedByteArray* {.bycopy.} = object
+    opaque: Opaque[SizeofPtr*2]
+  PackedInt32Array* {.bycopy.} = object
+    opaque: Opaque[SizeofPtr*2]
+  PackedInt64Array* {.bycopy.} = object
+    opaque: Opaque[SizeofPtr*2]
+  PackedFloat32Array* {.bycopy.} = object
+    opaque: Opaque[SizeofPtr*2]
+  PackedFloat64Array* {.bycopy.} = object
+    opaque: Opaque[SizeofPtr*2]
+  PackedStringArray* {.bycopy.} = object
+    opaque: Opaque[SizeofPtr*2]
+  PackedVector2Array* {.bycopy.} = object
+    opaque: Opaque[SizeofPtr*2]
+  PackedVector3Array* {.bycopy.} = object
+    opaque: Opaque[SizeofPtr*2]
+  PackedColorArray* {.bycopy.} = object
+    opaque: Opaque[SizeofPtr*2]
 
-  VariantObj* = object
-    bytes*: array[SizeofPtr*4 + 8, byte]
-  Variant* = ptr VariantObj
+  Variant* {.byref.} = object
+    opaque: Opaque[SizeofPtr*4 + 8]
 
 type SomePackedArray* =
   PackedByteArray    |
@@ -129,51 +130,59 @@ type SomeIntVector* =
   Vector2i |
   Vector3i |
   Vector4i
-
-type SomeVariants* =
-  Bool            |
-  Int             |
-  Float           |
-  String          |
+type SomeVector* =
   SomeFloatVector |
-  SomeIntVector   |
-  Rect2           |
-  Rect2i          |
-  Transform2D     |
-  Plane           |
-  Quaternion      |
-  AABB            |
-  Basis           |
-  Transform3D     |
-  Projection      |
-  Color           |
+  SomeIntVector
+type SomePrimitives* =
+  Bool         |
+  Int          |
+  Float        |
+  SomeVector   |
+  Rect2        |
+  Rect2i       |
+  Transform2D  |
+  Plane        |
+  Quaternion   |
+  AABB         |
+  Basis        |
+  Transform3D  |
+  Projection   |
+  Color
+type SomeGodotUniques* =
+  String          |
   StringName      |
   NodePath        |
   RID             |
-  Object          |
   Callable        |
   Signal          |
   Dictionary      |
   Array           |
   SomePackedArray
+type SomeVariants* = SomePrimitives|SomeGodotUniques
 
 include "include/gdextension_interface"
+
+const
+  Variant_empty = Variant()
 
 var
   getProcAddress*: InterfaceGetProcAddress
   library*: ClassLibraryPtr
   token*: pointer
+  godotVersion*: GodotVersion
 
-proc `=destroy`(x: VariantObj) =
-  interface_variantDestroy(unsafeAddr x)
-proc `=copy`(dest: var VariantObj; source: VariantObj) =
+proc `=destroy`(x: Variant) =
+  TODO with(Variants_destruction, "inject here to call `=destroy` of an having")
+  if x != Variant_empty:
+    interface_variantDestroy(addr x)
+proc `=copy`(dest: var Variant; source: Variant) =
   `=destroy` dest
   wasMoved(dest)
-  interface_variantNewCopy(addr dest, unsafeAddr source)
+  interface_variantNewCopy(addr dest, addr source)
 
 
-macro variantType(Type: typedesc[SomeVariants]): VariantType =
-  ident "VariantType_" & ($Type)
+template variantType(Type: typedesc[SomeVariants]): VariantType =
+  `VariantType Type`
 
 template define_destructor(Type: typedesc): untyped =
   staticOf Type:

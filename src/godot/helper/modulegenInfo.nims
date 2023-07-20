@@ -1,4 +1,6 @@
 let modules: seq[string] = @[
+  "variants_forge.nim",
+  "(variantDefiner.nim)",
   "(variantTypeSolver.nim)",
 ]
 import strformat, os

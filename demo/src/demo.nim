@@ -24,9 +24,9 @@ proc newDemoLogger: FileLogger =
 
 defaultGroup.loggers.add newDemoLogger()
 
-proc initialize(lvl: GDInitializationLevel): void =
+proc initialize(lvl: InitializationLevel): void =
   iam("initialize-module").debug "demo.initialize was called, level = " & $lvl
-  if lvl != GDInitializationLevel.Scene: return
+  if lvl != Initialization_Scene: return
 
   ClassDB|>register_class(ExampleRef)
   ClassDB|>register_class(ExampleMin)
@@ -34,15 +34,15 @@ proc initialize(lvl: GDInitializationLevel): void =
   ClassDB|>register_class(ExampleVirtual,true)
   ClassDB|>register_abstract_class[ExampleAbstract]()
 
-proc terminate(lvl: GDInitializationLevel): void =
+proc terminate(lvl: InitializationLevel): void =
   iam("terminate-module").debug "demo.terminate was called, level = " & $lvl
-  if lvl != GDInitializationLevel.Scene: return
+  if lvl != Initialization_Scene: return
 
 let cfg = GDExtensionConfig(
   initializer: initialize,
   terminator: terminate,
-  minimumInitializationLevel: GDInitializationLevel.Editor
+  minimumInitializationLevel: Initialization_Editor
 )
 
-gdEntryPoint init_library, cfg:
+GDExtension_EntryPoint init_library, cfg:
   iam("entry").debug "EntryPoint was called"

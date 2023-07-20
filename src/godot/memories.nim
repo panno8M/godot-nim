@@ -1,7 +1,9 @@
+import beyond/ptrtraits
+
 import ../pure/compileTimeSwitch
 import ../godotInterface
 import ../core/errorHandlings
-import ../helper/wrapped
+import ../wrapped
 
 when DebugMemory.isEnabled:
   import ../helper/memoryTracer
@@ -20,26 +22,19 @@ when DebugMemory.isEnabled:
 type
   AllocWild* = object
 
-  AllocatedDataHead*[T] {.byref.} = object
-    item: T
-
-  PhysicalAllocated*[T] = object
+  Allocated*[T] = object
     padding: array[8, byte]
     length: uint64
-    allocated*: AllocatedDataHead[T]
+    allocated*: T
 
   GDMemory*[T] = object
-    p_allocated: ptr AllocatedDataHead[T]
+    allocated: ptr T
 
   GDRef*[T] = ref GDMemory[T]
 
 
-## Allocated[T] is a part of PhysicalAllocated, so it will break object to copy to other place.
-proc `=copy`[T](dest: var AllocatedDataHead[T], source: AllocatedDataHead[T]) {.error.}
-proc `=sink`[T](dest: var AllocatedDataHead[T], source: AllocatedDataHead[T]) {.error.}
-
-proc `=copy`[T](dest: var PhysicalAllocated[T], source: PhysicalAllocated[T]) {.error.}
-proc `=sink`[T](dest: var PhysicalAllocated[T], source: PhysicalAllocated[T]) {.error.}
+proc `=copy`[T](dest: var Allocated[T], source: Allocated[T]) {.error.}
+proc `=sink`[T](dest: var Allocated[T], source: Allocated[T]) {.error.}
 
 proc `=destroy`[T](memory: GDMemory[T])
 
@@ -47,30 +42,22 @@ proc `=destroy`[T](memory: GDMemory[T])
 # template gdpointer*: untyped = GDPtr[AllocVoid]
 
 template empty*[T](memory: typedesc[GDMemory[T]]): GDMemory[T] = GDMemory[T]()
-template isEmpty*[T](memory: GDMemory[T]): bool = memory.p_allocated.isNil
+template isEmpty*[T](memory: GDMemory[T]): bool = memory.allocated.isNil
 
-const PAD_ALIGN = 16 #must always be greater than this at much
+const PAD_ALIGN = 16'dbyte #must always be greater than this at much
 
-proc physicalAllocated*[T](allocated: var AllocatedDataHead[T]): var PhysicalAllocated[T] =
-  cast[ptr PhysicalAllocated[T]](cast[uint64](allocated.addr) - PAD_ALIGN)[]
-proc physicalAllocated*[T](allocated: AllocatedDataHead[T]): var PhysicalAllocated[T] =
-  cast[ptr PhysicalAllocated[T]](cast[uint64](allocated.addr) - PAD_ALIGN)[]
-
-proc item*[T](p: GDMemory[T]): var T = cast[ptr T](p)[]
-proc allocated*[T](p: GDMemory[T]): var AllocatedDataHead[T] = p.p_allocated[]
-proc physicalAllocated*[T](p: GDMemory[T]): var PhysicalAllocated[T] =
-  p.allocated.physicalAllocated
+proc physicalAllocated*[T](p: GDMemory[T]): ptr Allocated[T] =
+  cast[ptr Allocated[T]](p.allocated - PAD_ALIGN)
 
 template to*[T](p: GDMemory[AllocWild]; Dst: typedesc[GDMemory[T]]): GDMemory[T] = cast[GDMemory[T]](p)
 converter toWild*[T](p: GDMemory[T]): GDMemory[AllocWild] = p.to(GDMemory[AllocWild])
 
 {.push, inline.}
-func next[T](p: GDMemory[T]; count: Natural): var T = cast[ptr T](cast[uint64](p) + uint64 sizeof(T)*count)[]
-
 proc `[]`*[T](p: GDMemory[T]; index: Natural = 0): var T =
-  p.next(index)
+  (p.allocated + index.didx)[]
 
-proc `[]=`*[T](p: GDMemory[T]; index: Natural = 0; item: sink T) = p.next(index) = item
+proc `[]=`*[T](p: GDMemory[T]; index: Natural = 0; item: sink T) =
+  (p.allocated + index.didx)[] = item
 
 proc lenu64*[T](a: GDMemory[T]): uint64 = a.physicalAllocated.length
 proc len*[T](a: GDMemory[T]): Natural = Natural a.lenu64
@@ -85,9 +72,9 @@ iterator pairs*[T](p: GDMemory[T]): (int, T) =
 iterator mpairs*[T](p: GDMemory[T]): (int, var T) =
   for i in 0..<p.len:
     # yield (i, p[i])
-    yield (i, cast[ptr T](p.next(i))[])
+    yield (i, cast[ptr T](p.allocated + i.didx)[])
 
-proc gdalloc*(bytes: Positive): GDMemory[AllocWild] =
+proc gdalloc*(bytes: uint64): GDMemory[AllocWild] =
   let allocated : pointer =
     when EngineDebugEnabled: interface_memAlloc(csize_t bytes)
     else:                    interface_memAlloc(csize_t bytes+PAD_ALIGN)
@@ -102,20 +89,20 @@ proc gdalloc*(bytes: Positive): GDMemory[AllocWild] =
   when EngineDebugEnabled:
     cast[GDMemory[AllocWild]](allocated)
   else:
-    cast[GDMemory[AllocWild]](cast[ptr PhysicalAllocated[AllocWild]](allocated)[].allocated.addr)
+    cast[GDMemory[AllocWild]](cast[ptr Allocated[AllocWild]](allocated)[].allocated.addr)
 
 proc free*[T](gdp: GDMemory[T]) =
   when EngineDebugEnabled:
     let p = cast[pointer](gdp)
   else:
-    let p = cast[pointer](addr gdp.physicalAllocated)
+    let p = cast[pointer](gdp.physicalAllocated)
 
   interface_memFree p
 
   when DebugMemory.isEnabled:
     memoryTracer.markReleaced(p)
 
-proc realloc*(p_memory: GDMemory[AllocWild]; bytes: Natural): GDMemory[AllocWild] =
+proc realloc*(p_memory: GDMemory[AllocWild]; bytes: uint64): GDMemory[AllocWild] =
   if p_memory.isEmpty:
     return gdalloc(bytes)
   elif bytes == 0:
@@ -123,17 +110,17 @@ proc realloc*(p_memory: GDMemory[AllocWild]; bytes: Natural): GDMemory[AllocWild
     return empty GDMemory[AllocWild]
 
   when EngineDebugEnabled:
-    return cast[GDMemory[AllocWild]](interface_memRealloc(cast[pointer](p_memory), bytes))
+    return cast[GDMemory[AllocWild]](interface_memRealloc(p_memory, bytes))
   else:
-    let newmem = interface_memRealloc(cast[pointer](addr p_memory.physicalAllocated), csize_t bytes + PAD_ALIGN)
+    let newmem = interface_memRealloc(p_memory.physicalAllocated, csize_t bytes + PAD_ALIGN)
     withMakeErrmsg_if newmem.isNil:
       printError(msg, "failed to reallocate at godot managed memory.")
       return empty GDMemory[AllocWild]
-    return cast[GDMemory[AllocWild]](addr cast[ptr PhysicalAllocated[AllocWild]](newmem)[].allocated)
+    return cast[GDMemory[AllocWild]](addr cast[ptr Allocated[AllocWild]](newmem)[].allocated)
 
 {.push, inline.}
 proc gdnew*[T: not ref and not ptr](Type: typedesc[T]; length: Natural = 1): GDMemory[T] =
-  result = gdalloc(sizeof(T)*length).to(GDMemory[T])
+  result = gdalloc(uint64 sizeof(T)*length).to(GDMemory[T])
   result.physicalAllocated.length = uint64 length
 proc gdnew*[T](obj: sink T): GDMemory[T] =
   result = gdnew(T)
