@@ -30,7 +30,7 @@ Initialization.deinitialize => deinitialize:
   ClassDB|>currentLevel = p_level
   if extcfg.terminator != nil:
     extcfg.terminator(p_level)
-  TODO Support_edtior_plugin_development, false:
+  TODO with(Support_edtior_plugin_development, false):
     EditorPlugins|>deinitialize(p_level)
   ClassDB|>deinitialize(p_level)
 

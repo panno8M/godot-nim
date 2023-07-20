@@ -194,7 +194,7 @@ template BIND_VIRTUAL_METHOD*(m_class, m_method): untyped =
     call_with_ptr_args(reinterpret_cast<m_class *>(p_instance), &m_class|>m_method, p_args, p_ret)
   ClassDB|>bind_virtual_method($m_class, $m_method, `call m_method`)
 
-TODO subject"conversion imcompleted"
+TODO with subject"conversion imcompleted"
 #[
 public:
   template <class T>

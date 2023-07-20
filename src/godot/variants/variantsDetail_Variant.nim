@@ -3,9 +3,14 @@
 #include <godot_cpp/variant/variant_size.hpp>
 #include <gdextension_interface.h>
 #include <array>
-import beyond/[oop, annotativeblocks]
+import beyond/[oop, defects, annotativeblocks]
 import ../[godotInterface]
+import ../pure/[todos]
+import variantsConstr_native
+import variantsConstr_custom
 import variantsLoader
+import ../helper/objectConverter
+import ../helper/variantTypeSolver
 var
   fromTypeConstructor: array[VariantType, VariantFromTypeConstructorFunc]
   toTypeConstructor: array[VariantType, TypeFromVariantConstructorFunc]
@@ -17,114 +22,87 @@ proc load* {.staticOf: Variant.} =
 
   load_Variants()
 
-TODO subject"needs to convert following clang-programs"
+template define_converter_from_addr(Type) =
+  proc variant*(v: Type): Variant =
+    fromTypeConstructor[Type.variantType](addr result, addr v)
+  proc get*(v: Variant; _: typedesc[Type]): Type =
+    toTypeConstructor[Type.variantType](addr result, addr v)
+
+define_converter_from_addr String
+define_converter_from_addr StringName
+define_converter_from_addr Vector2
+define_converter_from_addr Vector2i
+define_converter_from_addr Vector3
+define_converter_from_addr Vector3i
+define_converter_from_addr Vector4
+define_converter_from_addr Vector4i
+define_converter_from_addr Quaternion
+define_converter_from_addr Color
+define_converter_from_addr Rect2
+define_converter_from_addr Rect2i
+define_converter_from_addr Transform2D
+define_converter_from_addr Transform3D
+define_converter_from_addr Plane
+define_converter_from_addr AABB
+define_converter_from_addr Basis
+define_converter_from_addr Projection
+define_converter_from_addr NodePath
+define_converter_from_addr RID
+define_converter_from_addr Callable
+define_converter_from_addr Signal
+define_converter_from_addr Dictionary
+define_converter_from_addr Array
+define_converter_from_addr PackedByteArray
+define_converter_from_addr PackedInt32Array
+define_converter_from_addr PackedInt64Array
+define_converter_from_addr PackedFloat32Array
+define_converter_from_addr PackedFloat64Array
+define_converter_from_addr PackedStringArray
+define_converter_from_addr PackedVector2Array
+define_converter_from_addr PackedVector3Array
+define_converter_from_addr PackedColorArray
+
+TODO with(Support_godots_ref, "define Variant.new"):
+  type Ref[T] {.deprecated.} = object
+  proc variant*[T: RefCounted](r: Ref[T]): Variant {.unimplemented.}
+
+proc variant*(v: bool): Variant =
+  fromTypeconstructor[VariantType_Bool](addr result, addr v.encoded)
+
+proc variant*(v: int64): Variant =
+  fromTypeConstructor[VariantType_Int](addr result, addr v.encoded)
+proc variant*(v: int32|uint32|uint64): Variant = variant int64 v
+
+proc variant*(v: float64): Variant =
+  fromTypeConstructor[VariantType_Float](addr result, addr v.encoded)
+proc variant*(v: float32): Variant = variant float64 v
+proc variant*(v: string): Variant = variant String|>init v
+
+proc get*(v: Variant; _: typedesc[bool]): bool =
+  toTypeConstructor[VariantType_Bool](addr result, addr v)
+  result.converted
+proc get*(v: Variant; _: typedesc[int64]): int64 =
+  toTypeConstructor[VariantType_Int](addr result, addr v)
+  result.converted
+proc get*[T: int32|uint32|uint64](v: Variant; _: typedesc[T]): T = T v.get int64
+proc get*(v: Variant; _: typedesc[float64]): float64 =
+  toTypeConstructor[VariantType_Float](addr result, addr v)
+  result.converted
+proc get*(v: Variant; _: typedesc[float32]): float32 = float32 v.get float64
+
+TODO with(Variant_conversion, false):
+  proc variant*(v: ObjectID)
+  proc variant*(v: ptr Object)
+  proc get*(v: Variant; _: typedesc[ObjectID]): ObjectID
+  proc get*(v: Variant; _: typedesc[ptr Object]): ptr Object
+  # Variant(const ObjectID &v);
+  # variant(const Object *v);
+  # operator ObjectID() const;
+  # operator Object *() const;
+
+
+TODO with subject"needs to convert following clang-programs"
 #[
-proc variant*[T: RefCounted](r: Ref[T]): GdVariant {.unimplemented.}
-proc variant*(v: bool): GdVariant =
-  var encoded: bool
-  PtrToArg<bool>::encode(v, addr encoded)
-  fromTypeconstructor[BOOL](addr result, addr encoded)
-when false:
-  Variant(int64_t v);
-  Variant(int32_t v) :
-      Variant(static_cast<int64_t>(v)) {}
-  Variant(uint32_t v) :
-      Variant(static_cast<int64_t>(v)) {}
-  Variant(uint64_t v) :
-      Variant(static_cast<int64_t>(v)) {}
-  Variant(double v);
-  Variant(float v) :
-      Variant((double)v) {}
-  Variant(const String &v);
-  Variant(const char *v) :
-      Variant(String(v)) {}
-  Variant(const char16_t *v) :
-      Variant(String(v)) {}
-  Variant(const char32_t *v) :
-      Variant(String(v)) {}
-  Variant(const wchar_t *v) :
-      Variant(String(v)) {}
-  Variant(const Vector2 &v);
-  Variant(const Vector2i &v);
-  Variant(const Rect2 &v);
-  Variant(const Rect2i &v);
-  Variant(const Vector3 &v);
-  Variant(const Vector3i &v);
-  Variant(const Transform2D &v);
-  Variant(const Vector4 &v);
-  Variant(const Vector4i &v);
-  Variant(const Plane &v);
-  Variant(const Quaternion &v);
-  Variant(const godot::AABB &v);
-  Variant(const Basis &v);
-  Variant(const Transform3D &v);
-  Variant(const Projection &v);
-  Variant(const Color &v);
-  Variant(const StringName &v);
-  Variant(const NodePath &v);
-  Variant(const godot::RID &v);
-  Variant(const ObjectID &v);
-  Variant(const Object *v);
-  Variant(const Callable &v);
-  Variant(const Signal &v);
-  Variant(const Dictionary &v);
-  Variant(const Array &v);
-  Variant(const PackedByteArray &v);
-  Variant(const PackedInt32Array &v);
-  Variant(const PackedInt64Array &v);
-  Variant(const PackedFloat32Array &v);
-  Variant(const PackedFloat64Array &v);
-  Variant(const PackedStringArray &v);
-  Variant(const PackedVector2Array &v);
-  Variant(const PackedVector3Array &v);
-  Variant(const PackedColorArray &v);
-  ~Variant();
-
-  operator bool() const;
-  operator int64_t() const;
-  operator int32_t() const;
-  operator uint64_t() const;
-  operator uint32_t() const;
-  operator double() const;
-  operator float() const;
-  operator String() const;
-  operator Vector2() const;
-  operator Vector2i() const;
-  operator Rect2() const;
-  operator Rect2i() const;
-  operator Vector3() const;
-  operator Vector3i() const;
-  operator Transform2D() const;
-  operator Vector4() const;
-  operator Vector4i() const;
-  operator Plane() const;
-  operator Quaternion() const;
-  operator godot::AABB() const;
-  operator Basis() const;
-  operator Transform3D() const;
-  operator Projection() const;
-  operator Color() const;
-  operator StringName() const;
-  operator NodePath() const;
-  operator godot::RID() const;
-  operator ObjectID() const;
-  operator Object *() const;
-  operator Callable() const;
-  operator Signal() const;
-  operator Dictionary() const;
-  operator Array() const;
-  operator PackedByteArray() const;
-  operator PackedInt32Array() const;
-  operator PackedInt64Array() const;
-  operator PackedFloat32Array() const;
-  operator PackedFloat64Array() const;
-  operator PackedStringArray() const;
-  operator PackedVector2Array() const;
-  operator PackedVector3Array() const;
-  operator PackedColorArray() const;
-
-  Variant &operator=(const Variant &other);
-  Variant &operator=(Variant &&other);
   bool operator==(const Variant &other) const;
   bool operator!=(const Variant &other) const;
   bool operator<(const Variant &other) const;

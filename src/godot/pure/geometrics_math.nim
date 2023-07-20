@@ -138,7 +138,7 @@ func arctan2*[T: SomeFloat](pY, pX: T): Radian[T] = Radian stdmath.arctan2(pY, p
 
 func isFinite*[T: SomeFloat](pX: T): bool = pX == NaN or pX == Inf or pX == NegInf
 
-TODO subject"importing from c++ is not done yet."
+TODO with subject"importing from c++ is not done yet."
 #[
 inline double cubic_interpolate_in_time(double p_from, double p_to, double p_pre, double p_post, double p_weight,
     double p_to_t, double p_pre_t, double p_post_t) {

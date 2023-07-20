@@ -46,8 +46,6 @@ proc get_instance_id(self: Wrapped) : uint64 = 0
 # protected
 # ---------
 
-# This is needed to retrieve the class name before the godot object has its _extension and _extension_instance members assigned.
-method get_extension_class_name*(self: Wrapped): ptr StringName {.base.} = nil
 # virtual const InstanceBindingCallbacks *_get_bindings_callbacks() const = 0;
 method get_bindings_callbacks*(self: Wrapped): ptr InstanceBindingCallbacks {.base.} = discard
 

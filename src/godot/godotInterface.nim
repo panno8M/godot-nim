@@ -162,6 +162,9 @@ type SomeVariants* = SomePrimitives|SomeGodotUniques
 
 include "include/gdextension_interface"
 
+const
+  Variant_empty = Variant()
+
 var
   getProcAddress*: InterfaceGetProcAddress
   library*: ClassLibraryPtr
@@ -169,8 +172,9 @@ var
   godotVersion*: GodotVersion
 
 proc `=destroy`(x: Variant) =
-  TODO Variants_destruction, "inject here to call `=destroy` of an having"
-  interface_variantDestroy(addr x)
+  TODO with(Variants_destruction, "inject here to call `=destroy` of an having")
+  if x != Variant_empty:
+    interface_variantDestroy(addr x)
 proc `=copy`(dest: var Variant; source: Variant) =
   `=destroy` dest
   wasMoved(dest)

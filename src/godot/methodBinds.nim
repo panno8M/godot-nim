@@ -108,7 +108,7 @@ ClassMethodPtrCall =>* bindPtrCall:
   b.ptrcall(pInstance, pArgs, r_ret)
 
 # ==============================================================
-TODO subject"Define the inheritance type of MethodBind."
+TODO with subject"Define the inheritance type of MethodBind."
 #[
 type MethodBindVarArgBase*[T,R; should_returns: static bool] = object of MethodBind
 # protected:

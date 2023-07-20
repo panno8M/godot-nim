@@ -12,8 +12,6 @@ template define_godot_class_essencials*(GDClass, m_inherits: typedesc): untyped 
 
   # protected:
   # ----------
-  method get_extension_class_name*(self: GDClass): ptr GDStringName =
-    addr GDClass|>className
   method get_bindings_callbacks*(self: GDClass): ptr GdInstanceBindingCallbacks =
     addr GDClass|>binding_callbacks
 

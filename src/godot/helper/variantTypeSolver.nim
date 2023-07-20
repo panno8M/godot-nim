@@ -8,7 +8,7 @@ template variantType*(Type: typedesc): VariantType =
 template variantType*(Type: typedesc[ObjectPtr]): VariantType =
   VariantType_Object
 
-TODO subject"variants.propertyinfo", "Insufficient kinds handled"
+TODO with(subject"variants.propertyinfo", "Insufficient kinds handled")
 template propertyInfo*(Type: typedesc[SomeVariants]): PropertyInfo =
   let
     name: StringName = ""
