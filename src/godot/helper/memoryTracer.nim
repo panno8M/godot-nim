@@ -1,6 +1,6 @@
 import ../pure/compileTimeSwitch
 
-when DebugMemory.isEnabled:
+when DebugMemory == on:
   import std/tables
   import std/strutils
   import ../logging

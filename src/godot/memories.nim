@@ -1,12 +1,13 @@
 import beyond/ptrtraits
+import beyond/oop
 
-import ../pure/compileTimeSwitch
-import ../godotInterface
-import ../core/errorHandlings
-import ../wrapped
+import pure/compileTimeSwitch
+import godotInterface
+import helper/errorHandlings
+import wrapped
 
-when DebugMemory.isEnabled:
-  import ../helper/memoryTracer
+when DebugMemory == on:
+  import helper/memoryTracer
 
 # include <cstddef>
 # include <cstdint>
@@ -20,127 +21,140 @@ when DebugMemory.isEnabled:
 {.warning: "Now, there are many potential problems in memories.nim".}
 
 type
-  AllocWild* = object
+  GDMemoryObj*[T] = object
+    allocated*: ptr T
+  GDArrayedMemoryObj*[T] = GDMemoryObj[UncheckedArray[T]]
 
-  Allocated*[T] = object
-    padding: array[8, byte]
-    length: uint64
-    allocated*: T
+  GDMemory*[T] = ref GDMemoryObj[T]
+  GDArrayedMemory*[T] = ref GDArrayedMemoryObj[T]
 
-  GDMemory*[T] = object
-    allocated: ptr T
+proc `=destroy`[T](memory: GDMemoryObj[T])
 
-  GDRef*[T] = ref GDMemory[T]
-
-
-proc `=copy`[T](dest: var Allocated[T], source: Allocated[T]) {.error.}
-proc `=sink`[T](dest: var Allocated[T], source: Allocated[T]) {.error.}
-
-proc `=destroy`[T](memory: GDMemory[T])
-
-# template gdptr*(Type: untyped): untyped = GDPtr[Type]
-# template gdpointer*: untyped = GDPtr[AllocVoid]
-
+template empty*[T](memory: typedesc[GDMemoryObj[T]]): GDMemoryObj[T] = GDMemoryObj[T]()
 template empty*[T](memory: typedesc[GDMemory[T]]): GDMemory[T] = GDMemory[T]()
-template isEmpty*[T](memory: GDMemory[T]): bool = memory.allocated.isNil
+template isEmpty*[T](memory: GDMemoryObj[T]): bool = memory.allocated.isNil
+template isEmpty*[T](memory: GDMemory[T]): bool = memory.isNil or memory.allocated.isNil
 
-const PAD_ALIGN = 16'dbyte #must always be greater than this at much
-
-proc physicalAllocated*[T](p: GDMemory[T]): ptr Allocated[T] =
-  cast[ptr Allocated[T]](p.allocated - PAD_ALIGN)
-
-template to*[T](p: GDMemory[AllocWild]; Dst: typedesc[GDMemory[T]]): GDMemory[T] = cast[GDMemory[T]](p)
-converter toWild*[T](p: GDMemory[T]): GDMemory[AllocWild] = p.to(GDMemory[AllocWild])
+const PAD_ALIGN : csize_t = 16 #must always be greater than this at much
 
 {.push, inline.}
-proc `[]`*[T](p: GDMemory[T]; index: Natural = 0): var T =
-  (p.allocated + index.didx)[]
-
-proc `[]=`*[T](p: GDMemory[T]; index: Natural = 0; item: sink T) =
-  (p.allocated + index.didx)[] = item
-
-proc lenu64*[T](a: GDMemory[T]): uint64 = a.physicalAllocated.length
-proc len*[T](a: GDMemory[T]): Natural = Natural a.lenu64
+proc len*[T](a: GDArrayedMemory[T]): Natural = cast[ptr Natural](a.allocated - 8.dbyte)[]
 {.pop.}
 
-iterator items*[T](p: GDMemory[T]): T =
-  for i in 0..<p.len: yield p[i]
-iterator mitems*[T](p: GDMemory[T]): var T =
-  for i in 0..<p.len: yield p[i]
-iterator pairs*[T](p: GDMemory[T]): (int, T) =
-  for i in 0..<p.len: yield (i, p[i])
-iterator mpairs*[T](p: GDMemory[T]): (int, var T) =
+iterator items*[T](p: GDArrayedMemory[T]): T =
   for i in 0..<p.len:
-    # yield (i, p[i])
+    yield cast[ptr T](p.allocated + i.didx)[]
+iterator mitems*[T](p: GDArrayedMemory[T]): var T =
+  for i in 0..<p.len:
+    yield cast[ptr T](p.allocated + i.didx)[]
+iterator pairs*[T](p: GDArrayedMemory[T]): (int, T) =
+  for i in 0..<p.len:
+    yield (i, cast[ptr T](p.allocated + i.didx)[])
+iterator mpairs*[T](p: GDArrayedMemory[T]): (int, var T) =
+  for i in 0..<p.len:
     yield (i, cast[ptr T](p.allocated + i.didx)[])
 
-proc gdalloc*(bytes: uint64): GDMemory[AllocWild] =
+proc gdalloc*(bytes: csize_t; withHeader= false): pointer =
+  when EngineDebugEnabled:
+    const withHeader = false
   let allocated : pointer =
-    when EngineDebugEnabled: interface_memAlloc(csize_t bytes)
-    else:                    interface_memAlloc(csize_t bytes+PAD_ALIGN)
+    if withHeader:
+      interface_memAlloc(bytes+PAD_ALIGN)
+    else:
+      interface_memAlloc(bytes)
 
-  when DebugMemory.isEnabled:
+  when DebugMemory == on:
     memoryTracer.markAllocated(allocated)
 
   withMakeErrmsg_if allocated.isNil:
     printError(msg, "failed to allocate at godot managed memory.")
-    return empty GDMemory[AllocWild]
+    return nil
 
-  when EngineDebugEnabled:
-    cast[GDMemory[AllocWild]](allocated)
+  if withHeader:
+    return allocated + PAD_ALIGN.dbyte
   else:
-    cast[GDMemory[AllocWild]](cast[ptr Allocated[AllocWild]](allocated)[].allocated.addr)
+    return allocated
 
-proc free*[T](gdp: GDMemory[T]) =
+proc gdfree*(p: pointer; withHeader = false) =
   when EngineDebugEnabled:
-    let p = cast[pointer](gdp)
+    const withHeader = false
+  if withHeader:
+    interface_memFree p - PAD_ALIGN.dbyte
   else:
-    let p = cast[pointer](gdp.physicalAllocated)
+    interface_memFree p
 
-  interface_memFree p
-
-  when DebugMemory.isEnabled:
+  when DebugMemory == on:
     memoryTracer.markReleaced(p)
 
-proc realloc*(p_memory: GDMemory[AllocWild]; bytes: uint64): GDMemory[AllocWild] =
-  if p_memory.isEmpty:
-    return gdalloc(bytes)
+proc gdrealloc*(p: pointer; bytes: csize_t; withHeader = false): pointer =
+  if p.isNil:
+    return gdalloc(bytes, withHeader)
   elif bytes == 0:
-    free(p_memory)
-    return empty GDMemory[AllocWild]
+    gdfree(p, withHeader)
+    return nil
 
   when EngineDebugEnabled:
-    return cast[GDMemory[AllocWild]](interface_memRealloc(p_memory, bytes))
+    const withHeader = false
+
+  let newmem =
+    if withHeader:
+      interface_memRealloc(p - PAD_ALIGN.dbyte, bytes + PAD_ALIGN)
+    else:
+      interface_memRealloc(p, bytes)
+  withMakeErrmsg_if newmem.isNil:
+    printError(msg, "failed to reallocate at godot managed memory.")
+    return nil
+  if withHeader:
+    newmem + PAD_ALIGN.dbyte
   else:
-    let newmem = interface_memRealloc(p_memory.physicalAllocated, csize_t bytes + PAD_ALIGN)
-    withMakeErrmsg_if newmem.isNil:
-      printError(msg, "failed to reallocate at godot managed memory.")
-      return empty GDMemory[AllocWild]
-    return cast[GDMemory[AllocWild]](addr cast[ptr Allocated[AllocWild]](newmem)[].allocated)
+    newmem
+
+
+template postinitialize[T](self: T) = (discard)
+proc postinitialize[T: Wrapped](self: T) =
+  if T isnot Wrapped:
+    interface_object_set_instance(self.owner, addr T|>classname, addr self)
+  interface_object_set_instance_binding(self.owner, token, addr self, self.get_bindings_callbacks())
 
 {.push, inline.}
-proc gdnew*[T: not ref and not ptr](Type: typedesc[T]; length: Natural = 1): GDMemory[T] =
-  result = gdalloc(uint64 sizeof(T)*length).to(GDMemory[T])
-  result.physicalAllocated.length = uint64 length
+proc gdnew*[T](Type: typedesc[T]): GDMemory[T] =
+  new result
+  result.allocated = cast[ptr T](gdalloc(csize_t sizeof T))
+  postinitialize result.allocated
+
+proc gdnew*[T](Type: typedesc[T]; length: Natural): GDArrayedMemory[T] =
+  new result
+  result.allocated = cast[ptr UncheckedArray[T]](gdalloc csize_t length * sizeof T)
+  cast[ptr Natural](result.allocated - 8.dbyte)[] = length
+  for item in result.items: postinitialize item
+
 proc gdnew*[T](obj: sink T): GDMemory[T] =
   result = gdnew(T)
-  result[] = obj
-proc gdnew*[I: static int;T](obj: sink array[I,T]): GDMemory[T] =
+  result.allocated[] = obj
+proc gdnew*[I: static int;T](obj: sink array[I,T]): GDArrayedMemory[T] =
   result = gdnew(T, I)
-  for i in 0..<I: result[i] = obj[i]
-proc gdnew*[T](obj: sink openArray[T]): GDMemory[T] =
+  for i in 0..<I: result.allocated[i] = obj[i]
+proc gdnew*[T](obj: sink openArray[T]): GDArrayedMemory[T] =
   result = gdnew(T, obj.len)
-  for i in 0..<obj.len: result[i] = obj[i]
+  for i in 0..<obj.len: result.allocated[i] = obj[i]
 
 {.pop.}
 
-proc `=destroy`[T](memory: GDMemory[T]) =
-  for i in 0..<memory.physicalAllocated.length:
-    `=destroy` memory[i]
-  free memory
+proc `=destroy`[T](memory: GDMemoryObj[T]) =
+  if memory.isEmpty: return
+  when memory is GDArrayedMemory:
+    for i in 0..<memory.physicalAllocated.length:
+      `=destroy` memory.allocated[i]
+  else:
+    `=destroy` memory.allocated[]
+  gdfree memory.allocated
 
-proc delete[T](memory: GDMemory[T]) =
-  `=destroy`(memory)
+proc delete*[T](memory: GDMemory[T]) =
+  `=destroy`(memory[])
+  memory.allocated = nil
+proc delete*[T](memory: GDArrayedMemory[T]) =
+  `=destroy`(memory[])
+  memory.allocated = nil
 
 when isMainModule:
   for i, v in gdnew([1, 2, 3]).mpairs:
