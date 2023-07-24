@@ -80,12 +80,17 @@ func toNim*(self: GdBuiltinClass): NimBuiltinClass =
 func moduleName*(self: NimBuiltinClass): string =
   self.base.name.moduleName
 
-func render*(self: NimBuiltinClass): tuple[classdef, constructor, loader: Statement] =
-  result.constructor = +$$..OptionSt(eval: self.constructors.len != 0):
+func renderConstructor*(self: NimBuiltinClass): Statement =
+  +$$..OptionSt(eval: self.constructors.len != 0):
     fmt"{self.classname}.constructors(loader= {constrLoader self.classname}):"
     IndentSt(level: 2).add self.constructors
 
-  result.classdef = +$$..ParagraphSt():
+func renderConstructor*(self: seq[NimBuiltinClass]): Statement =
+  ParagraphSt(children: self.mapit(it.renderConstructor))
+
+
+func renderClassDefine*(self: NimBuiltinClass): Statement =
+  +$$..ParagraphSt():
     +$$..CommentSt.nim(execute= true):
       fmt"type {self.classname}* = object"
       +$$..IndentSt(level: 2):
@@ -114,7 +119,8 @@ func render*(self: NimBuiltinClass): tuple[classdef, constructor, loader: Statem
       fmt"staticOf {self.classname}:"
       +$$..IndentSt(level: 2): self.enums.mapit it.render
 
-  result.loader = +$$..OptionSt(eval: (self.methods.len+self.staticmethods.len+self.operators.len) != 0):
+func renderLoader*(self: NimBuiltinClass): Statement =
+  +$$..OptionSt(eval: (self.methods.len+self.staticmethods.len+self.operators.len) != 0):
     +$$..NimProcSt(
           kind: NimProcKind.PublicProc,
           name: allMethodLoader self.classname):
@@ -124,20 +130,14 @@ func render*(self: NimBuiltinClass): tuple[classdef, constructor, loader: Statem
         fmt"{sprocLoader self.classname}()"
       +$$..OptionSt(eval: self.operators.len != 0):
         fmt"{opLoader self.classname}()"
-
-proc modulate*(self: NimBuiltinClass): tuple[module: Module; constructor: Statement] =
-  let (classdef, constructor, loader) = self.render
-  result.module = mdl(self.moduleName)
-    .incl(moduleTree.variants_forge)
-  result.module.contents = classdef
-  discard result.module.contents.add loader
-  result.constructor = constructor
-
-proc modulateLoader*(classes: seq[NimBuiltinClass]) =
+func renderLoader*(classes: seq[NimBuiltinClass]): Statement =
   let loaderBody = +$$..ParagraphSt():
     "let me = iam(\"load-Variants\", stgLibrary)"
 
-    "me.debug \"load constructors of all variants...\""
+  loaderBody.children.add "me.debug \"load destructors of all variants...\""
+  loaderBody.children.add destrLoader("Variants") & "()"
+
+  loaderBody.children.add "me.debug \"load constructors of all variants...\""
   for class in classes:
     if class.className notin constructorIgnores:
       discard loaderBody.add:
@@ -146,26 +146,26 @@ proc modulateLoader*(classes: seq[NimBuiltinClass]) =
   loaderBody.children.add "me.debug \"load functions of all variants...\""
   for class in classes:
     discard loaderBody.add &"{allMethodLoader class.className}()"
-  loaderBody.children.add "me.debug \"load destructors of all variants...\""
-  loaderBody.children.add destrLoader("Variants") & "()"
 
   loaderBody.children.add "me.debug \"load tuned functions of all variants...\""
   for loader in moduleTree.variantAdditionalLoaders:
     loaderBody.children.add loader
 
-  moduleTree.variantLoader.contents = +$$..NimProcSt(
+  +$$..NimProcSt(
       kind: NimProcKind.PublicProc,
       name: "load_Variants"):
     loaderBody
 
-proc modulate*(self: seq[GdBuiltinClass]): seq[Module] {.inline.} =
 
+proc modulateDetail*(self: NimBuiltinClass): Module =
+  result = mdl(self.moduleName)
+    .incl(moduleTree.variants_forge)
+  result.contents = self.renderClassDefine
+  discard result.contents.add self.renderLoader
+proc modulateDetails*(self: seq[NimBuiltinClass]): seq[Module] =
+  self.mapIt(it.modulateDetail)
+
+proc toNim*(self: seq[GdBuiltinClass]): seq[NimBuiltinClass] {.inline.} =
   warn """We could not convert these json-tags yet:
   [is_keyed, has_destructor, indexing_return_type, constants]"""
-
-  let nimClasses = self.mapIt(it.toNim).filterIt(it.className notin moduleTree.variantIgnores)
-  let modules = nimClasses.mapIt(it.modulate)
-  result = modules.mapIt it.module
-
-  moduleTree.variantsConstr_native.contents = ParagraphSt().add modules.mapit(it.constructor)
-  modulateLoader nimClasses
+  self.mapIt(it.toNim).filterIt(it.className notin moduleTree.variantIgnores)

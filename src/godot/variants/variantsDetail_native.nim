@@ -1,4 +1,7 @@
-## This module was generated automatically. Changes will be lost.
+# ======================================== #
+# This module was generated automatically. #
+# Edits will be lost.                      #
+# ======================================== #
 import ./variantsDetail_native/variantsDetail_AABB; export variantsDetail_AABB
 import ./variantsDetail_native/variantsDetail_Array; export variantsDetail_Array
 import ./variantsDetail_native/variantsDetail_Basis; export variantsDetail_Basis

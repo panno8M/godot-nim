@@ -1,128 +1,95 @@
 import ../pure/todos
 
-template define_godot_class_essencials*(GDClass, m_inherits: typedesc): untyped =
-  staticOf GDClass:
-    let binding_callbacks = GdInstanceBindingCallbacks{
-      (GdInstanceBindingCreateCallback => nil),
-      (GdInstanceBindingFreeCallback => (discard)),
-      (GdInstanceBindingReferenceCallback => true),
-    };
-    let className* = GDStringname|>init($GDClass)
+template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
+  template Inherits*(_: typedesc[Class]): typedesc[Inherits] = Inherits
 
+  let binding_callbacks {.staticOf: Class.} = InstanceBindingCallbacks(
+    create_callback: (proc {.implement: InstanceBindingCreateCallback.} = nil),
+    free_callback: (proc {.implement: InstanceBindingFreeCallback.} = (discard)),
+    reference_callback: (proc {.implement: InstanceBindingReferenceCallback.} = true),
+  )
+  let className* {.staticOf: Class.} = Stringname|>init($Class)
 
   # protected:
   # ----------
-  method get_bindings_callbacks*(self: GDClass): ptr GdInstanceBindingCallbacks =
-    addr GDClass|>binding_callbacks
-
-  TODO Define_godot_class, "implement `register_virtuals", false:
+  TODO with(Support_virtual_method, "implement `register_virtuals", false):
     ##[
     template <class T, class B>
     static void register_virtuals() {
-      m_inherits::register_virtuals<T, B>();
+      Inherits|>register_virtuals<T, B>();
     ]##
 
   # public:
   # -------
-  staticOf GDClass:
+  staticOf Class:
     var initialized = false
     proc initialize =
-      if GDClass|>initialized: return
-      m_inherits|>initialize()
-      if (GDClass::_get_bind_methods() != m_inherits::_get_bind_methods()) {
-        _bind_methods();
-        m_inherits::register_virtuals<GDClass, m_inherits>();
-      GDClass|>initialized = true
+      if Class|>initialized: return
+      Inherits|>initialize()
+      when declared `Class|>bind_methods`:
+        Class|>bind_methods()
+        TODO with(Support_virtual_method, false):
+          Inherits|>register_virtuals(Class, Inherits)
+      Class|>initialized = true
 
-  static ::godot::StringName &get_parent_class_static() {
-    return m_inherits::get_class_static();
+  proc create*(data: pointer): ObjectPtr {.staticOf: Class.} =
+    Class *new_object = memnew(Class)
+    return new_object.owner
 
-  static GDObjectPtr create(void *data) {
-    GDClass *new_object = memnew(GDClass);
-    return new_object->_owner;
+  proc notification_bind* {.implement: ClassNotification, staticOf: Class.} =
+    if p_instance.isNil: return
+    when declared `Class|>notification`:
+      Class|>notification(cast[ptr Class](p_instance)[], p_what)
+    else:
+      Inherits|>notification_bind(p_instance, p_what)
 
-  static void notification_bind(GDClassInstancePtr p_instance, int32_t p_what) {
-    if (p_instance && GDClass::_get_notification()) {
-      # when declared `GDClass|>get_notification`:
-      if (GDClass::_get_notification() != m_inherits::_get_notification()) {
-        GDClass *cls = reinterpret_cast<GDClass *>(p_instance);
-        return cls->_notification(p_what);
-      m_inherits::notification_bind(p_instance, p_what);
+  proc set_bind* {.implement: ClassSet, staticOf: Class.} =
+    if p_instance.isNil: return false
+    when declared `Class|>set`:
+      return Class|>set(cast[ptr Class](p_instance)[], p_name[], p_value[])
+    else:
+      return Inherits|>set_bind(p_instance, p_name, p_value)
 
-  static GDBool set_bind(GDClassInstancePtr p_instance, GDConstStringNamePtr p_name, GDConstVariantPtr p_value) {
-    if (p_instance && GDClass::_get_set()) {
-      if (GDClass::_get_set() != m_inherits::_get_set()) {
-        GDClass *cls = reinterpret_cast<GDClass *>(p_instance);
-        return cls->_set(*reinterpret_cast<const ::godot::StringName *>(p_name), *reinterpret_cast<const ::godot::Variant *>(p_value));
-      return m_inherits::set_bind(p_instance, p_name, p_value);
-    return false;
+  proc get_bind* {.implement: ClassGet, staticOf: Class.} =
+    if p_instance.isNil: return false
+    when declared `Class|>get`:
+      return Class|>get(cast[ptr Class](p_instance)[], p_name[], r_ret[]);
+    else:
+      return Inherits|>get_bind(p_instance, p_name, r_ret)
 
-  static GDBool get_bind(GDClassInstancePtr p_instance, GDConstStringNamePtr p_name, GDVariantPtr r_ret) {
-    if (p_instance && GDClass::_get_get()) {
-      if (GDClass::_get_get() != m_inherits::_get_get()) {
-        GDClass *cls = reinterpret_cast<GDClass *>(p_instance);
-        return cls->_get(*reinterpret_cast<const ::godot::StringName *>(p_name), *reinterpret_cast<::godot::Variant *>(r_ret));
-      return m_inherits::get_bind(p_instance, p_name, r_ret);
-    return false;
+  proc get_property_list_bind* {.implement: ClassGetPropertyList, staticOf: Class.} =
+    when declared `Class|>get_property_list`:
+      withMakeErrmsg_if Class|>properties.len != 0:
+        printError(msg, "Internal error, property list was not freed by engine!")
+        return nil
+      Class|>get_property_list(Class|>properties)
+      if not r_count.isNil:
+        r_count[] = Class|>properties.len
+      return addr Class|>properties[0]
+    else:
+      return Inherits|>get_property_list_bind(p_instance, r_count)
 
-  static const GDPropertyInfo *get_property_list_bind(GDClassInstancePtr p_instance, uint32_t *r_count) {
-    if (p_instance && GDClass::_get_get_property_list()) {
-      if (GDClass::_get_get_property_list() != m_inherits::_get_get_property_list()) {
-        GDClass *cls = reinterpret_cast<GDClass *>(p_instance);
-        ERR_FAIL_COND_V_MSG(!cls->plist_owned.is_empty() || cls->plist != nullptr || cls->plist_size != 0, nullptr, "Internal error, property list was not freed by engine!");
-        cls->_get_property_list(&cls->plist_owned);
-        cls->plist = reinterpret_cast<GDPropertyInfo *>(memalloc(sizeof(GDPropertyInfo) * cls->plist_owned.size()));
-        cls->plist_size = 0;
-        for (const ::godot::PropertyInfo &E : cls->plist_owned) {
-          cls->plist[cls->plist_size].type = static_cast<GDVariantType>(E.type);
-          cls->plist[cls->plist_size].name = E.name._native_ptr();
-          cls->plist[cls->plist_size].hint = E.hint;
-          cls->plist[cls->plist_size].hint_string = E.hint_string._native_ptr();
-          cls->plist[cls->plist_size].class_name = E.class_name._native_ptr();
-          cls->plist[cls->plist_size].usage = E.usage;
-          cls->plist_size++;
-        if (r_count)
-          *r_count = cls->plist_size;
-        return cls->plist;
-      return m_inherits::get_property_list_bind(p_instance, r_count);
-    return nullptr;
+  proc free_property_list_bind* {.implement: ClassFreePropertyList, staticOf: Class.} =
+    withMakeErrmsg_if Class|>properties.len == 0:
+      printError(msg, "Internal error, property list double free!")
+      return
+    Class|>properties.setLen(0)
 
-  static void free_property_list_bind(GDClassInstancePtr p_instance, const GDPropertyInfo *p_list) {
-    if (p_instance) {
-      GDClass *cls = reinterpret_cast<GDClass *>(p_instance);
-      ERR_FAIL_COND_MSG(cls->plist == nullptr, "Internal error, property list double free!");
-      memfree(cls->plist);
-      cls->plist = nullptr;
-      cls->plist_size = 0;
-      cls->plist_owned.clear();
+  proc property_can_revert_bind* {.implement: ClassPropertyCanRevert, staticOf: Class.} =
+    if p_instance.isNil: return false
+    when declared `Class|>property_can_revert`:
+      return Class|>property_can_revert(cast[ptr Class](p_instance)[], p_name[])
+    else:
+      return Inherits|>property_can_revert_bind(p_instance, p_name)
 
-  static GDBool property_can_revert_bind(GDClassInstancePtr p_instance, GDConstStringNamePtr p_name) {
-    if (p_instance && GDClass::_get_property_can_revert()) {
-      if (GDClass::_get_property_can_revert() != m_inherits::_get_property_can_revert()) {
-        GDClass *cls = reinterpret_cast<GDClass *>(p_instance);
-        return cls->_property_can_revert(*reinterpret_cast<const ::godot::StringName *>(p_name));
-      return m_inherits::property_can_revert_bind(p_instance, p_name);
-    return false;
+  proc property_get_revert_bind* {.implement: ClassPropertyGetRevert, staticOf: Class.} =
+    if p_instance.isNil: return false
+    when declared `Class|>property_get_revert`:
+      return Class|>property_get_revert(cast[ptr Class](p_instance), p_name[], r_ret[])
+    else:
+      return Inherits|>property_get_revert_bind(p_instance, p_name, r_ret)
 
-  static GDBool property_get_revert_bind(GDClassInstancePtr p_instance, GDConstStringNamePtr p_name, GDVariantPtr r_ret) {
-    if (p_instance && GDClass::_get_property_get_revert()) {
-      if (GDClass::_get_property_get_revert() != m_inherits::_get_property_get_revert()) {
-        GDClass *cls = reinterpret_cast<GDClass *>(p_instance);
-        return cls->_property_get_revert(*reinterpret_cast<const ::godot::StringName *>(p_name), *reinterpret_cast<::godot::Variant *>(r_ret));
-      return m_inherits::property_get_revert_bind(p_instance, p_name, r_ret);
-    return false;
-
-  static void to_string_bind(GDClassInstancePtr p_instance, GDBool *r_is_valid, GDStringPtr r_out) {
-    if (p_instance && GDClass::_get_to_string()) {
-      if (GDClass::_get_to_string() != m_inherits::_get_to_string()) {
-        GDClass *cls = reinterpret_cast<GDClass *>(p_instance);
-        *reinterpret_cast<::godot::String *>(r_out) = cls->_to_string();
-        *r_is_valid = true;
-        return;
-      m_inherits::to_string_bind(p_instance, r_is_valid, r_out);
-
-  static void free(void *data, GDClassInstancePtr ptr) {
-    if (ptr) {
-      GDClass *cls = reinterpret_cast<GDClass *>(ptr);
-      cls->~GDClass();
-      ::godot::Memory::free_static(cls);
+  proc to_string_bind* {.implement: ClassToString, staticOf: Class.} =
+    if p_instance.isNil: return
+    r_out[] = $(cast[ptr Class](p_instance)[])
+    r_is_valid[] = true

@@ -1,4 +1,7 @@
-## This module was generated automatically. Changes will be lost.
+# ======================================== #
+# This module was generated automatically. #
+# Edits will be lost.                      #
+# ======================================== #
 import ./../godotInterface
 import ./../logging
 import ./variantsConstr_custom
@@ -8,6 +11,8 @@ import ./variantsDetail_native
 
 proc load_Variants* =
   let me = iam("load-Variants", stgLibrary)
+  me.debug "load destructors of all variants..."
+  load_Variants_destr()
   me.debug "load constructors of all variants..."
   load_String_constr()
   load_Rect2_constr()
@@ -64,8 +69,6 @@ proc load_Variants* =
   load_PackedVector2Array_allmethod()
   load_PackedVector3Array_allmethod()
   load_PackedColorArray_allmethod()
-  me.debug "load destructors of all variants..."
-  load_Variants_destr()
   me.debug "load tuned functions of all variants..."
   load_vectors()
   load_primitives()

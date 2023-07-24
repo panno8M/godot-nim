@@ -1,4 +1,4 @@
-import beyond/[oop]
+import beyond/[oop, macros]
 
 import ./godotInterface/globalEnums; export globalEnums
 import ./godotInterface/engineClassDefines; export engineClassDefines
@@ -160,6 +160,12 @@ type SomeGodotUniques* =
   SomePackedArray
 type SomeVariants* = SomePrimitives|SomeGodotUniques
 
+macro gdcall*(someProc: untyped): untyped =
+  someProc.addPragma ident do:
+    when (defined windows): "stdcall"
+    elif true or (defined linux) or (defined macosx): "cdecl"
+  return someProc
+
 include "include/gdextension_interface"
 
 const
@@ -187,7 +193,7 @@ template variantType(Type: typedesc[SomeVariants]): VariantType =
 template define_destructor(Type: typedesc): untyped =
   staticOf Type:
     var destructor {.inject.} : PtrDestructor
-  proc `=destroy`(self: Type) {.raises: [Exception].} =
+  proc `=destroy`(self: Type) =
     Type|>destructor(addr self)
 template load_destructor(Type: typedesc): untyped =
   Type|>destructor = interface_variantGetPtrDestructor Type.variantType

@@ -32,8 +32,11 @@ let # modules
   engineClassDefines* = mdl"engineClassDefines"
 
   variantTypeSolver* = dummy mdl"variantTypeSolver"
-  variantDefiner* = dummy mdl"variantDefiner"
   variants_forge* = mdl"variants_forge"
+  variantDefiner* = dummy mdl"variantDefiner"
+  classDefiner* = dummy mdl"classDefiner"
+  engineClassDefiner* = dummy mdl"engineClassDefiner"
+
 
   pragmas* = dummy mdl"pragmas"
   compileTimeSwitch* = dummy mdl"compileTimeSwitch"
@@ -132,8 +135,10 @@ discard +/%..d_root:
 
     +/%..d_helper:
       variantTypeSolver
+      classDefiner
       internal variants_forge
       internal variantDefiner
+      internal engineClassDefiner
 
     +/%..d_pure:
       compileTimeSwitch

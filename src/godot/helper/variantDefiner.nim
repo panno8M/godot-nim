@@ -5,11 +5,12 @@ import std/[
 ]
 import beyond/macros
 import ../logging
+import ../godotInterface
 
 type MethodDefinition = tuple
   container_define, proc_define, init_sentence: NimNode
 
-proc procedure(Type, node: NimNode; isStatic = false): MethodDefinition =
+proc procedure(Type, node: NimNode; isStatic: bool; namesym: NimNode): MethodDefinition =
   node.expectKind nnkProcDef
 
   let
@@ -25,18 +26,18 @@ proc procedure(Type, node: NimNode; isStatic = false): MethodDefinition =
 
   let p_result =
     if node.hasNoReturn: newNilLit()
-    else:                newAddr(ident"result")
+    else:                newAddr(bindsym"result")
   let p_self =
     if is_static: newNilLit()
     else: newAddr(node.params[1][0])
 
-  let containerName = ident fmt"proc_{Type}_{node[0].basename}"
+  let containerName = genSym(nskVar, fmt"proc_{Type}_{node[0].basename}")
 
   result.containerDefine = quote do:
     var `containerName`: PtrBuiltinMethod
   result.initSentence = quote do:
-    let name = StringName|>init(`nativeName`)
-    `containerName` = interface_variantGetPtrBuiltinMethod(`Type`.variantType, cast[ConstStringNamePtr](addr name), `hash`)
+    `namesym` = StringName|>init(`nativeName`)
+    `containerName` = interface_variantGetPtrBuiltinMethod(`Type`.variantType, cast[ConstStringNamePtr](addr `namesym`), `hash`)
   result.procDefine = node.copy
   if args.len == 0:
     result.procDefine.body = quote do:
@@ -52,7 +53,7 @@ proc elements_from_identdef(identdef: NimNode): tuple[t, address, variantType: N
   if identdef.isNil or identdef.kind == nnkEmpty:
     result.t = nil
     result.address = newNilLit()
-    result.variantType = ident"VariantType_Nil"
+    result.variantType = bindsym"VariantType_Nil"
   else:
     result.t = identdef[1]
     result.address = newAddr identdef[0]
@@ -71,9 +72,9 @@ proc operator(node: NimNode): MethodDefinition =
 
   let containerName =
     if has_right:
-      ident &"{t_left}_{op}_{t_right}"
+      gensym(nskVar, &"{t_left}_{op}_{t_right}")
     else:
-      ident &"{op}_{t_left}"
+      gensym(nskVar, &"{op}_{t_left}")
 
   result.containerDefine = quote do:
     var `containerName`: PtrOperatorEvaluator
@@ -96,7 +97,7 @@ func constructor(Type, node: NimNode): MethodDefinition =
     cast[pointer](addr(`it`))
 
   let
-    constructorName = ident fmt"constructor{Type}{index.intVal}"
+    constructorName = gensym(nskVar, fmt"constructor{Type}{index.intVal}")
 
   result.init_sentence = quote do:
     `constructorname` = interface_variantGetPtrConstructor(`Type`.variantType, `index`)
@@ -116,9 +117,11 @@ func constructor(Type, node: NimNode): MethodDefinition =
 
 proc procedures_impl(Type, loader, body: NimNode; is_static: bool): NimNode =
   result = newStmtList()
+  let namesym = genSym(nskVar, "name")
+  result.add nnkVarSection.newTree(newIdentDefs(namesym, bindSym"StringName"))
   var initProcStmt = newStmtList()
   for statement in body:
-    let (containerDefine, procDefine, initSentence) = procedure(Type, statement, is_static)
+    let (containerDefine, procDefine, initSentence) = procedure(Type, statement, is_static, namesym)
     result.add containerdefine
     result.add procdefine
     initProcStmt.add initSentence[0..^1]

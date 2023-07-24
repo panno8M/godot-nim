@@ -97,13 +97,13 @@ proc get_arguments_metadata_list*(self: MethodBind): tuple[retval: ClassMethodAr
 method call*(self: MethodBind; instance: ClassInstancePtr; args: ptr ConstVariantPtr; argsCount: Int; error: ptr CallError): Variant {.base.} = discard
 method ptrcall*(self: MethodBind; instance: ClassInstancePtr; args: ptr ConstTypePtr; r_return: TypePtr) {.base.} = discard
 
-ClassMethodCall =>* bindCall:
+proc bindCall* {.implement: ClassMethodCall.} =
   let b = cast[MethodBind](methodUserdata)
   let ret = b.call(pInstance, pArgs, pArgumentCount, r_error)
   # This assumes the return value is an empty Variant, so it doesn't need to call the destructor first.
   # Since only MethodBind calls this from the Godot side, it should always be the case.
   interface_variant_new_copy(r_return, addr ret)
-ClassMethodPtrCall =>* bindPtrCall:
+proc bindPtrCall* {.implement: ClassMethodPtrCall.} =
   let b = cast[MethodBind](methodUserdata)
   b.ptrcall(pInstance, pArgs, r_ret)
 

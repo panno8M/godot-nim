@@ -1,7 +1,9 @@
 let modules: seq[string] = @[
+  "(engineClassDefiner.nim)",
   "variants_forge.nim",
   "(variantDefiner.nim)",
   "(variantTypeSolver.nim)",
+  "(classDefiner.nim)",
 ]
 import strformat, os
 const cYELLOW = "\x1b[33m"

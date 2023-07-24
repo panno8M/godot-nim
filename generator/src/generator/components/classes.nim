@@ -1,5 +1,12 @@
+import beyond/meta/statements
 import std/options
-import gd_enum
+import std/sequtils
+import std/strformat
+import std/deques
+
+import ./gd_enum
+import ../tool/moduleTree
+import ../tool/name_rules
 
 type
   GdClassConstant* = object
@@ -47,3 +54,45 @@ type
     properties*: Option[seq[GdProperty]]
     enums*: Option[seq[GdEnum]]
     constants*: Option[seq[GdClassConstant]]
+  GdClasses* = seq[GdClass]
+
+  # NimClass* = ref object
+  #   base: GdClass
+
+
+func renderClassDefine*(class: GdClass): Statement =
+  var classdef = ParagraphSt()
+  # if class.properties.isSome:
+  #   for prop in (get class.properties):
+  #     discard classdef.add CommentSt.nim(execute= true).add repr prop
+  let inherits = class.inherits.get("RootObj")
+  # if class.name == "Object":
+  #   +$$..ParagraphSt():
+  #     +$$..BlockSt(head: fmt"OBjectEntity* = object of {inherits}"):
+  #       classdef
+  #     "Object* = ptr ObjectEntity"
+  # else:
+  block:
+    return +$$..BlockSt(head: fmt"{className class.name}* = object of {inherits}"):
+      classdef
+func renderClassDefine*(classes: GdClasses): Statement =
+  # BlockSt(head: "type", children: classes.mapIt(it.renderClassDefine))
+  result = ParagraphSt()
+  var heap = toDeque(["NONE"])
+  while heap.len != 0:
+    let current = heap.popFirst()
+    var bst = BlockSt(head: "type")
+    for class in classes:
+      if class.inherits.get("NONE") == current:
+        bst.children.add class.renderClassDefine
+        heap.addLast class.name
+    if bst.children.len != 0:
+      result.children.add bst
+
+
+
+
+proc modulateDetail*(class: GdClass): Module =
+  internal dummy mdl""
+proc modulateDetails*(classes: seq[GdClass]): seq[Module] =
+  classes.mapIt it.modulateDetail

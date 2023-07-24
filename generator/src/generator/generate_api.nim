@@ -3,7 +3,6 @@
 import beyond/logging
 import std/[
   json,
-  strformat,
   strutils,
   sets,
   options,
@@ -15,7 +14,6 @@ import components/[
 ]
 import tool/[
   moduleTree,
-  name_rules,
 ]
 
 
@@ -43,23 +41,6 @@ proc modulate_globalEnums(globalEnums: JsonNode) =
     discard body.add gdenum.toNim.render
   moduleTree.globalEnums.contents = body
 
-proc define_class(class: GdClass): Statement =
-  var classdef = ParagraphSt()
-  if class.properties.isSome:
-    for prop in (get class.properties):
-      discard classdef.add CommentSt.nim(execute= true).add repr prop
-  if class.name == "Object":
-    +$$..ParagraphSt():
-      +$$..BlockSt(head: fmt"type OBjectEntity* = object"):
-        classdef
-      "type Object* = ptr ObjectEntity"
-  else:
-    +$$..BlockSt(head: fmt"type {className class.name}* = object"):
-      classdef
-
-proc modulate_classDetail(class: GdClass): Module =
-  internal dummy mdl""
-
 proc generate*(api: JsonNode) =
   const preConverteds = [
     "builtin_class_sizes",
@@ -73,11 +54,13 @@ proc generate*(api: JsonNode) =
     of "global_enums":
       modulate_globalEnums value
     of "builtin_classes":
-      moduleTree.d_variantsDetail_native.take modulate value.to(GdBuiltinClasses)
+      let variants = value.to(GdBuiltinClasses).toNim
+      moduleTree.d_variantsDetail_native.take variants.modulateDetails
+      moduleTree.variantsConstr_native.contents = variants.renderConstructor
+      moduleTree.variantLoader.contents = variants.renderLoader
     of "classes":
-      for class in value.items:
-        let gdc = class.to GdClass
-        discard moduleTree.engineClassDefines.contents.add gdc.define_class
-        moduleTree.d_classDetail_native.take gdc.modulate_classDetail
+      let classes = value.to(GdClasses)
+      moduleTree.engineClassDefines.contents = classes.renderClassDefine
+      moduleTree.d_classDetail_native.take classes.modulateDetails
     else:
       warn key & ": now we do not have the way to generate binding of this."

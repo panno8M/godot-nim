@@ -1,4 +1,7 @@
-## This module was generated automatically. Changes will be lost.
+# ======================================== #
+# This module was generated automatically. #
+# Edits will be lost.                      #
+# ======================================== #
 import ./../godotInterface
 import ./../helper/variantDefiner
 import ./../helper/variantTypeSolver

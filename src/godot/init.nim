@@ -20,13 +20,13 @@ type
 
 var extcfg: GDExtensionConfig
 
-Initialization.initialize => initialize:
+proc initialize_module {.implement: Initialization.initialize.} =
   ClassDB|>currentLevel = p_level
   if extcfg.initializer != nil:
     extcfg.initializer(p_level)
   ClassDB|>initialize(p_level)
 
-Initialization.deinitialize => deinitialize:
+proc deinitialize_module {.implement: Initialization.deinitialize.} =
   ClassDB|>currentLevel = p_level
   if extcfg.terminator != nil:
     extcfg.terminator(p_level)
@@ -34,19 +34,16 @@ Initialization.deinitialize => deinitialize:
     EditorPlugins|>deinitialize(p_level)
   ClassDB|>deinitialize(p_level)
 
-proc init(getProcAddress: InterfaceGetProcAddress; library: ClassLibraryPtr; initialization: ptr Initialization; config: GDExtensionConfig): Bool =
+proc init* {.implement: InitializationFunction.} =
   try:
-    godotInterface.getProcAddress = getProcAddress
-    godotInterface.library = library
-    godotInterface.token = library
-    extcfg = config
+    godotInterface.getProcAddress = p_getProcAddress
+    godotInterface.library = p_library
+    godotInterface.token = p_library
 
-    init_interface(getProcAddress)
+    init_interface(p_getProcAddress)
     interfaceGetGodotVersion addr godotVersion
 
-    initialization.initialize = initialize
-    initialization.deinitialize = deinitialize
-    initialization.minimumInitializationLevel = config.minimumInitializationLevel
+    r_initialization.initialize = initialize_module
 
     Variant|>load()
 
@@ -56,14 +53,10 @@ proc init(getProcAddress: InterfaceGetProcAddress; library: ClassLibraryPtr; ini
 
   return true
 
-template GDExtension_EntryPoint*(name: untyped; config: GDExtensionConfig; body): untyped =
-  proc name*(getProcAddress: InterfaceGetProcAddress;
-      library: ClassLibraryPtr;
-      initialization: ptr Initialization): Bool {.exportgd.} =
-    result = init(getProcAddress, library, initialization, config)
-    body
-template GDExtension_EntryPoint*(name: untyped; config: GDExtensionConfig): untyped =
-  GDExtension_EntryPoint(name, config): discard
+template GDExtension_EntryPoint*(name; config: GDExtensionConfig): untyped =
+  proc name* {.implement: InitializationFunction, exportc, dynlib.} =
+    extcfg = config
+    init(p_getProcAddress, p_library, r_initialization)
 
 when isMainModule:
   proc tmp(lvl: InitializationLevel) = discard

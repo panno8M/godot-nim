@@ -1,4 +1,7 @@
-## This module was generated automatically. Changes will be lost.
+# ======================================== #
+# This module was generated automatically. #
+# Edits will be lost.                      #
+# ======================================== #
 
 type Side* = enum
   SideLeft = 0

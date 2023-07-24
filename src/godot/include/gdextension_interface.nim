@@ -101,6 +101,7 @@ type
   ScriptInstanceDataPtr* = pointer
   ScriptLanguagePtr* = pointer
   ScriptInstancePtr* = pointer
+  InterfaceFunctionPtr* = pointer
 
 # Godot Objects
 # =============
@@ -187,8 +188,8 @@ type
   Initialization* {.bycopy.} = object
     minimum_initialization_level*: InitializationLevel
     userdata*: pointer
-    initialize*: proc (userdata: pointer; p_level: InitializationLevel)
-    deinitialize*: proc (userdata: pointer; p_level: InitializationLevel)
+    initialize*: proc (userdata: pointer; p_level: InitializationLevel) {.gdcall.}
+    deinitialize*: proc (userdata: pointer; p_level: InitializationLevel) {.gdcall.}
   GodotVersion* {.bycopy.} = object
     major*: uint32
     minor*: uint32
@@ -197,497 +198,205 @@ type
 
 # Godot Procedures
 # ================
-  VariantFromTypeConstructorFunc* = proc (
-      a1: UninitializedVariantPtr; a2: TypePtr)
-  TypeFromVariantConstructorFunc* = proc (
-      a1: UninitializedTypePtr; a2: VariantPtr)
-  PtrOperatorEvaluator* = proc (p_left: ConstTypePtr;
-                                        p_right: ConstTypePtr;
-                                        r_result: TypePtr)
-  PtrBuiltInMethod* = proc (p_base: TypePtr;
-                                    p_args: ptr ConstTypePtr;
-                                    r_return: TypePtr;
-                                    p_argument_count: cint)
-  PtrConstructor* = proc (p_base: UninitializedTypePtr;
-                                  p_args: ptr ConstTypePtr)
-  PtrDestructor* = proc (p_base: TypePtr)
-  PtrSetter* = proc (p_base: TypePtr;
-                            p_value: ConstTypePtr)
-  PtrGetter* = proc (p_base: ConstTypePtr;
-                            r_value: TypePtr)
-  PtrIndexedSetter* = proc (p_base: TypePtr;
-                                    p_index: Int;
-                                    p_value: ConstTypePtr)
-  PtrIndexedGetter* = proc (p_base: ConstTypePtr;
-                                    p_index: Int;
-                                    r_value: TypePtr)
-  PtrKeyedSetter* = proc (p_base: TypePtr;
-                                  p_key: ConstTypePtr;
-                                  p_value: ConstTypePtr)
-  PtrKeyedGetter* = proc (p_base: ConstTypePtr;
-                                  p_key: ConstTypePtr;
-                                  r_value: TypePtr)
-  PtrKeyedChecker* = proc (p_base: ConstVariantPtr;
-                                  p_key: ConstVariantPtr): uint32
-  PtrUtilityFunction* = proc (r_return: TypePtr;
-                                      p_args: ptr ConstTypePtr;
-                                      p_argument_count: cint)
-  ClassConstructor* = proc (): ObjectPtr
-  InstanceBindingCreateCallback* = proc (p_token: pointer;
-      p_instance: pointer): pointer
-  InstanceBindingFreeCallback* = proc (p_token: pointer;
-      p_instance: pointer; p_binding: pointer)
-  InstanceBindingReferenceCallback* = proc (p_token: pointer;
-      p_binding: pointer; p_reference: Bool): Bool
-  ClassSet* = proc (p_instance: ClassInstancePtr;
-                            p_name: ConstStringNamePtr;
-                            p_value: ConstVariantPtr): Bool
-  ClassGet* = proc (p_instance: ClassInstancePtr;
-                            p_name: ConstStringNamePtr;
-                            r_ret: VariantPtr): Bool
-  ClassGetRID* = proc (p_instance: ClassInstancePtr): uint64
-  ClassGetPropertyList* = proc (p_instance: ClassInstancePtr;
-                                        r_count: ptr uint32): ptr PropertyInfo
-  ClassFreePropertyList* = proc (
-      p_instance: ClassInstancePtr; p_list: ptr PropertyInfo)
-  ClassPropertyCanRevert* = proc (
-      p_instance: ClassInstancePtr;
-      p_name: ConstStringNamePtr): Bool
-  ClassPropertyGetRevert* = proc (
-      p_instance: ClassInstancePtr;
-      p_name: ConstStringNamePtr; r_ret: VariantPtr): Bool
-  ClassNotification* = proc (p_instance: ClassInstancePtr;
-                                    p_what: uint32)
-  ClassToString* = proc (p_instance: ClassInstancePtr;
-                                r_is_valid: ptr Bool;
-                                p_out: StringPtr)
-  ClassReference* = proc (p_instance: ClassInstancePtr)
-  ClassUnreference* = proc (p_instance: ClassInstancePtr)
-  ClassCallVirtual* = proc (p_instance: ClassInstancePtr;
-                                    p_args: ptr ConstTypePtr;
-                                    r_ret: TypePtr)
-  ClassCreateInstance* = proc (p_userdata: pointer): ObjectPtr
-  ClassFreeInstance* = proc (p_userdata: pointer;
-                                    p_instance: ClassInstancePtr)
-  ClassGetVirtual* = proc (p_userdata: pointer;
-                                  p_name: ConstStringNamePtr): ClassCallVirtual
-  ClassMethodCall* = proc (method_userdata: pointer;
-                                  p_instance: ClassInstancePtr;
-                                  p_args: ptr ConstVariantPtr;
-                                  p_argument_count: Int;
-                                  r_return: VariantPtr;
-                                  r_error: ptr CallError)
-  ClassMethodValidatedCall* = proc (method_userdata: pointer;
-      p_instance: ClassInstancePtr;
-      p_args: ptr ConstVariantPtr; r_return: VariantPtr)
-  ClassMethodPtrCall* = proc (method_userdata: pointer;
-                                      p_instance: ClassInstancePtr;
-                                      p_args: ptr ConstTypePtr;
-                                      r_ret: TypePtr)
-  ScriptInstanceSet* = proc (p_instance: ScriptInstanceDataPtr;
-                                    p_name: ConstStringNamePtr;
-                                    p_value: ConstVariantPtr): Bool
-  ScriptInstanceGet* = proc (p_instance: ScriptInstanceDataPtr;
-                                    p_name: ConstStringNamePtr;
-                                    r_ret: VariantPtr): Bool
-  ScriptInstanceGetPropertyList* = proc (
-      p_instance: ScriptInstanceDataPtr; r_count: ptr uint32): ptr PropertyInfo
-  ScriptInstanceFreePropertyList* = proc (
-      p_instance: ScriptInstanceDataPtr;
-      p_list: ptr PropertyInfo)
-  ScriptInstanceGetPropertyType* = proc (
-      p_instance: ScriptInstanceDataPtr;
-      p_name: ConstStringNamePtr; r_is_valid: ptr Bool): VariantType
-  ScriptInstancePropertyCanRevert* = proc (
-      p_instance: ScriptInstanceDataPtr;
-      p_name: ConstStringNamePtr): Bool
-  ScriptInstancePropertyGetRevert* = proc (
-      p_instance: ScriptInstanceDataPtr;
-      p_name: ConstStringNamePtr; r_ret: VariantPtr): Bool
-  ScriptInstanceGetOwner* = proc (
-      p_instance: ScriptInstanceDataPtr): ObjectPtr
-  ScriptInstancePropertyStateAdd* = proc (
-      p_name: ConstStringNamePtr; p_value: ConstVariantPtr;
-      p_userdata: pointer)
-  ScriptInstanceGetPropertyState* = proc (
-      p_instance: ScriptInstanceDataPtr;
-      p_add_func: ScriptInstancePropertyStateAdd; p_userdata: pointer)
-  ScriptInstanceGetMethodList* = proc (
-      p_instance: ScriptInstanceDataPtr; r_count: ptr uint32): ptr MethodInfo
-  ScriptInstanceFreeMethodList* = proc (
-      p_instance: ScriptInstanceDataPtr;
-      p_list: ptr MethodInfo)
-  ScriptInstanceHasMethod* = proc (
-      p_instance: ScriptInstanceDataPtr;
-      p_name: ConstStringNamePtr): Bool
-  ScriptInstanceCall* = proc (p_self: ScriptInstanceDataPtr;
-                                      p_method: ConstStringNamePtr;
-                                      p_args: ptr ConstVariantPtr;
-                                      p_argument_count: Int;
-                                      r_return: VariantPtr;
-                                      r_error: ptr CallError)
-  ScriptInstanceNotification* = proc (
-      p_instance: ScriptInstanceDataPtr; p_what: uint32)
-  ScriptInstanceToString* = proc (
-      p_instance: ScriptInstanceDataPtr;
-      r_is_valid: ptr Bool; r_out: StringPtr)
-  ScriptInstanceRefCountIncremented* = proc (
-      p_instance: ScriptInstanceDataPtr)
-  ScriptInstanceRefCountDecremented* = proc (
-      p_instance: ScriptInstanceDataPtr): Bool
-  ScriptInstanceGetScript* = proc (
-      p_instance: ScriptInstanceDataPtr): ObjectPtr
-  ScriptInstanceIsPlaceholder* = proc (
-      p_instance: ScriptInstanceDataPtr): Bool
-  ScriptInstanceGetLanguage* = proc (
-      p_instance: ScriptInstanceDataPtr): ScriptLanguagePtr
-  ScriptInstanceFree* = proc (p_instance: ScriptInstanceDataPtr)
-  InterfaceFunctionPtr* = proc ()
-  InterfaceGetProcAddress* = proc (p_function_name: cstring): InterfaceFunctionPtr
-  InitializationFunction* = proc (
-      p_get_proc_address: InterfaceGetProcAddress;
-      p_library: ClassLibraryPtr;
-      r_initialization: ptr Initialization): Bool
+  VariantFromTypeConstructorFunc* = proc ( a1: UninitializedVariantPtr; a2: TypePtr) {.gdcall.}
+  TypeFromVariantConstructorFunc* = proc ( a1: UninitializedTypePtr; a2: VariantPtr) {.gdcall.}
+  PtrOperatorEvaluator* = proc (p_left: ConstTypePtr; p_right: ConstTypePtr; r_result: TypePtr) {.gdcall.}
+  PtrBuiltInMethod* = proc (p_base: TypePtr; p_args: ptr ConstTypePtr; r_return: TypePtr; p_argument_count: cint) {.gdcall.}
+  PtrConstructor* = proc (p_base: UninitializedTypePtr; p_args: ptr ConstTypePtr) {.gdcall.}
+  PtrDestructor* = proc (p_base: TypePtr) {.gdcall.}
+  PtrSetter* = proc (p_base: TypePtr; p_value: ConstTypePtr) {.gdcall.}
+  PtrGetter* = proc (p_base: ConstTypePtr; r_value: TypePtr) {.gdcall.}
+  PtrIndexedSetter* = proc (p_base: TypePtr; p_index: Int; p_value: ConstTypePtr) {.gdcall.}
+  PtrIndexedGetter* = proc (p_base: ConstTypePtr; p_index: Int; r_value: TypePtr) {.gdcall.}
+  PtrKeyedSetter* = proc (p_base: TypePtr; p_key: ConstTypePtr; p_value: ConstTypePtr) {.gdcall.}
+  PtrKeyedGetter* = proc (p_base: ConstTypePtr; p_key: ConstTypePtr; r_value: TypePtr) {.gdcall.}
+  PtrKeyedChecker* = proc (p_base: ConstVariantPtr; p_key: ConstVariantPtr): uint32 {.gdcall.}
+  PtrUtilityFunction* = proc (r_return: TypePtr; p_args: ptr ConstTypePtr; p_argument_count: cint) {.gdcall.}
+  ClassConstructor* = proc (): ObjectPtr {.gdcall.}
+  InstanceBindingCreateCallback* = proc (p_token: pointer; p_instance: pointer): pointer {.gdcall.}
+  InstanceBindingFreeCallback* = proc (p_token: pointer; p_instance: pointer; p_binding: pointer) {.gdcall.}
+  InstanceBindingReferenceCallback* = proc (p_token: pointer; p_binding: pointer; p_reference: Bool): Bool {.gdcall.}
+  ClassSet* = proc (p_instance: ClassInstancePtr; p_name: ConstStringNamePtr; p_value: ConstVariantPtr): Bool {.gdcall.}
+  ClassGet* = proc (p_instance: ClassInstancePtr; p_name: ConstStringNamePtr; r_ret: VariantPtr): Bool {.gdcall.}
+  ClassGetRID* = proc (p_instance: ClassInstancePtr): uint64 {.gdcall.}
+  ClassGetPropertyList* = proc (p_instance: ClassInstancePtr; r_count: ptr uint32): ptr PropertyInfo {.gdcall.}
+  ClassFreePropertyList* = proc ( p_instance: ClassInstancePtr; p_list: ptr PropertyInfo) {.gdcall.}
+  ClassPropertyCanRevert* = proc ( p_instance: ClassInstancePtr; p_name: ConstStringNamePtr): Bool {.gdcall.}
+  ClassPropertyGetRevert* = proc ( p_instance: ClassInstancePtr; p_name: ConstStringNamePtr; r_ret: VariantPtr): Bool {.gdcall.}
+  ClassNotification* = proc (p_instance: ClassInstancePtr; p_what: uint32) {.gdcall.}
+  ClassToString* = proc (p_instance: ClassInstancePtr; r_is_valid: ptr Bool; p_out: StringPtr) {.gdcall.}
+  ClassReference* = proc (p_instance: ClassInstancePtr) {.gdcall.}
+  ClassUnreference* = proc (p_instance: ClassInstancePtr) {.gdcall.}
+  ClassCallVirtual* = proc (p_instance: ClassInstancePtr; p_args: ptr ConstTypePtr; r_ret: TypePtr) {.gdcall.}
+  ClassCreateInstance* = proc (p_userdata: pointer): ObjectPtr {.gdcall.}
+  ClassFreeInstance* = proc (p_userdata: pointer; p_instance: ClassInstancePtr) {.gdcall.}
+  ClassGetVirtual* = proc (p_userdata: pointer; p_name: ConstStringNamePtr): ClassCallVirtual {.gdcall.}
+  ClassMethodCall* = proc (method_userdata: pointer; p_instance: ClassInstancePtr; p_args: ptr ConstVariantPtr; p_argument_count: Int; r_return: VariantPtr; r_error: ptr CallError) {.gdcall.}
+  ClassMethodValidatedCall* = proc (method_userdata: pointer; p_instance: ClassInstancePtr; p_args: ptr ConstVariantPtr; r_return: VariantPtr) {.gdcall.}
+  ClassMethodPtrCall* = proc (method_userdata: pointer; p_instance: ClassInstancePtr; p_args: ptr ConstTypePtr; r_ret: TypePtr) {.gdcall.}
+  ScriptInstanceSet* = proc (p_instance: ScriptInstanceDataPtr; p_name: ConstStringNamePtr; p_value: ConstVariantPtr): Bool {.gdcall.}
+  ScriptInstanceGet* = proc (p_instance: ScriptInstanceDataPtr; p_name: ConstStringNamePtr; r_ret: VariantPtr): Bool {.gdcall.}
+  ScriptInstanceGetPropertyList* = proc ( p_instance: ScriptInstanceDataPtr; r_count: ptr uint32): ptr PropertyInfo {.gdcall.}
+  ScriptInstanceFreePropertyList* = proc ( p_instance: ScriptInstanceDataPtr; p_list: ptr PropertyInfo) {.gdcall.}
+  ScriptInstanceGetPropertyType* = proc ( p_instance: ScriptInstanceDataPtr; p_name: ConstStringNamePtr; r_is_valid: ptr Bool): VariantType {.gdcall.}
+  ScriptInstancePropertyCanRevert* = proc ( p_instance: ScriptInstanceDataPtr; p_name: ConstStringNamePtr): Bool {.gdcall.}
+  ScriptInstancePropertyGetRevert* = proc ( p_instance: ScriptInstanceDataPtr; p_name: ConstStringNamePtr; r_ret: VariantPtr): Bool {.gdcall.}
+  ScriptInstanceGetOwner* = proc ( p_instance: ScriptInstanceDataPtr): ObjectPtr {.gdcall.}
+  ScriptInstancePropertyStateAdd* = proc ( p_name: ConstStringNamePtr; p_value: ConstVariantPtr; p_userdata: pointer) {.gdcall.}
+  ScriptInstanceGetPropertyState* = proc ( p_instance: ScriptInstanceDataPtr; p_add_func: ScriptInstancePropertyStateAdd; p_userdata: pointer) {.gdcall.}
+  ScriptInstanceGetMethodList* = proc ( p_instance: ScriptInstanceDataPtr; r_count: ptr uint32): ptr MethodInfo {.gdcall.}
+  ScriptInstanceFreeMethodList* = proc ( p_instance: ScriptInstanceDataPtr; p_list: ptr MethodInfo) {.gdcall.}
+  ScriptInstanceHasMethod* = proc ( p_instance: ScriptInstanceDataPtr; p_name: ConstStringNamePtr): Bool {.gdcall.}
+  ScriptInstanceCall* = proc (p_self: ScriptInstanceDataPtr; p_method: ConstStringNamePtr; p_args: ptr ConstVariantPtr; p_argument_count: Int; r_return: VariantPtr; r_error: ptr CallError) {.gdcall.}
+  ScriptInstanceNotification* = proc ( p_instance: ScriptInstanceDataPtr; p_what: uint32) {.gdcall.}
+  ScriptInstanceToString* = proc ( p_instance: ScriptInstanceDataPtr; r_is_valid: ptr Bool; r_out: StringPtr) {.gdcall.}
+  ScriptInstanceRefCountIncremented* = proc ( p_instance: ScriptInstanceDataPtr) {.gdcall.}
+  ScriptInstanceRefCountDecremented* = proc ( p_instance: ScriptInstanceDataPtr): Bool {.gdcall.}
+  ScriptInstanceGetScript* = proc ( p_instance: ScriptInstanceDataPtr): ObjectPtr {.gdcall.}
+  ScriptInstanceIsPlaceholder* = proc ( p_instance: ScriptInstanceDataPtr): Bool {.gdcall.}
+  ScriptInstanceGetLanguage* = proc ( p_instance: ScriptInstanceDataPtr): ScriptLanguagePtr {.gdcall.}
+  ScriptInstanceFree* = proc (p_instance: ScriptInstanceDataPtr) {.gdcall.}
+  InterfaceGetProcAddress* = proc (p_function_name: cstring): InterfaceFunctionPtr {.gdcall.}
+  InitializationFunction* = proc ( p_get_proc_address: InterfaceGetProcAddress; p_library: ClassLibraryPtr; r_initialization: ptr Initialization): Bool {.gdcall.}
 
 parseInterface:
   type
-    InterfaceGetGodotVersion* = proc (
-        r_godot_version: ptr GodotVersion)
-    InterfaceMemAlloc* = proc (p_bytes: csize_t): pointer
-    InterfaceMemRealloc* = proc (p_ptr: pointer; p_bytes: csize_t): pointer
-    InterfaceMemFree* = proc (p_ptr: pointer)
-    InterfacePrintError* = proc (p_description: cstring;
-                                        p_function: cstring; p_file: cstring;
-                                        p_line: uint32;
-                                        p_editor_notify: Bool)
-    InterfacePrintErrorWithMessage* = proc (p_description: cstring;
-        p_message: cstring; p_function: cstring; p_file: cstring; p_line: uint32;
-        p_editor_notify: Bool)
-    InterfacePrintWarning* = proc (p_description: cstring;
-        p_function: cstring; p_file: cstring; p_line: uint32;
-        p_editor_notify: Bool)
-    InterfacePrintWarningWithMessage* = proc (p_description: cstring;
-        p_message: cstring; p_function: cstring; p_file: cstring; p_line: uint32;
-        p_editor_notify: Bool)
-    InterfacePrintScriptError* = proc (p_description: cstring;
-        p_function: cstring; p_file: cstring; p_line: uint32;
-        p_editor_notify: Bool)
-    InterfacePrintScriptErrorWithMessage* = proc (p_description: cstring;
-        p_message: cstring; p_function: cstring; p_file: cstring; p_line: uint32;
-        p_editor_notify: Bool)
-    InterfaceGetNativeStructSize* = proc (
-        p_name: ConstStringNamePtr): uint64
-    InterfaceVariantNewCopy* = proc (
-        r_dest: UninitializedVariantPtr;
-        p_src: ConstVariantPtr)
-    InterfaceVariantNewNil* = proc (
-        r_dest: UninitializedVariantPtr)
-    InterfaceVariantDestroy* = proc (p_self: VariantPtr)
-    InterfaceVariantCall* = proc (p_self: VariantPtr; p_method: ConstStringNamePtr;
-                                          p_args: ptr ConstVariantPtr;
-                                          p_argument_count: Int; r_return: UninitializedVariantPtr;
-                                          r_error: ptr CallError)
-    InterfaceVariantCallStatic* = proc (p_type: VariantType;
-        p_method: ConstStringNamePtr;
-        p_args: ptr ConstVariantPtr; p_argument_count: Int;
-        r_return: UninitializedVariantPtr;
-        r_error: ptr CallError)
-    InterfaceVariantEvaluate* = proc (p_op: VariantOperator;
-        p_a: ConstVariantPtr; p_b: ConstVariantPtr;
-        r_return: UninitializedVariantPtr; r_valid: ptr Bool)
-    InterfaceVariantSet* = proc (p_self: VariantPtr;
-                                        p_key: ConstVariantPtr;
-                                        p_value: ConstVariantPtr;
-                                        r_valid: ptr Bool)
-    InterfaceVariantSetNamed* = proc (p_self: VariantPtr;
-        p_key: ConstStringNamePtr; p_value: ConstVariantPtr;
-        r_valid: ptr Bool)
-    InterfaceVariantSetKeyed* = proc (p_self: VariantPtr;
-        p_key: ConstVariantPtr; p_value: ConstVariantPtr;
-        r_valid: ptr Bool)
-    InterfaceVariantSetIndexed* = proc (p_self: VariantPtr;
-        p_index: Int; p_value: ConstVariantPtr;
-        r_valid: ptr Bool; r_oob: ptr Bool)
-    InterfaceVariantGet* = proc (p_self: ConstVariantPtr;
-                                        p_key: ConstVariantPtr; r_ret: UninitializedVariantPtr;
-                                        r_valid: ptr Bool)
-    InterfaceVariantGetNamed* = proc (p_self: ConstVariantPtr;
-        p_key: ConstStringNamePtr;
-        r_ret: UninitializedVariantPtr; r_valid: ptr Bool)
-    InterfaceVariantGetKeyed* = proc (p_self: ConstVariantPtr;
-        p_key: ConstVariantPtr;
-        r_ret: UninitializedVariantPtr; r_valid: ptr Bool)
-    InterfaceVariantGetIndexed* = proc (
-        p_self: ConstVariantPtr; p_index: Int;
-        r_ret: UninitializedVariantPtr; r_valid: ptr Bool;
-        r_oob: ptr Bool)
-    InterfaceVariantIterInit* = proc (p_self: ConstVariantPtr;
-        r_iter: UninitializedVariantPtr; r_valid: ptr Bool): Bool
-    InterfaceVariantIterNext* = proc (p_self: ConstVariantPtr;
-        r_iter: VariantPtr; r_valid: ptr Bool): Bool
-    InterfaceVariantIterGet* = proc (p_self: ConstVariantPtr;
-        r_iter: VariantPtr; r_ret: UninitializedVariantPtr;
-        r_valid: ptr Bool)
-    InterfaceVariantHash* = proc (p_self: ConstVariantPtr): Int
-    InterfaceVariantRecursiveHash* = proc (
-        p_self: ConstVariantPtr; p_recursion_count: Int): Int
-    InterfaceVariantHashCompare* = proc (
-        p_self: ConstVariantPtr; p_other: ConstVariantPtr): Bool
-    InterfaceVariantBooleanize* = proc (p_self: ConstVariantPtr): Bool
-    InterfaceVariantDuplicate* = proc (p_self: ConstVariantPtr;
-        r_ret: VariantPtr; p_deep: Bool)
-    InterfaceVariantStringify* = proc (p_self: ConstVariantPtr;
-        r_ret: StringPtr)
-    InterfaceVariantGetType* = proc (p_self: ConstVariantPtr): VariantType
-    InterfaceVariantHasMethod* = proc (p_self: ConstVariantPtr;
-        p_method: ConstStringNamePtr): Bool
-    InterfaceVariantHasMember* = proc (p_type: VariantType;
-        p_member: ConstStringNamePtr): Bool
-    InterfaceVariantHasKey* = proc (p_self: ConstVariantPtr;
-        p_key: ConstVariantPtr; r_valid: ptr Bool): Bool
-    InterfaceVariantGetTypeName* = proc (p_type: VariantType;
-        r_name: UninitializedStringPtr)
-    InterfaceVariantCanConvert* = proc (p_from: VariantType;
-        p_to: VariantType): Bool
-    InterfaceVariantCanConvertStrict* = proc (
-        p_from: VariantType; p_to: VariantType): Bool
-    InterfaceGetVariantFromTypeConstructor* = proc (
-        p_type: VariantType): VariantFromTypeConstructorFunc
-    InterfaceGetVariantToTypeConstructor* = proc (
-        p_type: VariantType): TypeFromVariantConstructorFunc
-    InterfaceVariantGetPtrOperatorEvaluator* = proc (
-        p_operator: VariantOperator; p_type_a: VariantType;
-        p_type_b: VariantType): PtrOperatorEvaluator
-    InterfaceVariantGetPtrBuiltinMethod* = proc (
-        p_type: VariantType; p_method: ConstStringNamePtr;
-        p_hash: Int): PtrBuiltInMethod
-    InterfaceVariantGetPtrConstructor* = proc (
-        p_type: VariantType; p_constructor: uint32): PtrConstructor
-    InterfaceVariantGetPtrDestructor* = proc (
-        p_type: VariantType): PtrDestructor
-    InterfaceVariantConstruct* = proc (p_type: VariantType;
-        r_base: UninitializedVariantPtr;
-        p_args: ptr ConstVariantPtr; p_argument_count: uint32;
-        r_error: ptr CallError)
-    InterfaceVariantGetPtrSetter* = proc (p_type: VariantType;
-        p_member: ConstStringNamePtr): PtrSetter
-    InterfaceVariantGetPtrGetter* = proc (p_type: VariantType;
-        p_member: ConstStringNamePtr): PtrGetter
-    InterfaceVariantGetPtrIndexedSetter* = proc (
-        p_type: VariantType): PtrIndexedSetter
-    InterfaceVariantGetPtrIndexedGetter* = proc (
-        p_type: VariantType): PtrIndexedGetter
-    InterfaceVariantGetPtrKeyedSetter* = proc (
-        p_type: VariantType): PtrKeyedSetter
-    InterfaceVariantGetPtrKeyedGetter* = proc (
-        p_type: VariantType): PtrKeyedGetter
-    InterfaceVariantGetPtrKeyedChecker* = proc (
-        p_type: VariantType): PtrKeyedChecker
-    InterfaceVariantGetConstantValue* = proc (
-        p_type: VariantType; p_constant: ConstStringNamePtr;
-        r_ret: UninitializedVariantPtr)
-    InterfaceVariantGetPtrUtilityFunction* = proc (
-        p_function: ConstStringNamePtr; p_hash: Int): PtrUtilityFunction
-    InterfaceStringNewWithLatin1Chars* = proc (
-        r_dest: UninitializedStringPtr; p_contents: cstring)
-    InterfaceStringNewWithUtf8Chars* = proc (
-        r_dest: UninitializedStringPtr; p_contents: cstring)
-    InterfaceStringNewWithUtf16Chars* = proc (
-        r_dest: UninitializedStringPtr; p_contents: ptr char16_t)
-    InterfaceStringNewWithUtf32Chars* = proc (
-        r_dest: UninitializedStringPtr; p_contents: ptr char32_t)
-    InterfaceStringNewWithWideChars* = proc (
-        r_dest: UninitializedStringPtr; p_contents: ptr Utf16Char)
-    InterfaceStringNewWithLatin1CharsAndLen* = proc (
-        r_dest: UninitializedStringPtr; p_contents: cstring;
-        p_size: Int)
-    InterfaceStringNewWithUtf8CharsAndLen* = proc (
-        r_dest: UninitializedStringPtr; p_contents: cstring;
-        p_size: Int)
-    InterfaceStringNewWithUtf16CharsAndLen* = proc (
-        r_dest: UninitializedStringPtr; p_contents: ptr char16_t;
-        p_size: Int)
-    InterfaceStringNewWithUtf32CharsAndLen* = proc (
-        r_dest: UninitializedStringPtr; p_contents: ptr char32_t;
-        p_size: Int)
-    InterfaceStringNewWithWideCharsAndLen* = proc (
-        r_dest: UninitializedStringPtr; p_contents: ptr Utf16Char;
-        p_size: Int)
-    InterfaceStringToLatin1Chars* = proc (
-        p_self: ConstStringPtr; r_text: cstring;
-        p_max_write_length: Int): Int
-    InterfaceStringToUtf8Chars* = proc (p_self: ConstStringPtr;
-        r_text: cstring; p_max_write_length: Int): Int
-    InterfaceStringToUtf16Chars* = proc (
-        p_self: ConstStringPtr; r_text: ptr char16_t;
-        p_max_write_length: Int): Int
-    InterfaceStringToUtf32Chars* = proc (
-        p_self: ConstStringPtr; r_text: ptr char32_t;
-        p_max_write_length: Int): Int
-    InterfaceStringToWideChars* = proc (p_self: ConstStringPtr;
-        r_text: ptr Utf16Char; p_max_write_length: Int): Int
-    InterfaceStringOperatorIndex* = proc (p_self: StringPtr;
-        p_index: Int): ptr char32_t
-    InterfaceStringOperatorIndexConst* = proc (
-        p_self: ConstStringPtr; p_index: Int): ptr char32_t
-    InterfaceStringOperatorPlusEqString* = proc (
-        p_self: StringPtr; p_b: ConstStringPtr)
-    InterfaceStringOperatorPlusEqChar* = proc (
-        p_self: StringPtr; p_b: char32_t)
-    InterfaceStringOperatorPlusEqCstr* = proc (
-        p_self: StringPtr; p_b: cstring)
-    InterfaceStringOperatorPlusEqWcstr* = proc (
-        p_self: StringPtr; p_b: ptr Utf16Char)
-    InterfaceStringOperatorPlusEqC32str* = proc (
-        p_self: StringPtr; p_b: ptr char32_t)
-    InterfaceXmlParserOpenBuffer* = proc (
-        p_instance: ObjectPtr; p_buffer: ptr uint8; p_size: csize_t): Int
-    InterfaceFileAccessStoreBuffer* = proc (
-        p_instance: ObjectPtr; p_src: ptr uint8; p_length: uint64)
-    InterfaceFileAccessGetBuffer* = proc (
-        p_instance: ConstObjectPtr; p_dst: ptr uint8; p_length: uint64): uint64
-    InterfaceWorkerThreadPoolAddNativeGroupTask* = proc (
-        p_instance: ObjectPtr; p_func: proc (a1: pointer; a2: uint32);
-        p_userdata: pointer; p_elements: cint; p_tasks: cint;
-        p_high_priority: Bool; p_description: ConstStringPtr): int64
-    InterfaceWorkerThreadPoolAddNativeTask* = proc (
-        p_instance: ObjectPtr; p_func: proc (a1: pointer);
-        p_userdata: pointer; p_high_priority: Bool;
-        p_description: ConstStringPtr): int64
-    InterfacePackedByteArrayOperatorIndex* = proc (
-        p_self: TypePtr; p_index: Int): ptr uint8
-    InterfacePackedByteArrayOperatorIndexConst* = proc (
-        p_self: ConstTypePtr; p_index: Int): ptr uint8
-    InterfacePackedColorArrayOperatorIndex* = proc (
-        p_self: TypePtr; p_index: Int): TypePtr
-    InterfacePackedColorArrayOperatorIndexConst* = proc (
-        p_self: ConstTypePtr; p_index: Int): TypePtr
-    InterfacePackedFloat32ArrayOperatorIndex* = proc (
-        p_self: TypePtr; p_index: Int): ptr cfloat
-    InterfacePackedFloat32ArrayOperatorIndexConst* = proc (
-        p_self: ConstTypePtr; p_index: Int): ptr cfloat
-    InterfacePackedFloat64ArrayOperatorIndex* = proc (
-        p_self: TypePtr; p_index: Int): ptr cdouble
-    InterfacePackedFloat64ArrayOperatorIndexConst* = proc (
-        p_self: ConstTypePtr; p_index: Int): ptr cdouble
-    InterfacePackedInt32ArrayOperatorIndex* = proc (
-        p_self: TypePtr; p_index: Int): ptr uint32
-    InterfacePackedInt32ArrayOperatorIndexConst* = proc (
-        p_self: ConstTypePtr; p_index: Int): ptr uint32
-    InterfacePackedInt64ArrayOperatorIndex* = proc (
-        p_self: TypePtr; p_index: Int): ptr int64
-    InterfacePackedInt64ArrayOperatorIndexConst* = proc (
-        p_self: ConstTypePtr; p_index: Int): ptr int64
-    InterfacePackedStringArrayOperatorIndex* = proc (
-        p_self: TypePtr; p_index: Int): StringPtr
-    InterfacePackedStringArrayOperatorIndexConst* = proc (
-        p_self: ConstTypePtr; p_index: Int): StringPtr
-    InterfacePackedVector2ArrayOperatorIndex* = proc (
-        p_self: TypePtr; p_index: Int): TypePtr
-    InterfacePackedVector2ArrayOperatorIndexConst* = proc (
-        p_self: ConstTypePtr; p_index: Int): TypePtr
-    InterfacePackedVector3ArrayOperatorIndex* = proc (
-        p_self: TypePtr; p_index: Int): TypePtr
-    InterfacePackedVector3ArrayOperatorIndexConst* = proc (
-        p_self: ConstTypePtr; p_index: Int): TypePtr
-    InterfaceArrayOperatorIndex* = proc (p_self: TypePtr;
-        p_index: Int): VariantPtr
-    InterfaceArrayOperatorIndexConst* = proc (
-        p_self: ConstTypePtr; p_index: Int): VariantPtr
-    InterfaceArrayRef* = proc (p_self: TypePtr;
-                                      p_from: ConstTypePtr)
-    InterfaceArraySetTyped* = proc (p_self: TypePtr;
-        p_type: VariantType; p_class_name: ConstStringNamePtr;
-        p_script: ConstVariantPtr)
-    InterfaceDictionaryOperatorIndex* = proc (p_self: TypePtr;
-        p_key: ConstVariantPtr): VariantPtr
-    InterfaceDictionaryOperatorIndexConst* = proc (
-        p_self: ConstTypePtr; p_key: ConstVariantPtr): VariantPtr
-    InterfaceObjectMethodBindCall* = proc (
-        p_method_bind: MethodBindPtr; p_instance: ObjectPtr;
-        p_args: ptr ConstVariantPtr; p_arg_count: Int;
-        r_ret: UninitializedVariantPtr; r_error: ptr CallError)
-    InterfaceObjectMethodBindPtrcall* = proc (
-        p_method_bind: MethodBindPtr; p_instance: ObjectPtr;
-        p_args: ptr ConstTypePtr; r_ret: TypePtr)
-    InterfaceObjectDestroy* = proc (p_o: ObjectPtr)
-    InterfaceGlobalGetSingleton* = proc (
-        p_name: ConstStringNamePtr): ObjectPtr
-    InterfaceObjectGetInstanceBinding* = proc (p_o: ObjectPtr;
-        p_token: pointer; p_callbacks: ptr InstanceBindingCallbacks): pointer
-    InterfaceObjectSetInstanceBinding* = proc (p_o: ObjectPtr;
-        p_token: pointer; p_binding: pointer;
-        p_callbacks: ptr InstanceBindingCallbacks)
-    InterfaceObjectSetInstance* = proc (p_o: ObjectPtr;
-        p_classname: ConstStringNamePtr;
-        p_instance: ClassInstancePtr)
-    InterfaceObjectGetClassName* = proc (
-        p_object: ConstObjectPtr; p_library: ClassLibraryPtr;
-        r_class_name: UninitializedStringNamePtr): Bool
-    InterfaceObjectCastTo* = proc (p_object: ConstObjectPtr;
-        p_class_tag: pointer): ObjectPtr
-    InterfaceObjectGetInstanceFromId* = proc (
-        p_instance_id: GDObjectInstanceID): ObjectPtr
-    InterfaceObjectGetInstanceId* = proc (
-        p_object: ConstObjectPtr): GDObjectInstanceID
-    InterfaceRefGetObject* = proc (p_ref: ConstRefPtr): ObjectPtr
-    InterfaceRefSetObject* = proc (p_ref: RefPtr;
-        p_object: ObjectPtr)
-    InterfaceScriptInstanceCreate* = proc (
-        p_info: ptr ScriptInstanceInfo;
-        p_instance_data: ScriptInstanceDataPtr): ScriptInstancePtr
-    InterfaceClassdbConstructObject* = proc (
-        p_classname: ConstStringNamePtr): ObjectPtr
-    InterfaceClassdbGetMethodBind* = proc (
-        p_classname: ConstStringNamePtr;
-        p_methodname: ConstStringNamePtr; p_hash: Int): MethodBindPtr
-    InterfaceClassdbGetClassTag* = proc (
-        p_classname: ConstStringNamePtr): pointer
-    InterfaceClassdbRegisterExtensionClass* = proc (
-        p_library: ClassLibraryPtr;
-        p_class_name: ConstStringNamePtr;
-        p_parent_class_name: ConstStringNamePtr;
-        p_extension_funcs: ptr ClassCreationInfo)
-    InterfaceClassdbRegisterExtensionClassMethod* = proc (
-        p_library: ClassLibraryPtr;
-        p_class_name: ConstStringNamePtr;
-        p_method_info: ptr ClassMethodInfo)
-    InterfaceClassdbRegisterExtensionClassIntegerConstant* = proc (
-        p_library: ClassLibraryPtr;
-        p_class_name: ConstStringNamePtr;
-        p_enum_name: ConstStringNamePtr;
-        p_constant_name: ConstStringNamePtr;
-        p_constant_value: Int; p_is_bitfield: Bool)
-    InterfaceClassdbRegisterExtensionClassProperty* = proc (
-        p_library: ClassLibraryPtr;
-        p_class_name: ConstStringNamePtr;
-        p_info: ptr PropertyInfo; p_setter: ConstStringNamePtr;
-        p_getter: ConstStringNamePtr)
-    InterfaceClassdbRegisterExtensionClassPropertyGroup* = proc (
-        p_library: ClassLibraryPtr;
-        p_class_name: ConstStringNamePtr;
-        p_group_name: ConstStringPtr; p_prefix: ConstStringPtr)
-    InterfaceClassdbRegisterExtensionClassPropertySubgroup* = proc (
-        p_library: ClassLibraryPtr;
-        p_class_name: ConstStringNamePtr;
-        p_subgroup_name: ConstStringPtr;
-        p_prefix: ConstStringPtr)
-    InterfaceClassdbRegisterExtensionClassSignal* = proc (
-        p_library: ClassLibraryPtr;
-        p_class_name: ConstStringNamePtr;
-        p_signal_name: ConstStringNamePtr;
-        p_argument_info: ptr PropertyInfo;
-        p_argument_count: Int)
-    InterfaceClassdbUnregisterExtensionClass* = proc (
-        p_library: ClassLibraryPtr;
-        p_class_name: ConstStringNamePtr)
-    InterfaceGetLibraryPath* = proc (
-        p_library: ClassLibraryPtr;
-        r_path: UninitializedStringPtr)
-    InterfaceEditorAddPlugin* = proc (
-        p_class_name: ConstStringNamePtr)
-    InterfaceEditorRemovePlugin* = proc (
-        p_class_name: ConstStringNamePtr)
+    InterfaceGetGodotVersion* = proc (r_godot_version: ptr GodotVersion) {.gdcall.}
+    InterfaceMemAlloc* = proc (p_bytes: csize_t): pointer {.gdcall.}
+    InterfaceMemRealloc* = proc (p_ptr: pointer; p_bytes: csize_t): pointer {.gdcall.}
+    InterfaceMemFree* = proc (p_ptr: pointer) {.gdcall.}
+    InterfacePrintError* = proc (p_description: cstring; p_function: cstring; p_file: cstring; p_line: uint32; p_editor_notify: Bool) {.gdcall.}
+    InterfacePrintErrorWithMessage* = proc (p_description: cstring; p_message: cstring; p_function: cstring; p_file: cstring; p_line: uint32; p_editor_notify: Bool) {.gdcall.}
+    InterfacePrintWarning* = proc (p_description: cstring; p_function: cstring; p_file: cstring; p_line: uint32; p_editor_notify: Bool) {.gdcall.}
+    InterfacePrintWarningWithMessage* = proc (p_description: cstring; p_message: cstring; p_function: cstring; p_file: cstring; p_line: uint32; p_editor_notify: Bool) {.gdcall.}
+    InterfacePrintScriptError* = proc (p_description: cstring; p_function: cstring; p_file: cstring; p_line: uint32; p_editor_notify: Bool) {.gdcall.}
+    InterfacePrintScriptErrorWithMessage* = proc (p_description: cstring; p_message: cstring; p_function: cstring; p_file: cstring; p_line: uint32; p_editor_notify: Bool) {.gdcall.}
+    InterfaceGetNativeStructSize* = proc ( p_name: ConstStringNamePtr): uint64 {.gdcall.}
+    InterfaceVariantNewCopy* = proc ( r_dest: UninitializedVariantPtr; p_src: ConstVariantPtr) {.gdcall.}
+    InterfaceVariantNewNil* = proc ( r_dest: UninitializedVariantPtr) {.gdcall.}
+    InterfaceVariantDestroy* = proc (p_self: VariantPtr) {.gdcall.}
+    InterfaceVariantCall* = proc (p_self: VariantPtr; p_method: ConstStringNamePtr; p_args: ptr ConstVariantPtr; p_argument_count: Int; r_return: UninitializedVariantPtr; r_error: ptr CallError) {.gdcall.}
+    InterfaceVariantCallStatic* = proc (p_type: VariantType; p_method: ConstStringNamePtr; p_args: ptr ConstVariantPtr; p_argument_count: Int; r_return: UninitializedVariantPtr; r_error: ptr CallError) {.gdcall.}
+    InterfaceVariantEvaluate* = proc (p_op: VariantOperator; p_a: ConstVariantPtr; p_b: ConstVariantPtr; r_return: UninitializedVariantPtr; r_valid: ptr Bool) {.gdcall.}
+    InterfaceVariantSet* = proc (p_self: VariantPtr; p_key: ConstVariantPtr; p_value: ConstVariantPtr; r_valid: ptr Bool) {.gdcall.}
+    InterfaceVariantSetNamed* = proc (p_self: VariantPtr; p_key: ConstStringNamePtr; p_value: ConstVariantPtr; r_valid: ptr Bool) {.gdcall.}
+    InterfaceVariantSetKeyed* = proc (p_self: VariantPtr; p_key: ConstVariantPtr; p_value: ConstVariantPtr; r_valid: ptr Bool) {.gdcall.}
+    InterfaceVariantSetIndexed* = proc (p_self: VariantPtr; p_index: Int; p_value: ConstVariantPtr; r_valid: ptr Bool; r_oob: ptr Bool) {.gdcall.}
+    InterfaceVariantGet* = proc (p_self: ConstVariantPtr; p_key: ConstVariantPtr; r_ret: UninitializedVariantPtr; r_valid: ptr Bool) {.gdcall.}
+    InterfaceVariantGetNamed* = proc (p_self: ConstVariantPtr; p_key: ConstStringNamePtr; r_ret: UninitializedVariantPtr; r_valid: ptr Bool) {.gdcall.}
+    InterfaceVariantGetKeyed* = proc (p_self: ConstVariantPtr; p_key: ConstVariantPtr; r_ret: UninitializedVariantPtr; r_valid: ptr Bool) {.gdcall.}
+    InterfaceVariantGetIndexed* = proc ( p_self: ConstVariantPtr; p_index: Int; r_ret: UninitializedVariantPtr; r_valid: ptr Bool; r_oob: ptr Bool) {.gdcall.}
+    InterfaceVariantIterInit* = proc (p_self: ConstVariantPtr; r_iter: UninitializedVariantPtr; r_valid: ptr Bool): Bool {.gdcall.}
+    InterfaceVariantIterNext* = proc (p_self: ConstVariantPtr; r_iter: VariantPtr; r_valid: ptr Bool): Bool {.gdcall.}
+    InterfaceVariantIterGet* = proc (p_self: ConstVariantPtr; r_iter: VariantPtr; r_ret: UninitializedVariantPtr; r_valid: ptr Bool) {.gdcall.}
+    InterfaceVariantHash* = proc (p_self: ConstVariantPtr): Int {.gdcall.}
+    InterfaceVariantRecursiveHash* = proc ( p_self: ConstVariantPtr; p_recursion_count: Int): Int {.gdcall.}
+    InterfaceVariantHashCompare* = proc ( p_self: ConstVariantPtr; p_other: ConstVariantPtr): Bool {.gdcall.}
+    InterfaceVariantBooleanize* = proc (p_self: ConstVariantPtr): Bool {.gdcall.}
+    InterfaceVariantDuplicate* = proc (p_self: ConstVariantPtr; r_ret: VariantPtr; p_deep: Bool) {.gdcall.}
+    InterfaceVariantStringify* = proc (p_self: ConstVariantPtr; r_ret: StringPtr) {.gdcall.}
+    InterfaceVariantGetType* = proc (p_self: ConstVariantPtr): VariantType {.gdcall.}
+    InterfaceVariantHasMethod* = proc (p_self: ConstVariantPtr; p_method: ConstStringNamePtr): Bool {.gdcall.}
+    InterfaceVariantHasMember* = proc (p_type: VariantType; p_member: ConstStringNamePtr): Bool {.gdcall.}
+    InterfaceVariantHasKey* = proc (p_self: ConstVariantPtr; p_key: ConstVariantPtr; r_valid: ptr Bool): Bool {.gdcall.}
+    InterfaceVariantGetTypeName* = proc (p_type: VariantType; r_name: UninitializedStringPtr) {.gdcall.}
+    InterfaceVariantCanConvert* = proc (p_from: VariantType; p_to: VariantType): Bool {.gdcall.}
+    InterfaceVariantCanConvertStrict* = proc ( p_from: VariantType; p_to: VariantType): Bool {.gdcall.}
+    InterfaceGetVariantFromTypeConstructor* = proc ( p_type: VariantType): VariantFromTypeConstructorFunc {.gdcall.}
+    InterfaceGetVariantToTypeConstructor* = proc ( p_type: VariantType): TypeFromVariantConstructorFunc {.gdcall.}
+    InterfaceVariantGetPtrOperatorEvaluator* = proc ( p_operator: VariantOperator; p_type_a: VariantType; p_type_b: VariantType): PtrOperatorEvaluator {.gdcall.}
+    InterfaceVariantGetPtrBuiltinMethod* = proc ( p_type: VariantType; p_method: ConstStringNamePtr; p_hash: Int): PtrBuiltInMethod {.gdcall.}
+    InterfaceVariantGetPtrConstructor* = proc ( p_type: VariantType; p_constructor: uint32): PtrConstructor {.gdcall.}
+    InterfaceVariantGetPtrDestructor* = proc ( p_type: VariantType): PtrDestructor {.gdcall.}
+    InterfaceVariantConstruct* = proc (p_type: VariantType; r_base: UninitializedVariantPtr; p_args: ptr ConstVariantPtr; p_argument_count: uint32; r_error: ptr CallError) {.gdcall.}
+    InterfaceVariantGetPtrSetter* = proc (p_type: VariantType; p_member: ConstStringNamePtr): PtrSetter {.gdcall.}
+    InterfaceVariantGetPtrGetter* = proc (p_type: VariantType; p_member: ConstStringNamePtr): PtrGetter {.gdcall.}
+    InterfaceVariantGetPtrIndexedSetter* = proc ( p_type: VariantType): PtrIndexedSetter {.gdcall.}
+    InterfaceVariantGetPtrIndexedGetter* = proc ( p_type: VariantType): PtrIndexedGetter {.gdcall.}
+    InterfaceVariantGetPtrKeyedSetter* = proc ( p_type: VariantType): PtrKeyedSetter {.gdcall.}
+    InterfaceVariantGetPtrKeyedGetter* = proc ( p_type: VariantType): PtrKeyedGetter {.gdcall.}
+    InterfaceVariantGetPtrKeyedChecker* = proc ( p_type: VariantType): PtrKeyedChecker {.gdcall.}
+    InterfaceVariantGetConstantValue* = proc ( p_type: VariantType; p_constant: ConstStringNamePtr; r_ret: UninitializedVariantPtr) {.gdcall.}
+    InterfaceVariantGetPtrUtilityFunction* = proc ( p_function: ConstStringNamePtr; p_hash: Int): PtrUtilityFunction {.gdcall.}
+    InterfaceStringNewWithLatin1Chars* = proc ( r_dest: UninitializedStringPtr; p_contents: cstring) {.gdcall.}
+    InterfaceStringNewWithUtf8Chars* = proc ( r_dest: UninitializedStringPtr; p_contents: cstring) {.gdcall.}
+    InterfaceStringNewWithUtf16Chars* = proc ( r_dest: UninitializedStringPtr; p_contents: ptr char16_t) {.gdcall.}
+    InterfaceStringNewWithUtf32Chars* = proc ( r_dest: UninitializedStringPtr; p_contents: ptr char32_t) {.gdcall.}
+    InterfaceStringNewWithWideChars* = proc ( r_dest: UninitializedStringPtr; p_contents: ptr Utf16Char) {.gdcall.}
+    InterfaceStringNewWithLatin1CharsAndLen* = proc ( r_dest: UninitializedStringPtr; p_contents: cstring; p_size: Int) {.gdcall.}
+    InterfaceStringNewWithUtf8CharsAndLen* = proc ( r_dest: UninitializedStringPtr; p_contents: cstring; p_size: Int) {.gdcall.}
+    InterfaceStringNewWithUtf16CharsAndLen* = proc ( r_dest: UninitializedStringPtr; p_contents: ptr char16_t; p_size: Int) {.gdcall.}
+    InterfaceStringNewWithUtf32CharsAndLen* = proc ( r_dest: UninitializedStringPtr; p_contents: ptr char32_t; p_size: Int) {.gdcall.}
+    InterfaceStringNewWithWideCharsAndLen* = proc ( r_dest: UninitializedStringPtr; p_contents: ptr Utf16Char; p_size: Int) {.gdcall.}
+    InterfaceStringToLatin1Chars* = proc ( p_self: ConstStringPtr; r_text: cstring; p_max_write_length: Int): Int {.gdcall.}
+    InterfaceStringToUtf8Chars* = proc (p_self: ConstStringPtr; r_text: cstring; p_max_write_length: Int): Int {.gdcall.}
+    InterfaceStringToUtf16Chars* = proc ( p_self: ConstStringPtr; r_text: ptr char16_t; p_max_write_length: Int): Int {.gdcall.}
+    InterfaceStringToUtf32Chars* = proc ( p_self: ConstStringPtr; r_text: ptr char32_t; p_max_write_length: Int): Int {.gdcall.}
+    InterfaceStringToWideChars* = proc (p_self: ConstStringPtr; r_text: ptr Utf16Char; p_max_write_length: Int): Int {.gdcall.}
+    InterfaceStringOperatorIndex* = proc (p_self: StringPtr; p_index: Int): ptr char32_t {.gdcall.}
+    InterfaceStringOperatorIndexConst* = proc ( p_self: ConstStringPtr; p_index: Int): ptr char32_t {.gdcall.}
+    InterfaceStringOperatorPlusEqString* = proc ( p_self: StringPtr; p_b: ConstStringPtr) {.gdcall.}
+    InterfaceStringOperatorPlusEqChar* = proc ( p_self: StringPtr; p_b: char32_t) {.gdcall.}
+    InterfaceStringOperatorPlusEqCstr* = proc ( p_self: StringPtr; p_b: cstring) {.gdcall.}
+    InterfaceStringOperatorPlusEqWcstr* = proc ( p_self: StringPtr; p_b: ptr Utf16Char) {.gdcall.}
+    InterfaceStringOperatorPlusEqC32str* = proc ( p_self: StringPtr; p_b: ptr char32_t) {.gdcall.}
+    InterfaceXmlParserOpenBuffer* = proc ( p_instance: ObjectPtr; p_buffer: ptr uint8; p_size: csize_t): Int {.gdcall.}
+    InterfaceFileAccessStoreBuffer* = proc ( p_instance: ObjectPtr; p_src: ptr uint8; p_length: uint64) {.gdcall.}
+    InterfaceFileAccessGetBuffer* = proc ( p_instance: ConstObjectPtr; p_dst: ptr uint8; p_length: uint64): uint64 {.gdcall.}
+    InterfaceWorkerThreadPoolAddNativeGroupTask* = proc ( p_instance: ObjectPtr; p_func: proc (a1: pointer; a2: uint32); p_userdata: pointer; p_elements: cint; p_tasks: cint; p_high_priority: Bool; p_description: ConstStringPtr): int64 {.gdcall.}
+    InterfaceWorkerThreadPoolAddNativeTask* = proc ( p_instance: ObjectPtr; p_func: proc (a1: pointer); p_userdata: pointer; p_high_priority: Bool; p_description: ConstStringPtr): int64 {.gdcall.}
+    InterfacePackedByteArrayOperatorIndex* = proc ( p_self: TypePtr; p_index: Int): ptr uint8 {.gdcall.}
+    InterfacePackedByteArrayOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_index: Int): ptr uint8 {.gdcall.}
+    InterfacePackedColorArrayOperatorIndex* = proc ( p_self: TypePtr; p_index: Int): TypePtr {.gdcall.}
+    InterfacePackedColorArrayOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_index: Int): TypePtr {.gdcall.}
+    InterfacePackedFloat32ArrayOperatorIndex* = proc ( p_self: TypePtr; p_index: Int): ptr cfloat {.gdcall.}
+    InterfacePackedFloat32ArrayOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_index: Int): ptr cfloat {.gdcall.}
+    InterfacePackedFloat64ArrayOperatorIndex* = proc ( p_self: TypePtr; p_index: Int): ptr cdouble {.gdcall.}
+    InterfacePackedFloat64ArrayOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_index: Int): ptr cdouble {.gdcall.}
+    InterfacePackedInt32ArrayOperatorIndex* = proc ( p_self: TypePtr; p_index: Int): ptr uint32 {.gdcall.}
+    InterfacePackedInt32ArrayOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_index: Int): ptr uint32 {.gdcall.}
+    InterfacePackedInt64ArrayOperatorIndex* = proc ( p_self: TypePtr; p_index: Int): ptr int64 {.gdcall.}
+    InterfacePackedInt64ArrayOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_index: Int): ptr int64 {.gdcall.}
+    InterfacePackedStringArrayOperatorIndex* = proc ( p_self: TypePtr; p_index: Int): StringPtr {.gdcall.}
+    InterfacePackedStringArrayOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_index: Int): StringPtr {.gdcall.}
+    InterfacePackedVector2ArrayOperatorIndex* = proc ( p_self: TypePtr; p_index: Int): TypePtr {.gdcall.}
+    InterfacePackedVector2ArrayOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_index: Int): TypePtr {.gdcall.}
+    InterfacePackedVector3ArrayOperatorIndex* = proc ( p_self: TypePtr; p_index: Int): TypePtr {.gdcall.}
+    InterfacePackedVector3ArrayOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_index: Int): TypePtr {.gdcall.}
+    InterfaceArrayOperatorIndex* = proc (p_self: TypePtr; p_index: Int): VariantPtr {.gdcall.}
+    InterfaceArrayOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_index: Int): VariantPtr {.gdcall.}
+    InterfaceArrayRef* = proc (p_self: TypePtr; p_from: ConstTypePtr) {.gdcall.}
+    InterfaceArraySetTyped* = proc (p_self: TypePtr; p_type: VariantType; p_class_name: ConstStringNamePtr; p_script: ConstVariantPtr) {.gdcall.}
+    InterfaceDictionaryOperatorIndex* = proc (p_self: TypePtr; p_key: ConstVariantPtr): VariantPtr {.gdcall.}
+    InterfaceDictionaryOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_key: ConstVariantPtr): VariantPtr {.gdcall.}
+    InterfaceObjectMethodBindCall* = proc ( p_method_bind: MethodBindPtr; p_instance: ObjectPtr; p_args: ptr ConstVariantPtr; p_arg_count: Int; r_ret: UninitializedVariantPtr; r_error: ptr CallError) {.gdcall.}
+    InterfaceObjectMethodBindPtrcall* = proc ( p_method_bind: MethodBindPtr; p_instance: ObjectPtr; p_args: ptr ConstTypePtr; r_ret: TypePtr) {.gdcall.}
+    InterfaceObjectDestroy* = proc (p_o: ObjectPtr) {.gdcall.}
+    InterfaceGlobalGetSingleton* = proc ( p_name: ConstStringNamePtr): ObjectPtr {.gdcall.}
+    InterfaceObjectGetInstanceBinding* = proc (p_o: ObjectPtr; p_token: pointer; p_callbacks: ptr InstanceBindingCallbacks): pointer {.gdcall.}
+    InterfaceObjectSetInstanceBinding* = proc (p_o: ObjectPtr; p_token: pointer; p_binding: pointer; p_callbacks: ptr InstanceBindingCallbacks) {.gdcall.}
+    InterfaceObjectSetInstance* = proc (p_o: ObjectPtr; p_classname: ConstStringNamePtr; p_instance: ClassInstancePtr) {.gdcall.}
+    InterfaceObjectGetClassName* = proc ( p_object: ConstObjectPtr; p_library: ClassLibraryPtr; r_class_name: UninitializedStringNamePtr): Bool {.gdcall.}
+    InterfaceObjectCastTo* = proc (p_object: ConstObjectPtr; p_class_tag: pointer): ObjectPtr {.gdcall.}
+    InterfaceObjectGetInstanceFromId* = proc ( p_instance_id: GDObjectInstanceID): ObjectPtr {.gdcall.}
+    InterfaceObjectGetInstanceId* = proc ( p_object: ConstObjectPtr): GDObjectInstanceID {.gdcall.}
+    InterfaceRefGetObject* = proc (p_ref: ConstRefPtr): ObjectPtr {.gdcall.}
+    InterfaceRefSetObject* = proc (p_ref: RefPtr; p_object: ObjectPtr) {.gdcall.}
+    InterfaceScriptInstanceCreate* = proc ( p_info: ptr ScriptInstanceInfo; p_instance_data: ScriptInstanceDataPtr): ScriptInstancePtr {.gdcall.}
+    InterfaceClassdbConstructObject* = proc ( p_classname: ConstStringNamePtr): ObjectPtr {.gdcall.}
+    InterfaceClassdbGetMethodBind* = proc ( p_classname: ConstStringNamePtr; p_methodname: ConstStringNamePtr; p_hash: Int): MethodBindPtr {.gdcall.}
+    InterfaceClassdbGetClassTag* = proc ( p_classname: ConstStringNamePtr): pointer {.gdcall.}
+    InterfaceClassdbRegisterExtensionClass* = proc ( p_library: ClassLibraryPtr; p_class_name: ConstStringNamePtr; p_parent_class_name: ConstStringNamePtr; p_extension_funcs: ptr ClassCreationInfo) {.gdcall.}
+    InterfaceClassdbRegisterExtensionClassMethod* = proc ( p_library: ClassLibraryPtr; p_class_name: ConstStringNamePtr; p_method_info: ptr ClassMethodInfo) {.gdcall.}
+    InterfaceClassdbRegisterExtensionClassIntegerConstant* = proc ( p_library: ClassLibraryPtr; p_class_name: ConstStringNamePtr; p_enum_name: ConstStringNamePtr; p_constant_name: ConstStringNamePtr; p_constant_value: Int; p_is_bitfield: Bool) {.gdcall.}
+    InterfaceClassdbRegisterExtensionClassProperty* = proc ( p_library: ClassLibraryPtr; p_class_name: ConstStringNamePtr; p_info: ptr PropertyInfo; p_setter: ConstStringNamePtr; p_getter: ConstStringNamePtr) {.gdcall.}
+    InterfaceClassdbRegisterExtensionClassPropertyGroup* = proc ( p_library: ClassLibraryPtr; p_class_name: ConstStringNamePtr; p_group_name: ConstStringPtr; p_prefix: ConstStringPtr) {.gdcall.}
+    InterfaceClassdbRegisterExtensionClassPropertySubgroup* = proc ( p_library: ClassLibraryPtr; p_class_name: ConstStringNamePtr; p_subgroup_name: ConstStringPtr; p_prefix: ConstStringPtr) {.gdcall.}
+    InterfaceClassdbRegisterExtensionClassSignal* = proc ( p_library: ClassLibraryPtr; p_class_name: ConstStringNamePtr; p_signal_name: ConstStringNamePtr; p_argument_info: ptr PropertyInfo; p_argument_count: Int) {.gdcall.}
+    InterfaceClassdbUnregisterExtensionClass* = proc ( p_library: ClassLibraryPtr; p_class_name: ConstStringNamePtr) {.gdcall.}
+    InterfaceGetLibraryPath* = proc ( p_library: ClassLibraryPtr; r_path: UninitializedStringPtr) {.gdcall.}
+    InterfaceEditorAddPlugin* = proc ( p_class_name: ConstStringNamePtr) {.gdcall.}
+    InterfaceEditorRemovePlugin* = proc ( p_class_name: ConstStringNamePtr) {.gdcall.}
 
 
 # Godot Constants
