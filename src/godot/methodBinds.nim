@@ -29,15 +29,15 @@ type MethodBind* = ref object of RootObj
   has_vararg*: bool
 
   argument_names*: seq[StringName]
-  argument_types*: seq[VariantType]
+  argument_types*: seq[Variant|>Type]
   default_arguments*: seq[Variant]
 
 # protected:
-method gen_argument_type(self: MethodBind; p_arg: int): VariantType {.base.} = return
+method gen_argument_type(self: MethodBind; p_arg: int): Variant|>Type {.base.} = return
 method gen_argument_type_info(self: MethodBind; p_arg: int): PropertyInfo {.base.} = return
 proc generate_argument_types(self: MethodBind; count: int) =
   self.argument_count = count
-  self.argument_types = newSeq[VariantType](count+1)
+  self.argument_types = newSeq[Variant|>Type](count+1)
   # -1 means return type.
   for i in (-1)..<count:
     self.argument_types[i + 1] = self.gen_argument_type(i)
@@ -66,7 +66,7 @@ proc hint_flags*(self: MethodBind): set[ClassMethodFlags] {.inline.} =
 proc `hint_flags=`*(self: MethodBind; value: set[ClassMethodFlags]) {.inline.} =
   self.`hint_flags?` = value
 
-proc get_argument_type*(self: MethodBind; p_argument: int): VariantType {.inline.} =
+proc get_argument_type*(self: MethodBind; p_argument: int): Variant|>Type {.inline.} =
   withMakeErrmsg_if (p_argument+1) notin 0..<self.argument_count:
     printError(msg)
     return VariantType_Nil
@@ -108,7 +108,7 @@ proc bindPtrCall* {.implement: ClassMethodPtrCall.} =
   b.ptrcall(pInstance, pArgs, r_ret)
 
 # ==============================================================
-TODO with subject"Define the inheritance type of MethodBind."
+TODO subject"Define the inheritance type of MethodBind."
 #[
 type MethodBindVarArgBase*[T,R; should_returns: static bool] = object of MethodBind
 # protected:
@@ -251,7 +251,7 @@ type MethodBindT[T; P: tuple] = ref object of MethodBind
 
 # protected:
 # ----------
-method gen_argument_type*[T; P: tuple](self: MethodBindT[T,P]; arg: int): VariantType =
+method gen_argument_type*[T; P: tuple](self: MethodBindT[T,P]; arg: int): Variant|>Type =
   P.typeOfField(arg).variantType
 
 method gen_argument_type_info*[T; P: tuple](self: MethodBindT[T,P]; arg: int): PropertyInfo =

@@ -13,38 +13,9 @@ import ./[
 import ../tool/[
   moduleTree,
   name_rules,
+  namespace,
 ]
 
-type
-  GdConstant* = object
-    name*: string
-    `type`*: string
-    value*: string
-  GdMember* = object
-    name*: string
-    `type`*: string
-
-  GdBuiltinClass* = object
-    name*: string
-    is_keyed*: bool
-    has_destructor*: bool
-    indexing_return_type*: Option[string]
-    constructors*: seq[GdConstructor]
-    constants*: Option[seq[GdConstant]]
-    enums*: Option[seq[GdEnum]]
-    members*: Option[seq[GdMember]]
-    operators*: Option[seq[GdOperator]]
-    methods*: Option[seq[GdMethod]]
-  GdBuiltinClasses* = seq[GdBuiltinClass]
-
-  NimBuiltinClass* = ref object
-    classname*: string
-    enums*: seq[NimEnum]
-    constructors*: seq[NimProcSt]
-    operators*: seq[NimProcSt]
-    methods*: seq[NimProcSt]
-    staticMethods*: seq[NimProcSt]
-    base*: GdBuiltinClass
 
 const constructorIgnores = [
   "GdVector2", "GdVector2i",
@@ -53,83 +24,92 @@ const constructorIgnores = [
   "GdColor",
   ]
 
-func toNim*(self: GdBuiltinClass): NimBuiltinClass =
+func cmp*(x,y: Option[string]): int =
+  if x.isNone:
+    if y.isNone: return 0
+    else: return -1
+  else:
+    if y.isNone: return 1
+    else: return cmp(get x, get y)
+
+proc toNim*(self: JsonBuiltinClass): NimBuiltinClass =
 
   result = NimBuiltinClass()
-  result.classname = self.name.className
+  result.name = objectName self.name
+  let argTypeName = argType result.name
   if self.enums.isSome:
-    result.enums = self.enums.get.mapIt it.toNim
-  if result.classname notin constructorIgnores:
-    result.constructors = self.constructors.mapIt it.toNim(result.classname)
-  if self.methods.isSome:
-    result.methods = self.methods.get
-      .filterIt(not it.is_static)
-      .mapIt(it.toNim(result.classname))
-      .sorted((x,y) => cmp(x.args[0].name, y.args[0].name)*2 + cmp(x.name, y.name))
-    result.staticmethods = self.methods.get
-      .filterIt(it.is_static)
-      .mapIt(it.toNim(result.classname))
-      .sorted((x,y) => cmp(x.args[0].name, y.args[0].name)*2 + cmp(x.name, y.name))
-  if self.operators.isSome:
-    result.operators = self.operators.get
-      .mapIt(it.toNim(result.classname))
-      .sorted((x,y) => cmp(x.name, y.name))
+    result.enums = self.enums.get.mapIt it.toNim(result.name)
+  if $result.name notin constructorIgnores:
+    result.constructors = sorted self.constructors.mapIt it.prerender retType result.name
+  for m in self.methods.get(@[]):
+    if m.is_static:
+      result.methods.add prerender(m, argTypeName)
+    else:
+      result.staticMethods.add prerender(m, argTypeName)
+  for o in self.operators.get(@[]):
+    result.operators.add o.prerender(argTypeName)
+  result.methods = sorted result.methods
+  result.staticMethods = sorted result.staticMethods
+  result.operators = sorted result.operators
 
-  result.base = self
+  result.json = self
 
 func moduleName*(self: NimBuiltinClass): string =
-  self.base.name.moduleName
+  self.json.name.variantModuleName
 
 func renderConstructor*(self: NimBuiltinClass): Statement =
   +$$..OptionSt(eval: self.constructors.len != 0):
-    fmt"{self.classname}.constructors(loader= {constrLoader self.classname}):"
+    fmt"{self.name}.constructors(loader= {constrLoader $self.name}):"
     IndentSt(level: 2).add self.constructors
 
 func renderConstructor*(self: seq[NimBuiltinClass]): Statement =
-  ParagraphSt(children: self.mapit(it.renderConstructor))
+  ParagraphSt(children: self.filterIt($it.name notin variantDetailIgnores).mapit(it.renderConstructor))
 
+func renderLocalEnums*(self: seq[NimBuiltinClass]): Statement =
+  result = new ParagraphSt
+  for variant in self:
+    if variant.enums.len == 0: continue
+    discard +$$..result:
+      variant.enums.mapit it.render
 
 func renderClassDefine*(self: NimBuiltinClass): Statement =
   +$$..ParagraphSt():
     +$$..CommentSt.nim(execute= true):
-      fmt"type {self.classname}* = object"
+      fmt"type {self.name}* = object"
       +$$..IndentSt(level: 2):
-        fmt"{self.base.is_keyed=}"
-        fmt"{self.base.has_destructor=}"
-        fmt"{self.base.indexing_return_type=}"
-        fmt"{self.base.constants=}"
+        fmt"{self.json.is_keyed=}"
+        fmt"{self.json.has_destructor=}"
+        fmt"{self.json.indexing_return_type=}"
+        fmt"{self.json.constants=}"
 
     +$$..OptionSt(eval: self.methods.len != 0):
       ""
-      fmt"{self.classname}.procedures(loader= {procLoader self.classname}):"
-      +$$..IndentSt(level: 2): self.methods
+      +$$..BlockSt(head: fmt"{self.name}.procedures(loader= {procLoader $self.name}):"):
+        self.methods
 
     +$$..OptionSt(eval: self.staticmethods.len != 0):
       ""
-      fmt"{self.classname}.staticProcedures(loader= {sprocLoader self.classname}):"
-      +$$..IndentSt(level: 2): self.staticMethods
+      +$$..BlockSt(head: fmt"{self.name}.staticProcedures(loader= {sprocLoader $self.name}):"):
+        self.staticMethods
 
     +$$..OptionSt(eval: self.operators.len != 0):
       ""
-      fmt"operators(loader= {opLoader self.classname}):"
-      +$$..IndentSt(level: 2): self.operators
+      +$$..BlockSt(head: fmt"operators(loader= {opLoader $self.name}):"):
+        self.operators
 
-    +$$..OptionSt(eval: self.enums.len != 0):
-      ""
-      fmt"staticOf {self.classname}:"
-      +$$..IndentSt(level: 2): self.enums.mapit it.render
 
 func renderLoader*(self: NimBuiltinClass): Statement =
   +$$..OptionSt(eval: (self.methods.len+self.staticmethods.len+self.operators.len) != 0):
     +$$..NimProcSt(
-          kind: NimProcKind.PublicProc,
-          name: allMethodLoader self.classname):
+          kind: npkProc,
+          flags: {npfExport},
+          name: some allMethodLoader $self.name):
       +$$..OptionSt(eval: self.methods.len != 0):
-        fmt"{procLoader self.classname}()"
+        fmt"{procLoader $self.name}()"
       +$$..OptionSt(eval: self.staticmethods.len != 0):
-        fmt"{sprocLoader self.classname}()"
+        fmt"{sprocLoader $self.name}()"
       +$$..OptionSt(eval: self.operators.len != 0):
-        fmt"{opLoader self.classname}()"
+        fmt"{opLoader $self.name}()"
 func renderLoader*(classes: seq[NimBuiltinClass]): Statement =
   let loaderBody = +$$..ParagraphSt():
     "let me = iam(\"load-Variants\", stgLibrary)"
@@ -138,22 +118,23 @@ func renderLoader*(classes: seq[NimBuiltinClass]): Statement =
   loaderBody.children.add destrLoader("Variants") & "()"
 
   loaderBody.children.add "me.debug \"load constructors of all variants...\""
-  for class in classes:
-    if class.className notin constructorIgnores:
+  for class in classes.filter(x => $x.name notin variantDetailIgnores):
+    if $class.name notin constructorIgnores:
       discard loaderBody.add:
-        &"{constrLoader class.className}()"
+        &"{constrLoader $class.name}()"
 
   loaderBody.children.add "me.debug \"load functions of all variants...\""
-  for class in classes:
-    discard loaderBody.add &"{allMethodLoader class.className}()"
+  for class in classes.filter(x => $x.name notin variantDetailIgnores):
+    discard loaderBody.add &"{allMethodLoader $class.name}()"
 
   loaderBody.children.add "me.debug \"load tuned functions of all variants...\""
   for loader in moduleTree.variantAdditionalLoaders:
     loaderBody.children.add loader
 
   +$$..NimProcSt(
-      kind: NimProcKind.PublicProc,
-      name: "load_Variants"):
+      kind: npkProc,
+      flags: {npfExport},
+      name: some "load_Variants"):
     loaderBody
 
 
@@ -163,9 +144,12 @@ proc modulateDetail*(self: NimBuiltinClass): Module =
   result.contents = self.renderClassDefine
   discard result.contents.add self.renderLoader
 proc modulateDetails*(self: seq[NimBuiltinClass]): seq[Module] =
-  self.mapIt(it.modulateDetail)
+  result = newSeqOfCap[Module](self.len)
+  for variant in self:
+    if $variant.name in moduleTree.variantDetailIgnores: continue
+    result.add modulateDetail variant
 
-proc toNim*(self: seq[GdBuiltinClass]): seq[NimBuiltinClass] {.inline.} =
+proc toNim*(self: JsonBuiltinClasses): seq[NimBuiltinClass] {.inline.} =
   warn """We could not convert these json-tags yet:
   [is_keyed, has_destructor, indexing_return_type, constants]"""
-  self.mapIt(it.toNim).filterIt(it.className notin moduleTree.variantIgnores)
+  self.mapIt(it.toNim)

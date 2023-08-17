@@ -6,19 +6,20 @@
 import beyond/[oop, defects, annotativeblocks]
 import ../[godotInterface]
 import ../pure/[todos]
+import ../gdrefs
 import variantsConstr_native
 import variantsConstr_custom
 import variantsLoader
 import ../helper/objectConverter
 import ../helper/variantTypeSolver
 var
-  fromTypeConstructor: array[VariantType, VariantFromTypeConstructorFunc]
-  toTypeConstructor: array[VariantType, TypeFromVariantConstructorFunc]
+  fromTypeConstructor: array[`Variant|>Type`, VariantFromTypeConstructorFunc]
+  toTypeConstructor: array[`Variant|>Type`, TypeFromVariantConstructorFunc]
 
 proc load* {.staticOf: Variant.} =
-  for i in (VariantType_Nil.succ)..<VariantType.high:
-    fromTypeConstructor[i] = interface_getVariantFromTypeConstructor(VariantType i)
-    toTypeConstructor[i] = interface_getVariantToTypeConstructor(VariantType i)
+  for i in (VariantType_Nil.succ)..<`Variant|>Type`.high:
+    fromTypeConstructor[i] = interface_getVariantFromTypeConstructor(`Variant|>Type` i)
+    toTypeConstructor[i] = interface_getVariantToTypeConstructor(`Variant|>Type` i)
 
   load_Variants()
 
@@ -62,8 +63,7 @@ define_converter_from_addr PackedVector2Array
 define_converter_from_addr PackedVector3Array
 define_converter_from_addr PackedColorArray
 
-TODO with(Support_godots_ref, "define Variant.new"):
-  type Ref[T] {.deprecated.} = object
+TODO Support_godots_ref.comment"define Variant.new":
   proc variant*[T: RefCounted](r: Ref[T]): Variant {.unimplemented.}
 
 proc variant*(v: bool): Variant =
@@ -90,7 +90,7 @@ proc get*(v: Variant; _: typedesc[float64]): float64 =
   result.converted
 proc get*(v: Variant; _: typedesc[float32]): float32 = float32 v.get float64
 
-TODO with(Variant_conversion, false):
+TODO ignore Variant_conversion:
   proc variant*(v: ObjectID)
   proc variant*(v: ptr Object)
   proc get*(v: Variant; _: typedesc[ObjectID]): ObjectID
@@ -101,7 +101,7 @@ TODO with(Variant_conversion, false):
   # operator Object *() const;
 
 
-TODO with subject"needs to convert following clang-programs"
+TODO subject"needs to convert following clang-programs"
 #[
   bool operator==(const Variant &other) const;
   bool operator!=(const Variant &other) const;

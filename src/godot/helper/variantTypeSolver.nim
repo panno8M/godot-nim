@@ -1,14 +1,14 @@
-import beyond/[annotativeblocks]
+import beyond/[annotativeblocks, oop]
 import std/macros
-import ../godotInterface {.all.}
+import ../godotInterface_core {.all.}
 
-export godotInterface.variantType
-template variantType*(Type: typedesc): VariantType =
+export godotInterface_core.variantType
+template variantType*(Type: typedesc): `Variant|>Type` =
   VariantType_Nil
-template variantType*(Type: typedesc[ObjectPtr]): VariantType =
+template variantType*(Type: typedesc[ObjectPtr]): `Variant|>Type` =
   VariantType_Object
 
-TODO with(subject"variants.propertyinfo", "Insufficient kinds handled")
+TODO subject"variants.propertyinfo".comment"Insufficient kinds handled"
 template propertyInfo*(Type: typedesc[SomeVariants]): PropertyInfo =
   let
     name: StringName = ""

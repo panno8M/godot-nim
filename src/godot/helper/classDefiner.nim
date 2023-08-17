@@ -12,7 +12,7 @@ template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
 
   # protected:
   # ----------
-  TODO with(Support_virtual_method, "implement `register_virtuals", false):
+  TODO ignore Support_virtual_method.comment"implement `register_virtuals":
     ##[
     template <class T, class B>
     static void register_virtuals() {

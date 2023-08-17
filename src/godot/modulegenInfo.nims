@@ -5,11 +5,14 @@ let modules: seq[string] = @[
   "godotInterface/",
   "variants/",
   "(pragmas.nim)",
+  "(gdrefs.nim)",
+  "nativeStructs.nim",
   "classes.nim",
   "(init.nim)",
   "(godotInterface.nim)",
   "variants.nim",
   "(logging.nim)",
+  "(godotInterface_core.nim)",
 ]
 import strformat, os
 const cYELLOW = "\x1b[33m"

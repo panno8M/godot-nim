@@ -1,6 +1,8 @@
 let modules: seq[string] = @[
   "globalEnums.nim",
   "engineClassDefines.nim",
+  "(objectBase.nim)",
+  "localEnums.nim",
 ]
 import strformat, os
 const cYELLOW = "\x1b[33m"

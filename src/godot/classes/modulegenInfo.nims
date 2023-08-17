@@ -1,5 +1,4 @@
 let modules: seq[string] = @[
-  "classDetail_native/",
   "(classDetail_custom/)",
   "classDetail_native.nim",
 ]

@@ -9,3 +9,4 @@ const
   Define_godot_class* = subject"Define godot class"
   Support_godots_ref* = subject"Support godots ref"
   Support_virtual_method* = subject"Support virtual method".setParent(Define_godot_class)
+  Implement_TypedArray* = subject"Implement TypedArray".setParent(Define_godot_class)

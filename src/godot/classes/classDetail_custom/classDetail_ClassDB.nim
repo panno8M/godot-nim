@@ -18,7 +18,7 @@ type
     getter*: StringName
     setptrInst*: MethodBind
     getptrInst*: MethodBind
-    `type`*: VariantType
+    `type`*: Variant|>Type
   ClassInfo* = ref object
     name: StringName
     parent_name: StringName
@@ -194,7 +194,7 @@ template BIND_VIRTUAL_METHOD*(m_class, m_method): untyped =
     call_with_ptr_args(reinterpret_cast<m_class *>(p_instance), &m_class|>m_method, p_args, p_ret)
   ClassDB|>bind_virtual_method($m_class, $m_method, `call m_method`)
 
-TODO with subject"conversion imcompleted"
+TODO subject"conversion imcompleted"
 #[
 public:
   template <class T>

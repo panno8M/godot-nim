@@ -1,10 +1,8 @@
 import beyond/[
-  defects,
   oop,
 ]
 import
   logging,
-  pragmas,
   godotInterface,
   classes/classDetail_custom/classDetail_ClassDB,
   variants,
@@ -30,7 +28,7 @@ proc deinitialize_module {.implement: Initialization.deinitialize.} =
   ClassDB|>currentLevel = p_level
   if extcfg.terminator != nil:
     extcfg.terminator(p_level)
-  TODO with(Support_edtior_plugin_development, false):
+  TODO ignore Support_edtior_plugin_development:
     EditorPlugins|>deinitialize(p_level)
   ClassDB|>deinitialize(p_level)
 

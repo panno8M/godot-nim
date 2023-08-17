@@ -2,9 +2,10 @@
 # This module was generated automatically. #
 # Edits will be lost.                      #
 # ======================================== #
+import ./../godotInterface_core
 
 type
-  Object* = object of RootObj
+  Object* = object of ObjectBase
 type
   AudioServer* = object of Object
   CameraServer* = object of Object
@@ -207,7 +208,7 @@ type
   TextLine* = object of RefCounted
   TextParagraph* = object of RefCounted
   TextServer* = object of RefCounted
-  Thread* = object of RefCounted
+  GodotThread* = object of RefCounted
   TriangleMesh* = object of RefCounted
   Tween* = object of RefCounted
   Tweener* = object of RefCounted

@@ -1,98 +1,77 @@
 import beyond/meta/statements
 import std/options
-import std/sequtils
 import std/strformat
+import std/sequtils
 import std/deques
+import std/lists
 
 import ./gd_enum
-import ../tool/moduleTree
-import ../tool/name_rules
+import ./gd_functions
+import ../tool/[
+  moduleTree,
+  namespace,
+]
 
-type
-  GdClassConstant* = object
-    name*: string
-    value*: int
-  GdProperty* = object
-    `type`*: string
-    name*: string
-    setter*: Option[string]
-    getter*: string
-    index*: Option[int]
+const classBaseName* = "ObjectBase"
+proc toNim*(class: JsonClass): NimClass =
+  result = NimClass(
+    inherits: objectName class.inherits.get(classBaseName),
+    json: class,
+  )
+  result.bindName objectName class.name
+  result.enums = class.enums.get(@[]).mapIt it.toNim(result.name)
 
-  GdClassMethodArgument* = object
-    name*: string
-    `type`*: string
-    meta*: Option[string]
-  GdClassMethodReturnValue* = object
-    `type`*: Option[string]
-    meta*: Option[string]
-  GdClassMethod* = object
-    name*: string
-    is_vararg*: bool
-    is_const*: bool
-    is_static*: bool
-    is_virtual*: bool
-    hash*: Option[int]
-    arguments*: Option[seq[GdClassMethodArgument]]
-    return_value*: GdClassMethodReturnValue
-
-  GdSignalArgument* = object
-    name*: string
-    `type`*: string
-  GdSignal* = object
-    name*: string
-    arguments*: Option[seq[GdSignalArgument]]
-
-  GdClass* = object
-    name*: string
-    is_refcounted*: bool
-    is_instantiable*: bool
-    api_type*: string
-    inherits*: Option[string]
-    methods*: Option[seq[GdClassMethod]]
-    signals*: Option[seq[GdSignal]]
-    properties*: Option[seq[GdProperty]]
-    enums*: Option[seq[GdEnum]]
-    constants*: Option[seq[GdClassConstant]]
-  GdClasses* = seq[GdClass]
-
-  # NimClass* = ref object
-  #   base: GdClass
-
-
-func renderClassDefine*(class: GdClass): Statement =
+proc toNim*(classes: JsonClasses): NimClasses = classes.mapIt it.toNim
+proc renderClassDefine*(class: NimClass): Statement =
   var classdef = ParagraphSt()
-  # if class.properties.isSome:
-  #   for prop in (get class.properties):
-  #     discard classdef.add CommentSt.nim(execute= true).add repr prop
-  let inherits = class.inherits.get("RootObj")
-  # if class.name == "Object":
-  #   +$$..ParagraphSt():
-  #     +$$..BlockSt(head: fmt"OBjectEntity* = object of {inherits}"):
-  #       classdef
-  #     "Object* = ptr ObjectEntity"
-  # else:
-  block:
-    return +$$..BlockSt(head: fmt"{className class.name}* = object of {inherits}"):
-      classdef
-func renderClassDefine*(classes: GdClasses): Statement =
-  # BlockSt(head: "type", children: classes.mapIt(it.renderClassDefine))
+  return +$$..BlockSt(head: fmt"{class.name}* = object of {class.inherits}"):
+    classdef
+
+iterator parentalSorted*(classes: NimClasses): NimClasses =
+  var targetParent = toDeque([objectName classBaseName])
+  var list = toDoublyLinkedList classes
+
+  while targetParent.len != 0:
+    let parent = targetParent.popFirst()
+    var s: seq[NimClass]
+
+    for class in list.nodes:
+      if class.value.inherits == parent:
+        s.add class.value
+        targetParent.addLast class.value.name
+        list.remove class
+    if s.len != 0:
+      yield s
+
+proc renderClassDefine*(classes: NimClasses): Statement =
   result = ParagraphSt()
-  var heap = toDeque(["NONE"])
-  while heap.len != 0:
-    let current = heap.popFirst()
-    var bst = BlockSt(head: "type")
+  for group in classes.parentalSorted:
+    var types = BlockSt(head: "type")
+    for class in group:
+      types.children.add renderClassDefine class
+    result.children.add types
+
+proc renderLocalEnums*(classes: NimClasses): Statement =
+  result = ParagraphSt()
+  for class in classes:
+    for e in class.enums:
+      result.children.add render e
+    if class.enums.len != 0:
+      result.children.add ""
+
+proc renderDetail*(classes: NimClasses): Statement =
+  result = new ParagraphSt
+  for classes in classes.parentalSorted:
     for class in classes:
-      if class.inherits.get("NONE") == current:
-        bst.children.add class.renderClassDefine
-        heap.addLast class.name
-    if bst.children.len != 0:
-      result.children.add bst
+      result.children.add "# " & $class.name
+      result.children.add &"define_godot_engine_class_essencials({class.name}, {class.inherits})"
+      let localProcs = BlockSt(head: &"{class.name}.memberProcs:")
 
-
-
-
-proc modulateDetail*(class: GdClass): Module =
-  internal dummy mdl""
-proc modulateDetails*(classes: seq[GdClass]): seq[Module] =
-  classes.mapIt it.modulateDetail
+      for mhd in class.json.methods.get(@[]):
+        if mhd.is_virtual.get(false):
+          result.children.add mhd.prerender(argType class.name)
+        else:
+          localProcs.children.add mhd.prerender(argType class.name)
+      if localProcs.children.len != 0:
+        result.children.add localProcs
+      result.children.add ""

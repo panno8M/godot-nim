@@ -8,7 +8,6 @@ let # directories
   d_variants* = dir"variants"
   d_variantsDetail_native* = dir"variantsDetail_native"
   d_classes* = dir"classes"
-  d_classDetail_native* = dir"classDetail_native"
   d_helper* = dir"helper"
   d_pure* = dir"pure"
   d_godotInterface* = dir"godotInterface"
@@ -17,6 +16,7 @@ let # directories
 let # modules
   godot* = mdl"godot"
   godotInterface* = dummy mdl"godotInterface"
+  godotInterface_core* = dummy mdl"godotInterface_core"
 
   variants* = mdl"variants"
   variantsDetail_native* = mdl"variantsDetail_native"
@@ -29,13 +29,18 @@ let # modules
   classDetail_native* = mdl"classDetail_native"
 
   globalEnums* = mdl"globalEnums"
+  localEnums* = mdl"localEnums"
+  nativeStructs* = mdl"nativeStructs"
+  gdrefs* = dummy mdl"gdrefs"
   engineClassDefines* = mdl"engineClassDefines"
+  objectBase* = dummy mdl"objectBase"
 
   variantTypeSolver* = dummy mdl"variantTypeSolver"
-  variants_forge* = mdl"variants_forge"
   variantDefiner* = dummy mdl"variantDefiner"
-  classDefiner* = dummy mdl"classDefiner"
   engineClassDefiner* = dummy mdl"engineClassDefiner"
+  classDefiner* = dummy mdl"classDefiner"
+  typedArray* = dummy mdl"typedArray"
+  variants_forge* = importOnly mdl"variants_forge"
 
 
   pragmas* = dummy mdl"pragmas"
@@ -63,6 +68,18 @@ discard godot
 discard variants
   .exportModules_allowed
   .incl(d_variants)
+discard nativeStructs
+  .incl(
+    godotInterface,
+    beyond_oop)
+discard engineClassDefines
+  .incl(
+    godotInterface_core)
+discard localEnums
+  .incl(
+    beyond_oop,
+    godotInterface_core,
+    engineClassDefines,)
 discard classes
   .exportModules_allowed
   .incl(d_classes)
@@ -100,7 +117,15 @@ discard variantsConstr_native
     beyond_oop,
   )
 discard classDetail_native
-  .incl(d_classDetail_native)
+  .incl(
+    godotInterface,
+    engineClassDefiner,
+    variants,
+    beyond_oop,
+    typedArray,
+    nativeStructs,
+    gdrefs,
+  )
 
 # Tree-Diagram
 # ============
@@ -112,10 +137,15 @@ discard +/%..d_beyond:
 discard +/%..d_root:
   godot
   +/%..d_godot:
+    internal godotInterface_core
     godotInterface
     +/%..internal d_godotInterface:
-      globalEnums
       engineClassDefines
+      globalEnums
+      localEnums
+      internal objectBase
+    nativeStructs
+    gdrefs
     variants
     +/%..internal d_variants:
       dummy mdl"variantsDetail_Variant"
@@ -129,13 +159,13 @@ discard +/%..d_root:
     classes
     +/%..internal d_classes:
       classDetail_native
-      internal d_classDetail_native
       +/%..dummy dir"classDetail_custom":
         dummy mdl"classDetail_ClassDB"
 
     +/%..d_helper:
       variantTypeSolver
       classDefiner
+      typedArray
       internal variants_forge
       internal variantDefiner
       internal engineClassDefiner
@@ -150,7 +180,7 @@ discard +/%..d_root:
 
 
 const
-  variantIgnores* : seq[string] = @[
+  variantDetailIgnores* : seq[string] = @[
     "Nil",
     "Bool", "Int", "Float",
     "Vector2", "Vector2i",

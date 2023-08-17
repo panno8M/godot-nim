@@ -31,12 +31,10 @@ macro gdveci*(exp: varargs[typed]): untyped =
 #   proc init*(src: Color; alpha: float32): Color = Color|>init(src.r, src.g, src.b, alpha)
 #   proc init*(src: string): Color {.unimplemented.}
 
-staticOf String:
-  converter init*(str: string): String =
-    interface_stringNewWithLatin1Chars(addr result, cstring str)
-staticOf StringName:
-  converter init*(str: string): StringName =
-    StringName|>init String|>init str
+converter init*(str: string): String {.staticOf: String.} =
+  interface_stringNewWithLatin1Chars(addr result, cstring str)
+converter init*(str: string): StringName {.staticOf: StringName.} =
+  StringName|>init String|>init str
 
 staticOf Variant:
   proc init*: Variant = interface_variantNewNil(addr result)

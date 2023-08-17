@@ -12,5 +12,5 @@ macro exportgd*(someProc: untyped): untyped =
 
 template hash*(hash: int) {.pragma.}
 template index*(index: int) {.pragma.}
-template loadfrom*(name: string; hash: int) {.pragma.}
+template loadfrom*(name: string) {.pragma.}
 template operator*(`type`: VariantOperator) {.pragma.}

@@ -12,7 +12,6 @@ type MethodDefinition = tuple
 
 proc procedure(Type, node: NimNode; isStatic: bool; namesym: NimNode): MethodDefinition =
   node.expectKind nnkProcDef
-
   let
     args =
       if is_static:
@@ -20,8 +19,8 @@ proc procedure(Type, node: NimNode; isStatic: bool; namesym: NimNode): MethodDef
       else:
         node.params[2..^1] # [0: result, 1: self, 2..: args]
 
-    loadfrom = node.getPragma("loadfrom")
-    nativename = loadfrom[1]
+    loadfrom = node.popPragma("loadfrom")
+    nativeName = loadfrom[1]
     hash = loadfrom[2]
 
   let p_result =
@@ -72,9 +71,9 @@ proc operator(node: NimNode): MethodDefinition =
 
   let containerName =
     if has_right:
-      gensym(nskVar, &"{t_left}_{op}_{t_right}")
+      gensym(nskVar, &"{repr t_left}_{op}_{repr t_right}")
     else:
-      gensym(nskVar, &"{op}_{t_left}")
+      gensym(nskVar, &"{op}_{repr t_left}")
 
   result.containerDefine = quote do:
     var `containerName`: PtrOperatorEvaluator

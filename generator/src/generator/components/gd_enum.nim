@@ -8,87 +8,104 @@ import std/[
 ]
 import ../tool/[
   moduleTree,
+  namespace,
   utils,
 ]
 
-type
-  GdEnumField* = object
-    name*: string
-    value*: int
-  NimEnumField* = object
-    commentedout*: bool
-    name*: string
-    value*: int
-    comment*: string
-  GdEnum* = object
-    name*: string
-    is_bitfield*: Option[bool]
-    values*: seq[GdEnumField]
-  NimEnum* = object
-    name*: string
-    is_bitfield*: bool
-    doExport*: bool
-    pragmas*: seq[string]
-    orderedValues*: seq[NimEnumField]
-
-func flagkey(value: int): Option[int] =
+func flagkey(value: int; res: out int): bool =
   let l = log2 value.float32
   let f = l.floor
   if f == l.ceil:
-    return some int f
+    res = int f
+    return true
   else:
-    return none int
+    res = 0
+    return false
 
-func toNim*(self: GdEnum): NimEnum =
-  result.name = self.name
+
+func toNim*(e: JsonEnum; owner: ObjectName = namespace.root): NimEnum =
+  new result
+  result.bindName owner.addget(e.name)
+
   result.doExport = true
   result.pragmas = newseq[string]()
-  result.is_bitfield = self.isBitfield.get(false)
-  var sorted = self.values.sorted((x,y) => cmp(x.value, y.value))
+  let is_bitfield = e.isBitfield.get(false)
+  var sorted = e.values.sorted((x,y) => cmp(x.value, y.value))
 
-  result.orderedValues.setLen(sorted.len)
+  result.fields = newSeqOfCap[NimEnumField](sorted.len)
   var enumval = int.low
+  var fbit: int
   for i, item in sorted:
-    if result.is_bitfield:
-      let v = item.value.flagkey
-      if v.isSome:
+    var field = NimEnumField(name: item.name)
+    if is_bitfield:
+      if item.value.flagkey(fbit):
+        field.flags.incl bitfield
         if item.value == 0:
-          result.orderedValues[i] = NimEnumField(value: 0, commentedout: true)
+          field.value = 0
+          field.commentedout = true
         else:
-          result.orderedValues[i] = NimEnumField(value: v.get, commentedout: enumval == item.value)
+          field.value = fbit
+          if enumval == item.value:
+            field.flags.incl alias
       else:
-        result.orderedValues[i] = NimEnumField(value: item.value, commentedout: true)
+        field.value = item.value
+        field.flags.incl {alias, bitset}
     else:
-      result.orderedValues[i] = NimEnumField(value: item.value, commentedout: enumval == item.value)
-
-    result.orderedValues[i].name = item.name
-
+      field.value = item.value
+      if enumval == item.value:
+        field.flags.incl alias
     enumval = item.value
-  for member in result.orderedValues.mitems:
-    member.name = member.name.nimIdentified
+    result.fields.add field
 
-  if result.is_bitfield:
-    for i, item in result.orderedValues:
+  for member in result.fields.mitems:
+    member.name = ident member.name
+
+  if is_bitfield:
+    for i, item in result.fields:
       if not item.commentedout and item.value == 0:
         break
       if not item.commentedout and item.value > 0:
-        result.orderedValues.insert(NimEnumField(name: "`--PADDING_MIN--`", value: 0, comment: fmt"To align size-of set[{result.name}] to size-of cuint."), i)
+        result.fields.insert(NimEnumField(name: "`--PADDING_MIN--`", value: 0, flags: {bitfield}, comment: fmt"To align size-of set[{result.name}] to size-of cuint."), i)
         break
-    result.orderedValues.add NimEnumField(name: "`--PADDING_MAX--`", value: 31, comment: fmt"To align size-of set[{result.name}] to size-of cuint.")
+    result.fields.add NimEnumField(name: "`--PADDING_MAX--`", value: 31, flags: {bitfield}, comment: fmt"To align size-of set[{result.name}] to size-of cuint.")
 
-  if result.is_bitfield:
+  if is_bitfield:
     result.pragmas.add "size: sizeof(cuint)"
 
 func render*(self: NimEnum): Statement =
-  let name = fmt"{self.name}".doExport(self.doExport)
-  var elements: seq[Statement]
-  for item in self.orderedValues:
+  result = ParagraphSt()
+  let name = self.name.name
+  let nameExp = name.doExport(self.doExport)
+  var enumdef = BlockSt(head: fmt"type {nameExp}{self.pragmas.decoPragma} = enum")
+  var aliases = ParagraphSt()
+  result.children.add do:
+    if self.name.parent.isRoot: enumdef
+    else: BlockSt(head: &"staticOf {self.name.parent}:").add(enumdef)
+
+  for field in self.fields:
     let comment =
-      if item.comment.isEmptyOrWhitespace: ""
-      else: " # " & item.comment
-    elements.add do:
-      +$$..CommentSt.nim(execute= item.commentedout):
-        fmt"{item.name} = {item.value}{comment}"
-  +$$..BlockSt(head: fmt"type {name}{self.pragmas.decoPragma} = enum"):
-    elements
+      if field.comment.isEmptyOrWhitespace: ""
+      else: " # " & field.comment
+    if alias in field.flags:
+      if bitset in field.flags:
+        aliases.children
+          .add CommentSt.nim(execute= field.commentedout)
+            .add(
+              fmt"template {field.name}*[T: {self.name}](_: typedesc[T]): set[T] = cast[set[T]]({field.value}){comment}"
+            )
+      else:
+        aliases.children
+          .add CommentSt.nim(execute= field.commentedout)
+            .add(
+              fmt"template {field.name}*[T: {self.name}](_: typedesc[T]): T = T({field.value}){comment}"
+            )
+    else:
+      enumdef.children
+        .add CommentSt.nim(execute= field.commentedout)
+          .add(
+            fmt"{field.name} = {field.value}{comment}"
+          )
+  if aliases.children.len != 0:
+    result.children.add aliases
+  # for alias in self.orderedAliases:
 

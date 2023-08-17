@@ -1,9 +1,9 @@
 import std/[
   strformat,
-  strutils,
   tables,
 ]
 import utils
+export utils.ident
 
 func constrLoader*(classname: string): string = &"load_{classname}_constr"
 func destrLoader*(classname: string): string = &"load_{classname}_destr"
@@ -12,47 +12,22 @@ func sprocLoader*(classname: string): string = &"load_{classname}_sproc"
 func opLoader*(classname: string): string = &"load_{classname}_op"
 func allMethodLoader*(classname: string): string = &"load_{classname}_allmethod"
 
-func ident*(basename: string): string = &"`{basename.nimIdentified}`"
 func operator*(basename: string): string =
   case basename
   of "in": "contains"
-  of "unary+": "+".ident
-  of "unary-": "-".ident
-  else: basename.ident
+  of "unary+": "`+`"
+  of "unary-": "`-`"
+  else: &"`{basename}`"
 
-func moduleName*(basename: string): string =
+func variantModuleName*(basename: string): string =
   result = case basename
   of "int": "Int"
   of "float": "Float"
   of "bool": "Bool"
   else: basename
   return "variantsDetail_" & result
-
-func className*(basename: string): string =
-  case basename
-  of "int": "Int"
-  of "float": "Float"
-  of "bool": "Bool"
-  else: basename
-
-func defaultValue*(value: string; Type: string): string =
-  case Type
-  of "Vector3":
-    value.replace("Vector3", "gdvec")
-  of "Vector2":
-    value.replace("Vector2", "gdvec")
-  of "String":
-    "String|>init(" & value & ")"
-  of "Color":
-    value.replace("Color", "Color|>init")
-  of "Variant":
-    case value
-    of "null":
-      "Variant|>init()"
-    else:
-      value
-  else:
-    value
+func classModuleName*(basename: string): string =
+  "classDetail_" & basename
 
 
 func variantOperator*(sign: string): string =
