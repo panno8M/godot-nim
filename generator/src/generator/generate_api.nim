@@ -77,9 +77,7 @@ proc parseFormatIdentDef(s: string): NimIdentDef =
     result.default = some spl[3].replace(".f", "")
   result.name = (result.name >!> Snake >=> NimVar) & "*"
   result.`type` = result.`type`
-    .replace("_t", "")
-    .replace("real", "real_elem")
-    .replace("::", "|>")
+    .multiReplace( ("_t", ""), ("real", "real_elem"), ("::", "|>") )
   for t in ["int", "uint", "float"]:
     if result.`type` == t:
       result.`type`= "c" & t
