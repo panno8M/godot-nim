@@ -49,8 +49,8 @@ operators(loader= load_Quaternion_op):
   proc `+`*(left: Quaternion; right: Quaternion): Quaternion {.operator: VariantOP_Add.}
   proc `-`*(left: Quaternion; right: Quaternion): Quaternion {.operator: VariantOP_Subtract.}
   proc `*`*(left: Quaternion; right: Quaternion): Quaternion {.operator: VariantOP_Multiply.}
-  proc contains*(left: Dictionary; right: Quaternion): Bool {.operator: VariantOP_In.}
-  proc contains*(left: Array; right: Quaternion): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Dictionary; right: Quaternion): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Array; right: Quaternion): Bool {.operator: VariantOP_In.}
 proc load_Quaternion_allmethod* =
   load_Quaternion_proc()
   load_Quaternion_sproc()

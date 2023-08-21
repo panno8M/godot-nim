@@ -37,8 +37,8 @@ operators(loader= load_PackedColorArray_op):
   proc `==`*(left: PackedColorArray; right: ptr Variant): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: PackedColorArray; right: ptr Variant): Bool {.operator: VariantOP_NotEqual.}
   proc `not`*(left: PackedColorArray): Bool {.operator: VariantOP_Not.}
-  proc contains*(left: Dictionary; right: PackedColorArray): Bool {.operator: VariantOP_In.}
-  proc contains*(left: Array; right: PackedColorArray): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Dictionary; right: PackedColorArray): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Array; right: PackedColorArray): Bool {.operator: VariantOP_In.}
   proc `==`*(left: PackedColorArray; right: PackedColorArray): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: PackedColorArray; right: PackedColorArray): Bool {.operator: VariantOP_NotEqual.}
   proc `+`*(left: PackedColorArray; right: PackedColorArray): PackedColorArray {.operator: VariantOP_Add.}

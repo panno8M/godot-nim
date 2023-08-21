@@ -32,8 +32,8 @@ operators(loader= load_Plane_op):
   proc `==`*(left: Plane; right: Plane): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: Plane; right: Plane): Bool {.operator: VariantOP_NotEqual.}
   proc `*`*(left: Plane; right: Transform3D): Plane {.operator: VariantOP_Multiply.}
-  proc contains*(left: Dictionary; right: Plane): Bool {.operator: VariantOP_In.}
-  proc contains*(left: Array; right: Plane): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Dictionary; right: Plane): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Array; right: Plane): Bool {.operator: VariantOP_In.}
 proc load_Plane_allmethod* =
   load_Plane_sproc()
   load_Plane_op()

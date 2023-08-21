@@ -42,8 +42,8 @@ operators(loader= load_Basis_op):
   proc `==`*(left: Basis; right: Basis): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: Basis; right: Basis): Bool {.operator: VariantOP_NotEqual.}
   proc `*`*(left: Basis; right: Basis): Basis {.operator: VariantOP_Multiply.}
-  proc contains*(left: Dictionary; right: Basis): Bool {.operator: VariantOP_In.}
-  proc contains*(left: Array; right: Basis): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Dictionary; right: Basis): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Array; right: Basis): Bool {.operator: VariantOP_In.}
 proc load_Basis_allmethod* =
   load_Basis_proc()
   load_Basis_sproc()

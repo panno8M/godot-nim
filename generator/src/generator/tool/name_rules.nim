@@ -2,8 +2,7 @@ import std/[
   strformat,
   tables,
 ]
-import utils
-export utils.ident
+import beyond/meta/styledString
 
 func constrLoader*(classname: string): string = &"load_{classname}_constr"
 func destrLoader*(classname: string): string = &"load_{classname}_destr"
@@ -12,12 +11,13 @@ func sprocLoader*(classname: string): string = &"load_{classname}_sproc"
 func opLoader*(classname: string): string = &"load_{classname}_op"
 func allMethodLoader*(classname: string): string = &"load_{classname}_allmethod"
 
-func operator*(basename: string): string =
-  case basename
+func operator*(basename: string): NimVar =
+  let str = case basename
   of "in": "contains"
-  of "unary+": "`+`"
-  of "unary-": "`-`"
-  else: &"`{basename}`"
+  of "unary+": "+"
+  of "unary-": "-"
+  else: basename
+  NimVar.imitate(str, true)
 
 func variantModuleName*(basename: string): string =
   result = case basename

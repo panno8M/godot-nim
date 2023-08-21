@@ -35,7 +35,7 @@ func cmp*(x,y: Option[string]): int =
 proc toNim*(self: JsonBuiltinClass): NimBuiltinClass =
 
   result = NimBuiltinClass()
-  result.name = objectName self.name
+  result.name = typeName self.name
   let argTypeName = argType result.name
   if self.enums.isSome:
     result.enums = self.enums.get.mapIt it.toNim(result.name)
@@ -65,7 +65,7 @@ func renderConstructor*(self: NimBuiltinClass): Statement =
 func renderConstructor*(self: seq[NimBuiltinClass]): Statement =
   ParagraphSt(children: self.filterIt($it.name notin variantDetailIgnores).mapit(it.renderConstructor))
 
-func renderLocalEnums*(self: seq[NimBuiltinClass]): Statement =
+proc renderLocalEnums*(self: seq[NimBuiltinClass]): Statement =
   result = new ParagraphSt
   for variant in self:
     if variant.enums.len == 0: continue

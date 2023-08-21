@@ -44,8 +44,8 @@ operators(loader= load_AABB_op):
   proc `==`*(left: AABB; right: AABB): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: AABB; right: AABB): Bool {.operator: VariantOP_NotEqual.}
   proc `*`*(left: AABB; right: Transform3D): AABB {.operator: VariantOP_Multiply.}
-  proc contains*(left: Dictionary; right: AABB): Bool {.operator: VariantOP_In.}
-  proc contains*(left: Array; right: AABB): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Dictionary; right: AABB): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Array; right: AABB): Bool {.operator: VariantOP_In.}
 proc load_AABB_allmethod* =
   load_AABB_sproc()
   load_AABB_op()

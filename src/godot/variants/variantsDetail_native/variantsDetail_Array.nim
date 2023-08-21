@@ -62,7 +62,7 @@ operators(loader= load_Array_op):
   proc `==`*(left: Array; right: ptr Variant): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: Array; right: ptr Variant): Bool {.operator: VariantOP_NotEqual.}
   proc `not`*(left: Array): Bool {.operator: VariantOP_Not.}
-  proc contains*(left: Dictionary; right: Array): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Dictionary; right: Array): Bool {.operator: VariantOP_In.}
   proc `==`*(left: Array; right: Array): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: Array; right: Array): Bool {.operator: VariantOP_NotEqual.}
   proc `<`*(left: Array; right: Array): Bool {.operator: VariantOP_Less.}
@@ -70,7 +70,7 @@ operators(loader= load_Array_op):
   proc `>`*(left: Array; right: Array): Bool {.operator: VariantOP_Greater.}
   proc `>=`*(left: Array; right: Array): Bool {.operator: VariantOP_GreaterEqual.}
   proc `+`*(left: Array; right: Array): Array {.operator: VariantOP_Add.}
-  proc contains*(left: Array; right: Array): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Array; right: Array): Bool {.operator: VariantOP_In.}
 proc load_Array_allmethod* =
   load_Array_sproc()
   load_Array_op()

@@ -36,8 +36,8 @@ operators(loader= load_Callable_op):
   proc `not`*(left: Callable): Bool {.operator: VariantOP_Not.}
   proc `==`*(left: Callable; right: Callable): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: Callable; right: Callable): Bool {.operator: VariantOP_NotEqual.}
-  proc contains*(left: Dictionary; right: Callable): Bool {.operator: VariantOP_In.}
-  proc contains*(left: Array; right: Callable): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Dictionary; right: Callable): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Array; right: Callable): Bool {.operator: VariantOP_In.}
 proc load_Callable_allmethod* =
   load_Callable_sproc()
   load_Callable_op()

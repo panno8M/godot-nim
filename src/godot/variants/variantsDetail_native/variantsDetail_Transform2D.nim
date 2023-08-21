@@ -43,8 +43,8 @@ operators(loader= load_Transform2D_op):
   proc `==`*(left: Transform2D; right: Transform2D): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: Transform2D; right: Transform2D): Bool {.operator: VariantOP_NotEqual.}
   proc `*`*(left: Transform2D; right: Transform2D): Transform2D {.operator: VariantOP_Multiply.}
-  proc contains*(left: Dictionary; right: Transform2D): Bool {.operator: VariantOP_In.}
-  proc contains*(left: Array; right: Transform2D): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Dictionary; right: Transform2D): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Array; right: Transform2D): Bool {.operator: VariantOP_In.}
   proc `*`*(left: Transform2D; right: PackedVector2Array): PackedVector2Array {.operator: VariantOP_Multiply.}
 proc load_Transform2D_allmethod* =
   load_Transform2D_sproc()

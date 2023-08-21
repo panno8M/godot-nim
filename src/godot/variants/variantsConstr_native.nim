@@ -10,10 +10,10 @@ import ./../pure/compileTimeSwitch
 import beyond/oop
 
 String.constructors(loader= load_String_constr):
-  proc init*: String {.staticOf: String, index: 0.}
   proc init*(`from`: String): String {.staticOf: String, index: 1.}
   proc init*(`from`: StringName): String {.staticOf: String, index: 2.}
   proc init*(`from`: NodePath): String {.staticOf: String, index: 3.}
+  proc init*: String {.staticOf: String, index: 0.}
 Rect2.constructors(loader= load_Rect2_constr):
   proc init*: Rect2 {.staticOf: Rect2, index: 0.}
   proc init*(`from`: Rect2): Rect2 {.staticOf: Rect2, index: 1.}
@@ -112,9 +112,9 @@ Array.constructors(loader= load_Array_constr):
   proc init*(`from`: PackedVector3Array): Array {.staticOf: Array, index: 10.}
   proc init*(`from`: PackedColorArray): Array {.staticOf: Array, index: 11.}
 PackedByteArray.constructors(loader= load_PackedByteArray_constr):
-  proc init*: PackedByteArray {.staticOf: PackedByteArray, index: 0.}
   proc init*(`from`: PackedByteArray): PackedByteArray {.staticOf: PackedByteArray, index: 1.}
   proc init*(`from`: Array): PackedByteArray {.staticOf: PackedByteArray, index: 2.}
+  proc init*: PackedByteArray {.staticOf: PackedByteArray, index: 0.}
 PackedInt32Array.constructors(loader= load_PackedInt32Array_constr):
   proc init*: PackedInt32Array {.staticOf: PackedInt32Array, index: 0.}
   proc init*(`from`: PackedInt32Array): PackedInt32Array {.staticOf: PackedInt32Array, index: 1.}

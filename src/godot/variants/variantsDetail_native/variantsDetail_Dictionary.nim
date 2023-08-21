@@ -33,8 +33,8 @@ operators(loader= load_Dictionary_op):
   proc `not`*(left: Dictionary): Bool {.operator: VariantOP_Not.}
   proc `==`*(left: Dictionary; right: Dictionary): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: Dictionary; right: Dictionary): Bool {.operator: VariantOP_NotEqual.}
-  proc contains*(left: Dictionary; right: Dictionary): Bool {.operator: VariantOP_In.}
-  proc contains*(left: Array; right: Dictionary): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Dictionary; right: Dictionary): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Array; right: Dictionary): Bool {.operator: VariantOP_In.}
 proc load_Dictionary_allmethod* =
   load_Dictionary_sproc()
   load_Dictionary_op()

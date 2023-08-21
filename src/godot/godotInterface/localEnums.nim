@@ -4839,10 +4839,10 @@ staticOf VisualShaderNodeTransformFunc:
 
 staticOf VisualShaderNodeTransformOp:
   type Operator* = enum
-    opAxB = 0
-    opBxA = 1
-    opAxBComp = 2
-    opBxAComp = 3
+    opAxb = 0
+    opBxa = 1
+    opAxbComp = 2
+    opBxaComp = 3
     opAdd = 4
     opAMinusB = 5
     opBMinusA = 6
@@ -4852,10 +4852,10 @@ staticOf VisualShaderNodeTransformOp:
 
 staticOf VisualShaderNodeTransformVecMult:
   type Operator* = enum
-    opAxB = 0
-    opBxA = 1
-    op3x3AxB = 2
-    op3x3BxA = 3
+    opAxb = 0
+    opBxa = 1
+    op3x3Axb = 2
+    op3x3Bxa = 3
     opMax = 4
 
 staticOf VisualShaderNodeUIntFunc:

@@ -38,8 +38,8 @@ operators(loader= load_PackedVector2Array_op):
   proc `!=`*(left: PackedVector2Array; right: ptr Variant): Bool {.operator: VariantOP_NotEqual.}
   proc `not`*(left: PackedVector2Array): Bool {.operator: VariantOP_Not.}
   proc `*`*(left: PackedVector2Array; right: Transform2D): PackedVector2Array {.operator: VariantOP_Multiply.}
-  proc contains*(left: Dictionary; right: PackedVector2Array): Bool {.operator: VariantOP_In.}
-  proc contains*(left: Array; right: PackedVector2Array): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Dictionary; right: PackedVector2Array): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Array; right: PackedVector2Array): Bool {.operator: VariantOP_In.}
   proc `==`*(left: PackedVector2Array; right: PackedVector2Array): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: PackedVector2Array; right: PackedVector2Array): Bool {.operator: VariantOP_NotEqual.}
   proc `+`*(left: PackedVector2Array; right: PackedVector2Array): PackedVector2Array {.operator: VariantOP_Add.}

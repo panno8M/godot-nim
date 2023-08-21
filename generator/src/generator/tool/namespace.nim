@@ -1,4 +1,4 @@
-import beyond/meta/[statements {.all.}, statements/nimkit]
+import beyond/meta/[statements {.all.}, statements/nimkit, styledString]
 import std/[
   strutils,
   strformat,
@@ -12,13 +12,13 @@ import std/[
 const delim = "|>"
 
 type
-  ObjectNameObj* = object
+  TypeNameObj* = object
     name*: string
-    parent*: ObjectName
-    children*: Table[string, ObjectName]
+    owner*: TypeName
+    children*: Table[string, TypeName]
     cache: string
     info*: Option[ObjectInfo]
-  ObjectName* = ref ObjectNameOBj
+  TypeName* = ref TypeNameOBj
   ParamTypeAttr* = enum
     ptaNake
     ptaSet
@@ -26,12 +26,12 @@ type
   ParamType* = object of RootObj
     attribute*: ParamTypeAttr
     ptrdepth*: Natural
-    name*: ObjectName
+    name*: TypeName
   ArgType* = object of ParamType
   RetType* = object of ParamType
 
   ObjectInfo* = ref object of RootObj
-    name*: ObjectName
+    name*: TypeName
 
 type
   NimEnumFieldFlag* = enum
@@ -42,7 +42,7 @@ type
   NimEnumField* = object
     commentedout*: bool
     flags*: set[NimEnumFieldFlag]
-    name*: string
+    name*: NimVar
     value*: int
     comment*: string
   JsonEnum* = ref object
@@ -102,7 +102,7 @@ type
   JsonBuiltinClasses* = seq[JsonBuiltinClass]
 
   NimBuiltinClass* = ref object
-    name*: ObjectName
+    name*: TypeName
     enums*: seq[NimEnum]
     constructors*: seq[GodotProcSt]
     operators*: seq[GodotProcSt]
@@ -141,44 +141,44 @@ type
   JsonClasses* = seq[JsonClass]
 
   NimClass* = ref object of ObjectInfo
-    inherits*: ObjectName
+    inherits*: TypeName
     enums*: seq[NimEnum]
     json*: JsonClass
   NimClasses* = seq[NimClass]
 
   GodotParam* = tuple
-    name: string
+    name: NimVar
     `type`: ArgType
     default_raw: Option[string]
   GodotProcKind* = enum
     gpkUndefined
     gpkMethod
   GodotProcSt* = ref object of ParagraphSt
-    name*: string
+    name*: NimVar
     kind*: NimProcKind
     procKind*: GodotProcKind
     args*: seq[GodotParam]
     result*: Option[RetType]
     is_static*: bool
     is_virtual*: bool
-    owner*: Option[ObjectName]
+    owner*: Option[TypeName]
     pragmas*: seq[string]
 
-var root* = new ObjectName
+var root* = new TypeName
 
 proc cmp*(x, y: GodotProcSt): int =
   result = cmp(x.name, y.name)
 
 
-proc hash*(key: ObjectName): Hash = hash cast[ptr ObjectNameObj](key)
-proc bindName*[T: ObjectInfo](info: T; objectName: ObjectName) =
-  objectName.info = some ObjectInfo info
-  info.name = objectName
+proc hash*(key: TypeName): Hash = hash cast[ptr TypeNameObj](key)
+proc bindName*[T: ObjectInfo](info: T; typeName: TypeName) =
+  typeName.info = some ObjectInfo info
+  info.name = typeName
 
-func isRoot*(x: ObjectName): bool = x.parent.isNil
+proc isInGlobal*(x: TypeName): bool = x == namespace.root or x.owner == namespace.root
 
 proc `$`*(x: JsonConstant): string = $x[]
-func `$`*(self: ObjectName): string =
+func `$`*(self: TypeName): string =
   if self.isNil: ""
   else: self.cache
 func `$`*(self: ParamType): string =
@@ -201,31 +201,28 @@ func `$`*(self: ArgType): string =
 func `$`*(self: RetType): string =
   $(ParamType self)
 
-proc addget*(parent: ObjectName; self: string): ObjectName =
-  if parent.children.hasKey(self):
-    result = parent.children[self]
+proc addget*(owner: TypeName; self: string): TypeName =
+  if owner.children.hasKey(self):
+    result = owner.children[self]
   else:
-    result = ObjectName(name: self)
-    parent.children[self] = result
-    result.parent = parent
+    result = TypeName(name: self)
+    owner.children[self] = result
+    result.owner = owner
 
-  if result.parent.isRoot:
+  if result.isInGlobal:
     result.cache = result.name
   else:
-    result.cache = newStringOfCap(result.parent.cache.len + delim.len + result.name.len)
-    result.cache.add result.parent.cache
+    result.cache = newStringOfCap(result.owner.cache.len + delim.len + result.name.len)
+    result.cache.add result.owner.cache
     result.cache.add delim
     result.cache.add result.name
 
-proc addget*(parent: ObjectName; path: seq[string]): ObjectName =
-  result = parent
+proc addget*(owner: TypeName; path: seq[string]): TypeName =
+  result = owner
   for p in path: result = result.addget(p)
 
-proc objectName*(name: string): ObjectName =
-  var name = name
-  if name.len >= 3 and name[^2..^1] == "_t":
-    name = name[0..^3]
-  var chain = name.split(".")
+proc typeName*(name: string): TypeName =
+  var chain = name.replace("_t", "").split(".")
   for s in chain.mitems:
     s = case s
     of "int": "Int"
@@ -236,13 +233,13 @@ proc objectName*(name: string): ObjectName =
     else: s
   root.addget(chain)
 
-proc paramType*(objectName: ObjectName, result: var ParamType) =
-  result.name = objectName
+proc paramType*(typeName: TypeName, result: var ParamType) =
+  result.name = typeName
 
-proc argType*(objectName: ObjectName): ArgType =
-  paramType objectName, result
-proc retType*(objectName: ObjectName): RetType =
-  paramType objectName, result
+proc argType*(typeName: TypeName): ArgType =
+  paramType typeName, result
+proc retType*(typeName: TypeName): RetType =
+  paramType typeName, result
 
 
 proc paramType*(basename: string; result: var ParamType) =
@@ -270,7 +267,7 @@ proc paramType*(basename: string; result: var ParamType) =
   if name.find("void") != -1:
     name = "pointer"
     dec result.ptrdepth
-  result.name = objectName name
+  result.name = typeName name
 
 proc argType*(basename: string): ArgType =
   paramType basename, result

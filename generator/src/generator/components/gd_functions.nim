@@ -1,6 +1,7 @@
 import std/[
   options,
   strformat,
+  strutils,
   sequtils,
   typetraits,
 ]
@@ -9,12 +10,14 @@ import ../tool/[
   name_rules,
   namespace,
 ]
+import beyond/meta/styledString
+
 proc concat[T](s: seq[T]; o: Option[T]): seq[T] =
   if o.isSome: concat(s, @[o.get])
   else: s
 
 proc toNim(self: JsonArgument): GodotParam =
-  result.name = self.name.ident
+  result.name = self.name.replace("result", "retval") >!> Snake
   if self.meta.isSome:
     result.`type` = argType get self.meta
   else:
@@ -27,7 +30,7 @@ proc prerender*(self: JsonMethod; self_type: ArgType): GodotProcSt =
   result.is_static = self.is_static
   result.is_virtual = self.is_virtual.get(false)
   if not self.is_static:
-    result.args.add ("self", self_type, none string)
+    result.args.add (NimVar.imitate"self", self_type, none string)
 
   if self.arguments.isSome:
     result.args.add self.arguments.get.mapIt it.toNim
@@ -48,12 +51,12 @@ proc prerender*(self: JsonMethod; self_type: ArgType): GodotProcSt =
     else:
       result.result= some retType rv.`type`
 
-  result.name = ident self.name
+  result.name = self.name >!> Snake >=> NimVar
 
 proc prerender*(self: JsonOperator; argType: ArgType): GodotProcSt =
-  var args: seq[GodotParam] = @[("left", argType, none string)]
+  var args: seq[GodotParam] = @[(NimVar.imitate"left", argType, none string)]
   if self.right_type.isSome:
-    args.add ("right", argType get self.right_type, none string)
+    args.add (NimVar.imitate"right", argType get self.right_type, none string)
   if self.name == "in":
     swap args[0].`type`, args[1].`type`
   GodotProcSt(
@@ -67,7 +70,7 @@ proc prerender*(self: JsonOperator; argType: ArgType): GodotProcSt =
 proc prerender*(self: JsonConstructor; retType: RetType): GodotProcSt =
   result = GodotProcSt(
     kind: npkProc,
-    name: "init",
+    name: NimVar.imitate"init",
     args: self.arguments.get(@[]).mapIt it.toNim,
     result: some retType,
     pragmas: @[fmt"index: {self.index}"],

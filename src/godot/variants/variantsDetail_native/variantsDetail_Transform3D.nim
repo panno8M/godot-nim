@@ -37,8 +37,8 @@ operators(loader= load_Transform3D_op):
   proc `==`*(left: Transform3D; right: Transform3D): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: Transform3D; right: Transform3D): Bool {.operator: VariantOP_NotEqual.}
   proc `*`*(left: Transform3D; right: Transform3D): Transform3D {.operator: VariantOP_Multiply.}
-  proc contains*(left: Dictionary; right: Transform3D): Bool {.operator: VariantOP_In.}
-  proc contains*(left: Array; right: Transform3D): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Dictionary; right: Transform3D): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Array; right: Transform3D): Bool {.operator: VariantOP_In.}
   proc `*`*(left: Transform3D; right: PackedVector3Array): PackedVector3Array {.operator: VariantOP_Multiply.}
 proc load_Transform3D_allmethod* =
   load_Transform3D_sproc()

@@ -37,8 +37,8 @@ operators(loader= load_PackedFloat32Array_op):
   proc `==`*(left: PackedFloat32Array; right: ptr Variant): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: PackedFloat32Array; right: ptr Variant): Bool {.operator: VariantOP_NotEqual.}
   proc `not`*(left: PackedFloat32Array): Bool {.operator: VariantOP_Not.}
-  proc contains*(left: Dictionary; right: PackedFloat32Array): Bool {.operator: VariantOP_In.}
-  proc contains*(left: Array; right: PackedFloat32Array): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Dictionary; right: PackedFloat32Array): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Array; right: PackedFloat32Array): Bool {.operator: VariantOP_In.}
   proc `==`*(left: PackedFloat32Array; right: PackedFloat32Array): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: PackedFloat32Array; right: PackedFloat32Array): Bool {.operator: VariantOP_NotEqual.}
   proc `+`*(left: PackedFloat32Array; right: PackedFloat32Array): PackedFloat32Array {.operator: VariantOP_Add.}

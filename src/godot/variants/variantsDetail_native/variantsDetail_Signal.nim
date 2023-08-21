@@ -27,8 +27,8 @@ operators(loader= load_Signal_op):
   proc `not`*(left: Signal): Bool {.operator: VariantOP_Not.}
   proc `==`*(left: Signal; right: Signal): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: Signal; right: Signal): Bool {.operator: VariantOP_NotEqual.}
-  proc contains*(left: Dictionary; right: Signal): Bool {.operator: VariantOP_In.}
-  proc contains*(left: Array; right: Signal): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Dictionary; right: Signal): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Array; right: Signal): Bool {.operator: VariantOP_In.}
 proc load_Signal_allmethod* =
   load_Signal_sproc()
   load_Signal_op()

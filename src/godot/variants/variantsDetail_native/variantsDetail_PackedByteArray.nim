@@ -11,6 +11,9 @@ import ./../../helper/variants_forge
 #   self.json.constants=none(seq[JsonConstant])
 
 PackedByteArray.staticProcedures(loader= load_PackedByteArray_sproc):
+  proc size*(self: PackedByteArray): Int {.loadfrom("size", 3173160232).}
+  proc isEmpty*(self: PackedByteArray): Bool {.loadfrom("is_empty", 3918633141).}
+  proc set*(self: PackedByteArray; index: Int; value: Int) {.loadfrom("set", 3638975848).}
   proc pushBack*(self: PackedByteArray; value: Int): Bool {.loadfrom("push_back", 694024632).}
   proc append*(self: PackedByteArray; value: Int): Bool {.loadfrom("append", 694024632).}
   proc appendArray*(self: PackedByteArray; array: PackedByteArray) {.loadfrom("append_array", 791097111).}
@@ -28,9 +31,6 @@ PackedByteArray.staticProcedures(loader= load_PackedByteArray_sproc):
   proc find*(self: PackedByteArray; value: Int; `from`: Int = 0): Int {.loadfrom("find", 2984303840).}
   proc rfind*(self: PackedByteArray; value: Int; `from`: Int = -1): Int {.loadfrom("rfind", 2984303840).}
   proc count*(self: PackedByteArray; value: Int): Int {.loadfrom("count", 4103005248).}
-  proc size*(self: PackedByteArray): Int {.loadfrom("size", 3173160232).}
-  proc isEmpty*(self: PackedByteArray): Bool {.loadfrom("is_empty", 3918633141).}
-  proc set*(self: PackedByteArray; index: Int; value: Int) {.loadfrom("set", 3638975848).}
   proc getStringFromAscii*(self: PackedByteArray): String {.loadfrom("get_string_from_ascii", 3942272618).}
   proc getStringFromUtf8*(self: PackedByteArray): String {.loadfrom("get_string_from_utf8", 3942272618).}
   proc getStringFromUtf16*(self: PackedByteArray): String {.loadfrom("get_string_from_utf16", 3942272618).}
@@ -75,8 +75,8 @@ operators(loader= load_PackedByteArray_op):
   proc `==`*(left: PackedByteArray; right: ptr Variant): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: PackedByteArray; right: ptr Variant): Bool {.operator: VariantOP_NotEqual.}
   proc `not`*(left: PackedByteArray): Bool {.operator: VariantOP_Not.}
-  proc contains*(left: Dictionary; right: PackedByteArray): Bool {.operator: VariantOP_In.}
-  proc contains*(left: Array; right: PackedByteArray): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Dictionary; right: PackedByteArray): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Array; right: PackedByteArray): Bool {.operator: VariantOP_In.}
   proc `==`*(left: PackedByteArray; right: PackedByteArray): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: PackedByteArray; right: PackedByteArray): Bool {.operator: VariantOP_NotEqual.}
   proc `+`*(left: PackedByteArray; right: PackedByteArray): PackedByteArray {.operator: VariantOP_Add.}

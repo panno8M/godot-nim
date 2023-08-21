@@ -37,8 +37,8 @@ operators(loader= load_PackedInt64Array_op):
   proc `==`*(left: PackedInt64Array; right: ptr Variant): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: PackedInt64Array; right: ptr Variant): Bool {.operator: VariantOP_NotEqual.}
   proc `not`*(left: PackedInt64Array): Bool {.operator: VariantOP_Not.}
-  proc contains*(left: Dictionary; right: PackedInt64Array): Bool {.operator: VariantOP_In.}
-  proc contains*(left: Array; right: PackedInt64Array): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Dictionary; right: PackedInt64Array): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Array; right: PackedInt64Array): Bool {.operator: VariantOP_In.}
   proc `==`*(left: PackedInt64Array; right: PackedInt64Array): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: PackedInt64Array; right: PackedInt64Array): Bool {.operator: VariantOP_NotEqual.}
   proc `+`*(left: PackedInt64Array; right: PackedInt64Array): PackedInt64Array {.operator: VariantOP_Add.}

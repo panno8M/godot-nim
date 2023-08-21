@@ -1,6 +1,7 @@
 #!/usr/bin/env -S nim c -r --gc:orc
 
 import beyond/logging
+import beyond/meta/styledString
 import std/[
   json,
   sequtils,
@@ -16,7 +17,6 @@ import components/[
 ]
 import tool/[
   moduleTree,
-  name_rules,
   namespace,
 ]
 
@@ -75,7 +75,7 @@ proc parseFormatIdentDef(s: string): NimIdentDef =
 
   if spl.len >= 4:
     result.default = some spl[3].replace(".f", "")
-  result.name = ident(result.name) & "*"
+  result.name = (result.name >!> Snake >=> NimVar) & "*"
   result.`type` = result.`type`
     .replace("_t", "")
     .replace("real", "real_elem")

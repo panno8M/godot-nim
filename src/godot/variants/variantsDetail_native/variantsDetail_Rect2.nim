@@ -34,8 +34,8 @@ operators(loader= load_Rect2_op):
   proc `==`*(left: Rect2; right: Rect2): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: Rect2; right: Rect2): Bool {.operator: VariantOP_NotEqual.}
   proc `*`*(left: Rect2; right: Transform2D): Rect2 {.operator: VariantOP_Multiply.}
-  proc contains*(left: Dictionary; right: Rect2): Bool {.operator: VariantOP_In.}
-  proc contains*(left: Array; right: Rect2): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Dictionary; right: Rect2): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Array; right: Rect2): Bool {.operator: VariantOP_In.}
 proc load_Rect2_allmethod* =
   load_Rect2_sproc()
   load_Rect2_op()

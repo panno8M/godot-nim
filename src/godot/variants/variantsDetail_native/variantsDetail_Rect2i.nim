@@ -31,8 +31,8 @@ operators(loader= load_Rect2i_op):
   proc `not`*(left: Rect2i): Bool {.operator: VariantOP_Not.}
   proc `==`*(left: Rect2i; right: Rect2i): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: Rect2i; right: Rect2i): Bool {.operator: VariantOP_NotEqual.}
-  proc contains*(left: Dictionary; right: Rect2i): Bool {.operator: VariantOP_In.}
-  proc contains*(left: Array; right: Rect2i): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Dictionary; right: Rect2i): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Array; right: Rect2i): Bool {.operator: VariantOP_In.}
 proc load_Rect2i_allmethod* =
   load_Rect2i_sproc()
   load_Rect2i_op()

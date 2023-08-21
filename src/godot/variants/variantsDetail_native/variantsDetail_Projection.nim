@@ -48,8 +48,8 @@ operators(loader= load_Projection_op):
   proc `==`*(left: Projection; right: Projection): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: Projection; right: Projection): Bool {.operator: VariantOP_NotEqual.}
   proc `*`*(left: Projection; right: Projection): Projection {.operator: VariantOP_Multiply.}
-  proc contains*(left: Dictionary; right: Projection): Bool {.operator: VariantOP_In.}
-  proc contains*(left: Array; right: Projection): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Dictionary; right: Projection): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Array; right: Projection): Bool {.operator: VariantOP_In.}
 proc load_Projection_allmethod* =
   load_Projection_proc()
   load_Projection_sproc()

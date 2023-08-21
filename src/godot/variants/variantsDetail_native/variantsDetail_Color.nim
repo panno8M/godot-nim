@@ -55,9 +55,9 @@ operators(loader= load_Color_op):
   proc `-`*(left: Color; right: Color): Color {.operator: VariantOP_Subtract.}
   proc `*`*(left: Color; right: Color): Color {.operator: VariantOP_Multiply.}
   proc `/`*(left: Color; right: Color): Color {.operator: VariantOP_Divide.}
-  proc contains*(left: Dictionary; right: Color): Bool {.operator: VariantOP_In.}
-  proc contains*(left: Array; right: Color): Bool {.operator: VariantOP_In.}
-  proc contains*(left: PackedColorArray; right: Color): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Dictionary; right: Color): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Array; right: Color): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: PackedColorArray; right: Color): Bool {.operator: VariantOP_In.}
 proc load_Color_allmethod* =
   load_Color_proc()
   load_Color_sproc()

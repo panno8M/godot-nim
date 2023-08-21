@@ -38,8 +38,8 @@ operators(loader= load_PackedVector3Array_op):
   proc `!=`*(left: PackedVector3Array; right: ptr Variant): Bool {.operator: VariantOP_NotEqual.}
   proc `not`*(left: PackedVector3Array): Bool {.operator: VariantOP_Not.}
   proc `*`*(left: PackedVector3Array; right: Transform3D): PackedVector3Array {.operator: VariantOP_Multiply.}
-  proc contains*(left: Dictionary; right: PackedVector3Array): Bool {.operator: VariantOP_In.}
-  proc contains*(left: Array; right: PackedVector3Array): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Dictionary; right: PackedVector3Array): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Array; right: PackedVector3Array): Bool {.operator: VariantOP_In.}
   proc `==`*(left: PackedVector3Array; right: PackedVector3Array): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: PackedVector3Array; right: PackedVector3Array): Bool {.operator: VariantOP_NotEqual.}
   proc `+`*(left: PackedVector3Array; right: PackedVector3Array): PackedVector3Array {.operator: VariantOP_Add.}

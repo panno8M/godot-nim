@@ -15,10 +15,10 @@ import ../tool/[
 const classBaseName* = "ObjectBase"
 proc toNim*(class: JsonClass): NimClass =
   result = NimClass(
-    inherits: objectName class.inherits.get(classBaseName),
+    inherits: typeName class.inherits.get(classBaseName),
     json: class,
   )
-  result.bindName objectName class.name
+  result.bindName typeName class.name
   result.enums = class.enums.get(@[]).mapIt it.toNim(result.name)
 
 proc toNim*(classes: JsonClasses): NimClasses = classes.mapIt it.toNim
@@ -28,7 +28,7 @@ proc renderClassDefine*(class: NimClass): Statement =
     classdef
 
 iterator parentalSorted*(classes: NimClasses): NimClasses =
-  var targetParent = toDeque([objectName classBaseName])
+  var targetParent = toDeque([typeName classBaseName])
   var list = toDoublyLinkedList classes
 
   while targetParent.len != 0:

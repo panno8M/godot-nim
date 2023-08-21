@@ -1218,21 +1218,21 @@ PhysicsDirectBodyState3D.memberProcs:
 # PhysicsDirectSpaceState2D
 define_godot_engine_class_essencials(PhysicsDirectSpaceState2D, Object)
 PhysicsDirectSpaceState2D.memberProcs:
-  proc intersectPoint*(self: PhysicsDirectSpaceState2D; parameters: Ref[PhysicsPointQueryParameters2D]; maxResults: int32 = 32): TypedArray[Dictionary] {.loadfrom("intersect_point", 3278207904).}
+  proc intersectPoint*(self: PhysicsDirectSpaceState2D; parameters: Ref[PhysicsPointQueryParameters2D]; maxRetvals: int32 = 32): TypedArray[Dictionary] {.loadfrom("intersect_point", 3278207904).}
   proc intersectRay*(self: PhysicsDirectSpaceState2D; parameters: Ref[PhysicsRayQueryParameters2D]): Dictionary {.loadfrom("intersect_ray", 1590275562).}
-  proc intersectShape*(self: PhysicsDirectSpaceState2D; parameters: Ref[PhysicsShapeQueryParameters2D]; maxResults: int32 = 32): TypedArray[Dictionary] {.loadfrom("intersect_shape", 3803848594).}
+  proc intersectShape*(self: PhysicsDirectSpaceState2D; parameters: Ref[PhysicsShapeQueryParameters2D]; maxRetvals: int32 = 32): TypedArray[Dictionary] {.loadfrom("intersect_shape", 3803848594).}
   proc castMotion*(self: PhysicsDirectSpaceState2D; parameters: Ref[PhysicsShapeQueryParameters2D]): PackedFloat32Array {.loadfrom("cast_motion", 711275086).}
-  proc collideShape*(self: PhysicsDirectSpaceState2D; parameters: Ref[PhysicsShapeQueryParameters2D]; maxResults: int32 = 32): TypedArray[Vector2] {.loadfrom("collide_shape", 3803848594).}
+  proc collideShape*(self: PhysicsDirectSpaceState2D; parameters: Ref[PhysicsShapeQueryParameters2D]; maxRetvals: int32 = 32): TypedArray[Vector2] {.loadfrom("collide_shape", 3803848594).}
   proc getRestInfo*(self: PhysicsDirectSpaceState2D; parameters: Ref[PhysicsShapeQueryParameters2D]): Dictionary {.loadfrom("get_rest_info", 2803666496).}
 
 # PhysicsDirectSpaceState3D
 define_godot_engine_class_essencials(PhysicsDirectSpaceState3D, Object)
 PhysicsDirectSpaceState3D.memberProcs:
-  proc intersectPoint*(self: PhysicsDirectSpaceState3D; parameters: Ref[PhysicsPointQueryParameters3D]; maxResults: int32 = 32): TypedArray[Dictionary] {.loadfrom("intersect_point", 45993382).}
+  proc intersectPoint*(self: PhysicsDirectSpaceState3D; parameters: Ref[PhysicsPointQueryParameters3D]; maxRetvals: int32 = 32): TypedArray[Dictionary] {.loadfrom("intersect_point", 45993382).}
   proc intersectRay*(self: PhysicsDirectSpaceState3D; parameters: Ref[PhysicsRayQueryParameters3D]): Dictionary {.loadfrom("intersect_ray", 3957970750).}
-  proc intersectShape*(self: PhysicsDirectSpaceState3D; parameters: Ref[PhysicsShapeQueryParameters3D]; maxResults: int32 = 32): TypedArray[Dictionary] {.loadfrom("intersect_shape", 550215980).}
+  proc intersectShape*(self: PhysicsDirectSpaceState3D; parameters: Ref[PhysicsShapeQueryParameters3D]; maxRetvals: int32 = 32): TypedArray[Dictionary] {.loadfrom("intersect_shape", 550215980).}
   proc castMotion*(self: PhysicsDirectSpaceState3D; parameters: Ref[PhysicsShapeQueryParameters3D]): PackedFloat32Array {.loadfrom("cast_motion", 1778757334).}
-  proc collideShape*(self: PhysicsDirectSpaceState3D; parameters: Ref[PhysicsShapeQueryParameters3D]; maxResults: int32 = 32): TypedArray[Vector3] {.loadfrom("collide_shape", 550215980).}
+  proc collideShape*(self: PhysicsDirectSpaceState3D; parameters: Ref[PhysicsShapeQueryParameters3D]; maxRetvals: int32 = 32): TypedArray[Vector3] {.loadfrom("collide_shape", 550215980).}
   proc getRestInfo*(self: PhysicsDirectSpaceState3D; parameters: Ref[PhysicsShapeQueryParameters3D]): Dictionary {.loadfrom("get_rest_info", 1376751592).}
 
 # PhysicsServer2D
@@ -3387,10 +3387,10 @@ method getSpaceState*(self: PhysicsDirectBodyState3DExtension): PhysicsDirectSpa
 # PhysicsDirectSpaceState2DExtension
 define_godot_engine_class_essencials(PhysicsDirectSpaceState2DExtension, PhysicsDirectSpaceState2D)
 method intersectRay*(self: PhysicsDirectSpaceState2DExtension; `from`: Vector2; to: Vector2; collisionMask: uint32; collideWithBodies: Bool; collideWithAreas: Bool; hitFromInside: Bool; retval: ptr PhysicsServer2DExtensionRayResult): Bool {.base.} = (discard)
-method intersectPoint*(self: PhysicsDirectSpaceState2DExtension; position: Vector2; canvasInstanceId: uint64; collisionMask: uint32; collideWithBodies: Bool; collideWithAreas: Bool; results: ptr PhysicsServer2DExtensionShapeResult; maxResults: int32): int32 {.base.} = (discard)
-method intersectShape*(self: PhysicsDirectSpaceState2DExtension; shapeRid: RID; transform: Transform2D; motion: Vector2; margin: Float; collisionMask: uint32; collideWithBodies: Bool; collideWithAreas: Bool; retval: ptr PhysicsServer2DExtensionShapeResult; maxResults: int32): int32 {.base.} = (discard)
+method intersectPoint*(self: PhysicsDirectSpaceState2DExtension; position: Vector2; canvasInstanceId: uint64; collisionMask: uint32; collideWithBodies: Bool; collideWithAreas: Bool; retvals: ptr PhysicsServer2DExtensionShapeResult; maxRetvals: int32): int32 {.base.} = (discard)
+method intersectShape*(self: PhysicsDirectSpaceState2DExtension; shapeRid: RID; transform: Transform2D; motion: Vector2; margin: Float; collisionMask: uint32; collideWithBodies: Bool; collideWithAreas: Bool; retval: ptr PhysicsServer2DExtensionShapeResult; maxRetvals: int32): int32 {.base.} = (discard)
 method castMotion*(self: PhysicsDirectSpaceState2DExtension; shapeRid: RID; transform: Transform2D; motion: Vector2; margin: Float; collisionMask: uint32; collideWithBodies: Bool; collideWithAreas: Bool; closestSafe: ptr Float; closestUnsafe: ptr Float): Bool {.base.} = (discard)
-method collideShape*(self: PhysicsDirectSpaceState2DExtension; shapeRid: RID; transform: Transform2D; motion: Vector2; margin: Float; collisionMask: uint32; collideWithBodies: Bool; collideWithAreas: Bool; results: pointer; maxResults: int32; resultCount: ptr int32): Bool {.base.} = (discard)
+method collideShape*(self: PhysicsDirectSpaceState2DExtension; shapeRid: RID; transform: Transform2D; motion: Vector2; margin: Float; collisionMask: uint32; collideWithBodies: Bool; collideWithAreas: Bool; retvals: pointer; maxRetvals: int32; retvalCount: ptr int32): Bool {.base.} = (discard)
 method restInfo*(self: PhysicsDirectSpaceState2DExtension; shapeRid: RID; transform: Transform2D; motion: Vector2; margin: Float; collisionMask: uint32; collideWithBodies: Bool; collideWithAreas: Bool; restInfo: ptr PhysicsServer2DExtensionShapeRestInfo): Bool {.base.} = (discard)
 PhysicsDirectSpaceState2DExtension.memberProcs:
   proc isBodyExcludedFromQuery*(self: PhysicsDirectSpaceState2DExtension; body: RID): Bool {.loadfrom("is_body_excluded_from_query", 4155700596).}
@@ -3398,10 +3398,10 @@ PhysicsDirectSpaceState2DExtension.memberProcs:
 # PhysicsDirectSpaceState3DExtension
 define_godot_engine_class_essencials(PhysicsDirectSpaceState3DExtension, PhysicsDirectSpaceState3D)
 method intersectRay*(self: PhysicsDirectSpaceState3DExtension; `from`: Vector3; to: Vector3; collisionMask: uint32; collideWithBodies: Bool; collideWithAreas: Bool; hitFromInside: Bool; hitBackFaces: Bool; pickRay: Bool; retval: ptr PhysicsServer3DExtensionRayResult): Bool {.base.} = (discard)
-method intersectPoint*(self: PhysicsDirectSpaceState3DExtension; position: Vector3; collisionMask: uint32; collideWithBodies: Bool; collideWithAreas: Bool; results: ptr PhysicsServer3DExtensionShapeResult; maxResults: int32): int32 {.base.} = (discard)
-method intersectShape*(self: PhysicsDirectSpaceState3DExtension; shapeRid: RID; transform: Transform3D; motion: Vector3; margin: Float; collisionMask: uint32; collideWithBodies: Bool; collideWithAreas: Bool; resultCount: ptr PhysicsServer3DExtensionShapeResult; maxResults: int32): int32 {.base.} = (discard)
+method intersectPoint*(self: PhysicsDirectSpaceState3DExtension; position: Vector3; collisionMask: uint32; collideWithBodies: Bool; collideWithAreas: Bool; retvals: ptr PhysicsServer3DExtensionShapeResult; maxRetvals: int32): int32 {.base.} = (discard)
+method intersectShape*(self: PhysicsDirectSpaceState3DExtension; shapeRid: RID; transform: Transform3D; motion: Vector3; margin: Float; collisionMask: uint32; collideWithBodies: Bool; collideWithAreas: Bool; retvalCount: ptr PhysicsServer3DExtensionShapeResult; maxRetvals: int32): int32 {.base.} = (discard)
 method castMotion*(self: PhysicsDirectSpaceState3DExtension; shapeRid: RID; transform: Transform3D; motion: Vector3; margin: Float; collisionMask: uint32; collideWithBodies: Bool; collideWithAreas: Bool; closestSafe: ptr Float; closestUnsafe: ptr Float; info: ptr PhysicsServer3DExtensionShapeRestInfo): Bool {.base.} = (discard)
-method collideShape*(self: PhysicsDirectSpaceState3DExtension; shapeRid: RID; transform: Transform3D; motion: Vector3; margin: Float; collisionMask: uint32; collideWithBodies: Bool; collideWithAreas: Bool; results: pointer; maxResults: int32; resultCount: ptr int32): Bool {.base.} = (discard)
+method collideShape*(self: PhysicsDirectSpaceState3DExtension; shapeRid: RID; transform: Transform3D; motion: Vector3; margin: Float; collisionMask: uint32; collideWithBodies: Bool; collideWithAreas: Bool; retvals: pointer; maxRetvals: int32; retvalCount: ptr int32): Bool {.base.} = (discard)
 method restInfo*(self: PhysicsDirectSpaceState3DExtension; shapeRid: RID; transform: Transform3D; motion: Vector3; margin: Float; collisionMask: uint32; collideWithBodies: Bool; collideWithAreas: Bool; restInfo: ptr PhysicsServer3DExtensionShapeRestInfo): Bool {.base.} = (discard)
 method getClosestPointToObjectVolume*(self: PhysicsDirectSpaceState3DExtension; `object`: RID; point: Vector3): Vector3 {.base.} = (discard)
 PhysicsDirectSpaceState3DExtension.memberProcs:
@@ -3425,7 +3425,7 @@ method shapeSetCustomSolverBias*(self: PhysicsServer2DExtension; shape: RID; bia
 method shapeGetType*(self: PhysicsServer2DExtension; shape: RID): PhysicsServer2D|>ShapeType {.base.} = (discard)
 method shapeGetData*(self: PhysicsServer2DExtension; shape: RID): Variant {.base.} = (discard)
 method shapeGetCustomSolverBias*(self: PhysicsServer2DExtension; shape: RID): Float {.base.} = (discard)
-method shapeCollide*(self: PhysicsServer2DExtension; shapeA: RID; xformA: Transform2D; motionA: Vector2; shapeB: RID; xformB: Transform2D; motionB: Vector2; results: pointer; resultMax: int32; resultCount: ptr int32): Bool {.base.} = (discard)
+method shapeCollide*(self: PhysicsServer2DExtension; shapeA: RID; xformA: Transform2D; motionA: Vector2; shapeB: RID; xformB: Transform2D; motionB: Vector2; retvals: pointer; retvalMax: int32; retvalCount: ptr int32): Bool {.base.} = (discard)
 method spaceCreate*(self: PhysicsServer2DExtension): RID {.base.} = (discard)
 method spaceSetActive*(self: PhysicsServer2DExtension; space: RID; active: Bool) {.base.} = (discard)
 method spaceIsActive*(self: PhysicsServer2DExtension; space: RID): Bool {.base.} = (discard)
@@ -3520,7 +3520,7 @@ method bodySetOmitForceIntegration*(self: PhysicsServer2DExtension; body: RID; e
 method bodyIsOmittingForceIntegration*(self: PhysicsServer2DExtension; body: RID): Bool {.base.} = (discard)
 method bodySetStateSyncCallback*(self: PhysicsServer2DExtension; body: RID; callable: Callable) {.base.} = (discard)
 method bodySetForceIntegrationCallback*(self: PhysicsServer2DExtension; body: RID; callable: Callable; userdata: ptr Variant) {.base.} = (discard)
-method bodyCollideShape*(self: PhysicsServer2DExtension; body: RID; bodyShape: int32; shape: RID; shapeXform: Transform2D; motion: Vector2; results: pointer; resultMax: int32; resultCount: ptr int32): Bool {.base.} = (discard)
+method bodyCollideShape*(self: PhysicsServer2DExtension; body: RID; bodyShape: int32; shape: RID; shapeXform: Transform2D; motion: Vector2; retvals: pointer; retvalMax: int32; retvalCount: ptr int32): Bool {.base.} = (discard)
 method bodySetPickable*(self: PhysicsServer2DExtension; body: RID; pickable: Bool) {.base.} = (discard)
 method bodyGetDirectState*(self: PhysicsServer2DExtension; body: RID): PhysicsDirectBodyState2D {.base.} = (discard)
 method bodyTestMotion*(self: PhysicsServer2DExtension; body: RID; `from`: Transform2D; motion: Vector2; margin: Float; collideSeparationRay: Bool; recoveryAsCollision: Bool; retval: ptr PhysicsServer2DExtensionMotionResult): Bool {.base.} = (discard)
@@ -6388,7 +6388,7 @@ ShapeCast3D.memberProcs:
   proc getTargetPosition*(self: ShapeCast3D): Vector3 {.loadfrom("get_target_position", 3360562783).}
   proc setMargin*(self: ShapeCast3D; margin: Float) {.loadfrom("set_margin", 373806689).}
   proc getMargin*(self: ShapeCast3D): Float {.loadfrom("get_margin", 1740695150).}
-  proc setMaxResults*(self: ShapeCast3D; maxResults: int32) {.loadfrom("set_max_results", 1286410249).}
+  proc setMaxResults*(self: ShapeCast3D; maxRetvals: int32) {.loadfrom("set_max_results", 1286410249).}
   proc getMaxResults*(self: ShapeCast3D): int32 {.loadfrom("get_max_results", 3905245786).}
   proc isColliding*(self: ShapeCast3D): Bool {.loadfrom("is_colliding", 36873697).}
   proc getCollisionCount*(self: ShapeCast3D): int32 {.loadfrom("get_collision_count", 3905245786).}
@@ -10883,7 +10883,7 @@ ShapeCast2D.memberProcs:
   proc getTargetPosition*(self: ShapeCast2D): Vector2 {.loadfrom("get_target_position", 3341600327).}
   proc setMargin*(self: ShapeCast2D; margin: Float) {.loadfrom("set_margin", 373806689).}
   proc getMargin*(self: ShapeCast2D): Float {.loadfrom("get_margin", 1740695150).}
-  proc setMaxResults*(self: ShapeCast2D; maxResults: int32) {.loadfrom("set_max_results", 1286410249).}
+  proc setMaxResults*(self: ShapeCast2D; maxRetvals: int32) {.loadfrom("set_max_results", 1286410249).}
   proc getMaxResults*(self: ShapeCast2D): int32 {.loadfrom("get_max_results", 3905245786).}
   proc isColliding*(self: ShapeCast2D): Bool {.loadfrom("is_colliding", 36873697).}
   proc getCollisionCount*(self: ShapeCast2D): int32 {.loadfrom("get_collision_count", 3905245786).}
