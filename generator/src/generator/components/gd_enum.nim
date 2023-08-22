@@ -58,9 +58,6 @@ proc toNim*(e: JsonEnum; owner: TypeName = namespace.root): NimEnum =
     enumval = item.value
     result.fields.add field
 
-  # for member in result.fields.mitems:
-  #   member.name = Snake.scan member.name
-
   if is_bitfield:
     for i, item in result.fields:
       if not item.commentedout and item.value == 0:
@@ -109,5 +106,3 @@ proc render*(self: NimEnum): Statement =
           )
   if aliases.children.len != 0:
     result.children.add aliases
-  # for alias in self.orderedAliases:
-
