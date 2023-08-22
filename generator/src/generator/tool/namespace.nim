@@ -6,7 +6,6 @@ import std/[
   tables,
   options,
   typetraits,
-  math,
 ]
 
 const delim = "|>"
@@ -278,7 +277,7 @@ proc retType*(basename: string): RetType =
 
 func nativeValue*(e: NimEnumField): int =
   if bitfield in e.flags:
-    int pow(float e.value+1, float 2)
+    1 shl e.value
   else:
     e.value
 
