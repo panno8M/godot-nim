@@ -17,7 +17,7 @@ func operator*(basename: string): NimVar =
   of "unary+": "+"
   of "unary-": "-"
   else: basename
-  NimVar.imitate(str, true)
+  quoted NimVar.imitate(str)
 
 func variantModuleName*(basename: string): string =
   result = case basename

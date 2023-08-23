@@ -150,16 +150,19 @@ type
     `type`: ArgType
     default_raw: Option[string]
   GodotProcKind* = enum
-    gpkUndefined
     gpkMethod
+    gpkStaticMethod
+    gpkVirtualMethod
+    gpkGetter
+    gpkSetter
+    gpkConstructor
+    gpkOperator
   GodotProcSt* = ref object of ParagraphSt
     name*: NimVar
     kind*: NimProcKind
-    procKind*: GodotProcKind
+    gpKind*: GodotProcKind
     args*: seq[GodotParam]
     result*: Option[RetType]
-    is_static*: bool
-    is_virtual*: bool
     owner*: Option[TypeName]
     pragmas*: seq[string]
 
@@ -369,10 +372,12 @@ method render*(self: GodotProcSt; cfg: RenderingConfig): seq[string] =
 
   if self.owner.isSome:
     let owner = get self.owner
-    if self.is_static:
+    case self.gpkind
+    of gpkStaticMethod, gpkConstructor:
       pragmas.add "staticOf: " & $owner
-    if self.is_virtual:
+    of gpkVirtualMethod:
       pragmas.add "base"
+    else: discard
 
   pragmas.add self.pragmas
 

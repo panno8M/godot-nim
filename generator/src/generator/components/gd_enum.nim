@@ -63,9 +63,9 @@ proc toNim*(e: JsonEnum; owner: TypeName = namespace.root): NimEnum =
       if not item.commentedout and item.value == 0:
         break
       if not item.commentedout and item.value > 0:
-        result.fields.insert(NimEnumField(name: NimVar.imitate("--PADDING_MIN--", true), value: 0, flags: {bitfield}, comment: fmt"To align size-of set[{result.name}] to size-of cuint."), i)
+        result.fields.insert(NimEnumField(name: quoted NimVar.imitate"--PADDING_MIN--", value: 0, flags: {bitfield}, comment: fmt"To align size-of set[{result.name}] to size-of cuint."), i)
         break
-    result.fields.add NimEnumField(name: NimVar.imitate("--PADDING_MAX--", true), value: 31, flags: {bitfield}, comment: fmt"To align size-of set[{result.name}] to size-of cuint.")
+    result.fields.add NimEnumField(name: quoted NimVar.imitate"--PADDING_MAX--", value: 31, flags: {bitfield}, comment: fmt"To align size-of set[{result.name}] to size-of cuint.")
 
   if is_bitfield:
     result.pragmas.add "size: sizeof(cuint)"

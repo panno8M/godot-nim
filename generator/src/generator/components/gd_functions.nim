@@ -24,18 +24,17 @@ proc toNim(self: JsonArgument): GodotParam =
     result.`type` = argType self.`type`
   result.default_raw = self.default_value
 
-proc prerender*(self: JsonMethod; self_type: ArgType): GodotProcSt =
+proc prerender*(self: JsonMethod; self_type: ArgType; gpkind: GodotProcKind): GodotProcSt =
   new result
+  result.gpkind = gpkind
   result.owner = some self_type.name
-  result.is_static = self.is_static
-  result.is_virtual = self.is_virtual.get(false)
-  if not self.is_static:
+  if gpkind != gpkStaticMethod:
     result.args.add (NimVar.imitate"self", self_type, none string)
 
   if self.arguments.isSome:
     result.args.add self.arguments.get.mapIt it.toNim
 
-  if result.is_virtual:
+  if gpkind == gpkVirtualMethod:
     result.kind = npkMethod
     result.children.add "(discard)"
   else:
@@ -51,7 +50,13 @@ proc prerender*(self: JsonMethod; self_type: ArgType): GodotProcSt =
     else:
       result.result= some retType rv.`type`
 
-  result.name = self.name >!> Snake >=> NimVar
+  case gpkind
+  of gpkSetter:
+    result.name = quoted (self.name.replace("set_", "") & "=" >!> Snake >=> NimVar)
+  of gpkGetter:
+    result.name = Snake.scan(self.name.replace("get_", "")) >=> NimVar
+  else:
+    result.name = self.name >!> Snake
 
 proc prerender*(self: JsonOperator; argType: ArgType): GodotProcSt =
   var args: seq[GodotParam] = @[(NimVar.imitate"left", argType, none string)]
@@ -61,6 +66,7 @@ proc prerender*(self: JsonOperator; argType: ArgType): GodotProcSt =
     swap args[0].`type`, args[1].`type`
   GodotProcSt(
     kind: npkProc,
+    gpkind: gpkOperator,
     name: self.name.operator,
     result: some retType self.return_type,
     args: args,
@@ -70,10 +76,10 @@ proc prerender*(self: JsonOperator; argType: ArgType): GodotProcSt =
 proc prerender*(self: JsonConstructor; retType: RetType): GodotProcSt =
   result = GodotProcSt(
     kind: npkProc,
+    gpkind: gpkConstructor,
     name: NimVar.imitate"init",
     args: self.arguments.get(@[]).mapIt it.toNim,
     result: some retType,
     pragmas: @[fmt"index: {self.index}"],
-    is_static: true,
     owner: some retType.name,
   )

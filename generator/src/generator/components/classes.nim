@@ -1,9 +1,10 @@
-import beyond/meta/statements
+import beyond/meta/[statements]
 import std/options
 import std/strformat
 import std/sequtils
 import std/deques
 import std/lists
+import std/sets
 
 import ./gd_enum
 import ./gd_functions
@@ -65,13 +66,32 @@ proc renderDetail*(classes: NimClasses): Statement =
     for class in classes:
       result.children.add "# " & $class.name
       result.children.add &"define_godot_engine_class_essencials({class.name}, {class.inherits})"
-      let localProcs = BlockSt(head: &"{class.name}.memberProcs:")
 
+      var getters: HashSet[string]
+      var setters: HashSet[string]
+      for prop in class.json.properties.get(@[]):
+        discard
+        getters.incl prop.getter
+        if prop.setter.isSome:
+          setters.incl prop.setter.get
+
+      let localProcs = BlockSt(head: &"{class.name}.memberProcs:")
       for mhd in class.json.methods.get(@[]):
         if mhd.is_virtual.get(false):
-          result.children.add mhd.prerender(argType class.name)
+          result.children.add mhd.prerender(argType class.name, gpkVirtualMethod)
         else:
-          localProcs.children.add mhd.prerender(argType class.name)
+          var gpkind: GodotProcKind
+          if mhd.is_static:
+            gpkind = gpkStaticMethod
+          elif mhd.name in getters:
+            gpkind = gpkGetter
+          elif mhd.name in setters:
+            gpkind = gpkSetter
+          else:
+            gpkind = gpkMethod
+          localProcs.children.add mhd.prerender(argType class.name, gpkind)
+
       if localProcs.children.len != 0:
         result.children.add localProcs
+
       result.children.add ""
