@@ -350,7 +350,10 @@ proc defaultValue*(value: string; argType: ArgType): string =
       return res
   except: discard
 
-  if value == "null": return "nil"
+  if value == "null":
+    if argTypeStr[0..2] == "Ref":
+      return "default " & argTypeStr
+    return "nil"
   return value
 
 method render*(self: GodotProcSt; cfg: RenderingConfig): seq[string] =

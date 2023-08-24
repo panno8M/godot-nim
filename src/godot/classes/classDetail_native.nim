@@ -1335,7 +1335,7 @@ PhysicsServer2D.memberProcs:
   proc bodySetOmitForceIntegration*(self: PhysicsServer2D; body: RID; enable: Bool) {.loadfrom("body_set_omit_force_integration", 1265174801).}
   proc bodyIsOmittingForceIntegration*(self: PhysicsServer2D; body: RID): Bool {.loadfrom("body_is_omitting_force_integration", 4155700596).}
   proc bodySetForceIntegrationCallback*(self: PhysicsServer2D; body: RID; callable: Callable; userdata: ptr Variant = nil) {.loadfrom("body_set_force_integration_callback", 3059434249).}
-  proc bodyTestMotion*(self: PhysicsServer2D; body: RID; parameters: Ref[PhysicsTestMotionParameters2D]; retval: Ref[PhysicsTestMotionResult2D] = nil): Bool {.loadfrom("body_test_motion", 1699844009).}
+  proc bodyTestMotion*(self: PhysicsServer2D; body: RID; parameters: Ref[PhysicsTestMotionParameters2D]; retval: Ref[PhysicsTestMotionResult2D] = default Ref[PhysicsTestMotionResult2D]): Bool {.loadfrom("body_test_motion", 1699844009).}
   proc bodyGetDirectState*(self: PhysicsServer2D; body: RID): PhysicsDirectBodyState2D {.loadfrom("body_get_direct_state", 1191931871).}
   proc jointCreate*(self: PhysicsServer2D): RID {.loadfrom("joint_create", 529393457).}
   proc jointClear*(self: PhysicsServer2D; joint: RID) {.loadfrom("joint_clear", 2722037293).}
@@ -1462,7 +1462,7 @@ PhysicsServer3D.memberProcs:
   proc bodyIsOmittingForceIntegration*(self: PhysicsServer3D; body: RID): Bool {.loadfrom("body_is_omitting_force_integration", 4155700596).}
   proc bodySetForceIntegrationCallback*(self: PhysicsServer3D; body: RID; callable: Callable; userdata: ptr Variant = nil) {.loadfrom("body_set_force_integration_callback", 3059434249).}
   proc bodySetRayPickable*(self: PhysicsServer3D; body: RID; enable: Bool) {.loadfrom("body_set_ray_pickable", 1265174801).}
-  proc bodyTestMotion*(self: PhysicsServer3D; body: RID; parameters: Ref[PhysicsTestMotionParameters3D]; retval: Ref[PhysicsTestMotionResult3D] = nil): Bool {.loadfrom("body_test_motion", 1944921792).}
+  proc bodyTestMotion*(self: PhysicsServer3D; body: RID; parameters: Ref[PhysicsTestMotionParameters3D]; retval: Ref[PhysicsTestMotionResult3D] = default Ref[PhysicsTestMotionResult3D]): Bool {.loadfrom("body_test_motion", 1944921792).}
   proc bodyGetDirectState*(self: PhysicsServer3D; body: RID): PhysicsDirectBodyState3D {.loadfrom("body_get_direct_state", 3029727957).}
   proc softBodyGetBounds*(self: PhysicsServer3D; body: RID): AABB {.loadfrom("soft_body_get_bounds", 974181306).}
   proc jointCreate*(self: PhysicsServer3D): RID {.loadfrom("joint_create", 529393457).}
@@ -2650,9 +2650,9 @@ CanvasItem.memberProcs:
   proc drawMsdfTextureRectRegion*(self: CanvasItem; texture: Ref[Texture2D]; rect: Rect2; srcRect: Rect2; modulate: Color = Color|>init(1, 1, 1, 1); outline: float64 = 0.0; pixelRange: float64 = 4.0; scale: float64 = 1.0) {.loadfrom("draw_msdf_texture_rect_region", 2672026175).}
   proc drawLcdTextureRectRegion*(self: CanvasItem; texture: Ref[Texture2D]; rect: Rect2; srcRect: Rect2; modulate: Color = Color|>init(1, 1, 1, 1)) {.loadfrom("draw_lcd_texture_rect_region", 169610548).}
   proc drawStyleBox*(self: CanvasItem; styleBox: Ref[StyleBox]; rect: Rect2) {.loadfrom("draw_style_box", 388176283).}
-  proc drawPrimitive*(self: CanvasItem; points: PackedVector2Array; colors: PackedColorArray; uvs: PackedVector2Array; texture: Ref[Texture2D] = nil) {.loadfrom("draw_primitive", 2248678295).}
-  proc drawPolygon*(self: CanvasItem; points: PackedVector2Array; colors: PackedColorArray; uvs: PackedVector2Array = PackedVector2Array(); texture: Ref[Texture2D] = nil) {.loadfrom("draw_polygon", 2683625537).}
-  proc drawColoredPolygon*(self: CanvasItem; points: PackedVector2Array; color: Color; uvs: PackedVector2Array = PackedVector2Array(); texture: Ref[Texture2D] = nil) {.loadfrom("draw_colored_polygon", 1659099617).}
+  proc drawPrimitive*(self: CanvasItem; points: PackedVector2Array; colors: PackedColorArray; uvs: PackedVector2Array; texture: Ref[Texture2D] = default Ref[Texture2D]) {.loadfrom("draw_primitive", 2248678295).}
+  proc drawPolygon*(self: CanvasItem; points: PackedVector2Array; colors: PackedColorArray; uvs: PackedVector2Array = PackedVector2Array(); texture: Ref[Texture2D] = default Ref[Texture2D]) {.loadfrom("draw_polygon", 2683625537).}
+  proc drawColoredPolygon*(self: CanvasItem; points: PackedVector2Array; color: Color; uvs: PackedVector2Array = PackedVector2Array(); texture: Ref[Texture2D] = default Ref[Texture2D]) {.loadfrom("draw_colored_polygon", 1659099617).}
   proc drawString*(self: CanvasItem; font: Ref[Font]; pos: Vector2; text: String; alignment: HorizontalAlignment = horizontalAlignmentLeft; width: Float = -1; fontSize: int32 = 16; modulate: Color = Color|>init(1, 1, 1, 1); justificationFlags: set[TextServer|>JustificationFlag] = {}; direction: TextServer|>Direction = directionAuto; orientation: TextServer|>Orientation = orientationHorizontal) {.loadfrom("draw_string", 2552080639).}
   proc drawMultilineString*(self: CanvasItem; font: Ref[Font]; pos: Vector2; text: String; alignment: HorizontalAlignment = horizontalAlignmentLeft; width: Float = -1; fontSize: int32 = 16; maxLines: int32 = -1; modulate: Color = Color|>init(1, 1, 1, 1); brkFlags: set[TextServer|>LineBreakFlag] = {}; justificationFlags: set[TextServer|>JustificationFlag] = {}; direction: TextServer|>Direction = directionAuto; orientation: TextServer|>Orientation = orientationHorizontal) {.loadfrom("draw_multiline_string", 4002645436).}
   proc drawStringOutline*(self: CanvasItem; font: Ref[Font]; pos: Vector2; text: String; alignment: HorizontalAlignment = horizontalAlignmentLeft; width: Float = -1; fontSize: int32 = 16; size: int32 = 1; modulate: Color = Color|>init(1, 1, 1, 1); justificationFlags: set[TextServer|>JustificationFlag] = {}; direction: TextServer|>Direction = directionAuto; orientation: TextServer|>Orientation = orientationHorizontal) {.loadfrom("draw_string_outline", 850005221).}
@@ -2847,7 +2847,7 @@ HTTPRequest.memberProcs:
 define_godot_engine_class_essencials(InstancePlaceholder, Node)
 InstancePlaceholder.memberProcs:
   proc getStoredValues*(self: InstancePlaceholder; withOrder: Bool = false): Dictionary {.loadfrom("get_stored_values", 2230153369).}
-  proc createInstance*(self: InstancePlaceholder; replace: Bool = false; customScene: Ref[PackedScene] = nil): Node {.loadfrom("create_instance", 3794612210).}
+  proc createInstance*(self: InstancePlaceholder; replace: Bool = false; customScene: Ref[PackedScene] = default Ref[PackedScene]): Node {.loadfrom("create_instance", 3794612210).}
   proc getInstancePath*(self: InstancePlaceholder): String {.loadfrom("get_instance_path", 201670096).}
 
 # MissingNode
@@ -3996,7 +3996,7 @@ ENetConnection.memberProcs:
   proc broadcast*(self: Ref[ENetConnection]; channel: int32; packet: PackedByteArray; flags: int32) {.loadfrom("broadcast", 2772371345).}
   proc compress*(self: Ref[ENetConnection]; mode: ENetConnection|>CompressionMode) {.loadfrom("compress", 2660215187).}
   proc dtlsServerSetup*(self: Ref[ENetConnection]; serverOptions: Ref[TLSOptions]): Error {.loadfrom("dtls_server_setup", 1262296096).}
-  proc dtlsClientSetup*(self: Ref[ENetConnection]; hostname: String; clientOptions: Ref[TLSOptions] = nil): Error {.loadfrom("dtls_client_setup", 3097527179).}
+  proc dtlsClientSetup*(self: Ref[ENetConnection]; hostname: String; clientOptions: Ref[TLSOptions] = default Ref[TLSOptions]): Error {.loadfrom("dtls_client_setup", 3097527179).}
   proc refuseNewConnections*(self: Ref[ENetConnection]; refuse: Bool) {.loadfrom("refuse_new_connections", 2586408642).}
   proc popStatistic*(self: Ref[ENetConnection]; statistic: ENetConnection|>HostStatistic): float64 {.loadfrom("pop_statistic", 2166904170).}
   proc getMaxChannels*(self: Ref[ENetConnection]): int32 {.loadfrom("get_max_channels", 3905245786).}
@@ -4243,7 +4243,7 @@ HMACContext.memberProcs:
 # HTTPClient
 define_godot_engine_class_essencials(HTTPClient, RefCounted)
 HTTPClient.memberProcs:
-  proc connectToHost*(self: Ref[HTTPClient]; host: String; port: int32 = -1; tlsOptions: Ref[TLSOptions] = nil): Error {.loadfrom("connect_to_host", 1970282951).}
+  proc connectToHost*(self: Ref[HTTPClient]; host: String; port: int32 = -1; tlsOptions: Ref[TLSOptions] = default Ref[TLSOptions]): Error {.loadfrom("connect_to_host", 1970282951).}
   proc `connection=`*(self: Ref[HTTPClient]; connection: Ref[StreamPeer]) {.loadfrom("set_connection", 3281897016).}
   proc connection*(self: Ref[HTTPClient]): Ref[StreamPeer] {.loadfrom("get_connection", 2741655269).}
   proc requestRaw*(self: Ref[HTTPClient]; `method`: HTTPClient|>Method; url: String; headers: PackedStringArray; body: PackedByteArray): Error {.loadfrom("request_raw", 540161961).}
@@ -5154,7 +5154,7 @@ SurfaceTool.memberProcs:
   proc createFrom*(self: Ref[SurfaceTool]; existing: Ref[Mesh]; surface: int32) {.loadfrom("create_from", 1767024570).}
   proc createFromBlendShape*(self: Ref[SurfaceTool]; existing: Ref[Mesh]; surface: int32; blendShape: String) {.loadfrom("create_from_blend_shape", 1306185582).}
   proc appendFrom*(self: Ref[SurfaceTool]; existing: Ref[Mesh]; surface: int32; transform: Transform3D) {.loadfrom("append_from", 2217967155).}
-  proc commit*(self: Ref[SurfaceTool]; existing: Ref[ArrayMesh] = nil; flags: uint32 = 0'u32): Ref[ArrayMesh] {.loadfrom("commit", 4107864055).}
+  proc commit*(self: Ref[SurfaceTool]; existing: Ref[ArrayMesh] = default Ref[ArrayMesh]; flags: uint32 = 0'u32): Ref[ArrayMesh] {.loadfrom("commit", 4107864055).}
   proc commitToArrays*(self: Ref[SurfaceTool]): Array {.loadfrom("commit_to_arrays", 2915620761).}
 
 # TCPServer
@@ -5170,8 +5170,8 @@ TCPServer.memberProcs:
 # TLSOptions
 define_godot_engine_class_essencials(TLSOptions, RefCounted)
 TLSOptions.memberProcs:
-  proc client*(trustedChain: Ref[X509Certificate] = nil; commonNameOverride: String = ""): Ref[TLSOptions] {.staticOf: TLSOptions, loadfrom("client", 3565000357).}
-  proc clientUnsafe*(trustedChain: Ref[X509Certificate] = nil): Ref[TLSOptions] {.staticOf: TLSOptions, loadfrom("client_unsafe", 2090251749).}
+  proc client*(trustedChain: Ref[X509Certificate] = default Ref[X509Certificate]; commonNameOverride: String = ""): Ref[TLSOptions] {.staticOf: TLSOptions, loadfrom("client", 3565000357).}
+  proc clientUnsafe*(trustedChain: Ref[X509Certificate] = default Ref[X509Certificate]): Ref[TLSOptions] {.staticOf: TLSOptions, loadfrom("client_unsafe", 2090251749).}
   proc server*(key: Ref[CryptoKey]; certificate: Ref[X509Certificate]): Ref[TLSOptions] {.staticOf: TLSOptions, loadfrom("server", 36969539).}
 
 # TextLine
@@ -6797,7 +6797,7 @@ method getSubgizmoTransform*(self: Ref[EditorNode3DGizmo]; id: int32): Transform
 method commitSubgizmos*(self: Ref[EditorNode3DGizmo]; ids: PackedInt32Array; restores: TypedArray[Transform3D]; cancel: Bool) {.base.} = (discard)
 EditorNode3DGizmo.memberProcs:
   proc addLines*(self: Ref[EditorNode3DGizmo]; lines: PackedVector3Array; material: Ref[Material]; billboard: Bool = false; modulate: Color = Color|>init(1, 1, 1, 1)) {.loadfrom("add_lines", 302451090).}
-  proc addMesh*(self: Ref[EditorNode3DGizmo]; mesh: Ref[Mesh]; material: Ref[Material] = nil; transform: Transform3D = Transform3D|>init(); skeleton: Ref[SkinReference] = nil) {.loadfrom("add_mesh", 1868867708).}
+  proc addMesh*(self: Ref[EditorNode3DGizmo]; mesh: Ref[Mesh]; material: Ref[Material] = default Ref[Material]; transform: Transform3D = Transform3D|>init(); skeleton: Ref[SkinReference] = default Ref[SkinReference]) {.loadfrom("add_mesh", 1868867708).}
   proc addCollisionSegments*(self: Ref[EditorNode3DGizmo]; segments: PackedVector3Array) {.loadfrom("add_collision_segments", 334873810).}
   proc addCollisionTriangles*(self: Ref[EditorNode3DGizmo]; triangles: Ref[TriangleMesh]) {.loadfrom("add_collision_triangles", 54901064).}
   proc addUnscaledBillboard*(self: Ref[EditorNode3DGizmo]; material: Ref[Material]; defaultScale: Float = 1; modulate: Color = Color|>init(1, 1, 1, 1)) {.loadfrom("add_unscaled_billboard", 3719733075).}
@@ -6854,7 +6854,7 @@ MultiplayerPeer.memberProcs:
 define_godot_engine_class_essencials(PacketPeerDTLS, PacketPeer)
 PacketPeerDTLS.memberProcs:
   proc poll*(self: Ref[PacketPeerDTLS]) {.loadfrom("poll", 3218959716).}
-  proc connectToPeer*(self: Ref[PacketPeerDTLS]; packetPeer: Ref[PacketPeerUDP]; hostname: String; clientOptions: Ref[TLSOptions] = nil): Error {.loadfrom("connect_to_peer", 1801538152).}
+  proc connectToPeer*(self: Ref[PacketPeerDTLS]; packetPeer: Ref[PacketPeerUDP]; hostname: String; clientOptions: Ref[TLSOptions] = default Ref[TLSOptions]): Error {.loadfrom("connect_to_peer", 1801538152).}
   proc getStatus*(self: Ref[PacketPeerDTLS]): PacketPeerDTLS|>Status {.loadfrom("get_status", 3248654679).}
   proc disconnectFromPeer*(self: Ref[PacketPeerDTLS]) {.loadfrom("disconnect_from_peer", 3218959716).}
 
@@ -6913,7 +6913,7 @@ WebRTCDataChannel.memberProcs:
 # WebSocketPeer
 define_godot_engine_class_essencials(WebSocketPeer, PacketPeer)
 WebSocketPeer.memberProcs:
-  proc connectToUrl*(self: Ref[WebSocketPeer]; url: String; tlsClientOptions: Ref[TLSOptions] = nil): Error {.loadfrom("connect_to_url", 3097527179).}
+  proc connectToUrl*(self: Ref[WebSocketPeer]; url: String; tlsClientOptions: Ref[TLSOptions] = default Ref[TLSOptions]): Error {.loadfrom("connect_to_url", 3097527179).}
   proc acceptStream*(self: Ref[WebSocketPeer]; stream: Ref[StreamPeer]): Error {.loadfrom("accept_stream", 255125695).}
   proc send*(self: Ref[WebSocketPeer]; message: PackedByteArray; writeMode: WebSocketPeer|>WriteMode = writeModeBinary): Error {.loadfrom("send", 3440492527).}
   proc sendText*(self: Ref[WebSocketPeer]; message: String): Error {.loadfrom("send_text", 166001499).}
@@ -7278,9 +7278,9 @@ method commitSubgizmos*(self: Ref[EditorNode3DGizmoPlugin]; gizmo: Ref[EditorNod
 EditorNode3DGizmoPlugin.memberProcs:
   proc createMaterial*(self: Ref[EditorNode3DGizmoPlugin]; name: String; color: Color; billboard: Bool = false; onTop: Bool = false; useVertexColor: Bool = false) {.loadfrom("create_material", 3486012546).}
   proc createIconMaterial*(self: Ref[EditorNode3DGizmoPlugin]; name: String; texture: Ref[Texture2D]; onTop: Bool = false; color: Color = Color|>init(1, 1, 1, 1)) {.loadfrom("create_icon_material", 2976007329).}
-  proc createHandleMaterial*(self: Ref[EditorNode3DGizmoPlugin]; name: String; billboard: Bool = false; texture: Ref[Texture2D] = nil) {.loadfrom("create_handle_material", 2486475223).}
+  proc createHandleMaterial*(self: Ref[EditorNode3DGizmoPlugin]; name: String; billboard: Bool = false; texture: Ref[Texture2D] = default Ref[Texture2D]) {.loadfrom("create_handle_material", 2486475223).}
   proc addMaterial*(self: Ref[EditorNode3DGizmoPlugin]; name: String; material: Ref[StandardMaterial3D]) {.loadfrom("add_material", 1374068695).}
-  proc getMaterial*(self: Ref[EditorNode3DGizmoPlugin]; name: String; gizmo: Ref[EditorNode3DGizmo] = nil): Ref[StandardMaterial3D] {.loadfrom("get_material", 3501703615).}
+  proc getMaterial*(self: Ref[EditorNode3DGizmoPlugin]; name: String; gizmo: Ref[EditorNode3DGizmo] = default Ref[EditorNode3DGizmo]): Ref[StandardMaterial3D] {.loadfrom("get_material", 3501703615).}
 
 # EditorSettings
 define_godot_engine_class_essencials(EditorSettings, Resource)
@@ -7961,7 +7961,7 @@ ImporterMesh.memberProcs:
   proc getBlendShapeName*(self: Ref[ImporterMesh]; blendShapeIdx: int32): String {.loadfrom("get_blend_shape_name", 844755477).}
   proc setBlendShapeMode*(self: Ref[ImporterMesh]; mode: Mesh|>BlendShapeMode) {.loadfrom("set_blend_shape_mode", 227983991).}
   proc getBlendShapeMode*(self: Ref[ImporterMesh]): Mesh|>BlendShapeMode {.loadfrom("get_blend_shape_mode", 836485024).}
-  proc addSurface*(self: Ref[ImporterMesh]; primitive: Mesh|>PrimitiveType; arrays: Array; blendShapes: TypedArray[Array] = TypedArray|>init[Array](); lods: Dictionary = Dictionary|>init(); material: Ref[Material] = nil; name: String = ""; flags: uint32 = 0'u32) {.loadfrom("add_surface", 4122361985).}
+  proc addSurface*(self: Ref[ImporterMesh]; primitive: Mesh|>PrimitiveType; arrays: Array; blendShapes: TypedArray[Array] = TypedArray|>init[Array](); lods: Dictionary = Dictionary|>init(); material: Ref[Material] = default Ref[Material]; name: String = ""; flags: uint32 = 0'u32) {.loadfrom("add_surface", 4122361985).}
   proc getSurfaceCount*(self: Ref[ImporterMesh]): int32 {.loadfrom("get_surface_count", 3905245786).}
   proc getSurfacePrimitiveType*(self: Ref[ImporterMesh]; surfaceIdx: int32): Mesh|>PrimitiveType {.loadfrom("get_surface_primitive_type", 3552571330).}
   proc getSurfaceName*(self: Ref[ImporterMesh]; surfaceIdx: int32): String {.loadfrom("get_surface_name", 844755477).}
@@ -7975,7 +7975,7 @@ ImporterMesh.memberProcs:
   proc setSurfaceName*(self: Ref[ImporterMesh]; surfaceIdx: int32; name: String) {.loadfrom("set_surface_name", 501894301).}
   proc setSurfaceMaterial*(self: Ref[ImporterMesh]; surfaceIdx: int32; material: Ref[Material]) {.loadfrom("set_surface_material", 3671737478).}
   proc generateLods*(self: Ref[ImporterMesh]; normalMergeAngle: Float; normalSplitAngle: Float; boneTransformArray: Array) {.loadfrom("generate_lods", 2491878677).}
-  proc getMesh*(self: Ref[ImporterMesh]; baseMesh: Ref[ArrayMesh] = nil): Ref[ArrayMesh] {.loadfrom("get_mesh", 1457573577).}
+  proc getMesh*(self: Ref[ImporterMesh]; baseMesh: Ref[ArrayMesh] = default Ref[ArrayMesh]): Ref[ArrayMesh] {.loadfrom("get_mesh", 1457573577).}
   proc clear*(self: Ref[ImporterMesh]) {.loadfrom("clear", 3218959716).}
   proc setLightmapSizeHint*(self: Ref[ImporterMesh]; size: Vector2i) {.loadfrom("set_lightmap_size_hint", 1130785943).}
   proc getLightmapSizeHint*(self: Ref[ImporterMesh]): Vector2i {.loadfrom("get_lightmap_size_hint", 3690982128).}
@@ -8992,7 +8992,7 @@ define_godot_engine_class_essencials(StreamPeerTLS, StreamPeer)
 StreamPeerTLS.memberProcs:
   proc poll*(self: Ref[StreamPeerTLS]) {.loadfrom("poll", 3218959716).}
   proc acceptStream*(self: Ref[StreamPeerTLS]; stream: Ref[StreamPeer]; serverOptions: Ref[TLSOptions]): Error {.loadfrom("accept_stream", 4292689651).}
-  proc connectToStream*(self: Ref[StreamPeerTLS]; stream: Ref[StreamPeer]; commonName: String; clientOptions: Ref[TLSOptions] = nil): Error {.loadfrom("connect_to_stream", 1325480781).}
+  proc connectToStream*(self: Ref[StreamPeerTLS]; stream: Ref[StreamPeer]; commonName: String; clientOptions: Ref[TLSOptions] = default Ref[TLSOptions]): Error {.loadfrom("connect_to_stream", 1325480781).}
   proc getStatus*(self: Ref[StreamPeerTLS]): StreamPeerTLS|>Status {.loadfrom("get_status", 1128380576).}
   proc getStream*(self: Ref[StreamPeerTLS]): Ref[StreamPeer] {.loadfrom("get_stream", 2741655269).}
   proc disconnectFromStream*(self: Ref[StreamPeerTLS]) {.loadfrom("disconnect_from_stream", 3218959716).}
@@ -9432,7 +9432,7 @@ GraphEdit.memberProcs:
 # ItemList
 define_godot_engine_class_essencials(ItemList, Control)
 ItemList.memberProcs:
-  proc addItem*(self: ItemList; text: String; icon: Ref[Texture2D] = nil; selectable: Bool = true): int32 {.loadfrom("add_item", 4086250691).}
+  proc addItem*(self: ItemList; text: String; icon: Ref[Texture2D] = default Ref[Texture2D]; selectable: Bool = true): int32 {.loadfrom("add_item", 4086250691).}
   proc addIconItem*(self: ItemList; icon: Ref[Texture2D]; selectable: Bool = true): int32 {.loadfrom("add_icon_item", 3332687421).}
   proc setItemText*(self: ItemList; idx: int32; text: String) {.loadfrom("set_item_text", 501894301).}
   proc getItemText*(self: ItemList; idx: int32): String {.loadfrom("get_item_text", 844755477).}
@@ -9856,7 +9856,7 @@ TabBar.memberProcs:
   proc setTabMetadata*(self: TabBar; tabIdx: int32; metadata: ptr Variant) {.loadfrom("set_tab_metadata", 2152698145).}
   proc getTabMetadata*(self: TabBar; tabIdx: int32): Variant {.loadfrom("get_tab_metadata", 4227898402).}
   proc removeTab*(self: TabBar; tabIdx: int32) {.loadfrom("remove_tab", 1286410249).}
-  proc addTab*(self: TabBar; title: String = ""; icon: Ref[Texture2D] = nil) {.loadfrom("add_tab", 1465444425).}
+  proc addTab*(self: TabBar; title: String = ""; icon: Ref[Texture2D] = default Ref[Texture2D]) {.loadfrom("add_tab", 1465444425).}
   proc getTabIdxAtPoint*(self: TabBar; point: Vector2): int32 {.loadfrom("get_tab_idx_at_point", 3820158470).}
   proc `tabAlignment=`*(self: TabBar; alignment: TabBar|>AlignmentMode) {.loadfrom("set_tab_alignment", 2413632353).}
   proc tabAlignment*(self: TabBar): TabBar|>AlignmentMode {.loadfrom("get_tab_alignment", 2178122193).}
@@ -11102,7 +11102,7 @@ Area3D.memberProcs:
 define_godot_engine_class_essencials(PhysicsBody3D, CollisionObject3D)
 PhysicsBody3D.memberProcs:
   proc moveAndCollide*(self: PhysicsBody3D; motion: Vector3; testOnly: Bool = false; safeMargin: Float = 0.001; recoveryAsCollision: Bool = false; maxCollisions: int32 = 1): Ref[KinematicCollision3D] {.loadfrom("move_and_collide", 2825704414).}
-  proc testMove*(self: PhysicsBody3D; `from`: Transform3D; motion: Vector3; collision: Ref[KinematicCollision3D] = nil; safeMargin: Float = 0.001; recoveryAsCollision: Bool = false; maxCollisions: int32 = 1): Bool {.loadfrom("test_move", 680299713).}
+  proc testMove*(self: PhysicsBody3D; `from`: Transform3D; motion: Vector3; collision: Ref[KinematicCollision3D] = default Ref[KinematicCollision3D]; safeMargin: Float = 0.001; recoveryAsCollision: Bool = false; maxCollisions: int32 = 1): Bool {.loadfrom("test_move", 680299713).}
   proc `axisLock=`*(self: PhysicsBody3D; axis: PhysicsServer3D|>BodyAxis; lock: Bool) {.loadfrom("set_axis_lock", 1787895195).}
   proc axisLock*(self: PhysicsBody3D; axis: PhysicsServer3D|>BodyAxis): Bool {.loadfrom("get_axis_lock", 2264617709).}
   proc getCollisionExceptions*(self: PhysicsBody3D): TypedArray[PhysicsBody3D] {.loadfrom("get_collision_exceptions", 2915620761).}
@@ -11484,8 +11484,8 @@ WebRTCMultiplayerPeer.memberProcs:
 # WebSocketMultiplayerPeer
 define_godot_engine_class_essencials(WebSocketMultiplayerPeer, MultiplayerPeer)
 WebSocketMultiplayerPeer.memberProcs:
-  proc createClient*(self: Ref[WebSocketMultiplayerPeer]; url: String; tlsClientOptions: Ref[TLSOptions] = nil): Error {.loadfrom("create_client", 3097527179).}
-  proc createServer*(self: Ref[WebSocketMultiplayerPeer]; port: int32; bindAddress: String = "*"; tlsServerOptions: Ref[TLSOptions] = nil): Error {.loadfrom("create_server", 337374795).}
+  proc createClient*(self: Ref[WebSocketMultiplayerPeer]; url: String; tlsClientOptions: Ref[TLSOptions] = default Ref[TLSOptions]): Error {.loadfrom("create_client", 3097527179).}
+  proc createServer*(self: Ref[WebSocketMultiplayerPeer]; port: int32; bindAddress: String = "*"; tlsServerOptions: Ref[TLSOptions] = default Ref[TLSOptions]): Error {.loadfrom("create_server", 337374795).}
   proc getPeer*(self: Ref[WebSocketMultiplayerPeer]; peerId: int32): Ref[WebSocketPeer] {.loadfrom("get_peer", 1381378851).}
   proc getPeerAddress*(self: Ref[WebSocketMultiplayerPeer]; id: int32): String {.loadfrom("get_peer_address", 844755477).}
   proc getPeerPort*(self: Ref[WebSocketMultiplayerPeer]; id: int32): int32 {.loadfrom("get_peer_port", 923996154).}
@@ -12454,7 +12454,7 @@ ArrayMesh.memberProcs:
 # ImmediateMesh
 define_godot_engine_class_essencials(ImmediateMesh, Mesh)
 ImmediateMesh.memberProcs:
-  proc surfaceBegin*(self: Ref[ImmediateMesh]; primitive: Mesh|>PrimitiveType; material: Ref[Material] = nil) {.loadfrom("surface_begin", 3716480242).}
+  proc surfaceBegin*(self: Ref[ImmediateMesh]; primitive: Mesh|>PrimitiveType; material: Ref[Material] = default Ref[Material]) {.loadfrom("surface_begin", 3716480242).}
   proc surfaceSetColor*(self: Ref[ImmediateMesh]; color: Color) {.loadfrom("surface_set_color", 2920490490).}
   proc surfaceSetNormal*(self: Ref[ImmediateMesh]; normal: Vector3) {.loadfrom("surface_set_normal", 3460891852).}
   proc surfaceSetTangent*(self: Ref[ImmediateMesh]; tangent: Plane) {.loadfrom("surface_set_tangent", 3505987427).}
@@ -13584,7 +13584,7 @@ GraphNode.memberProcs:
   proc textDirection*(self: GraphNode): Control|>TextDirection {.loadfrom("get_text_direction", 797257663).}
   proc `language=`*(self: GraphNode; language: String) {.loadfrom("set_language", 83702148).}
   proc language*(self: GraphNode): String {.loadfrom("get_language", 201670096).}
-  proc setSlot*(self: GraphNode; slotIndex: int32; enableLeftPort: Bool; typeLeft: int32; colorLeft: Color; enableRightPort: Bool; typeRight: int32; colorRight: Color; customIconLeft: Ref[Texture2D] = nil; customIconRight: Ref[Texture2D] = nil; drawStylebox: Bool = true) {.loadfrom("set_slot", 902131739).}
+  proc setSlot*(self: GraphNode; slotIndex: int32; enableLeftPort: Bool; typeLeft: int32; colorLeft: Color; enableRightPort: Bool; typeRight: int32; colorRight: Color; customIconLeft: Ref[Texture2D] = default Ref[Texture2D]; customIconRight: Ref[Texture2D] = default Ref[Texture2D]; drawStylebox: Bool = true) {.loadfrom("set_slot", 902131739).}
   proc clearSlot*(self: GraphNode; slotIndex: int32) {.loadfrom("clear_slot", 1286410249).}
   proc clearAllSlots*(self: GraphNode) {.loadfrom("clear_all_slots", 3218959716).}
   proc setSlotEnabledLeft*(self: GraphNode; slotIndex: int32; enable: Bool) {.loadfrom("set_slot_enabled_left", 300928843).}
@@ -13906,7 +13906,7 @@ CodeEdit.memberProcs:
   proc setCodeHintDrawBelow*(self: CodeEdit; drawBelow: Bool) {.loadfrom("set_code_hint_draw_below", 2586408642).}
   proc getTextForCodeCompletion*(self: CodeEdit): String {.loadfrom("get_text_for_code_completion", 201670096).}
   proc requestCodeCompletion*(self: CodeEdit; force: Bool = false) {.loadfrom("request_code_completion", 107499316).}
-  proc addCodeCompletionOption*(self: CodeEdit; `type`: CodeEdit|>CodeCompletionKind; displayText: String; insertText: String; textColor: Color = Color|>init(1, 1, 1, 1); icon: Ref[Resource] = nil; value: ptr Variant = nil; location: int32 = 1024) {.loadfrom("add_code_completion_option", 1629240608).}
+  proc addCodeCompletionOption*(self: CodeEdit; `type`: CodeEdit|>CodeCompletionKind; displayText: String; insertText: String; textColor: Color = Color|>init(1, 1, 1, 1); icon: Ref[Resource] = default Ref[Resource]; value: ptr Variant = nil; location: int32 = 1024) {.loadfrom("add_code_completion_option", 1629240608).}
   proc updateCodeCompletionOptions*(self: CodeEdit; force: Bool) {.loadfrom("update_code_completion_options", 2586408642).}
   proc getCodeCompletionOptions*(self: CodeEdit): TypedArray[Dictionary] {.loadfrom("get_code_completion_options", 3995934104).}
   proc getCodeCompletionOption*(self: CodeEdit; index: int32): Dictionary {.loadfrom("get_code_completion_option", 3485342025).}
@@ -13969,7 +13969,7 @@ Area2D.memberProcs:
 define_godot_engine_class_essencials(PhysicsBody2D, CollisionObject2D)
 PhysicsBody2D.memberProcs:
   proc moveAndCollide*(self: PhysicsBody2D; motion: Vector2; testOnly: Bool = false; safeMargin: Float = 0.08; recoveryAsCollision: Bool = false): Ref[KinematicCollision2D] {.loadfrom("move_and_collide", 1529961754).}
-  proc testMove*(self: PhysicsBody2D; `from`: Transform2D; motion: Vector2; collision: Ref[KinematicCollision2D] = nil; safeMargin: Float = 0.08; recoveryAsCollision: Bool = false): Bool {.loadfrom("test_move", 1369208982).}
+  proc testMove*(self: PhysicsBody2D; `from`: Transform2D; motion: Vector2; collision: Ref[KinematicCollision2D] = default Ref[KinematicCollision2D]; safeMargin: Float = 0.08; recoveryAsCollision: Bool = false): Bool {.loadfrom("test_move", 1369208982).}
   proc getCollisionExceptions*(self: PhysicsBody2D): TypedArray[PhysicsBody2D] {.loadfrom("get_collision_exceptions", 2915620761).}
   proc addCollisionExceptionWith*(self: PhysicsBody2D; body: ptr Node) {.loadfrom("add_collision_exception_with", 1078189570).}
   proc removeCollisionExceptionWith*(self: PhysicsBody2D; body: ptr Node) {.loadfrom("remove_collision_exception_with", 1078189570).}
@@ -14492,7 +14492,7 @@ MeshInstance3D.memberProcs:
   proc getActiveMaterial*(self: MeshInstance3D; surface: int32): Ref[Material] {.loadfrom("get_active_material", 2897466400).}
   proc createTrimeshCollision*(self: MeshInstance3D) {.loadfrom("create_trimesh_collision", 3218959716).}
   proc createConvexCollision*(self: MeshInstance3D; clean: Bool = true; simplify: Bool = false) {.loadfrom("create_convex_collision", 2751962654).}
-  proc createMultipleConvexCollisions*(self: MeshInstance3D; settings: Ref[MeshConvexDecompositionSettings] = nil) {.loadfrom("create_multiple_convex_collisions", 628789669).}
+  proc createMultipleConvexCollisions*(self: MeshInstance3D; settings: Ref[MeshConvexDecompositionSettings] = default Ref[MeshConvexDecompositionSettings]) {.loadfrom("create_multiple_convex_collisions", 628789669).}
   proc getBlendShapeCount*(self: MeshInstance3D): int32 {.loadfrom("get_blend_shape_count", 3905245786).}
   proc findBlendShapeByName*(self: MeshInstance3D; name: StringName): int32 {.loadfrom("find_blend_shape_by_name", 4150868206).}
   proc getBlendShapeValue*(self: MeshInstance3D; blendShapeIdx: int32): Float {.loadfrom("get_blend_shape_value", 2339986948).}

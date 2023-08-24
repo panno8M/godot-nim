@@ -39,18 +39,46 @@ macro memberProcs*(class: typedesc; defs): untyped =
     let loadfrom = def.popPragma("loadfrom")
     let gdProcName_strlit = loadfrom[1]
     let hash_intlit = loadfrom[2]
-    let container_str = &"{class}_{def.getName}"
-    let container_ident = ident container_str
-    let containerName_ident = ident container_str & "_name"
-    let initFlag_ident = ident container_str & "_initialized"
+    let container_str = &"PROC_{class}_{def.getName}"
+    let container = ident container_str
+    let containerName = genSym(nskLet, container_str & "_name")
+    let initFlag = genSym(nskVar, container_str & "_initialized")
+    let staticOf = def.getPragma("staticOf")
+    let params = if staticOf.isNil: def.params[2..^1] else: def.params[1..^1]
 
-    def.body = quote do:
-      if not `initFlag_ident`:
-        let `containerName_ident` = StringName|>init `gdProcName_strlit`
-        `container_ident` = interface_ClassdbGetMethodBind(addr `class`|>className, addr `containerName_ident`, `hash_intlit`)
-        `initFlag_ident` = true
+    var selfptr = newNilLit()
+
+    let retptr =
+      if def.hasNoReturn: newNilLit()
+      else: quote do: addr result
+
+    var paramBracket = newNimNode nnkBracket
+    for i_defs, defs in def.params[1..^1]:
+      for i_param, param in defs[0..^3]:
+        if staticOf.isNil and i_defs == 0 and i_param == 0:
+          selfptr = quote do: `param`.owner
+        else:
+          paramBracket.add quote do: cast[pointer](addr `param`)
+
+    var paramArray = genSym(nskLet, "params")
+
+    let paramptr = if paramBracket.len == 0: newNilLit() else: quote do: addr `paramArray`[0]
+    let defArray =
+      if paramptr.kind != nnkNilLit:
+        quote do:
+          let `paramArray` = `paramBracket`
+      else: nnkDiscardStmt.newTree(newEmptyNode())
+
+    def.body = newStmtList()
+    def.body.add quote do:
+      if unlikely(not `initFlag`):
+        let `containerName` = StringName|>init `gdProcName_strlit`
+        `container` = interface_ClassdbGetMethodBind(addr `class`|>className, addr `containerName`, `hash_intlit`)
+        `initFlag` = true
+      `defArray`
+      interfaceObjectMethodBindPtrcall(`container`, `selfptr`, `paramptr`, `retptr`)
 
     result.add quote do:
-      var `initFlag_ident`: bool
-      var `container_ident`: MethodBindPtr
+      var `initFlag`: bool
+      var `container`: MethodBindPtr
       `def`
