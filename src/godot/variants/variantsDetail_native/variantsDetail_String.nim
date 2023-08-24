@@ -60,18 +60,6 @@ String.staticProcedures(loader= load_String_sproc):
   proc toLower*(self: String): String {.loadfrom("to_lower", 3942272618).}
   proc left*(self: String; length: Int): String {.loadfrom("left", 2162347432).}
   proc right*(self: String; length: Int): String {.loadfrom("right", 2162347432).}
-  proc lpad*(self: String; minLength: Int; character: String = " "): String {.loadfrom("lpad", 248737229).}
-  proc rpad*(self: String; minLength: Int; character: String = " "): String {.loadfrom("rpad", 248737229).}
-  proc padDecimals*(self: String; digits: Int): String {.loadfrom("pad_decimals", 2162347432).}
-  proc padZeros*(self: String; digits: Int): String {.loadfrom("pad_zeros", 2162347432).}
-  proc trimPrefix*(self: String; prefix: String): String {.loadfrom("trim_prefix", 3134094431).}
-  proc trimSuffix*(self: String; suffix: String): String {.loadfrom("trim_suffix", 3134094431).}
-  proc toAsciiBuffer*(self: String): PackedByteArray {.loadfrom("to_ascii_buffer", 247621236).}
-  proc toUtf8Buffer*(self: String): PackedByteArray {.loadfrom("to_utf8_buffer", 247621236).}
-  proc toUtf16Buffer*(self: String): PackedByteArray {.loadfrom("to_utf16_buffer", 247621236).}
-  proc toUtf32Buffer*(self: String): PackedByteArray {.loadfrom("to_utf32_buffer", 247621236).}
-  proc hexDecode*(self: String): PackedByteArray {.loadfrom("hex_decode", 247621236).}
-  proc toWcharBuffer*(self: String): PackedByteArray {.loadfrom("to_wchar_buffer", 247621236).}
   proc stripEdges*(self: String; left: Bool = true; right: Bool = true): String {.loadfrom("strip_edges", 907855311).}
   proc stripEscapes*(self: String): String {.loadfrom("strip_escapes", 3942272618).}
   proc lstrip*(self: String; chars: String): String {.loadfrom("lstrip", 3134094431).}
@@ -116,6 +104,18 @@ String.staticProcedures(loader= load_String_sproc):
   proc toFloat*(self: String): Float {.loadfrom("to_float", 466405837).}
   proc hexToInt*(self: String): Int {.loadfrom("hex_to_int", 3173160232).}
   proc binToInt*(self: String): Int {.loadfrom("bin_to_int", 3173160232).}
+  proc lpad*(self: String; minLength: Int; character: String = " "): String {.loadfrom("lpad", 248737229).}
+  proc rpad*(self: String; minLength: Int; character: String = " "): String {.loadfrom("rpad", 248737229).}
+  proc padDecimals*(self: String; digits: Int): String {.loadfrom("pad_decimals", 2162347432).}
+  proc padZeros*(self: String; digits: Int): String {.loadfrom("pad_zeros", 2162347432).}
+  proc trimPrefix*(self: String; prefix: String): String {.loadfrom("trim_prefix", 3134094431).}
+  proc trimSuffix*(self: String; suffix: String): String {.loadfrom("trim_suffix", 3134094431).}
+  proc toAsciiBuffer*(self: String): PackedByteArray {.loadfrom("to_ascii_buffer", 247621236).}
+  proc toUtf8Buffer*(self: String): PackedByteArray {.loadfrom("to_utf8_buffer", 247621236).}
+  proc toUtf16Buffer*(self: String): PackedByteArray {.loadfrom("to_utf16_buffer", 247621236).}
+  proc toUtf32Buffer*(self: String): PackedByteArray {.loadfrom("to_utf32_buffer", 247621236).}
+  proc hexDecode*(self: String): PackedByteArray {.loadfrom("hex_decode", 247621236).}
+  proc toWcharBuffer*(self: String): PackedByteArray {.loadfrom("to_wchar_buffer", 247621236).}
 
 operators(loader= load_String_op):
   proc `==`*(left: String; right: ptr Variant): Bool {.operator: VariantOP_Equal.}

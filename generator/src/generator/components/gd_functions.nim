@@ -9,6 +9,7 @@ import ../tool/[
   moduleTree,
   name_rules,
   namespace,
+  jsonapi,
 ]
 import beyond/meta/styledString
 

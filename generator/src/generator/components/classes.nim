@@ -11,6 +11,7 @@ import ./gd_functions
 import ../tool/[
   moduleTree,
   namespace,
+  jsonapi,
 ]
 
 const classBaseName* = "ObjectBase"

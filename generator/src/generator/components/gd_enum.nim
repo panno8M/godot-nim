@@ -9,6 +9,7 @@ import std/[
 import ../tool/[
   moduleTree,
   namespace,
+  jsonapi,
 ]
 import beyond/meta/styledString
 

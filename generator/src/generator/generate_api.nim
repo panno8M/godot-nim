@@ -1,6 +1,5 @@
 #!/usr/bin/env -S nim c -r --gc:orc
 
-import beyond/logging
 import beyond/meta/styledString
 import std/[
   json,
@@ -17,7 +16,7 @@ import components/[
 ]
 import tool/[
   moduleTree,
-  namespace,
+  jsonapi,
 ]
 
 
@@ -48,19 +47,14 @@ proc find_key_missing_object(node: JsonNode; key_target: string): JsonNode =
   else:
     return nil
 
-proc modulate_globalEnums(globalEnums: JsonNode) =
+proc modulate(globalEnums: seq[JsonEnum]) =
   let body = ParagraphSt()
   const ignore = "Variant"
   for item in globalEnums.items:
-    var gdenum = item.to JsonEnum
-    if ignore in gdenum.name: continue
-    discard body.add render gdenum.toNim()
+    if ignore in item.name: continue
+    discard body.add render item.toNim()
   moduleTree.globalEnums.contents = body
 
-type
-  GdStructure = object
-    name*, format*: string
-  GdStructures = seq[GdStructure]
 proc parseFormatIdentDef(s: string): NimIdentDef =
   let spl = s.split(" ")
   result.`type` = spl[0]
@@ -82,7 +76,7 @@ proc parseFormatIdentDef(s: string): NimIdentDef =
     if result.`type` == t:
       result.`type`= "c" & t
 
-proc parseFormat(self: GdStructure): seq[NimIdentDef] =
+proc parseFormat(self: JsonStructure): seq[NimIdentDef] =
   self.format.split(';').mapIt(it.parseFormatIdentDef)
 
 proc asProperties(f: seq[NimIdentDef]): Statement =
@@ -90,40 +84,29 @@ proc asProperties(f: seq[NimIdentDef]): Statement =
   for idef in f:
     result.children.add $idef
 
-proc toNim(self: GdStructure): Statement =
+proc toNim(self: JsonStructure): Statement =
   +$$..BlockSt(head: &"type {self.name}* = object"):
     self.parseFormat.asProperties
 
-proc toNim(self: GdStructures): Statement =
+proc toNim(self: JsonStructures): Statement =
   result = ParagraphSt()
   for struct in self:
     result.children.add struct.toNim
 
 proc generate*(api: JsonNode) =
-  const preConverteds = [
-    "builtin_class_sizes",
-    "builtin_class_member_offsets",
-  ]
-  for key, value in api.pairs:
-    case key
-    of preConverteds:
-      notice key & ": This block has been pre-converted manually. No files created."
+  let api = api.to JsonAPI
 
-    of "global_enums":
-      modulate_globalEnums value
-    of "builtin_classes":
-      let variants = value.to(JsonBuiltinClasses).toNim
-      moduleTree.d_variantsDetail_native.take variants.modulateDetails
-      moduleTree.variantsConstr_native.contents = variants.renderConstructor
-      moduleTree.variantLoader.contents = variants.renderLoader
-      moduleTree.localEnums.contents.children.add variants.renderLocalEnums
-    of "classes":
-      let classes = value.to(JsonClasses).toNim
-      moduleTree.engineClassDefines.contents = classes.renderClassDefine
-      moduleTree.localEnums.contents.children.add classes.renderLocalEnums
-      moduleTree.classDetail_native.contents.children.add classes.renderDetail
-    of "native_structures":
-      let structures = value.to(GdStructures)
-      moduleTree.nativeStructs.contents.children.add structures.toNim
-    else:
-      warn key & ": now we do not have the way to generate binding of this."
+  modulate api.global_enums
+
+  let variants = api.builtin_classes.toNim
+  moduleTree.d_variantsDetail_native.take variants.modulateDetails
+  moduleTree.variantsConstr_native.contents = variants.renderConstructor
+  moduleTree.variantLoader.contents = variants.renderLoader
+  moduleTree.localEnums.contents.children.add variants.renderLocalEnums
+
+  let classes = api.classes.toNim
+  moduleTree.engineClassDefines.contents = classes.renderClassDefine
+  moduleTree.localEnums.contents.children.add classes.renderLocalEnums
+  moduleTree.classDetail_native.contents.children.add classes.renderDetail
+
+  moduleTree.nativeStructs.contents.children.add api.native_structures.toNim
