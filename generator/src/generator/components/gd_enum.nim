@@ -13,6 +13,43 @@ import ../tool/[
 ]
 import beyond/meta/styledString
 
+type
+  NimEnumFieldFlag* = enum
+    bitfield, bitset, alias
+  NimEnumField* = object
+    commentedout*: bool
+    flags*: set[NimEnumFieldFlag]
+    name*: NimVar
+    value*: int
+    comment*: string
+  NimEnum* = ref object of ObjectInfo
+    doExport*: bool
+    pragmas*: seq[string]
+    fields*: seq[NimEnumField]
+
+func nativeValue*(e: NimEnumField): int =
+  if bitfield in e.flags:
+    1 shl e.value
+  else:
+    e.value
+
+method defaultValue*(info: NimEnum; value: string; argType: ArgType): string =
+  let v = value.parseInt
+  var field: NimEnumField
+  for f in info.fields:
+    if f.nativeValue == v and not f.commentedout:
+      result = f.name
+      if alias in f.flags:
+        result = "(" & $argType.name & ")." & result
+      field = f
+      break
+  case argType.attribute
+  of ptaSet:
+    if bitset notin field.flags:
+      return "{" & result & "}"
+    else: return
+  else: return
+
 
 func flagkey(value: int; res: out int): bool =
   let l = log2 value.float32

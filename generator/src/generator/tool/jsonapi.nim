@@ -93,3 +93,5 @@ type
     builtin_classes*: JsonBuiltinClasses
     classes*: JsonClasses
     native_structures*: JsonStructures
+
+proc `$`*(x: JsonConstant): string = $x[]

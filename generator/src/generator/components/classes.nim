@@ -2,6 +2,7 @@ import beyond/meta/[statements]
 import std/options
 import std/strformat
 import std/sequtils
+import std/strutils
 import std/deques
 import std/lists
 import std/sets
@@ -13,6 +14,13 @@ import ../tool/[
   namespace,
   jsonapi,
 ]
+
+type
+  NimClass* = ref object of ObjectInfo
+    inherits*: TypeName
+    enums*: seq[NimEnum]
+    json*: JsonClass
+  NimClasses* = seq[NimClass]
 
 const classBaseName* = "ObjectBase"
 proc toNim*(class: JsonClass): NimClass =
@@ -96,3 +104,22 @@ proc renderDetail*(classes: NimClasses): Statement =
         result.children.add localProcs
 
       result.children.add ""
+
+method stringify*(info: NimClass; param: ParamType): string =
+  case param.attribute
+  of ptaNake:
+    if info.json.is_refcounted:
+      return &"Ref[{param.name}]"
+    return "ptr ".repeat(param.ptrdepth) & $param.name
+  of ptaTypedArray:
+    return &"TypedArray[{param.name}]"
+  else: discard
+
+method defaultValue*(info: NimClass; value: string; argType: ArgType): string =
+  if value == "null":
+    if info.json.is_refcounted:
+      return "default " & $argType
+    return "nil"
+  if argType.attribute == ptaTypedArray:
+    return "TypedArray" & "|>init[" & $argType.name & "]()"
+  return value

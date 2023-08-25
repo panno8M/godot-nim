@@ -7,11 +7,36 @@ import std/[
 ]
 import ../tool/[
   moduleTree,
-  name_rules,
   namespace,
   jsonapi,
 ]
-import beyond/meta/styledString
+import beyond/meta/[statements {.all.}, styledString]
+
+type
+  GodotParam* = tuple
+    name: NimVar
+    `type`: ArgType
+    default_raw: Option[string]
+  GodotProcKind* = enum
+    gpkMethod
+    gpkStaticMethod
+    gpkVirtualMethod
+    gpkGetter
+    gpkSetter
+    gpkConstructor
+    gpkOperator
+  GodotProcSt* = ref object of ParagraphSt
+    name*: NimVar
+    kind*: NimProcKind
+    gpKind*: GodotProcKind
+    args*: seq[GodotParam]
+    result*: Option[RetType]
+    owner*: Option[TypeName]
+    pragmas*: seq[string]
+
+proc cmp*(x, y: GodotProcSt): int =
+  result = cmp(x.name, y.name)
+
 
 proc concat[T](s: seq[T]; o: Option[T]): seq[T] =
   if o.isSome: concat(s, @[o.get])
@@ -84,3 +109,45 @@ proc prerender*(self: JsonConstructor; retType: RetType): GodotProcSt =
     pragmas: @[fmt"index: {self.index}"],
     owner: some retType.name,
   )
+
+method render*(self: GodotProcSt; cfg: RenderingConfig): seq[string] =
+  var head = &"{self.kind} {self.name}*"
+  if self.args.len != 0:
+    head &= "("
+    for i, arg in self.args:
+      head &= &"{arg.name}: {arg.`type`}"
+      if arg.default_raw.isSome:
+        head.add " = "
+        head.add defaultValue(get arg.default_raw, arg.`type`)
+      if i != self.args.high:
+        head &= "; "
+    head &= ")"
+  if self.result.isSome:
+    head &= ": " & $(get self.result)
+
+  var pragmas: seq[string]
+
+  if self.owner.isSome:
+    let owner = get self.owner
+    case self.gpkind
+    of gpkStaticMethod, gpkConstructor:
+      pragmas.add "staticOf: " & $owner
+    of gpkVirtualMethod:
+      pragmas.add "base"
+    else: discard
+
+  pragmas.add self.pragmas
+
+  if pragmas.len != 0:
+    head &= " {."
+    head &= pragmas.join(", ")
+    head &= ".}"
+
+  var rend: seq[string]
+  self.children.forRenderedChild(cfg):
+    rend.add rendered
+  if rend.len != 0:
+    head &= " = "
+    head.add rend.join(";")
+
+  return @[head]

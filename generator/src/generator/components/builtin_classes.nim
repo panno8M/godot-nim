@@ -12,11 +12,19 @@ import ./[
 ]
 import ../tool/[
   moduleTree,
-  name_rules,
   namespace,
   jsonapi,
 ]
 
+type
+  NimBuiltinClass* = ref object
+    name*: TypeName
+    enums*: seq[NimEnum]
+    constructors*: seq[GodotProcSt]
+    operators*: seq[GodotProcSt]
+    methods*: seq[GodotProcSt]
+    staticMethods*: seq[GodotProcSt]
+    json*: JsonBuiltinClass
 
 const constructorIgnores = [
   "GdVector2", "GdVector2i",
