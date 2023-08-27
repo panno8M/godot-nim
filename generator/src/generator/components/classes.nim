@@ -69,10 +69,10 @@ proc renderLocalEnums*(classes: NimClasses): Statement =
     if class.enums.len != 0:
       result.children.add ""
 
-proc renderDetail*(classes: NimClasses): Statement =
-  result = new ParagraphSt
+iterator renderDetail*(classes: NimClasses): tuple[class, inherits: TypeName; statement: Statement] =
   for classes in classes.parentalSorted:
     for class in classes:
+      var result = new ParagraphSt
       result.children.add "# " & $class.name
       result.children.add &"define_godot_engine_class_essencials({class.name}, {class.inherits})"
 
@@ -103,13 +103,15 @@ proc renderDetail*(classes: NimClasses): Statement =
       if localProcs.children.len != 0:
         result.children.add localProcs
 
-      result.children.add ""
+      yield (class.name, class.inherits, result)
+
 
 method stringify*(info: NimClass; param: ParamType): string =
   case param.attribute
   of ptaNake:
     if info.json.is_refcounted:
-      return &"Ref[{param.name}]"
+      if $info.name != "RefCounted":
+        return &"Ref[{param.name}]"
     return "ptr ".repeat(param.ptrdepth) & $param.name
   of ptaTypedArray:
     return &"TypedArray[{param.name}]"

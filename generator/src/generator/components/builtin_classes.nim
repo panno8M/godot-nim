@@ -52,9 +52,9 @@ proc toNim*(self: JsonBuiltinClass): NimBuiltinClass =
     result.constructors = sorted self.constructors.mapIt it.prerender retType result.name
   for m in self.methods.get(@[]):
     if m.is_static:
-      result.methods.add prerender(m, argTypeName, gpkStaticMethod)
+      result.staticMethods.add prerender(m, argTypeName, gpkStaticMethod)
     else:
-      result.staticMethods.add prerender(m, argTypeName, gpkMethod)
+      result.methods.add prerender(m, argTypeName, gpkMethod)
   for o in self.operators.get(@[]):
     result.operators.add o.prerender(argTypeName)
   result.methods = sorted result.methods

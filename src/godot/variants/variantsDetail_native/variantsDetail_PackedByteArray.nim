@@ -10,7 +10,7 @@ import ./../../helper/variants_forge
 #   self.json.indexing_return_type=some("int")
 #   self.json.constants=none(seq[JsonConstant])
 
-PackedByteArray.staticProcedures(loader= load_PackedByteArray_sproc):
+PackedByteArray.procedures(loader= load_PackedByteArray_proc):
   proc size*(self: PackedByteArray): Int {.loadfrom("size", 3173160232).}
   proc isEmpty*(self: PackedByteArray): Bool {.loadfrom("is_empty", 3918633141).}
   proc set*(self: PackedByteArray; index: Int; value: Int) {.loadfrom("set", 3638975848).}
@@ -81,5 +81,5 @@ operators(loader= load_PackedByteArray_op):
   proc `!=`*(left: PackedByteArray; right: PackedByteArray): Bool {.operator: VariantOP_NotEqual.}
   proc `+`*(left: PackedByteArray; right: PackedByteArray): PackedByteArray {.operator: VariantOP_Add.}
 proc load_PackedByteArray_allmethod* =
-  load_PackedByteArray_sproc()
+  load_PackedByteArray_proc()
   load_PackedByteArray_op()

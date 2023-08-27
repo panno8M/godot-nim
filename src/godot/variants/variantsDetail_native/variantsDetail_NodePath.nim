@@ -10,7 +10,7 @@ import ./../../helper/variants_forge
 #   self.json.indexing_return_type=none(string)
 #   self.json.constants=none(seq[JsonConstant])
 
-NodePath.staticProcedures(loader= load_NodePath_sproc):
+NodePath.procedures(loader= load_NodePath_proc):
   proc isAbsolute*(self: NodePath): Bool {.loadfrom("is_absolute", 3918633141).}
   proc getNameCount*(self: NodePath): Int {.loadfrom("get_name_count", 3173160232).}
   proc getName*(self: NodePath; idx: Int): StringName {.loadfrom("get_name", 2948586938).}
@@ -31,5 +31,5 @@ operators(loader= load_NodePath_op):
   proc `contains`*(left: Dictionary; right: NodePath): Bool {.operator: VariantOP_In.}
   proc `contains`*(left: Array; right: NodePath): Bool {.operator: VariantOP_In.}
 proc load_NodePath_allmethod* =
-  load_NodePath_sproc()
+  load_NodePath_proc()
   load_NodePath_op()

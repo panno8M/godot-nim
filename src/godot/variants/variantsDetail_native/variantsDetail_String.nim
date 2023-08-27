@@ -11,14 +11,6 @@ import ./../../helper/variants_forge
 #   self.json.constants=none(seq[JsonConstant])
 
 String.procedures(loader= load_String_proc):
-  proc numScientific*(number: Float): String {.staticOf: String, loadfrom("num_scientific", 2710373411).}
-  proc num*(number: Float; decimals: Int = -1): String {.staticOf: String, loadfrom("num", 1555901022).}
-  proc numInt64*(number: Int; base: Int = 10; capitalizeHex: Bool = false): String {.staticOf: String, loadfrom("num_int64", 2111271071).}
-  proc numUint64*(number: Int; base: Int = 10; capitalizeHex: Bool = false): String {.staticOf: String, loadfrom("num_uint64", 2111271071).}
-  proc chr*(char: Int): String {.staticOf: String, loadfrom("chr", 897497541).}
-  proc humanizeSize*(size: Int): String {.staticOf: String, loadfrom("humanize_size", 897497541).}
-
-String.staticProcedures(loader= load_String_sproc):
   proc casecmpTo*(self: String; to: String): Int {.loadfrom("casecmp_to", 2920860731).}
   proc nocasecmpTo*(self: String; to: String): Int {.loadfrom("nocasecmp_to", 2920860731).}
   proc naturalcasecmpTo*(self: String; to: String): Int {.loadfrom("naturalcasecmp_to", 2920860731).}
@@ -116,6 +108,14 @@ String.staticProcedures(loader= load_String_sproc):
   proc toUtf32Buffer*(self: String): PackedByteArray {.loadfrom("to_utf32_buffer", 247621236).}
   proc hexDecode*(self: String): PackedByteArray {.loadfrom("hex_decode", 247621236).}
   proc toWcharBuffer*(self: String): PackedByteArray {.loadfrom("to_wchar_buffer", 247621236).}
+
+String.staticProcedures(loader= load_String_sproc):
+  proc numScientific*(number: Float): String {.staticOf: String, loadfrom("num_scientific", 2710373411).}
+  proc num*(number: Float; decimals: Int = -1): String {.staticOf: String, loadfrom("num", 1555901022).}
+  proc numInt64*(number: Int; base: Int = 10; capitalizeHex: Bool = false): String {.staticOf: String, loadfrom("num_int64", 2111271071).}
+  proc numUint64*(number: Int; base: Int = 10; capitalizeHex: Bool = false): String {.staticOf: String, loadfrom("num_uint64", 2111271071).}
+  proc chr*(char: Int): String {.staticOf: String, loadfrom("chr", 897497541).}
+  proc humanizeSize*(size: Int): String {.staticOf: String, loadfrom("humanize_size", 897497541).}
 
 operators(loader= load_String_op):
   proc `==`*(left: String; right: ptr Variant): Bool {.operator: VariantOP_Equal.}

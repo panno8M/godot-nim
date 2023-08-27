@@ -1,6 +1,5 @@
 import std/[
   sequtils,
-  strutils,
   strformat,
 ]
 import beyond/macros
@@ -25,38 +24,36 @@ proc procedure(Type, node: NimNode; isStatic: bool; namesym: NimNode): MethodDef
 
   let p_result =
     if node.hasNoReturn: newNilLit()
-    else:                newAddr(bindsym"result")
+    else:                newAddr(ident"result")
   let p_self =
     if is_static: newNilLit()
     else: newAddr(node.params[1][0])
 
-  let containerName = genSym(nskVar, fmt"proc_{Type}_{node[0].basename}")
+  let container = genSym(nskVar, "methodBind")
 
   result.containerDefine = quote do:
-    var `containerName`: PtrBuiltinMethod
+    var `container`: PtrBuiltinMethod
   result.initSentence = quote do:
     `namesym` = StringName|>init(`nativeName`)
-    `containerName` = interface_variantGetPtrBuiltinMethod(`Type`.variantType, cast[ConstStringNamePtr](addr `namesym`), `hash`)
-  result.procDefine = node.copy
+    `container` = interface_variantGetPtrBuiltinMethod(`Type`.variantType, addr `namesym`, `hash`)
+  result.procDefine = node
   if args.len == 0:
     result.procDefine.body = quote do:
-      `containerName`(`p_self`, nil, `p_result`, 0)
+      `container`(`p_self`, nil, `p_result`, 0)
   else:
     let argptrarr = nnkBracket.newTree args.mapIt(it[0]).mapIt quote do:
       cast[pointer](addr(`it`))
     result.procDefine.body = quote do:
       let call_args = `argptrarr`
-      `containerName`(`p_self`, addr call_args[0], `p_result`, cint call_args.len)
+      `container`(`p_self`, addr call_args[0], `p_result`, cint call_args.len)
 
-proc elements_from_identdef(identdef: NimNode): tuple[t, address, variantType: NimNode] =
+proc elements_from_identdef(identdef: NimNode): tuple[address, variantType: NimNode] =
   if identdef.isNil or identdef.kind == nnkEmpty:
-    result.t = nil
     result.address = newNilLit()
     result.variantType = bindsym"VariantType_Nil"
   else:
-    result.t = identdef[1]
     result.address = newAddr identdef[0]
-    result.variantType = "variantType".newCall(result.t)
+    result.variantType = "variantType".newCall(identdef[1])
 
 
 proc operator(node: NimNode): MethodDefinition =
@@ -66,25 +63,21 @@ proc operator(node: NimNode): MethodDefinition =
   let left = node.params[1]
   let right = if has_right: node.params[2] else: nil
 
-  let (t_left, leftAddress, leftVariantType) = elements_from_identdef(left)
-  let (t_right, rightAddress, rightVariantType) = elements_from_identdef(right)
+  let (leftAddress, leftVariantType) = elements_from_identdef(left)
+  let (rightAddress, rightVariantType) = elements_from_identdef(right)
 
-  let containerName =
-    if has_right:
-      gensym(nskVar, &"{repr t_left}_{op}_{repr t_right}")
-    else:
-      gensym(nskVar, &"{op}_{repr t_left}")
+  let container = genSym(nskVar, "container")
 
   result.containerDefine = quote do:
-    var `containerName`: PtrOperatorEvaluator
+    var `container`: PtrOperatorEvaluator
   let callget = quote do:
     interface_variantGetPtrOperatorEvaluator(`op`, `leftVariantType`, `rightVariantType`)
   result.initSentence = newStmtList(
-    nnkAsgn.newTree(containerName, callget)
+    nnkAsgn.newTree(container, callget)
   )
   result.procDefine = node
   result.procDefine.body = quote do:
-    `containerName`(`leftAddress`, `rightAddress`, addr result)
+    `container`(`leftAddress`, `rightAddress`, addr result)
 
 func constructor(Type, node: NimNode): MethodDefinition =
   node.expectKind nnkProcDef
@@ -96,22 +89,22 @@ func constructor(Type, node: NimNode): MethodDefinition =
     cast[pointer](addr(`it`))
 
   let
-    constructorName = gensym(nskVar, fmt"constructor{Type}{index.intVal}")
+    constructor = gensym(nskVar, "constructor")
 
   result.init_sentence = quote do:
-    `constructorname` = interface_variantGetPtrConstructor(`Type`.variantType, `index`)
+    `constructor` = interface_variantGetPtrConstructor(`Type`.variantType, `index`)
 
   result.container_define = quote do:
-    var `constructorName`: PtrConstructor
+    var `constructor`: PtrConstructor
 
   result.proc_define = copy node
   if argptrarr.len == 0:
     result.proc_define.body = quote do:
-      `constructorName`(TypePtr(addr result), nil)
+      `constructor`(TypePtr(addr result), nil)
   else:
     result.proc_define.body = quote do:
       let call_args = `argptrarr`
-      `constructorName`(TypePtr(addr result), addr call_args[0])
+      `constructor`(TypePtr(addr result), addr call_args[0])
 
 
 proc procedures_impl(Type, loader, body: NimNode; is_static: bool): NimNode =

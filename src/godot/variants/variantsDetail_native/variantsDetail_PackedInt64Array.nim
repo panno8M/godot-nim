@@ -10,7 +10,7 @@ import ./../../helper/variants_forge
 #   self.json.indexing_return_type=some("int")
 #   self.json.constants=none(seq[JsonConstant])
 
-PackedInt64Array.staticProcedures(loader= load_PackedInt64Array_sproc):
+PackedInt64Array.procedures(loader= load_PackedInt64Array_proc):
   proc size*(self: PackedInt64Array): Int {.loadfrom("size", 3173160232).}
   proc isEmpty*(self: PackedInt64Array): Bool {.loadfrom("is_empty", 3918633141).}
   proc set*(self: PackedInt64Array; index: Int; value: Int) {.loadfrom("set", 3638975848).}
@@ -43,5 +43,5 @@ operators(loader= load_PackedInt64Array_op):
   proc `!=`*(left: PackedInt64Array; right: PackedInt64Array): Bool {.operator: VariantOP_NotEqual.}
   proc `+`*(left: PackedInt64Array; right: PackedInt64Array): PackedInt64Array {.operator: VariantOP_Add.}
 proc load_PackedInt64Array_allmethod* =
-  load_PackedInt64Array_sproc()
+  load_PackedInt64Array_proc()
   load_PackedInt64Array_op()

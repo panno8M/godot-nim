@@ -10,7 +10,7 @@ import ./../../helper/variants_forge
 #   self.json.indexing_return_type=some("float")
 #   self.json.constants=none(seq[JsonConstant])
 
-PackedFloat32Array.staticProcedures(loader= load_PackedFloat32Array_sproc):
+PackedFloat32Array.procedures(loader= load_PackedFloat32Array_proc):
   proc size*(self: PackedFloat32Array): Int {.loadfrom("size", 3173160232).}
   proc isEmpty*(self: PackedFloat32Array): Bool {.loadfrom("is_empty", 3918633141).}
   proc set*(self: PackedFloat32Array; index: Int; value: Float) {.loadfrom("set", 1113000516).}
@@ -43,5 +43,5 @@ operators(loader= load_PackedFloat32Array_op):
   proc `!=`*(left: PackedFloat32Array; right: PackedFloat32Array): Bool {.operator: VariantOP_NotEqual.}
   proc `+`*(left: PackedFloat32Array; right: PackedFloat32Array): PackedFloat32Array {.operator: VariantOP_Add.}
 proc load_PackedFloat32Array_allmethod* =
-  load_PackedFloat32Array_sproc()
+  load_PackedFloat32Array_proc()
   load_PackedFloat32Array_op()

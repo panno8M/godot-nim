@@ -10,7 +10,7 @@ import ./../../helper/variants_forge
 #   self.json.indexing_return_type=some("Color")
 #   self.json.constants=none(seq[JsonConstant])
 
-PackedColorArray.staticProcedures(loader= load_PackedColorArray_sproc):
+PackedColorArray.procedures(loader= load_PackedColorArray_proc):
   proc size*(self: PackedColorArray): Int {.loadfrom("size", 3173160232).}
   proc isEmpty*(self: PackedColorArray): Bool {.loadfrom("is_empty", 3918633141).}
   proc set*(self: PackedColorArray; index: Int; value: Color) {.loadfrom("set", 1444096570).}
@@ -43,5 +43,5 @@ operators(loader= load_PackedColorArray_op):
   proc `!=`*(left: PackedColorArray; right: PackedColorArray): Bool {.operator: VariantOP_NotEqual.}
   proc `+`*(left: PackedColorArray; right: PackedColorArray): PackedColorArray {.operator: VariantOP_Add.}
 proc load_PackedColorArray_allmethod* =
-  load_PackedColorArray_sproc()
+  load_PackedColorArray_proc()
   load_PackedColorArray_op()

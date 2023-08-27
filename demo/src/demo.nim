@@ -5,6 +5,9 @@ import beyond/[defects,oop]
 import godot
 import godot/logging
 
+import std/unittest
+unittest.disableParamFiltering()
+
 # type
 #   ExampleRef {.deprecated.} = object
 #   ExampleMin {.deprecated.} = object
@@ -24,6 +27,15 @@ proc newDemoLogger: FileLogger =
 
 defaultGroup.loggers.add @[newDemoLogger(), newConsoleLogger()]
 
+proc test_all =
+  suite "can call variants' methods":
+    test "String":
+      let gdstr_String: String = String|>init("String")
+      var str_String = newString(gdstr_String.length())
+      check interfaceStringToLatin1Chars(addr gdstr_String, cstring str_String, str_String.len) == str_String.len
+      check str_String == "String"
+
+
 proc initialize(lvl: InitializationLevel): void =
   iam("initialize-module").debug "demo.initialize was called, level = " & $lvl
   if lvl != Initialization_Scene: return
@@ -33,6 +45,7 @@ proc initialize(lvl: InitializationLevel): void =
   # ClassDB|>register_class(Example)
   # ClassDB|>register_class(ExampleVirtual,true)
   # ClassDB|>register_abstract_class[ExampleAbstract]()
+  test_all()
 
 proc terminate(lvl: InitializationLevel): void =
   iam("terminate-module").debug "demo.terminate was called, level = " & $lvl

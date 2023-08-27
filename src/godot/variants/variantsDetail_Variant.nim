@@ -3,11 +3,9 @@
 #include <godot_cpp/variant/variant_size.hpp>
 #include <gdextension_interface.h>
 #include <array>
-import beyond/[oop, defects, annotativeblocks]
+import beyond/[oop, annotativeblocks]
 import ../[godotInterface]
 import ../pure/[todos]
-import ../gdrefs
-import variantsConstr_native
 import variantsConstr_custom
 import variantsLoader
 import ../helper/objectConverter
@@ -63,7 +61,7 @@ define_converter_from_addr PackedVector2Array
 define_converter_from_addr PackedVector3Array
 define_converter_from_addr PackedColorArray
 
-TODO Support_godots_ref.comment"define Variant.new":
+TODO ignore Support_godots_ref.comment"define Variant.new":
   proc variant*[T: RefCounted](r: Ref[T]): Variant {.unimplemented.}
 
 proc variant*(v: bool): Variant =

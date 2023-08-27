@@ -10,7 +10,7 @@ import ./../../helper/variants_forge
 #   self.json.indexing_return_type=some("Vector2")
 #   self.json.constants=none(seq[JsonConstant])
 
-PackedVector2Array.staticProcedures(loader= load_PackedVector2Array_sproc):
+PackedVector2Array.procedures(loader= load_PackedVector2Array_proc):
   proc size*(self: PackedVector2Array): Int {.loadfrom("size", 3173160232).}
   proc isEmpty*(self: PackedVector2Array): Bool {.loadfrom("is_empty", 3918633141).}
   proc set*(self: PackedVector2Array; index: Int; value: Vector2) {.loadfrom("set", 635767250).}
@@ -44,5 +44,5 @@ operators(loader= load_PackedVector2Array_op):
   proc `!=`*(left: PackedVector2Array; right: PackedVector2Array): Bool {.operator: VariantOP_NotEqual.}
   proc `+`*(left: PackedVector2Array; right: PackedVector2Array): PackedVector2Array {.operator: VariantOP_Add.}
 proc load_PackedVector2Array_allmethod* =
-  load_PackedVector2Array_sproc()
+  load_PackedVector2Array_proc()
   load_PackedVector2Array_op()

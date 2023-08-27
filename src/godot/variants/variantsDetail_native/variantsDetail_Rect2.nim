@@ -10,7 +10,7 @@ import ./../../helper/variants_forge
 #   self.json.indexing_return_type=none(string)
 #   self.json.constants=none(seq[JsonConstant])
 
-Rect2.staticProcedures(loader= load_Rect2_sproc):
+Rect2.procedures(loader= load_Rect2_proc):
   proc getCenter*(self: Rect2): Vector2 {.loadfrom("get_center", 2428350749).}
   proc getArea*(self: Rect2): Float {.loadfrom("get_area", 466405837).}
   proc hasArea*(self: Rect2): Bool {.loadfrom("has_area", 3918633141).}
@@ -37,5 +37,5 @@ operators(loader= load_Rect2_op):
   proc `contains`*(left: Dictionary; right: Rect2): Bool {.operator: VariantOP_In.}
   proc `contains`*(left: Array; right: Rect2): Bool {.operator: VariantOP_In.}
 proc load_Rect2_allmethod* =
-  load_Rect2_sproc()
+  load_Rect2_proc()
   load_Rect2_op()

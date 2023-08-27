@@ -1,5 +1,7 @@
 let modules: seq[string] = @[
   "(classDetail_custom/)",
+  "classDetail_Object.nim",
+  "classDetail_RefCounted.nim",
   "classDetail_native.nim",
 ]
 import strformat, os

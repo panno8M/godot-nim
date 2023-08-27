@@ -58,6 +58,13 @@ let # clouds
     variantsConstr_custom,
     variantsConstr_native,
   )
+  classDetail_common* = cloud"classDetail_common".incl(
+    godotInterface,
+    engineClassDefiner,
+    variants,
+    beyond_oop,
+    typedArray,
+  )
 
 # Dependencies
 # ============
@@ -118,11 +125,9 @@ discard variantsConstr_native
   )
 discard classDetail_native
   .incl(
-    godotInterface,
-    engineClassDefiner,
-    variants,
-    beyond_oop,
-    typedArray,
+    classDetail_common
+  )
+  .incl(
     nativeStructs,
     gdrefs,
   )

@@ -11,11 +11,6 @@ import ./../../helper/variants_forge
 #   self.json.constants=some(@[(name: "IDENTITY", type: "Basis", value: "Basis(1, 0, 0, 0, 1, 0, 0, 0, 1)"), (name: "FLIP_X", type: "Basis", value: "Basis(-1, 0, 0, 0, 1, 0, 0, 0, 1)"), (name: "FLIP_Y", type: "Basis", value: "Basis(1, 0, 0, 0, -1, 0, 0, 0, 1)"), (name: "FLIP_Z", type: "Basis", value: "Basis(1, 0, 0, 0, 1, 0, 0, 0, -1)")])
 
 Basis.procedures(loader= load_Basis_proc):
-  proc lookingAt*(target: Vector3; up: Vector3 = gdvec(0, 1, 0); useModelFront: Bool = false): Basis {.staticOf: Basis, loadfrom("looking_at", 3728732505).}
-  proc fromScale*(scale: Vector3): Basis {.staticOf: Basis, loadfrom("from_scale", 3703240166).}
-  proc fromEuler*(euler: Vector3; order: Int = 2): Basis {.staticOf: Basis, loadfrom("from_euler", 2802321791).}
-
-Basis.staticProcedures(loader= load_Basis_sproc):
   proc inverse*(self: Basis): Basis {.loadfrom("inverse", 594669093).}
   proc transposed*(self: Basis): Basis {.loadfrom("transposed", 594669093).}
   proc orthonormalized*(self: Basis): Basis {.loadfrom("orthonormalized", 594669093).}
@@ -31,6 +26,11 @@ Basis.staticProcedures(loader= load_Basis_sproc):
   proc isEqualApprox*(self: Basis; b: Basis): Bool {.loadfrom("is_equal_approx", 3165333982).}
   proc isFinite*(self: Basis): Bool {.loadfrom("is_finite", 3918633141).}
   proc getRotationQuaternion*(self: Basis): Quaternion {.loadfrom("get_rotation_quaternion", 4274879941).}
+
+Basis.staticProcedures(loader= load_Basis_sproc):
+  proc lookingAt*(target: Vector3; up: Vector3 = gdvec(0, 1, 0); useModelFront: Bool = false): Basis {.staticOf: Basis, loadfrom("looking_at", 3728732505).}
+  proc fromScale*(scale: Vector3): Basis {.staticOf: Basis, loadfrom("from_scale", 3703240166).}
+  proc fromEuler*(euler: Vector3; order: Int = 2): Basis {.staticOf: Basis, loadfrom("from_euler", 2802321791).}
 
 operators(loader= load_Basis_op):
   proc `==`*(left: Basis; right: ptr Variant): Bool {.operator: VariantOP_Equal.}

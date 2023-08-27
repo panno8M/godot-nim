@@ -2,7 +2,7 @@ import beyond/ptrtraits
 import beyond/oop
 
 import pure/compileTimeSwitch
-import godotInterface
+import godotInterface_core
 import helper/errorHandlings
 
 when DebugMemory == on:
@@ -24,7 +24,6 @@ type
     allocated*: ptr T
   GDArrayedMemory*[T] = GDMemory[UncheckedArray[T]]
 
-proc `=destroy`[T](memory: GDMemory[T])
 
 template empty*[T](memory: typedesc[GDMemory[T]]): GDMemory[T] = GDMemory[T]()
 template isEmpty*[T](memory: GDMemory[T]): bool = memory.allocated.isNil
@@ -69,16 +68,20 @@ proc gdalloc*(bytes: csize_t; withHeader= false): pointer =
   else:
     return allocated
 
-proc gdfree*(p: pointer; withHeader = false) =
-  when EngineDebugEnabled:
-    const withHeader = false
-  if withHeader:
-    interface_memFree p - PAD_ALIGN.dbyte
-  else:
-    interface_memFree p
+proc gdfree*(p: pointer; withHeader = false) {.raises: [].} =
+  try:
+    when EngineDebugEnabled:
+      const withHeader = false
+    if withHeader:
+      interface_memFree p - PAD_ALIGN.dbyte
+    else:
+      interface_memFree p
 
-  when DebugMemory == on:
-    memoryTracer.markReleaced(p)
+    when DebugMemory == on:
+      memoryTracer.markReleaced(p)
+  except:
+    discard
+    # raise GodotInternalDefect.newException("failed to call godot::mem_free")
 
 proc gdrealloc*(p: pointer; bytes: csize_t; withHeader = false): pointer =
   if p.isNil:
@@ -138,19 +141,22 @@ proc gdnew*[T](obj: sink openArray[T]): GDArrayedMemory[T] =
 
 {.pop.}
 
-proc `=destroy`[T](memory: GDMemory[T]) =
+proc `=destroy`[T](memory: GDMemory[T]) {.raises: [].} =
   if memory.isEmpty: return
-  when memory is GDArrayedMemory:
-    for i in 0..<memory.len:
-      `=destroy` memory.allocated[i]
-  else:
-    `=destroy` memory.allocated[]
+  try:
+    when memory is GDArrayedMemory:
+      for i in 0..<memory.len:
+        `=destroy` memory.allocated[i]
+    else:
+      `=destroy` memory.allocated[]
+  except: discard
   gdfree memory.allocated
+
 proc delete*[T](memory: var GDMemory[T]) =
   `=destroy` memory
   memory.allocated = nil
 
-when isMainModule:
-  for i, v in gdnew([1, 2, 3]).mpairs:
-    echo i, v
-  `=destroy` gdnew([1, 2, 3])
+# when isMainModule:
+#   for i, v in gdnew([1, 2, 3]).mpairs:
+#     echo i, v
+#   `=destroy` gdnew([1, 2, 3])

@@ -10,7 +10,7 @@ import ./../../helper/variants_forge
 #   self.json.indexing_return_type=none(string)
 #   self.json.constants=none(seq[JsonConstant])
 
-AABB.staticProcedures(loader= load_AABB_sproc):
+AABB.procedures(loader= load_AABB_proc):
   proc abs*(self: AABB): AABB {.loadfrom("abs", 1576868580).}
   proc getCenter*(self: AABB): Vector3 {.loadfrom("get_center", 1776574132).}
   proc getVolume*(self: AABB): Float {.loadfrom("get_volume", 466405837).}
@@ -47,5 +47,5 @@ operators(loader= load_AABB_op):
   proc `contains`*(left: Dictionary; right: AABB): Bool {.operator: VariantOP_In.}
   proc `contains`*(left: Array; right: AABB): Bool {.operator: VariantOP_In.}
 proc load_AABB_allmethod* =
-  load_AABB_sproc()
+  load_AABB_proc()
   load_AABB_op()

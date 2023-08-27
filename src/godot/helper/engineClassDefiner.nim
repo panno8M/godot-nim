@@ -1,7 +1,6 @@
 import beyond/[oop, macros]
 import std/strformat
 import ../godotInterface_core
-import ../variants
 import ../memories
 template define_godot_engine_class_essencials*(Class, Inherits: typedesc): untyped =
   # Class(const char *p_godot_class) : m_inherits(p_godot_class) {}
@@ -28,10 +27,10 @@ template define_godot_engine_class_essencials*(Class, Inherits: typedesc): untyp
   )
 
 
-proc init_className*[T](Type: typedesc[T]): var StringName  =
-  (Type|>className) = `StringName|>init`($T)
-  (Type|>className_loaded) = true
-  (Type|>className)
+# proc init_className*[T](Type: typedesc[T]): var StringName  =
+#   (Type|>className) = `StringName|>init`($T)
+#   (Type|>className_loaded) = true
+#   (Type|>className)
 
 macro memberProcs*(class: typedesc; defs): untyped =
   result = newStmtList()
@@ -39,10 +38,9 @@ macro memberProcs*(class: typedesc; defs): untyped =
     let loadfrom = def.popPragma("loadfrom")
     let gdProcName_strlit = loadfrom[1]
     let hash_intlit = loadfrom[2]
-    let container_str = &"PROC_{class}_{def.getName}"
-    let container = ident container_str
-    let containerName = genSym(nskLet, container_str & "_name")
-    let initFlag = genSym(nskVar, container_str & "_initialized")
+    let container = genSym(nskVar, "methodbind")
+    let containerName = genSym(nskLet, "name")
+    let initFlag = genSym(nskVar, "initialized")
     let staticOf = def.getPragma("staticOf")
     let params = if staticOf.isNil: def.params[2..^1] else: def.params[1..^1]
 
@@ -69,14 +67,19 @@ macro memberProcs*(class: typedesc; defs): untyped =
           let `paramArray` = `paramBracket`
       else: nnkDiscardStmt.newTree(newEmptyNode())
 
+    def.pragma.add quote do: raises([GodotInternalDefect])
+
     def.body = newStmtList()
     def.body.add quote do:
-      if unlikely(not `initFlag`):
-        let `containerName` = StringName|>init `gdProcName_strlit`
-        `container` = interface_ClassdbGetMethodBind(addr `class`|>className, addr `containerName`, `hash_intlit`)
-        `initFlag` = true
-      `defArray`
-      interfaceObjectMethodBindPtrcall(`container`, `selfptr`, `paramptr`, `retptr`)
+      try:
+        if unlikely(not `initFlag`):
+          let `containerName` = StringName|>init `gdProcName_strlit`
+          `container` = interface_ClassdbGetMethodBind(addr `class`|>className, addr `containerName`, `hash_intlit`)
+          `initFlag` = true
+        `defArray`
+        interfaceObjectMethodBindPtrcall(`container`, `selfptr`, `paramptr`, `retptr`)
+      except:
+        raise newException(GodotInternalDefect, "failed to execute `" & `gdProcName_strlit` & "`")
 
     result.add quote do:
       var `initFlag`: bool

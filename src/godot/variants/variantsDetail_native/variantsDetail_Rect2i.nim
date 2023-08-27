@@ -10,7 +10,7 @@ import ./../../helper/variants_forge
 #   self.json.indexing_return_type=none(string)
 #   self.json.constants=none(seq[JsonConstant])
 
-Rect2i.staticProcedures(loader= load_Rect2i_sproc):
+Rect2i.procedures(loader= load_Rect2i_proc):
   proc getCenter*(self: Rect2i): Vector2i {.loadfrom("get_center", 3444277866).}
   proc getArea*(self: Rect2i): Int {.loadfrom("get_area", 3173160232).}
   proc hasArea*(self: Rect2i): Bool {.loadfrom("has_area", 3918633141).}
@@ -34,5 +34,5 @@ operators(loader= load_Rect2i_op):
   proc `contains`*(left: Dictionary; right: Rect2i): Bool {.operator: VariantOP_In.}
   proc `contains`*(left: Array; right: Rect2i): Bool {.operator: VariantOP_In.}
 proc load_Rect2i_allmethod* =
-  load_Rect2i_sproc()
+  load_Rect2i_proc()
   load_Rect2i_op()

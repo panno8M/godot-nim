@@ -10,7 +10,7 @@ import ./../../helper/variants_forge
 #   self.json.indexing_return_type=none(string)
 #   self.json.constants=none(seq[JsonConstant])
 
-StringName.staticProcedures(loader= load_StringName_sproc):
+StringName.procedures(loader= load_StringName_proc):
   proc casecmpTo*(self: StringName; to: String): Int {.loadfrom("casecmp_to", 2920860731).}
   proc nocasecmpTo*(self: StringName; to: String): Int {.loadfrom("nocasecmp_to", 2920860731).}
   proc naturalcasecmpTo*(self: StringName; to: String): Int {.loadfrom("naturalcasecmp_to", 2920860731).}
@@ -167,5 +167,5 @@ operators(loader= load_StringName_op):
   proc `%`*(left: StringName; right: PackedVector3Array): String {.operator: VariantOP_Module.}
   proc `%`*(left: StringName; right: PackedColorArray): String {.operator: VariantOP_Module.}
 proc load_StringName_allmethod* =
-  load_StringName_sproc()
+  load_StringName_proc()
   load_StringName_op()

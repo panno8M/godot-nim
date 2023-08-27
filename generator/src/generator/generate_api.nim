@@ -1,6 +1,7 @@
 #!/usr/bin/env -S nim c -r --gc:orc
 
 import beyond/meta/styledString
+import beyond/meta/modules
 import std/[
   json,
   sequtils,
@@ -16,6 +17,7 @@ import components/[
 ]
 import tool/[
   moduleTree,
+  namespace,
   jsonapi,
 ]
 
@@ -107,6 +109,22 @@ proc generate*(api: JsonNode) =
   let classes = api.classes.toNim
   moduleTree.engineClassDefines.contents = classes.renderClassDefine
   moduleTree.localEnums.contents.children.add classes.renderLocalEnums
-  moduleTree.classDetail_native.contents.children.add classes.renderDetail
+  for (class, inherits, rendered) in classes.renderDetail:
+    block Specific:
+      for name in ["Object", "RefCounted"]:
+        if $class == name:
+          discard
+          let module = mdl("classDetail_" & name).incl(moduleTree.classDetail_common)
+          if name == "RefCounted":
+            discard module.incl d_classes//"classDetail_Object"
+          moduleTree.d_classes.take module
+          module.contents = rendered
+          break Specific
+      moduleTree.classDetail_native.contents.children.add rendered
+      moduleTree.classDetail_native.contents.children.add ""
+  discard moduleTree.classDetail_native.incl(
+    d_classes//"classDetail_Object",
+    d_classes//"classDetail_RefCounted",
+  )
 
   moduleTree.nativeStructs.contents.children.add api.native_structures.toNim

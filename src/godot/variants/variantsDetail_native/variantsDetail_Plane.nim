@@ -10,7 +10,7 @@ import ./../../helper/variants_forge
 #   self.json.indexing_return_type=none(string)
 #   self.json.constants=some(@[(name: "PLANE_YZ", type: "Plane", value: "Plane(1, 0, 0, 0)"), (name: "PLANE_XZ", type: "Plane", value: "Plane(0, 1, 0, 0)"), (name: "PLANE_XY", type: "Plane", value: "Plane(0, 0, 1, 0)")])
 
-Plane.staticProcedures(loader= load_Plane_sproc):
+Plane.procedures(loader= load_Plane_proc):
   proc normalized*(self: Plane): Plane {.loadfrom("normalized", 1051796340).}
   proc getCenter*(self: Plane): Vector3 {.loadfrom("get_center", 1776574132).}
   proc isEqualApprox*(self: Plane; toPlane: Plane): Bool {.loadfrom("is_equal_approx", 1150170233).}
@@ -35,5 +35,5 @@ operators(loader= load_Plane_op):
   proc `contains`*(left: Dictionary; right: Plane): Bool {.operator: VariantOP_In.}
   proc `contains`*(left: Array; right: Plane): Bool {.operator: VariantOP_In.}
 proc load_Plane_allmethod* =
-  load_Plane_sproc()
+  load_Plane_proc()
   load_Plane_op()

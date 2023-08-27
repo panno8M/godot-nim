@@ -3,10 +3,7 @@ import beyond/[oop, macros]
 import ./godotInterface/globalEnums
 import ./pure/[compileTimeSwitch, geometrics, todos]
 
-when PointerByteSize == 4:
-  const SizeofPtr = 4
-elif PointerByteSize == 8 or true:
-  const SizeofPtr = 8
+type GodotInternalDefect* = object of CatchableError
 
 when DecimalPrecision == "double":
   type real_elem* = float64
@@ -74,42 +71,42 @@ type
     b*: float_elem
     a*: float_elem
   String* {.bycopy.} = object
-    opaque: Opaque[SizeOfPtr]
+    opaque: Opaque[PointerByteSize]
   StringName* {.bycopy.} = object
-    opaque: Opaque[SizeOfPtr]
+    opaque: Opaque[PointerByteSize]
   NodePath* {.bycopy.} = object
-    opaque: Opaque[SizeOfPtr]
+    opaque: Opaque[PointerByteSize]
   RID* {.bycopy.} = object
-    opaque: Opaque[SizeofPtr*2]
+    opaque: Opaque[PointerByteSize*2]
   Callable* {.bycopy.} = object
-    opaque: Opaque[SizeofPtr*4]
+    opaque: Opaque[PointerByteSize*4]
   Signal* {.bycopy.} = object
-    opaque: Opaque[SizeofPtr*4]
+    opaque: Opaque[PointerByteSize*4]
   Dictionary* {.bycopy.} = object
-    opaque: Opaque[SizeOfPtr]
+    opaque: Opaque[PointerByteSize]
   Array* {.bycopy.} = object
-    opaque: Opaque[SizeOfPtr]
+    opaque: Opaque[PointerByteSize]
   PackedByteArray* {.bycopy.} = object
-    opaque: Opaque[SizeofPtr*2]
+    opaque: Opaque[PointerByteSize*2]
   PackedInt32Array* {.bycopy.} = object
-    opaque: Opaque[SizeofPtr*2]
+    opaque: Opaque[PointerByteSize*2]
   PackedInt64Array* {.bycopy.} = object
-    opaque: Opaque[SizeofPtr*2]
+    opaque: Opaque[PointerByteSize*2]
   PackedFloat32Array* {.bycopy.} = object
-    opaque: Opaque[SizeofPtr*2]
+    opaque: Opaque[PointerByteSize*2]
   PackedFloat64Array* {.bycopy.} = object
-    opaque: Opaque[SizeofPtr*2]
+    opaque: Opaque[PointerByteSize*2]
   PackedStringArray* {.bycopy.} = object
-    opaque: Opaque[SizeofPtr*2]
+    opaque: Opaque[PointerByteSize*2]
   PackedVector2Array* {.bycopy.} = object
-    opaque: Opaque[SizeofPtr*2]
+    opaque: Opaque[PointerByteSize*2]
   PackedVector3Array* {.bycopy.} = object
-    opaque: Opaque[SizeofPtr*2]
+    opaque: Opaque[PointerByteSize*2]
   PackedColorArray* {.bycopy.} = object
-    opaque: Opaque[SizeofPtr*2]
+    opaque: Opaque[PointerByteSize*2]
 
   Variant* {.byref.} = object
-    opaque: Opaque[SizeofPtr*4 + 8]
+    opaque: Opaque[PointerByteSize*4 + 8]
 
 type SomePackedArray* =
   PackedByteArray    |
@@ -178,8 +175,10 @@ var
 
 proc `=destroy`(x: Variant) =
   TODO Variants_destruction.comment"inject here to call `=destroy` of an having"
-  if x != Variant_empty:
-    interface_variantDestroy(addr x)
+  try:
+    if x != Variant_empty:
+      interface_variantDestroy(addr x)
+  except: discard
 proc `=copy`(dest: var Variant; source: Variant) =
   `=destroy` dest
   wasMoved(dest)
@@ -192,8 +191,10 @@ template variantType(Type: typedesc[SomeVariants]): `Variant|>Type` =
 template define_destructor(Type: typedesc): untyped =
   staticOf Type:
     var destructor {.inject.} : PtrDestructor
-  proc `=destroy`(self: Type) =
-    Type|>destructor(addr self)
+  proc `=destroy`(self: Type) {.raises: [].} =
+    try:
+      Type|>destructor(addr self)
+    except: discard
 template load_destructor(Type: typedesc): untyped =
   Type|>destructor = interface_variantGetPtrDestructor Type.variantType
 

@@ -42,6 +42,7 @@ proc init* {.implement: InitializationFunction.} =
     interfaceGetGodotVersion addr godotVersion
 
     r_initialization.initialize = initialize_module
+    r_initialization.deinitialize = deinitialize_module
 
     Variant|>load()
 
