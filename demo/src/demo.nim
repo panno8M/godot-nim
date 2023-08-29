@@ -28,12 +28,14 @@ proc newDemoLogger: FileLogger =
 defaultGroup.loggers.add @[newDemoLogger(), newConsoleLogger()]
 
 proc test_all =
-  suite "can call variants' methods":
-    test "String":
-      let gdstr_String: String = String|>init("String")
-      var str_String = newString(gdstr_String.length())
-      check interfaceStringToLatin1Chars(addr gdstr_String, cstring str_String, str_String.len) == str_String.len
-      check str_String == "String"
+  test "String conversion":
+    let gdstr: String = "String"
+    let nimstr: string = gdstr
+    check nimstr == "String"
+
+  test "instance creation":
+    check false
+
 
 
 proc initialize(lvl: InitializationLevel): void =
