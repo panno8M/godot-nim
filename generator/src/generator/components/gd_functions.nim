@@ -109,6 +109,8 @@ proc prerender*(self: JsonConstructor; retType: RetType): GodotProcSt =
     pragmas: @[fmt"index: {self.index}"],
     owner: some retType.name,
   )
+  if result.args.len == 1:
+    result.kind = npkConverter
 
 method render*(self: GodotProcSt; cfg: RenderingConfig): seq[string] =
   var head = &"{self.kind} {self.name}*"

@@ -10,7 +10,7 @@ type MethodDefinition = tuple
   container_define, proc_define, init_sentence: NimNode
 
 proc procedure(Type, node: NimNode; isStatic: bool; namesym: NimNode): MethodDefinition =
-  node.expectKind nnkProcDef
+  node.expectKind {nnkProcDef, nnkConverterDef}
   let
     args =
       if is_static:
@@ -80,7 +80,7 @@ proc operator(node: NimNode): MethodDefinition =
     `container`(`leftAddress`, `rightAddress`, addr result)
 
 func constructor(Type, node: NimNode): MethodDefinition =
-  node.expectKind nnkProcDef
+  node.expectKind {nnkProcDef, nnkConverterDef}
 
   var index = node.getPragma("index")[1]
 

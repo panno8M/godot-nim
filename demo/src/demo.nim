@@ -5,8 +5,7 @@ import beyond/[defects,oop]
 import godot
 import godot/logging
 
-import std/unittest
-unittest.disableParamFiltering()
+import ./tester
 
 # type
 #   ExampleRef {.deprecated.} = object
@@ -27,16 +26,6 @@ proc newDemoLogger: FileLogger =
 
 defaultGroup.loggers.add @[newDemoLogger(), newConsoleLogger()]
 
-proc test_all =
-  test "String conversion":
-    let gdstr: String = "String"
-    let nimstr: string = gdstr
-    check nimstr == "String"
-
-  test "instance creation":
-    check false
-
-
 
 proc initialize(lvl: InitializationLevel): void =
   iam("initialize-module").debug "demo.initialize was called, level = " & $lvl
@@ -47,7 +36,7 @@ proc initialize(lvl: InitializationLevel): void =
   # ClassDB|>register_class(Example)
   # ClassDB|>register_class(ExampleVirtual,true)
   # ClassDB|>register_abstract_class[ExampleAbstract]()
-  test_all()
+  tester.test_pure()
 
 proc terminate(lvl: InitializationLevel): void =
   iam("terminate-module").debug "demo.terminate was called, level = " & $lvl
