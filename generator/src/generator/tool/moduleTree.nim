@@ -72,6 +72,7 @@ let # clouds
 discard godot
   .importExportModules_allowedExports
   .incl(d_godot)
+  .incl(beyond_oop)
 discard variants
   .exportModules_allowed
   .incl(d_variants)
@@ -164,8 +165,7 @@ discard +/%..d_root:
     classes
     +/%..internal d_classes:
       classDetail_native
-      +/%..dummy dir"classDetail_custom":
-        dummy mdl"classDetail_ClassDB"
+      dummy dir"classDetail_custom"
 
     +/%..d_helper:
       variantTypeSolver

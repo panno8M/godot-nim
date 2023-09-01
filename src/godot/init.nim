@@ -4,9 +4,10 @@ import beyond/[
 import
   logging,
   godotInterface,
-  classes/classDetail_custom/classDetail_ClassDB,
+  register,
   variants,
-  pure/todos
+  pure/todos,
+  helper/initializeHelper
 
 type
   InitCallback = proc(lvl: InitializationLevel) {.nimcall.}
@@ -19,18 +20,20 @@ type
 var extcfg: GDExtensionConfig
 
 proc initialize_module {.implement: Initialization.initialize.} =
-  ClassDB|>currentLevel = p_level
+  currentLevel = p_level
+  # expand_register_stack(preserved):
+  #   register_class preserved.make_ClassRegistrationInfo(false, false)
   if extcfg.initializer != nil:
     extcfg.initializer(p_level)
-  ClassDB|>initialize(p_level)
+  initialize_register(p_level)
 
 proc deinitialize_module {.implement: Initialization.deinitialize.} =
-  ClassDB|>currentLevel = p_level
+  currentLevel = p_level
   if extcfg.terminator != nil:
     extcfg.terminator(p_level)
   TODO ignore Support_edtior_plugin_development:
     EditorPlugins|>deinitialize(p_level)
-  ClassDB|>deinitialize(p_level)
+  deinitialize_register(p_level)
 
 proc init* {.implement: InitializationFunction.} =
   try:

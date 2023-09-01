@@ -4,5 +4,4 @@
 # ======================================== #
 import ./classes/classDetail_Object; export classDetail_Object
 import ./classes/classDetail_RefCounted; export classDetail_RefCounted
-import ./classes/classDetail_custom/classDetail_ClassDB; export classDetail_ClassDB
 import ./classes/classDetail_native; export classDetail_native

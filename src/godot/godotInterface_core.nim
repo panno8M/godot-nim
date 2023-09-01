@@ -13,7 +13,7 @@ elif DecimalPrecision == "float" or true:
 type int_elem* = int32
 type float_elem* = float32
 
-type Opaque[I: static int] = array[I, byte]
+type Opaque[I: static int] = array[I, pointer]
 
 type
   VectorR*[N: static int] = Vector[N, real_elem]
@@ -71,42 +71,43 @@ type
     b*: float_elem
     a*: float_elem
   String* {.bycopy.} = object
-    opaque: Opaque[PointerByteSize]
+    opaque: Opaque[1]
   StringName* {.bycopy.} = object
-    opaque: Opaque[PointerByteSize]
+    opaque: Opaque[1]
   NodePath* {.bycopy.} = object
-    opaque: Opaque[PointerByteSize]
+    opaque: Opaque[1]
   RID* {.bycopy.} = object
-    opaque: Opaque[PointerByteSize*2]
+    opaque: Opaque[2]
   Callable* {.bycopy.} = object
-    opaque: Opaque[PointerByteSize*4]
+    opaque: Opaque[4]
   Signal* {.bycopy.} = object
-    opaque: Opaque[PointerByteSize*4]
+    opaque: Opaque[4]
   Dictionary* {.bycopy.} = object
-    opaque: Opaque[PointerByteSize]
+    opaque: Opaque[1]
   Array* {.bycopy.} = object
-    opaque: Opaque[PointerByteSize]
+    opaque: Opaque[1]
   PackedByteArray* {.bycopy.} = object
-    opaque: Opaque[PointerByteSize*2]
+    opaque: Opaque[2]
   PackedInt32Array* {.bycopy.} = object
-    opaque: Opaque[PointerByteSize*2]
+    opaque: Opaque[2]
   PackedInt64Array* {.bycopy.} = object
-    opaque: Opaque[PointerByteSize*2]
+    opaque: Opaque[2]
   PackedFloat32Array* {.bycopy.} = object
-    opaque: Opaque[PointerByteSize*2]
+    opaque: Opaque[2]
   PackedFloat64Array* {.bycopy.} = object
-    opaque: Opaque[PointerByteSize*2]
+    opaque: Opaque[2]
   PackedStringArray* {.bycopy.} = object
-    opaque: Opaque[PointerByteSize*2]
+    opaque: Opaque[2]
   PackedVector2Array* {.bycopy.} = object
-    opaque: Opaque[PointerByteSize*2]
+    opaque: Opaque[2]
   PackedVector3Array* {.bycopy.} = object
-    opaque: Opaque[PointerByteSize*2]
+    opaque: Opaque[2]
   PackedColorArray* {.bycopy.} = object
-    opaque: Opaque[PointerByteSize*2]
+    opaque: Opaque[2]
 
   Variant* {.byref.} = object
-    opaque: Opaque[PointerByteSize*4 + 8]
+    opaque: Opaque[4]
+    opaque_8: array[8, byte]
 
 type SomePackedArray* =
   PackedByteArray    |

@@ -7,9 +7,9 @@ import beyond/[
   oop,
   annotativeblocks,
 ]
-import ../../godotInterface
-import ../../methodBinds
-import ../../helper/[errorHandlings]
+import godotInterface
+import methodBinds
+import helper/[errorHandlings]
 
 type
   PropertySetGet* = object
@@ -29,25 +29,27 @@ type
     property_names: HashSet[StringName]
     constant_names: HashSet[StringName]
     # Pointer to the parent custom class, if any. Will be null if the parent class is a Godot class.
-    parent_ptr: ptr ClassInfo
+    parent: ClassInfo
+  ClassRegistrationInfo* = object
+    name*, parent_name*: StringName
+    creationInfo*: ClassCreationInfo
 
 # This may only contain custom classes, not Godot classes
 var classes: Table[StringName, ClassInfo]
 
-staticOf ClassDB:
-  var currentLevel*: InitializationLevel
+var currentLevel*: InitializationLevel
 
-  proc initialize*(lvl: InitializationLevel) =
-    for name, info in classes:
-      if info.level != lvl: continue
+proc initialize_register*(lvl: InitializationLevel) =
+  for name, info in classes:
+    if info.level != lvl: continue
 
-  proc deinitialize*(lvl: InitializationLevel) =
-    for name, info in classes.mpairs:
-      if info.level != lvl: continue
+proc deinitialize_register*(lvl: InitializationLevel) =
+  for name, info in classes.mpairs:
+    if info.level != lvl: continue
 
-      interface_classdb_unregister_extension_class(library, addr info.name)
-      for `method` in info.methodMap.mvalues:
-        `=destroy`(`method`)
+    interface_classdb_unregister_extension_class(library, addr info.name)
+    for `method` in info.methodMap.mvalues:
+      `=destroy`(`method`)
 
 
 #define DEFVAL(m_defval) (m_defval)
@@ -60,7 +62,7 @@ proc defineMethod*(name: StringName; args: varargs[StringName]): MethodDefinitio
   MethodDefinition(name: name, args: @args)
 
 # private:
-proc bind_method_godot(class_name: StringName; `method`: var MethodBind) {.staticOf: ClassDB.} =
+proc bind_method_godot(class_name: StringName; `method`: var MethodBind) =
   var def_args = newSeq[ptr Variant](`method`.default_arguments.len)
   for i, arg in `method`.default_arguments.mpairs: def_args[i] = addr arg
 
@@ -84,7 +86,7 @@ proc bind_method_godot(class_name: StringName; `method`: var MethodBind) {.stati
   )
   interface_classdb_register_extension_class_method(library, addr class_name, addr method_info)
 
-proc bind_methodfi(flags: set[ClassMethodFlags]; `bind`: var MethodBind; method_name: MethodDefinition; defs: seq[pointer]): MethodBind {.staticOf: ClassDB.} =
+proc bind_methodfi(flags: set[ClassMethodFlags]; `bind`: var MethodBind; method_name: MethodDefinition; defs: seq[pointer]): MethodBind =
   let instance_type: StringName = `bind`.instance_class
 
   withMakeErrmsg_if instance_type notin classes:
@@ -126,58 +128,29 @@ proc bind_methodfi(flags: set[ClassMethodFlags]; `bind`: var MethodBind; method_
   `type`.method_map[method_name.name] = `bind`
 
   # and register with godot
-  ClassDB|>bind_method_godot(`type`.name, `bind`)
+  bind_method_godot(`type`.name, `bind`)
 
   return `bind`
 
-proc initialize_class(cl: var ClassInfo) {.staticOf: ClassDB.} = discard
-
-# template <class T, bool is_abstract>
-# static void _register_class(bool p_virtual = false);
-# void ClassDB::_register_class(bool p_virtual) {
-proc register_class_internal[T](Type: typedesc[T]; is_abstract: static bool; is_virtual: bool) {.staticOf: ClassDB.} =
+proc register_class*(info: ClassRegistrationInfo) =
   # Register this class within our plugin
-  var cl: ClassInfo
-  cl.name = Type|>get_class_static()
-  cl.parent_name = Type|>get_parent_class_static()
-  cl.level = ClassDB|>current_level
-  if classes.hasKey(cl.parent_name):
-    cl.parent_ptr = classes[cl.parent_name]
-  classes[cl.name] = cl;
+  # var cl: ClassInfo
+  # cl.name = className(T)
+  # cl.parent_name = T.Inherit|>className
+  # cl.level = ClassDB|>current_level
+  # if classes.hasKey(cl.parent_name):
+  #   cl.parent_ptr = classes[cl.parent_name]
+  # classes[cl.name] = cl;
 
-  # Register this class with Godot
-  let class_info = ClassCreationInfo(
-    is_virtual: is_virtual,
-    is_abstract: is_abstract,
-    set_func: Type|>set_bind, # ExtensionClassSet
-    get_func: Type|>get_bind, # ExtensionClassGet
-    get_property_list_func: Type|>get_property_list_bind, # ExtensionClassGetPropertyList
-    free_property_list_func: Type|>free_property_list_bind, # ExtensionClassFreePropertyList
-    property_can_revert_func: Type|>property_can_revert_bind, # ExtensionClassPropertyCanRevert
-    property_get_revert_func: Type|>property_get_revert_bind, # ExtensionClassPropertyGetRevert
-    notification_func: Type|>notification_bind, # ExtensionClassNotification
-    to_string_func: Type|>to_string_bind, # ExtensionClassToString
-    reference_func: nil, # ExtensionClassReference
-    unreference_func: nil, # ExtensionClassUnreference
-    create_instance_func: Type|>create, # ExtensionClassCreateInstance /* this one is mandatory */
-    free_instance_func: Type|>free, # ExtensionClassFreeInstance /* this one is mandatory */
-    get_virtual_func: ClassDB.get_virtual_func, # ExtensionClassGetVirtual
-    get_rid: nil, # ExtensionClassGetRID
-    class_userdata: addr Type|>classname, # void*
-  )
-
-  interface_classdb_register_extension_class(library, cl.name, cl.parent_name, class_info);
+  interfaceClassdbRegisterExtensionClass(library, addr info.name, addr info.parent_name, addr info.creationInfo)
 
   # call bind_methods etc. to register all members of the class
-  T|>initialize()
+  # initialize_class T
 
   # now register our class within ClassDB within Godot
-  ClassDB|>initialize_class(classes[cl.name])
+  # ClassDB|>initialize_class(classes[cl.name])
 
-proc register_class*[T](Type: typedesc[T]; is_virtual: bool = false) {.staticOf: ClassDB.} =
-  `ClassDB|>register_class_internal`(Type, is_abstract= false, is_virtual)
-
-proc bind_virtual_method*(p_class, p_method: StringName; p_call: ClassCallVirtual) {.staticOf: ClassDB.} =
+proc bind_virtual_method*(p_class, p_method: StringName; p_call: ClassCallVirtual) =
   var classInfo = classes.getOrDefault(p_class, nil)
   withMakeErrmsg_if classInfo.isNil:
     printError(msg, cstring fmt"Class '{p_class}' doesn't exist.")
@@ -193,6 +166,8 @@ template BIND_VIRTUAL_METHOD*(m_class, m_method): untyped =
   let `call m_method` = proc(p_instance: ObjectPtr; p_args: ptr UncheckedArray[ConstTypePtr]; p_ret: TypePtr) =
     call_with_ptr_args(reinterpret_cast<m_class *>(p_instance), &m_class|>m_method, p_args, p_ret)
   ClassDB|>bind_virtual_method($m_class, $m_method, `call m_method`)
+
+proc classGetVirtual* {.implement: ClassGetVirtual.} = discard
 
 TODO subject"conversion imcompleted"
 #[
@@ -220,7 +195,6 @@ public:
 
   static MethodBind *get_method(const StringName &p_class, const StringName &p_method);
 
-  static ExtensionClassCallVirtual get_virtual_func(void *p_userdata, ExtensionConstStringNamePtr p_name);
 
   static void initialize(ExtensionInitializationLevel p_level);
   static void deinitialize(ExtensionInitializationLevel p_level);

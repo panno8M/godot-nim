@@ -2,15 +2,18 @@ import beyond/[oop, macros]
 import std/strformat
 import ../godotInterface_core
 import ../memories
+import classDefinerCommon
+
 template define_godot_engine_class_essencials*(Class, Inherits: typedesc): untyped =
+  bind define_godot_class_commons
+  define_godot_class_commons(Class, Inherits)
   # Class(const char *p_godot_class) : m_inherits(p_godot_class) {}
   staticOf Class:
-    var className* {.inject.} : StringName
     proc init*(self: var Class; gdobject: ObjectPtr) {.inject, inline.} =
       Inherits|>init(self, gdobject)
 
-
-  template Inherit*(_: typedesc[Class]): typedesc[Inherits] = Inherits
+  proc initialize_class*(T: typedesc[Class]) =
+    discard
 
   proc create_callback {.implement: InstanceBindingCreateCallback, staticOf: Class.} =
     Class|>init((var class: Class; class), cast[ObjectPtr](p_instance))
@@ -20,17 +23,12 @@ template define_godot_engine_class_essencials*(Class, Inherits: typedesc): untyp
   proc reference_callback {.implement: InstanceBindingReferenceCallback, staticOf: Class.} =
     true
 
-  let binding_callbacks* {.staticOf: Class.} = InstanceBindingCallbacks(
-    create_callback: Class|>create_callback,
-    free_callback: Class|>free_callback,
-    reference_callback: Class|>reference_callback,
-  )
-
-
-# proc init_className*[T](Type: typedesc[T]): var StringName  =
-#   (Type|>className) = `StringName|>init`($T)
-#   (Type|>className_loaded) = true
-#   (Type|>className)
+  staticOf Class:
+    let binding_callbacks* {.inject.} = InstanceBindingCallbacks(
+      create_callback: Class|>create_callback,
+      free_callback: Class|>free_callback,
+      reference_callback: Class|>reference_callback,
+    )
 
 macro memberProcs*(class: typedesc; defs): untyped =
   result = newStmtList()
@@ -40,7 +38,6 @@ macro memberProcs*(class: typedesc; defs): untyped =
     let hash_intlit = loadfrom[2]
     let container = genSym(nskVar, "methodbind")
     let containerName = genSym(nskLet, "name")
-    let initFlag = genSym(nskVar, "initialized")
     let staticOf = def.getPragma("staticOf")
     let params = if staticOf.isNil: def.params[2..^1] else: def.params[1..^1]
 
@@ -72,16 +69,14 @@ macro memberProcs*(class: typedesc; defs): untyped =
     def.body = newStmtList()
     def.body.add quote do:
       try:
-        if unlikely(not `initFlag`):
+        once:
           let `containerName` = StringName|>init `gdProcName_strlit`
-          `container` = interface_ClassdbGetMethodBind(addr `class`|>className, addr `containerName`, `hash_intlit`)
-          `initFlag` = true
+          `container` = interface_ClassdbGetMethodBind(addr className `class`, addr `containerName`, `hash_intlit`)
         `defArray`
         interfaceObjectMethodBindPtrcall(`container`, `selfptr`, `paramptr`, `retptr`)
       except:
         raise newException(GodotInternalDefect, "failed to execute `" & `gdProcName_strlit` & "`")
 
     result.add quote do:
-      var `initFlag`: bool
       var `container`: MethodBindPtr
       `def`

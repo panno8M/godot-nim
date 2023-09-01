@@ -1,7 +1,7 @@
 import std/[
   os,
 ]
-import beyond/[defects,oop]
+import beyond/[defects]
 import godot
 import godot/logging
 
@@ -37,6 +37,7 @@ proc initialize(lvl: InitializationLevel): void =
   # ClassDB|>register_class(ExampleVirtual,true)
   # ClassDB|>register_abstract_class[ExampleAbstract]()
   tester.test_pure()
+  register tester.Tester
 
 proc terminate(lvl: InitializationLevel): void =
   iam("terminate-module").debug "demo.terminate was called, level = " & $lvl
