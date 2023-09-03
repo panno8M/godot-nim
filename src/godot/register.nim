@@ -173,8 +173,6 @@ TODO subject"conversion imcompleted"
 #[
 public:
   template <class T>
-  static void register_class(bool p_virtual = false);
-  template <class T>
   static void register_abstract_class();
 
   template <class N, class M, typename... VarArgs>

@@ -4,8 +4,12 @@ import ./errorHandlings
 import ../register
 import ../godotInterface/objectBase
 import ../memories
+import ../logging
 
 template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
+  bind iam
+  bind debug
+
   bind withMakeErrmsg_if
   bind define_godot_class_commons
   define_godot_class_commons(Class, Inherits)
@@ -37,27 +41,33 @@ template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
 
   proc create {.implement: ClassCreateInstance, gensym.} =
     bind gdnew
+    iam($Class&"-create", stgLibrary).debug("Called")
     let new_object = gdnew(Class)
     return new_object.allocated.owner
   proc free {.implement: ClassFreeInstance, gensym.} =
+    iam($Class&"-free", stgLibrary).debug("Called")
     bind delete
     if p_instance.isNil: return
     var cls = cast[GDMemory[Class]](p_instance)
     delete cls
 
   proc notification_bind {.implement: ClassNotification, gensym.} =
+    iam($Class&"-notification", stgLibrary).debug("Called")
     if p_instance.isNil: return
     # Class|>notification(cast[ptr Class](p_instance)[], p_what)
 
   proc set_bind {.implement: ClassSet, gensym.} =
+    iam($Class&"-set", stgLibrary).debug("Called")
     if p_instance.isNil: return false
     # Class|>set(cast[ptr Class](p_instance)[], p_name[], p_value[])
 
   proc get_bind {.implement: ClassGet, gensym.} =
+    iam($Class&"-get", stgLibrary).debug("Called")
     if p_instance.isNil: return false
     # Class|>get(cast[ptr Class](p_instance)[], p_name[], r_ret[]);
 
   proc get_property_list_bind {.implement: ClassGetPropertyList, gensym.} =
+    iam($Class&"-get-property-list", stgLibrary).debug("Called")
     discard
     # withMakeErrmsg_if Class|>properties.len != 0:
     #   printError(msg, "Internal error, property list was not freed by engine!")
@@ -68,6 +78,7 @@ template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
     # addr Class|>properties[0]
 
   proc free_property_list_bind {.implement: ClassFreePropertyList, gensym.} =
+    iam($Class&"-free-property-list", stgLibrary).debug("Called")
     discard
     # withMakeErrmsg_if Class|>properties.len == 0:
     #   printError(msg, "Internal error, property list double free!")
@@ -75,14 +86,17 @@ template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
     # Class|>properties.setLen(0)
 
   proc property_can_revert_bind {.implement: ClassPropertyCanRevert, gensym.} =
+    iam($Class&"-property-can-revert", stgLibrary).debug("Called")
     if p_instance.isNil: return false
     # Class|>property_can_revert(cast[ptr Class](p_instance)[], p_name[])
 
   proc property_get_revert_bind {.implement: ClassPropertyGetRevert, gensym.} =
+    iam($Class&"-property-get-revert", stgLibrary).debug("Called")
     if p_instance.isNil: return false
     # Class|>property_get_revert(cast[ptr Class](p_instance), p_name[], r_ret[])
 
   proc to_string_bind {.implement: ClassToString, gensym.} =
+    iam($Class&"-to-string", stgLibrary).debug("Called")
     if p_instance.isNil: return
     # p_out[] = $(cast[ptr Class](p_instance)[])
     # r_is_valid[] = true
