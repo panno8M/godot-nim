@@ -11,7 +11,7 @@ binDir        = "bin"
 
 # Dependencies
 
-requires "nim >= 1.9.3"
+requires "nim >= 2.0.0"
 requires "https://github.com/panno8M/nim-beyond == 0.19.4"
 # requires "beyond"
 
