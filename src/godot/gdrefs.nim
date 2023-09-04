@@ -13,9 +13,9 @@ TODO Support_godots_ref:
     if x.reference.isNil: nil
     else: x.reference.owner
 
-  proc `=destroy`*[T](self: Ref[T]) {.raises: [].} =
-    try:
-      if not self.reference.isNil:
-        if self.reference[].unreference():
-          `=destroy` self.reference[]
-    except: discard
+  # proc `=destroy`*[T](self: Ref[T]) {.raises: [].} =
+  #   try:
+  #     if not self.reference.isNil:
+  #       if self.reference[].unreference():
+  #         `=destroy` self.reference[]
+  #   except: discard

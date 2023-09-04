@@ -1,23 +1,23 @@
 import beyond/[oop, macros]
 import std/strformat
 import ../godotInterface_core
-import ../memories
 import classDefinerCommon
 
 template define_godot_engine_class_essencials*(Class, Inherits: typedesc): untyped =
   bind define_godot_class_commons
   define_godot_class_commons(Class, Inherits)
-  # Class(const char *p_godot_class) : m_inherits(p_godot_class) {}
-  staticOf Class:
-    proc init*(self: var Class; gdobject: ObjectPtr) {.inject, inline.} =
-      Inherits|>init(self, gdobject)
+
+  template BasedEngineClass*(T: typedesc[Class]): typedesc[Class] = Class
 
   proc initialize_class*(T: typedesc[Class]) =
     discard
 
   proc create_callback {.implement: InstanceBindingCreateCallback, staticOf: Class.} =
-    Class|>init((var class: Class; class), cast[ObjectPtr](p_instance))
-    result = gdUnregisteredNew(class).allocated
+    bind init_engine_class
+    let class = new Class
+    init_engine_class(class, cast[ObjectPtr](p_instance))
+    GC_ref class
+    result = cast[pointer](class)
   proc free_callback {.implement: InstanceBindingFreeCallback, staticOf: Class.} =
     `=destroy`(cast[ptr Class](p_binding)[])
   proc reference_callback {.implement: InstanceBindingReferenceCallback, staticOf: Class.} =

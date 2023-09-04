@@ -237,12 +237,12 @@ proc load_Variants_destr* =
 type ObjectBase* {.byref.} = object of RootObj
   isvalid* = true
   owner*: ObjectPtr
-proc init*(self: var ObjectBase; godot_class: StringName) {.staticOf: ObjectBase.} =
-  self.owner = interface_classdb_construct_object(addr godot_class)
-proc init*(self: var ObjectBase; godot_object: ptr GodotObject) {.staticOf: ObjectBase.} =
+proc init_engine_class*(self: ref ObjectBase; godot_class: ptr StringName) =
+  self.owner = interface_classdb_construct_object(godot_class)
+proc init_engine_class*(self: ref ObjectBase; godot_object: ObjectPtr) =
   self.owner = godot_object
 
 
-proc `=destroy`(self: ObjectBase) {.raises: [Exception].} =
-  if self.isvalid:
-    interface_object_destroy self.owner
+# proc `=destroy`(self: ObjectBase) {.raises: [Exception].} =
+#   if self.isvalid:
+#     interface_object_destroy self.owner

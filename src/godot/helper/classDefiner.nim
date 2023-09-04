@@ -3,7 +3,7 @@ import ./classDefinerCommon
 import ./errorHandlings
 import ../register
 import ../godotInterface/objectBase
-import ../memories
+import ../godotInterface_core
 import ../logging
 
 template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
@@ -14,8 +14,8 @@ template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
   bind define_godot_class_commons
   define_godot_class_commons(Class, Inherits)
 
-  let binding_callbacks {.staticOf: Class.} = InstanceBindingCallbacks(
-    create_callback: (proc {.implement: InstanceBindingCreateCallback.} = nil),
+  let binding_callbacks {.gensym.} = InstanceBindingCallbacks(
+    create_callback: (proc {.implement: InstanceBindingCreateCallback.} = iam($Class&"-create-callback", stgLibrary).debug("called")),
     free_callback: (proc {.implement: InstanceBindingFreeCallback.} = (discard)),
     reference_callback: (proc {.implement: InstanceBindingReferenceCallback.} = true),
   )
@@ -40,16 +40,25 @@ template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
           Inherits|>register_virtuals(Class, Inherits)
 
   proc create {.implement: ClassCreateInstance, gensym.} =
-    bind gdnew
-    iam($Class&"-create", stgLibrary).debug("Called")
-    let new_object = gdnew(Class)
-    return new_object.allocated.owner
+    bind init_engine_class
+    let me = iam($Class&"-create", stgLibrary)
+
+    me.debug("called")
+    let new_object = new Class
+    init_engine_class(new_object, addr className Class.BasedEngineClass)
+    GC_ref new_object
+    me.debug("set-instance")
+    interfaceObjectSetInstance(new_object.owner, addr className(Class), cast[pointer](new_object))
+    me.debug("set-instance-binding")
+    interfaceObjectSetInstanceBinding(new_object.owner, token, cast[pointer](new_object), addr binding_callbacks)
+    me.debug("done")
+    return new_object.owner
+
   proc free {.implement: ClassFreeInstance, gensym.} =
     iam($Class&"-free", stgLibrary).debug("Called")
-    bind delete
     if p_instance.isNil: return
-    var cls = cast[GDMemory[Class]](p_instance)
-    delete cls
+    let obj = cast[ref Class](p_instance)
+    GC_unref obj
 
   proc notification_bind {.implement: ClassNotification, gensym.} =
     iam($Class&"-notification", stgLibrary).debug("Called")
