@@ -30,3 +30,9 @@ proc get_property_list*(list: var seq[PropertyInfo]) {.staticOf: ObjectBase.} = 
 proc property_can_revert*(self: ObjectBase; name: StringName): Bool {.staticOf: ObjectBase.} = false
 proc property_get_revert*(self: ObjectBase; name: StringName; property: var Variant): Bool {.staticOf: ObjectBase.} = false
 proc `$`*(self: ObjectBase): string = "[" & $ObjectBase & ":" & $self.get_instance_id() & "]"
+
+proc className*(T: typedesc[ObjectBase]): var StringName =
+  var className {.global.} : StringName
+  once:
+    className = $T
+  className

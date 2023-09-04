@@ -10,7 +10,7 @@ import ./../../helper/variants_forge
 #   self.json.indexing_return_type=some("Variant")
 #   self.json.constants=none(seq[JsonConstant])
 
-Dictionary.staticProcedures(loader= load_Dictionary_sproc):
+Dictionary.procedures(loader= load_Dictionary_proc):
   proc size*(self: Dictionary): Int {.loadfrom("size", 3173160232).}
   proc isEmpty*(self: Dictionary): Bool {.loadfrom("is_empty", 3918633141).}
   proc clear*(self: Dictionary) {.loadfrom("clear", 3218959716).}
@@ -33,8 +33,8 @@ operators(loader= load_Dictionary_op):
   proc `not`*(left: Dictionary): Bool {.operator: VariantOP_Not.}
   proc `==`*(left: Dictionary; right: Dictionary): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: Dictionary; right: Dictionary): Bool {.operator: VariantOP_NotEqual.}
-  proc contains*(left: Dictionary; right: Dictionary): Bool {.operator: VariantOP_In.}
-  proc contains*(left: Array; right: Dictionary): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Dictionary; right: Dictionary): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Array; right: Dictionary): Bool {.operator: VariantOP_In.}
 proc load_Dictionary_allmethod* =
-  load_Dictionary_sproc()
+  load_Dictionary_proc()
   load_Dictionary_op()

@@ -10,7 +10,7 @@ import ./../../helper/variants_forge
 #   self.json.indexing_return_type=none(string)
 #   self.json.constants=none(seq[JsonConstant])
 
-RID.staticProcedures(loader= load_RID_sproc):
+RID.procedures(loader= load_RID_proc):
   proc isValid*(self: RID): Bool {.loadfrom("is_valid", 3918633141).}
   proc getId*(self: RID): Int {.loadfrom("get_id", 3173160232).}
 
@@ -25,5 +25,5 @@ operators(loader= load_RID_op):
   proc `>`*(left: RID; right: RID): Bool {.operator: VariantOP_Greater.}
   proc `>=`*(left: RID; right: RID): Bool {.operator: VariantOP_GreaterEqual.}
 proc load_RID_allmethod* =
-  load_RID_sproc()
+  load_RID_proc()
   load_RID_op()

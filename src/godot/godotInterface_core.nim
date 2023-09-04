@@ -3,10 +3,7 @@ import beyond/[oop, macros]
 import ./godotInterface/globalEnums
 import ./pure/[compileTimeSwitch, geometrics, todos]
 
-when PointerByteSize == 4:
-  const SizeofPtr = 4
-elif PointerByteSize == 8 or true:
-  const SizeofPtr = 8
+type GodotInternalDefect* = object of CatchableError
 
 when DecimalPrecision == "double":
   type real_elem* = float64
@@ -16,7 +13,7 @@ elif DecimalPrecision == "float" or true:
 type int_elem* = int32
 type float_elem* = float32
 
-type Opaque[I: static int] = array[I, byte]
+type Opaque[I: static int] = array[I, pointer]
 
 type
   VectorR*[N: static int] = Vector[N, real_elem]
@@ -74,42 +71,43 @@ type
     b*: float_elem
     a*: float_elem
   String* {.bycopy.} = object
-    opaque: Opaque[SizeOfPtr]
+    opaque: Opaque[1]
   StringName* {.bycopy.} = object
-    opaque: Opaque[SizeOfPtr]
+    opaque: Opaque[1]
   NodePath* {.bycopy.} = object
-    opaque: Opaque[SizeOfPtr]
+    opaque: Opaque[1]
   RID* {.bycopy.} = object
-    opaque: Opaque[SizeofPtr*2]
+    opaque: Opaque[2]
   Callable* {.bycopy.} = object
-    opaque: Opaque[SizeofPtr*4]
+    opaque: Opaque[4]
   Signal* {.bycopy.} = object
-    opaque: Opaque[SizeofPtr*4]
+    opaque: Opaque[4]
   Dictionary* {.bycopy.} = object
-    opaque: Opaque[SizeOfPtr]
+    opaque: Opaque[1]
   Array* {.bycopy.} = object
-    opaque: Opaque[SizeOfPtr]
+    opaque: Opaque[1]
   PackedByteArray* {.bycopy.} = object
-    opaque: Opaque[SizeofPtr*2]
+    opaque: Opaque[2]
   PackedInt32Array* {.bycopy.} = object
-    opaque: Opaque[SizeofPtr*2]
+    opaque: Opaque[2]
   PackedInt64Array* {.bycopy.} = object
-    opaque: Opaque[SizeofPtr*2]
+    opaque: Opaque[2]
   PackedFloat32Array* {.bycopy.} = object
-    opaque: Opaque[SizeofPtr*2]
+    opaque: Opaque[2]
   PackedFloat64Array* {.bycopy.} = object
-    opaque: Opaque[SizeofPtr*2]
+    opaque: Opaque[2]
   PackedStringArray* {.bycopy.} = object
-    opaque: Opaque[SizeofPtr*2]
+    opaque: Opaque[2]
   PackedVector2Array* {.bycopy.} = object
-    opaque: Opaque[SizeofPtr*2]
+    opaque: Opaque[2]
   PackedVector3Array* {.bycopy.} = object
-    opaque: Opaque[SizeofPtr*2]
+    opaque: Opaque[2]
   PackedColorArray* {.bycopy.} = object
-    opaque: Opaque[SizeofPtr*2]
+    opaque: Opaque[2]
 
   Variant* {.byref.} = object
-    opaque: Opaque[SizeofPtr*4 + 8]
+    opaque: Opaque[4]
+    opaque_8: array[8, byte]
 
 type SomePackedArray* =
   PackedByteArray    |
@@ -178,8 +176,10 @@ var
 
 proc `=destroy`(x: Variant) =
   TODO Variants_destruction.comment"inject here to call `=destroy` of an having"
-  if x != Variant_empty:
-    interface_variantDestroy(addr x)
+  try:
+    if x != Variant_empty:
+      interface_variantDestroy(addr x)
+  except: discard
 proc `=copy`(dest: var Variant; source: Variant) =
   `=destroy` dest
   wasMoved(dest)
@@ -192,8 +192,10 @@ template variantType(Type: typedesc[SomeVariants]): `Variant|>Type` =
 template define_destructor(Type: typedesc): untyped =
   staticOf Type:
     var destructor {.inject.} : PtrDestructor
-  proc `=destroy`(self: Type) =
-    Type|>destructor(addr self)
+  proc `=destroy`(self: Type) {.raises: [].} =
+    try:
+      Type|>destructor(addr self)
+    except: discard
 template load_destructor(Type: typedesc): untyped =
   Type|>destructor = interface_variantGetPtrDestructor Type.variantType
 
@@ -235,12 +237,12 @@ proc load_Variants_destr* =
 type ObjectBase* {.byref.} = object of RootObj
   isvalid* = true
   owner*: ObjectPtr
-proc init*(self: var ObjectBase; godot_class: StringName) {.staticOf: ObjectBase.} =
-  self.owner = interface_classdb_construct_object(addr godot_class)
-proc init*(self: var ObjectBase; godot_object: ptr GodotObject) {.staticOf: ObjectBase.} =
+proc init_engine_class*(self: ref ObjectBase; godot_class: ptr StringName) =
+  self.owner = interface_classdb_construct_object(godot_class)
+proc init_engine_class*(self: ref ObjectBase; godot_object: ObjectPtr) =
   self.owner = godot_object
 
 
-proc `=destroy`(self: ObjectBase) {.raises: [Exception].} =
-  if self.isvalid:
-    interface_object_destroy self.owner
+# proc `=destroy`(self: ObjectBase) {.raises: [Exception].} =
+#   if self.isvalid:
+#     interface_object_destroy self.owner

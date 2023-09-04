@@ -11,9 +11,6 @@ import ./../../helper/variants_forge
 #   self.json.constants=some(@[(name: "IDENTITY", type: "Quaternion", value: "Quaternion(0, 0, 0, 1)")])
 
 Quaternion.procedures(loader= load_Quaternion_proc):
-  proc fromEuler*(euler: Vector3): Quaternion {.staticOf: Quaternion, loadfrom("from_euler", 4053467903).}
-
-Quaternion.staticProcedures(loader= load_Quaternion_sproc):
   proc length*(self: Quaternion): Float {.loadfrom("length", 466405837).}
   proc lengthSquared*(self: Quaternion): Float {.loadfrom("length_squared", 466405837).}
   proc normalized*(self: Quaternion): Quaternion {.loadfrom("normalized", 4274879941).}
@@ -33,6 +30,9 @@ Quaternion.staticProcedures(loader= load_Quaternion_sproc):
   proc getAxis*(self: Quaternion): Vector3 {.loadfrom("get_axis", 1776574132).}
   proc getAngle*(self: Quaternion): Float {.loadfrom("get_angle", 466405837).}
 
+Quaternion.staticProcedures(loader= load_Quaternion_sproc):
+  proc fromEuler*(euler: Vector3): Quaternion {.staticOf: Quaternion, loadfrom("from_euler", 4053467903).}
+
 operators(loader= load_Quaternion_op):
   proc `==`*(left: Quaternion; right: ptr Variant): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: Quaternion; right: ptr Variant): Bool {.operator: VariantOP_NotEqual.}
@@ -49,8 +49,8 @@ operators(loader= load_Quaternion_op):
   proc `+`*(left: Quaternion; right: Quaternion): Quaternion {.operator: VariantOP_Add.}
   proc `-`*(left: Quaternion; right: Quaternion): Quaternion {.operator: VariantOP_Subtract.}
   proc `*`*(left: Quaternion; right: Quaternion): Quaternion {.operator: VariantOP_Multiply.}
-  proc contains*(left: Dictionary; right: Quaternion): Bool {.operator: VariantOP_In.}
-  proc contains*(left: Array; right: Quaternion): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Dictionary; right: Quaternion): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Array; right: Quaternion): Bool {.operator: VariantOP_In.}
 proc load_Quaternion_allmethod* =
   load_Quaternion_proc()
   load_Quaternion_sproc()

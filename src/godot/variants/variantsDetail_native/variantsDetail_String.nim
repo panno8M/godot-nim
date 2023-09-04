@@ -11,14 +11,6 @@ import ./../../helper/variants_forge
 #   self.json.constants=none(seq[JsonConstant])
 
 String.procedures(loader= load_String_proc):
-  proc numScientific*(number: Float): String {.staticOf: String, loadfrom("num_scientific", 2710373411).}
-  proc num*(number: Float; decimals: Int = -1): String {.staticOf: String, loadfrom("num", 1555901022).}
-  proc numInt64*(number: Int; base: Int = 10; capitalizeHex: Bool = false): String {.staticOf: String, loadfrom("num_int64", 2111271071).}
-  proc numUint64*(number: Int; base: Int = 10; capitalizeHex: Bool = false): String {.staticOf: String, loadfrom("num_uint64", 2111271071).}
-  proc chr*(char: Int): String {.staticOf: String, loadfrom("chr", 897497541).}
-  proc humanizeSize*(size: Int): String {.staticOf: String, loadfrom("humanize_size", 897497541).}
-
-String.staticProcedures(loader= load_String_sproc):
   proc casecmpTo*(self: String; to: String): Int {.loadfrom("casecmp_to", 2920860731).}
   proc nocasecmpTo*(self: String; to: String): Int {.loadfrom("nocasecmp_to", 2920860731).}
   proc naturalcasecmpTo*(self: String; to: String): Int {.loadfrom("naturalcasecmp_to", 2920860731).}
@@ -64,6 +56,27 @@ String.staticProcedures(loader= load_String_sproc):
   proc stripEscapes*(self: String): String {.loadfrom("strip_escapes", 3942272618).}
   proc lstrip*(self: String; chars: String): String {.loadfrom("lstrip", 3134094431).}
   proc rstrip*(self: String; chars: String): String {.loadfrom("rstrip", 3134094431).}
+  proc getExtension*(self: String): String {.loadfrom("get_extension", 3942272618).}
+  proc getBasename*(self: String): String {.loadfrom("get_basename", 3942272618).}
+  proc pathJoin*(self: String; file: String): String {.loadfrom("path_join", 3134094431).}
+  proc unicodeAt*(self: String; at: Int): Int {.loadfrom("unicode_at", 4103005248).}
+  proc indent*(self: String; prefix: String): String {.loadfrom("indent", 3134094431).}
+  proc dedent*(self: String): String {.loadfrom("dedent", 3942272618).}
+  proc hash*(self: String): Int {.loadfrom("hash", 3173160232).}
+  proc md5Text*(self: String): String {.loadfrom("md5_text", 3942272618).}
+  proc sha1Text*(self: String): String {.loadfrom("sha1_text", 3942272618).}
+  proc sha256Text*(self: String): String {.loadfrom("sha256_text", 3942272618).}
+  proc md5Buffer*(self: String): PackedByteArray {.loadfrom("md5_buffer", 247621236).}
+  proc sha1Buffer*(self: String): PackedByteArray {.loadfrom("sha1_buffer", 247621236).}
+  proc sha256Buffer*(self: String): PackedByteArray {.loadfrom("sha256_buffer", 247621236).}
+  proc isEmpty*(self: String): Bool {.loadfrom("is_empty", 3918633141).}
+  proc contains*(self: String; what: String): Bool {.loadfrom("contains", 2566493496).}
+  proc isAbsolutePath*(self: String): Bool {.loadfrom("is_absolute_path", 3918633141).}
+  proc isRelativePath*(self: String): Bool {.loadfrom("is_relative_path", 3918633141).}
+  proc simplifyPath*(self: String): String {.loadfrom("simplify_path", 3942272618).}
+  proc getBaseDir*(self: String): String {.loadfrom("get_base_dir", 3942272618).}
+  proc getFile*(self: String): String {.loadfrom("get_file", 3942272618).}
+  proc xmlEscape*(self: String; escapeQuotes: Bool = false): String {.loadfrom("xml_escape", 3429816538).}
   proc xmlUnescape*(self: String): String {.loadfrom("xml_unescape", 3942272618).}
   proc uriEncode*(self: String): String {.loadfrom("uri_encode", 3942272618).}
   proc uriDecode*(self: String): String {.loadfrom("uri_decode", 3942272618).}
@@ -86,27 +99,6 @@ String.staticProcedures(loader= load_String_sproc):
   proc lpad*(self: String; minLength: Int; character: String = " "): String {.loadfrom("lpad", 248737229).}
   proc rpad*(self: String; minLength: Int; character: String = " "): String {.loadfrom("rpad", 248737229).}
   proc padDecimals*(self: String; digits: Int): String {.loadfrom("pad_decimals", 2162347432).}
-  proc getExtension*(self: String): String {.loadfrom("get_extension", 3942272618).}
-  proc getBasename*(self: String): String {.loadfrom("get_basename", 3942272618).}
-  proc pathJoin*(self: String; file: String): String {.loadfrom("path_join", 3134094431).}
-  proc unicodeAt*(self: String; at: Int): Int {.loadfrom("unicode_at", 4103005248).}
-  proc indent*(self: String; prefix: String): String {.loadfrom("indent", 3134094431).}
-  proc dedent*(self: String): String {.loadfrom("dedent", 3942272618).}
-  proc hash*(self: String): Int {.loadfrom("hash", 3173160232).}
-  proc md5Text*(self: String): String {.loadfrom("md5_text", 3942272618).}
-  proc sha1Text*(self: String): String {.loadfrom("sha1_text", 3942272618).}
-  proc sha256Text*(self: String): String {.loadfrom("sha256_text", 3942272618).}
-  proc md5Buffer*(self: String): PackedByteArray {.loadfrom("md5_buffer", 247621236).}
-  proc sha1Buffer*(self: String): PackedByteArray {.loadfrom("sha1_buffer", 247621236).}
-  proc sha256Buffer*(self: String): PackedByteArray {.loadfrom("sha256_buffer", 247621236).}
-  proc isEmpty*(self: String): Bool {.loadfrom("is_empty", 3918633141).}
-  proc contains*(self: String; what: String): Bool {.loadfrom("contains", 2566493496).}
-  proc isAbsolutePath*(self: String): Bool {.loadfrom("is_absolute_path", 3918633141).}
-  proc isRelativePath*(self: String): Bool {.loadfrom("is_relative_path", 3918633141).}
-  proc simplifyPath*(self: String): String {.loadfrom("simplify_path", 3942272618).}
-  proc getBaseDir*(self: String): String {.loadfrom("get_base_dir", 3942272618).}
-  proc getFile*(self: String): String {.loadfrom("get_file", 3942272618).}
-  proc xmlEscape*(self: String; escapeQuotes: Bool = false): String {.loadfrom("xml_escape", 3429816538).}
   proc padZeros*(self: String; digits: Int): String {.loadfrom("pad_zeros", 2162347432).}
   proc trimPrefix*(self: String; prefix: String): String {.loadfrom("trim_prefix", 3134094431).}
   proc trimSuffix*(self: String; suffix: String): String {.loadfrom("trim_suffix", 3134094431).}
@@ -116,6 +108,14 @@ String.staticProcedures(loader= load_String_sproc):
   proc toUtf32Buffer*(self: String): PackedByteArray {.loadfrom("to_utf32_buffer", 247621236).}
   proc hexDecode*(self: String): PackedByteArray {.loadfrom("hex_decode", 247621236).}
   proc toWcharBuffer*(self: String): PackedByteArray {.loadfrom("to_wchar_buffer", 247621236).}
+
+String.staticProcedures(loader= load_String_sproc):
+  proc numScientific*(number: Float): String {.staticOf: String, loadfrom("num_scientific", 2710373411).}
+  proc num*(number: Float; decimals: Int = -1): String {.staticOf: String, loadfrom("num", 1555901022).}
+  proc numInt64*(number: Int; base: Int = 10; capitalizeHex: Bool = false): String {.staticOf: String, loadfrom("num_int64", 2111271071).}
+  proc numUint64*(number: Int; base: Int = 10; capitalizeHex: Bool = false): String {.staticOf: String, loadfrom("num_uint64", 2111271071).}
+  proc chr*(char: Int): String {.staticOf: String, loadfrom("chr", 897497541).}
+  proc humanizeSize*(size: Int): String {.staticOf: String, loadfrom("humanize_size", 897497541).}
 
 operators(loader= load_String_op):
   proc `==`*(left: String; right: ptr Variant): Bool {.operator: VariantOP_Equal.}
@@ -133,7 +133,7 @@ operators(loader= load_String_op):
   proc `>=`*(left: String; right: String): Bool {.operator: VariantOP_GreaterEqual.}
   proc `+`*(left: String; right: String): String {.operator: VariantOP_Add.}
   proc `%`*(left: String; right: String): String {.operator: VariantOP_Module.}
-  proc contains*(left: String; right: String): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: String; right: String): Bool {.operator: VariantOP_In.}
   proc `%`*(left: String; right: Vector2): String {.operator: VariantOP_Module.}
   proc `%`*(left: String; right: Vector2i): String {.operator: VariantOP_Module.}
   proc `%`*(left: String; right: Rect2): String {.operator: VariantOP_Module.}
@@ -154,23 +154,23 @@ operators(loader= load_String_op):
   proc `!=`*(left: String; right: StringName): Bool {.operator: VariantOP_NotEqual.}
   proc `+`*(left: String; right: StringName): String {.operator: VariantOP_Add.}
   proc `%`*(left: String; right: StringName): String {.operator: VariantOP_Module.}
-  proc contains*(left: StringName; right: String): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: StringName; right: String): Bool {.operator: VariantOP_In.}
   proc `%`*(left: String; right: NodePath): String {.operator: VariantOP_Module.}
   proc `%`*(left: String; right: ptr Object): String {.operator: VariantOP_Module.}
-  proc contains*(left: ptr Object; right: String): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: ptr Object; right: String): Bool {.operator: VariantOP_In.}
   proc `%`*(left: String; right: Callable): String {.operator: VariantOP_Module.}
   proc `%`*(left: String; right: Signal): String {.operator: VariantOP_Module.}
   proc `%`*(left: String; right: Dictionary): String {.operator: VariantOP_Module.}
-  proc contains*(left: Dictionary; right: String): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Dictionary; right: String): Bool {.operator: VariantOP_In.}
   proc `%`*(left: String; right: Array): String {.operator: VariantOP_Module.}
-  proc contains*(left: Array; right: String): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Array; right: String): Bool {.operator: VariantOP_In.}
   proc `%`*(left: String; right: PackedByteArray): String {.operator: VariantOP_Module.}
   proc `%`*(left: String; right: PackedInt32Array): String {.operator: VariantOP_Module.}
   proc `%`*(left: String; right: PackedInt64Array): String {.operator: VariantOP_Module.}
   proc `%`*(left: String; right: PackedFloat32Array): String {.operator: VariantOP_Module.}
   proc `%`*(left: String; right: PackedFloat64Array): String {.operator: VariantOP_Module.}
   proc `%`*(left: String; right: PackedStringArray): String {.operator: VariantOP_Module.}
-  proc contains*(left: PackedStringArray; right: String): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: PackedStringArray; right: String): Bool {.operator: VariantOP_In.}
   proc `%`*(left: String; right: PackedVector2Array): String {.operator: VariantOP_Module.}
   proc `%`*(left: String; right: PackedVector3Array): String {.operator: VariantOP_Module.}
   proc `%`*(left: String; right: PackedColorArray): String {.operator: VariantOP_Module.}

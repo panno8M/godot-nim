@@ -1,4 +1,4 @@
-import beyond/meta/[statements {.all.}, statements/nimkit]
+import beyond/meta/[statements {.all.}, styledString]
 import std/[
   strutils,
   strformat,
@@ -6,19 +6,18 @@ import std/[
   tables,
   options,
   typetraits,
-  math,
 ]
 
 const delim = "|>"
 
 type
-  ObjectNameObj* = object
+  TypeNameObj* = object
     name*: string
-    parent*: ObjectName
-    children*: Table[string, ObjectName]
+    owner*: TypeName
+    children*: Table[string, TypeName]
     cache: string
     info*: Option[ObjectInfo]
-  ObjectName* = ref ObjectNameOBj
+  TypeName* = ref TypeNameOBj
   ParamTypeAttr* = enum
     ptaNake
     ptaSet
@@ -26,206 +25,65 @@ type
   ParamType* = object of RootObj
     attribute*: ParamTypeAttr
     ptrdepth*: Natural
-    name*: ObjectName
+    name*: TypeName
   ArgType* = object of ParamType
   RetType* = object of ParamType
 
   ObjectInfo* = ref object of RootObj
-    name*: ObjectName
+    name*: TypeName
 
-type
-  NimEnumFieldFlag* = enum
-    bitfield, bitset, alias
-  JsonEnumField* = ref object
-    name*: string
-    value*: int
-  NimEnumField* = object
-    commentedout*: bool
-    flags*: set[NimEnumFieldFlag]
-    name*: string
-    value*: int
-    comment*: string
-  JsonEnum* = ref object
-    name*: string
-    is_bitfield*: Option[bool]
-    values*: seq[JsonEnumField]
-  NimEnum* = ref object of ObjectInfo
-    doExport*: bool
-    pragmas*: seq[string]
-    fields*: seq[NimEnumField]
+var root* = new TypeName
+var defaultObjectInfo = ObjectInfo()
 
-  JsonArgument* = ref object
-    name*: string
-    `type`*: string
-    meta*: Option[string]
-    default_value*: Option[string]
+proc hash*(key: TypeName): Hash = hash cast[ptr TypeNameObj](key)
+proc bindName*[T: ObjectInfo](info: T; typeName: TypeName) =
+  typeName.info = some ObjectInfo info
+  info.name = typeName
 
-  JsonMethod* = ref object
-    name*: string
-    is_vararg*: bool
-    is_const*: bool
-    is_static*: bool
-    is_virtual*: Option[bool]
-    hash*: Option[int]
-    arguments*: Option[seq[JsonArgument]]
-    return_type*: Option[string]
-    return_value*: Option[tuple[`type`: string; meta: Option[string]]]
+proc isInGlobal*(x: TypeName): bool = x == namespace.root or x.owner == namespace.root
 
-  JsonOperator* = ref object
-    name*: string
-    return_type*: string
-    right_type*: Option[string]
-
-  JsonConstructor* = ref object
-    index*: int
-    arguments*: Option[seq[JsonArgument]]
-
-  JsonConstant* = ref object
-    name*: string
-    `type`*: string
-    value*: string
-  JsonMember* = object
-    name*: string
-    `type`*: string
-
-  JsonBuiltinClass* = ref object
-    name*: string
-    is_keyed*: bool
-    has_destructor*: bool
-    indexing_return_type*: Option[string]
-    constructors*: seq[JsonConstructor]
-    constants*: Option[seq[JsonConstant]]
-    enums*: Option[seq[JsonEnum]]
-    members*: Option[seq[JsonMember]]
-    operators*: Option[seq[JsonOperator]]
-    methods*: Option[seq[JsonMethod]]
-  JsonBuiltinClasses* = seq[JsonBuiltinClass]
-
-  NimBuiltinClass* = ref object
-    name*: ObjectName
-    enums*: seq[NimEnum]
-    constructors*: seq[GodotProcSt]
-    operators*: seq[GodotProcSt]
-    methods*: seq[GodotProcSt]
-    staticMethods*: seq[GodotProcSt]
-    json*: JsonBuiltinClass
-
-  JsonClassConstant* = ref object
-    name*: string
-    value*: int
-  JsonProperty* = ref object
-    `type`*: string
-    name*: string
-    setter*: Option[string]
-    getter*: string
-    index*: Option[int]
-
-  JsonSignalArgument* = ref object
-    name*: string
-    `type`*: string
-  JsonSignal* = ref object
-    name*: string
-    arguments*: Option[seq[JsonSignalArgument]]
-
-  JsonClass* = ref object
-    name*: string
-    is_refcounted*: bool
-    is_instantiable*: bool
-    api_type*: string
-    inherits*: Option[string]
-    methods*: Option[seq[JsonMethod]]
-    signals*: Option[seq[JsonSignal]]
-    properties*: Option[seq[JsonProperty]]
-    enums*: Option[seq[JsonEnum]]
-    constants*: Option[seq[JsonClassConstant]]
-  JsonClasses* = seq[JsonClass]
-
-  NimClass* = ref object of ObjectInfo
-    inherits*: ObjectName
-    enums*: seq[NimEnum]
-    json*: JsonClass
-  NimClasses* = seq[NimClass]
-
-  GodotParam* = tuple
-    name: string
-    `type`: ArgType
-    default_raw: Option[string]
-  GodotProcKind* = enum
-    gpkUndefined
-    gpkMethod
-  GodotProcSt* = ref object of ParagraphSt
-    name*: string
-    kind*: NimProcKind
-    procKind*: GodotProcKind
-    args*: seq[GodotParam]
-    result*: Option[RetType]
-    is_static*: bool
-    is_virtual*: bool
-    owner*: Option[ObjectName]
-    pragmas*: seq[string]
-
-var root* = new ObjectName
-
-proc cmp*(x, y: GodotProcSt): int =
-  result = cmp(x.name, y.name)
-
-
-proc hash*(key: ObjectName): Hash = hash cast[ptr ObjectNameObj](key)
-proc bindName*[T: ObjectInfo](info: T; objectName: ObjectName) =
-  objectName.info = some ObjectInfo info
-  info.name = objectName
-
-func isRoot*(x: ObjectName): bool = x.parent.isNil
-
-proc `$`*(x: JsonConstant): string = $x[]
-func `$`*(self: ObjectName): string =
+func `$`*(self: TypeName): string =
   if self.isNil: ""
   else: self.cache
-func `$`*(self: ParamType): string =
-  let name = "ptr ".repeat(self.ptrdepth) & ($self.name)
-  case self.attribute
+
+method stringify*(info: ObjectInfo; param: ParamType): string {.base.} =
+  let name = "ptr ".repeat(param.ptrdepth) & ($param.name)
+  case param.attribute
   of ptaNake:
-    try:
-      if self.name.info.get.NimClass.json.is_refcounted:
-        return &"Ref[{name}]"
-      else:
-        return name
-    except: discard
-    return name
+    name
   of ptaSet:
     &"set[{name}]"
   of ptaTypedArray:
     &"TypedArray[{name}]"
+func `$`*(self: ParamType): string =
+  self.name.info.get(ObjectInfo()).stringify(self)
 func `$`*(self: ArgType): string =
   $(ParamType self)
 func `$`*(self: RetType): string =
   $(ParamType self)
 
-proc addget*(parent: ObjectName; self: string): ObjectName =
-  if parent.children.hasKey(self):
-    result = parent.children[self]
+proc addget*(owner: TypeName; self: string): TypeName =
+  if owner.children.hasKey(self):
+    result = owner.children[self]
   else:
-    result = ObjectName(name: self)
-    parent.children[self] = result
-    result.parent = parent
+    result = TypeName(name: self)
+    owner.children[self] = result
+    result.owner = owner
 
-  if result.parent.isRoot:
+  if result.isInGlobal:
     result.cache = result.name
   else:
-    result.cache = newStringOfCap(result.parent.cache.len + delim.len + result.name.len)
-    result.cache.add result.parent.cache
+    result.cache = newStringOfCap(result.owner.cache.len + delim.len + result.name.len)
+    result.cache.add result.owner.cache
     result.cache.add delim
     result.cache.add result.name
 
-proc addget*(parent: ObjectName; path: seq[string]): ObjectName =
-  result = parent
+proc addget*(owner: TypeName; path: seq[string]): TypeName =
+  result = owner
   for p in path: result = result.addget(p)
 
-proc objectName*(name: string): ObjectName =
-  var name = name
-  if name.len >= 3 and name[^2..^1] == "_t":
-    name = name[0..^3]
-  var chain = name.split(".")
+proc typeName*(name: string): TypeName =
+  var chain = name.replace("_t", "").split(".")
   for s in chain.mitems:
     s = case s
     of "int": "Int"
@@ -236,13 +94,13 @@ proc objectName*(name: string): ObjectName =
     else: s
   root.addget(chain)
 
-proc paramType*(objectName: ObjectName, result: var ParamType) =
-  result.name = objectName
+proc paramType*(typeName: TypeName, result: var ParamType) =
+  result.name = typeName
 
-proc argType*(objectName: ObjectName): ArgType =
-  paramType objectName, result
-proc retType*(objectName: ObjectName): RetType =
-  paramType objectName, result
+proc argType*(typeName: TypeName): ArgType =
+  paramType typeName, result
+proc retType*(typeName: TypeName): RetType =
+  paramType typeName, result
 
 
 proc paramType*(basename: string; result: var ParamType) =
@@ -270,7 +128,7 @@ proc paramType*(basename: string; result: var ParamType) =
   if name.find("void") != -1:
     name = "pointer"
     dec result.ptrdepth
-  result.name = objectName name
+  result.name = typeName name
 
 proc argType*(basename: string): ArgType =
   paramType basename, result
@@ -279,13 +137,7 @@ proc argType*(basename: string): ArgType =
 proc retType*(basename: string): RetType =
   paramType basename, result
 
-func nativeValue*(e: NimEnumField): int =
-  if bitfield in e.flags:
-    int pow(float e.value+1, float 2)
-  else:
-    e.value
-
-proc defaultValue*(value: string; argType: ArgType): string =
+method defaultValue*(info: ObjectInfo; value: string; argType: ArgType): string {.base.} =
   let argTypeStr = $argType
 
   case argType.attribute
@@ -330,66 +182,65 @@ proc defaultValue*(value: string; argType: ArgType): string =
   for t in ["Rect2", "Rect2i", "Transform3D", "String", "Color"]:
     if argTypeStr == t:
       return value.replace(t, t & "|>init")
-  var res: string
-  try:
-    let v = value.parseInt
-    var field: NimEnumField
-    for f in argType.name.info.get.NimEnum.fields:
-      if f.nativeValue == v and not f.commentedout:
-        res = f.name
-        if alias in f.flags:
-          res = "(" & $argType.name & ")." & res
-        field = f
-        break
-    case argType.attribute
-    of ptaSet:
-      if bitset notin field.flags:
-        return "{" & res & "}"
-      else:
-        return res
-    else:
-      return res
-  except: discard
 
   if value == "null": return "nil"
   return value
 
-method render*(self: GodotProcSt; cfg: RenderingConfig): seq[string] =
-  var head = &"{self.kind} {self.name}*"
-  if self.args.len != 0:
-    head &= "("
-    for i, arg in self.args:
-      head &= &"{arg.name}: {arg.`type`}"
-      if arg.default_raw.isSome:
-        head.add " = "
-        head.add defaultValue(get arg.default_raw, arg.`type`)
-      if i != self.args.high:
-        head &= "; "
-    head &= ")"
-  if self.result.isSome:
-    head &= ": " & $(get self.result)
+proc defaultValue*(value: string; argType: ArgType): string =
+  argType.name.info.get(defaultObjectInfo).defaultValue(value, argType)
 
-  var pragmas: seq[string]
+func constrLoader*(classname: string): string = &"load_{classname}_constr"
+func destrLoader*(classname: string): string = &"load_{classname}_destr"
+func procLoader*(classname: string): string = &"load_{classname}_proc"
+func sprocLoader*(classname: string): string = &"load_{classname}_sproc"
+func opLoader*(classname: string): string = &"load_{classname}_op"
+func allMethodLoader*(classname: string): string = &"load_{classname}_allmethod"
 
-  if self.owner.isSome:
-    let owner = get self.owner
-    if self.is_static:
-      pragmas.add "staticOf: " & $owner
-    if self.is_virtual:
-      pragmas.add "base"
+func operator*(basename: string): NimVar =
+  let str = case basename
+  of "in": "contains"
+  of "unary+": "+"
+  of "unary-": "-"
+  else: basename
+  quoted NimVar.imitate(str)
 
-  pragmas.add self.pragmas
+func variantModuleName*(basename: string): string =
+  result = case basename
+  of "int": "Int"
+  of "float": "Float"
+  of "bool": "Bool"
+  else: basename
+  return "variantsDetail_" & result
+func classModuleName*(basename: string): string =
+  "classDetail_" & basename
 
-  if pragmas.len != 0:
-    head &= " {."
-    head &= pragmas.join(", ")
-    head &= ".}"
 
-  var rend: seq[string]
-  self.children.forRenderedChild(cfg):
-    rend.add rendered
-  if rend.len != 0:
-    head &= " = "
-    head.add rend.join(";")
-
-  return @[head]
+func variantOperator*(sign: string): string =
+  const VariantOpSignToEnum = toTable {
+    "==": "Equal",
+    "!=": "NotEqual",
+    "<": "Less",
+    "<=": "LessEqual",
+    ">": "Greater",
+    ">=": "GreaterEqual",
+    "+": "Add",
+    "-": "Subtract",
+    "*": "Multiply",
+    "/": "Divide",
+    "**": "Power",
+    "unary-": "Negate",
+    "unary+": "Positive",
+    "%": "Module",
+    "<<": "ShiftLeft",
+    ">>": "ShiftRight",
+    "&": "BitAnd",
+    "|": "BitOr",
+    "^": "BitXor",
+    "~": "BitNegate",
+    "and": "And",
+    "or": "Or",
+    "xor": "Xor",
+    "not": "Not",
+    "and": "And",
+    "in": "In" }
+  "VariantOP_" & VariantOpSignToEnum[sign]

@@ -10,7 +10,7 @@ import ./../../helper/variants_forge
 #   self.json.indexing_return_type=none(string)
 #   self.json.constants=none(seq[JsonConstant])
 
-StringName.staticProcedures(loader= load_StringName_sproc):
+StringName.procedures(loader= load_StringName_proc):
   proc casecmpTo*(self: StringName; to: String): Int {.loadfrom("casecmp_to", 2920860731).}
   proc nocasecmpTo*(self: StringName; to: String): Int {.loadfrom("nocasecmp_to", 2920860731).}
   proc naturalcasecmpTo*(self: StringName; to: String): Int {.loadfrom("naturalcasecmp_to", 2920860731).}
@@ -121,7 +121,7 @@ operators(loader= load_StringName_op):
   proc `!=`*(left: StringName; right: String): Bool {.operator: VariantOP_NotEqual.}
   proc `+`*(left: StringName; right: String): String {.operator: VariantOP_Add.}
   proc `%`*(left: StringName; right: String): String {.operator: VariantOP_Module.}
-  proc contains*(left: String; right: StringName): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: String; right: StringName): Bool {.operator: VariantOP_In.}
   proc `%`*(left: StringName; right: Vector2): String {.operator: VariantOP_Module.}
   proc `%`*(left: StringName; right: Vector2i): String {.operator: VariantOP_Module.}
   proc `%`*(left: StringName; right: Rect2): String {.operator: VariantOP_Module.}
@@ -146,26 +146,26 @@ operators(loader= load_StringName_op):
   proc `>=`*(left: StringName; right: StringName): Bool {.operator: VariantOP_GreaterEqual.}
   proc `+`*(left: StringName; right: StringName): String {.operator: VariantOP_Add.}
   proc `%`*(left: StringName; right: StringName): String {.operator: VariantOP_Module.}
-  proc contains*(left: StringName; right: StringName): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: StringName; right: StringName): Bool {.operator: VariantOP_In.}
   proc `%`*(left: StringName; right: NodePath): String {.operator: VariantOP_Module.}
   proc `%`*(left: StringName; right: ptr Object): String {.operator: VariantOP_Module.}
-  proc contains*(left: ptr Object; right: StringName): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: ptr Object; right: StringName): Bool {.operator: VariantOP_In.}
   proc `%`*(left: StringName; right: Callable): String {.operator: VariantOP_Module.}
   proc `%`*(left: StringName; right: Signal): String {.operator: VariantOP_Module.}
   proc `%`*(left: StringName; right: Dictionary): String {.operator: VariantOP_Module.}
-  proc contains*(left: Dictionary; right: StringName): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Dictionary; right: StringName): Bool {.operator: VariantOP_In.}
   proc `%`*(left: StringName; right: Array): String {.operator: VariantOP_Module.}
-  proc contains*(left: Array; right: StringName): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Array; right: StringName): Bool {.operator: VariantOP_In.}
   proc `%`*(left: StringName; right: PackedByteArray): String {.operator: VariantOP_Module.}
   proc `%`*(left: StringName; right: PackedInt32Array): String {.operator: VariantOP_Module.}
   proc `%`*(left: StringName; right: PackedInt64Array): String {.operator: VariantOP_Module.}
   proc `%`*(left: StringName; right: PackedFloat32Array): String {.operator: VariantOP_Module.}
   proc `%`*(left: StringName; right: PackedFloat64Array): String {.operator: VariantOP_Module.}
   proc `%`*(left: StringName; right: PackedStringArray): String {.operator: VariantOP_Module.}
-  proc contains*(left: PackedStringArray; right: StringName): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: PackedStringArray; right: StringName): Bool {.operator: VariantOP_In.}
   proc `%`*(left: StringName; right: PackedVector2Array): String {.operator: VariantOP_Module.}
   proc `%`*(left: StringName; right: PackedVector3Array): String {.operator: VariantOP_Module.}
   proc `%`*(left: StringName; right: PackedColorArray): String {.operator: VariantOP_Module.}
 proc load_StringName_allmethod* =
-  load_StringName_sproc()
+  load_StringName_proc()
   load_StringName_op()

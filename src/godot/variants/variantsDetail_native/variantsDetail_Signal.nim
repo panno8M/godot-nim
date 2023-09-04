@@ -10,7 +10,7 @@ import ./../../helper/variants_forge
 #   self.json.indexing_return_type=none(string)
 #   self.json.constants=none(seq[JsonConstant])
 
-Signal.staticProcedures(loader= load_Signal_sproc):
+Signal.procedures(loader= load_Signal_proc):
   proc isNull*(self: Signal): Bool {.loadfrom("is_null", 3918633141).}
   proc getObject*(self: Signal): Object {.loadfrom("get_object", 4008621732).}
   proc getObjectId*(self: Signal): Int {.loadfrom("get_object_id", 3173160232).}
@@ -27,8 +27,8 @@ operators(loader= load_Signal_op):
   proc `not`*(left: Signal): Bool {.operator: VariantOP_Not.}
   proc `==`*(left: Signal; right: Signal): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: Signal; right: Signal): Bool {.operator: VariantOP_NotEqual.}
-  proc contains*(left: Dictionary; right: Signal): Bool {.operator: VariantOP_In.}
-  proc contains*(left: Array; right: Signal): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Dictionary; right: Signal): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Array; right: Signal): Bool {.operator: VariantOP_In.}
 proc load_Signal_allmethod* =
-  load_Signal_sproc()
+  load_Signal_proc()
   load_Signal_op()

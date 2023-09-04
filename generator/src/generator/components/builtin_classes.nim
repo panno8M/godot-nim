@@ -12,10 +12,19 @@ import ./[
 ]
 import ../tool/[
   moduleTree,
-  name_rules,
   namespace,
+  jsonapi,
 ]
 
+type
+  NimBuiltinClass* = ref object
+    name*: TypeName
+    enums*: seq[NimEnum]
+    constructors*: seq[GodotProcSt]
+    operators*: seq[GodotProcSt]
+    methods*: seq[GodotProcSt]
+    staticMethods*: seq[GodotProcSt]
+    json*: JsonBuiltinClass
 
 const constructorIgnores = [
   "GdVector2", "GdVector2i",
@@ -35,7 +44,7 @@ func cmp*(x,y: Option[string]): int =
 proc toNim*(self: JsonBuiltinClass): NimBuiltinClass =
 
   result = NimBuiltinClass()
-  result.name = objectName self.name
+  result.name = typeName self.name
   let argTypeName = argType result.name
   if self.enums.isSome:
     result.enums = self.enums.get.mapIt it.toNim(result.name)
@@ -43,9 +52,9 @@ proc toNim*(self: JsonBuiltinClass): NimBuiltinClass =
     result.constructors = sorted self.constructors.mapIt it.prerender retType result.name
   for m in self.methods.get(@[]):
     if m.is_static:
-      result.methods.add prerender(m, argTypeName)
+      result.staticMethods.add prerender(m, argTypeName, gpkStaticMethod)
     else:
-      result.staticMethods.add prerender(m, argTypeName)
+      result.methods.add prerender(m, argTypeName, gpkMethod)
   for o in self.operators.get(@[]):
     result.operators.add o.prerender(argTypeName)
   result.methods = sorted result.methods
@@ -65,7 +74,7 @@ func renderConstructor*(self: NimBuiltinClass): Statement =
 func renderConstructor*(self: seq[NimBuiltinClass]): Statement =
   ParagraphSt(children: self.filterIt($it.name notin variantDetailIgnores).mapit(it.renderConstructor))
 
-func renderLocalEnums*(self: seq[NimBuiltinClass]): Statement =
+proc renderLocalEnums*(self: seq[NimBuiltinClass]): Statement =
   result = new ParagraphSt
   for variant in self:
     if variant.enums.len == 0: continue

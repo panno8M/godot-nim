@@ -9,8 +9,47 @@ import std/[
 import ../tool/[
   moduleTree,
   namespace,
-  utils,
+  jsonapi,
 ]
+import beyond/meta/styledString
+
+type
+  NimEnumFieldFlag* = enum
+    bitfield, bitset, alias
+  NimEnumField* = object
+    commentedout*: bool
+    flags*: set[NimEnumFieldFlag]
+    name*: NimVar
+    value*: int
+    comment*: string
+  NimEnum* = ref object of ObjectInfo
+    doExport*: bool
+    pragmas*: seq[string]
+    fields*: seq[NimEnumField]
+
+func nativeValue*(e: NimEnumField): int =
+  if bitfield in e.flags:
+    1 shl e.value
+  else:
+    e.value
+
+method defaultValue*(info: NimEnum; value: string; argType: ArgType): string =
+  let v = value.parseInt
+  var field: NimEnumField
+  for f in info.fields:
+    if f.nativeValue == v and not f.commentedout:
+      result = f.name
+      if alias in f.flags:
+        result = "(" & $argType.name & ")." & result
+      field = f
+      break
+  case argType.attribute
+  of ptaSet:
+    if bitset notin field.flags:
+      return "{" & result & "}"
+    else: return
+  else: return
+
 
 func flagkey(value: int; res: out int): bool =
   let l = log2 value.float32
@@ -23,7 +62,7 @@ func flagkey(value: int; res: out int): bool =
     return false
 
 
-func toNim*(e: JsonEnum; owner: ObjectName = namespace.root): NimEnum =
+proc toNim*(e: JsonEnum; owner: TypeName = namespace.root): NimEnum =
   new result
   result.bindName owner.addget(e.name)
 
@@ -36,7 +75,7 @@ func toNim*(e: JsonEnum; owner: ObjectName = namespace.root): NimEnum =
   var enumval = int.low
   var fbit: int
   for i, item in sorted:
-    var field = NimEnumField(name: item.name)
+    var field = NimEnumField(name: item.name >!> Snake)
     if is_bitfield:
       if item.value.flagkey(fbit):
         field.flags.incl bitfield
@@ -57,30 +96,28 @@ func toNim*(e: JsonEnum; owner: ObjectName = namespace.root): NimEnum =
     enumval = item.value
     result.fields.add field
 
-  for member in result.fields.mitems:
-    member.name = ident member.name
-
   if is_bitfield:
     for i, item in result.fields:
       if not item.commentedout and item.value == 0:
         break
       if not item.commentedout and item.value > 0:
-        result.fields.insert(NimEnumField(name: "`--PADDING_MIN--`", value: 0, flags: {bitfield}, comment: fmt"To align size-of set[{result.name}] to size-of cuint."), i)
+        result.fields.insert(NimEnumField(name: quoted NimVar.imitate"--PADDING_MIN--", value: 0, flags: {bitfield}, comment: fmt"To align size-of set[{result.name}] to size-of cuint."), i)
         break
-    result.fields.add NimEnumField(name: "`--PADDING_MAX--`", value: 31, flags: {bitfield}, comment: fmt"To align size-of set[{result.name}] to size-of cuint.")
+    result.fields.add NimEnumField(name: quoted NimVar.imitate"--PADDING_MAX--", value: 31, flags: {bitfield}, comment: fmt"To align size-of set[{result.name}] to size-of cuint.")
 
   if is_bitfield:
     result.pragmas.add "size: sizeof(cuint)"
 
-func render*(self: NimEnum): Statement =
+proc render*(self: NimEnum): Statement =
   result = ParagraphSt()
   let name = self.name.name
-  let nameExp = name.doExport(self.doExport)
-  var enumdef = BlockSt(head: fmt"type {nameExp}{self.pragmas.decoPragma} = enum")
+  let nameExp = if self.doExport: name & "*" else: name
+  let pragmas = if self.pragmas.len == 0: "" else: " {." & self.pragmas.join(", ") & ".}"
+  var enumdef = BlockSt(head: fmt"type {nameExp}{pragmas} = enum")
   var aliases = ParagraphSt()
   result.children.add do:
-    if self.name.parent.isRoot: enumdef
-    else: BlockSt(head: &"staticOf {self.name.parent}:").add(enumdef)
+    if self.name.isInGlobal: enumdef
+    else: BlockSt(head: &"staticOf {self.name.owner}:").add(enumdef)
 
   for field in self.fields:
     let comment =
@@ -107,5 +144,3 @@ func render*(self: NimEnum): Statement =
           )
   if aliases.children.len != 0:
     result.children.add aliases
-  # for alias in self.orderedAliases:
-

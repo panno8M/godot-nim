@@ -10,7 +10,7 @@ import ./../../helper/variants_forge
 #   self.json.indexing_return_type=some("String")
 #   self.json.constants=none(seq[JsonConstant])
 
-PackedStringArray.staticProcedures(loader= load_PackedStringArray_sproc):
+PackedStringArray.procedures(loader= load_PackedStringArray_proc):
   proc size*(self: PackedStringArray): Int {.loadfrom("size", 3173160232).}
   proc isEmpty*(self: PackedStringArray): Bool {.loadfrom("is_empty", 3918633141).}
   proc set*(self: PackedStringArray; index: Int; value: String) {.loadfrom("set", 725585539).}
@@ -37,11 +37,11 @@ operators(loader= load_PackedStringArray_op):
   proc `==`*(left: PackedStringArray; right: ptr Variant): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: PackedStringArray; right: ptr Variant): Bool {.operator: VariantOP_NotEqual.}
   proc `not`*(left: PackedStringArray): Bool {.operator: VariantOP_Not.}
-  proc contains*(left: Dictionary; right: PackedStringArray): Bool {.operator: VariantOP_In.}
-  proc contains*(left: Array; right: PackedStringArray): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Dictionary; right: PackedStringArray): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Array; right: PackedStringArray): Bool {.operator: VariantOP_In.}
   proc `==`*(left: PackedStringArray; right: PackedStringArray): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: PackedStringArray; right: PackedStringArray): Bool {.operator: VariantOP_NotEqual.}
   proc `+`*(left: PackedStringArray; right: PackedStringArray): PackedStringArray {.operator: VariantOP_Add.}
 proc load_PackedStringArray_allmethod* =
-  load_PackedStringArray_sproc()
+  load_PackedStringArray_proc()
   load_PackedStringArray_op()

@@ -10,7 +10,7 @@ import ./../../helper/variants_forge
 #   self.json.indexing_return_type=some("Vector2")
 #   self.json.constants=some(@[(name: "IDENTITY", type: "Transform2D", value: "Transform2D(1, 0, 0, 1, 0, 0)"), (name: "FLIP_X", type: "Transform2D", value: "Transform2D(-1, 0, 0, 1, 0, 0)"), (name: "FLIP_Y", type: "Transform2D", value: "Transform2D(1, 0, 0, -1, 0, 0)")])
 
-Transform2D.staticProcedures(loader= load_Transform2D_sproc):
+Transform2D.procedures(loader= load_Transform2D_proc):
   proc inverse*(self: Transform2D): Transform2D {.loadfrom("inverse", 1420440541).}
   proc affineInverse*(self: Transform2D): Transform2D {.loadfrom("affine_inverse", 1420440541).}
   proc getRotation*(self: Transform2D): Float {.loadfrom("get_rotation", 466405837).}
@@ -43,9 +43,9 @@ operators(loader= load_Transform2D_op):
   proc `==`*(left: Transform2D; right: Transform2D): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: Transform2D; right: Transform2D): Bool {.operator: VariantOP_NotEqual.}
   proc `*`*(left: Transform2D; right: Transform2D): Transform2D {.operator: VariantOP_Multiply.}
-  proc contains*(left: Dictionary; right: Transform2D): Bool {.operator: VariantOP_In.}
-  proc contains*(left: Array; right: Transform2D): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Dictionary; right: Transform2D): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Array; right: Transform2D): Bool {.operator: VariantOP_In.}
   proc `*`*(left: Transform2D; right: PackedVector2Array): PackedVector2Array {.operator: VariantOP_Multiply.}
 proc load_Transform2D_allmethod* =
-  load_Transform2D_sproc()
+  load_Transform2D_proc()
   load_Transform2D_op()

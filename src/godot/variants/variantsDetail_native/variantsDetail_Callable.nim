@@ -10,7 +10,7 @@ import ./../../helper/variants_forge
 #   self.json.indexing_return_type=none(string)
 #   self.json.constants=none(seq[JsonConstant])
 
-Callable.staticProcedures(loader= load_Callable_sproc):
+Callable.procedures(loader= load_Callable_proc):
   proc callv*(self: Callable; arguments: Array): Variant {.loadfrom("callv", 413578926).}
   proc isNull*(self: Callable): Bool {.loadfrom("is_null", 3918633141).}
   proc isCustom*(self: Callable): Bool {.loadfrom("is_custom", 3918633141).}
@@ -36,8 +36,8 @@ operators(loader= load_Callable_op):
   proc `not`*(left: Callable): Bool {.operator: VariantOP_Not.}
   proc `==`*(left: Callable; right: Callable): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: Callable; right: Callable): Bool {.operator: VariantOP_NotEqual.}
-  proc contains*(left: Dictionary; right: Callable): Bool {.operator: VariantOP_In.}
-  proc contains*(left: Array; right: Callable): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Dictionary; right: Callable): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Array; right: Callable): Bool {.operator: VariantOP_In.}
 proc load_Callable_allmethod* =
-  load_Callable_sproc()
+  load_Callable_proc()
   load_Callable_op()

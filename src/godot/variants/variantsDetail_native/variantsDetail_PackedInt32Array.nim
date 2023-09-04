@@ -10,7 +10,7 @@ import ./../../helper/variants_forge
 #   self.json.indexing_return_type=some("int")
 #   self.json.constants=none(seq[JsonConstant])
 
-PackedInt32Array.staticProcedures(loader= load_PackedInt32Array_sproc):
+PackedInt32Array.procedures(loader= load_PackedInt32Array_proc):
   proc size*(self: PackedInt32Array): Int {.loadfrom("size", 3173160232).}
   proc isEmpty*(self: PackedInt32Array): Bool {.loadfrom("is_empty", 3918633141).}
   proc set*(self: PackedInt32Array; index: Int; value: Int) {.loadfrom("set", 3638975848).}
@@ -37,11 +37,11 @@ operators(loader= load_PackedInt32Array_op):
   proc `==`*(left: PackedInt32Array; right: ptr Variant): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: PackedInt32Array; right: ptr Variant): Bool {.operator: VariantOP_NotEqual.}
   proc `not`*(left: PackedInt32Array): Bool {.operator: VariantOP_Not.}
-  proc contains*(left: Dictionary; right: PackedInt32Array): Bool {.operator: VariantOP_In.}
-  proc contains*(left: Array; right: PackedInt32Array): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Dictionary; right: PackedInt32Array): Bool {.operator: VariantOP_In.}
+  proc `contains`*(left: Array; right: PackedInt32Array): Bool {.operator: VariantOP_In.}
   proc `==`*(left: PackedInt32Array; right: PackedInt32Array): Bool {.operator: VariantOP_Equal.}
   proc `!=`*(left: PackedInt32Array; right: PackedInt32Array): Bool {.operator: VariantOP_NotEqual.}
   proc `+`*(left: PackedInt32Array; right: PackedInt32Array): PackedInt32Array {.operator: VariantOP_Add.}
 proc load_PackedInt32Array_allmethod* =
-  load_PackedInt32Array_sproc()
+  load_PackedInt32Array_proc()
   load_PackedInt32Array_op()

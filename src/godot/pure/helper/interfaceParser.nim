@@ -55,6 +55,7 @@ macro parseInterface*(body): untyped =
     typesec.expectKind nnkTypeSection
     for typedef in typesec:
       typedef[2].expectKind nnkProcTy
+      typedef[2].pragma.add quote do: raises([])
       let (identdef, loader) = define_interface(typedef[0].getName)
       identdefs.add identdef
       loaders.add loader

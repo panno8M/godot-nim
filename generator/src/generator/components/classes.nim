@@ -1,24 +1,34 @@
-import beyond/meta/statements
+import beyond/meta/[statements]
 import std/options
 import std/strformat
 import std/sequtils
+import std/strutils
 import std/deques
 import std/lists
+import std/sets
 
 import ./gd_enum
 import ./gd_functions
 import ../tool/[
   moduleTree,
   namespace,
+  jsonapi,
 ]
+
+type
+  NimClass* = ref object of ObjectInfo
+    inherits*: TypeName
+    enums*: seq[NimEnum]
+    json*: JsonClass
+  NimClasses* = seq[NimClass]
 
 const classBaseName* = "ObjectBase"
 proc toNim*(class: JsonClass): NimClass =
   result = NimClass(
-    inherits: objectName class.inherits.get(classBaseName),
+    inherits: typeName class.inherits.get(classBaseName),
     json: class,
   )
-  result.bindName objectName class.name
+  result.bindName typeName class.name
   result.enums = class.enums.get(@[]).mapIt it.toNim(result.name)
 
 proc toNim*(classes: JsonClasses): NimClasses = classes.mapIt it.toNim
@@ -28,7 +38,7 @@ proc renderClassDefine*(class: NimClass): Statement =
     classdef
 
 iterator parentalSorted*(classes: NimClasses): NimClasses =
-  var targetParent = toDeque([objectName classBaseName])
+  var targetParent = toDeque([typeName classBaseName])
   var list = toDoublyLinkedList classes
 
   while targetParent.len != 0:
@@ -59,19 +69,59 @@ proc renderLocalEnums*(classes: NimClasses): Statement =
     if class.enums.len != 0:
       result.children.add ""
 
-proc renderDetail*(classes: NimClasses): Statement =
-  result = new ParagraphSt
+iterator renderDetail*(classes: NimClasses): tuple[class, inherits: TypeName; statement: Statement] =
   for classes in classes.parentalSorted:
     for class in classes:
+      var result = new ParagraphSt
       result.children.add "# " & $class.name
       result.children.add &"define_godot_engine_class_essencials({class.name}, {class.inherits})"
-      let localProcs = BlockSt(head: &"{class.name}.memberProcs:")
 
+      var getters: HashSet[string]
+      var setters: HashSet[string]
+      for prop in class.json.properties.get(@[]):
+        discard
+        getters.incl prop.getter
+        if prop.setter.isSome:
+          setters.incl prop.setter.get
+
+      let localProcs = BlockSt(head: &"{class.name}.memberProcs:")
       for mhd in class.json.methods.get(@[]):
         if mhd.is_virtual.get(false):
-          result.children.add mhd.prerender(argType class.name)
+          result.children.add mhd.prerender(argType class.name, gpkVirtualMethod)
         else:
-          localProcs.children.add mhd.prerender(argType class.name)
+          var gpkind: GodotProcKind
+          if mhd.is_static:
+            gpkind = gpkStaticMethod
+          elif mhd.name in getters:
+            gpkind = gpkGetter
+          elif mhd.name in setters:
+            gpkind = gpkSetter
+          else:
+            gpkind = gpkMethod
+          localProcs.children.add mhd.prerender(argType class.name, gpkind)
+
       if localProcs.children.len != 0:
         result.children.add localProcs
-      result.children.add ""
+
+      yield (class.name, class.inherits, result)
+
+
+method stringify*(info: NimClass; param: ParamType): string =
+  case param.attribute
+  of ptaNake:
+    if info.json.is_refcounted:
+      if $info.name != "RefCounted":
+        return &"Ref[{param.name}]"
+    return "ptr ".repeat(param.ptrdepth) & $param.name
+  of ptaTypedArray:
+    return &"TypedArray[{param.name}]"
+  else: discard
+
+method defaultValue*(info: NimClass; value: string; argType: ArgType): string =
+  if value == "null":
+    if info.json.is_refcounted:
+      return "default " & $argType
+    return "nil"
+  if argType.attribute == ptaTypedArray:
+    return "TypedArray" & "|>init[" & $argType.name & "]()"
+  return value
