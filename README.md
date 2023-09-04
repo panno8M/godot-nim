@@ -12,6 +12,10 @@ Or clone this repo and execute `nimble debugdemo` to compile demo(test) project 
 
 This project is in the early stages of development and most features are not yet operational.
 
+### ⚫In progress
+
+* [ ] Register user defined method
+
 ### 🟢Tested
 
 * Register user defined class to godot

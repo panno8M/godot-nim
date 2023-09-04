@@ -149,6 +149,12 @@ proc register_class*(info: ClassRegistrationInfo) =
 
   # now register our class within ClassDB within Godot
   # ClassDB|>initialize_class(classes[cl.name])
+template register_class*(T: typedesc[ObjectBase]) =
+  mixin make_ClassRegistrationInfo
+  register_class(T.make_ClassRegistrationInfo(false, false))
+
+proc register_proc*(T: typedesc[ObjectBase], p: proc) =
+  discard
 
 proc bind_virtual_method*(p_class, p_method: StringName; p_call: ClassCallVirtual) =
   var classInfo = classes.getOrDefault(p_class, nil)

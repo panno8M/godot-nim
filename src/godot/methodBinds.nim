@@ -94,8 +94,8 @@ proc get_arguments_metadata_list*(self: MethodBind): tuple[retval: ClassMethodAr
   for i in 0..<(self.argument_count):
     result.args.add self.get_argument_metadata(i)
 
-method call*(self: MethodBind; instance: ClassInstancePtr; args: ptr ConstVariantPtr; argsCount: Int; error: ptr CallError): Variant {.base.} = discard
-method ptrcall*(self: MethodBind; instance: ClassInstancePtr; args: ptr ConstTypePtr; r_return: TypePtr) {.base.} = discard
+method call*(self: MethodBind; instance: ClassInstancePtr; args: UncheckedArray[ConstVariantPtr]; argsCount: Int; error: ptr CallError): Variant {.base.} = discard
+method ptrcall*(self: MethodBind; instance: ClassInstancePtr; args: UncheckedArray[ConstTypePtr]; r_return: TypePtr) {.base.} = discard
 
 proc bindCall* {.implement: ClassMethodCall.} =
   let b = cast[MethodBind](methodUserdata)

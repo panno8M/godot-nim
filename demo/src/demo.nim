@@ -31,7 +31,8 @@ proc newDemoLogger: FileLogger =
   createDir("log")
   newFileLogger("log/demo.log", fmWrite, format= format)
 
-defaultGroup.loggers.add @[newDemoLogger(), newConsoleLogger(format= format)]
+defaultGroup.loggers.add newDemoLogger()
+# defaultGroup.loggers.add newConsoleLogger(format= format)
 
 
 proc initialize(lvl: InitializationLevel): void =

@@ -77,6 +77,7 @@ template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
 
   proc get_property_list_bind {.implement: ClassGetPropertyList, gensym.} =
     iam($Class&"-get-property-list", stgLibrary).debug("Called")
+    r_count[] = 0
     discard
     # withMakeErrmsg_if Class|>properties.len != 0:
     #   printError(msg, "Internal error, property list was not freed by engine!")

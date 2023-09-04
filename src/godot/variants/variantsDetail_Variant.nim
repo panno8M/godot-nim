@@ -65,27 +65,24 @@ TODO ignore Support_godots_ref.comment"define Variant.new":
   proc variant*[T: RefCounted](r: Ref[T]): Variant {.unimplemented.}
 
 proc variant*(v: bool): Variant =
-  fromTypeconstructor[VariantType_Bool](addr result, addr v.encoded)
+  fromTypeconstructor[VariantType_Bool](addr result, addr v)
 
 proc variant*(v: int64): Variant =
-  fromTypeConstructor[VariantType_Int](addr result, addr v.encoded)
+  fromTypeConstructor[VariantType_Int](addr result, addr v)
 proc variant*(v: int32|uint32|uint64): Variant = variant int64 v
 
 proc variant*(v: float64): Variant =
-  fromTypeConstructor[VariantType_Float](addr result, addr v.encoded)
+  fromTypeConstructor[VariantType_Float](addr result, addr v)
 proc variant*(v: float32): Variant = variant float64 v
 proc variant*(v: string): Variant = variant String|>init v
 
 proc get*(v: Variant; _: typedesc[bool]): bool =
   toTypeConstructor[VariantType_Bool](addr result, addr v)
-  result.converted
 proc get*(v: Variant; _: typedesc[int64]): int64 =
   toTypeConstructor[VariantType_Int](addr result, addr v)
-  result.converted
 proc get*[T: int32|uint32|uint64](v: Variant; _: typedesc[T]): T = T v.get int64
 proc get*(v: Variant; _: typedesc[float64]): float64 =
   toTypeConstructor[VariantType_Float](addr result, addr v)
-  result.converted
 proc get*(v: Variant; _: typedesc[float32]): float32 = float32 v.get float64
 
 TODO ignore Variant_conversion:

@@ -232,9 +232,9 @@ type
   ClassCreateInstance* = proc (p_userdata: pointer): ObjectPtr {.gdcall.}
   ClassFreeInstance* = proc (p_userdata: pointer; p_instance: ClassInstancePtr) {.gdcall.}
   ClassGetVirtual* = proc (p_userdata: pointer; p_name: ConstStringNamePtr): ClassCallVirtual {.gdcall.}
-  ClassMethodCall* = proc (method_userdata: pointer; p_instance: ClassInstancePtr; p_args: ptr ConstVariantPtr; p_argument_count: Int; r_return: VariantPtr; r_error: ptr CallError) {.gdcall.}
-  ClassMethodValidatedCall* = proc (method_userdata: pointer; p_instance: ClassInstancePtr; p_args: ptr ConstVariantPtr; r_return: VariantPtr) {.gdcall.}
-  ClassMethodPtrCall* = proc (method_userdata: pointer; p_instance: ClassInstancePtr; p_args: ptr ConstTypePtr; r_ret: TypePtr) {.gdcall.}
+  ClassMethodCall* = proc (method_userdata: pointer; p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstVariantPtr]; p_argument_count: Int; r_return: VariantPtr; r_error: ptr CallError) {.gdcall.}
+  ClassMethodValidatedCall* = proc (method_userdata: pointer; p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstVariantPtr]; r_return: VariantPtr) {.gdcall.}
+  ClassMethodPtrCall* = proc (method_userdata: pointer; p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.}
   ScriptInstanceSet* = proc (p_instance: ScriptInstanceDataPtr; p_name: ConstStringNamePtr; p_value: ConstVariantPtr): Bool {.gdcall.}
   ScriptInstanceGet* = proc (p_instance: ScriptInstanceDataPtr; p_name: ConstStringNamePtr; r_ret: VariantPtr): Bool {.gdcall.}
   ScriptInstanceGetPropertyList* = proc ( p_instance: ScriptInstanceDataPtr; r_count: ptr uint32): ptr PropertyInfo {.gdcall.}
