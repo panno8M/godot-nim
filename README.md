@@ -14,7 +14,7 @@ This project is in the early stages of development and most features are not yet
 
 ### ⚫In progress
 
-* [ ] Register user defined method
+* [ ] Register user-defined methods
   * [x] Register and call simple method
     * [x] access to self instance
     * [x] access to other arguments
@@ -23,6 +23,8 @@ This project is in the early stages of development and most features are not yet
   * [ ] Support static
   * [ ] Support virtual
   * [ ] Support default-value
+* [ ] Register user-defined properties
+* [ ] Make faster to compile
 
 ### 🟢Tested
 
