@@ -1,73 +1,61 @@
+import variantTypeSolver
 import ../godotInterface as gd
 import ../variants/variantsConstr_custom
 import ../variants/variantsDetail_custom/variantsDetail_stringUtils
-import beyond/[annotativeBlocks]
+import ../variants/variantsDetail_Variant
+import ../pure/todos
 
 TODO subject"variants.propertyinfo".comment"Insufficient kinds handled"
 
+var
+  variantFromType: array[`Variant|>Type`, VariantFromTypeConstructorFunc]
+  typeFromVariant: array[`Variant|>Type`, TypeFromVariantConstructorFunc]
+
+proc load_converter* =
+  for i in (VariantType_Nil.succ)..<`Variant|>Type`.high:
+    variantFromType[i] = interface_getVariantFromTypeConstructor(`Variant|>Type` i)
+    typeFromVariant[i] = interface_getVariantToTypeConstructor(`Variant|>Type` i)
+
+# General
+# =======
+
 template metadata*(T: typedesc): ClassMethodArgumentMetadata = MethodArgumentMetadata_None
 
+echo variantType Vector3
 
-template convert_standard(Type): untyped =
-  bind Type
-  proc encoded*(v: Type): pointer {.inline.} =
-    addr v
-  template encode*(v: Type; p: pointer) =
-    cast[ptr Type](p)[] = v
-  template decode*(p: pointer; T: typedesc[Type]): Type =
-    cast[ptr Type](p)[]
+proc encoded*(v: SomeVariants): pointer {.inline.} =
+  addr v
+template encode*[T: SomeVariants](v: T; p: pointer) =
+  cast[ptr T](p)[] = v
+template decode*(p: pointer; T: typedesc[SomeVariants]): T =
+  cast[ptr T](p)[]
+converter variant*[T: SomeVariants](v: T): Variant =
+  variantFromType[variantType T](addr result, addr v)
+proc get*(v: Variant; T: typedesc[SomeVariants]): T =
+  typeFromVariant[variantType T](addr result, addr v)
 
-template convert_alternative(Type, Base, conv_to, conv_from): untyped =
+# Specific
+# ========
+
+template convert_alternative(Type, Base, to_Base, to_Type): untyped =
   bind Type
   bind Base
-  bind conv_to
-  bind conv_from
+  bind to_Base
+  bind to_Type
   template encoded*(v: Type): pointer =
-    encoded(conv_to(v))
+    encoded(to_Base(v))
   template encode*(v: Type; p: pointer) =
-    encode(conv_to(v), p)
+    encode(to_Base(v), p)
   template decode*(p: pointer; T: typedesc[Type]): Base =
-    conv_from(v.decode(Base))
+    to_Type(p.decode(Base))
+  converter variant*(v: Type): Variant =
+    variant to_Base(v)
+  proc get*(v: Variant; T: typedesc[Type]): T =
+    to_Type(v.get(Base))
 
 template convert_alternative_autocast(Type, Base): untyped =
   convert_alternative Type, Base, Base, Type
 
-convert_standard gd.Bool
-convert_standard gd.Int
-convert_standard gd.Float
-convert_standard gd.String
-convert_standard gd.StringName
-convert_standard gd.Vector2
-convert_standard gd.Vector2i
-convert_standard gd.Vector3
-convert_standard gd.Vector3i
-convert_standard gd.Vector4
-convert_standard gd.Vector4i
-convert_standard gd.Quaternion
-convert_standard gd.Color
-convert_standard gd.Rect2
-convert_standard gd.Rect2i
-convert_standard gd.Transform2D
-convert_standard gd.Transform3D
-convert_standard gd.Plane
-convert_standard gd.AABB
-convert_standard gd.Basis
-convert_standard gd.Projection
-convert_standard gd.NodePath
-convert_standard gd.RID
-convert_standard gd.Callable
-convert_standard gd.Signal
-convert_standard gd.Dictionary
-convert_standard gd.Array
-convert_standard gd.PackedByteArray
-convert_standard gd.PackedInt32Array
-convert_standard gd.PackedInt64Array
-convert_standard gd.PackedFloat32Array
-convert_standard gd.PackedFloat64Array
-convert_standard gd.PackedStringArray
-convert_standard gd.PackedVector2Array
-convert_standard gd.PackedVector3Array
-convert_standard gd.PackedColorArray
 
 convert_alternative string, gd.String, `String|>init`, `$`
 
@@ -80,6 +68,61 @@ convert_alternative_autocast uint16, gd.Int
 
 convert_alternative_autocast float32, gd.Float
 
+# ObjectPtr
+# =========
+
+proc encoded*(v: ObjectPtr): pointer {.inline.} =
+  addr v
+template encode*(v: ObjectPtr; p: pointer) =
+  cast[ptr ObjectPtr](p)[] = v
+template decode*(p: pointer; T: typedesc[ObjectPtr]): T =
+  cast[ptr ObjectPtr](p)[]
+
+converter variant*(v: ObjectPtr): Variant =
+  variantFromType[VariantType_Object](addr result, addr v)
+proc get*(v: Variant; T: typedesc[ObjectPtr]): T =
+  typeFromVariant[VariantType_Object](addr result, addr v)
+
+# Godot Object
+# ============
+
+proc getInstanceBinding[T: ObjectBase](p_engine_object: ObjectPtr): ptr T =
+  if p_engine_object.isNil: return
+
+  # Get existing instance binding, if one already exists.
+  let instance = interface_objectGetInstanceBinding(p_engine_object, token, nil)
+  if not instance.isNil:
+    return cast[ptr T](instance)
+
+  # Otherwise, try to look up the correct binding callbacks.
+  # var binding_callbacks: ptr InstanceBindingCallbacks = nil
+  # var class_name: StringName
+  # if interface_objectGetClassName(p_engine_object, library, addr class_name):
+  #   binding_callbacks = ClassDB::get_instance_binding_callbacks(class_name);
+  # if binding_callbacks == nil:
+  #   binding_callbacks = &Object::_gde_binding_callbacks;
+
+  # return cast[ptr ObjectBase](interface_objectGetInstanceBinding(p_engine_object, token, binding_callbacks))
+
+
+template encoded*[T: ObjectBase](v: ptr T): pointer =
+  encoded(v.owner)
+template encode*[T: ObjectBase](v: T; p: pointer) =
+  encode(v.owner, p)
+template decode*(p: pointer; T: typedesc[ObjectBase]): ptr T =
+  getInstanceBinding[T](p.decode(ObjectPtr))
+converter variant*(v: ObjectBase): Variant =
+  variant v.owner
+proc get*(v: Variant; T: typedesc[ObjectBase]): ptr T =
+  getInstanceBinding[T](v.get(ObjectPtr))
+
+
+TODO ignore Support_godots_ref.comment"define Variant.new":
+  proc variant*[T: RefCounted](r: Ref[T]): Variant {.unimplemented.}
+
+
+# Property Info
+# =============
 
 template metadata*(T: typedesc[int]): ClassMethodArgumentMetadata = MethodArgumentMetadata_Int_is_Int64
 proc propertyInfo*(T: typedesc[int]; name: static string = ""): ptr PropertyInfo =

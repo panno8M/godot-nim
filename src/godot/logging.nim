@@ -1,7 +1,6 @@
 import beyond/[logging_api, logging_formatshelf]
 import std/os
 import std/times
-import std/strutils
 
 export logging_api, logging_formatshelf
 
@@ -29,6 +28,7 @@ template handler*: string =
 
 when isMainModule:
   import std/strformat
+  import std/strutils
   import std/sequtils
 
   proc format {.implement: LogFormat.} =

@@ -7,7 +7,8 @@ import
   register,
   variants,
   pure/todos,
-  helper/initializeHelper
+  helper/objectConverter,
+  variants/variantsLoader
 
 type
   InitCallback = proc(lvl: InitializationLevel) {.nimcall.}
@@ -47,7 +48,8 @@ proc init* {.implement: InitializationFunction.} =
     r_initialization.initialize = initialize_module
     r_initialization.deinitialize = deinitialize_module
 
-    Variant|>load()
+    load_converter()
+    load_Variants()
 
   except:
     iam("unhandled-exception", stgLibrary).error getCurrentExceptionMsg()

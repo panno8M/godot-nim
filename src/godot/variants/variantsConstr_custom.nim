@@ -35,5 +35,4 @@ converter init*(str: string): String {.staticOf: String.} =
 converter init*(str: string): StringName {.staticOf: StringName.} =
   StringName|>init String|>init str
 
-staticOf Variant:
-  proc init*: Variant = interface_variantNewNil(addr result)
+proc variant*: Variant = interface_variantNewNil(addr result)
