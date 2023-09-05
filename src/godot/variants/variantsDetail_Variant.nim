@@ -85,6 +85,8 @@ proc get*(v: Variant; _: typedesc[float64]): float64 =
   toTypeConstructor[VariantType_Float](addr result, addr v)
 proc get*(v: Variant; _: typedesc[float32]): float32 = float32 v.get float64
 
+proc get*(v: Variant; _: typedesc[ObjectPtr]): ObjectPtr =
+  toTypeConstructor[VariantType_Object](addr result, addr v)
 TODO ignore Variant_conversion:
   proc variant*(v: ObjectID)
   proc variant*(v: ptr Object)

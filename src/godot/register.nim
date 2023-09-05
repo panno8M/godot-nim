@@ -8,129 +8,31 @@ import beyond/[
   annotativeblocks,
 ]
 import godotInterface
-import methodBinds
 import helper/[errorHandlings]
 
 type
-  PropertySetGet* = object
-    index*: int
-    setter*: StringName
-    getter*: StringName
-    setptrInst*: MethodBind
-    getptrInst*: MethodBind
-    `type`*: Variant|>Type
-  ClassInfo* = ref object
-    name: StringName
-    parent_name: StringName
-    level = Initialization_Scene
-    method_map: Table[StringName, MethodBind]
-    signal_names: HashSet[StringName]
-    virtual_methods: Table[StringName, ClassCallVirtual]
-    property_names: HashSet[StringName]
-    constant_names: HashSet[StringName]
-    # Pointer to the parent custom class, if any. Will be null if the parent class is a Godot class.
-    parent: ClassInfo
   ClassRegistrationInfo* = object
     name*, parent_name*: StringName
     creationInfo*: ClassCreationInfo
 
 # This may only contain custom classes, not Godot classes
-var classes: Table[StringName, ClassInfo]
+# var classes: Table[StringName, ClassInfo]
 
 var currentLevel*: InitializationLevel
 
 proc initialize_register*(lvl: InitializationLevel) =
-  for name, info in classes:
-    if info.level != lvl: continue
+  discard
+  # for name, info in classes:
+  #   if info.level != lvl: continue
 
 proc deinitialize_register*(lvl: InitializationLevel) =
-  for name, info in classes.mpairs:
-    if info.level != lvl: continue
+  discard
+  # for name, info in classes.mpairs:
+  #   if info.level != lvl: continue
 
-    interface_classdb_unregister_extension_class(library, addr info.name)
-    for `method` in info.methodMap.mvalues:
-      `=destroy`(`method`)
-
-
-#define DEFVAL(m_defval) (m_defval)
-type MethodDefinition = object
-  name: StringName
-  args: seq[StringName]
-proc defineMethod*(name: StringName): MethodDefinition =
-  MethodDefinition(name: name)
-proc defineMethod*(name: StringName; args: varargs[StringName]): MethodDefinition =
-  MethodDefinition(name: name, args: @args)
-
-# private:
-proc bind_method_godot(class_name: StringName; `method`: var MethodBind) =
-  var def_args = newSeq[ptr Variant](`method`.default_arguments.len)
-  for i, arg in `method`.default_arguments.mpairs: def_args[i] = addr arg
-
-  let (retval_info, arguments_info) = `method`.get_arguments_info_list()
-  let (retval_metadata, arguments_metadata) = `method`.get_arguments_metadata_list()
-
-  let method_info = ClassMethodInfo(
-    name: addr `method`.name,
-    methodUserdata: addr `method`,
-    callFunc: methodBinds.bindCall,
-    ptrcallFunc: methodBinds.bindPtrcall,
-    methodFlags: `method`.hint_flags,
-    hasReturnValue: `method`.has_return,
-    returnValueInfo: addr retval_info,
-    returnValueMetaData: retval_metadata,
-    argumentCount: uint32 `method`.argument_count,
-    argumentsInfo: addr arguments_info[0],
-    argumentsMetadata: addr arguments_metadata[1],
-    defaultArgumentCount: uint32 `method`.default_arguments.len,
-    defaultArguments: addr def_args[0],
-  )
-  interface_classdb_register_extension_class_method(library, addr class_name, addr method_info)
-
-proc bind_methodfi(flags: set[ClassMethodFlags]; `bind`: var MethodBind; method_name: MethodDefinition; defs: seq[pointer]): MethodBind =
-  let instance_type: StringName = `bind`.instance_class
-
-  withMakeErrmsg_if instance_type notin classes:
-    printError(msg, cstring &"Class '{instance_type}' doesn't exist.")
-    return nil
-
-  let `type` = addr classes[instance_type]
-
-  withMakeErrmsg_if method_name.name in `type`.method_map:
-    printError(msg, cstring &"Binding duplicate method: {instance_type}.{method_name.name}")
-    return nil
-
-  withMakeErrmsg_if method_name.name in `type`.virtual_methods:
-    printError(msg, cstring &"Method '{instance_type}.{method_name.name}' already bound as virtual.")
-    return nil
-
-  `bind`.name = method_name.name
-
-  withMakeErrmsg_if method_name.args.len > `bind`.argument_count:
-    printError(msg, cstring &"Method '{instance_type}.{method_name.name}' definition has more arguments than the actual method.")
-    return nil
-
-  `bind`.hint_flags = flags
-
-  var args = newSeq[StringName](method_name.args.len)
-  for i, arg in method_name.args:
-    args[i] = arg
-
-  `bind`.argument_names = args
-
-  var defvals = newSeq[Variant](defs.len)
-
-  for i, def in defs:
-    defvals[i] = cast[ptr Variant](def)[]
-
-  `bind`.default_arguments = defvals
-
-  # register our method bind within our plugin
-  `type`.method_map[method_name.name] = `bind`
-
-  # and register with godot
-  bind_method_godot(`type`.name, `bind`)
-
-  return `bind`
+  #   interface_classdb_unregister_extension_class(library, addr info.name)
+  #   for `method` in info.methodMap.mvalues:
+  #     `=destroy`(`method`)
 
 proc register_class*(info: ClassRegistrationInfo) =
   # Register this class within our plugin
@@ -156,22 +58,22 @@ template register_class*(T: typedesc[ObjectBase]) =
 proc register_proc*(T: typedesc[ObjectBase], p: proc) =
   discard
 
-proc bind_virtual_method*(p_class, p_method: StringName; p_call: ClassCallVirtual) =
-  var classInfo = classes.getOrDefault(p_class, nil)
-  withMakeErrmsg_if classInfo.isNil:
-    printError(msg, cstring fmt"Class '{p_class}' doesn't exist.")
+# proc bind_virtual_method*(p_class, p_method: StringName; p_call: ClassCallVirtual) =
+#   var classInfo = classes.getOrDefault(p_class, nil)
+#   withMakeErrmsg_if classInfo.isNil:
+#     printError(msg, cstring fmt"Class '{p_class}' doesn't exist.")
 
-  withMakeErrmsg_if classInfo.method_map.hasKey(p_method):
-    printError(msg, cstring fmt"Method '{p_class}::{p_method}()' already registered as non-virtual.")
-  withMakeErrmsg_if classInfo.virtual_methods.hasKey(p_method):
-    printError(msg, cstring fmt"Virtual '{p_class}::{p_method}()' method already registered.")
+#   withMakeErrmsg_if classInfo.method_map.hasKey(p_method):
+#     printError(msg, cstring fmt"Method '{p_class}::{p_method}()' already registered as non-virtual.")
+#   withMakeErrmsg_if classInfo.virtual_methods.hasKey(p_method):
+#     printError(msg, cstring fmt"Virtual '{p_class}::{p_method}()' method already registered.")
 
-  classInfo.virtual_methods[p_method] = p_call;
+#   classInfo.virtual_methods[p_method] = p_call;
 
-template BIND_VIRTUAL_METHOD*(m_class, m_method): untyped =
-  let `call m_method` = proc(p_instance: ObjectPtr; p_args: ptr UncheckedArray[ConstTypePtr]; p_ret: TypePtr) =
-    call_with_ptr_args(reinterpret_cast<m_class *>(p_instance), &m_class|>m_method, p_args, p_ret)
-  ClassDB|>bind_virtual_method($m_class, $m_method, `call m_method`)
+# template BIND_VIRTUAL_METHOD*(m_class, m_method): untyped =
+#   let `call m_method` = proc(p_instance: ObjectPtr; p_args: ptr UncheckedArray[ConstTypePtr]; p_ret: TypePtr) =
+#     call_with_ptr_args(reinterpret_cast<m_class *>(p_instance), &m_class|>m_method, p_args, p_ret)
+#   ClassDB|>bind_virtual_method($m_class, $m_method, `call m_method`)
 
 proc classGetVirtual* {.implement: ClassGetVirtual.} = discard
 
