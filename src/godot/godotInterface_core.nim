@@ -237,6 +237,8 @@ proc load_Variants_destr* =
 type ObjectBase* {.byref.} = object of RootObj
   isvalid* = true
   owner*: ObjectPtr
+type SomeObject* = concept type t
+  t is ObjectBase
 proc init_engine_class*(self: ref ObjectBase; godot_class: ptr StringName) =
   self.owner = interface_classdb_construct_object(godot_class)
 proc init_engine_class*(self: ref ObjectBase; godot_object: ObjectPtr) =

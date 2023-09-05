@@ -1,7 +1,7 @@
 import beyond/[oop, macros]
-import std/strformat
 import ../godotInterface_core
 import classDefinerCommon
+import objectConverter
 
 template define_godot_engine_class_essencials*(Class, Inherits: typedesc): untyped =
   bind define_godot_class_commons
@@ -30,53 +30,58 @@ template define_godot_engine_class_essencials*(Class, Inherits: typedesc): untyp
       reference_callback: Class|>reference_callback,
     )
 
+iterator breakArgs(node: NimNode): tuple[index: int; def: tuple[name, Type, default: NimNode]] =
+  node.expectKind nnkFormalParams
+  var index: int
+  for defs in node[1..^1]:
+    for id in defs[0..^3]:
+      yield (index, (id, defs[^2], defs[^1]))
+      inc index
+proc hasReturn(node: NimNode): bool =
+  not node.hasNoReturn
+
 macro memberProcs*(class: typedesc; defs): untyped =
   result = newStmtList()
   for def in defs:
     let loadfrom = def.popPragma("loadfrom")
     let gdProcName_strlit = loadfrom[1]
     let hash_intlit = loadfrom[2]
-    let container = genSym(nskVar, "methodbind")
-    let containerName = genSym(nskLet, "name")
     let staticOf = def.getPragma("staticOf")
-    let params = if staticOf.isNil: def.params[2..^1] else: def.params[1..^1]
 
+    let ret_t = def.params[0]
     var selfptr = newNilLit()
+    var paramptr = newNilLit()
+    var retptr = newNilLit()
 
-    let retptr =
-      if def.hasNoReturn: newNilLit()
-      else: quote do: addr result
+    let encoded_ret = genSym(nskVar, "encoded")
+
+    if def.hasReturn:
+      retptr = quote do:
+        var `encoded_ret`: encoded typedesc `ret_t`
+        addr `encoded_ret`
 
     var paramBracket = newNimNode nnkBracket
-    for i_defs, defs in def.params[1..^1]:
-      for i_param, param in defs[0..^3]:
-        if staticOf.isNil and i_defs == 0 and i_param == 0:
-          selfptr = quote do: `param`.owner
-        else:
-          paramBracket.add quote do: cast[pointer](addr `param`)
+    for i, (arg, _, _) in def.params.breakArgs:
+      if staticOf.isNil and i == 0:
+        selfptr = quote do: `arg`.owner
+      else:
+        paramBracket.add quote do: `arg`.encoded
 
-    var paramArray = genSym(nskLet, "params")
-
-    let paramptr = if paramBracket.len == 0: newNilLit() else: quote do: addr `paramArray`[0]
-    let defArray =
-      if paramptr.kind != nnkNilLit:
-        quote do:
-          let `paramArray` = `paramBracket`
-      else: nnkDiscardStmt.newTree(newEmptyNode())
-
-    def.pragma.add quote do: raises([GodotInternalDefect])
+    if paramBracket.len != 0:
+      paramptr = quote do:
+        let paramArray = `paramBracket`
+        addr paramArray[0]
 
     def.body = newStmtList()
     def.body.add quote do:
-      try:
-        once:
-          let `containerName` = StringName|>init `gdProcName_strlit`
-          `container` = interface_ClassdbGetMethodBind(addr className `class`, addr `containerName`, `hash_intlit`)
-        `defArray`
-        interfaceObjectMethodBindPtrcall(`container`, `selfptr`, `paramptr`, `retptr`)
-      except:
-        raise newException(GodotInternalDefect, "failed to execute `" & `gdProcName_strlit` & "`")
+      var methodbind {.global.}: MethodBindPtr
+      if unlikely(methodbind.isNil):
+        let name = StringName|>init `gdProcName_strlit`
+        methodbind = interface_ClassdbGetMethodBind(addr className `class`, addr name, `hash_intlit`)
+      interfaceObjectMethodBindPtrcall(methodbind, `selfptr`, `paramptr`, `retptr`)
+    if def.hasReturn:
+      def.body.add quote do:
+        return (addr `encoded_ret`).decode(typedesc `ret_t`)
 
-    result.add quote do:
-      var `container`: MethodBindPtr
-      `def`
+
+  return defs
