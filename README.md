@@ -32,13 +32,13 @@ This project is in the early stages of development and most features are not yet
 ### 🟡Never tested yet
 
 * Destroy object safety by GC
-* Instantiate engine class in nim
-* Call engine class method from nim
+* Correctly convert between Godot class and Nim object
 
 ### 🔴Still can't
 
-* Register user defined method to godot
-* Call user defined method from gdscript
+* Integrate Nim's ref with Godot's RefCounted
+* Instantiate engine class in nim
+* Call engine class method from nim
 
 ...And so on.
 
