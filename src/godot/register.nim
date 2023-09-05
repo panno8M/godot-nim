@@ -31,6 +31,7 @@ template register_class*(T: typedesc[ObjectBase]) =
   register_class(T.make_ClassRegistrationInfo(false, false))
 
 template register_method*(T: typedesc[ObjectBase]; p: proc) =
+  mixin p
   let info = build_methodInfo(p)
   interface_classDbRegisterExtensionClassMethod(library, addr className(T), addr info)
 

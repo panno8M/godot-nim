@@ -212,10 +212,10 @@ macro build_methodInfo*(Proc: proc): ClassMethodInfo =
 
 
   quote do:
-    proc call_func {.implement: ClassmethodCall.} =
+    proc call_func {.implement: ClassmethodCall, gensym.} =
       # iam($`self_t`&"-call-func").debug("Called")
       `call_func_body`
-    proc ptrcall_func {.implement: ClassmethodPtrCall.} =
+    proc ptrcall_func {.implement: ClassmethodPtrCall, gensym.} =
       # iam($`self_t`&"-ptrcall-func").debug("Called")
       discard
       `ptrcall_func_body`

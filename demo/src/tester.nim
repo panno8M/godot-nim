@@ -10,14 +10,15 @@ import godot/register
 unittest.disableParamFiltering()
 
 type Tester* = object of Node
-  rand: int
+  value: int
 define_godot_class_essencials Tester, Node
 
-proc helloworld*(self: ref Tester; value: int; default_value: int = 10): string =
-  echo "prev: ", self.rand
-  self.rand = rand(100)
-  echo "curr: ", self.rand
-  "Hello, World! (" & $value & " : " & $default_value & ")"
+proc helloworld*(self: ref Tester): string =
+  "Hello, World!"
+proc set_int_value*(self: ref Tester; value: int) =
+  self.value = value
+proc get_int_value*(self: ref Tester): int =
+  self.value
 
 proc test_pure* =
   privateAccess StringName
@@ -36,3 +37,5 @@ proc test_pure* =
 proc register*(T: typedesc[Tester]) =
   register_class(Tester)
   register_method(Tester, helloworld)
+  register_method(Tester, set_int_value)
+  register_method(Tester, get_int_value)
