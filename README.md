@@ -15,6 +15,14 @@ This project is in the early stages of development and most features are not yet
 ### ⚫In progress
 
 * [ ] Register user defined method
+  * [x] Register and call simple method
+    * [x] access to self instance
+    * [x] access to other arguments
+    * [x] return value
+  * [ ] Support varargs
+  * [ ] Support static
+  * [ ] Support virtual
+  * [ ] Support default-value
 
 ### 🟢Tested
 
