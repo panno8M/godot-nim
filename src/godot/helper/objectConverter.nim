@@ -25,10 +25,8 @@ template metadata*(T: typedesc): ClassMethodArgumentMetadata = MethodArgumentMet
 
 proc decode*[T](p: ptr T; _: typedesc[T]): T = p[]
 
-proc encoded*[T: SomeVariants](v: T): pointer {.inline.} =
-  addr v
-template encoded*[T: SomeVariants](_: typedesc[T]): untyped = T
-proc encode*[T: SomeVariants](v: T; p: pointer) =
+template encoded*[T: SomeVariants](_: typedesc[T]): typedesc[T] = T
+template encode*[T: SomeVariants](v: T; p: pointer) =
   cast[ptr T](p)[] = v
 proc decode*[T: SomeVariants](p: pointer; _: typedesc[T]): T =
   cast[ptr T](p)[]
@@ -45,10 +43,8 @@ template convert_alternative(Decoded, Encoded, encoder, decoder): untyped =
   bind Encoded
   bind encoder
   bind decoder
-  proc encoded*(v: Decoded): pointer =
-    encoded(encoder(v))
   template encoded*(T: typedesc[Decoded]): typedesc[Encoded] = Encoded
-  proc encode*(v: Decoded; p: pointer) =
+  template encode*(v: Decoded; p: pointer) =
     encode(encoder(v), p)
   proc decode*(p: pointer; _: typedesc[Decoded]): Decoded =
     decoder(p.decode(Encoded))
@@ -61,10 +57,8 @@ template convert_alternative_autocast(Decoded, Encoded): untyped =
   convert_alternative Decoded, Encoded, Encoded, Decoded
 
 template convert_generics_forcecast(Decoded, Encoded): untyped =
-  proc encoded*[T: Decoded](v: T): pointer =
-    encoded(cast[Encoded](v))
-  template encoded*[T: Decoded](_: typedesc[T]): untyped = Encoded
-  proc encode*[T: Decoded](v: T; p: pointer) =
+  template encoded*[T: Decoded](_: typedesc[T]): typedesc[Encoded] = Encoded
+  template encode*[T: Decoded](v: T; p: pointer) =
     encode(cast[Encoded](v), p)
   proc decode*[T: Decoded](p: pointer; _: typedesc[T]): T =
     cast[T](p.decode(Encoded))
@@ -74,10 +68,8 @@ template convert_generics_forcecast(Decoded, Encoded): untyped =
     cast[T](v.get(Encoded))
 
 template convert_generic_params_forcecast(Decoded, Encoded): untyped =
-  proc encoded*[T](v: Decoded[T]): pointer =
-    encoded(cast[Encoded](v))
-  template encoded*[T](_: typedesc[Decoded[T]]): untyped = Encoded
-  proc encode*[T](v: Decoded[T]; p: pointer) =
+  template encoded*[T](_: typedesc[Decoded[T]]): typedesc[Encoded] = Encoded
+  template encode*[T](v: Decoded[T]; p: pointer) =
     encode(cast[Encoded](v), p)
   proc decode*[T](p: pointer; _: typedesc[Decoded[T]]): Decoded[T] =
     cast[Decoded[T]](p.decode(Encoded))
@@ -108,19 +100,16 @@ convert_generic_params_forcecast set, gd.Int
 
 # Variant
 # =======
-proc encoded*(v: Variant): pointer {.inline.} =
-  addr v
-template encoded*(T: typedesc[Variant]): untyped = T
-proc encode*(v: Variant; p: pointer) =
+template encoded*(T: typedesc[Variant]): typedesc[Variant] = Variant
+template encode*(v: Variant; p: pointer) =
   cast[ptr Variant](p)[] = v
 proc decode*(p: pointer; T: typedesc[Variant]): T =
   cast[ptr Variant](p)[]
 converter variant*(v: Variant): Variant = v
 proc get*(v: Variant; T: typedesc[Variant]): T = v
 
-proc encoded*(v: ptr Variant): pointer = v
-template encoded*(T: typedesc[ptr Variant]): untyped = Variant
-proc encode*(v: ptr Variant; p: pointer) =
+template encoded*(T: typedesc[ptr Variant]): typedesc[ptr Variant] = ptr Variant
+template encode*(v: ptr Variant; p: pointer) =
   cast[ptr Variant](p)[] = v[]
 proc decode*(p: pointer; T: typedesc[ptr Variant]): T =
   cast[ptr Variant](p)
@@ -128,10 +117,8 @@ proc decode*(p: pointer; T: typedesc[ptr Variant]): T =
 # ObjectPtr
 # =========
 
-proc encoded*(v: ObjectPtr): pointer {.inline.} =
-  addr v
-template encoded*(T: typedesc[ObjectPtr]): untyped = T
-proc encode*(v: ObjectPtr; p: pointer) =
+template encoded*(T: typedesc[ObjectPtr]): typedesc[ObjectPtr] = ObjectPtr
+template encode*(v: ObjectPtr; p: pointer) =
   cast[ptr ObjectPtr](p)[] = v
 proc decode*(p: pointer; T: typedesc[ObjectPtr]): T =
   cast[ptr ObjectPtr](p)[]
@@ -162,10 +149,8 @@ proc getInstanceBinding[T: SomeObject](p_engine_object: ObjectPtr; _: typedesc[T
 
   # return cast[ptr ObjectBase](interface_objectGetInstanceBinding(p_engine_object, token, binding_callbacks))
 
-proc encoded*[T: SomeObject](v: T|ptr T): pointer =
-  encoded(v.owner)
-template encoded*[T: SomeObject](_: typedesc[T]): untyped = ObjectPtr
-proc encode*[T: SomeObject](v: T|ptr T; p: pointer) =
+template encoded*[T: SomeObject](_: typedesc[T]): typedesc[ObjectPtr] = ObjectPtr
+template encode*[T: SomeObject](v: T|ptr T; p: pointer) =
   encode(v.owner, p)
 proc decode*[T: SomeObject](p: pointer; _: typedesc[T]): T =
   p.decode(ObjectPtr).getInstanceBinding(T)[]

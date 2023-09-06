@@ -1,7 +1,7 @@
 import beyond/[oop, macros]
-import ../godotInterface_core
-import classDefinerCommon
 import objectConverter
+import classDefinerCommon
+import ../godotInterface
 
 template define_godot_engine_class_essencials*(Class, Inherits: typedesc): untyped =
   bind define_godot_class_commons
@@ -40,6 +40,15 @@ iterator breakArgs(node: NimNode): tuple[index: int; def: tuple[name, Type, defa
 proc hasReturn(node: NimNode): bool =
   not node.hasNoReturn
 
+template getOwner[T: SomeObject](v: T): ObjectPtr =
+  v.owner
+template getOwner[T: SomeObject](v: ptr T | ref T): ObjectPtr =
+  if v.isNil: nil
+  else: getOwner v[]
+template getOwner[T: SomeRefCounted](v: Ref[T]): ObjectPtr =
+  if v.reference.isNil: nil
+  else: getOwner v.reference
+
 macro memberProcs*(class: typedesc; defs): untyped =
   result = newStmtList()
   for def in defs:
@@ -48,29 +57,34 @@ macro memberProcs*(class: typedesc; defs): untyped =
     let hash_intlit = loadfrom[2]
     let staticOf = def.getPragma("staticOf")
 
-    let ret_t = def.params[0]
     var selfptr = newNilLit()
     var paramptr = newNilLit()
+    var ret: NimNode
     var retptr = newNilLit()
 
-    let encoded_ret = genSym(nskVar, "encoded")
-
     if def.hasReturn:
+      ret = genSym(nskVar, "ret")
       retptr = quote do:
-        var `encoded_ret`: encoded typedesc `ret_t`
-        addr `encoded_ret`
+        var `ret`: encoded(typeof result)
+        addr `ret`
 
-    var paramBracket = newNimNode nnkBracket
+    let paramArray = genSym(nskVar, "paramArray")
+    var paramInjection = newStmtList()
     for i, (arg, _, _) in def.params.breakArgs:
       if staticOf.isNil and i == 0:
-        selfptr = quote do: `arg`.owner
+        selfptr = quote do: getOwner `arg`
       else:
-        paramBracket.add quote do: `arg`.encoded
+        let i = newlit i
+        paramInjection.add quote do:
+          `arg`.encode(`paramArray`[`i`])
 
-    if paramBracket.len != 0:
+
+    if paramInjection.len != 0:
+      let paramcount = newlit paramInjection.len
       paramptr = quote do:
-        let paramArray = `paramBracket`
-        addr paramArray[0]
+        var `paramArray`: array[`paramcount`, pointer]
+        `paramInjection`
+        addr `paramArray`[0]
 
     def.body = newStmtList()
     def.body.add quote do:
@@ -81,7 +95,7 @@ macro memberProcs*(class: typedesc; defs): untyped =
       interfaceObjectMethodBindPtrcall(methodbind, `selfptr`, `paramptr`, `retptr`)
     if def.hasReturn:
       def.body.add quote do:
-        return (addr `encoded_ret`).decode(typedesc `ret_t`)
+        (addr `ret`).decode(typeof result)
 
 
   return defs
