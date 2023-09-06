@@ -2,6 +2,7 @@ let modules: seq[string] = @[
   "(engineClassDefiner.nim)",
   "(typedArray.nim)",
   "variants_forge.nim",
+  "(classImporter.nim)",
   "(variantDefiner.nim)",
   "(variantTypeSolver.nim)",
   "(classDefiner.nim)",

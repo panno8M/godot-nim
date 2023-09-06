@@ -4,6 +4,15 @@ import godot
 import godot/logging
 import godot/register
 
+importClass Camera3D
+# To reduce compilation time, we recommend importing functions
+# on a class-by-class basis using the `importClass` macro. Or,
+#
+# import godot/classDetail_all
+#
+# to import them all at once.
+
+
 # paramFiltering tryes to access to `paramCount` and it cause `OSError`
 # because the program will finally be shared object(dll).
 unittest.disableParamFiltering()

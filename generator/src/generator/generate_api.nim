@@ -109,10 +109,15 @@ proc generate*(api: JsonNode) =
   let classes = api.classes.toNim
   moduleTree.engineClassDefines.contents = classes.renderClassDefine
   moduleTree.localEnums.contents.children.add classes.renderLocalEnums
-  for (class, inherits, rendered) in classes.renderDetail:
-    let module = mdl("classDetail_native_" & $class)
+
+  let essencial_mdl = mdl("classEssencial")
       .incl(moduleTree.engineClassDefiner)
-    moduleTree.d_classes.take module
-    module.contents = rendered
+  moduleTree.d_godot.take essencial_mdl
+  for (class, inherits, essencial, detail) in classes.renderDetail:
+    let detail_mdl = mdl("classDetail_native_" & $class)
+      .incl(moduleTree.engineClassDefiner)
+    moduleTree.d_classDetail.take detail_mdl
+    detail_mdl.contents = detail
+    essencial_mdl.contents.children.add essencial
 
   moduleTree.nativeStructs.contents.children.add api.native_structures.toNim

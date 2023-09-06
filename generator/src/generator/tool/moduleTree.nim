@@ -7,7 +7,7 @@ let # directories
   d_godot* = dir"godot"
   d_variants* = dir"variants"
   d_variantsDetail_native* = dir"variantsDetail_native"
-  d_classes* = dir"classes"
+  d_classDetail* = dir"classDetail"
   d_helper* = dir"helper"
   d_pure* = dir"pure"
   d_godotInterface* = dir"godotInterface"
@@ -25,7 +25,7 @@ let # modules
   variantsConstr_custom* = dummy mdl"variantsConstr_custom"
   variantLoader* = mdl"variantsLoader"
 
-  classes* = mdl"classes"
+  classDetail_all* = mdl"classDetail_all"
 
   globalEnums* = mdl"globalEnums"
   localEnums* = mdl"localEnums"
@@ -38,6 +38,7 @@ let # modules
   engineClassDefiner* = dummy mdl"engineClassDefiner"
   classDefiner* = dummy mdl"classDefiner"
   typedArray* = dummy mdl"typedArray"
+  classImporter* = dummy mdl"classImporter"
   variants_forge* = importOnly mdl"variants_forge"
 
 
@@ -73,9 +74,9 @@ discard nativeStructs
 discard engineClassDefines
   .incl(
     godotInterface_core)
-discard classes
+discard classDetail_all
   .exportModules_allowed
-  .incl(d_classes)
+  .incl(d_classDetail)
 discard variants_forge
   .exportModules_all
   .incl(variantsConstr)
@@ -134,14 +135,14 @@ discard +/%..d_root:
       variantsConstr_custom
       internal variantLoader
 
-    classes
-    +/%..internal d_classes:
-      dummy dir"classDetail_custom"
+    internal classDetail_all
+    internal d_classDetail
 
     +/%..d_helper:
       variantTypeSolver
       classDefiner
       typedArray
+      classImporter
       internal variants_forge
       internal variantDefiner
       internal engineClassDefiner

@@ -2,9 +2,10 @@
 # This module was generated automatically. #
 # Edits will be lost.                      #
 # ======================================== #
-import ./godot/classes; export classes
+import ./godot/classEssencial; export classEssencial
 import ./godot/godotInterface; export godotInterface
 import ./godot/helper/classDefiner; export classDefiner
+import ./godot/helper/classImporter; export classImporter
 import ./godot/helper/typedArray; export typedArray
 import ./godot/helper/variantTypeSolver; export variantTypeSolver
 import ./godot/init; export init

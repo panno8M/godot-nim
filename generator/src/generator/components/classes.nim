@@ -69,11 +69,13 @@ proc renderLocalEnums*(classes: NimClasses): Statement =
     if class.enums.len != 0:
       result.children.add ""
 
-iterator renderDetail*(classes: NimClasses): tuple[class, inherits: TypeName; statement: Statement] =
+iterator renderDetail*(classes: NimClasses): tuple[class, inherits: TypeName; essencial, detail: Statement] =
   for classes in classes.parentalSorted:
     for class in classes:
-      var result = new ParagraphSt
-      result.children.add &"define_godot_engine_class_essencials({class.name}, {class.inherits})"
+      var essencial = ParagraphSt()
+      var detail = ParagraphSt()
+
+      essencial.children.add &"define_godot_engine_class_essencials({class.name}, {class.inherits})"
 
       var getters: HashSet[string]
       var setters: HashSet[string]
@@ -86,7 +88,7 @@ iterator renderDetail*(classes: NimClasses): tuple[class, inherits: TypeName; st
       let localProcs = ParagraphSt()
       for mhd in class.json.methods.get(@[]):
         if mhd.is_virtual.get(false):
-          result.children.add mhd.prerender(argType class.name, gpkVirtualMethod)
+          detail.children.add mhd.prerender(argType class.name, gpkVirtualMethod)
         else:
           var gpkind: GodotProcKind
           if mhd.is_static:
@@ -100,9 +102,9 @@ iterator renderDetail*(classes: NimClasses): tuple[class, inherits: TypeName; st
           localProcs.children.add mhd.prerender_classMethod(argType class.name, gpkind)
 
       if localProcs.children.len != 0:
-        result.children.add localProcs
+        detail.children.add localProcs
 
-      yield (class.name, class.inherits, result)
+      yield (class.name, class.inherits, essencial, detail)
 
 
 method stringify*(info: NimClass; param: ParamType): string =
