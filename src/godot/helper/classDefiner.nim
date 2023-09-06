@@ -10,16 +10,6 @@ import ../godotInterface/objectBase
 import ../godotInterface_core
 import ../logging
 
-iterator breakArgs(node: NimNode): tuple[index: int; def: tuple[name, Type, default: NimNode]] =
-  node.expectKind nnkFormalParams
-  var index: int
-  for defs in node[1..^1]:
-    for id in defs[0..^3]:
-      yield (index, (id, defs[^2], defs[^1]))
-      inc index
-# proc hasReturn(node: NimNode): bool =
-#   not node.hasNoReturn
-
 template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
   bind iam
   bind debug

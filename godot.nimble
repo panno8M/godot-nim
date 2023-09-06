@@ -10,7 +10,7 @@ srcDir        = "src"
 # Dependencies
 
 requires "nim >= 2.0.0"
-requires "https://github.com/panno8M/nim-beyond == 0.20.0"
+requires "https://github.com/panno8M/nim-beyond >= 0.21.0"
 # requires "beyond"
 
 task demo, "build the library to make demo-project (./demo/project.godot) working":
