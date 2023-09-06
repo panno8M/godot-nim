@@ -1,6 +1,5 @@
 import std/unittest
 import std/importutils
-import std/random
 import godot
 import godot/logging
 import godot/register

@@ -5,31 +5,30 @@ type
   char16_t* = uint16
 # Enums
 # =====
-staticOf Variant:
-  type Type* {.size: sizeof(cuint).} = enum
-    VariantType_Nil,
-    VariantType_Bool, VariantType_Int,
-    VariantType_Float, VariantType_String,
-    VariantType_Vector2, VariantType_Vector2i,
-    VariantType_Rect2, VariantType_Rect2i,
-    VariantType_Vector3, VariantType_Vector3i,
-    VariantType_Transform2d, VariantType_Vector4,
-    VariantType_Vector4i, VariantType_Plane,
-    VariantType_Quaternion, VariantType_AABB,
-    VariantType_Basis, VariantType_Transform3d, VariantType_Projection,
-    VariantType_Color, VariantType_StringName,
-    VariantType_NodePath, VariantType_RID,
-    VariantType_Object, VariantType_Callable,
-    VariantType_Signal, VariantType_Dictionary, VariantType_Array,
-    VariantType_PackedByteArray,
-    VariantType_PackedInt32Array,
-    VariantType_PackedInt64Array,
-    VariantType_PackedFloat32Array,
-    VariantType_PackedFloat64Array,
-    VariantType_PackedStringArray,
-    VariantType_PackedVector2Array,
-    VariantType_PackedVector3Array,
-    VariantType_PackedColorArray,
+type Variant_Type* {.size: sizeof(cuint).} = enum
+  VariantType_Nil,
+  VariantType_Bool, VariantType_Int,
+  VariantType_Float, VariantType_String,
+  VariantType_Vector2, VariantType_Vector2i,
+  VariantType_Rect2, VariantType_Rect2i,
+  VariantType_Vector3, VariantType_Vector3i,
+  VariantType_Transform2d, VariantType_Vector4,
+  VariantType_Vector4i, VariantType_Plane,
+  VariantType_Quaternion, VariantType_AABB,
+  VariantType_Basis, VariantType_Transform3d, VariantType_Projection,
+  VariantType_Color, VariantType_StringName,
+  VariantType_NodePath, VariantType_RID,
+  VariantType_Object, VariantType_Callable,
+  VariantType_Signal, VariantType_Dictionary, VariantType_Array,
+  VariantType_PackedByteArray,
+  VariantType_PackedInt32Array,
+  VariantType_PackedInt64Array,
+  VariantType_PackedFloat32Array,
+  VariantType_PackedFloat64Array,
+  VariantType_PackedStringArray,
+  VariantType_PackedVector2Array,
+  VariantType_PackedVector3Array,
+  VariantType_PackedColorArray,
 type
   VariantOperator* {.size: sizeof(cuint).} = enum
     VariantOP_Equal, VariantOP_NotEqual,
@@ -115,7 +114,7 @@ type
     free_callback*: InstanceBindingFreeCallback
     reference_callback*: InstanceBindingReferenceCallback
   PropertyInfo* {.bycopy.} = object
-    `type`*: `Variant|>Type`
+    `type`*: Variant_Type
     name*: StringNamePtr
     class_name*: StringNamePtr
     hint*: set[PropertyHint]
@@ -239,7 +238,7 @@ type
   ScriptInstanceGet* = proc (p_instance: ScriptInstanceDataPtr; p_name: ConstStringNamePtr; r_ret: VariantPtr): Bool {.gdcall.}
   ScriptInstanceGetPropertyList* = proc ( p_instance: ScriptInstanceDataPtr; r_count: ptr uint32): ptr PropertyInfo {.gdcall.}
   ScriptInstanceFreePropertyList* = proc ( p_instance: ScriptInstanceDataPtr; p_list: ptr PropertyInfo) {.gdcall.}
-  ScriptInstanceGetPropertyType* = proc ( p_instance: ScriptInstanceDataPtr; p_name: ConstStringNamePtr; r_is_valid: ptr Bool): `Variant|>Type` {.gdcall.}
+  ScriptInstanceGetPropertyType* = proc ( p_instance: ScriptInstanceDataPtr; p_name: ConstStringNamePtr; r_is_valid: ptr Bool): Variant_Type {.gdcall.}
   ScriptInstancePropertyCanRevert* = proc ( p_instance: ScriptInstanceDataPtr; p_name: ConstStringNamePtr): Bool {.gdcall.}
   ScriptInstancePropertyGetRevert* = proc ( p_instance: ScriptInstanceDataPtr; p_name: ConstStringNamePtr; r_ret: VariantPtr): Bool {.gdcall.}
   ScriptInstanceGetOwner* = proc ( p_instance: ScriptInstanceDataPtr): ObjectPtr {.gdcall.}
@@ -277,7 +276,7 @@ parseInterface:
     InterfaceVariantNewNil* = proc ( r_dest: UninitializedVariantPtr) {.gdcall.}
     InterfaceVariantDestroy* = proc (p_self: VariantPtr) {.gdcall.}
     InterfaceVariantCall* = proc (p_self: VariantPtr; p_method: ConstStringNamePtr; p_args: ptr ConstVariantPtr; p_argument_count: Int; r_return: UninitializedVariantPtr; r_error: ptr CallError) {.gdcall.}
-    InterfaceVariantCallStatic* = proc (p_type: `Variant|>Type`; p_method: ConstStringNamePtr; p_args: ptr ConstVariantPtr; p_argument_count: Int; r_return: UninitializedVariantPtr; r_error: ptr CallError) {.gdcall.}
+    InterfaceVariantCallStatic* = proc (p_type: Variant_Type; p_method: ConstStringNamePtr; p_args: ptr ConstVariantPtr; p_argument_count: Int; r_return: UninitializedVariantPtr; r_error: ptr CallError) {.gdcall.}
     InterfaceVariantEvaluate* = proc (p_op: VariantOperator; p_a: ConstVariantPtr; p_b: ConstVariantPtr; r_return: UninitializedVariantPtr; r_valid: ptr Bool) {.gdcall.}
     InterfaceVariantSet* = proc (p_self: VariantPtr; p_key: ConstVariantPtr; p_value: ConstVariantPtr; r_valid: ptr Bool) {.gdcall.}
     InterfaceVariantSetNamed* = proc (p_self: VariantPtr; p_key: ConstStringNamePtr; p_value: ConstVariantPtr; r_valid: ptr Bool) {.gdcall.}
@@ -296,28 +295,28 @@ parseInterface:
     InterfaceVariantBooleanize* = proc (p_self: ConstVariantPtr): Bool {.gdcall.}
     InterfaceVariantDuplicate* = proc (p_self: ConstVariantPtr; r_ret: VariantPtr; p_deep: Bool) {.gdcall.}
     InterfaceVariantStringify* = proc (p_self: ConstVariantPtr; r_ret: StringPtr) {.gdcall.}
-    InterfaceVariantGetType* = proc (p_self: ConstVariantPtr): `Variant|>Type` {.gdcall.}
+    InterfaceVariantGetType* = proc (p_self: ConstVariantPtr): Variant_Type {.gdcall.}
     InterfaceVariantHasMethod* = proc (p_self: ConstVariantPtr; p_method: ConstStringNamePtr): Bool {.gdcall.}
-    InterfaceVariantHasMember* = proc (p_type: `Variant|>Type`; p_member: ConstStringNamePtr): Bool {.gdcall.}
+    InterfaceVariantHasMember* = proc (p_type: Variant_Type; p_member: ConstStringNamePtr): Bool {.gdcall.}
     InterfaceVariantHasKey* = proc (p_self: ConstVariantPtr; p_key: ConstVariantPtr; r_valid: ptr Bool): Bool {.gdcall.}
-    InterfaceVariantGetTypeName* = proc (p_type: `Variant|>Type`; r_name: UninitializedStringPtr) {.gdcall.}
-    InterfaceVariantCanConvert* = proc (p_from: `Variant|>Type`; p_to: `Variant|>Type`): Bool {.gdcall.}
-    InterfaceVariantCanConvertStrict* = proc ( p_from: `Variant|>Type`; p_to: `Variant|>Type`): Bool {.gdcall.}
-    InterfaceGetVariantFromTypeConstructor* = proc ( p_type: `Variant|>Type`): VariantFromTypeConstructorFunc {.gdcall.}
-    InterfaceGetVariantToTypeConstructor* = proc ( p_type: `Variant|>Type`): TypeFromVariantConstructorFunc {.gdcall.}
-    InterfaceVariantGetPtrOperatorEvaluator* = proc ( p_operator: VariantOperator; p_type_a: `Variant|>Type`; p_type_b: `Variant|>Type`): PtrOperatorEvaluator {.gdcall.}
-    InterfaceVariantGetPtrBuiltinMethod* = proc ( p_type: `Variant|>Type`; p_method: ConstStringNamePtr; p_hash: Int): PtrBuiltInMethod {.gdcall.}
-    InterfaceVariantGetPtrConstructor* = proc ( p_type: `Variant|>Type`; p_constructor: uint32): PtrConstructor {.gdcall.}
-    InterfaceVariantGetPtrDestructor* = proc ( p_type: `Variant|>Type`): PtrDestructor {.gdcall.}
-    InterfaceVariantConstruct* = proc (p_type: `Variant|>Type`; r_base: UninitializedVariantPtr; p_args: ptr ConstVariantPtr; p_argument_count: uint32; r_error: ptr CallError) {.gdcall.}
-    InterfaceVariantGetPtrSetter* = proc (p_type: `Variant|>Type`; p_member: ConstStringNamePtr): PtrSetter {.gdcall.}
-    InterfaceVariantGetPtrGetter* = proc (p_type: `Variant|>Type`; p_member: ConstStringNamePtr): PtrGetter {.gdcall.}
-    InterfaceVariantGetPtrIndexedSetter* = proc ( p_type: `Variant|>Type`): PtrIndexedSetter {.gdcall.}
-    InterfaceVariantGetPtrIndexedGetter* = proc ( p_type: `Variant|>Type`): PtrIndexedGetter {.gdcall.}
-    InterfaceVariantGetPtrKeyedSetter* = proc ( p_type: `Variant|>Type`): PtrKeyedSetter {.gdcall.}
-    InterfaceVariantGetPtrKeyedGetter* = proc ( p_type: `Variant|>Type`): PtrKeyedGetter {.gdcall.}
-    InterfaceVariantGetPtrKeyedChecker* = proc ( p_type: `Variant|>Type`): PtrKeyedChecker {.gdcall.}
-    InterfaceVariantGetConstantValue* = proc ( p_type: `Variant|>Type`; p_constant: ConstStringNamePtr; r_ret: UninitializedVariantPtr) {.gdcall.}
+    InterfaceVariantGetTypeName* = proc (p_type: Variant_Type; r_name: UninitializedStringPtr) {.gdcall.}
+    InterfaceVariantCanConvert* = proc (p_from: Variant_Type; p_to: Variant_Type): Bool {.gdcall.}
+    InterfaceVariantCanConvertStrict* = proc ( p_from: Variant_Type; p_to: Variant_Type): Bool {.gdcall.}
+    InterfaceGetVariantFromTypeConstructor* = proc ( p_type: Variant_Type): VariantFromTypeConstructorFunc {.gdcall.}
+    InterfaceGetVariantToTypeConstructor* = proc ( p_type: Variant_Type): TypeFromVariantConstructorFunc {.gdcall.}
+    InterfaceVariantGetPtrOperatorEvaluator* = proc ( p_operator: VariantOperator; p_type_a: Variant_Type; p_type_b: Variant_Type): PtrOperatorEvaluator {.gdcall.}
+    InterfaceVariantGetPtrBuiltinMethod* = proc ( p_type: Variant_Type; p_method: ConstStringNamePtr; p_hash: Int): PtrBuiltInMethod {.gdcall.}
+    InterfaceVariantGetPtrConstructor* = proc ( p_type: Variant_Type; p_constructor: uint32): PtrConstructor {.gdcall.}
+    InterfaceVariantGetPtrDestructor* = proc ( p_type: Variant_Type): PtrDestructor {.gdcall.}
+    InterfaceVariantConstruct* = proc (p_type: Variant_Type; r_base: UninitializedVariantPtr; p_args: ptr ConstVariantPtr; p_argument_count: uint32; r_error: ptr CallError) {.gdcall.}
+    InterfaceVariantGetPtrSetter* = proc (p_type: Variant_Type; p_member: ConstStringNamePtr): PtrSetter {.gdcall.}
+    InterfaceVariantGetPtrGetter* = proc (p_type: Variant_Type; p_member: ConstStringNamePtr): PtrGetter {.gdcall.}
+    InterfaceVariantGetPtrIndexedSetter* = proc ( p_type: Variant_Type): PtrIndexedSetter {.gdcall.}
+    InterfaceVariantGetPtrIndexedGetter* = proc ( p_type: Variant_Type): PtrIndexedGetter {.gdcall.}
+    InterfaceVariantGetPtrKeyedSetter* = proc ( p_type: Variant_Type): PtrKeyedSetter {.gdcall.}
+    InterfaceVariantGetPtrKeyedGetter* = proc ( p_type: Variant_Type): PtrKeyedGetter {.gdcall.}
+    InterfaceVariantGetPtrKeyedChecker* = proc ( p_type: Variant_Type): PtrKeyedChecker {.gdcall.}
+    InterfaceVariantGetConstantValue* = proc ( p_type: Variant_Type; p_constant: ConstStringNamePtr; r_ret: UninitializedVariantPtr) {.gdcall.}
     InterfaceVariantGetPtrUtilityFunction* = proc ( p_function: ConstStringNamePtr; p_hash: Int): PtrUtilityFunction {.gdcall.}
     InterfaceStringNewWithLatin1Chars* = proc ( r_dest: UninitializedStringPtr; p_contents: cstring) {.gdcall.}
     InterfaceStringNewWithUtf8Chars* = proc ( r_dest: UninitializedStringPtr; p_contents: cstring) {.gdcall.}
@@ -367,7 +366,7 @@ parseInterface:
     InterfaceArrayOperatorIndex* = proc (p_self: TypePtr; p_index: Int): VariantPtr {.gdcall.}
     InterfaceArrayOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_index: Int): VariantPtr {.gdcall.}
     InterfaceArrayRef* = proc (p_self: TypePtr; p_from: ConstTypePtr) {.gdcall.}
-    InterfaceArraySetTyped* = proc (p_self: TypePtr; p_type: `Variant|>Type`; p_class_name: ConstStringNamePtr; p_script: ConstVariantPtr) {.gdcall.}
+    InterfaceArraySetTyped* = proc (p_self: TypePtr; p_type: Variant_Type; p_class_name: ConstStringNamePtr; p_script: ConstVariantPtr) {.gdcall.}
     InterfaceDictionaryOperatorIndex* = proc (p_self: TypePtr; p_key: ConstVariantPtr): VariantPtr {.gdcall.}
     InterfaceDictionaryOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_key: ConstVariantPtr): VariantPtr {.gdcall.}
     InterfaceObjectMethodBindCall* = proc ( p_method_bind: MethodBindPtr; p_instance: ObjectPtr; p_args: ptr ConstVariantPtr; p_arg_count: Int; r_ret: UninitializedVariantPtr; r_error: ptr CallError) {.gdcall.}

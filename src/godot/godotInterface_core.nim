@@ -1,4 +1,4 @@
-import beyond/[oop, macros]
+import std/macros
 
 import ./godotInterface/globalEnums
 import ./pure/[compileTimeSwitch, geometrics, todos]
@@ -186,18 +186,17 @@ proc `=copy`(dest: var Variant; source: Variant) =
   interface_variantNewCopy(addr dest, addr source)
 
 
-template variantType(Type: typedesc[SomeVariants]): `Variant|>Type` =
+template variantType(Type: typedesc[SomeVariants]): Variant_Type =
   `VariantType Type`
 
 template define_destructor(Type: typedesc): untyped =
-  staticOf Type:
-    var destructor {.inject.} : PtrDestructor
+  var `Type destr` {.inject.} : PtrDestructor
   proc `=destroy`(self: Type) {.raises: [].} =
     try:
-      Type|>destructor(addr self)
+      `Type destr`(addr self)
     except: discard
 template load_destructor(Type: typedesc): untyped =
-  Type|>destructor = interface_variantGetPtrDestructor Type.variantType
+  `Type destr` = interface_variantGetPtrDestructor Type.variantType
 
 define_destructor String
 define_destructor StringName

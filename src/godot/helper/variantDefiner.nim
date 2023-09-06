@@ -1,9 +1,7 @@
 import std/[
   sequtils,
-  strformat,
 ]
 import beyond/macros
-import ../logging
 import ../godotInterface
 
 type MethodDefinition = tuple
@@ -34,7 +32,7 @@ proc procedure(Type, node: NimNode; isStatic: bool; namesym: NimNode): MethodDef
   result.containerDefine = quote do:
     var `container`: PtrBuiltinMethod
   result.initSentence = quote do:
-    `namesym` = StringName|>init(`nativeName`)
+    `namesym` = init_StringName(`nativeName`)
     `container` = interface_variantGetPtrBuiltinMethod(`Type`.variantType, addr `namesym`, `hash`)
   result.procDefine = node
   if args.len == 0:
@@ -79,34 +77,6 @@ proc operator(node: NimNode): MethodDefinition =
   result.procDefine.body = quote do:
     `container`(`leftAddress`, `rightAddress`, addr result)
 
-func constructor(Type, node: NimNode): MethodDefinition =
-  node.expectKind {nnkProcDef, nnkConverterDef}
-
-  var index = node.getPragma("index")[1]
-
-  let args = node[3][1..^1]
-  let argptrarr = nnkBracket.newTree args.mapIt(it[0]).mapIt quote do:
-    cast[pointer](addr(`it`))
-
-  let
-    constructor = gensym(nskVar, "constructor")
-
-  result.init_sentence = quote do:
-    `constructor` = interface_variantGetPtrConstructor(`Type`.variantType, `index`)
-
-  result.container_define = quote do:
-    var `constructor`: PtrConstructor
-
-  result.proc_define = copy node
-  if argptrarr.len == 0:
-    result.proc_define.body = quote do:
-      `constructor`(TypePtr(addr result), nil)
-  else:
-    result.proc_define.body = quote do:
-      let call_args = `argptrarr`
-      `constructor`(TypePtr(addr result), addr call_args[0])
-
-
 proc procedures_impl(Type, loader, body: NimNode; is_static: bool): NimNode =
   result = newStmtList()
   let namesym = genSym(nskVar, "name")
@@ -139,19 +109,3 @@ macro operators*(loader, body): untyped =
   result.add newProc(
     name = loader.postfix("*"),
     body = initProcStmt)
-
-macro constructors*[T](Type: typedesc[T]; loader, body): untyped =
-  result = newStmtList()
-  let debuglit = newLit fmt"loading constructors of {Type}..."
-  var initProcStmt = newStmtList()
-  initProcStmt.add quote do:
-    when DebugApiLoading == on: iam($`Type` & "-load-constructor", stgLibrary).debug `debuglit`
-  for cnst in body:
-    let definition = constructor(Type, cnst)
-    result.add definition.container_define
-    result.add definition.proc_define
-    initProcStmt.add definition.init_sentence
-  result.add newProc(
-    name = loader.postfix("*"),
-    body = initProcStmt,
-  )

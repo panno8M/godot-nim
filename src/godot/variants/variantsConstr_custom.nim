@@ -1,6 +1,5 @@
 import beyond/[
   macros,
-  oop,
 ]
 import std/[
   sequtils,
@@ -30,9 +29,9 @@ macro gdveci*(exp: varargs[typed]): untyped =
 #   proc init*(src: Color; alpha: float32): Color = Color|>init(src.r, src.g, src.b, alpha)
 #   proc init*(src: string): Color {.unimplemented.}
 
-converter init*(str: string): String {.staticOf: String.} =
+converter init_String*(str: string): String =
   interface_stringNewWithLatin1Chars(addr result, cstring str)
-converter init*(str: string): StringName {.staticOf: StringName.} =
-  StringName|>init String|>init str
+converter init_StringName*(str: string): StringName =
+  init_StringName init_String str
 
 proc variant*: Variant = interface_variantNewNil(addr result)

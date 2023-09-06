@@ -2,6 +2,7 @@ import beyond/logging
 import std/[
   options,
   sequtils,
+  strutils,
   strformat,
   algorithm,
   sugar,
@@ -67,9 +68,28 @@ func moduleName*(self: NimBuiltinClass): string =
   self.json.name.variantModuleName
 
 func renderConstructor*(self: NimBuiltinClass): Statement =
-  +$$..OptionSt(eval: self.constructors.len != 0):
-    fmt"{self.name}.constructors(loader= {constrLoader $self.name}):"
-    IndentSt(level: 2).add self.constructors
+  if self.constructors.len != 0:
+    let constr = $self.name&"_constr"
+    for i, c in self.constructors:
+      var argptr = "nil"
+      var argArr = ParagraphSt()
+      if c.args.len != 0:
+        argArr.children.add &"let argArr = [" & c.args.mapIt(&"cast[pointer](addr {it.name})").join(", ") & "]"
+        argptr = "addr argArr[0]"
+      discard +$$..c:
+        argArr
+        &"{constr}[{i}](addr result, {argptr})"
+    +$$..ParagraphSt():
+      &"var {constr}: array[{self.constructors.len}, PtrConstructor]"
+      &"proc load_{constr}* ="
+      &"  for i in 0..<{self.constructors.len}:"
+      &"    {constr}[i] = interface_Variant_getPtrConstructor(variantType {self.name}, uint32 i)"
+      ""
+      self.constructors
+      ""
+      ""
+  else:
+    ParagraphSt()
 
 func renderConstructor*(self: seq[NimBuiltinClass]): Statement =
   ParagraphSt(children: self.filterIt($it.name notin variantDetailIgnores).mapit(it.renderConstructor))

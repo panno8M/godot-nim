@@ -3,7 +3,6 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./godot/classes; export classes
-import ./godot/gdrefs; export gdrefs
 import ./godot/godotInterface; export godotInterface
 import ./godot/helper/classDefiner; export classDefiner
 import ./godot/helper/typedArray; export typedArray

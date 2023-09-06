@@ -3,7 +3,6 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./godotInterface
-import beyond/oop
 
 type AudioFrame* = object
   left*: cfloat
@@ -11,8 +10,8 @@ type AudioFrame* = object
 type CaretInfo* = object
   leadingCaret*: Rect2
   trailingCaret*: Rect2
-  leadingDirection*: TextServer|>Direction
-  trailingDirection*: TextServer|>Direction
+  leadingDirection*: TextServer_Direction
+  trailingDirection*: TextServer_Direction
 type Glyph* = object
   start*: cint = -1
   `end`*: cint = -1

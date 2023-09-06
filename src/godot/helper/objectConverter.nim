@@ -8,13 +8,13 @@ import ../pure/todos
 TODO subject"variants.propertyinfo".comment"Insufficient kinds handled"
 
 var
-  variantFromType: array[`Variant|>Type`, VariantFromTypeConstructorFunc]
-  typeFromVariant: array[`Variant|>Type`, TypeFromVariantConstructorFunc]
+  variantFromType: array[Variant_Type, VariantFromTypeConstructorFunc]
+  typeFromVariant: array[Variant_Type, TypeFromVariantConstructorFunc]
 
 proc load_converter* =
-  for i in (VariantType_Nil.succ)..<`Variant|>Type`.high:
-    variantFromType[i] = interface_getVariantFromTypeConstructor(`Variant|>Type` i)
-    typeFromVariant[i] = interface_getVariantToTypeConstructor(`Variant|>Type` i)
+  for i in (VariantType_Nil.succ)..<Variant_Type.high:
+    variantFromType[i] = interface_getVariantFromTypeConstructor(Variant_Type i)
+    typeFromVariant[i] = interface_getVariantToTypeConstructor(Variant_Type i)
 
 # General
 # =======
@@ -79,7 +79,7 @@ template convert_generic_params_forcecast(Decoded, Encoded): untyped =
     cast[Decoded[T]](v.get(Encoded))
 
 
-convert_alternative string, gd.String, `String|>init`, `$`
+convert_alternative string, gd.String, init_String, `$`
 
 convert_alternative_autocast int8, gd.Int
 convert_alternative_autocast int16, gd.Int
@@ -158,6 +158,25 @@ converter variant*[T: SomeObject](v: T): Variant =
   variant v.owner
 proc get*[T: SomeObject](v: Variant; _: typedesc[T]): T =
   v.get(ObjectPtr).getInstanceBinding(T)[]
+
+# Ref[T]
+# ======
+
+proc owner[T: SomeRefCounted](x: Ref[T]): ObjectPtr =
+  if x.reference.isNil: nil
+  else: x.reference.owner
+proc make_ref[T: SomeRefCounted](x: ObjectPtr; _: typedesc[T]): Ref[T] =
+  Ref[T](reference: x.getInstanceBinding(T))
+
+template encoded*[T: SomeRefCounted](_: typedesc[Ref[T]]): typedesc[ObjectPtr] = ObjectPtr
+template encode*[T: SomeRefCounted](v: Ref[T]; p: pointer) =
+  encode(owner(v), p)
+proc decode*[T: SomeRefCounted](p: pointer; _: typedesc[Ref[T]]): Ref[T] =
+  p.decode(ObjectPtr).make_ref(T)
+converter variant*[T: SomeRefCounted](v: Ref[T]): Variant =
+  variant owner(v)
+proc get*[T: SomeRefCounted](v: Variant; _: typedesc[Ref[T]]): Ref[T] =
+  v.get(ObjectPtr).make_ref(T)
 
 {.pop.}
 

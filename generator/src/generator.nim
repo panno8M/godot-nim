@@ -10,7 +10,7 @@ import generator/generate_api
 
 when isMainModule:
   createDir("log")
-  logging.defaultGroup.loggers.add newFileLogger("log/generator.log", mode=fmWrite)
+  logging.defaultGroup.loggers.add newFileLogger("log/generator.log", mode=fmWrite, format=format_DEFAULT)
 
   info "start generating..."
 

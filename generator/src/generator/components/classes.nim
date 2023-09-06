@@ -73,7 +73,6 @@ iterator renderDetail*(classes: NimClasses): tuple[class, inherits: TypeName; st
   for classes in classes.parentalSorted:
     for class in classes:
       var result = new ParagraphSt
-      result.children.add "# " & $class.name
       result.children.add &"define_godot_engine_class_essencials({class.name}, {class.inherits})"
 
       var getters: HashSet[string]
@@ -84,7 +83,7 @@ iterator renderDetail*(classes: NimClasses): tuple[class, inherits: TypeName; st
         if prop.setter.isSome:
           setters.incl prop.setter.get
 
-      let localProcs = BlockSt(head: &"{class.name}.memberProcs:")
+      let localProcs = ParagraphSt()
       for mhd in class.json.methods.get(@[]):
         if mhd.is_virtual.get(false):
           result.children.add mhd.prerender(argType class.name, gpkVirtualMethod)
@@ -98,7 +97,7 @@ iterator renderDetail*(classes: NimClasses): tuple[class, inherits: TypeName; st
             gpkind = gpkSetter
           else:
             gpkind = gpkMethod
-          localProcs.children.add mhd.prerender(argType class.name, gpkind)
+          localProcs.children.add mhd.prerender_classMethod(argType class.name, gpkind)
 
       if localProcs.children.len != 0:
         result.children.add localProcs
@@ -123,5 +122,5 @@ method defaultValue*(info: NimClass; value: string; argType: ArgType): string =
       return "default " & $argType
     return "nil"
   if argType.attribute == ptaTypedArray:
-    return "TypedArray" & "|>init[" & $argType.name & "]()"
+    return "init_TypedArray[" & $argType.name & "]()"
   return value

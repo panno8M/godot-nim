@@ -50,7 +50,7 @@ proc toNim(self: JsonArgument): GodotParam =
     result.`type` = argType self.`type`
   result.default_raw = self.default_value
 
-proc prerender*(self: JsonMethod; self_type: ArgType; gpkind: GodotProcKind): GodotProcSt =
+proc prerender_common*(self: JsonMethod; self_type: ArgType; gpkind: GodotProcKind): GodotProcSt =
   new result
   result.gpkind = gpkind
   result.owner = some self_type.name
@@ -65,7 +65,6 @@ proc prerender*(self: JsonMethod; self_type: ArgType; gpkind: GodotProcKind): Go
     result.children.add "(discard)"
   else:
     result.kind = npkProc
-    result.pragmas.add &"loadfrom(\"{self.name}\", {get self.hash})"
 
   if self.return_type.isSome:
     result.result = some retType (get self.return_type)
@@ -83,6 +82,47 @@ proc prerender*(self: JsonMethod; self_type: ArgType; gpkind: GodotProcKind): Go
     result.name = Snake.scan(self.name.replace("get_", "")) >=> NimVar
   else:
     result.name = self.name >!> Snake
+
+proc prerender_classMethod*(self: JsonMethod; self_type: ArgType; gpkind: GodotProcKind): GodotProcSt =
+  result = prerender_common(self, self_type, gpkind)
+  var selfptr = "nil"
+  var paramptr = "nil"
+  var retptr = "nil"
+  var paramArrayDef = ParagraphSt()
+  var retDef = ParagraphSt()
+  var injection = JoinSt(delimiter: "; ")
+  var paramcount: int
+
+  for i, arg in result.args:
+    if gpkind != gpkStaticMethod and i == 0:
+      selfptr = &"getOwner {arg.name}"
+    else:
+      injection.children.add &"{arg.name}.encode(`?param`[{paramcount}])"
+      inc paramcount
+
+  if paramcount != 0:
+    discard +$$..paramArrayDef:
+      &"var `?param`: array[{paramcount}, pointer]"
+      injection
+    paramptr = "addr `?param`[0]"
+  
+  if result.result.isSome:
+    retDef.children.add &"var ret: encoded {get result.result}"
+    retptr = "addr ret"
+
+  discard +$$..result:
+    &"init_methodbind({self_type.name}, \"{self.name}\", {get self.hash})"
+    paramArrayDef
+    retDef
+    &"interface_Object_methodBindPtrCall(methodbind, {selfptr}, {paramptr}, {retptr})"
+  if result.result.isSome:
+      result.children.add &"(addr ret).decode({get result.result})"
+
+
+proc prerender*(self: JsonMethod; self_type: ArgType; gpkind: GodotProcKind): GodotProcSt =
+  result = prerender_common(self, self_type, gpkind)
+  if result.kind == npkProc:
+    result.pragmas.add &"loadfrom(\"{self.name}\", {get self.hash})"
 
 proc prerender*(self: JsonOperator; argType: ArgType): GodotProcSt =
   var args: seq[GodotParam] = @[(NimVar.imitate"left", argType, none string)]
@@ -103,10 +143,9 @@ proc prerender*(self: JsonConstructor; retType: RetType): GodotProcSt =
   result = GodotProcSt(
     kind: npkProc,
     gpkind: gpkConstructor,
-    name: NimVar.imitate"init",
+    name: NimVar.imitate "init_"&($retType.name),
     args: self.arguments.get(@[]).mapIt it.toNim,
     result: some retType,
-    pragmas: @[fmt"index: {self.index}"],
     owner: some retType.name,
   )
   if result.args.len == 1:
@@ -132,7 +171,7 @@ method render*(self: GodotProcSt; cfg: RenderingConfig): seq[string] =
   if self.owner.isSome:
     let owner = get self.owner
     case self.gpkind
-    of gpkStaticMethod, gpkConstructor:
+    of gpkStaticMethod:
       pragmas.add "staticOf: " & $owner
     of gpkVirtualMethod:
       pragmas.add "base"
@@ -148,8 +187,14 @@ method render*(self: GodotProcSt; cfg: RenderingConfig): seq[string] =
   var rend: seq[string]
   self.children.forRenderedChild(cfg):
     rend.add rendered
-  if rend.len != 0:
-    head &= " = "
-    head.add rend.join(";")
-
-  return @[head]
+  case rend.len
+  of 0:
+    return @[head]
+  of 1:
+    return @[head & " = " & rend.join("; ")]
+  else:
+    result.setLen(rend.len+1)
+    result[0] = head & " ="
+    for i, r in rend:
+      result[i+1] = "  " & r
+    return result

@@ -110,14 +110,12 @@ proc toNim*(e: JsonEnum; owner: TypeName = namespace.root): NimEnum =
 
 proc render*(self: NimEnum): Statement =
   result = ParagraphSt()
-  let name = self.name.name
+  let name = $self.name
   let nameExp = if self.doExport: name & "*" else: name
   let pragmas = if self.pragmas.len == 0: "" else: " {." & self.pragmas.join(", ") & ".}"
   var enumdef = BlockSt(head: fmt"type {nameExp}{pragmas} = enum")
   var aliases = ParagraphSt()
-  result.children.add do:
-    if self.name.isInGlobal: enumdef
-    else: BlockSt(head: &"staticOf {self.name.owner}:").add(enumdef)
+  result.children.add enumdef
 
   for field in self.fields:
     let comment =

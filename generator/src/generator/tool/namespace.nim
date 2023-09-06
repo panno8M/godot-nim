@@ -8,7 +8,7 @@ import std/[
   typetraits,
 ]
 
-const delim = "|>"
+const delim = "_"
 
 type
   TypeNameObj* = object
@@ -142,7 +142,7 @@ method defaultValue*(info: ObjectInfo; value: string; argType: ArgType): string 
 
   case argType.attribute
   of ptaTypedArray:
-    return "TypedArray" & "|>init[" & $argType.name & "]()"
+    return "init_TypedArray[" & $argType.name & "]()"
   else: discard
 
   for t, v in items {
@@ -177,11 +177,11 @@ method defaultValue*(info: ObjectInfo; value: string; argType: ArgType): string 
     if t != argTypeStr: continue
     for k in k:
       if value == k:
-        return t & "|>init()"
+        return "init_" & t & "()"
 
   for t in ["Rect2", "Rect2i", "Transform3D", "String", "Color"]:
     if argTypeStr == t:
-      return value.replace(t, t & "|>init")
+      return value.replace(t, "init_"&t)
 
   if value == "null": return "nil"
   return value

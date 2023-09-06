@@ -1,7 +1,7 @@
 import ../pure/todos
 import ../godotInterface_core
-import beyond/oop
+import ../variants/variantsConstr_native
 TODO Implement_TypedArray:
   # Needs to be passed by ref
   type TypedArray*[T] = distinct Array
-  proc init*[T]: TypedArray[T] {.staticOf: TypedArray.} = TypedArray[T] Array|>init()
+  proc init_TypedArray*[T]: TypedArray[T] = TypedArray[T] init_Array()

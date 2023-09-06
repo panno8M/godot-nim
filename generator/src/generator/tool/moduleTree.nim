@@ -26,12 +26,10 @@ let # modules
   variantLoader* = mdl"variantsLoader"
 
   classes* = mdl"classes"
-  classDetail_native* = mdl"classDetail_native"
 
   globalEnums* = mdl"globalEnums"
   localEnums* = mdl"localEnums"
   nativeStructs* = mdl"nativeStructs"
-  gdrefs* = dummy mdl"gdrefs"
   engineClassDefines* = mdl"engineClassDefines"
   objectBase* = dummy mdl"objectBase"
 
@@ -49,21 +47,14 @@ let # modules
 
 
 let # externals
-  d_beyond = dir"beyond"
-  beyond_oop = dummy mdl"oop"
-  beyond_defects = dummy mdl"defects"
+  d_beyond* = dir"beyond"
+  beyond_oop* = dummy mdl"oop"
+  beyond_defects* = dummy mdl"defects"
 
 let # clouds
   variantsConstr* = cloud"variantsConstr".incl(
     variantsConstr_custom,
     variantsConstr_native,
-  )
-  classDetail_common* = cloud"classDetail_common".incl(
-    godotInterface,
-    engineClassDefiner,
-    variants,
-    beyond_oop,
-    typedArray,
   )
 
 # Dependencies
@@ -78,16 +69,10 @@ discard variants
   .incl(d_variants)
 discard nativeStructs
   .incl(
-    godotInterface,
-    beyond_oop)
+    godotInterface)
 discard engineClassDefines
   .incl(
     godotInterface_core)
-discard localEnums
-  .incl(
-    beyond_oop,
-    godotInterface_core,
-    engineClassDefines,)
 discard classes
   .exportModules_allowed
   .incl(d_classes)
@@ -119,18 +104,6 @@ discard variantsConstr_native
   .incl(
     variantTypeSolver,
     godotInterface,
-    variantDefiner,
-    pragmas,
-    compileTimeSwitch,
-    beyond_oop,
-  )
-discard classDetail_native
-  .incl(
-    classDetail_common
-  )
-  .incl(
-    nativeStructs,
-    gdrefs,
   )
 
 # Tree-Diagram
@@ -151,7 +124,6 @@ discard +/%..d_root:
       localEnums
       internal objectBase
     nativeStructs
-    gdrefs
     variants
     +/%..internal d_variants:
       dummy mdl"variantsDetail_Variant"
@@ -164,7 +136,6 @@ discard +/%..d_root:
 
     classes
     +/%..internal d_classes:
-      classDetail_native
       dummy dir"classDetail_custom"
 
     +/%..d_helper:

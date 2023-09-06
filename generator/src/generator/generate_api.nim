@@ -73,7 +73,7 @@ proc parseFormatIdentDef(s: string): NimIdentDef =
     result.default = some spl[3].replace(".f", "")
   result.name = (result.name >!> Snake >=> NimVar) & "*"
   result.`type` = result.`type`
-    .multiReplace( ("_t", ""), ("real", "real_elem"), ("::", "|>") )
+    .multiReplace( ("_t", ""), ("real", "real_elem"), ("::", "_") )
   for t in ["int", "uint", "float"]:
     if result.`type` == t:
       result.`type`= "c" & t
@@ -110,21 +110,9 @@ proc generate*(api: JsonNode) =
   moduleTree.engineClassDefines.contents = classes.renderClassDefine
   moduleTree.localEnums.contents.children.add classes.renderLocalEnums
   for (class, inherits, rendered) in classes.renderDetail:
-    block Specific:
-      for name in ["Object", "RefCounted"]:
-        if $class == name:
-          discard
-          let module = mdl("classDetail_" & name).incl(moduleTree.classDetail_common)
-          if name == "RefCounted":
-            discard module.incl d_classes//"classDetail_Object"
-          moduleTree.d_classes.take module
-          module.contents = rendered
-          break Specific
-      moduleTree.classDetail_native.contents.children.add rendered
-      moduleTree.classDetail_native.contents.children.add ""
-  discard moduleTree.classDetail_native.incl(
-    d_classes//"classDetail_Object",
-    d_classes//"classDetail_RefCounted",
-  )
+    let module = mdl("classDetail_native_" & $class)
+      .incl(moduleTree.engineClassDefiner)
+    moduleTree.d_classes.take module
+    module.contents = rendered
 
   moduleTree.nativeStructs.contents.children.add api.native_structures.toNim

@@ -18,7 +18,7 @@ Color.procedures(loader= load_Color_proc):
   proc toAbgr64*(self: Color): Int {.loadfrom("to_abgr64", 3173160232).}
   proc toRgba64*(self: Color): Int {.loadfrom("to_rgba64", 3173160232).}
   proc toHtml*(self: Color; withAlpha: Bool = true): String {.loadfrom("to_html", 3429816538).}
-  proc clamp*(self: Color; min: Color = Color|>init(0, 0, 0, 0); max: Color = Color|>init(1, 1, 1, 1)): Color {.loadfrom("clamp", 105651410).}
+  proc clamp*(self: Color; min: Color = init_Color(0, 0, 0, 0); max: Color = init_Color(1, 1, 1, 1)): Color {.loadfrom("clamp", 105651410).}
   proc inverted*(self: Color): Color {.loadfrom("inverted", 3334027602).}
   proc lerp*(self: Color; to: Color; weight: Float): Color {.loadfrom("lerp", 402949615).}
   proc lightened*(self: Color; amount: Float): Color {.loadfrom("lightened", 1466039168).}
