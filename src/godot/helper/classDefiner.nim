@@ -1,4 +1,5 @@
 import beyond/macros
+import std/tables
 
 import objectConverter
 
@@ -9,6 +10,17 @@ import ../register
 import ../godotInterface/objectBase
 import ../godotInterface_core
 import ../logging
+
+type ClassUserData* = object
+  virtualMethods*: Table[StringName, ClassCallVirtual]
+
+proc get_userdata*(T: typedesc[SomeObject]): ptr ClassUserData =
+  var userdata {.global.} : ClassUserData
+  addr userdata
+
+proc getVirtual {.implement: ClassGetVirtual.} =
+  cast[ptr ClassUserData](p_userdata).virtualMethods.getOrDefault(p_name[], nil)
+
 
 template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
   bind iam
@@ -118,6 +130,7 @@ template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
   proc make_ClassRegistrationInfo*(T: typedesc[Object]; is_virtual, is_abstract: bool): ClassRegistrationInfo =
     bind ClassRegistrationInfo
     bind className
+
     ClassRegistrationInfo(
       name: className(T),
       parent_name: className(Inherit(T)),
@@ -134,8 +147,8 @@ template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
         to_string_func: to_string_bind,
         create_instance_func: create,
         free_instance_func: free,
-        get_virtual_func: register.classGetVirtual,
-        class_userdata: addr classname(T),
+        get_virtual_func: getVirtual,
+        class_userdata: get_userdata(T),
       )
     )
 
@@ -147,7 +160,7 @@ macro build_methodInfo*(Proc: proc): ClassMethodInfo =
   let arg_defs = params[2..^1]
   let self_t = self_def[1]
   let proc_name = toStrLit Proc
-  let has_return_b = not ProcDef.hasNoReturn
+  let has_return_b = ProcDef.hasReturn
   let has_return = newlit has_return_b
   let arg_count = newlit arg_defs.len
 
