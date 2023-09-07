@@ -13,5 +13,6 @@ import ./godot/nativeStructs; export nativeStructs
 import ./godot/pragmas; export pragmas
 import ./godot/pure/compileTimeSwitch; export compileTimeSwitch
 import ./godot/pure/geometrics; export geometrics
+import ./godot/register; export register
 import ./godot/variants; export variants
 import beyond/oop; export oop

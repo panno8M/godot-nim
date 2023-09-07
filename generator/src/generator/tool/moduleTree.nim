@@ -154,6 +154,7 @@ discard +/%..d_root:
     pragmas
     internal logging
     dummy mdl"init"
+    dummy mdl"register"
 
 
 const

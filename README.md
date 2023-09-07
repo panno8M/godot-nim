@@ -24,7 +24,8 @@ This project is in the early stages of development and most features are not yet
   * [ ] Support virtual
   * [ ] Support default-value
 * [ ] Register user-defined properties
-* [ ] Make faster to compile
+* [ ] Get/Instantiate engine object
+* [ ] Call engine class method
 
 ### 🟢Tested
 

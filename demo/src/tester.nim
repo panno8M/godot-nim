@@ -1,8 +1,6 @@
 import std/unittest
-import std/importutils
 import godot
 import godot/logging
-import godot/register
 
 importClass Camera3D
 # To reduce compilation time, we recommend importing functions
@@ -29,7 +27,6 @@ proc get_int_value*(self: ref Tester): int =
   self.value
 
 proc test_pure* =
-  privateAccess StringName
   suite "variants":
     test "String conversion":
       let gdstr: String = "String"
