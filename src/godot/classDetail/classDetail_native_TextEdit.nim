@@ -4,12 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method handleUnicodeInput*(self: TextEdit; unicodeChar: int32; caretIndex: int32) {.base.} = (discard)
-method backspace*(self: TextEdit; caretIndex: int32) {.base.} = (discard)
-method cut*(self: TextEdit; caretIndex: int32) {.base.} = (discard)
-method copy*(self: TextEdit; caretIndex: int32) {.base.} = (discard)
-method paste*(self: TextEdit; caretIndex: int32) {.base.} = (discard)
-method pastePrimaryClipboard*(self: TextEdit; caretIndex: int32) {.base.} = (discard)
 proc hasImeText*(self: TextEdit): Bool =
   init_methodbind(TextEdit, "has_ime_text", 36873697)
   var ret: encoded Bool

@@ -4,9 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method getLineSyntaxHighlighting*(self: Ref[SyntaxHighlighter]; line: int32): Dictionary {.base.} = (discard)
-method clearHighlightingCache*(self: Ref[SyntaxHighlighter]) {.base.} = (discard)
-method updateCache*(self: Ref[SyntaxHighlighter]) {.base.} = (discard)
 proc getLineSyntaxHighlighting*(self: Ref[SyntaxHighlighter]; line: int32): Dictionary =
   init_methodbind(SyntaxHighlighter, "get_line_syntax_highlighting", 3554694381)
   var `?param`: array[1, pointer]

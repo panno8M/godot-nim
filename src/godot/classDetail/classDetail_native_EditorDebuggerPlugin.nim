@@ -4,9 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method setupSession*(self: Ref[EditorDebuggerPlugin]; sessionId: int32) {.base.} = (discard)
-method hasCapture*(self: Ref[EditorDebuggerPlugin]; capture: String): Bool {.base.} = (discard)
-method capture*(self: Ref[EditorDebuggerPlugin]; message: String; data: Array; sessionId: int32): Bool {.base.} = (discard)
 proc getSession*(self: Ref[EditorDebuggerPlugin]; id: int32): Ref[EditorDebuggerSession] =
   init_methodbind(EditorDebuggerPlugin, "get_session", 3061968499)
   var `?param`: array[1, pointer]

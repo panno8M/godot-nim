@@ -4,16 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method process*(self: Node; delta: float64) {.base.} = (discard)
-method physicsProcess*(self: Node; delta: float64) {.base.} = (discard)
-method enterTree*(self: Node) {.base.} = (discard)
-method exitTree*(self: Node) {.base.} = (discard)
-method ready*(self: Node) {.base.} = (discard)
-method getConfigurationWarnings*(self: Node): PackedStringArray {.base.} = (discard)
-method input*(self: Node; event: Ref[InputEvent]) {.base.} = (discard)
-method shortcutInput*(self: Node; event: Ref[InputEvent]) {.base.} = (discard)
-method unhandledInput*(self: Node; event: Ref[InputEvent]) {.base.} = (discard)
-method unhandledKeyInput*(self: Node; event: Ref[InputEvent]) {.base.} = (discard)
 proc printOrphanNodes* {.staticOf: Node.} =
   init_methodbind(Node, "print_orphan_nodes", 3218959716)
   interface_Object_methodBindPtrCall(methodbind, nil, nil, nil)

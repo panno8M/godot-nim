@@ -4,8 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method pressed*(self: BaseButton) {.base.} = (discard)
-method toggled*(self: BaseButton; buttonPressed: Bool) {.base.} = (discard)
 proc `pressed=`*(self: BaseButton; pressed: Bool) =
   init_methodbind(BaseButton, "set_pressed", 2586408642)
   var `?param`: array[1, pointer]

@@ -4,14 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method getChildNodes*(self: Ref[AnimationNode]): Dictionary {.base.} = (discard)
-method getParameterList*(self: Ref[AnimationNode]): Array {.base.} = (discard)
-method getChildByName*(self: Ref[AnimationNode]; name: StringName): Ref[AnimationNode] {.base.} = (discard)
-method getParameterDefaultValue*(self: Ref[AnimationNode]; parameter: StringName): Variant {.base.} = (discard)
-method isParameterReadOnly*(self: Ref[AnimationNode]; parameter: StringName): Bool {.base.} = (discard)
-method process*(self: Ref[AnimationNode]; time: float64; seek: Bool; isExternalSeeking: Bool; testOnly: Bool): float64 {.base.} = (discard)
-method getCaption*(self: Ref[AnimationNode]): String {.base.} = (discard)
-method hasFilter*(self: Ref[AnimationNode]): Bool {.base.} = (discard)
 proc addInput*(self: Ref[AnimationNode]; name: String): Bool =
   init_methodbind(AnimationNode, "add_input", 2323990056)
   var `?param`: array[1, pointer]

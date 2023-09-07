@@ -4,13 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method getWidth*(self: Ref[Texture2D]): int32 {.base.} = (discard)
-method getHeight*(self: Ref[Texture2D]): int32 {.base.} = (discard)
-method isPixelOpaque*(self: Ref[Texture2D]; x: int32; y: int32): Bool {.base.} = (discard)
-method hasAlpha*(self: Ref[Texture2D]): Bool {.base.} = (discard)
-method draw*(self: Ref[Texture2D]; toCanvasItem: RID; pos: Vector2; modulate: Color; transpose: Bool) {.base.} = (discard)
-method drawRect*(self: Ref[Texture2D]; toCanvasItem: RID; rect: Rect2; tile: Bool; modulate: Color; transpose: Bool) {.base.} = (discard)
-method drawRectRegion*(self: Ref[Texture2D]; toCanvasItem: RID; rect: Rect2; srcRect: Rect2; modulate: Color; transpose: Bool; clipUv: Bool) {.base.} = (discard)
 proc getWidth*(self: Ref[Texture2D]): int32 =
   init_methodbind(Texture2D, "get_width", 3905245786)
   var ret: encoded int32

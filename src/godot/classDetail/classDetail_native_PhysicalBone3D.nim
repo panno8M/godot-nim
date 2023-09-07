@@ -4,7 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method integrateForces*(self: PhysicalBone3D; state: PhysicsDirectBodyState3D) {.base.} = (discard)
 proc applyCentralImpulse*(self: PhysicalBone3D; impulse: Vector3) =
   init_methodbind(PhysicalBone3D, "apply_central_impulse", 3460891852)
   var `?param`: array[1, pointer]

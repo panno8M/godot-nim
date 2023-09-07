@@ -4,7 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method valueChanged*(self: Range; newValue: float64) {.base.} = (discard)
 proc value*(self: Range): float64 =
   init_methodbind(Range, "get_value", 1740695150)
   var ret: encoded float64

@@ -4,8 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method handles*(self: Ref[EditorResourceTooltipPlugin]; `type`: String): Bool {.base.} = (discard)
-method makeTooltipForPath*(self: Ref[EditorResourceTooltipPlugin]; path: String; metadata: Dictionary; base: Control): Control {.base.} = (discard)
 proc requestThumbnail*(self: Ref[EditorResourceTooltipPlugin]; path: String; control: TextureRect) =
   init_methodbind(EditorResourceTooltipPlugin, "request_thumbnail", 3245519720)
   var `?param`: array[2, pointer]

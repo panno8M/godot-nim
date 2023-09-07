@@ -4,8 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method updateProperty*(self: EditorProperty) {.base.} = (discard)
-method setReadOnly*(self: EditorProperty; readOnly: Bool) {.base.} = (discard)
 proc `label=`*(self: EditorProperty; text: String) =
   init_methodbind(EditorProperty, "set_label", 83702148)
   var `?param`: array[1, pointer]

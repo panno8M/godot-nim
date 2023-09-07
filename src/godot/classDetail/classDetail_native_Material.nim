@@ -4,10 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method getShaderRid*(self: Ref[Material]): RID {.base.} = (discard)
-method getShaderMode*(self: Ref[Material]): Shader_Mode {.base.} = (discard)
-method canDoNextPass*(self: Ref[Material]): Bool {.base.} = (discard)
-method canUseRenderPriority*(self: Ref[Material]): Bool {.base.} = (discard)
 proc `nextPass=`*(self: Ref[Material]; nextPass: Ref[Material]) =
   init_methodbind(Material, "set_next_pass", 2757459619)
   var `?param`: array[1, pointer]

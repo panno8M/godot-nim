@@ -4,8 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method estimateCost*(self: Ref[AStar3D]; fromId: int64; toId: int64): Float {.base.} = (discard)
-method computeCost*(self: Ref[AStar3D]; fromId: int64; toId: int64): Float {.base.} = (discard)
 proc getAvailablePointId*(self: Ref[AStar3D]): int64 =
   init_methodbind(AStar3D, "get_available_point_id", 3905245786)
   var ret: encoded int64

@@ -4,8 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method estimateCost*(self: Ref[AStarGrid2D]; fromId: Vector2i; toId: Vector2i): Float {.base.} = (discard)
-method computeCost*(self: Ref[AStarGrid2D]; fromId: Vector2i; toId: Vector2i): Float {.base.} = (discard)
 proc `region=`*(self: Ref[AStarGrid2D]; region: Rect2i) =
   init_methodbind(AStarGrid2D, "set_region", 1763793166)
   var `?param`: array[1, pointer]

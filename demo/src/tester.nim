@@ -1,9 +1,9 @@
 import std/unittest
 import godot
 import godot/logging
-import std/tables
 
-importClass Node
+# importClass Node
+
 # To reduce compilation time, we recommend importing functions
 # on a class-by-class basis using the `importClass` macro. Or,
 #
@@ -28,10 +28,9 @@ proc set_int_value*(self: Tester; value: int) =
 proc get_int_value*(self: Tester): int =
   self.value
 
-method process*(self: Tester; delta: float64) =
-  inc self.frame
-  echo self.frame
-
+method ready*(self: Tester) =
+  test "Override engine-virtuals":
+    check true
 
 proc test_pure* =
   suite "variants":
@@ -47,12 +46,8 @@ proc test_pure* =
 
 
 # fold into macro in future
-import godot/helper/objectConverter
-import godot/helper/classDefiner
-
+# FIXME Currently, name conflicts can occur.
 proc register*(T: typedesc[Tester]) =
-  get_userdata(Tester).virtualMethods["_process"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} =
-    cast[Tester](p_instance).process(p_args[0].decode(float64))
   register_class(Tester)
   register_method(Tester, helloworld)
   register_method(Tester, set_int_value)

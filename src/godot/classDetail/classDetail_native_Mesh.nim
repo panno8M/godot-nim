@@ -4,20 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method getSurfaceCount*(self: Ref[Mesh]): int32 {.base.} = (discard)
-method surfaceGetArrayLen*(self: Ref[Mesh]; index: int32): int32 {.base.} = (discard)
-method surfaceGetArrayIndexLen*(self: Ref[Mesh]; index: int32): int32 {.base.} = (discard)
-method surfaceGetArrays*(self: Ref[Mesh]; index: int32): Array {.base.} = (discard)
-method surfaceGetBlendShapeArrays*(self: Ref[Mesh]; index: int32): TypedArray[Array] {.base.} = (discard)
-method surfaceGetLods*(self: Ref[Mesh]; index: int32): Dictionary {.base.} = (discard)
-method surfaceGetFormat*(self: Ref[Mesh]; index: int32): uint32 {.base.} = (discard)
-method surfaceGetPrimitiveType*(self: Ref[Mesh]; index: int32): uint32 {.base.} = (discard)
-method surfaceSetMaterial*(self: Ref[Mesh]; index: int32; material: Ref[Material]) {.base.} = (discard)
-method surfaceGetMaterial*(self: Ref[Mesh]; index: int32): Ref[Material] {.base.} = (discard)
-method getBlendShapeCount*(self: Ref[Mesh]): int32 {.base.} = (discard)
-method getBlendShapeName*(self: Ref[Mesh]; index: int32): StringName {.base.} = (discard)
-method setBlendShapeName*(self: Ref[Mesh]; index: int32; name: StringName) {.base.} = (discard)
-method getAabb*(self: Ref[Mesh]): AABB {.base.} = (discard)
 proc `lightmapSizeHint=`*(self: Ref[Mesh]; size: Vector2i) =
   init_methodbind(Mesh, "set_lightmap_size_hint", 1130785943)
   var `?param`: array[1, pointer]

@@ -4,13 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method getFormat*(self: Ref[TextureLayered]): Image_Format {.base.} = (discard)
-method getLayeredType*(self: Ref[TextureLayered]): uint32 {.base.} = (discard)
-method getWidth*(self: Ref[TextureLayered]): int32 {.base.} = (discard)
-method getHeight*(self: Ref[TextureLayered]): int32 {.base.} = (discard)
-method getLayers*(self: Ref[TextureLayered]): int32 {.base.} = (discard)
-method hasMipmaps*(self: Ref[TextureLayered]): Bool {.base.} = (discard)
-method getLayerData*(self: Ref[TextureLayered]; layerIndex: int32): Ref[Image] {.base.} = (discard)
 proc getFormat*(self: Ref[TextureLayered]): Image_Format =
   init_methodbind(TextureLayered, "get_format", 3847873762)
   var ret: encoded Image_Format

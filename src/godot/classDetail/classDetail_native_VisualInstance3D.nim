@@ -4,7 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method getAabb*(self: VisualInstance3D): AABB {.base.} = (discard)
 proc setBase*(self: VisualInstance3D; base: RID) =
   init_methodbind(VisualInstance3D, "set_base", 2722037293)
   var `?param`: array[1, pointer]

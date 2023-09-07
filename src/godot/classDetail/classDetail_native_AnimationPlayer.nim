@@ -4,7 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method postProcessKeyValue*(self: AnimationPlayer; animation: Ref[Animation]; track: int32; value: ptr Variant; `object`: ptr Object; objectIdx: int32): Variant {.base.} = (discard)
 proc addAnimationLibrary*(self: AnimationPlayer; name: StringName; library: Ref[AnimationLibrary]): Error =
   init_methodbind(AnimationPlayer, "add_animation_library", 618909818)
   var `?param`: array[2, pointer]

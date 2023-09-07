@@ -4,12 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method canHandle*(self: Ref[EditorInspectorPlugin]; `object`: ptr Object): Bool {.base.} = (discard)
-method parseBegin*(self: Ref[EditorInspectorPlugin]; `object`: ptr Object) {.base.} = (discard)
-method parseCategory*(self: Ref[EditorInspectorPlugin]; `object`: ptr Object; category: String) {.base.} = (discard)
-method parseGroup*(self: Ref[EditorInspectorPlugin]; `object`: ptr Object; group: String) {.base.} = (discard)
-method parseProperty*(self: Ref[EditorInspectorPlugin]; `object`: ptr Object; `type`: Variant_Type; name: String; hintType: PropertyHint; hintString: String; usageFlags: set[PropertyUsageFlags]; wide: Bool): Bool {.base.} = (discard)
-method parseEnd*(self: Ref[EditorInspectorPlugin]; `object`: ptr Object) {.base.} = (discard)
 proc addCustomControl*(self: Ref[EditorInspectorPlugin]; control: Control) =
   init_methodbind(EditorInspectorPlugin, "add_custom_control", 1496901182)
   var `?param`: array[1, pointer]

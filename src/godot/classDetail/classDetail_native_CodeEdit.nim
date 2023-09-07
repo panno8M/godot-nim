@@ -4,9 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method confirmCodeCompletion*(self: CodeEdit; replace: Bool) {.base.} = (discard)
-method requestCodeCompletion*(self: CodeEdit; force: Bool) {.base.} = (discard)
-method filterCodeCompletionCandidates*(self: CodeEdit; candidates: TypedArray[Dictionary]): TypedArray[Dictionary] {.base.} = (discard)
 proc `indentSize=`*(self: CodeEdit; size: int32) =
   init_methodbind(CodeEdit, "set_indent_size", 1286410249)
   var `?param`: array[1, pointer]

@@ -4,17 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method redraw*(self: Ref[EditorNode3DGizmo]) {.base.} = (discard)
-method getHandleName*(self: Ref[EditorNode3DGizmo]; id: int32; secondary: Bool): String {.base.} = (discard)
-method isHandleHighlighted*(self: Ref[EditorNode3DGizmo]; id: int32; secondary: Bool): Bool {.base.} = (discard)
-method getHandleValue*(self: Ref[EditorNode3DGizmo]; id: int32; secondary: Bool): Variant {.base.} = (discard)
-method setHandle*(self: Ref[EditorNode3DGizmo]; id: int32; secondary: Bool; camera: Camera3D; point: Vector2) {.base.} = (discard)
-method commitHandle*(self: Ref[EditorNode3DGizmo]; id: int32; secondary: Bool; restore: ptr Variant; cancel: Bool) {.base.} = (discard)
-method subgizmosIntersectRay*(self: Ref[EditorNode3DGizmo]; camera: Camera3D; point: Vector2): int32 {.base.} = (discard)
-method subgizmosIntersectFrustum*(self: Ref[EditorNode3DGizmo]; camera: Camera3D; frustum: TypedArray[Plane]): PackedInt32Array {.base.} = (discard)
-method setSubgizmoTransform*(self: Ref[EditorNode3DGizmo]; id: int32; transform: Transform3D) {.base.} = (discard)
-method getSubgizmoTransform*(self: Ref[EditorNode3DGizmo]; id: int32): Transform3D {.base.} = (discard)
-method commitSubgizmos*(self: Ref[EditorNode3DGizmo]; ids: PackedInt32Array; restores: TypedArray[Transform3D]; cancel: Bool) {.base.} = (discard)
 proc addLines*(self: Ref[EditorNode3DGizmo]; lines: PackedVector3Array; material: Ref[Material]; billboard: Bool = false; modulate: Color = init_Color(1, 1, 1, 1)) =
   init_methodbind(EditorNode3DGizmo, "add_lines", 302451090)
   var `?param`: array[4, pointer]

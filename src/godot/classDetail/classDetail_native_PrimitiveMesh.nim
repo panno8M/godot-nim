@@ -4,7 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method createMeshArray*(self: Ref[PrimitiveMesh]): Array {.base.} = (discard)
 proc `material=`*(self: Ref[PrimitiveMesh]; material: Ref[Material]) =
   init_methodbind(PrimitiveMesh, "set_material", 2757459619)
   var `?param`: array[1, pointer]

@@ -4,14 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method getInternalImportOptions*(self: Ref[EditorScenePostImportPlugin]; category: int32) {.base.} = (discard)
-method getInternalOptionVisibility*(self: Ref[EditorScenePostImportPlugin]; category: int32; forAnimation: Bool; option: String): Variant {.base.} = (discard)
-method getInternalOptionUpdateViewRequired*(self: Ref[EditorScenePostImportPlugin]; category: int32; option: String): Variant {.base.} = (discard)
-method internalProcess*(self: Ref[EditorScenePostImportPlugin]; category: int32; baseNode: ptr Node; node: ptr Node; resource: Ref[Resource]) {.base.} = (discard)
-method getImportOptions*(self: Ref[EditorScenePostImportPlugin]; path: String) {.base.} = (discard)
-method getOptionVisibility*(self: Ref[EditorScenePostImportPlugin]; path: String; forAnimation: Bool; option: String): Variant {.base.} = (discard)
-method preProcess*(self: Ref[EditorScenePostImportPlugin]; scene: ptr Node) {.base.} = (discard)
-method postProcess*(self: Ref[EditorScenePostImportPlugin]; scene: ptr Node) {.base.} = (discard)
 proc getOptionValue*(self: Ref[EditorScenePostImportPlugin]; name: StringName): Variant =
   init_methodbind(EditorScenePostImportPlugin, "get_option_value", 2760726917)
   var `?param`: array[1, pointer]

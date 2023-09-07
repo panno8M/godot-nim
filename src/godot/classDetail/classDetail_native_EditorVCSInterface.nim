@@ -4,29 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method initialize*(self: EditorVCSInterface; projectPath: String): Bool {.base.} = (discard)
-method setCredentials*(self: EditorVCSInterface; username: String; password: String; sshPublicKeyPath: String; sshPrivateKeyPath: String; sshPassphrase: String) {.base.} = (discard)
-method getModifiedFilesData*(self: EditorVCSInterface): TypedArray[Dictionary] {.base.} = (discard)
-method stageFile*(self: EditorVCSInterface; filePath: String) {.base.} = (discard)
-method unstageFile*(self: EditorVCSInterface; filePath: String) {.base.} = (discard)
-method discardFile*(self: EditorVCSInterface; filePath: String) {.base.} = (discard)
-method commit*(self: EditorVCSInterface; msg: String) {.base.} = (discard)
-method getDiff*(self: EditorVCSInterface; identifier: String; area: int32): TypedArray[Dictionary] {.base.} = (discard)
-method shutDown*(self: EditorVCSInterface): Bool {.base.} = (discard)
-method getVcsName*(self: EditorVCSInterface): String {.base.} = (discard)
-method getPreviousCommits*(self: EditorVCSInterface; maxCommits: int32): TypedArray[Dictionary] {.base.} = (discard)
-method getBranchList*(self: EditorVCSInterface): TypedArray[String] {.base.} = (discard)
-method getRemotes*(self: EditorVCSInterface): TypedArray[String] {.base.} = (discard)
-method createBranch*(self: EditorVCSInterface; branchName: String) {.base.} = (discard)
-method removeBranch*(self: EditorVCSInterface; branchName: String) {.base.} = (discard)
-method createRemote*(self: EditorVCSInterface; remoteName: String; remoteUrl: String) {.base.} = (discard)
-method removeRemote*(self: EditorVCSInterface; remoteName: String) {.base.} = (discard)
-method getCurrentBranchName*(self: EditorVCSInterface): String {.base.} = (discard)
-method checkoutBranch*(self: EditorVCSInterface; branchName: String): Bool {.base.} = (discard)
-method pull*(self: EditorVCSInterface; remote: String) {.base.} = (discard)
-method push*(self: EditorVCSInterface; remote: String; force: Bool) {.base.} = (discard)
-method fetch*(self: EditorVCSInterface; remote: String) {.base.} = (discard)
-method getLineDiff*(self: EditorVCSInterface; filePath: String; text: String): TypedArray[Dictionary] {.base.} = (discard)
 proc createDiffLine*(self: EditorVCSInterface; newLineNo: int32; oldLineNo: int32; content: String; status: String): Dictionary =
   init_methodbind(EditorVCSInterface, "create_diff_line", 2901184053)
   var `?param`: array[4, pointer]

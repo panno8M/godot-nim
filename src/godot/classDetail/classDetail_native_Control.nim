@@ -4,15 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method hasPoint*(self: Control; point: Vector2): Bool {.base.} = (discard)
-method structuredTextParser*(self: Control; args: Array; text: String): TypedArray[Vector3i] {.base.} = (discard)
-method getMinimumSize*(self: Control): Vector2 {.base.} = (discard)
-method getTooltip*(self: Control; atPosition: Vector2): String {.base.} = (discard)
-method getDragData*(self: Control; atPosition: Vector2): Variant {.base.} = (discard)
-method canDropData*(self: Control; atPosition: Vector2; data: ptr Variant): Bool {.base.} = (discard)
-method dropData*(self: Control; atPosition: Vector2; data: ptr Variant) {.base.} = (discard)
-method makeCustomTooltip*(self: Control; forText: String): Object {.base.} = (discard)
-method guiInput*(self: Control; event: Ref[InputEvent]) {.base.} = (discard)
 proc acceptEvent*(self: Control) =
   init_methodbind(Control, "accept_event", 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)

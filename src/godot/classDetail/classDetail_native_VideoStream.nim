@@ -4,7 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method instantiatePlayback*(self: Ref[VideoStream]): Ref[VideoStreamPlayback] {.base.} = (discard)
 proc `file=`*(self: Ref[VideoStream]; file: String) =
   init_methodbind(VideoStream, "set_file", 83702148)
   var `?param`: array[1, pointer]

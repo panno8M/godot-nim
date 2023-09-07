@@ -4,8 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method setCreateOptions*(self: EditorResourcePicker; menuNode: ptr Object) {.base.} = (discard)
-method handleMenuSelected*(self: EditorResourcePicker; id: int32): Bool {.base.} = (discard)
 proc `baseType=`*(self: EditorResourcePicker; baseType: String) =
   init_methodbind(EditorResourcePicker, "set_base_type", 83702148)
   var `?param`: array[1, pointer]

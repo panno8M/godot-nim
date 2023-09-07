@@ -26,11 +26,15 @@ This project is in the early stages of development and most features are not yet
 * [ ] Register user-defined properties
 * [ ] Get/Instantiate engine object
 * [ ] Call engine class method
+* [ ] Prepare PropertyInfo template
+* [ ] Auto-react to typical notifications
+* [ ] Define constants
 
 ### 🟢Tested
 
 * Register user defined class to godot
 * Instantiate user defined class from godot editor
+* Allow override virtual hooks (E.g. `_process`)
 
 ### 🟡Never tested yet
 

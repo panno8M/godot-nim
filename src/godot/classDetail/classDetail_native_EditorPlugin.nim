@@ -4,29 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method forwardCanvasGuiInput*(self: EditorPlugin; event: Ref[InputEvent]): Bool {.base.} = (discard)
-method forwardCanvasDrawOverViewport*(self: EditorPlugin; viewportControl: Control) {.base.} = (discard)
-method forwardCanvasForceDrawOverViewport*(self: EditorPlugin; viewportControl: Control) {.base.} = (discard)
-method forward3dGuiInput*(self: EditorPlugin; viewportCamera: Camera3D; event: Ref[InputEvent]): int32 {.base.} = (discard)
-method forward3dDrawOverViewport*(self: EditorPlugin; viewportControl: Control) {.base.} = (discard)
-method forward3dForceDrawOverViewport*(self: EditorPlugin; viewportControl: Control) {.base.} = (discard)
-method getPluginName*(self: EditorPlugin): String {.base.} = (discard)
-method getPluginIcon*(self: EditorPlugin): Ref[Texture2D] {.base.} = (discard)
-method hasMainScreen*(self: EditorPlugin): Bool {.base.} = (discard)
-method makeVisible*(self: EditorPlugin; visible: Bool) {.base.} = (discard)
-method edit*(self: EditorPlugin; `object`: ptr Object) {.base.} = (discard)
-method handles*(self: EditorPlugin; `object`: ptr Object): Bool {.base.} = (discard)
-method getState*(self: EditorPlugin): Dictionary {.base.} = (discard)
-method setState*(self: EditorPlugin; state: Dictionary) {.base.} = (discard)
-method clear*(self: EditorPlugin) {.base.} = (discard)
-method saveExternalData*(self: EditorPlugin) {.base.} = (discard)
-method applyChanges*(self: EditorPlugin) {.base.} = (discard)
-method getBreakpoints*(self: EditorPlugin): PackedStringArray {.base.} = (discard)
-method setWindowLayout*(self: EditorPlugin; configuration: Ref[ConfigFile]) {.base.} = (discard)
-method getWindowLayout*(self: EditorPlugin; configuration: Ref[ConfigFile]) {.base.} = (discard)
-method build*(self: EditorPlugin): Bool {.base.} = (discard)
-method enablePlugin*(self: EditorPlugin) {.base.} = (discard)
-method disablePlugin*(self: EditorPlugin) {.base.} = (discard)
 proc addControlToContainer*(self: EditorPlugin; container: EditorPlugin_CustomControlContainer; control: Control) =
   init_methodbind(EditorPlugin, "add_control_to_container", 3092750152)
   var `?param`: array[2, pointer]

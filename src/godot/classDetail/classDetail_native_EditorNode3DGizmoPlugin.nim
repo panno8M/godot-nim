@@ -4,23 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method hasGizmo*(self: Ref[EditorNode3DGizmoPlugin]; forNode3d: Node3D): Bool {.base.} = (discard)
-method createGizmo*(self: Ref[EditorNode3DGizmoPlugin]; forNode3d: Node3D): Ref[EditorNode3DGizmo] {.base.} = (discard)
-method getGizmoName*(self: Ref[EditorNode3DGizmoPlugin]): String {.base.} = (discard)
-method getPriority*(self: Ref[EditorNode3DGizmoPlugin]): int32 {.base.} = (discard)
-method canBeHidden*(self: Ref[EditorNode3DGizmoPlugin]): Bool {.base.} = (discard)
-method isSelectableWhenHidden*(self: Ref[EditorNode3DGizmoPlugin]): Bool {.base.} = (discard)
-method redraw*(self: Ref[EditorNode3DGizmoPlugin]; gizmo: Ref[EditorNode3DGizmo]) {.base.} = (discard)
-method getHandleName*(self: Ref[EditorNode3DGizmoPlugin]; gizmo: Ref[EditorNode3DGizmo]; handleId: int32; secondary: Bool): String {.base.} = (discard)
-method isHandleHighlighted*(self: Ref[EditorNode3DGizmoPlugin]; gizmo: Ref[EditorNode3DGizmo]; handleId: int32; secondary: Bool): Bool {.base.} = (discard)
-method getHandleValue*(self: Ref[EditorNode3DGizmoPlugin]; gizmo: Ref[EditorNode3DGizmo]; handleId: int32; secondary: Bool): Variant {.base.} = (discard)
-method setHandle*(self: Ref[EditorNode3DGizmoPlugin]; gizmo: Ref[EditorNode3DGizmo]; handleId: int32; secondary: Bool; camera: Camera3D; screenPos: Vector2) {.base.} = (discard)
-method commitHandle*(self: Ref[EditorNode3DGizmoPlugin]; gizmo: Ref[EditorNode3DGizmo]; handleId: int32; secondary: Bool; restore: ptr Variant; cancel: Bool) {.base.} = (discard)
-method subgizmosIntersectRay*(self: Ref[EditorNode3DGizmoPlugin]; gizmo: Ref[EditorNode3DGizmo]; camera: Camera3D; screenPos: Vector2): int32 {.base.} = (discard)
-method subgizmosIntersectFrustum*(self: Ref[EditorNode3DGizmoPlugin]; gizmo: Ref[EditorNode3DGizmo]; camera: Camera3D; frustumPlanes: TypedArray[Plane]): PackedInt32Array {.base.} = (discard)
-method getSubgizmoTransform*(self: Ref[EditorNode3DGizmoPlugin]; gizmo: Ref[EditorNode3DGizmo]; subgizmoId: int32): Transform3D {.base.} = (discard)
-method setSubgizmoTransform*(self: Ref[EditorNode3DGizmoPlugin]; gizmo: Ref[EditorNode3DGizmo]; subgizmoId: int32; transform: Transform3D) {.base.} = (discard)
-method commitSubgizmos*(self: Ref[EditorNode3DGizmoPlugin]; gizmo: Ref[EditorNode3DGizmo]; ids: PackedInt32Array; restores: TypedArray[Transform3D]; cancel: Bool) {.base.} = (discard)
 proc createMaterial*(self: Ref[EditorNode3DGizmoPlugin]; name: String; color: Color; billboard: Bool = false; onTop: Bool = false; useVertexColor: Bool = false) =
   init_methodbind(EditorNode3DGizmoPlugin, "create_material", 3486012546)
   var `?param`: array[5, pointer]

@@ -4,9 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method execute*(self: Ref[SkeletonModification2D]; delta: float64) {.base.} = (discard)
-method setupModification*(self: Ref[SkeletonModification2D]; modificationStack: Ref[SkeletonModificationStack2D]) {.base.} = (discard)
-method drawEditorGizmo*(self: Ref[SkeletonModification2D]) {.base.} = (discard)
 proc `enabled=`*(self: Ref[SkeletonModification2D]; enabled: Bool) =
   init_methodbind(SkeletonModification2D, "set_enabled", 2586408642)
   var `?param`: array[1, pointer]

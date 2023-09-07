@@ -4,8 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method getAllowedSizeFlagsHorizontal*(self: Container): PackedInt32Array {.base.} = (discard)
-method getAllowedSizeFlagsVertical*(self: Container): PackedInt32Array {.base.} = (discard)
 proc queueSort*(self: Container) =
   init_methodbind(Container, "queue_sort", 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)

@@ -69,7 +69,7 @@ proc renderLocalEnums*(classes: NimClasses): Statement =
     if class.enums.len != 0:
       result.children.add ""
 
-iterator renderDetail*(classes: NimClasses): tuple[class, inherits: TypeName; essencial, detail: Statement] =
+iterator renderDetail*(classes: NimClasses): tuple[class, inherits: TypeName; essencial, detail, virtual: Statement] =
   for classes in classes.parentalSorted:
     for class in classes:
       var essencial = ParagraphSt()
@@ -86,9 +86,10 @@ iterator renderDetail*(classes: NimClasses): tuple[class, inherits: TypeName; es
           setters.incl prop.setter.get
 
       let localProcs = ParagraphSt()
+      var virtuals = GodotVirtualmethods()
       for mhd in class.json.methods.get(@[]):
         if mhd.is_virtual.get(false):
-          detail.children.add mhd.prerender(argType class.name, gpkVirtualMethod)
+          virtuals.methods.add mhd.prerender_virtual(argType class.name)
         else:
           var gpkind: GodotProcKind
           if mhd.is_static:
@@ -104,7 +105,7 @@ iterator renderDetail*(classes: NimClasses): tuple[class, inherits: TypeName; es
       if localProcs.children.len != 0:
         detail.children.add localProcs
 
-      yield (class.name, class.inherits, essencial, detail)
+      yield (class.name, class.inherits, essencial, detail, virtuals)
 
 
 method stringify*(info: NimClass; param: ParamType): string =

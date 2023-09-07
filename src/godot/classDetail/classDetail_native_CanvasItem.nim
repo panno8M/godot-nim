@@ -4,7 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method draw*(self: CanvasItem) {.base.} = (discard)
 proc getCanvasItem*(self: CanvasItem): RID =
   init_methodbind(CanvasItem, "get_canvas_item", 2944877500)
   var ret: encoded RID

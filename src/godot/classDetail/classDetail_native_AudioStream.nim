@@ -4,12 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method instantiatePlayback*(self: Ref[AudioStream]): Ref[AudioStreamPlayback] {.base.} = (discard)
-method getStreamName*(self: Ref[AudioStream]): String {.base.} = (discard)
-method getLength*(self: Ref[AudioStream]): float64 {.base.} = (discard)
-method isMonophonic*(self: Ref[AudioStream]): Bool {.base.} = (discard)
-method getBpm*(self: Ref[AudioStream]): float64 {.base.} = (discard)
-method getBeatCount*(self: Ref[AudioStream]): int32 {.base.} = (discard)
 proc getLength*(self: Ref[AudioStream]): float64 =
   init_methodbind(AudioStream, "get_length", 1740695150)
   var ret: encoded float64

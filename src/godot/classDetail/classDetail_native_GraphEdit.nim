@@ -4,10 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method isInInputHotzone*(self: GraphEdit; inNode: ptr Object; inPort: int32; mousePosition: Vector2): Bool {.base.} = (discard)
-method isInOutputHotzone*(self: GraphEdit; inNode: ptr Object; inPort: int32; mousePosition: Vector2): Bool {.base.} = (discard)
-method getConnectionLine*(self: GraphEdit; fromPosition: Vector2; toPosition: Vector2): PackedVector2Array {.base.} = (discard)
-method isNodeHoverValid*(self: GraphEdit; fromNode: StringName; fromPort: int32; toNode: StringName; toPort: int32): Bool {.base.} = (discard)
 proc connectNode*(self: GraphEdit; fromNode: StringName; fromPort: int32; toNode: StringName; toPort: int32): Error =
   init_methodbind(GraphEdit, "connect_node", 195065850)
   var `?param`: array[4, pointer]

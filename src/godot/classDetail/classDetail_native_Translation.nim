@@ -4,8 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method getPluralMessage*(self: Ref[Translation]; srcMessage: StringName; srcPluralMessage: StringName; n: int32; context: StringName): StringName {.base.} = (discard)
-method getMessage*(self: Ref[Translation]; srcMessage: StringName; context: StringName): StringName {.base.} = (discard)
 proc `locale=`*(self: Ref[Translation]; locale: String) =
   init_methodbind(Translation, "set_locale", 83702148)
   var `?param`: array[1, pointer]

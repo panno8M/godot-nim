@@ -5,6 +5,9 @@ import ../nativeStructs; export nativeStructs
 import ../variants; export variants
 import beyond/oop/typestatics; export typestatics
 
+from std/tables import `[]=`
+export tables.`[]=`
+
 import classDefinerCommon
 template define_godot_engine_class_essencials*(Class, Inherits: typedesc): untyped =
   bind define_godot_class_commons
@@ -34,13 +37,11 @@ template define_godot_engine_class_essencials*(Class, Inherits: typedesc): untyp
 
 
 template getOwner*[T: SomeObject](v: T): ObjectPtr =
-  v.owner
-template getOwner*[T: SomeObject](v: ptr T | ref T): ObjectPtr =
   if v.isNil: nil
-  else: getOwner v[]
+  else: v.owner
 template getOwner*[T: SomeRefCounted](v: Ref[T]): ObjectPtr =
   if v.reference.isNil: nil
-  else: getOwner v.reference
+  else: v.reference.owner
 
 template init_methodbind*(T: typedesc; bind_name: static string; bind_hash: static int) =
   var methodbind {.global, inject.}: MethodBindPtr

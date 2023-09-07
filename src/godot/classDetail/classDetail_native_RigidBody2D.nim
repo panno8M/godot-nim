@@ -4,7 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method integrateForces*(self: RigidBody2D; state: PhysicsDirectBodyState2D) {.base.} = (discard)
 proc `mass=`*(self: RigidBody2D; mass: Float) =
   init_methodbind(RigidBody2D, "set_mass", 373806689)
   var `?param`: array[1, pointer]

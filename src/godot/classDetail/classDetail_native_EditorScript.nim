@@ -4,7 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method run*(self: Ref[EditorScript]) {.base.} = (discard)
 proc addRootNode*(self: Ref[EditorScript]; node: ptr Node) =
   init_methodbind(EditorScript, "add_root_node", 1078189570)
   var `?param`: array[1, pointer]

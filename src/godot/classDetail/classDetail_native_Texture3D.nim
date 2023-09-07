@@ -4,12 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method getFormat*(self: Ref[Texture3D]): Image_Format {.base.} = (discard)
-method getWidth*(self: Ref[Texture3D]): int32 {.base.} = (discard)
-method getHeight*(self: Ref[Texture3D]): int32 {.base.} = (discard)
-method getDepth*(self: Ref[Texture3D]): int32 {.base.} = (discard)
-method hasMipmaps*(self: Ref[Texture3D]): Bool {.base.} = (discard)
-method getData*(self: Ref[Texture3D]): TypedArray[Image] {.base.} = (discard)
 proc getFormat*(self: Ref[Texture3D]): Image_Format =
   init_methodbind(Texture3D, "get_format", 3847873762)
   var ret: encoded Image_Format

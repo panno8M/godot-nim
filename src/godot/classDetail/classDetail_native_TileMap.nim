@@ -4,8 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method useTileDataRuntimeUpdate*(self: TileMap; layer: int32; coords: Vector2i): Bool {.base.} = (discard)
-method tileDataRuntimeUpdate*(self: TileMap; layer: int32; coords: Vector2i; tileData: TileData) {.base.} = (discard)
 proc `tileset=`*(self: TileMap; tileset: Ref[TileSet]) =
   init_methodbind(TileMap, "set_tileset", 774531446)
   var `?param`: array[1, pointer]

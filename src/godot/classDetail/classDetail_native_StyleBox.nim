@@ -4,10 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method draw*(self: Ref[StyleBox]; toCanvasItem: RID; rect: Rect2) {.base.} = (discard)
-method getDrawRect*(self: Ref[StyleBox]; rect: Rect2): Rect2 {.base.} = (discard)
-method getMinimumSize*(self: Ref[StyleBox]): Vector2 {.base.} = (discard)
-method testMask*(self: Ref[StyleBox]; point: Vector2; rect: Rect2): Bool {.base.} = (discard)
 proc getMinimumSize*(self: Ref[StyleBox]): Vector2 =
   init_methodbind(StyleBox, "get_minimum_size", 3341600327)
   var ret: encoded Vector2

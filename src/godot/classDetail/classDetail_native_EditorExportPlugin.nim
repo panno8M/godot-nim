@@ -4,20 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method exportFile*(self: Ref[EditorExportPlugin]; path: String; `type`: String; features: PackedStringArray) {.base.} = (discard)
-method exportBegin*(self: Ref[EditorExportPlugin]; features: PackedStringArray; isDebug: Bool; path: String; flags: uint32) {.base.} = (discard)
-method exportEnd*(self: Ref[EditorExportPlugin]) {.base.} = (discard)
-method beginCustomizeResources*(self: Ref[EditorExportPlugin]; platform: Ref[EditorExportPlatform]; features: PackedStringArray): Bool {.base.} = (discard)
-method customizeResource*(self: Ref[EditorExportPlugin]; resource: Ref[Resource]; path: String): Ref[Resource] {.base.} = (discard)
-method beginCustomizeScenes*(self: Ref[EditorExportPlugin]; platform: Ref[EditorExportPlatform]; features: PackedStringArray): Bool {.base.} = (discard)
-method customizeScene*(self: Ref[EditorExportPlugin]; scene: ptr Node; path: String): Node {.base.} = (discard)
-method getCustomizationConfigurationHash*(self: Ref[EditorExportPlugin]): uint64 {.base.} = (discard)
-method endCustomizeScenes*(self: Ref[EditorExportPlugin]) {.base.} = (discard)
-method endCustomizeResources*(self: Ref[EditorExportPlugin]) {.base.} = (discard)
-method getExportOptions*(self: Ref[EditorExportPlugin]; platform: Ref[EditorExportPlatform]): TypedArray[Dictionary] {.base.} = (discard)
-method shouldUpdateExportOptions*(self: Ref[EditorExportPlugin]; platform: Ref[EditorExportPlatform]): Bool {.base.} = (discard)
-method getExportFeatures*(self: Ref[EditorExportPlugin]; platform: Ref[EditorExportPlatform]; debug: Bool): PackedStringArray {.base.} = (discard)
-method getName*(self: Ref[EditorExportPlugin]): String {.base.} = (discard)
 proc addSharedObject*(self: Ref[EditorExportPlugin]; path: String; tags: PackedStringArray; target: String) =
   init_methodbind(EditorExportPlugin, "add_shared_object", 3098291045)
   var `?param`: array[3, pointer]

@@ -98,6 +98,21 @@ convert_generic_params_forcecast TypedArray, gd.Array
 
 convert_generic_params_forcecast set, gd.Int
 
+
+# pointer
+# =======
+template encoded*(_: typedesc[pointer]): typedesc[pointer] = pointer
+template encode*(v: pointer; p: pointer) =
+  cast[ptr pointer](p)[] = v
+proc decode*(p: pointer; _: typedesc[pointer]): pointer =
+  p
+
+template encoded*[T](_: typedesc[ptr T]): typedesc[pointer] = pointer
+template encode*[T](v: ptr T; p: pointer) =
+  cast[ptr ptr T](p)[] = v
+proc decode*[T](p: pointer; _: typedesc[ptr T]): ptr T =
+  cast[ptr T](p)
+
 # Variant
 # =======
 template encoded*(T: typedesc[Variant]): typedesc[Variant] = Variant

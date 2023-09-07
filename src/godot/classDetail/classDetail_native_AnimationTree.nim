@@ -4,7 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method postProcessKeyValue*(self: AnimationTree; animation: Ref[Animation]; track: int32; value: ptr Variant; `object`: ptr Object; objectIdx: int32): Variant {.base.} = (discard)
 proc `active=`*(self: AnimationTree; active: Bool) =
   init_methodbind(AnimationTree, "set_active", 2586408642)
   var `?param`: array[1, pointer]

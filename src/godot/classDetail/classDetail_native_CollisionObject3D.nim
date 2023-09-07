@@ -4,9 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method inputEvent*(self: CollisionObject3D; camera: Camera3D; event: Ref[InputEvent]; position: Vector3; normal: Vector3; shapeIdx: int32) {.base.} = (discard)
-method mouseEnter*(self: CollisionObject3D) {.base.} = (discard)
-method mouseExit*(self: CollisionObject3D) {.base.} = (discard)
 proc `collisionLayer=`*(self: CollisionObject3D; layer: uint32) =
   init_methodbind(CollisionObject3D, "set_collision_layer", 1286410249)
   var `?param`: array[1, pointer]

@@ -11,17 +11,6 @@ import ../godotInterface/objectBase
 import ../godotInterface_core
 import ../logging
 
-type ClassUserData* = object
-  virtualMethods*: Table[StringName, ClassCallVirtual]
-
-proc get_userdata*(T: typedesc[SomeObject]): ptr ClassUserData =
-  var userdata {.global.} : ClassUserData
-  addr userdata
-
-proc getVirtual {.implement: ClassGetVirtual.} =
-  cast[ptr ClassUserData](p_userdata).virtualMethods.getOrDefault(p_name[], nil)
-
-
 template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
   bind iam
   bind debug
@@ -77,7 +66,7 @@ template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
     GC_unref obj
 
   proc notification_bind {.implement: ClassNotification, gensym.} =
-    iam($Class&"-notification", stgLibrary).debug("Called")
+    iam($Class&"-notification", stgLibrary).debug("Called: " & $p_what)
     if p_instance.isNil: return
     # Class|>notification(cast[ptr Class](p_instance)[], p_what)
 

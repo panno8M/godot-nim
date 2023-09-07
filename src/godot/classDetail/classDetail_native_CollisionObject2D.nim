@@ -4,11 +4,6 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-method inputEvent*(self: CollisionObject2D; viewport: Viewport; event: Ref[InputEvent]; shapeIdx: int32) {.base.} = (discard)
-method mouseEnter*(self: CollisionObject2D) {.base.} = (discard)
-method mouseExit*(self: CollisionObject2D) {.base.} = (discard)
-method mouseShapeEnter*(self: CollisionObject2D; shapeIdx: int32) {.base.} = (discard)
-method mouseShapeExit*(self: CollisionObject2D; shapeIdx: int32) {.base.} = (discard)
 proc getRid*(self: CollisionObject2D): RID =
   init_methodbind(CollisionObject2D, "get_rid", 2944877500)
   var ret: encoded RID

@@ -33,6 +33,9 @@ type
     result*: Option[RetType]
     owner*: Option[TypeName]
     pragmas*: seq[string]
+    native_name*: string
+  GodotVirtualmethods* = ref object of ParagraphSt
+    methods*: seq[GodotProcSt]
 
 proc cmp*(x, y: GodotProcSt): int =
   result = cmp(x.name, y.name)
@@ -53,18 +56,14 @@ proc toNim(self: JsonArgument): GodotParam =
 proc prerender_common*(self: JsonMethod; self_type: ArgType; gpkind: GodotProcKind): GodotProcSt =
   new result
   result.gpkind = gpkind
+  result.kind = npkProc
+  result.native_name = self.name
   result.owner = some self_type.name
   if gpkind != gpkStaticMethod:
     result.args.add (NimVar.imitate"self", self_type, none string)
 
   if self.arguments.isSome:
     result.args.add self.arguments.get.mapIt it.toNim
-
-  if gpkind == gpkVirtualMethod:
-    result.kind = npkMethod
-    result.children.add "(discard)"
-  else:
-    result.kind = npkProc
 
   if self.return_type.isSome:
     result.result = some retType (get self.return_type)
@@ -118,6 +117,38 @@ proc prerender_classMethod*(self: JsonMethod; self_type: ArgType; gpkind: GodotP
   if result.result.isSome:
       result.children.add &"(addr ret).decode({get result.result})"
 
+proc prerender_virtual*(self: JsonMethod; self_type: ArgType): GodotProcSt =
+  result = prerender_common(self, self_type, gpkVirtualMethod)
+  result.kind = npkMethod
+  result.children.add "(discard)"
+
+method render*(self: GodotVirtualmethods; cfg: RenderingConfig): seq[string] =
+  if self.methods.len == 0: return
+  let self_type = self.methods[0].args[0].`type`
+
+  let binder = +$$..BlockSt(head: &"proc bind_virtuals*(S: typedesc[{self_type.name}]; T: typedesc) ="):
+    &"S.Inherit.bind_virtuals(T)"
+    &"let table = get_userdata(T).virtualMethods"
+  for virtual in self.methods:
+    var args_str: seq[string]
+    let args_delim = ", "
+    for i, arg in virtual.args:
+      if i == 0: continue
+      let i = i-1
+      args_str.add &"p_args[{i}].decode({arg.`type`})"
+    var callbody =
+      &"cast[{self_type}](p_instance).{virtual.name}({args_str.join(args_delim)})"
+    if virtual.result.isSome:
+      callbody &= ".encode(r_ret)"
+    discard +$$..binder:
+      +$$..ParagraphSt():
+        fmt "table[\"{virtual.native_name}\"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {{.gdcall.}} = {callbody}"
+
+  let st = +$$..ParagraphSt():
+    self.methods
+    binder
+    ""
+  st.render(cfg)
 
 proc prerender*(self: JsonMethod; self_type: ArgType; gpkind: GodotProcKind): GodotProcSt =
   result = prerender_common(self, self_type, gpkind)
