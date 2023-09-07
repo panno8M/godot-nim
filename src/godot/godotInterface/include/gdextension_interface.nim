@@ -227,7 +227,7 @@ type
   ClassToString* = proc (p_instance: ClassInstancePtr; r_is_valid: ptr Bool; p_out: StringPtr) {.gdcall.}
   ClassReference* = proc (p_instance: ClassInstancePtr) {.gdcall.}
   ClassUnreference* = proc (p_instance: ClassInstancePtr) {.gdcall.}
-  ClassCallVirtual* = proc (p_instance: ClassInstancePtr; p_args: ptr ConstTypePtr; r_ret: TypePtr) {.gdcall.}
+  ClassCallVirtual* = proc (p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.}
   ClassCreateInstance* = proc (p_userdata: pointer): ObjectPtr {.gdcall.}
   ClassFreeInstance* = proc (p_userdata: pointer; p_instance: ClassInstancePtr) {.gdcall.}
   ClassGetVirtual* = proc (p_userdata: pointer; p_name: ConstStringNamePtr): ClassCallVirtual {.gdcall.}
