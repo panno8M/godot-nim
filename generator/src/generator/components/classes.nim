@@ -34,7 +34,7 @@ proc toNim*(class: JsonClass): NimClass =
 proc toNim*(classes: JsonClasses): NimClasses = classes.mapIt it.toNim
 proc renderClassDefine*(class: NimClass): Statement =
   var classdef = ParagraphSt()
-  return +$$..BlockSt(head: fmt"{class.name}* = object of {class.inherits}"):
+  return +$$..BlockSt(head: fmt"{class.name}* = ref object of {class.inherits}"):
     classdef
 
 iterator parentalSorted*(classes: NimClasses): NimClasses =

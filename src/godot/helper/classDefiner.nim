@@ -61,7 +61,7 @@ template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
   proc free {.implement: ClassFreeInstance, gensym.} =
     iam($Class&"-free", stgLibrary).debug("Called")
     if p_instance.isNil: return
-    let obj = cast[ref Class](p_instance)
+    let obj = cast[Class](p_instance)
     GC_unref obj
 
   proc notification_bind {.implement: ClassNotification, gensym.} =

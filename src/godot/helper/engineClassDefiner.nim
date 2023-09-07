@@ -22,7 +22,7 @@ template define_godot_engine_class_essencials*(Class, Inherits: typedesc): untyp
     GC_ref class
     result = cast[pointer](class)
   proc free_callback(p_token: pointer; p_instance: pointer; p_binding: pointer) {.gdcall, gensym.} =
-    `=destroy`(cast[ptr Class](p_binding)[])
+    `=destroy`(cast[Class](p_binding))
   proc reference_callback(p_token: pointer; p_binding: pointer; p_reference: Bool): Bool {.gdcall, gensym.} =
     true
 

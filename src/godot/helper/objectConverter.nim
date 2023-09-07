@@ -131,13 +131,13 @@ proc get*(v: Variant; T: typedesc[ObjectPtr]): T =
 # Godot Object
 # ============
 
-proc getInstanceBinding[T: SomeObject](p_engine_object: ObjectPtr; _: typedesc[T]): ptr T =
+proc getInstanceBinding[T: SomeObject](p_engine_object: ObjectPtr; _: typedesc[T]): T =
   if p_engine_object.isNil: return
 
   # Get existing instance binding, if one already exists.
   let instance = interface_objectGetInstanceBinding(p_engine_object, token, nil)
   if not instance.isNil:
-    return cast[ptr T](instance)
+    return cast[T](instance)
 
   # Otherwise, try to look up the correct binding callbacks.
   # var binding_callbacks: ptr InstanceBindingCallbacks = nil
@@ -153,11 +153,11 @@ template encoded*[T: SomeObject](_: typedesc[T]): typedesc[ObjectPtr] = ObjectPt
 template encode*[T: SomeObject](v: T|ptr T; p: pointer) =
   encode(v.owner, p)
 proc decode*[T: SomeObject](p: pointer; _: typedesc[T]): T =
-  p.decode(ObjectPtr).getInstanceBinding(T)[]
+  p.decode(ObjectPtr).getInstanceBinding(T)
 converter variant*[T: SomeObject](v: T): Variant =
   variant v.owner
 proc get*[T: SomeObject](v: Variant; _: typedesc[T]): T =
-  v.get(ObjectPtr).getInstanceBinding(T)[]
+  v.get(ObjectPtr).getInstanceBinding(T)
 
 # Ref[T]
 # ======

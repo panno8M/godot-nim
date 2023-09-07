@@ -174,16 +174,16 @@ var
   token*: pointer
   godotVersion*: GodotVersion
 
-proc `=destroy`(x: Variant) =
-  TODO Variants_destruction.comment"inject here to call `=destroy` of an having"
-  try:
-    if x != Variant_empty:
-      interface_variantDestroy(addr x)
-  except: discard
-proc `=copy`(dest: var Variant; source: Variant) =
-  `=destroy` dest
-  wasMoved(dest)
-  interface_variantNewCopy(addr dest, addr source)
+# proc `=destroy`(x: Variant) =
+#   TODO Variants_destruction.comment"inject here to call `=destroy` of an having"
+#   try:
+#     if x != Variant_empty:
+#       interface_variantDestroy(addr x)
+#   except: discard
+# proc `=copy`(dest: var Variant; source: Variant) =
+#   `=destroy` dest
+#   wasMoved(dest)
+#   interface_variantNewCopy(addr dest, addr source)
 
 
 template variantType(Type: typedesc[SomeVariants]): Variant_Type =
@@ -191,10 +191,10 @@ template variantType(Type: typedesc[SomeVariants]): Variant_Type =
 
 template define_destructor(Type: typedesc): untyped =
   var `Type destr` {.inject.} : PtrDestructor
-  proc `=destroy`(self: Type) {.raises: [].} =
-    try:
-      `Type destr`(addr self)
-    except: discard
+  # proc `=destroy`(self: Type) {.raises: [].} =
+  #   try:
+  #     `Type destr`(addr self)
+  #   except: discard
 template load_destructor(Type: typedesc): untyped =
   `Type destr` = interface_variantGetPtrDestructor Type.variantType
 
@@ -233,14 +233,14 @@ proc load_Variants_destr* =
   load_destructor PackedVector3Array
   load_destructor PackedColorArray
 
-type ObjectBase* {.byref.} = object of RootObj
+type ObjectBase* = ref object of RootObj
   isvalid* = true
   owner*: ObjectPtr
 type SomeObject* = concept type t
   t is ObjectBase
-proc init_engine_class*(self: ref ObjectBase; godot_class: ptr StringName) =
+proc init_engine_class*(self: ObjectBase; godot_class: ptr StringName) =
   self.owner = interface_classdb_construct_object(godot_class)
-proc init_engine_class*(self: ref ObjectBase; godot_object: ObjectPtr) =
+proc init_engine_class*(self: ObjectBase; godot_object: ObjectPtr) =
   self.owner = godot_object
 
 

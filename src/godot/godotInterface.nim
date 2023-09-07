@@ -10,4 +10,4 @@ TODO Support_godots_ref:
     SomeRefCounted* = concept t
       t is RefCounted
   type Ref*[T: SomeRefCounted] = object
-    reference*: ptr T
+    reference*: T

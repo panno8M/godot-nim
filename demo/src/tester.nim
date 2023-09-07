@@ -15,16 +15,21 @@ importClass Camera3D
 # because the program will finally be shared object(dll).
 unittest.disableParamFiltering()
 
-type Tester* = object of Node
+type Tester* = ref object of Node
   value: int
+  frame: int
 define_godot_class_essencials Tester, Node
 
-proc helloworld*(self: ref Tester): string =
+proc helloworld*(self: Tester): string =
   "Hello, World!"
-proc set_int_value*(self: ref Tester; value: int) =
+proc set_int_value*(self: Tester; value: int) =
   self.value = value
-proc get_int_value*(self: ref Tester): int =
+proc get_int_value*(self: Tester): int =
   self.value
+
+# method process*(self: Tester; delta: float64) =
+#   inc self.frame
+
 
 proc test_pure* =
   suite "variants":
