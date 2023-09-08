@@ -12,6 +12,19 @@ Or clone this repo and execute `nimble debugdemo` to compile demo(test) project 
 
 This project is in the early stages of development and most features are not yet operational.
 
+### 🟢Available
+
+* Define your Godot-Class
+* Instantiate your Godot-Class from editor
+* Override virtual hooks (E.g. `_ready`, `_process`) with nim
+* Define and call your **Simple** Godot-Class method at any place
+* Define and use your Godot-Class property at any place
+
+### 🟡Never tested yet
+
+* Destroy object safety by GC
+* Correctly convert between Godot class and Nim object
+
 ### ⚫In progress
 
 * [ ] Register user-defined methods
@@ -23,23 +36,11 @@ This project is in the early stages of development and most features are not yet
   * [ ] Support static
   * [ ] Support virtual
   * [ ] Support default-value
-* [ ] Register user-defined properties
 * [ ] Get/Instantiate engine object
 * [ ] Call engine class method
 * [ ] Prepare PropertyInfo template
 * [ ] Auto-react to typical notifications
 * [ ] Define constants
-
-### 🟢Tested
-
-* Register user defined class to godot
-* Instantiate user defined class from godot editor
-* Allow override virtual hooks (E.g. `_process`)
-
-### 🟡Never tested yet
-
-* Destroy object safety by GC
-* Correctly convert between Godot class and Nim object
 
 ### 🔴Still can't
 
