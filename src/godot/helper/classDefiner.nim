@@ -4,9 +4,8 @@ import std/tables
 import objectConverter
 
 import ./errorHandlings
-import ../register
-import ../godotInterface/objectBase
-import ../godotInterface_core
+import ../init
+import ../godotInterface
 import ../logging
 
 template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
@@ -33,7 +32,7 @@ template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
 
     me.debug("called")
     let new_object = new Class
-    init_engine_class(new_object, addr className Class.EngineClass)
+    init_engine_class(new_object, addr className EngineClass(Class))
     GC_ref new_object
     me.debug("set-instance")
     interfaceObjectSetInstance(new_object.owner, addr className(Class), cast[pointer](new_object))

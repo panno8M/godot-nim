@@ -11,7 +11,6 @@ import ./godot/init; export init
 import ./godot/nativeStructs; export nativeStructs
 import ./godot/pure/compileTimeSwitch; export compileTimeSwitch
 import ./godot/pure/geometrics; export geometrics
-import ./godot/register; export register
 import ./godot/typedArray; export typedArray
 import ./godot/variants; export variants
 import beyond/oop; export oop

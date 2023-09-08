@@ -136,7 +136,6 @@ discard +/%..d_root:
 
     internal logging
     dummy mdl"init"
-    dummy mdl"register"
     typedArray
 
 

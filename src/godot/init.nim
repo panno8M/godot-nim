@@ -4,7 +4,6 @@ import beyond/[
 import
   logging,
   godotInterface,
-  register,
   variants,
   helper/objectConverter,
   variants/variantsLoader
@@ -18,6 +17,25 @@ type
     minimumInitializationLevel* = Initialization_Scene
 
 var extcfg: GDExtensionConfig
+var currentLevel*: InitializationLevel
+
+type
+  ClassRegistrationInfo* = object
+    name*, parent_name*: StringName
+    creationInfo*: ClassCreationInfo
+
+proc register_class*(info: ClassRegistrationInfo) =
+  interfaceClassdbRegisterExtensionClass(library, addr info.name, addr info.parent_name, addr info.creationInfo)
+template register_class*(T: typedesc[SomeClass]) =
+  mixin make_ClassRegistrationInfo
+  mixin bind_virtuals
+  EngineClass(T).bind_virtuals(T)
+  register_class(T.make_ClassRegistrationInfo(false, false))
+
+template register_method*(T: typedesc[SomeClass]; p: proc) =
+  mixin p
+  let info = build_methodInfo(p)
+  interface_classDbRegisterExtensionClassMethod(library, addr className(T), addr info)
 
 proc initialize_module {.implement: Initialization.initialize.} =
   currentLevel = p_level
@@ -25,7 +43,6 @@ proc initialize_module {.implement: Initialization.initialize.} =
   #   register_class preserved.make_ClassRegistrationInfo(false, false)
   if extcfg.initializer != nil:
     extcfg.initializer(p_level)
-  initialize_register(p_level)
 
 proc deinitialize_module {.implement: Initialization.deinitialize.} =
   currentLevel = p_level
@@ -33,7 +50,6 @@ proc deinitialize_module {.implement: Initialization.deinitialize.} =
     extcfg.terminator(p_level)
   # TODO Support edtior plugin development
   # EditorPlugins|>deinitialize(p_level)
-  deinitialize_register(p_level)
 
 proc init* {.implement: InitializationFunction.} =
   try:

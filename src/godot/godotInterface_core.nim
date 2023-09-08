@@ -231,8 +231,3 @@ proc load_Variants_destr* =
   load_destructor PackedVector2Array
   load_destructor PackedVector3Array
   load_destructor PackedColorArray
-
-
-# proc `=destroy`(self: ObjectBase) {.raises: [Exception].} =
-#   if self.isvalid:
-#     interface_object_destroy self.owner
