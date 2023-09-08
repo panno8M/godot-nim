@@ -8,10 +8,8 @@ import beyond/oop/typestatics; export typestatics
 from std/tables import `[]=`
 export tables.`[]=`
 
-import classDefinerCommon
 template define_godot_engine_class_essencials*(Class, Inherits: typedesc): untyped =
-  bind define_godot_class_commons
-  define_godot_class_commons(Class, Inherits)
+  template Inherit*(_: typedesc[Class]): typedesc[Inherits] = Inherits
 
   template BasedEngineClass*(T: typedesc[Class]): typedesc[Class] = Class
 

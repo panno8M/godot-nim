@@ -3,7 +3,6 @@ import std/tables
 
 import objectConverter
 
-import ./classDefinerCommon
 import ./errorHandlings
 import ../register
 import ../godotInterface/objectBase
@@ -15,8 +14,7 @@ template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
   bind debug
 
   bind withMakeErrmsg_if
-  bind define_godot_class_commons
-  define_godot_class_commons(Class, Inherits)
+  template Inherit*(_: typedesc[Class]): typedesc[Inherits] = Inherits
 
   let binding_callbacks {.gensym.} = InstanceBindingCallbacks(
     create_callback: (proc {.implement: InstanceBindingCreateCallback.} = iam($Class&"-create-callback", stgLibrary).debug("called")),
