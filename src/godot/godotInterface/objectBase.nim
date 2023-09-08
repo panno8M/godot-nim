@@ -17,10 +17,10 @@ type
     t is ObjectBase
   SomeEngineClass* = concept type t
     t is SomeClass
-    t is EngineClass(t)
+    t.EngineClass is t
   SomeUserClass* = concept type t
     t is SomeClass
-    t isnot EngineClass(t)
+    t.EngineClass isnot t
 
 proc init_engine_class*(self: ObjectBase; godot_class: ptr StringName) =
   self.owner = interface_classdb_construct_object(godot_class)
