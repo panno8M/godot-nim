@@ -44,7 +44,11 @@ proc initialize(T: typedesc[SomeEngineClass]; userdata: ptr ClassUserData) =
     true
 
 proc initialize(T: typedesc[SomeUserClass]; userdata: ptr ClassUserData) =
-  discard
+  userdata.callbacks = InstanceBindingCallbacks(
+    create_callback: (proc {.implement: InstanceBindingCreateCallback.} = discard),
+    free_callback: (proc {.implement: InstanceBindingFreeCallback.} = discard),
+    reference_callback: (proc {.implement: InstanceBindingReferenceCallback.} = true),
+  )
 
 proc get_userdata*(T: typedesc[SomeClass]): ptr ClassUserData =
   var userdata {.global.} : ClassUserData
@@ -74,3 +78,38 @@ proc vmethods*(T: typedesc[SomeClass]): TableRef[StringName, ClassCallVirtual] =
 
 proc getVirtual* {.implement: ClassGetVirtual.} =
   cast[ptr ClassUserData](p_userdata).virtualMethods.getOrDefault(p_name[], nil)
+
+# User Class callbacks
+# ====================
+
+method notification*(self: ObjectBase; p_what: uint32) {.base.} = discard
+proc notification_bind*(p_instance: ClassInstancePtr; p_what: uint32) {.gdcall.} =
+  cast[ObjectBase](p_instance).notification(p_what)
+
+method set*(self: ObjectBase; p_name: ConstStringNamePtr; p_value: ConstVariantPtr): Bool {.base.} = discard
+proc set_bind*(p_instance: ClassInstancePtr; p_name: ConstStringNamePtr; p_value: ConstVariantPtr): Bool {.gdcall.} =
+  cast[ObjectBase](p_instance).set(p_name, p_value)
+
+method get*(self: ObjectBase; p_name: ConstStringNamePtr; r_ret: VariantPtr): Bool {.base.} = discard
+proc get_bind*(p_instance: ClassInstancePtr; p_name: ConstStringNamePtr; r_ret: VariantPtr): Bool {.gdcall.} =
+  cast[ObjectBase](p_instance).get(p_name, r_ret)
+
+method property_canRevert*(self: ObjectBase; p_name: ConstStringNamePtr): Bool {.base.} = discard
+proc property_canRevert_bind*(p_instance: ClassInstancePtr; p_name: ConstStringNamePtr): Bool {.gdcall.} =
+  cast[ObjectBase](p_instance).property_canRevert(p_name)
+
+method property_getRevert*(self: ObjectBase; p_name: ConstStringNamePtr; r_ret: VariantPtr): Bool {.base.} = discard
+proc property_getRevert_bind*(p_instance: ClassInstancePtr; p_name: ConstStringNamePtr; r_ret: VariantPtr): Bool {.gdcall.} =
+  cast[ObjectBase](p_instance).property_getRevert(p_name, r_ret)
+
+method toString*(self: ObjectBase; r_is_valid: ptr Bool; p_out: StringPtr) {.base.} = discard
+proc toString_bind*(p_instance: ClassInstancePtr; r_is_valid: ptr Bool; p_out: StringPtr) {.gdcall.} =
+  cast[ObjectBase](p_instance).toString(r_is_valid, p_out)
+
+method get_propertyList*(self: ObjectBase; r_count: ptr uint32): ptr PropertyInfo {.base.} = r_count[] = 0
+proc get_propertyList_bind*(p_instance: ClassInstancePtr; r_count: ptr uint32): ptr PropertyInfo {.gdcall.} =
+  cast[ObjectBase](p_instance).get_propertyList(r_count)
+
+method free_propertyList*(self: ObjectBase; p_list: ptr PropertyInfo) {.base.} = discard
+proc free_propertyList_bind*(p_instance: ClassInstancePtr; p_list: ptr PropertyInfo) {.gdcall.} =
+  cast[ObjectBase](p_instance).free_propertyList(p_list)
