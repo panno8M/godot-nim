@@ -266,7 +266,7 @@ proc toGlobal*(self: Node2D; localPoint: Vector2): Vector2 =
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2)
-proc getRelativeTransformToParent*(self: Node2D; parent: ptr Node): Transform2D =
+proc getRelativeTransformToParent*(self: Node2D; parent: Node): Transform2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_relative_transform_to_parent"

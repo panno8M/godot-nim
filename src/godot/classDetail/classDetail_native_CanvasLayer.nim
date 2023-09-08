@@ -152,7 +152,7 @@ proc followViewportScale*(self: CanvasLayer): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `customViewport=`*(self: CanvasLayer; viewport: ptr Node) =
+proc `customViewport=`*(self: CanvasLayer; viewport: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_custom_viewport"

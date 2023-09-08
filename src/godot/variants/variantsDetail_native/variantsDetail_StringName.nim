@@ -148,8 +148,8 @@ operators(loader= load_StringName_op):
   proc `%`*(left: StringName; right: StringName): String {.operator: VariantOP_Module.}
   proc `contains`*(left: StringName; right: StringName): Bool {.operator: VariantOP_In.}
   proc `%`*(left: StringName; right: NodePath): String {.operator: VariantOP_Module.}
-  proc `%`*(left: StringName; right: ptr Object): String {.operator: VariantOP_Module.}
-  proc `contains`*(left: ptr Object; right: StringName): Bool {.operator: VariantOP_In.}
+  proc `%`*(left: StringName; right: Object): String {.operator: VariantOP_Module.}
+  proc `contains`*(left: Object; right: StringName): Bool {.operator: VariantOP_In.}
   proc `%`*(left: StringName; right: Callable): String {.operator: VariantOP_Module.}
   proc `%`*(left: StringName; right: Signal): String {.operator: VariantOP_Module.}
   proc `%`*(left: StringName; right: Dictionary): String {.operator: VariantOP_Module.}

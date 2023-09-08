@@ -10,7 +10,7 @@ proc clear*(self: Tree) =
     let name: StringName = "clear"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc createItem*(self: Tree; parent: ptr TreeItem = nil; index: int32 = -1): TreeItem =
+proc createItem*(self: Tree; parent: TreeItem = nil; index: int32 = -1): TreeItem =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_item"
@@ -116,7 +116,7 @@ proc isRootHidden*(self: Tree): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc getNextSelected*(self: Tree; `from`: ptr TreeItem): TreeItem =
+proc getNextSelected*(self: Tree; `from`: TreeItem): TreeItem =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_next_selected"
@@ -134,7 +134,7 @@ proc getSelected*(self: Tree): TreeItem =
   var ret: encoded TreeItem
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(TreeItem)
-proc setSelected*(self: Tree; item: ptr TreeItem; column: int32) =
+proc setSelected*(self: Tree; item: TreeItem; column: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_selected"
@@ -230,7 +230,7 @@ proc getCustomPopupRect*(self: Tree): Rect2 =
   var ret: encoded Rect2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Rect2)
-proc getItemAreaRect*(self: Tree; item: ptr TreeItem; column: int32 = -1; buttonIndex: int32 = -1): Rect2 =
+proc getItemAreaRect*(self: Tree; item: TreeItem; column: int32 = -1; buttonIndex: int32 = -1): Rect2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_item_area_rect"
@@ -382,7 +382,7 @@ proc getScroll*(self: Tree): Vector2 =
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Vector2)
-proc scrollToItem*(self: Tree; item: ptr TreeItem; centerOnItem: Bool = false) =
+proc scrollToItem*(self: Tree; item: TreeItem; centerOnItem: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "scroll_to_item"

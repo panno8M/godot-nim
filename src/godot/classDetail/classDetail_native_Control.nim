@@ -972,7 +972,7 @@ proc warpMouse*(self: Control; position: Vector2) =
   var `?param`: array[1, pointer]
   position.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc `shortcutContext=`*(self: Control; node: ptr Node) =
+proc `shortcutContext=`*(self: Control; node: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_shortcut_context"

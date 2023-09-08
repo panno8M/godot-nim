@@ -394,7 +394,7 @@ proc regionSetNavigationMesh*(self: NavigationServer3D; region: RID; navigationM
   var `?param`: array[2, pointer]
   region.encode(`?param`[0]); navigationMesh.encode(`?param`[1])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc regionBakeNavigationMesh*(self: NavigationServer3D; navigationMesh: Ref[NavigationMesh]; rootNode: ptr Node) =
+proc regionBakeNavigationMesh*(self: NavigationServer3D; navigationMesh: Ref[NavigationMesh]; rootNode: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "region_bake_navigation_mesh"
@@ -914,7 +914,7 @@ proc obstacleSetAvoidanceLayers*(self: NavigationServer3D; obstacle: RID; layers
   var `?param`: array[2, pointer]
   obstacle.encode(`?param`[0]); layers.encode(`?param`[1])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc parseSourceGeometryData*(self: NavigationServer3D; navigationMesh: Ref[NavigationMesh]; sourceGeometryData: Ref[NavigationMeshSourceGeometryData3D]; rootNode: ptr Node; callback: Callable = init_Callable()) =
+proc parseSourceGeometryData*(self: NavigationServer3D; navigationMesh: Ref[NavigationMesh]; sourceGeometryData: Ref[NavigationMeshSourceGeometryData3D]; rootNode: Node; callback: Callable = init_Callable()) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "parse_source_geometry_data"

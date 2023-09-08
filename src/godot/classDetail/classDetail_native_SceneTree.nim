@@ -102,7 +102,7 @@ proc isDebuggingNavigationHint*(self: SceneTree): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `editedSceneRoot=`*(self: SceneTree; scene: ptr Node) =
+proc `editedSceneRoot=`*(self: SceneTree; scene: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_edited_scene_root"
@@ -184,7 +184,7 @@ proc quit*(self: SceneTree; exitCode: int32 = 0) =
   var `?param`: array[1, pointer]
   exitCode.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc queueDelete*(self: SceneTree; obj: ptr Object) =
+proc queueDelete*(self: SceneTree; obj: Object) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "queue_delete"
@@ -260,7 +260,7 @@ proc getFirstNodeInGroup*(self: SceneTree; group: StringName): Node =
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Node)
-proc `currentScene=`*(self: SceneTree; childNode: ptr Node) =
+proc `currentScene=`*(self: SceneTree; childNode: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_current_scene"

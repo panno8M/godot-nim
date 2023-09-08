@@ -52,7 +52,7 @@ proc addHandles*(self: Ref[EditorNode3DGizmo]; handles: PackedVector3Array; mate
   var `?param`: array[5, pointer]
   handles.encode(`?param`[0]); material.encode(`?param`[1]); ids.encode(`?param`[2]); billboard.encode(`?param`[3]); secondary.encode(`?param`[4])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setNode3d*(self: Ref[EditorNode3DGizmo]; node: ptr Node) =
+proc setNode3d*(self: Ref[EditorNode3DGizmo]; node: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_node_3d"

@@ -112,7 +112,7 @@ proc classGetPropertyList*(self: ClassDB; class: StringName; noInheritance: Bool
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TypedArray[Dictionary])
-proc classGetProperty*(self: ClassDB; `object`: ptr Object; property: StringName): Variant =
+proc classGetProperty*(self: ClassDB; `object`: Object; property: StringName): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "class_get_property"
@@ -122,7 +122,7 @@ proc classGetProperty*(self: ClassDB; `object`: ptr Object; property: StringName
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
-proc classSetProperty*(self: ClassDB; `object`: ptr Object; property: StringName; value: ptr Variant): Error =
+proc classSetProperty*(self: ClassDB; `object`: Object; property: StringName; value: ptr Variant): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "class_set_property"

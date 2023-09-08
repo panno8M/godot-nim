@@ -864,7 +864,7 @@ proc popupCenteredClamped*(self: Window; minsize: Vector2i = gdveci(0, 0); fallb
   var `?param`: array[2, pointer]
   minsize.encode(`?param`[0]); fallbackRatio.encode(`?param`[1])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc popupExclusive*(self: Window; fromNode: ptr Node; rect: Rect2i = init_Rect2i(0, 0, 0, 0)) =
+proc popupExclusive*(self: Window; fromNode: Node; rect: Rect2i = init_Rect2i(0, 0, 0, 0)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "popup_exclusive"
@@ -872,7 +872,7 @@ proc popupExclusive*(self: Window; fromNode: ptr Node; rect: Rect2i = init_Rect2
   var `?param`: array[2, pointer]
   fromNode.encode(`?param`[0]); rect.encode(`?param`[1])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc popupExclusiveOnParent*(self: Window; fromNode: ptr Node; parentRect: Rect2i) =
+proc popupExclusiveOnParent*(self: Window; fromNode: Node; parentRect: Rect2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "popup_exclusive_on_parent"
@@ -880,7 +880,7 @@ proc popupExclusiveOnParent*(self: Window; fromNode: ptr Node; parentRect: Rect2
   var `?param`: array[2, pointer]
   fromNode.encode(`?param`[0]); parentRect.encode(`?param`[1])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc popupExclusiveCentered*(self: Window; fromNode: ptr Node; minsize: Vector2i = gdveci(0, 0)) =
+proc popupExclusiveCentered*(self: Window; fromNode: Node; minsize: Vector2i = gdveci(0, 0)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "popup_exclusive_centered"
@@ -888,7 +888,7 @@ proc popupExclusiveCentered*(self: Window; fromNode: ptr Node; minsize: Vector2i
   var `?param`: array[2, pointer]
   fromNode.encode(`?param`[0]); minsize.encode(`?param`[1])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc popupExclusiveCenteredRatio*(self: Window; fromNode: ptr Node; ratio: Float = 0.8) =
+proc popupExclusiveCenteredRatio*(self: Window; fromNode: Node; ratio: Float = 0.8) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "popup_exclusive_centered_ratio"
@@ -896,7 +896,7 @@ proc popupExclusiveCenteredRatio*(self: Window; fromNode: ptr Node; ratio: Float
   var `?param`: array[2, pointer]
   fromNode.encode(`?param`[0]); ratio.encode(`?param`[1])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc popupExclusiveCenteredClamped*(self: Window; fromNode: ptr Node; minsize: Vector2i = gdveci(0, 0); fallbackRatio: Float = 0.75) =
+proc popupExclusiveCenteredClamped*(self: Window; fromNode: Node; minsize: Vector2i = gdveci(0, 0); fallbackRatio: Float = 0.75) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "popup_exclusive_centered_clamped"

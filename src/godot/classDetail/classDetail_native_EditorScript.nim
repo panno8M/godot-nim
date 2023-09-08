@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc addRootNode*(self: Ref[EditorScript]; node: ptr Node) =
+proc addRootNode*(self: Ref[EditorScript]; node: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_root_node"

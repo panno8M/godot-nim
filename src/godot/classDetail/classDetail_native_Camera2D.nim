@@ -246,7 +246,7 @@ proc zoom*(self: Camera2D): Vector2 =
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Vector2)
-proc `customViewport=`*(self: Camera2D; viewport: ptr Node) =
+proc `customViewport=`*(self: Camera2D; viewport: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_custom_viewport"

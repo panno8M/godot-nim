@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc createAction*(self: EditorUndoRedoManager; name: String; mergeMode: UndoRedo_MergeMode = mergeDisable; customContext: ptr Object = nil; backwardUndoOps: Bool = false) =
+proc createAction*(self: EditorUndoRedoManager; name: String; mergeMode: UndoRedo_MergeMode = mergeDisable; customContext: Object = nil; backwardUndoOps: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_action"
@@ -28,7 +28,7 @@ proc isCommittingAction*(self: EditorUndoRedoManager): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc addDoMethod*(self: EditorUndoRedoManager; `object`: ptr Object; `method`: StringName) =
+proc addDoMethod*(self: EditorUndoRedoManager; `object`: Object; `method`: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_do_method"
@@ -36,7 +36,7 @@ proc addDoMethod*(self: EditorUndoRedoManager; `object`: ptr Object; `method`: S
   var `?param`: array[2, pointer]
   `object`.encode(`?param`[0]); `method`.encode(`?param`[1])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addUndoMethod*(self: EditorUndoRedoManager; `object`: ptr Object; `method`: StringName) =
+proc addUndoMethod*(self: EditorUndoRedoManager; `object`: Object; `method`: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_undo_method"
@@ -44,7 +44,7 @@ proc addUndoMethod*(self: EditorUndoRedoManager; `object`: ptr Object; `method`:
   var `?param`: array[2, pointer]
   `object`.encode(`?param`[0]); `method`.encode(`?param`[1])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addDoProperty*(self: EditorUndoRedoManager; `object`: ptr Object; property: StringName; value: ptr Variant) =
+proc addDoProperty*(self: EditorUndoRedoManager; `object`: Object; property: StringName; value: ptr Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_do_property"
@@ -52,7 +52,7 @@ proc addDoProperty*(self: EditorUndoRedoManager; `object`: ptr Object; property:
   var `?param`: array[3, pointer]
   `object`.encode(`?param`[0]); property.encode(`?param`[1]); value.encode(`?param`[2])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addUndoProperty*(self: EditorUndoRedoManager; `object`: ptr Object; property: StringName; value: ptr Variant) =
+proc addUndoProperty*(self: EditorUndoRedoManager; `object`: Object; property: StringName; value: ptr Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_undo_property"
@@ -60,7 +60,7 @@ proc addUndoProperty*(self: EditorUndoRedoManager; `object`: ptr Object; propert
   var `?param`: array[3, pointer]
   `object`.encode(`?param`[0]); property.encode(`?param`[1]); value.encode(`?param`[2])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addDoReference*(self: EditorUndoRedoManager; `object`: ptr Object) =
+proc addDoReference*(self: EditorUndoRedoManager; `object`: Object) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_do_reference"
@@ -68,7 +68,7 @@ proc addDoReference*(self: EditorUndoRedoManager; `object`: ptr Object) =
   var `?param`: array[1, pointer]
   `object`.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addUndoReference*(self: EditorUndoRedoManager; `object`: ptr Object) =
+proc addUndoReference*(self: EditorUndoRedoManager; `object`: Object) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_undo_reference"
@@ -76,7 +76,7 @@ proc addUndoReference*(self: EditorUndoRedoManager; `object`: ptr Object) =
   var `?param`: array[1, pointer]
   `object`.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getObjectHistoryId*(self: EditorUndoRedoManager; `object`: ptr Object): int32 =
+proc getObjectHistoryId*(self: EditorUndoRedoManager; `object`: Object): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_object_history_id"

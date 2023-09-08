@@ -68,7 +68,7 @@ proc cameraAttributes*(self: VoxelGI): Ref[CameraAttributes] =
   var ret: encoded Ref[CameraAttributes]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Ref[CameraAttributes])
-proc bake*(self: VoxelGI; fromNode: ptr Node = nil; createVisualDebug: Bool = false) =
+proc bake*(self: VoxelGI; fromNode: Node = nil; createVisualDebug: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "bake"

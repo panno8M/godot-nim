@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc pack*(self: Ref[PackedScene]; path: ptr Node): Error =
+proc pack*(self: Ref[PackedScene]; path: Node): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "pack"

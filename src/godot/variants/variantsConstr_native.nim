@@ -276,7 +276,7 @@ proc init_Callable*: Callable = Callable_constr[0](addr result, nil)
 converter init_Callable*(`from`: Callable): Callable =
   let argArr = [cast[pointer](addr `from`)]
   Callable_constr[1](addr result, addr argArr[0])
-proc init_Callable*(`object`: ptr Object; `method`: StringName): Callable =
+proc init_Callable*(`object`: Object; `method`: StringName): Callable =
   let argArr = [cast[pointer](addr `object`), cast[pointer](addr `method`)]
   Callable_constr[2](addr result, addr argArr[0])
 
@@ -290,7 +290,7 @@ proc init_Signal*: Signal = Signal_constr[0](addr result, nil)
 converter init_Signal*(`from`: Signal): Signal =
   let argArr = [cast[pointer](addr `from`)]
   Signal_constr[1](addr result, addr argArr[0])
-proc init_Signal*(`object`: ptr Object; signal: StringName): Signal =
+proc init_Signal*(`object`: Object; signal: StringName): Signal =
   let argArr = [cast[pointer](addr `object`), cast[pointer](addr signal)]
   Signal_constr[2](addr result, addr argArr[0])
 

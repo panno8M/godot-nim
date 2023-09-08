@@ -546,7 +546,7 @@ proc `scaleCurveY=`*(self: CPUParticles2D; scaleCurve: Ref[Curve]) =
   var `?param`: array[1, pointer]
   scaleCurve.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc convertFromParticles*(self: CPUParticles2D; particles: ptr Node) =
+proc convertFromParticles*(self: CPUParticles2D; particles: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "convert_from_particles"

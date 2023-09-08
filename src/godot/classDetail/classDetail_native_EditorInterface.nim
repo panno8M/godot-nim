@@ -224,7 +224,7 @@ proc getInspector*(self: EditorInterface): EditorInspector =
   var ret: encoded EditorInspector
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(EditorInspector)
-proc inspectObject*(self: EditorInterface; `object`: ptr Object; forProperty: String = ""; inspectorOnly: Bool = false) =
+proc inspectObject*(self: EditorInterface; `object`: Object; forProperty: String = ""; inspectorOnly: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "inspect_object"
@@ -240,7 +240,7 @@ proc editResource*(self: EditorInterface; resource: Ref[Resource]) =
   var `?param`: array[1, pointer]
   resource.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc editNode*(self: EditorInterface; node: ptr Node) =
+proc editNode*(self: EditorInterface; node: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "edit_node"

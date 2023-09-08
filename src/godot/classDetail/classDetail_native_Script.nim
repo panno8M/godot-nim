@@ -12,7 +12,7 @@ proc canInstantiate*(self: Ref[Script]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc instanceHas*(self: Ref[Script]; baseObject: ptr Object): Bool =
+proc instanceHas*(self: Ref[Script]; baseObject: Object): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "instance_has"

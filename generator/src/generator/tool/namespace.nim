@@ -132,7 +132,7 @@ proc paramType*(basename: string; result: var ParamType) =
 
 proc argType*(basename: string): ArgType =
   paramType basename, result
-  if $result.name in ["Variant", "Object", "TreeItem", "Node"]:
+  if $result.name in ["Variant"]:
     inc result.ptrdepth
 proc retType*(basename: string): RetType =
   paramType basename, result

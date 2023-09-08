@@ -414,7 +414,7 @@ proc arrangeNodes*(self: GraphEdit) =
     let name: StringName = "arrange_nodes"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc setSelected*(self: GraphEdit; node: ptr Node) =
+proc setSelected*(self: GraphEdit; node: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_selected"

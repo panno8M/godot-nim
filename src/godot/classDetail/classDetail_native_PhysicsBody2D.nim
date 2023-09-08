@@ -32,7 +32,7 @@ proc getCollisionExceptions*(self: PhysicsBody2D): TypedArray[PhysicsBody2D] =
   var ret: encoded TypedArray[PhysicsBody2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(TypedArray[PhysicsBody2D])
-proc addCollisionExceptionWith*(self: PhysicsBody2D; body: ptr Node) =
+proc addCollisionExceptionWith*(self: PhysicsBody2D; body: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_collision_exception_with"
@@ -40,7 +40,7 @@ proc addCollisionExceptionWith*(self: PhysicsBody2D; body: ptr Node) =
   var `?param`: array[1, pointer]
   body.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removeCollisionExceptionWith*(self: PhysicsBody2D; body: ptr Node) =
+proc removeCollisionExceptionWith*(self: PhysicsBody2D; body: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_collision_exception_with"

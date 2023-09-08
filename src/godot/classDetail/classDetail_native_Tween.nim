@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc tweenProperty*(self: Ref[Tween]; `object`: ptr Object; property: NodePath; finalVal: ptr Variant; duration: float64): Ref[PropertyTweener] =
+proc tweenProperty*(self: Ref[Tween]; `object`: Object; property: NodePath; finalVal: ptr Variant; duration: float64): Ref[PropertyTweener] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "tween_property"
@@ -102,7 +102,7 @@ proc isValid*(self: Ref[Tween]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc bindNode*(self: Ref[Tween]; node: ptr Node): Ref[Tween] =
+proc bindNode*(self: Ref[Tween]; node: Node): Ref[Tween] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "bind_node"

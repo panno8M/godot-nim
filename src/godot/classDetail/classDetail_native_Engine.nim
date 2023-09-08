@@ -216,7 +216,7 @@ proc getSingleton*(self: Engine; name: StringName): Object =
   var ret: encoded Object
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Object)
-proc registerSingleton*(self: Engine; name: StringName; instance: ptr Object) =
+proc registerSingleton*(self: Engine; name: StringName; instance: Object) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "register_singleton"

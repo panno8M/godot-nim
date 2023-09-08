@@ -14,7 +14,7 @@ proc parse*(self: Ref[Expression]; expression: String; inputNames: PackedStringA
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc execute*(self: Ref[Expression]; inputs: Array = init_Array(); baseInstance: ptr Object = nil; showError: Bool = true; constCallsOnly: Bool = false): Variant =
+proc execute*(self: Ref[Expression]; inputs: Array = init_Array(); baseInstance: Object = nil; showError: Bool = true; constCallsOnly: Bool = false): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "execute"

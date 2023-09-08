@@ -172,7 +172,7 @@ proc isLesserAllowed*(self: Range): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc share*(self: Range; with: ptr Node) =
+proc share*(self: Range; with: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "share"

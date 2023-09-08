@@ -128,7 +128,7 @@ proc isPickable*(self: CollisionObject2D): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc createShapeOwner*(self: CollisionObject2D; owner: ptr Object): uint32 =
+proc createShapeOwner*(self: CollisionObject2D; owner: Object): uint32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_shape_owner"

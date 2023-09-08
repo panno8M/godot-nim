@@ -10,7 +10,7 @@ proc printOrphanNodes* {.staticOf: Node.} =
     let name: StringName = "print_orphan_nodes"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, nil, nil, nil)
-proc addSibling*(self: Node; sibling: ptr Node; forceReadableName: Bool = false) =
+proc addSibling*(self: Node; sibling: Node; forceReadableName: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_sibling"
@@ -34,7 +34,7 @@ proc name*(self: Node): StringName =
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(StringName)
-proc addChild*(self: Node; node: ptr Node; forceReadableName: Bool = false; internal: Node_InternalMode = internalModeDisabled) =
+proc addChild*(self: Node; node: Node; forceReadableName: Bool = false; internal: Node_InternalMode = internalModeDisabled) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_child"
@@ -42,7 +42,7 @@ proc addChild*(self: Node; node: ptr Node; forceReadableName: Bool = false; inte
   var `?param`: array[3, pointer]
   node.encode(`?param`[0]); forceReadableName.encode(`?param`[1]); internal.encode(`?param`[2])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removeChild*(self: Node; node: ptr Node) =
+proc removeChild*(self: Node; node: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_child"
@@ -50,7 +50,7 @@ proc removeChild*(self: Node; node: ptr Node) =
   var `?param`: array[1, pointer]
   node.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc reparent*(self: Node; newParent: ptr Node; keepGlobalTransform: Bool = true) =
+proc reparent*(self: Node; newParent: Node; keepGlobalTransform: Bool = true) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "reparent"
@@ -184,7 +184,7 @@ proc isInsideTree*(self: Node): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc isAncestorOf*(self: Node; node: ptr Node): Bool =
+proc isAncestorOf*(self: Node; node: Node): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_ancestor_of"
@@ -194,7 +194,7 @@ proc isAncestorOf*(self: Node; node: ptr Node): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc isGreaterThan*(self: Node; node: ptr Node): Bool =
+proc isGreaterThan*(self: Node; node: Node): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_greater_than"
@@ -212,7 +212,7 @@ proc getPath*(self: Node): NodePath =
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(NodePath)
-proc getPathTo*(self: Node; node: ptr Node; useUniquePath: Bool = false): NodePath =
+proc getPathTo*(self: Node; node: Node; useUniquePath: Bool = false): NodePath =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_path_to"
@@ -248,7 +248,7 @@ proc isInGroup*(self: Node; group: StringName): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc moveChild*(self: Node; childNode: ptr Node; toIndex: int32) =
+proc moveChild*(self: Node; childNode: Node; toIndex: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "move_child"
@@ -264,7 +264,7 @@ proc getGroups*(self: Node): TypedArray[StringName] =
   var ret: encoded TypedArray[StringName]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(TypedArray[StringName])
-proc `owner=`*(self: Node; owner: ptr Node) =
+proc `owner=`*(self: Node; owner: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_owner"
@@ -640,7 +640,7 @@ proc duplicate*(self: Node; flags: int32 = 15): Node =
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Node)
-proc replaceBy*(self: Node; node: ptr Node; keepGroups: Bool = false) =
+proc replaceBy*(self: Node; node: Node; keepGroups: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "replace_by"
@@ -664,7 +664,7 @@ proc getSceneInstanceLoadPlaceholder*(self: Node): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc setEditableInstance*(self: Node; node: ptr Node; isEditable: Bool) =
+proc setEditableInstance*(self: Node; node: Node; isEditable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_editable_instance"
@@ -672,7 +672,7 @@ proc setEditableInstance*(self: Node; node: ptr Node; isEditable: Bool) =
   var `?param`: array[2, pointer]
   node.encode(`?param`[0]); isEditable.encode(`?param`[1])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isEditableInstance*(self: Node; node: ptr Node): Bool =
+proc isEditableInstance*(self: Node; node: Node): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_editable_instance"

@@ -10,7 +10,7 @@ proc clear*(self: EditorSelection) =
     let name: StringName = "clear"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorSelection, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc addNode*(self: EditorSelection; node: ptr Node) =
+proc addNode*(self: EditorSelection; node: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_node"
@@ -18,7 +18,7 @@ proc addNode*(self: EditorSelection; node: ptr Node) =
   var `?param`: array[1, pointer]
   node.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removeNode*(self: EditorSelection; node: ptr Node) =
+proc removeNode*(self: EditorSelection; node: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_node"

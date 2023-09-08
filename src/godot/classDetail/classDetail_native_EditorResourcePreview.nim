@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc queueResourcePreview*(self: EditorResourcePreview; path: String; receiver: ptr Object; receiverFunc: StringName; userdata: ptr Variant) =
+proc queueResourcePreview*(self: EditorResourcePreview; path: String; receiver: Object; receiverFunc: StringName; userdata: ptr Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "queue_resource_preview"
@@ -12,7 +12,7 @@ proc queueResourcePreview*(self: EditorResourcePreview; path: String; receiver: 
   var `?param`: array[4, pointer]
   path.encode(`?param`[0]); receiver.encode(`?param`[1]); receiverFunc.encode(`?param`[2]); userdata.encode(`?param`[3])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc queueEditedResourcePreview*(self: EditorResourcePreview; resource: Ref[Resource]; receiver: ptr Object; receiverFunc: StringName; userdata: ptr Variant) =
+proc queueEditedResourcePreview*(self: EditorResourcePreview; resource: Ref[Resource]; receiver: Object; receiverFunc: StringName; userdata: ptr Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "queue_edited_resource_preview"

@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc setScope*(self: JSONRPC; scope: String; target: ptr Object) =
+proc setScope*(self: JSONRPC; scope: String; target: Object) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_scope"

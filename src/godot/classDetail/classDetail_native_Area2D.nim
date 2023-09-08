@@ -244,7 +244,7 @@ proc hasOverlappingAreas*(self: Area2D): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc overlapsBody*(self: Area2D; body: ptr Node): Bool =
+proc overlapsBody*(self: Area2D; body: Node): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "overlaps_body"
@@ -254,7 +254,7 @@ proc overlapsBody*(self: Area2D; body: ptr Node): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc overlapsArea*(self: Area2D; area: ptr Node): Bool =
+proc overlapsArea*(self: Area2D; area: Node): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "overlaps_area"

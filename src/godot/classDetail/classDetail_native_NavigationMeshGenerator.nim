@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc bake*(self: NavigationMeshGenerator; navigationMesh: Ref[NavigationMesh]; rootNode: ptr Node) =
+proc bake*(self: NavigationMeshGenerator; navigationMesh: Ref[NavigationMesh]; rootNode: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "bake"
@@ -20,7 +20,7 @@ proc clear*(self: NavigationMeshGenerator; navigationMesh: Ref[NavigationMesh]) 
   var `?param`: array[1, pointer]
   navigationMesh.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc parseSourceGeometryData*(self: NavigationMeshGenerator; navigationMesh: Ref[NavigationMesh]; sourceGeometryData: Ref[NavigationMeshSourceGeometryData3D]; rootNode: ptr Node; callback: Callable = init_Callable()) =
+proc parseSourceGeometryData*(self: NavigationMeshGenerator; navigationMesh: Ref[NavigationMesh]; sourceGeometryData: Ref[NavigationMeshSourceGeometryData3D]; rootNode: Node; callback: Callable = init_Callable()) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "parse_source_geometry_data"

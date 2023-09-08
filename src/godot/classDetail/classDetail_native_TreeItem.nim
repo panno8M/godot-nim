@@ -336,7 +336,7 @@ proc getMetadata*(self: TreeItem; column: int32): Variant =
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
-proc setCustomDraw*(self: TreeItem; column: int32; `object`: ptr Object; callback: StringName) =
+proc setCustomDraw*(self: TreeItem; column: int32; `object`: Object; callback: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_custom_draw"
@@ -764,7 +764,7 @@ proc createChild*(self: TreeItem; index: int32 = -1): TreeItem =
   var ret: encoded TreeItem
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TreeItem)
-proc addChild*(self: TreeItem; child: ptr TreeItem) =
+proc addChild*(self: TreeItem; child: TreeItem) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_child"
@@ -772,7 +772,7 @@ proc addChild*(self: TreeItem; child: ptr TreeItem) =
   var `?param`: array[1, pointer]
   child.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removeChild*(self: TreeItem; child: ptr TreeItem) =
+proc removeChild*(self: TreeItem; child: TreeItem) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_child"
@@ -894,7 +894,7 @@ proc getIndex*(self: TreeItem): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc moveBefore*(self: TreeItem; item: ptr TreeItem) =
+proc moveBefore*(self: TreeItem; item: TreeItem) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "move_before"
@@ -902,7 +902,7 @@ proc moveBefore*(self: TreeItem; item: ptr TreeItem) =
   var `?param`: array[1, pointer]
   item.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc moveAfter*(self: TreeItem; item: ptr TreeItem) =
+proc moveAfter*(self: TreeItem; item: TreeItem) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "move_after"

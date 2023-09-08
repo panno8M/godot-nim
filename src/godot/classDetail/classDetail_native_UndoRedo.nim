@@ -44,7 +44,7 @@ proc addUndoMethod*(self: UndoRedo; callable: Callable) =
   var `?param`: array[1, pointer]
   callable.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addDoProperty*(self: UndoRedo; `object`: ptr Object; property: StringName; value: ptr Variant) =
+proc addDoProperty*(self: UndoRedo; `object`: Object; property: StringName; value: ptr Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_do_property"
@@ -52,7 +52,7 @@ proc addDoProperty*(self: UndoRedo; `object`: ptr Object; property: StringName; 
   var `?param`: array[3, pointer]
   `object`.encode(`?param`[0]); property.encode(`?param`[1]); value.encode(`?param`[2])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addUndoProperty*(self: UndoRedo; `object`: ptr Object; property: StringName; value: ptr Variant) =
+proc addUndoProperty*(self: UndoRedo; `object`: Object; property: StringName; value: ptr Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_undo_property"
@@ -60,7 +60,7 @@ proc addUndoProperty*(self: UndoRedo; `object`: ptr Object; property: StringName
   var `?param`: array[3, pointer]
   `object`.encode(`?param`[0]); property.encode(`?param`[1]); value.encode(`?param`[2])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addDoReference*(self: UndoRedo; `object`: ptr Object) =
+proc addDoReference*(self: UndoRedo; `object`: Object) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_do_reference"
@@ -68,7 +68,7 @@ proc addDoReference*(self: UndoRedo; `object`: ptr Object) =
   var `?param`: array[1, pointer]
   `object`.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addUndoReference*(self: UndoRedo; `object`: ptr Object) =
+proc addUndoReference*(self: UndoRedo; `object`: Object) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_undo_reference"

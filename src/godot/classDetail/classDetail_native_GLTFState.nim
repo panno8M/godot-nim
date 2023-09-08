@@ -442,7 +442,7 @@ proc getSceneNode*(self: Ref[GLTFState]; idx: int32): Node =
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Node)
-proc getNodeIndex*(self: Ref[GLTFState]; sceneNode: ptr Node): int32 =
+proc getNodeIndex*(self: Ref[GLTFState]; sceneNode: Node): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_node_index"

@@ -24,7 +24,7 @@ proc appendFromBuffer*(self: Ref[GLTFDocument]; bytes: PackedByteArray; basePath
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc appendFromScene*(self: Ref[GLTFDocument]; node: ptr Node; state: Ref[GLTFState]; flags: uint32 = 0'u32): Error =
+proc appendFromScene*(self: Ref[GLTFDocument]; node: Node; state: Ref[GLTFState]; flags: uint32 = 0'u32): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "append_from_scene"

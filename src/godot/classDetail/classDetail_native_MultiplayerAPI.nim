@@ -60,7 +60,7 @@ proc poll*(self: Ref[MultiplayerAPI]): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Error)
-proc rpc*(self: Ref[MultiplayerAPI]; peer: int32; `object`: ptr Object; `method`: StringName; arguments: Array = init_Array()): Error =
+proc rpc*(self: Ref[MultiplayerAPI]; peer: int32; `object`: Object; `method`: StringName; arguments: Array = init_Array()): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "rpc"
@@ -70,7 +70,7 @@ proc rpc*(self: Ref[MultiplayerAPI]; peer: int32; `object`: ptr Object; `method`
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc objectConfigurationAdd*(self: Ref[MultiplayerAPI]; `object`: ptr Object; configuration: ptr Variant): Error =
+proc objectConfigurationAdd*(self: Ref[MultiplayerAPI]; `object`: Object; configuration: ptr Variant): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "object_configuration_add"
@@ -80,7 +80,7 @@ proc objectConfigurationAdd*(self: Ref[MultiplayerAPI]; `object`: ptr Object; co
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc objectConfigurationRemove*(self: Ref[MultiplayerAPI]; `object`: ptr Object; configuration: ptr Variant): Error =
+proc objectConfigurationRemove*(self: Ref[MultiplayerAPI]; `object`: Object; configuration: ptr Variant): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "object_configuration_remove"

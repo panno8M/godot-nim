@@ -144,7 +144,7 @@ proc getRid*(self: CollisionObject3D): RID =
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(RID)
-proc createShapeOwner*(self: CollisionObject3D; owner: ptr Object): uint32 =
+proc createShapeOwner*(self: CollisionObject3D; owner: Object): uint32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_shape_owner"

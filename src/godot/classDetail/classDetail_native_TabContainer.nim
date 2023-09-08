@@ -246,7 +246,7 @@ proc getTabIdxFromControl*(self: TabContainer; control: Control): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc setPopup*(self: TabContainer; popup: ptr Node) =
+proc setPopup*(self: TabContainer; popup: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_popup"

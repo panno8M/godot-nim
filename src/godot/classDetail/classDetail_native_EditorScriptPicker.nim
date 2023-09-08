@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `scriptOwner=`*(self: EditorScriptPicker; ownerNode: ptr Node) =
+proc `scriptOwner=`*(self: EditorScriptPicker; ownerNode: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_script_owner"
