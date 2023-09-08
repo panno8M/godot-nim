@@ -1,7 +1,7 @@
 import std/macros
 
 import ./godotInterface/globalEnums
-import ./pure/[compileTimeSwitch, geometrics, todos]
+import ./pure/[compileTimeSwitch, geometrics]
 
 type GodotInternalDefect* = object of CatchableError
 

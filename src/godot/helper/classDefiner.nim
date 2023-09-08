@@ -3,7 +3,6 @@ import std/tables
 
 import objectConverter
 
-import ../pure/todos
 import ./classDefinerCommon
 import ./errorHandlings
 import ../register
@@ -24,25 +23,11 @@ template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
     free_callback: (proc {.implement: InstanceBindingFreeCallback.} = (discard)),
     reference_callback: (proc {.implement: InstanceBindingReferenceCallback.} = true),
   )
-  # protected:
-  # ----------
-  TODO ignore Support_virtual_method.comment"implement `register_virtuals":
-    discard
-    ##[
-    template <class T, class B>
-    static void register_virtuals() {
-      Inherits|>register_virtuals<T, B>();
-    ]##
 
   # public:
   # -------
   proc initialize_class*(T: typedesc[Class]) =
-    once:
-      initialize_class(Inherits)
-      when declared `Class|>bind_methods`:
-        Class|>bind_methods()
-        TODO ignore Support_virtual_method:
-          Inherits|>register_virtuals(Class, Inherits)
+    discard
 
   proc create {.implement: ClassCreateInstance, gensym.} =
     bind init_engine_class
