@@ -39,7 +39,6 @@ let # modules
   classDefiner* = dummy mdl"classDefiner"
   typedArray* = dummy mdl"typedArray"
   classImporter* = dummy mdl"classImporter"
-  variants_forge* = importOnly mdl"variants_forge"
 
 
   compileTimeSwitch* = dummy mdl"compileTimeSwitch"
@@ -76,18 +75,6 @@ discard engineClassDefines
 discard classDetail_all
   .exportModules_allowed
   .incl(d_classDetail)
-discard variants_forge
-  .exportModules_all
-  .incl(variantsConstr)
-  .incl(
-    beyond_oop,
-    beyond_defects,
-    godotInterface,
-    variantDefiner,
-    compileTimeSwitch,
-    logging,
-    variantTypeSolver,
-  )
 discard variantLoader
   .incl(variantsConstr)
   .incl(
@@ -140,7 +127,6 @@ discard +/%..d_root:
       variantTypeSolver
       classDefiner
       classImporter
-      internal variants_forge
       internal variantDefiner
       internal engineClassDefiner
 

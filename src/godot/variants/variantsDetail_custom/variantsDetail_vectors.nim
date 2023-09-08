@@ -1,4 +1,4 @@
-import ./../../helper/variants_forge
+import ./../../helper/variantDefiner
 import ../../pure/geometrics
 
 {.push, inline.}

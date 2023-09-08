@@ -2,7 +2,7 @@
 # This module was generated automatically. #
 # Edits will be lost.                      #
 # ======================================== #
-import ./../../helper/variants_forge
+import ./../../helper/variantDefiner
 
 # type Array* = object
 #   self.json.is_keyed=false

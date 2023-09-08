@@ -169,7 +169,7 @@ func renderLoader*(classes: seq[NimBuiltinClass]): Statement =
 
 proc modulateDetail*(self: NimBuiltinClass): Module =
   result = mdl(self.moduleName)
-    .incl(moduleTree.variants_forge)
+    .incl(moduleTree.variantDefiner)
   result.contents = self.renderClassDefine
   discard result.contents.add self.renderLoader
 proc modulateDetails*(self: seq[NimBuiltinClass]): seq[Module] =
