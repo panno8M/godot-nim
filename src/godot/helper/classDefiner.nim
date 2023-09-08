@@ -49,9 +49,6 @@ template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
 
   # public:
   # -------
-  proc initialize_class*(T: typedesc[Class]) =
-    discard
-
   proc create {.implement: ClassCreateInstance, gensym.} =
     bind init_engine_class
     let me = iam($Class&"-create", stgLibrary)

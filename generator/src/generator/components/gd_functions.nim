@@ -131,7 +131,7 @@ method render*(self: GodotVirtualmethods; cfg: RenderingConfig): seq[string] =
 
   let binder = +$$..BlockSt(head: &"proc bind_virtuals*(S: typedesc[{self_type.name}]; T: typedesc) ="):
     &"S.Inherit.bind_virtuals(T)"
-    &"let table = get_userdata(T).virtualMethods"
+    &"let table = vmethods(T)"
   for virtual in self.methods:
     var args_str: seq[string]
     let args_delim = ", "
