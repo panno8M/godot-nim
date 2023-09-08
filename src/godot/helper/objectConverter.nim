@@ -146,7 +146,7 @@ proc get*(v: Variant; T: typedesc[ObjectPtr]): T =
 # Godot Object
 # ============
 
-proc getInstanceBinding[T: SomeObject](p_engine_object: ObjectPtr; _: typedesc[T]): T =
+proc getInstanceBinding[T: SomeClass](p_engine_object: ObjectPtr; _: typedesc[T]): T =
   if p_engine_object.isNil: return
 
   # Get existing instance binding, if one already exists.
@@ -164,14 +164,14 @@ proc getInstanceBinding[T: SomeObject](p_engine_object: ObjectPtr; _: typedesc[T
 
   # return cast[ptr ObjectBase](interface_objectGetInstanceBinding(p_engine_object, token, binding_callbacks))
 
-template encoded*[T: SomeObject](_: typedesc[T]): typedesc[ObjectPtr] = ObjectPtr
-template encode*[T: SomeObject](v: T|ptr T; p: pointer) =
+template encoded*[T: SomeClass](_: typedesc[T]): typedesc[ObjectPtr] = ObjectPtr
+template encode*[T: SomeClass](v: T|ptr T; p: pointer) =
   encode(v.owner, p)
-proc decode*[T: SomeObject](p: pointer; _: typedesc[T]): T =
+proc decode*[T: SomeClass](p: pointer; _: typedesc[T]): T =
   p.decode(ObjectPtr).getInstanceBinding(T)
-converter variant*[T: SomeObject](v: T): Variant =
+converter variant*[T: SomeClass](v: T): Variant =
   variant v.owner
-proc get*[T: SomeObject](v: Variant; _: typedesc[T]): T =
+proc get*[T: SomeClass](v: Variant; _: typedesc[T]): T =
   v.get(ObjectPtr).getInstanceBinding(T)
 
 # Ref[T]

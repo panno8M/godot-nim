@@ -33,7 +33,7 @@ template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
 
     me.debug("called")
     let new_object = new Class
-    init_engine_class(new_object, addr className Class.BasedEngineClass)
+    init_engine_class(new_object, addr className Class.EngineClass)
     GC_ref new_object
     me.debug("set-instance")
     interfaceObjectSetInstance(new_object.owner, addr className(Class), cast[pointer](new_object))

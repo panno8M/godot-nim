@@ -10,31 +10,25 @@ export tables.`[]=`
 
 template define_godot_engine_class_essencials*(Class, Inherits: typedesc): untyped =
   template Inherit*(_: typedesc[Class]): typedesc[Inherits] = Inherits
+  template EngineClass*(T: typedesc[Class]): typedesc[Class] = Class
 
-  template BasedEngineClass*(T: typedesc[Class]): typedesc[Class] = Class
+proc initialize_class*(T: typedesc[SomeEngineClass]) = once:
+  let callbacks = addr get_userdata(T).callbacks
 
-  proc initialize_class*(T: typedesc[Class]) =
-    discard
-
-  proc create_callback(p_token: pointer; p_instance: pointer): pointer {.gdcall, gensym.} =
+  callbacks.create_callback = proc (p_token: pointer; p_instance: pointer): pointer {.gdcall, gensym.} =
     bind init_engine_class
-    let class = new Class
+    let class = new T
     init_engine_class(class, cast[ObjectPtr](p_instance))
     GC_ref class
     result = cast[pointer](class)
-  proc free_callback(p_token: pointer; p_instance: pointer; p_binding: pointer) {.gdcall, gensym.} =
-    `=destroy`(cast[Class](p_binding))
-  proc reference_callback(p_token: pointer; p_binding: pointer; p_reference: Bool): Bool {.gdcall, gensym.} =
+  callbacks.free_callback = proc (p_token: pointer; p_instance: pointer; p_binding: pointer) {.gdcall, gensym.} =
+    let class = (cast[T](p_binding))
+    GC_unref class
+  callbacks.reference_callback = proc (p_token: pointer; p_binding: pointer; p_reference: Bool): Bool {.gdcall, gensym.} =
     true
 
-  let binding_callbacks* {.gensym.} = InstanceBindingCallbacks(
-    create_callback: create_callback,
-    free_callback: free_callback,
-    reference_callback: reference_callback,
-  )
 
-
-template getOwner*[T: SomeObject](v: T): ObjectPtr =
+template getOwner*[T: SomeClass](v: T): ObjectPtr =
   if v.isNil: nil
   else: v.owner
 template getOwner*[T: SomeRefCounted](v: Ref[T]): ObjectPtr =

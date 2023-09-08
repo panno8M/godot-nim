@@ -29,7 +29,7 @@ proc register_class*(info: ClassRegistrationInfo) =
 template register_class*(T: typedesc[ObjectBase]) =
   mixin make_ClassRegistrationInfo
   mixin bind_virtuals
-  bind_virtuals(T.BasedEngineClass, T)
+  bind_virtuals(T.EngineClass, T)
   register_class(T.make_ClassRegistrationInfo(false, false))
 
 template register_method*(T: typedesc[ObjectBase]; p: proc) =
