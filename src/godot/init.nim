@@ -6,7 +6,6 @@ import
   godotInterface,
   register,
   variants,
-  pure/todos,
   helper/objectConverter,
   variants/variantsLoader
 
@@ -32,8 +31,8 @@ proc deinitialize_module {.implement: Initialization.deinitialize.} =
   currentLevel = p_level
   if extcfg.terminator != nil:
     extcfg.terminator(p_level)
-  TODO ignore Support_edtior_plugin_development:
-    EditorPlugins|>deinitialize(p_level)
+  # TODO Support edtior plugin development
+  # EditorPlugins|>deinitialize(p_level)
   deinitialize_register(p_level)
 
 proc init* {.implement: InitializationFunction.} =
@@ -58,7 +57,7 @@ proc init* {.implement: InitializationFunction.} =
   return true
 
 template GDExtension_EntryPoint*(name; config: GDExtensionConfig): untyped =
-  proc name* {.implement: InitializationFunction, exportc, dynlib.} =
+  proc name* {.implement: InitializationFunction, exportc, dynlib, gdcall.} =
     extcfg = config
     init(p_getProcAddress, p_library, r_initialization)
 

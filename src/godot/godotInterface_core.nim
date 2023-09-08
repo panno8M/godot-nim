@@ -1,6 +1,8 @@
 import std/macros
 
-import ./godotInterface/globalEnums
+import ./godotInterface/localEnums; export localEnums
+import ./godotInterface/globalEnums; export globalEnums
+
 import ./pure/[compileTimeSwitch, geometrics]
 
 type GodotInternalDefect* = object of CatchableError
@@ -165,9 +167,6 @@ macro gdcall*(someProc: untyped): untyped =
 
 include "godotInterface/include/gdextension_interface"
 
-const
-  Variant_empty = Variant()
-
 var
   getProcAddress*: InterfaceGetProcAddress
   library*: ClassLibraryPtr
@@ -232,10 +231,6 @@ proc load_Variants_destr* =
   load_destructor PackedVector2Array
   load_destructor PackedVector3Array
   load_destructor PackedColorArray
-
-type ObjectBase* = ref object of RootObj
-  isvalid* = true
-  owner*: ObjectPtr
 
 
 # proc `=destroy`(self: ObjectBase) {.raises: [Exception].} =

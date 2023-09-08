@@ -42,7 +42,6 @@ let # modules
   variants_forge* = importOnly mdl"variants_forge"
 
 
-  pragmas* = dummy mdl"pragmas"
   compileTimeSwitch* = dummy mdl"compileTimeSwitch"
   logging* = dummy mdl"logging"
 
@@ -73,7 +72,7 @@ discard nativeStructs
     godotInterface)
 discard engineClassDefines
   .incl(
-    godotInterface_core)
+    objectBase)
 discard classDetail_all
   .exportModules_allowed
   .incl(d_classDetail)
@@ -85,7 +84,6 @@ discard variants_forge
     beyond_defects,
     godotInterface,
     variantDefiner,
-    pragmas,
     compileTimeSwitch,
     logging,
     variantTypeSolver,
@@ -141,7 +139,6 @@ discard +/%..d_root:
     +/%..d_helper:
       variantTypeSolver
       classDefiner
-      typedArray
       classImporter
       internal variants_forge
       internal variantDefiner
@@ -151,10 +148,10 @@ discard +/%..d_root:
       compileTimeSwitch
       (let geometrics* = dummy mdl"geometrics"; geometrics)
 
-    pragmas
     internal logging
     dummy mdl"init"
     dummy mdl"register"
+    typedArray
 
 
 const

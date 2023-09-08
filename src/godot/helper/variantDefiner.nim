@@ -55,7 +55,7 @@ proc elements_from_identdef(identdef: NimNode): tuple[address, variantType: NimN
 
 
 proc operator(node: NimNode): MethodDefinition =
-  let op = node.getPragma("operator")[1]
+  let op = node.popPragma("operator")[1]
 
   let has_right = node.params.len == 3
   let left = node.params[1]

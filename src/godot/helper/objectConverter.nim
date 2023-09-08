@@ -1,11 +1,8 @@
 import variantTypeSolver
-import typedArray
 import ../godotInterface as gd
 import ../variants/variantsConstr_custom
 import ../variants/variantsDetail_custom/variantsDetail_stringUtils
-import ../pure/todos
-
-TODO subject"variants.propertyinfo".comment"Insufficient kinds handled"
+import ../typedArray
 
 var
   variantFromType: array[Variant_Type, VariantFromTypeConstructorFunc]

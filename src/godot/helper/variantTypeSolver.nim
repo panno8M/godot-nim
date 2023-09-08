@@ -1,4 +1,5 @@
 import ../godotInterface_core
+import ../godotInterface/objectBase
 
 import std/macros
 

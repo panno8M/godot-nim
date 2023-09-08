@@ -2,7 +2,7 @@
 # This module was generated automatically. #
 # Edits will be lost.                      #
 # ======================================== #
-import ./../godotInterface_core
+import ./objectBase
 
 type Object* = ref object of ObjectBase
 template Inherit*(_: typedesc[Object]): typedesc = ObjectBase

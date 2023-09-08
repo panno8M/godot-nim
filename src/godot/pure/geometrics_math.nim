@@ -6,7 +6,6 @@ export stdmath except
 export builtin_bswap16, builtin_bswap32, builtin_bswap64
 
 import ./geometrics_typedef
-import ./todos
 
 const SQRT12* = 0.7071067811865475244008443621048490
 const SQRT2* = 1.4142135623730950488016887242
@@ -99,10 +98,10 @@ func getNumBits*[T](x: T): T = floor_log2(x)
 # This epsilon should match the one used by Godot for consistency.
 # Using `f` when `real_t` is float.
 const CMP_EPSILON* = 0.00001f
-const CMP_EPSILON2 = (CMP_EPSILON * CMP_EPSILON)
+# const CMP_EPSILON2 = (CMP_EPSILON * CMP_EPSILON)
 
 # This epsilon is for values related to a unit size (scalar or vector len).
-const UNIT_EPSILON = 0.00001
+# const UNIT_EPSILON = 0.00001
 
 # Functions reproduced as in Godot's source code `math_funcs.h`.
 # Some are overloads to automatically support changing real_t into either double or float in the way Godot does.
@@ -138,7 +137,6 @@ func arctan2*[T: SomeFloat](pY, pX: T): Radian[T] = Radian stdmath.arctan2(pY, p
 
 func isFinite*[T: SomeFloat](pX: T): bool = pX == NaN or pX == Inf or pX == NegInf
 
-TODO subject"importing from c++ is not done yet."
 #[
 inline double cubic_interpolate_in_time(double p_from, double p_to, double p_pre, double p_post, double p_weight,
     double p_to_t, double p_pre_t, double p_post_t) {
