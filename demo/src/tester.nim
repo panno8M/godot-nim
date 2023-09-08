@@ -44,6 +44,16 @@ proc test_pure* =
     test "className":
       check $className(Tester) == $Tester
 
+import godot/helper/objectConverter
+
+proc add_property(T: typedesc[SomeUserClass]; info: PropertyInfo; setter, getter: static string) =
+  let setter: StringName = setter
+  let getter: StringName = getter
+  interface_ClassDB_registerExtensionClassProperty(library, addr className(T), addr info, addr setter, addr getter)
+proc add_property(T: typedesc[SomeUserClass]; P: typedesc; prop, setter, getter: static string) =
+  let info = propertyInfo(P, prop)
+  T.add_property(info[], setter, getter)
+
 
 # fold into macro in future
 # FIXME Currently, name conflicts can occur.
@@ -52,3 +62,4 @@ proc register*(T: typedesc[Tester]) =
   register_method(Tester, helloworld)
   register_method(Tester, set_int_value)
   register_method(Tester, get_int_value)
+  Tester.add_property(int, "int_value", "set_int_value", "get_int_value")
