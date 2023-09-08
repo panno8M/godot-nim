@@ -5,42 +5,66 @@
 import ./../helper/engineClassDefiner
 
 proc `lightTexture=`*(self: Ref[LightmapGIData]; lightTexture: Ref[TextureLayered]) =
-  init_methodbind(LightmapGIData, "set_light_texture", 1278366092)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "set_light_texture"
+    methodbind = interface_ClassDB_getMethodBind(addr className LightmapGIData, addr name, 1278366092)
   var `?param`: array[1, pointer]
   lightTexture.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc lightTexture*(self: Ref[LightmapGIData]): Ref[TextureLayered] =
-  init_methodbind(LightmapGIData, "get_light_texture", 3984243839)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "get_light_texture"
+    methodbind = interface_ClassDB_getMethodBind(addr className LightmapGIData, addr name, 3984243839)
   var ret: encoded Ref[TextureLayered]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Ref[TextureLayered])
 proc `usesSphericalHarmonics=`*(self: Ref[LightmapGIData]; usesSphericalHarmonics: Bool) =
-  init_methodbind(LightmapGIData, "set_uses_spherical_harmonics", 2586408642)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "set_uses_spherical_harmonics"
+    methodbind = interface_ClassDB_getMethodBind(addr className LightmapGIData, addr name, 2586408642)
   var `?param`: array[1, pointer]
   usesSphericalHarmonics.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isUsingSphericalHarmonics*(self: Ref[LightmapGIData]): Bool =
-  init_methodbind(LightmapGIData, "is_using_spherical_harmonics", 36873697)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "is_using_spherical_harmonics"
+    methodbind = interface_ClassDB_getMethodBind(addr className LightmapGIData, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
 proc addUser*(self: Ref[LightmapGIData]; path: NodePath; uvScale: Rect2; sliceIndex: int32; subInstance: int32) =
-  init_methodbind(LightmapGIData, "add_user", 4272570515)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "add_user"
+    methodbind = interface_ClassDB_getMethodBind(addr className LightmapGIData, addr name, 4272570515)
   var `?param`: array[4, pointer]
   path.encode(`?param`[0]); uvScale.encode(`?param`[1]); sliceIndex.encode(`?param`[2]); subInstance.encode(`?param`[3])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getUserCount*(self: Ref[LightmapGIData]): int32 =
-  init_methodbind(LightmapGIData, "get_user_count", 3905245786)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "get_user_count"
+    methodbind = interface_ClassDB_getMethodBind(addr className LightmapGIData, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
 proc getUserPath*(self: Ref[LightmapGIData]; userIdx: int32): NodePath =
-  init_methodbind(LightmapGIData, "get_user_path", 408788394)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "get_user_path"
+    methodbind = interface_ClassDB_getMethodBind(addr className LightmapGIData, addr name, 408788394)
   var `?param`: array[1, pointer]
   userIdx.encode(`?param`[0])
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(NodePath)
 proc clearUsers*(self: Ref[LightmapGIData]) =
-  init_methodbind(LightmapGIData, "clear_users", 3218959716)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "clear_users"
+    methodbind = interface_ClassDB_getMethodBind(addr className LightmapGIData, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)

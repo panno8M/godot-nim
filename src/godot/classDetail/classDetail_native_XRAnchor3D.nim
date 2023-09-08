@@ -5,12 +5,18 @@
 import ./../helper/engineClassDefiner
 
 proc getSize*(self: XRAnchor3D): Vector3 =
-  init_methodbind(XRAnchor3D, "get_size", 3360562783)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "get_size"
+    methodbind = interface_ClassDB_getMethodBind(addr className XRAnchor3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Vector3)
 proc getPlane*(self: XRAnchor3D): Plane =
-  init_methodbind(XRAnchor3D, "get_plane", 2753500971)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "get_plane"
+    methodbind = interface_ClassDB_getMethodBind(addr className XRAnchor3D, addr name, 2753500971)
   var ret: encoded Plane
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Plane)

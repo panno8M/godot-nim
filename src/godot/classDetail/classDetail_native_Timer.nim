@@ -5,70 +5,112 @@
 import ./../helper/engineClassDefiner
 
 proc `waitTime=`*(self: Timer; timeSec: float64) =
-  init_methodbind(Timer, "set_wait_time", 373806689)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "set_wait_time"
+    methodbind = interface_ClassDB_getMethodBind(addr className Timer, addr name, 373806689)
   var `?param`: array[1, pointer]
   timeSec.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc waitTime*(self: Timer): float64 =
-  init_methodbind(Timer, "get_wait_time", 1740695150)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "get_wait_time"
+    methodbind = interface_ClassDB_getMethodBind(addr className Timer, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(float64)
 proc `oneShot=`*(self: Timer; enable: Bool) =
-  init_methodbind(Timer, "set_one_shot", 2586408642)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "set_one_shot"
+    methodbind = interface_ClassDB_getMethodBind(addr className Timer, addr name, 2586408642)
   var `?param`: array[1, pointer]
   enable.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isOneShot*(self: Timer): Bool =
-  init_methodbind(Timer, "is_one_shot", 36873697)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "is_one_shot"
+    methodbind = interface_ClassDB_getMethodBind(addr className Timer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
 proc `autostart=`*(self: Timer; enable: Bool) =
-  init_methodbind(Timer, "set_autostart", 2586408642)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "set_autostart"
+    methodbind = interface_ClassDB_getMethodBind(addr className Timer, addr name, 2586408642)
   var `?param`: array[1, pointer]
   enable.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc hasAutostart*(self: Timer): Bool =
-  init_methodbind(Timer, "has_autostart", 36873697)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "has_autostart"
+    methodbind = interface_ClassDB_getMethodBind(addr className Timer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
 proc start*(self: Timer; timeSec: float64 = -1) =
-  init_methodbind(Timer, "start", 1392008558)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "start"
+    methodbind = interface_ClassDB_getMethodBind(addr className Timer, addr name, 1392008558)
   var `?param`: array[1, pointer]
   timeSec.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc stop*(self: Timer) =
-  init_methodbind(Timer, "stop", 3218959716)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "stop"
+    methodbind = interface_ClassDB_getMethodBind(addr className Timer, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
 proc `paused=`*(self: Timer; paused: Bool) =
-  init_methodbind(Timer, "set_paused", 2586408642)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "set_paused"
+    methodbind = interface_ClassDB_getMethodBind(addr className Timer, addr name, 2586408642)
   var `?param`: array[1, pointer]
   paused.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isPaused*(self: Timer): Bool =
-  init_methodbind(Timer, "is_paused", 36873697)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "is_paused"
+    methodbind = interface_ClassDB_getMethodBind(addr className Timer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
 proc isStopped*(self: Timer): Bool =
-  init_methodbind(Timer, "is_stopped", 36873697)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "is_stopped"
+    methodbind = interface_ClassDB_getMethodBind(addr className Timer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
 proc timeLeft*(self: Timer): float64 =
-  init_methodbind(Timer, "get_time_left", 1740695150)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "get_time_left"
+    methodbind = interface_ClassDB_getMethodBind(addr className Timer, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(float64)
 proc `timerProcessCallback=`*(self: Timer; callback: Timer_TimerProcessCallback) =
-  init_methodbind(Timer, "set_timer_process_callback", 3469495063)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "set_timer_process_callback"
+    methodbind = interface_ClassDB_getMethodBind(addr className Timer, addr name, 3469495063)
   var `?param`: array[1, pointer]
   callback.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc timerProcessCallback*(self: Timer): Timer_TimerProcessCallback =
-  init_methodbind(Timer, "get_timer_process_callback", 2672570227)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "get_timer_process_callback"
+    methodbind = interface_ClassDB_getMethodBind(addr className Timer, addr name, 2672570227)
   var ret: encoded Timer_TimerProcessCallback
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Timer_TimerProcessCallback)

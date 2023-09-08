@@ -5,10 +5,16 @@
 import ./../helper/engineClassDefiner
 
 proc queueSort*(self: Container) =
-  init_methodbind(Container, "queue_sort", 3218959716)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "queue_sort"
+    methodbind = interface_ClassDB_getMethodBind(addr className Container, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
 proc fitChildInRect*(self: Container; child: Control; rect: Rect2) =
-  init_methodbind(Container, "fit_child_in_rect", 1993438598)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "fit_child_in_rect"
+    methodbind = interface_ClassDB_getMethodBind(addr className Container, addr name, 1993438598)
   var `?param`: array[2, pointer]
   child.encode(`?param`[0]); rect.encode(`?param`[1])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

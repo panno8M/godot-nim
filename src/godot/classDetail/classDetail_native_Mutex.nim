@@ -5,13 +5,22 @@
 import ./../helper/engineClassDefiner
 
 proc lock*(self: Ref[Mutex]) =
-  init_methodbind(Mutex, "lock", 3218959716)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "lock"
+    methodbind = interface_ClassDB_getMethodBind(addr className Mutex, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
 proc tryLock*(self: Ref[Mutex]): Bool =
-  init_methodbind(Mutex, "try_lock", 2240911060)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "try_lock"
+    methodbind = interface_ClassDB_getMethodBind(addr className Mutex, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
 proc unlock*(self: Ref[Mutex]) =
-  init_methodbind(Mutex, "unlock", 3218959716)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "unlock"
+    methodbind = interface_ClassDB_getMethodBind(addr className Mutex, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)

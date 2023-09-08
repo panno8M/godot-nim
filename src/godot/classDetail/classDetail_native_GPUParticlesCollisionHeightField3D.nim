@@ -5,42 +5,66 @@
 import ./../helper/engineClassDefiner
 
 proc `size=`*(self: GPUParticlesCollisionHeightField3D; size: Vector3) =
-  init_methodbind(GPUParticlesCollisionHeightField3D, "set_size", 3460891852)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "set_size"
+    methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesCollisionHeightField3D, addr name, 3460891852)
   var `?param`: array[1, pointer]
   size.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc size*(self: GPUParticlesCollisionHeightField3D): Vector3 =
-  init_methodbind(GPUParticlesCollisionHeightField3D, "get_size", 3360562783)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "get_size"
+    methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesCollisionHeightField3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Vector3)
 proc `resolution=`*(self: GPUParticlesCollisionHeightField3D; resolution: GPUParticlesCollisionHeightField3D_Resolution) =
-  init_methodbind(GPUParticlesCollisionHeightField3D, "set_resolution", 1009996517)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "set_resolution"
+    methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesCollisionHeightField3D, addr name, 1009996517)
   var `?param`: array[1, pointer]
   resolution.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc resolution*(self: GPUParticlesCollisionHeightField3D): GPUParticlesCollisionHeightField3D_Resolution =
-  init_methodbind(GPUParticlesCollisionHeightField3D, "get_resolution", 1156065644)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "get_resolution"
+    methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesCollisionHeightField3D, addr name, 1156065644)
   var ret: encoded GPUParticlesCollisionHeightField3D_Resolution
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(GPUParticlesCollisionHeightField3D_Resolution)
 proc `updateMode=`*(self: GPUParticlesCollisionHeightField3D; updateMode: GPUParticlesCollisionHeightField3D_UpdateMode) =
-  init_methodbind(GPUParticlesCollisionHeightField3D, "set_update_mode", 673680859)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "set_update_mode"
+    methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesCollisionHeightField3D, addr name, 673680859)
   var `?param`: array[1, pointer]
   updateMode.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc updateMode*(self: GPUParticlesCollisionHeightField3D): GPUParticlesCollisionHeightField3D_UpdateMode =
-  init_methodbind(GPUParticlesCollisionHeightField3D, "get_update_mode", 1998141380)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "get_update_mode"
+    methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesCollisionHeightField3D, addr name, 1998141380)
   var ret: encoded GPUParticlesCollisionHeightField3D_UpdateMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(GPUParticlesCollisionHeightField3D_UpdateMode)
 proc `followCameraEnabled=`*(self: GPUParticlesCollisionHeightField3D; enabled: Bool) =
-  init_methodbind(GPUParticlesCollisionHeightField3D, "set_follow_camera_enabled", 2586408642)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "set_follow_camera_enabled"
+    methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesCollisionHeightField3D, addr name, 2586408642)
   var `?param`: array[1, pointer]
   enabled.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isFollowCameraEnabled*(self: GPUParticlesCollisionHeightField3D): Bool =
-  init_methodbind(GPUParticlesCollisionHeightField3D, "is_follow_camera_enabled", 36873697)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "is_follow_camera_enabled"
+    methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesCollisionHeightField3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)

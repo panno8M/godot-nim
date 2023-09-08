@@ -5,7 +5,10 @@
 import ./../helper/engineClassDefiner
 
 proc getSourceFile*(self: Ref[EditorScenePostImport]): String =
-  init_methodbind(EditorScenePostImport, "get_source_file", 201670096)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "get_source_file"
+    methodbind = interface_ClassDB_getMethodBind(addr className EditorScenePostImport, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(String)

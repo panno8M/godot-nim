@@ -5,12 +5,18 @@
 import ./../helper/engineClassDefiner
 
 proc `opType=`*(self: Ref[VisualShaderNodeParticleRandomness]; `type`: VisualShaderNodeParticleRandomness_OpType) =
-  init_methodbind(VisualShaderNodeParticleRandomness, "set_op_type", 2060089061)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "set_op_type"
+    methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeParticleRandomness, addr name, 2060089061)
   var `?param`: array[1, pointer]
   `type`.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc opType*(self: Ref[VisualShaderNodeParticleRandomness]): VisualShaderNodeParticleRandomness_OpType =
-  init_methodbind(VisualShaderNodeParticleRandomness, "get_op_type", 3597061078)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "get_op_type"
+    methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeParticleRandomness, addr name, 3597061078)
   var ret: encoded VisualShaderNodeParticleRandomness_OpType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(VisualShaderNodeParticleRandomness_OpType)

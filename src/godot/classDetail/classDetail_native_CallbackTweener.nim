@@ -5,7 +5,10 @@
 import ./../helper/engineClassDefiner
 
 proc setDelay*(self: Ref[CallbackTweener]; delay: float64): Ref[CallbackTweener] =
-  init_methodbind(CallbackTweener, "set_delay", 3008182292)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "set_delay"
+    methodbind = interface_ClassDB_getMethodBind(addr className CallbackTweener, addr name, 3008182292)
   var `?param`: array[1, pointer]
   delay.encode(`?param`[0])
   var ret: encoded Ref[CallbackTweener]

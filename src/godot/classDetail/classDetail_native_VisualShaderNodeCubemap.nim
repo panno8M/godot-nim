@@ -5,32 +5,50 @@
 import ./../helper/engineClassDefiner
 
 proc `source=`*(self: Ref[VisualShaderNodeCubemap]; value: VisualShaderNodeCubemap_Source) =
-  init_methodbind(VisualShaderNodeCubemap, "set_source", 1625400621)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "set_source"
+    methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeCubemap, addr name, 1625400621)
   var `?param`: array[1, pointer]
   value.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc source*(self: Ref[VisualShaderNodeCubemap]): VisualShaderNodeCubemap_Source =
-  init_methodbind(VisualShaderNodeCubemap, "get_source", 2222048781)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "get_source"
+    methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeCubemap, addr name, 2222048781)
   var ret: encoded VisualShaderNodeCubemap_Source
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(VisualShaderNodeCubemap_Source)
 proc `cubeMap=`*(self: Ref[VisualShaderNodeCubemap]; value: Ref[Cubemap]) =
-  init_methodbind(VisualShaderNodeCubemap, "set_cube_map", 2219800736)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "set_cube_map"
+    methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeCubemap, addr name, 2219800736)
   var `?param`: array[1, pointer]
   value.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc cubeMap*(self: Ref[VisualShaderNodeCubemap]): Ref[Cubemap] =
-  init_methodbind(VisualShaderNodeCubemap, "get_cube_map", 1772111058)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "get_cube_map"
+    methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeCubemap, addr name, 1772111058)
   var ret: encoded Ref[Cubemap]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Ref[Cubemap])
 proc `textureType=`*(self: Ref[VisualShaderNodeCubemap]; value: VisualShaderNodeCubemap_TextureType) =
-  init_methodbind(VisualShaderNodeCubemap, "set_texture_type", 1899718876)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "set_texture_type"
+    methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeCubemap, addr name, 1899718876)
   var `?param`: array[1, pointer]
   value.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc textureType*(self: Ref[VisualShaderNodeCubemap]): VisualShaderNodeCubemap_TextureType =
-  init_methodbind(VisualShaderNodeCubemap, "get_texture_type", 3356498888)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "get_texture_type"
+    methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeCubemap, addr name, 3356498888)
   var ret: encoded VisualShaderNodeCubemap_TextureType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(VisualShaderNodeCubemap_TextureType)

@@ -110,7 +110,10 @@ proc prerender_classMethod*(self: JsonMethod; self_type: ArgType; gpkind: GodotP
     retptr = "addr ret"
 
   discard +$$..result:
-    &"init_methodbind({self_type.name}, \"{self.name}\", {get self.hash})"
+    &"var methodbind {{.global.}}: MethodBindPtr"
+    &"if unlikely(methodbind.isNil):"
+    &"  let name: StringName = \"{self.name}\""
+    &"  methodbind = interface_ClassDB_getMethodBind(addr className {self_type.name}, addr name, {get self.hash})"
     paramArrayDef
     retDef
     &"interface_Object_methodBindPtrCall(methodbind, {selfptr}, {paramptr}, {retptr})"

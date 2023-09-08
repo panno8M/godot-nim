@@ -5,12 +5,18 @@
 import ./../helper/engineClassDefiner
 
 proc `constant=`*(self: Ref[VisualShaderNodeBooleanConstant]; constant: Bool) =
-  init_methodbind(VisualShaderNodeBooleanConstant, "set_constant", 2586408642)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "set_constant"
+    methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeBooleanConstant, addr name, 2586408642)
   var `?param`: array[1, pointer]
   constant.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc constant*(self: Ref[VisualShaderNodeBooleanConstant]): Bool =
-  init_methodbind(VisualShaderNodeBooleanConstant, "get_constant", 36873697)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "get_constant"
+    methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeBooleanConstant, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)

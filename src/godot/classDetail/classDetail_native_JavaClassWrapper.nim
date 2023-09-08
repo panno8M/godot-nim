@@ -5,7 +5,10 @@
 import ./../helper/engineClassDefiner
 
 proc wrap*(self: JavaClassWrapper; name: String): Ref[JavaClass] =
-  init_methodbind(JavaClassWrapper, "wrap", 1124367868)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "wrap"
+    methodbind = interface_ClassDB_getMethodBind(addr className JavaClassWrapper, addr name, 1124367868)
   var `?param`: array[1, pointer]
   name.encode(`?param`[0])
   var ret: encoded Ref[JavaClass]

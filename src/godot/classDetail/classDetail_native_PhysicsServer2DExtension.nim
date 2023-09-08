@@ -5,14 +5,20 @@
 import ./../helper/engineClassDefiner
 
 proc bodyTestMotionIsExcludingBody*(self: PhysicsServer2DExtension; body: RID): Bool =
-  init_methodbind(PhysicsServer2DExtension, "body_test_motion_is_excluding_body", 4155700596)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "body_test_motion_is_excluding_body"
+    methodbind = interface_ClassDB_getMethodBind(addr className PhysicsServer2DExtension, addr name, 4155700596)
   var `?param`: array[1, pointer]
   body.encode(`?param`[0])
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
 proc bodyTestMotionIsExcludingObject*(self: PhysicsServer2DExtension; `object`: uint64): Bool =
-  init_methodbind(PhysicsServer2DExtension, "body_test_motion_is_excluding_object", 1116898809)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "body_test_motion_is_excluding_object"
+    methodbind = interface_ClassDB_getMethodBind(addr className PhysicsServer2DExtension, addr name, 1116898809)
   var `?param`: array[1, pointer]
   `object`.encode(`?param`[0])
   var ret: encoded Bool

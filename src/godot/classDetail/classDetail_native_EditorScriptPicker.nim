@@ -5,12 +5,18 @@
 import ./../helper/engineClassDefiner
 
 proc `scriptOwner=`*(self: EditorScriptPicker; ownerNode: ptr Node) =
-  init_methodbind(EditorScriptPicker, "set_script_owner", 1078189570)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "set_script_owner"
+    methodbind = interface_ClassDB_getMethodBind(addr className EditorScriptPicker, addr name, 1078189570)
   var `?param`: array[1, pointer]
   ownerNode.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc scriptOwner*(self: EditorScriptPicker): Node =
-  init_methodbind(EditorScriptPicker, "get_script_owner", 3160264692)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "get_script_owner"
+    methodbind = interface_ClassDB_getMethodBind(addr className EditorScriptPicker, addr name, 3160264692)
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Node)

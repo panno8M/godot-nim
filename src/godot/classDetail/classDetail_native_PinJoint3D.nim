@@ -5,12 +5,18 @@
 import ./../helper/engineClassDefiner
 
 proc setParam*(self: PinJoint3D; param: PinJoint3D_Param; value: Float) =
-  init_methodbind(PinJoint3D, "set_param", 2059913726)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "set_param"
+    methodbind = interface_ClassDB_getMethodBind(addr className PinJoint3D, addr name, 2059913726)
   var `?param`: array[2, pointer]
   param.encode(`?param`[0]); value.encode(`?param`[1])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getParam*(self: PinJoint3D; param: PinJoint3D_Param): Float =
-  init_methodbind(PinJoint3D, "get_param", 1758438771)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "get_param"
+    methodbind = interface_ClassDB_getMethodBind(addr className PinJoint3D, addr name, 1758438771)
   var `?param`: array[1, pointer]
   param.encode(`?param`[0])
   var ret: encoded Float

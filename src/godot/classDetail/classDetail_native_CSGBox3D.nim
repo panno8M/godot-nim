@@ -5,22 +5,34 @@
 import ./../helper/engineClassDefiner
 
 proc `size=`*(self: CSGBox3D; size: Vector3) =
-  init_methodbind(CSGBox3D, "set_size", 3460891852)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "set_size"
+    methodbind = interface_ClassDB_getMethodBind(addr className CSGBox3D, addr name, 3460891852)
   var `?param`: array[1, pointer]
   size.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc size*(self: CSGBox3D): Vector3 =
-  init_methodbind(CSGBox3D, "get_size", 3360562783)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "get_size"
+    methodbind = interface_ClassDB_getMethodBind(addr className CSGBox3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Vector3)
 proc `material=`*(self: CSGBox3D; material: Ref[Material]) =
-  init_methodbind(CSGBox3D, "set_material", 2757459619)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "set_material"
+    methodbind = interface_ClassDB_getMethodBind(addr className CSGBox3D, addr name, 2757459619)
   var `?param`: array[1, pointer]
   material.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc material*(self: CSGBox3D): Ref[Material] =
-  init_methodbind(CSGBox3D, "get_material", 5934680)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "get_material"
+    methodbind = interface_ClassDB_getMethodBind(addr className CSGBox3D, addr name, 5934680)
   var ret: encoded Ref[Material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Ref[Material])

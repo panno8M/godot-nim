@@ -5,12 +5,18 @@
 import ./../helper/engineClassDefiner
 
 proc `syncToPhysics=`*(self: AnimatableBody3D; enable: Bool) =
-  init_methodbind(AnimatableBody3D, "set_sync_to_physics", 2586408642)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "set_sync_to_physics"
+    methodbind = interface_ClassDB_getMethodBind(addr className AnimatableBody3D, addr name, 2586408642)
   var `?param`: array[1, pointer]
   enable.encode(`?param`[0])
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isSyncToPhysicsEnabled*(self: AnimatableBody3D): Bool =
-  init_methodbind(AnimatableBody3D, "is_sync_to_physics_enabled", 36873697)
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "is_sync_to_physics_enabled"
+    methodbind = interface_ClassDB_getMethodBind(addr className AnimatableBody3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
