@@ -19,24 +19,6 @@ type
 var extcfg: GDExtensionConfig
 var currentLevel*: InitializationLevel
 
-type
-  ClassRegistrationInfo* = object
-    name*, parent_name*: StringName
-    creationInfo*: ClassCreationInfo
-
-proc register_class*(info: ClassRegistrationInfo) =
-  interfaceClassdbRegisterExtensionClass(library, addr info.name, addr info.parent_name, addr info.creationInfo)
-template register_class*(T: typedesc[SomeUserClass]) =
-  mixin make_ClassRegistrationInfo
-  mixin bind_virtuals
-  EngineClass(T).bind_virtuals(T)
-  register_class(T.make_ClassRegistrationInfo(false, false))
-
-template register_method*(T: typedesc[SomeUserClass]; p: proc) =
-  mixin p
-  let info = build_methodInfo(p)
-  interface_classDbRegisterExtensionClassMethod(library, addr className(T), addr info)
-
 proc initialize_module {.implement: Initialization.initialize.} =
   currentLevel = p_level
   # expand_register_stack(preserved):

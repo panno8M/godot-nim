@@ -4,9 +4,35 @@ import std/tables
 import objectConverter
 
 import ./errorHandlings
-import ../init
 import ../godotInterface
 import ../logging
+
+type
+  ClassRegistrationInfo* = object
+    name*, parent_name*: StringName
+    creationInfo*: ClassCreationInfo
+
+proc register_class*(info: ClassRegistrationInfo) =
+  interfaceClassdbRegisterExtensionClass(library, addr info.name, addr info.parent_name, addr info.creationInfo)
+template register_class*(T: typedesc[SomeUserClass]) =
+  mixin make_ClassRegistrationInfo
+  mixin bind_virtuals
+  EngineClass(T).bind_virtuals(T)
+  register_class(T.make_ClassRegistrationInfo(false, false))
+
+template register_method*(T: typedesc[SomeUserClass]; p: proc) =
+  mixin p
+  let info = build_methodInfo(p)
+  interface_classDbRegisterExtensionClassMethod(library, addr className(T), addr info)
+
+proc add_property*(T: typedesc[SomeUserClass]; info: PropertyInfo; setter, getter: static string) =
+  let setter: StringName = setter
+  let getter: StringName = getter
+  interface_ClassDB_registerExtensionClassProperty(library, addr className(T), addr info, addr setter, addr getter)
+proc add_property*(T: typedesc[SomeUserClass]; P: typedesc; prop, setter, getter: static string) =
+  let info = propertyInfo(P, prop)
+  T.add_property(info[], setter, getter)
+
 
 template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
   bind iam
@@ -99,7 +125,6 @@ template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
     # r_is_valid[] = true
 
   proc make_ClassRegistrationInfo*(T: typedesc[Object]; is_virtual, is_abstract: bool): ClassRegistrationInfo =
-    bind ClassRegistrationInfo
     bind className
 
     ClassRegistrationInfo(
