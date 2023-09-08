@@ -128,80 +128,72 @@ macro build_methodInfo*(Proc: proc): ClassMethodInfo =
   let params = ProcDef.params
   let ret_t = params[0]
   let self_def = params[1]
-  let arg_defs = params[2..^1]
   let self_t = self_def[1]
   let proc_name = toStrLit Proc
-  let has_return_b = ProcDef.hasReturn
-  let has_return = newlit has_return_b
-  let arg_count = newlit arg_defs.len
+  let has_return = ProcDef.hasReturn
+  var argcount: int
 
   let return_value_info =
-    if has_return_b:
+    if has_return:
       quote do:
         propertyInfo(typedesc `ret_t`)
     else: newNilLit()
   let return_value_metadata =
-    if has_return_b:
+    if has_return:
       quote do:
         metadata(typedesc `ret_t`)
     else: bindSym "MethodArgumentMetadata_None"
-  let arguments_info =
-    if arg_defs.len == 0: newNilLit()
-    else:
-      var bracket = newNimNode nnkBracket
-      for def in arg_defs:
-        let (Type, name) = (def[1], toStrLit def[0])
-        bracket.add quote do:
-          propertyInfo(typedesc `Type`, `name`)[]
-      quote do:
-        let info = `bracket`
+  var arguments_info = newNilLit()
+  var arguments_metadata = newNilLit()
+  block ArgumentInfo:
+    var info = newNimNode nnkBracket
+    var meta = newNimNode nnkBracket
+    for i, (name, Type, default) in params.breakArgs:
+      if i == 0: continue
+      let name = toStrLit name
+      inc argcount
+      info.add quote do:
+        propertyInfo(typedesc `Type`, `name`)[]
+      meta.add quote do:
+        metadata(typedesc `Type`)
+    if info.len != 0:
+      arguments_info = quote do:
+        let info = `info`
         addr info[0]
-  let arguments_metadata =
-    if arg_defs.len == 0: newNilLit()
-    else:
-      var bracket = newNimNode nnkBracket
-      for def in arg_defs:
-        let Type = def[1]
-        bracket.add quote do:
-          metadata(typedesc `Type`)
-      quote do:
-        let metadata = `bracket`
-        addr metadata[0]
-  let call_func_body = block:
+      arguments_metadata = quote do:
+        let meta = `meta`
+        addr meta[0]
+
+  var call_func_body = newStmtList()
+  var ptrcall_func_body = newStmtList()
+  block:
     var call = Proc.newCall()
+    var ptrcall = Proc.newCall()
     call.add quote do: cast[`self_t`](p_instance)
-    for i in 0..<arg_defs.len:
-      let i_lit = newlit i
-      let Type = arg_defs[i][1]
-      call.add quote do: p_args[`i_lit`][].get(typedesc `Type`)
-    if has_return_b:
-      quote do:
+    ptrcall.add quote do: cast[`self_t`](p_instance)
+
+    for i, (name, Type, default) in params.breakArgs:
+      if i == 0: continue
+      let i_lit = newlit i - 1
+      call.add quote do: p_args[`i_lit`].get(typedesc `Type`)
+      ptrcall.add quote do: p_args[`i_lit`].decode(typedesc `Type`)
+    if has_return:
+      call_func_body = quote do:
         r_return[] = variant `call`
+      ptrcall_func_body = quote do:
+        `ptrcall`.encode(r_ret)
     else:
-      quote do:
+      call_func_body = quote do:
         `call`
         r_return[] = variant()
-  let ptrcall_func_body = block:
-    var call = Proc.newCall()
-    call.add quote do: cast[`self_t`](p_instance)
-    for i in 0..<arg_defs.len:
-      let i_lit = newlit i
-      let Type = arg_defs[i][1]
-      call.add quote do: p_args[`i_lit`].decode(typedesc `Type`)
-    if has_return_b:
-      quote do:
-        `call`.encode(r_ret)
-    else:
-      call
+      ptrcall_func_body = ptrcall
 
-
-  quote do:
+  let argcount_lit = newlit argcount
+  let hasReturn_lit = newlit hasReturn
+  result = quote do:
     proc call_func {.implement: ClassmethodCall, gensym.} =
-      # iam($`self_t`&"-call-func").debug("Called")
       `call_func_body`
     proc ptrcall_func {.implement: ClassmethodPtrCall, gensym.} =
-      # iam($`self_t`&"-ptrcall-func").debug("Called")
-      discard
       `ptrcall_func_body`
 
     let proc_name: StringName = `proc_name`
@@ -220,11 +212,11 @@ macro build_methodInfo*(Proc: proc): ClassMethodInfo =
       ptrcall_func: ptrcall_func,
       method_flags: {MethodFlag_Normal},
 
-      has_return_value: `has_return`,
+      has_return_value: `has_return_lit`,
       return_value_info: `return_value_info`,
       return_value_metadata: `return_value_metadata`,
 
-      argument_count: `arg_count`,
+      argument_count: `arg_count_lit`,
       arguments_info: `arguments_info`,
       arguments_metadata: `arguments_metadata`,
 
