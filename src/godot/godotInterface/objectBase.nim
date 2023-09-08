@@ -3,6 +3,20 @@ import std/tables
 import ../godotInterface_core
 
 
+type SomeClass* = concept type t
+  t is ObjectBase
+type SomeEngineClass* = concept type t
+  t is SomeClass
+  t is EngineClass(t)
+type SomeUserClass* = concept type t
+  t is SomeClass
+  t isnot EngineClass(t)
+
+proc init_engine_class*(self: ObjectBase; godot_class: ptr StringName) =
+  self.owner = interface_classdb_construct_object(godot_class)
+proc init_engine_class*(self: ObjectBase; godot_object: ObjectPtr) =
+  self.owner = godot_object
+
 # protected
 # ---------
 proc bind_methods* {.staticOf: ObjectBase.} = (discard)

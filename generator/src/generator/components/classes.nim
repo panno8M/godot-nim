@@ -34,7 +34,7 @@ proc toNim*(class: JsonClass): NimClass =
 proc toNim*(classes: JsonClasses): NimClasses = classes.mapIt it.toNim
 proc renderClassDefine*(class: NimClass): Statement =
   var classdef = ParagraphSt()
-  return +$$..BlockSt(head: fmt"{class.name}* = ref object of {class.inherits}"):
+  return +$$..BlockSt(head: fmt"type {class.name}* = ref object of {class.inherits}"):
     classdef
 
 iterator parentalSorted*(classes: NimClasses): NimClasses =
@@ -56,10 +56,13 @@ iterator parentalSorted*(classes: NimClasses): NimClasses =
 proc renderClassDefine*(classes: NimClasses): Statement =
   result = ParagraphSt()
   for group in classes.parentalSorted:
-    var types = BlockSt(head: "type")
+    let inherits = group[0].inherits
     for class in group:
-      types.children.add renderClassDefine class
-    result.children.add types
+      let name = class.name
+      discard +$$..result:
+        renderClassDefine class
+        &"template Inherit*(_: typedesc[{name}]): typedesc = {inherits}"
+        &"template EngineClass*(_: typedesc[{name}]): typedesc = {name}"
 
 proc renderLocalEnums*(classes: NimClasses): Statement =
   result = ParagraphSt()
@@ -74,8 +77,6 @@ iterator renderDetail*(classes: NimClasses): tuple[class, inherits: TypeName; es
     for class in classes:
       var essencial = ParagraphSt()
       var detail = ParagraphSt()
-
-      essencial.children.add &"define_godot_engine_class_essencials({class.name}, {class.inherits})"
 
       var getters: HashSet[string]
       var setters: HashSet[string]

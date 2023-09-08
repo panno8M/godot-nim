@@ -8,10 +8,6 @@ import beyond/oop/typestatics; export typestatics
 from std/tables import `[]=`
 export tables.`[]=`
 
-template define_godot_engine_class_essencials*(Class, Inherits: typedesc): untyped =
-  template Inherit*(_: typedesc[Class]): typedesc[Inherits] = Inherits
-  template EngineClass*(T: typedesc[Class]): typedesc[Class] = Class
-
 proc initialize_class*(T: typedesc[SomeEngineClass]) = once:
   let callbacks = addr get_userdata(T).callbacks
 
