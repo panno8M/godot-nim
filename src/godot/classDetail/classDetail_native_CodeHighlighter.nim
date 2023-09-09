@@ -9,24 +9,21 @@ proc addKeywordColor*(self: Ref[CodeHighlighter]; keyword: String; color: Color)
   if unlikely(methodbind.isNil):
     let name: StringName = "add_keyword_color"
     methodbind = interface_ClassDB_getMethodBind(addr className CodeHighlighter, addr name, 1636512886)
-  var `?param`: array[2, pointer]
-  keyword.encode(`?param`[0]); color.encode(`?param`[1])
+  var `?param` = [getPtr keyword, getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc removeKeywordColor*(self: Ref[CodeHighlighter]; keyword: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_keyword_color"
     methodbind = interface_ClassDB_getMethodBind(addr className CodeHighlighter, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  keyword.encode(`?param`[0])
+  var `?param` = [getPtr keyword]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc hasKeywordColor*(self: Ref[CodeHighlighter]; keyword: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "has_keyword_color"
     methodbind = interface_ClassDB_getMethodBind(addr className CodeHighlighter, addr name, 3927539163)
-  var `?param`: array[1, pointer]
-  keyword.encode(`?param`[0])
+  var `?param` = [getPtr keyword]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -35,8 +32,7 @@ proc getKeywordColor*(self: Ref[CodeHighlighter]; keyword: String): Color =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_keyword_color"
     methodbind = interface_ClassDB_getMethodBind(addr className CodeHighlighter, addr name, 3855908743)
-  var `?param`: array[1, pointer]
-  keyword.encode(`?param`[0])
+  var `?param` = [getPtr keyword]
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Color)
@@ -45,8 +41,7 @@ proc `keywordColors=`*(self: Ref[CodeHighlighter]; keywords: Dictionary) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_keyword_colors"
     methodbind = interface_ClassDB_getMethodBind(addr className CodeHighlighter, addr name, 4155329257)
-  var `?param`: array[1, pointer]
-  keywords.encode(`?param`[0])
+  var `?param` = [getPtr keywords]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc clearKeywordColors*(self: Ref[CodeHighlighter]) =
   var methodbind {.global.}: MethodBindPtr
@@ -67,24 +62,21 @@ proc addMemberKeywordColor*(self: Ref[CodeHighlighter]; memberKeyword: String; c
   if unlikely(methodbind.isNil):
     let name: StringName = "add_member_keyword_color"
     methodbind = interface_ClassDB_getMethodBind(addr className CodeHighlighter, addr name, 1636512886)
-  var `?param`: array[2, pointer]
-  memberKeyword.encode(`?param`[0]); color.encode(`?param`[1])
+  var `?param` = [getPtr memberKeyword, getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc removeMemberKeywordColor*(self: Ref[CodeHighlighter]; memberKeyword: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_member_keyword_color"
     methodbind = interface_ClassDB_getMethodBind(addr className CodeHighlighter, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  memberKeyword.encode(`?param`[0])
+  var `?param` = [getPtr memberKeyword]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc hasMemberKeywordColor*(self: Ref[CodeHighlighter]; memberKeyword: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "has_member_keyword_color"
     methodbind = interface_ClassDB_getMethodBind(addr className CodeHighlighter, addr name, 3927539163)
-  var `?param`: array[1, pointer]
-  memberKeyword.encode(`?param`[0])
+  var `?param` = [getPtr memberKeyword]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -93,8 +85,7 @@ proc getMemberKeywordColor*(self: Ref[CodeHighlighter]; memberKeyword: String): 
   if unlikely(methodbind.isNil):
     let name: StringName = "get_member_keyword_color"
     methodbind = interface_ClassDB_getMethodBind(addr className CodeHighlighter, addr name, 3855908743)
-  var `?param`: array[1, pointer]
-  memberKeyword.encode(`?param`[0])
+  var `?param` = [getPtr memberKeyword]
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Color)
@@ -103,8 +94,7 @@ proc `memberKeywordColors=`*(self: Ref[CodeHighlighter]; memberKeyword: Dictiona
   if unlikely(methodbind.isNil):
     let name: StringName = "set_member_keyword_colors"
     methodbind = interface_ClassDB_getMethodBind(addr className CodeHighlighter, addr name, 4155329257)
-  var `?param`: array[1, pointer]
-  memberKeyword.encode(`?param`[0])
+  var `?param` = [getPtr memberKeyword]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc clearMemberKeywordColors*(self: Ref[CodeHighlighter]) =
   var methodbind {.global.}: MethodBindPtr
@@ -125,24 +115,21 @@ proc addColorRegion*(self: Ref[CodeHighlighter]; startKey: String; endKey: Strin
   if unlikely(methodbind.isNil):
     let name: StringName = "add_color_region"
     methodbind = interface_ClassDB_getMethodBind(addr className CodeHighlighter, addr name, 2924977451)
-  var `?param`: array[4, pointer]
-  startKey.encode(`?param`[0]); endKey.encode(`?param`[1]); color.encode(`?param`[2]); lineOnly.encode(`?param`[3])
+  var `?param` = [getPtr startKey, getPtr endKey, getPtr color, getPtr lineOnly]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc removeColorRegion*(self: Ref[CodeHighlighter]; startKey: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_color_region"
     methodbind = interface_ClassDB_getMethodBind(addr className CodeHighlighter, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  startKey.encode(`?param`[0])
+  var `?param` = [getPtr startKey]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc hasColorRegion*(self: Ref[CodeHighlighter]; startKey: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "has_color_region"
     methodbind = interface_ClassDB_getMethodBind(addr className CodeHighlighter, addr name, 3927539163)
-  var `?param`: array[1, pointer]
-  startKey.encode(`?param`[0])
+  var `?param` = [getPtr startKey]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -151,8 +138,7 @@ proc `colorRegions=`*(self: Ref[CodeHighlighter]; colorRegions: Dictionary) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_color_regions"
     methodbind = interface_ClassDB_getMethodBind(addr className CodeHighlighter, addr name, 4155329257)
-  var `?param`: array[1, pointer]
-  colorRegions.encode(`?param`[0])
+  var `?param` = [getPtr colorRegions]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc clearColorRegions*(self: Ref[CodeHighlighter]) =
   var methodbind {.global.}: MethodBindPtr
@@ -173,8 +159,7 @@ proc `functionColor=`*(self: Ref[CodeHighlighter]; color: Color) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_function_color"
     methodbind = interface_ClassDB_getMethodBind(addr className CodeHighlighter, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  color.encode(`?param`[0])
+  var `?param` = [getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc functionColor*(self: Ref[CodeHighlighter]): Color =
   var methodbind {.global.}: MethodBindPtr
@@ -189,8 +174,7 @@ proc `numberColor=`*(self: Ref[CodeHighlighter]; color: Color) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_number_color"
     methodbind = interface_ClassDB_getMethodBind(addr className CodeHighlighter, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  color.encode(`?param`[0])
+  var `?param` = [getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc numberColor*(self: Ref[CodeHighlighter]): Color =
   var methodbind {.global.}: MethodBindPtr
@@ -205,8 +189,7 @@ proc `symbolColor=`*(self: Ref[CodeHighlighter]; color: Color) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_symbol_color"
     methodbind = interface_ClassDB_getMethodBind(addr className CodeHighlighter, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  color.encode(`?param`[0])
+  var `?param` = [getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc symbolColor*(self: Ref[CodeHighlighter]): Color =
   var methodbind {.global.}: MethodBindPtr
@@ -221,8 +204,7 @@ proc `memberVariableColor=`*(self: Ref[CodeHighlighter]; color: Color) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_member_variable_color"
     methodbind = interface_ClassDB_getMethodBind(addr className CodeHighlighter, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  color.encode(`?param`[0])
+  var `?param` = [getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc memberVariableColor*(self: Ref[CodeHighlighter]): Color =
   var methodbind {.global.}: MethodBindPtr

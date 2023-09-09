@@ -9,8 +9,7 @@ proc `texture=`*(self: Sprite3D; texture: Ref[Texture2D]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className Sprite3D, addr name, 4051416890)
-  var `?param`: array[1, pointer]
-  texture.encode(`?param`[0])
+  var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc texture*(self: Sprite3D): Ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `regionEnabled=`*(self: Sprite3D; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_region_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className Sprite3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isRegionEnabled*(self: Sprite3D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `regionRect=`*(self: Sprite3D; rect: Rect2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_region_rect"
     methodbind = interface_ClassDB_getMethodBind(addr className Sprite3D, addr name, 2046264180)
-  var `?param`: array[1, pointer]
-  rect.encode(`?param`[0])
+  var `?param` = [getPtr rect]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc regionRect*(self: Sprite3D): Rect2 =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `frame=`*(self: Sprite3D; frame: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_frame"
     methodbind = interface_ClassDB_getMethodBind(addr className Sprite3D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  frame.encode(`?param`[0])
+  var `?param` = [getPtr frame]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc frame*(self: Sprite3D): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `frameCoords=`*(self: Sprite3D; coords: Vector2i) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_frame_coords"
     methodbind = interface_ClassDB_getMethodBind(addr className Sprite3D, addr name, 1130785943)
-  var `?param`: array[1, pointer]
-  coords.encode(`?param`[0])
+  var `?param` = [getPtr coords]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc frameCoords*(self: Sprite3D): Vector2i =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc `vframes=`*(self: Sprite3D; vframes: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_vframes"
     methodbind = interface_ClassDB_getMethodBind(addr className Sprite3D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  vframes.encode(`?param`[0])
+  var `?param` = [getPtr vframes]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc vframes*(self: Sprite3D): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -105,8 +99,7 @@ proc `hframes=`*(self: Sprite3D; hframes: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_hframes"
     methodbind = interface_ClassDB_getMethodBind(addr className Sprite3D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  hframes.encode(`?param`[0])
+  var `?param` = [getPtr hframes]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc hframes*(self: Sprite3D): int32 =
   var methodbind {.global.}: MethodBindPtr

@@ -9,8 +9,7 @@ proc getSession*(self: Ref[EditorDebuggerPlugin]; id: int32): Ref[EditorDebugger
   if unlikely(methodbind.isNil):
     let name: StringName = "get_session"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorDebuggerPlugin, addr name, 3061968499)
-  var `?param`: array[1, pointer]
-  id.encode(`?param`[0])
+  var `?param` = [getPtr id]
   var ret: encoded Ref[EditorDebuggerSession]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[EditorDebuggerSession])

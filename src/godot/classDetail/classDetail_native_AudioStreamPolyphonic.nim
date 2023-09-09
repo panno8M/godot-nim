@@ -9,8 +9,7 @@ proc `polyphony=`*(self: Ref[AudioStreamPolyphonic]; voices: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_polyphony"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPolyphonic, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  voices.encode(`?param`[0])
+  var `?param` = [getPtr voices]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc polyphony*(self: Ref[AudioStreamPolyphonic]): int32 =
   var methodbind {.global.}: MethodBindPtr

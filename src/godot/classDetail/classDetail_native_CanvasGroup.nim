@@ -9,8 +9,7 @@ proc `fitMargin=`*(self: CanvasGroup; fitMargin: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fit_margin"
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasGroup, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  fitMargin.encode(`?param`[0])
+  var `?param` = [getPtr fitMargin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fitMargin*(self: CanvasGroup): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `clearMargin=`*(self: CanvasGroup; clearMargin: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_clear_margin"
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasGroup, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  clearMargin.encode(`?param`[0])
+  var `?param` = [getPtr clearMargin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc clearMargin*(self: CanvasGroup): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `useMipmaps=`*(self: CanvasGroup; useMipmaps: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_use_mipmaps"
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasGroup, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  useMipmaps.encode(`?param`[0])
+  var `?param` = [getPtr useMipmaps]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isUsingMipmaps*(self: CanvasGroup): Bool =
   var methodbind {.global.}: MethodBindPtr

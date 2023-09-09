@@ -9,8 +9,7 @@ proc `opType=`*(self: Ref[VisualShaderNodeParticleRandomness]; `type`: VisualSha
   if unlikely(methodbind.isNil):
     let name: StringName = "set_op_type"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeParticleRandomness, addr name, 2060089061)
-  var `?param`: array[1, pointer]
-  `type`.encode(`?param`[0])
+  var `?param` = [getPtr `type`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc opType*(self: Ref[VisualShaderNodeParticleRandomness]): VisualShaderNodeParticleRandomness_OpType =
   var methodbind {.global.}: MethodBindPtr

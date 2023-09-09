@@ -17,6 +17,5 @@ proc `loop=`*(self: Ref[GLTFAnimation]; loop: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_loop"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFAnimation, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  loop.encode(`?param`[0])
+  var `?param` = [getPtr loop]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

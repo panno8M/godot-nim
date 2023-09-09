@@ -9,32 +9,28 @@ proc `width=`*(self: Ref[NoiseTexture3D]; width: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_width"
     methodbind = interface_ClassDB_getMethodBind(addr className NoiseTexture3D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  width.encode(`?param`[0])
+  var `?param` = [getPtr width]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `height=`*(self: Ref[NoiseTexture3D]; height: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_height"
     methodbind = interface_ClassDB_getMethodBind(addr className NoiseTexture3D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  height.encode(`?param`[0])
+  var `?param` = [getPtr height]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `depth=`*(self: Ref[NoiseTexture3D]; depth: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_depth"
     methodbind = interface_ClassDB_getMethodBind(addr className NoiseTexture3D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  depth.encode(`?param`[0])
+  var `?param` = [getPtr depth]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `invert=`*(self: Ref[NoiseTexture3D]; invert: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_invert"
     methodbind = interface_ClassDB_getMethodBind(addr className NoiseTexture3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  invert.encode(`?param`[0])
+  var `?param` = [getPtr invert]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc invert*(self: Ref[NoiseTexture3D]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -49,8 +45,7 @@ proc `seamless=`*(self: Ref[NoiseTexture3D]; seamless: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_seamless"
     methodbind = interface_ClassDB_getMethodBind(addr className NoiseTexture3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  seamless.encode(`?param`[0])
+  var `?param` = [getPtr seamless]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc seamless*(self: Ref[NoiseTexture3D]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -65,8 +60,7 @@ proc `seamlessBlendSkirt=`*(self: Ref[NoiseTexture3D]; seamlessBlendSkirt: Float
   if unlikely(methodbind.isNil):
     let name: StringName = "set_seamless_blend_skirt"
     methodbind = interface_ClassDB_getMethodBind(addr className NoiseTexture3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  seamlessBlendSkirt.encode(`?param`[0])
+  var `?param` = [getPtr seamlessBlendSkirt]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc seamlessBlendSkirt*(self: Ref[NoiseTexture3D]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -81,8 +75,7 @@ proc `normalize=`*(self: Ref[NoiseTexture3D]; normalize: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_normalize"
     methodbind = interface_ClassDB_getMethodBind(addr className NoiseTexture3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  normalize.encode(`?param`[0])
+  var `?param` = [getPtr normalize]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isNormalized*(self: Ref[NoiseTexture3D]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -97,8 +90,7 @@ proc `colorRamp=`*(self: Ref[NoiseTexture3D]; gradient: Ref[Gradient]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_color_ramp"
     methodbind = interface_ClassDB_getMethodBind(addr className NoiseTexture3D, addr name, 2756054477)
-  var `?param`: array[1, pointer]
-  gradient.encode(`?param`[0])
+  var `?param` = [getPtr gradient]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc colorRamp*(self: Ref[NoiseTexture3D]): Ref[Gradient] =
   var methodbind {.global.}: MethodBindPtr
@@ -113,8 +105,7 @@ proc `noise=`*(self: Ref[NoiseTexture3D]; noise: Ref[Noise]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_noise"
     methodbind = interface_ClassDB_getMethodBind(addr className NoiseTexture3D, addr name, 4135492439)
-  var `?param`: array[1, pointer]
-  noise.encode(`?param`[0])
+  var `?param` = [getPtr noise]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc noise*(self: Ref[NoiseTexture3D]): Ref[Noise] =
   var methodbind {.global.}: MethodBindPtr

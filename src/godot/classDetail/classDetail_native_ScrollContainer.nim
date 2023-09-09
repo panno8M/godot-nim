@@ -9,8 +9,7 @@ proc `hScroll=`*(self: ScrollContainer; value: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_h_scroll"
     methodbind = interface_ClassDB_getMethodBind(addr className ScrollContainer, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  value.encode(`?param`[0])
+  var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc hScroll*(self: ScrollContainer): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `vScroll=`*(self: ScrollContainer; value: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_v_scroll"
     methodbind = interface_ClassDB_getMethodBind(addr className ScrollContainer, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  value.encode(`?param`[0])
+  var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc vScroll*(self: ScrollContainer): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `horizontalCustomStep=`*(self: ScrollContainer; value: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_horizontal_custom_step"
     methodbind = interface_ClassDB_getMethodBind(addr className ScrollContainer, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  value.encode(`?param`[0])
+  var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc horizontalCustomStep*(self: ScrollContainer): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `verticalCustomStep=`*(self: ScrollContainer; value: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_vertical_custom_step"
     methodbind = interface_ClassDB_getMethodBind(addr className ScrollContainer, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  value.encode(`?param`[0])
+  var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc verticalCustomStep*(self: ScrollContainer): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `horizontalScrollMode=`*(self: ScrollContainer; enable: ScrollContainer_Scr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_horizontal_scroll_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className ScrollContainer, addr name, 2750506364)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc horizontalScrollMode*(self: ScrollContainer): ScrollContainer_ScrollMode =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc `verticalScrollMode=`*(self: ScrollContainer; enable: ScrollContainer_Scrol
   if unlikely(methodbind.isNil):
     let name: StringName = "set_vertical_scroll_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className ScrollContainer, addr name, 2750506364)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc verticalScrollMode*(self: ScrollContainer): ScrollContainer_ScrollMode =
   var methodbind {.global.}: MethodBindPtr
@@ -105,8 +99,7 @@ proc `deadzone=`*(self: ScrollContainer; deadzone: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_deadzone"
     methodbind = interface_ClassDB_getMethodBind(addr className ScrollContainer, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  deadzone.encode(`?param`[0])
+  var `?param` = [getPtr deadzone]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc deadzone*(self: ScrollContainer): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -121,8 +114,7 @@ proc `followFocus=`*(self: ScrollContainer; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_follow_focus"
     methodbind = interface_ClassDB_getMethodBind(addr className ScrollContainer, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isFollowingFocus*(self: ScrollContainer): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -153,6 +145,5 @@ proc ensureControlVisible*(self: ScrollContainer; control: Control) =
   if unlikely(methodbind.isNil):
     let name: StringName = "ensure_control_visible"
     methodbind = interface_ClassDB_getMethodBind(addr className ScrollContainer, addr name, 1496901182)
-  var `?param`: array[1, pointer]
-  control.encode(`?param`[0])
+  var `?param` = [getPtr control]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

@@ -9,8 +9,7 @@ proc `location=`*(self: Ref[RDVertexAttribute]; pMember: uint32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_location"
     methodbind = interface_ClassDB_getMethodBind(addr className RDVertexAttribute, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  pMember.encode(`?param`[0])
+  var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc location*(self: Ref[RDVertexAttribute]): uint32 =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `offset=`*(self: Ref[RDVertexAttribute]; pMember: uint32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className RDVertexAttribute, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  pMember.encode(`?param`[0])
+  var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc offset*(self: Ref[RDVertexAttribute]): uint32 =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `format=`*(self: Ref[RDVertexAttribute]; pMember: RenderingDevice_DataForma
   if unlikely(methodbind.isNil):
     let name: StringName = "set_format"
     methodbind = interface_ClassDB_getMethodBind(addr className RDVertexAttribute, addr name, 565531219)
-  var `?param`: array[1, pointer]
-  pMember.encode(`?param`[0])
+  var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc format*(self: Ref[RDVertexAttribute]): RenderingDevice_DataFormat =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `stride=`*(self: Ref[RDVertexAttribute]; pMember: uint32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_stride"
     methodbind = interface_ClassDB_getMethodBind(addr className RDVertexAttribute, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  pMember.encode(`?param`[0])
+  var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc stride*(self: Ref[RDVertexAttribute]): uint32 =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `frequency=`*(self: Ref[RDVertexAttribute]; pMember: RenderingDevice_Vertex
   if unlikely(methodbind.isNil):
     let name: StringName = "set_frequency"
     methodbind = interface_ClassDB_getMethodBind(addr className RDVertexAttribute, addr name, 522141836)
-  var `?param`: array[1, pointer]
-  pMember.encode(`?param`[0])
+  var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc frequency*(self: Ref[RDVertexAttribute]): RenderingDevice_VertexFrequency =
   var methodbind {.global.}: MethodBindPtr

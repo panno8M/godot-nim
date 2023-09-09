@@ -9,8 +9,7 @@ proc `hand=`*(self: OpenXRHand; hand: OpenXRHand_Hands) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_hand"
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRHand, addr name, 1849328560)
-  var `?param`: array[1, pointer]
-  hand.encode(`?param`[0])
+  var `?param` = [getPtr hand]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc hand*(self: OpenXRHand): OpenXRHand_Hands =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `handSkeleton=`*(self: OpenXRHand; handSkeleton: NodePath) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_hand_skeleton"
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRHand, addr name, 1348162250)
-  var `?param`: array[1, pointer]
-  handSkeleton.encode(`?param`[0])
+  var `?param` = [getPtr handSkeleton]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc handSkeleton*(self: OpenXRHand): NodePath =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `motionRange=`*(self: OpenXRHand; motionRange: OpenXRHand_MotionRange) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_motion_range"
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRHand, addr name, 3326516003)
-  var `?param`: array[1, pointer]
-  motionRange.encode(`?param`[0])
+  var `?param` = [getPtr motionRange]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc motionRange*(self: OpenXRHand): OpenXRHand_MotionRange =
   var methodbind {.global.}: MethodBindPtr

@@ -9,8 +9,7 @@ proc `pickColor=`*(self: ColorPicker; color: Color) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_pick_color"
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPicker, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  color.encode(`?param`[0])
+  var `?param` = [getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc pickColor*(self: ColorPicker): Color =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `deferredMode=`*(self: ColorPicker; mode: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_deferred_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPicker, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isDeferredMode*(self: ColorPicker): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `colorMode=`*(self: ColorPicker; colorMode: ColorPicker_ColorModeType) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_color_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPicker, addr name, 1579114136)
-  var `?param`: array[1, pointer]
-  colorMode.encode(`?param`[0])
+  var `?param` = [getPtr colorMode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc colorMode*(self: ColorPicker): ColorPicker_ColorModeType =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `editAlpha=`*(self: ColorPicker; show: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_edit_alpha"
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPicker, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  show.encode(`?param`[0])
+  var `?param` = [getPtr show]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isEditingAlpha*(self: ColorPicker): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `canAddSwatches=`*(self: ColorPicker; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_can_add_swatches"
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPicker, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc areSwatchesEnabled*(self: ColorPicker): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc `presetsVisible=`*(self: ColorPicker; visible: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_presets_visible"
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPicker, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  visible.encode(`?param`[0])
+  var `?param` = [getPtr visible]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc arePresetsVisible*(self: ColorPicker): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -105,8 +99,7 @@ proc `modesVisible=`*(self: ColorPicker; visible: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_modes_visible"
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPicker, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  visible.encode(`?param`[0])
+  var `?param` = [getPtr visible]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc areModesVisible*(self: ColorPicker): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -121,8 +114,7 @@ proc `samplerVisible=`*(self: ColorPicker; visible: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sampler_visible"
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPicker, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  visible.encode(`?param`[0])
+  var `?param` = [getPtr visible]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isSamplerVisible*(self: ColorPicker): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -137,8 +129,7 @@ proc `slidersVisible=`*(self: ColorPicker; visible: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sliders_visible"
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPicker, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  visible.encode(`?param`[0])
+  var `?param` = [getPtr visible]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc areSlidersVisible*(self: ColorPicker): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -153,8 +144,7 @@ proc `hexVisible=`*(self: ColorPicker; visible: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_hex_visible"
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPicker, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  visible.encode(`?param`[0])
+  var `?param` = [getPtr visible]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isHexVisible*(self: ColorPicker): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -169,16 +159,14 @@ proc addPreset*(self: ColorPicker; color: Color) =
   if unlikely(methodbind.isNil):
     let name: StringName = "add_preset"
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPicker, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  color.encode(`?param`[0])
+  var `?param` = [getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc erasePreset*(self: ColorPicker; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "erase_preset"
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPicker, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  color.encode(`?param`[0])
+  var `?param` = [getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getPresets*(self: ColorPicker): PackedColorArray =
   var methodbind {.global.}: MethodBindPtr
@@ -193,16 +181,14 @@ proc addRecentPreset*(self: ColorPicker; color: Color) =
   if unlikely(methodbind.isNil):
     let name: StringName = "add_recent_preset"
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPicker, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  color.encode(`?param`[0])
+  var `?param` = [getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc eraseRecentPreset*(self: ColorPicker; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "erase_recent_preset"
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPicker, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  color.encode(`?param`[0])
+  var `?param` = [getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getRecentPresets*(self: ColorPicker): PackedColorArray =
   var methodbind {.global.}: MethodBindPtr
@@ -217,8 +203,7 @@ proc `pickerShape=`*(self: ColorPicker; shape: ColorPicker_PickerShapeType) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_picker_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPicker, addr name, 3981373861)
-  var `?param`: array[1, pointer]
-  shape.encode(`?param`[0])
+  var `?param` = [getPtr shape]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc pickerShape*(self: ColorPicker): ColorPicker_PickerShapeType =
   var methodbind {.global.}: MethodBindPtr

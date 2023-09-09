@@ -9,8 +9,7 @@ proc `title=`*(self: Ref[VisualShaderNodeComment]; title: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_title"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeComment, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  title.encode(`?param`[0])
+  var `?param` = [getPtr title]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc title*(self: Ref[VisualShaderNodeComment]): String =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `description=`*(self: Ref[VisualShaderNodeComment]; description: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_description"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeComment, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  description.encode(`?param`[0])
+  var `?param` = [getPtr description]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc description*(self: Ref[VisualShaderNodeComment]): String =
   var methodbind {.global.}: MethodBindPtr

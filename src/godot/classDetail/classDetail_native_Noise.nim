@@ -9,8 +9,7 @@ proc getNoise1d*(self: Ref[Noise]; x: Float): Float =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_noise_1d"
     methodbind = interface_ClassDB_getMethodBind(addr className Noise, addr name, 3919130443)
-  var `?param`: array[1, pointer]
-  x.encode(`?param`[0])
+  var `?param` = [getPtr x]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
@@ -19,8 +18,7 @@ proc getNoise2d*(self: Ref[Noise]; x: Float; y: Float): Float =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_noise_2d"
     methodbind = interface_ClassDB_getMethodBind(addr className Noise, addr name, 2753205203)
-  var `?param`: array[2, pointer]
-  x.encode(`?param`[0]); y.encode(`?param`[1])
+  var `?param` = [getPtr x, getPtr y]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
@@ -29,8 +27,7 @@ proc getNoise2dv*(self: Ref[Noise]; v: Vector2): Float =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_noise_2dv"
     methodbind = interface_ClassDB_getMethodBind(addr className Noise, addr name, 2276447920)
-  var `?param`: array[1, pointer]
-  v.encode(`?param`[0])
+  var `?param` = [getPtr v]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
@@ -39,8 +36,7 @@ proc getNoise3d*(self: Ref[Noise]; x: Float; y: Float; z: Float): Float =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_noise_3d"
     methodbind = interface_ClassDB_getMethodBind(addr className Noise, addr name, 973811851)
-  var `?param`: array[3, pointer]
-  x.encode(`?param`[0]); y.encode(`?param`[1]); z.encode(`?param`[2])
+  var `?param` = [getPtr x, getPtr y, getPtr z]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
@@ -49,8 +45,7 @@ proc getNoise3dv*(self: Ref[Noise]; v: Vector3): Float =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_noise_3dv"
     methodbind = interface_ClassDB_getMethodBind(addr className Noise, addr name, 1109078154)
-  var `?param`: array[1, pointer]
-  v.encode(`?param`[0])
+  var `?param` = [getPtr v]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
@@ -59,8 +54,7 @@ proc getImage*(self: Ref[Noise]; width: int32; height: int32; invert: Bool = fal
   if unlikely(methodbind.isNil):
     let name: StringName = "get_image"
     methodbind = interface_ClassDB_getMethodBind(addr className Noise, addr name, 2569233413)
-  var `?param`: array[5, pointer]
-  width.encode(`?param`[0]); height.encode(`?param`[1]); invert.encode(`?param`[2]); in3dSpace.encode(`?param`[3]); normalize.encode(`?param`[4])
+  var `?param` = [getPtr width, getPtr height, getPtr invert, getPtr in3dSpace, getPtr normalize]
   var ret: encoded Ref[Image]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[Image])
@@ -69,8 +63,7 @@ proc getSeamlessImage*(self: Ref[Noise]; width: int32; height: int32; invert: Bo
   if unlikely(methodbind.isNil):
     let name: StringName = "get_seamless_image"
     methodbind = interface_ClassDB_getMethodBind(addr className Noise, addr name, 2210827790)
-  var `?param`: array[6, pointer]
-  width.encode(`?param`[0]); height.encode(`?param`[1]); invert.encode(`?param`[2]); in3dSpace.encode(`?param`[3]); skirt.encode(`?param`[4]); normalize.encode(`?param`[5])
+  var `?param` = [getPtr width, getPtr height, getPtr invert, getPtr in3dSpace, getPtr skirt, getPtr normalize]
   var ret: encoded Ref[Image]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[Image])
@@ -79,8 +72,7 @@ proc getImage3d*(self: Ref[Noise]; width: int32; height: int32; depth: int32; in
   if unlikely(methodbind.isNil):
     let name: StringName = "get_image_3d"
     methodbind = interface_ClassDB_getMethodBind(addr className Noise, addr name, 2358868431)
-  var `?param`: array[5, pointer]
-  width.encode(`?param`[0]); height.encode(`?param`[1]); depth.encode(`?param`[2]); invert.encode(`?param`[3]); normalize.encode(`?param`[4])
+  var `?param` = [getPtr width, getPtr height, getPtr depth, getPtr invert, getPtr normalize]
   var ret: encoded TypedArray[Image]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TypedArray[Image])
@@ -89,8 +81,7 @@ proc getSeamlessImage3d*(self: Ref[Noise]; width: int32; height: int32; depth: i
   if unlikely(methodbind.isNil):
     let name: StringName = "get_seamless_image_3d"
     methodbind = interface_ClassDB_getMethodBind(addr className Noise, addr name, 3328694319)
-  var `?param`: array[6, pointer]
-  width.encode(`?param`[0]); height.encode(`?param`[1]); depth.encode(`?param`[2]); invert.encode(`?param`[3]); skirt.encode(`?param`[4]); normalize.encode(`?param`[5])
+  var `?param` = [getPtr width, getPtr height, getPtr depth, getPtr invert, getPtr skirt, getPtr normalize]
   var ret: encoded TypedArray[Image]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TypedArray[Image])

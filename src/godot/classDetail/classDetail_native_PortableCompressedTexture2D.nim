@@ -9,8 +9,7 @@ proc createFromImage*(self: Ref[PortableCompressedTexture2D]; image: Ref[Image];
   if unlikely(methodbind.isNil):
     let name: StringName = "create_from_image"
     methodbind = interface_ClassDB_getMethodBind(addr className PortableCompressedTexture2D, addr name, 97251393)
-  var `?param`: array[4, pointer]
-  image.encode(`?param`[0]); compressionMode.encode(`?param`[1]); normalMap.encode(`?param`[2]); lossyQuality.encode(`?param`[3])
+  var `?param` = [getPtr image, getPtr compressionMode, getPtr normalMap, getPtr lossyQuality]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getFormat*(self: Ref[PortableCompressedTexture2D]): Image_Format =
   var methodbind {.global.}: MethodBindPtr
@@ -33,8 +32,7 @@ proc `sizeOverride=`*(self: Ref[PortableCompressedTexture2D]; size: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_size_override"
     methodbind = interface_ClassDB_getMethodBind(addr className PortableCompressedTexture2D, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  size.encode(`?param`[0])
+  var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc sizeOverride*(self: Ref[PortableCompressedTexture2D]): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -49,8 +47,7 @@ proc `keepCompressedBuffer=`*(self: Ref[PortableCompressedTexture2D]; keep: Bool
   if unlikely(methodbind.isNil):
     let name: StringName = "set_keep_compressed_buffer"
     methodbind = interface_ClassDB_getMethodBind(addr className PortableCompressedTexture2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  keep.encode(`?param`[0])
+  var `?param` = [getPtr keep]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isKeepingCompressedBuffer*(self: Ref[PortableCompressedTexture2D]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -65,8 +62,7 @@ proc setKeepAllCompressedBuffers*(keep: Bool) {.staticOf: PortableCompressedText
   if unlikely(methodbind.isNil):
     let name: StringName = "set_keep_all_compressed_buffers"
     methodbind = interface_ClassDB_getMethodBind(addr className PortableCompressedTexture2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  keep.encode(`?param`[0])
+  var `?param` = [getPtr keep]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], nil)
 proc isKeepingAllCompressedBuffers*: Bool {.staticOf: PortableCompressedTexture2D.} =
   var methodbind {.global.}: MethodBindPtr

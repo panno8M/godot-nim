@@ -9,8 +9,7 @@ proc `textureArray=`*(self: Ref[VisualShaderNodeTexture2DArray]; value: Ref[Text
   if unlikely(methodbind.isNil):
     let name: StringName = "set_texture_array"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeTexture2DArray, addr name, 2206200446)
-  var `?param`: array[1, pointer]
-  value.encode(`?param`[0])
+  var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc textureArray*(self: Ref[VisualShaderNodeTexture2DArray]): Ref[Texture2DArray] =
   var methodbind {.global.}: MethodBindPtr

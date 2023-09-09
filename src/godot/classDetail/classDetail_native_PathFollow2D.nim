@@ -9,8 +9,7 @@ proc `progress=`*(self: PathFollow2D; progress: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_progress"
     methodbind = interface_ClassDB_getMethodBind(addr className PathFollow2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  progress.encode(`?param`[0])
+  var `?param` = [getPtr progress]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc progress*(self: PathFollow2D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `hOffset=`*(self: PathFollow2D; hOffset: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_h_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className PathFollow2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  hOffset.encode(`?param`[0])
+  var `?param` = [getPtr hOffset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc hOffset*(self: PathFollow2D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `vOffset=`*(self: PathFollow2D; vOffset: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_v_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className PathFollow2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  vOffset.encode(`?param`[0])
+  var `?param` = [getPtr vOffset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc vOffset*(self: PathFollow2D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `progressRatio=`*(self: PathFollow2D; ratio: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_progress_ratio"
     methodbind = interface_ClassDB_getMethodBind(addr className PathFollow2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  ratio.encode(`?param`[0])
+  var `?param` = [getPtr ratio]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc progressRatio*(self: PathFollow2D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `rotates=`*(self: PathFollow2D; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_rotates"
     methodbind = interface_ClassDB_getMethodBind(addr className PathFollow2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isRotating*(self: PathFollow2D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc `cubicInterpolation=`*(self: PathFollow2D; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_cubic_interpolation"
     methodbind = interface_ClassDB_getMethodBind(addr className PathFollow2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc cubicInterpolation*(self: PathFollow2D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -105,8 +99,7 @@ proc `loop=`*(self: PathFollow2D; loop: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_loop"
     methodbind = interface_ClassDB_getMethodBind(addr className PathFollow2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  loop.encode(`?param`[0])
+  var `?param` = [getPtr loop]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc hasLoop*(self: PathFollow2D): Bool =
   var methodbind {.global.}: MethodBindPtr

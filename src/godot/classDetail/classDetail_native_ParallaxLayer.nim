@@ -9,8 +9,7 @@ proc `motionScale=`*(self: ParallaxLayer; scale: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_motion_scale"
     methodbind = interface_ClassDB_getMethodBind(addr className ParallaxLayer, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  scale.encode(`?param`[0])
+  var `?param` = [getPtr scale]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc motionScale*(self: ParallaxLayer): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `motionOffset=`*(self: ParallaxLayer; offset: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_motion_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className ParallaxLayer, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  offset.encode(`?param`[0])
+  var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc motionOffset*(self: ParallaxLayer): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `mirroring=`*(self: ParallaxLayer; mirror: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_mirroring"
     methodbind = interface_ClassDB_getMethodBind(addr className ParallaxLayer, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  mirror.encode(`?param`[0])
+  var `?param` = [getPtr mirror]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc mirroring*(self: ParallaxLayer): Vector2 =
   var methodbind {.global.}: MethodBindPtr

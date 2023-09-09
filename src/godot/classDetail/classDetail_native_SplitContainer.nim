@@ -9,8 +9,7 @@ proc `splitOffset=`*(self: SplitContainer; offset: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_split_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className SplitContainer, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  offset.encode(`?param`[0])
+  var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc splitOffset*(self: SplitContainer): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -31,8 +30,7 @@ proc `collapsed=`*(self: SplitContainer; collapsed: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_collapsed"
     methodbind = interface_ClassDB_getMethodBind(addr className SplitContainer, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  collapsed.encode(`?param`[0])
+  var `?param` = [getPtr collapsed]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isCollapsed*(self: SplitContainer): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -47,8 +45,7 @@ proc `draggerVisibility=`*(self: SplitContainer; mode: SplitContainer_DraggerVis
   if unlikely(methodbind.isNil):
     let name: StringName = "set_dragger_visibility"
     methodbind = interface_ClassDB_getMethodBind(addr className SplitContainer, addr name, 1168273952)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc draggerVisibility*(self: SplitContainer): SplitContainer_DraggerVisibility =
   var methodbind {.global.}: MethodBindPtr
@@ -63,8 +60,7 @@ proc `vertical=`*(self: SplitContainer; vertical: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_vertical"
     methodbind = interface_ClassDB_getMethodBind(addr className SplitContainer, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  vertical.encode(`?param`[0])
+  var `?param` = [getPtr vertical]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isVertical*(self: SplitContainer): Bool =
   var methodbind {.global.}: MethodBindPtr

@@ -9,8 +9,7 @@ proc `shape=`*(self: Ref[PhysicsShapeQueryParameters3D]; shape: Ref[Resource]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsShapeQueryParameters3D, addr name, 968641751)
-  var `?param`: array[1, pointer]
-  shape.encode(`?param`[0])
+  var `?param` = [getPtr shape]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc shape*(self: Ref[PhysicsShapeQueryParameters3D]): Ref[Resource] =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `shapeRid=`*(self: Ref[PhysicsShapeQueryParameters3D]; shape: RID) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_shape_rid"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsShapeQueryParameters3D, addr name, 2722037293)
-  var `?param`: array[1, pointer]
-  shape.encode(`?param`[0])
+  var `?param` = [getPtr shape]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc shapeRid*(self: Ref[PhysicsShapeQueryParameters3D]): RID =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `transform=`*(self: Ref[PhysicsShapeQueryParameters3D]; transform: Transfor
   if unlikely(methodbind.isNil):
     let name: StringName = "set_transform"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsShapeQueryParameters3D, addr name, 2952846383)
-  var `?param`: array[1, pointer]
-  transform.encode(`?param`[0])
+  var `?param` = [getPtr transform]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc transform*(self: Ref[PhysicsShapeQueryParameters3D]): Transform3D =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `motion=`*(self: Ref[PhysicsShapeQueryParameters3D]; motion: Vector3) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_motion"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsShapeQueryParameters3D, addr name, 3460891852)
-  var `?param`: array[1, pointer]
-  motion.encode(`?param`[0])
+  var `?param` = [getPtr motion]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc motion*(self: Ref[PhysicsShapeQueryParameters3D]): Vector3 =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `margin=`*(self: Ref[PhysicsShapeQueryParameters3D]; margin: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_margin"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsShapeQueryParameters3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  margin.encode(`?param`[0])
+  var `?param` = [getPtr margin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc margin*(self: Ref[PhysicsShapeQueryParameters3D]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc `collisionMask=`*(self: Ref[PhysicsShapeQueryParameters3D]; collisionMask: 
   if unlikely(methodbind.isNil):
     let name: StringName = "set_collision_mask"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsShapeQueryParameters3D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  collisionMask.encode(`?param`[0])
+  var `?param` = [getPtr collisionMask]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc collisionMask*(self: Ref[PhysicsShapeQueryParameters3D]): uint32 =
   var methodbind {.global.}: MethodBindPtr
@@ -105,8 +99,7 @@ proc `exclude=`*(self: Ref[PhysicsShapeQueryParameters3D]; exclude: TypedArray[R
   if unlikely(methodbind.isNil):
     let name: StringName = "set_exclude"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsShapeQueryParameters3D, addr name, 381264803)
-  var `?param`: array[1, pointer]
-  exclude.encode(`?param`[0])
+  var `?param` = [getPtr exclude]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc exclude*(self: Ref[PhysicsShapeQueryParameters3D]): TypedArray[RID] =
   var methodbind {.global.}: MethodBindPtr
@@ -121,8 +114,7 @@ proc `collideWithBodies=`*(self: Ref[PhysicsShapeQueryParameters3D]; enable: Boo
   if unlikely(methodbind.isNil):
     let name: StringName = "set_collide_with_bodies"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsShapeQueryParameters3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isCollideWithBodiesEnabled*(self: Ref[PhysicsShapeQueryParameters3D]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -137,8 +129,7 @@ proc `collideWithAreas=`*(self: Ref[PhysicsShapeQueryParameters3D]; enable: Bool
   if unlikely(methodbind.isNil):
     let name: StringName = "set_collide_with_areas"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsShapeQueryParameters3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isCollideWithAreasEnabled*(self: Ref[PhysicsShapeQueryParameters3D]): Bool =
   var methodbind {.global.}: MethodBindPtr

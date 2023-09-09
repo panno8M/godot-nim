@@ -9,8 +9,7 @@ proc `nodeA=`*(self: Joint3D; node: NodePath) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_node_a"
     methodbind = interface_ClassDB_getMethodBind(addr className Joint3D, addr name, 1348162250)
-  var `?param`: array[1, pointer]
-  node.encode(`?param`[0])
+  var `?param` = [getPtr node]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc nodeA*(self: Joint3D): NodePath =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `nodeB=`*(self: Joint3D; node: NodePath) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_node_b"
     methodbind = interface_ClassDB_getMethodBind(addr className Joint3D, addr name, 1348162250)
-  var `?param`: array[1, pointer]
-  node.encode(`?param`[0])
+  var `?param` = [getPtr node]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc nodeB*(self: Joint3D): NodePath =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `solverPriority=`*(self: Joint3D; priority: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_solver_priority"
     methodbind = interface_ClassDB_getMethodBind(addr className Joint3D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  priority.encode(`?param`[0])
+  var `?param` = [getPtr priority]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc solverPriority*(self: Joint3D): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `excludeNodesFromCollision=`*(self: Joint3D; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_exclude_nodes_from_collision"
     methodbind = interface_ClassDB_getMethodBind(addr className Joint3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc excludeNodesFromCollision*(self: Joint3D): Bool =
   var methodbind {.global.}: MethodBindPtr

@@ -9,8 +9,7 @@ proc pushFrame*(self: Ref[AudioStreamGeneratorPlayback]; frame: Vector2): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "push_frame"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamGeneratorPlayback, addr name, 3975407249)
-  var `?param`: array[1, pointer]
-  frame.encode(`?param`[0])
+  var `?param` = [getPtr frame]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -19,8 +18,7 @@ proc canPushBuffer*(self: Ref[AudioStreamGeneratorPlayback]; amount: int32): Boo
   if unlikely(methodbind.isNil):
     let name: StringName = "can_push_buffer"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamGeneratorPlayback, addr name, 1116898809)
-  var `?param`: array[1, pointer]
-  amount.encode(`?param`[0])
+  var `?param` = [getPtr amount]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -29,8 +27,7 @@ proc pushBuffer*(self: Ref[AudioStreamGeneratorPlayback]; frames: PackedVector2A
   if unlikely(methodbind.isNil):
     let name: StringName = "push_buffer"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamGeneratorPlayback, addr name, 1361156557)
-  var `?param`: array[1, pointer]
-  frames.encode(`?param`[0])
+  var `?param` = [getPtr frames]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)

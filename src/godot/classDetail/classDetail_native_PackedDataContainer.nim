@@ -9,8 +9,7 @@ proc pack*(self: Ref[PackedDataContainer]; value: ptr Variant): Error =
   if unlikely(methodbind.isNil):
     let name: StringName = "pack"
     methodbind = interface_ClassDB_getMethodBind(addr className PackedDataContainer, addr name, 966674026)
-  var `?param`: array[1, pointer]
-  value.encode(`?param`[0])
+  var `?param` = [getPtr value]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)

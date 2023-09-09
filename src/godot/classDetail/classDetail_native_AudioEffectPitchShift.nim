@@ -9,8 +9,7 @@ proc `pitchScale=`*(self: Ref[AudioEffectPitchShift]; rate: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_pitch_scale"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectPitchShift, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  rate.encode(`?param`[0])
+  var `?param` = [getPtr rate]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc pitchScale*(self: Ref[AudioEffectPitchShift]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `oversampling=`*(self: Ref[AudioEffectPitchShift]; amount: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_oversampling"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectPitchShift, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  amount.encode(`?param`[0])
+  var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc oversampling*(self: Ref[AudioEffectPitchShift]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `fftSize=`*(self: Ref[AudioEffectPitchShift]; size: AudioEffectPitchShift_F
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fft_size"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectPitchShift, addr name, 2323518741)
-  var `?param`: array[1, pointer]
-  size.encode(`?param`[0])
+  var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fftSize*(self: Ref[AudioEffectPitchShift]): AudioEffectPitchShift_FFTSize =
   var methodbind {.global.}: MethodBindPtr

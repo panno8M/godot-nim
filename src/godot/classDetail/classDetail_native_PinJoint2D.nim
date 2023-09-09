@@ -9,8 +9,7 @@ proc `softness=`*(self: PinJoint2D; softness: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_softness"
     methodbind = interface_ClassDB_getMethodBind(addr className PinJoint2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  softness.encode(`?param`[0])
+  var `?param` = [getPtr softness]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc softness*(self: PinJoint2D): Float =
   var methodbind {.global.}: MethodBindPtr

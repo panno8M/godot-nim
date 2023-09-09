@@ -9,8 +9,7 @@ proc `centered=`*(self: SpriteBase3D; centered: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_centered"
     methodbind = interface_ClassDB_getMethodBind(addr className SpriteBase3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  centered.encode(`?param`[0])
+  var `?param` = [getPtr centered]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isCentered*(self: SpriteBase3D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `offset=`*(self: SpriteBase3D; offset: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className SpriteBase3D, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  offset.encode(`?param`[0])
+  var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc offset*(self: SpriteBase3D): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `flipH=`*(self: SpriteBase3D; flipH: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_flip_h"
     methodbind = interface_ClassDB_getMethodBind(addr className SpriteBase3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  flipH.encode(`?param`[0])
+  var `?param` = [getPtr flipH]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isFlippedH*(self: SpriteBase3D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `flipV=`*(self: SpriteBase3D; flipV: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_flip_v"
     methodbind = interface_ClassDB_getMethodBind(addr className SpriteBase3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  flipV.encode(`?param`[0])
+  var `?param` = [getPtr flipV]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isFlippedV*(self: SpriteBase3D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `modulate=`*(self: SpriteBase3D; modulate: Color) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_modulate"
     methodbind = interface_ClassDB_getMethodBind(addr className SpriteBase3D, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  modulate.encode(`?param`[0])
+  var `?param` = [getPtr modulate]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc modulate*(self: SpriteBase3D): Color =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc `renderPriority=`*(self: SpriteBase3D; priority: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_render_priority"
     methodbind = interface_ClassDB_getMethodBind(addr className SpriteBase3D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  priority.encode(`?param`[0])
+  var `?param` = [getPtr priority]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc renderPriority*(self: SpriteBase3D): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -105,8 +99,7 @@ proc `pixelSize=`*(self: SpriteBase3D; pixelSize: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_pixel_size"
     methodbind = interface_ClassDB_getMethodBind(addr className SpriteBase3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  pixelSize.encode(`?param`[0])
+  var `?param` = [getPtr pixelSize]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc pixelSize*(self: SpriteBase3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -121,8 +114,7 @@ proc `axis=`*(self: SpriteBase3D; axis: Vector3_Axis) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_axis"
     methodbind = interface_ClassDB_getMethodBind(addr className SpriteBase3D, addr name, 1144690656)
-  var `?param`: array[1, pointer]
-  axis.encode(`?param`[0])
+  var `?param` = [getPtr axis]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc axis*(self: SpriteBase3D): Vector3_Axis =
   var methodbind {.global.}: MethodBindPtr
@@ -137,16 +129,14 @@ proc `drawFlag=`*(self: SpriteBase3D; flag: SpriteBase3D_DrawFlags; enabled: Boo
   if unlikely(methodbind.isNil):
     let name: StringName = "set_draw_flag"
     methodbind = interface_ClassDB_getMethodBind(addr className SpriteBase3D, addr name, 1135633219)
-  var `?param`: array[2, pointer]
-  flag.encode(`?param`[0]); enabled.encode(`?param`[1])
+  var `?param` = [getPtr flag, getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc drawFlag*(self: SpriteBase3D; flag: SpriteBase3D_DrawFlags): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_draw_flag"
     methodbind = interface_ClassDB_getMethodBind(addr className SpriteBase3D, addr name, 1733036628)
-  var `?param`: array[1, pointer]
-  flag.encode(`?param`[0])
+  var `?param` = [getPtr flag]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -155,8 +145,7 @@ proc `alphaCutMode=`*(self: SpriteBase3D; mode: SpriteBase3D_AlphaCutMode) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_alpha_cut_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className SpriteBase3D, addr name, 227561226)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc alphaCutMode*(self: SpriteBase3D): SpriteBase3D_AlphaCutMode =
   var methodbind {.global.}: MethodBindPtr
@@ -171,8 +160,7 @@ proc `alphaScissorThreshold=`*(self: SpriteBase3D; threshold: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_alpha_scissor_threshold"
     methodbind = interface_ClassDB_getMethodBind(addr className SpriteBase3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  threshold.encode(`?param`[0])
+  var `?param` = [getPtr threshold]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc alphaScissorThreshold*(self: SpriteBase3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -187,8 +175,7 @@ proc `alphaHashScale=`*(self: SpriteBase3D; threshold: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_alpha_hash_scale"
     methodbind = interface_ClassDB_getMethodBind(addr className SpriteBase3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  threshold.encode(`?param`[0])
+  var `?param` = [getPtr threshold]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc alphaHashScale*(self: SpriteBase3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -203,8 +190,7 @@ proc `alphaAntialiasing=`*(self: SpriteBase3D; alphaAa: BaseMaterial3D_AlphaAnti
   if unlikely(methodbind.isNil):
     let name: StringName = "set_alpha_antialiasing"
     methodbind = interface_ClassDB_getMethodBind(addr className SpriteBase3D, addr name, 3212649852)
-  var `?param`: array[1, pointer]
-  alphaAa.encode(`?param`[0])
+  var `?param` = [getPtr alphaAa]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc alphaAntialiasing*(self: SpriteBase3D): BaseMaterial3D_AlphaAntiAliasing =
   var methodbind {.global.}: MethodBindPtr
@@ -219,8 +205,7 @@ proc `alphaAntialiasingEdge=`*(self: SpriteBase3D; edge: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_alpha_antialiasing_edge"
     methodbind = interface_ClassDB_getMethodBind(addr className SpriteBase3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  edge.encode(`?param`[0])
+  var `?param` = [getPtr edge]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc alphaAntialiasingEdge*(self: SpriteBase3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -235,8 +220,7 @@ proc `billboardMode=`*(self: SpriteBase3D; mode: BaseMaterial3D_BillboardMode) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_billboard_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className SpriteBase3D, addr name, 4202036497)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc billboardMode*(self: SpriteBase3D): BaseMaterial3D_BillboardMode =
   var methodbind {.global.}: MethodBindPtr
@@ -251,8 +235,7 @@ proc `textureFilter=`*(self: SpriteBase3D; mode: BaseMaterial3D_TextureFilter) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_texture_filter"
     methodbind = interface_ClassDB_getMethodBind(addr className SpriteBase3D, addr name, 22904437)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc textureFilter*(self: SpriteBase3D): BaseMaterial3D_TextureFilter =
   var methodbind {.global.}: MethodBindPtr

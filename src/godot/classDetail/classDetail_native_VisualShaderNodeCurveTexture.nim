@@ -9,8 +9,7 @@ proc `texture=`*(self: Ref[VisualShaderNodeCurveTexture]; texture: Ref[CurveText
   if unlikely(methodbind.isNil):
     let name: StringName = "set_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeCurveTexture, addr name, 181872837)
-  var `?param`: array[1, pointer]
-  texture.encode(`?param`[0])
+  var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc texture*(self: Ref[VisualShaderNodeCurveTexture]): Ref[CurveTexture] =
   var methodbind {.global.}: MethodBindPtr

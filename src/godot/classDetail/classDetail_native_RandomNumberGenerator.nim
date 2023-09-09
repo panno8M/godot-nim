@@ -9,8 +9,7 @@ proc `seed=`*(self: Ref[RandomNumberGenerator]; seed: uint64) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_seed"
     methodbind = interface_ClassDB_getMethodBind(addr className RandomNumberGenerator, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  seed.encode(`?param`[0])
+  var `?param` = [getPtr seed]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc seed*(self: Ref[RandomNumberGenerator]): uint64 =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `state=`*(self: Ref[RandomNumberGenerator]; state: uint64) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_state"
     methodbind = interface_ClassDB_getMethodBind(addr className RandomNumberGenerator, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  state.encode(`?param`[0])
+  var `?param` = [getPtr state]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc state*(self: Ref[RandomNumberGenerator]): uint64 =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +55,7 @@ proc randfn*(self: Ref[RandomNumberGenerator]; mean: Float = 0.0; deviation: Flo
   if unlikely(methodbind.isNil):
     let name: StringName = "randfn"
     methodbind = interface_ClassDB_getMethodBind(addr className RandomNumberGenerator, addr name, 837325100)
-  var `?param`: array[2, pointer]
-  mean.encode(`?param`[0]); deviation.encode(`?param`[1])
+  var `?param` = [getPtr mean, getPtr deviation]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
@@ -67,8 +64,7 @@ proc randfRange*(self: Ref[RandomNumberGenerator]; `from`: Float; to: Float): Fl
   if unlikely(methodbind.isNil):
     let name: StringName = "randf_range"
     methodbind = interface_ClassDB_getMethodBind(addr className RandomNumberGenerator, addr name, 4269894367)
-  var `?param`: array[2, pointer]
-  `from`.encode(`?param`[0]); to.encode(`?param`[1])
+  var `?param` = [getPtr `from`, getPtr to]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
@@ -77,8 +73,7 @@ proc randiRange*(self: Ref[RandomNumberGenerator]; `from`: int32; to: int32): in
   if unlikely(methodbind.isNil):
     let name: StringName = "randi_range"
     methodbind = interface_ClassDB_getMethodBind(addr className RandomNumberGenerator, addr name, 50157827)
-  var `?param`: array[2, pointer]
-  `from`.encode(`?param`[0]); to.encode(`?param`[1])
+  var `?param` = [getPtr `from`, getPtr to]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)

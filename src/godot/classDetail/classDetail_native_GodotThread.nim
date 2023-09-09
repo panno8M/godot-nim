@@ -9,8 +9,7 @@ proc start*(self: Ref[GodotThread]; callable: Callable; priority: GodotThread_Pr
   if unlikely(methodbind.isNil):
     let name: StringName = "start"
     methodbind = interface_ClassDB_getMethodBind(addr className GodotThread, addr name, 2779832528)
-  var `?param`: array[2, pointer]
-  callable.encode(`?param`[0]); priority.encode(`?param`[1])
+  var `?param` = [getPtr callable, getPtr priority]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -51,6 +50,5 @@ proc setThreadSafetyChecksEnabled*(enabled: Bool) {.staticOf: GodotThread.} =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_thread_safety_checks_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className GodotThread, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], nil)

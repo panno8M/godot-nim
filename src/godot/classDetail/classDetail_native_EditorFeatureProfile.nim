@@ -9,16 +9,14 @@ proc setDisableClass*(self: Ref[EditorFeatureProfile]; className: StringName; di
   if unlikely(methodbind.isNil):
     let name: StringName = "set_disable_class"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFeatureProfile, addr name, 2524380260)
-  var `?param`: array[2, pointer]
-  className.encode(`?param`[0]); disable.encode(`?param`[1])
+  var `?param` = [getPtr className, getPtr disable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isClassDisabled*(self: Ref[EditorFeatureProfile]; className: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_class_disabled"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFeatureProfile, addr name, 2619796661)
-  var `?param`: array[1, pointer]
-  className.encode(`?param`[0])
+  var `?param` = [getPtr className]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -27,16 +25,14 @@ proc setDisableClassEditor*(self: Ref[EditorFeatureProfile]; className: StringNa
   if unlikely(methodbind.isNil):
     let name: StringName = "set_disable_class_editor"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFeatureProfile, addr name, 2524380260)
-  var `?param`: array[2, pointer]
-  className.encode(`?param`[0]); disable.encode(`?param`[1])
+  var `?param` = [getPtr className, getPtr disable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isClassEditorDisabled*(self: Ref[EditorFeatureProfile]; className: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_class_editor_disabled"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFeatureProfile, addr name, 2619796661)
-  var `?param`: array[1, pointer]
-  className.encode(`?param`[0])
+  var `?param` = [getPtr className]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -45,16 +41,14 @@ proc setDisableClassProperty*(self: Ref[EditorFeatureProfile]; className: String
   if unlikely(methodbind.isNil):
     let name: StringName = "set_disable_class_property"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFeatureProfile, addr name, 865197084)
-  var `?param`: array[3, pointer]
-  className.encode(`?param`[0]); property.encode(`?param`[1]); disable.encode(`?param`[2])
+  var `?param` = [getPtr className, getPtr property, getPtr disable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isClassPropertyDisabled*(self: Ref[EditorFeatureProfile]; className: StringName; property: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_class_property_disabled"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFeatureProfile, addr name, 471820014)
-  var `?param`: array[2, pointer]
-  className.encode(`?param`[0]); property.encode(`?param`[1])
+  var `?param` = [getPtr className, getPtr property]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -63,16 +57,14 @@ proc setDisableFeature*(self: Ref[EditorFeatureProfile]; feature: EditorFeatureP
   if unlikely(methodbind.isNil):
     let name: StringName = "set_disable_feature"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFeatureProfile, addr name, 1884871044)
-  var `?param`: array[2, pointer]
-  feature.encode(`?param`[0]); disable.encode(`?param`[1])
+  var `?param` = [getPtr feature, getPtr disable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isFeatureDisabled*(self: Ref[EditorFeatureProfile]; feature: EditorFeatureProfile_Feature): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_feature_disabled"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFeatureProfile, addr name, 2974403161)
-  var `?param`: array[1, pointer]
-  feature.encode(`?param`[0])
+  var `?param` = [getPtr feature]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -81,8 +73,7 @@ proc getFeatureName*(self: Ref[EditorFeatureProfile]; feature: EditorFeatureProf
   if unlikely(methodbind.isNil):
     let name: StringName = "get_feature_name"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFeatureProfile, addr name, 3401335809)
-  var `?param`: array[1, pointer]
-  feature.encode(`?param`[0])
+  var `?param` = [getPtr feature]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
@@ -91,8 +82,7 @@ proc saveToFile*(self: Ref[EditorFeatureProfile]; path: String): Error =
   if unlikely(methodbind.isNil):
     let name: StringName = "save_to_file"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFeatureProfile, addr name, 166001499)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -101,8 +91,7 @@ proc loadFromFile*(self: Ref[EditorFeatureProfile]; path: String): Error =
   if unlikely(methodbind.isNil):
     let name: StringName = "load_from_file"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFeatureProfile, addr name, 166001499)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)

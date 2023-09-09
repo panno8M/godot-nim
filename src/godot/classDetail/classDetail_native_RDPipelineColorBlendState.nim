@@ -9,8 +9,7 @@ proc `enableLogicOp=`*(self: Ref[RDPipelineColorBlendState]; pMember: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_enable_logic_op"
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineColorBlendState, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  pMember.encode(`?param`[0])
+  var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc enableLogicOp*(self: Ref[RDPipelineColorBlendState]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `logicOp=`*(self: Ref[RDPipelineColorBlendState]; pMember: RenderingDevice_
   if unlikely(methodbind.isNil):
     let name: StringName = "set_logic_op"
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineColorBlendState, addr name, 3610841058)
-  var `?param`: array[1, pointer]
-  pMember.encode(`?param`[0])
+  var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc logicOp*(self: Ref[RDPipelineColorBlendState]): RenderingDevice_LogicOperation =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `blendConstant=`*(self: Ref[RDPipelineColorBlendState]; pMember: Color) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_blend_constant"
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineColorBlendState, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  pMember.encode(`?param`[0])
+  var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc blendConstant*(self: Ref[RDPipelineColorBlendState]): Color =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `attachments=`*(self: Ref[RDPipelineColorBlendState]; attachments: TypedArr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_attachments"
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineColorBlendState, addr name, 381264803)
-  var `?param`: array[1, pointer]
-  attachments.encode(`?param`[0])
+  var `?param` = [getPtr attachments]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc attachments*(self: Ref[RDPipelineColorBlendState]): TypedArray[RDPipelineColorBlendStateAttachment] =
   var methodbind {.global.}: MethodBindPtr

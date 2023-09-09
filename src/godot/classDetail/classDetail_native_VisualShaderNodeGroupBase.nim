@@ -9,8 +9,7 @@ proc setInputs*(self: Ref[VisualShaderNodeGroupBase]; inputs: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_inputs"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeGroupBase, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  inputs.encode(`?param`[0])
+  var `?param` = [getPtr inputs]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getInputs*(self: Ref[VisualShaderNodeGroupBase]): String =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc setOutputs*(self: Ref[VisualShaderNodeGroupBase]; outputs: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_outputs"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeGroupBase, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  outputs.encode(`?param`[0])
+  var `?param` = [getPtr outputs]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getOutputs*(self: Ref[VisualShaderNodeGroupBase]): String =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc isValidPortName*(self: Ref[VisualShaderNodeGroupBase]; name: String): Bool 
   if unlikely(methodbind.isNil):
     let name: StringName = "is_valid_port_name"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeGroupBase, addr name, 3927539163)
-  var `?param`: array[1, pointer]
-  name.encode(`?param`[0])
+  var `?param` = [getPtr name]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -51,16 +48,14 @@ proc addInputPort*(self: Ref[VisualShaderNodeGroupBase]; id: int32; `type`: int3
   if unlikely(methodbind.isNil):
     let name: StringName = "add_input_port"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeGroupBase, addr name, 2285447957)
-  var `?param`: array[3, pointer]
-  id.encode(`?param`[0]); `type`.encode(`?param`[1]); name.encode(`?param`[2])
+  var `?param` = [getPtr id, getPtr `type`, getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc removeInputPort*(self: Ref[VisualShaderNodeGroupBase]; id: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_input_port"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeGroupBase, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  id.encode(`?param`[0])
+  var `?param` = [getPtr id]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getInputPortCount*(self: Ref[VisualShaderNodeGroupBase]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -75,8 +70,7 @@ proc hasInputPort*(self: Ref[VisualShaderNodeGroupBase]; id: int32): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "has_input_port"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeGroupBase, addr name, 1116898809)
-  var `?param`: array[1, pointer]
-  id.encode(`?param`[0])
+  var `?param` = [getPtr id]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -91,16 +85,14 @@ proc addOutputPort*(self: Ref[VisualShaderNodeGroupBase]; id: int32; `type`: int
   if unlikely(methodbind.isNil):
     let name: StringName = "add_output_port"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeGroupBase, addr name, 2285447957)
-  var `?param`: array[3, pointer]
-  id.encode(`?param`[0]); `type`.encode(`?param`[1]); name.encode(`?param`[2])
+  var `?param` = [getPtr id, getPtr `type`, getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc removeOutputPort*(self: Ref[VisualShaderNodeGroupBase]; id: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_output_port"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeGroupBase, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  id.encode(`?param`[0])
+  var `?param` = [getPtr id]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getOutputPortCount*(self: Ref[VisualShaderNodeGroupBase]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -115,8 +107,7 @@ proc hasOutputPort*(self: Ref[VisualShaderNodeGroupBase]; id: int32): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "has_output_port"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeGroupBase, addr name, 1116898809)
-  var `?param`: array[1, pointer]
-  id.encode(`?param`[0])
+  var `?param` = [getPtr id]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -131,32 +122,28 @@ proc setInputPortName*(self: Ref[VisualShaderNodeGroupBase]; id: int32; name: St
   if unlikely(methodbind.isNil):
     let name: StringName = "set_input_port_name"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeGroupBase, addr name, 501894301)
-  var `?param`: array[2, pointer]
-  id.encode(`?param`[0]); name.encode(`?param`[1])
+  var `?param` = [getPtr id, getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setInputPortType*(self: Ref[VisualShaderNodeGroupBase]; id: int32; `type`: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_input_port_type"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeGroupBase, addr name, 3937882851)
-  var `?param`: array[2, pointer]
-  id.encode(`?param`[0]); `type`.encode(`?param`[1])
+  var `?param` = [getPtr id, getPtr `type`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setOutputPortName*(self: Ref[VisualShaderNodeGroupBase]; id: int32; name: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_output_port_name"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeGroupBase, addr name, 501894301)
-  var `?param`: array[2, pointer]
-  id.encode(`?param`[0]); name.encode(`?param`[1])
+  var `?param` = [getPtr id, getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setOutputPortType*(self: Ref[VisualShaderNodeGroupBase]; id: int32; `type`: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_output_port_type"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeGroupBase, addr name, 3937882851)
-  var `?param`: array[2, pointer]
-  id.encode(`?param`[0]); `type`.encode(`?param`[1])
+  var `?param` = [getPtr id, getPtr `type`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getFreeInputPortId*(self: Ref[VisualShaderNodeGroupBase]): int32 =
   var methodbind {.global.}: MethodBindPtr

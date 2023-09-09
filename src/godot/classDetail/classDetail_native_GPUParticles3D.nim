@@ -9,120 +9,105 @@ proc `emitting=`*(self: GPUParticles3D; emitting: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_emitting"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  emitting.encode(`?param`[0])
+  var `?param` = [getPtr emitting]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `amount=`*(self: GPUParticles3D; amount: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_amount"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  amount.encode(`?param`[0])
+  var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `lifetime=`*(self: GPUParticles3D; secs: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_lifetime"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  secs.encode(`?param`[0])
+  var `?param` = [getPtr secs]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `oneShot=`*(self: GPUParticles3D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_one_shot"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `preProcessTime=`*(self: GPUParticles3D; secs: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_pre_process_time"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  secs.encode(`?param`[0])
+  var `?param` = [getPtr secs]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `explosivenessRatio=`*(self: GPUParticles3D; ratio: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_explosiveness_ratio"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  ratio.encode(`?param`[0])
+  var `?param` = [getPtr ratio]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `randomnessRatio=`*(self: GPUParticles3D; ratio: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_randomness_ratio"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  ratio.encode(`?param`[0])
+  var `?param` = [getPtr ratio]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `visibilityAabb=`*(self: GPUParticles3D; aabb: AABB) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_visibility_aabb"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 259215842)
-  var `?param`: array[1, pointer]
-  aabb.encode(`?param`[0])
+  var `?param` = [getPtr aabb]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `useLocalCoordinates=`*(self: GPUParticles3D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_use_local_coordinates"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `fixedFps=`*(self: GPUParticles3D; fps: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fixed_fps"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  fps.encode(`?param`[0])
+  var `?param` = [getPtr fps]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `fractionalDelta=`*(self: GPUParticles3D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fractional_delta"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `interpolate=`*(self: GPUParticles3D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_interpolate"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `processMaterial=`*(self: GPUParticles3D; material: Ref[Material]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_process_material"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 2757459619)
-  var `?param`: array[1, pointer]
-  material.encode(`?param`[0])
+  var `?param` = [getPtr material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `speedScale=`*(self: GPUParticles3D; scale: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_speed_scale"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  scale.encode(`?param`[0])
+  var `?param` = [getPtr scale]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `collisionBaseSize=`*(self: GPUParticles3D; size: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_collision_base_size"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  size.encode(`?param`[0])
+  var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isEmitting*(self: GPUParticles3D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -249,8 +234,7 @@ proc `drawOrder=`*(self: GPUParticles3D; order: GPUParticles3D_DrawOrder) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_draw_order"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 1208074815)
-  var `?param`: array[1, pointer]
-  order.encode(`?param`[0])
+  var `?param` = [getPtr order]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc drawOrder*(self: GPUParticles3D): GPUParticles3D_DrawOrder =
   var methodbind {.global.}: MethodBindPtr
@@ -265,16 +249,14 @@ proc `drawPasses=`*(self: GPUParticles3D; passes: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_draw_passes"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  passes.encode(`?param`[0])
+  var `?param` = [getPtr passes]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `drawPassMesh=`*(self: GPUParticles3D; pass: int32; mesh: Ref[Mesh]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_draw_pass_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 969122797)
-  var `?param`: array[2, pointer]
-  pass.encode(`?param`[0]); mesh.encode(`?param`[1])
+  var `?param` = [getPtr pass, getPtr mesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc drawPasses*(self: GPUParticles3D): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -289,8 +271,7 @@ proc drawPassMesh*(self: GPUParticles3D; pass: int32): Ref[Mesh] =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_draw_pass_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 1576363275)
-  var `?param`: array[1, pointer]
-  pass.encode(`?param`[0])
+  var `?param` = [getPtr pass]
   var ret: encoded Ref[Mesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[Mesh])
@@ -299,8 +280,7 @@ proc `skin=`*(self: GPUParticles3D; skin: Ref[Skin]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_skin"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 3971435618)
-  var `?param`: array[1, pointer]
-  skin.encode(`?param`[0])
+  var `?param` = [getPtr skin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc skin*(self: GPUParticles3D): Ref[Skin] =
   var methodbind {.global.}: MethodBindPtr
@@ -329,8 +309,7 @@ proc `subEmitter=`*(self: GPUParticles3D; path: NodePath) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sub_emitter"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 1348162250)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc subEmitter*(self: GPUParticles3D): NodePath =
   var methodbind {.global.}: MethodBindPtr
@@ -345,24 +324,21 @@ proc emitParticle*(self: GPUParticles3D; xform: Transform3D; velocity: Vector3; 
   if unlikely(methodbind.isNil):
     let name: StringName = "emit_particle"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 992173727)
-  var `?param`: array[5, pointer]
-  xform.encode(`?param`[0]); velocity.encode(`?param`[1]); color.encode(`?param`[2]); custom.encode(`?param`[3]); flags.encode(`?param`[4])
+  var `?param` = [getPtr xform, getPtr velocity, getPtr color, getPtr custom, getPtr flags]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `trailEnabled=`*(self: GPUParticles3D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_trail_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `trailLifetime=`*(self: GPUParticles3D; secs: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_trail_lifetime"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  secs.encode(`?param`[0])
+  var `?param` = [getPtr secs]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isTrailEnabled*(self: GPUParticles3D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -385,8 +361,7 @@ proc `transformAlign=`*(self: GPUParticles3D; align: GPUParticles3D_TransformAli
   if unlikely(methodbind.isNil):
     let name: StringName = "set_transform_align"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 3892425954)
-  var `?param`: array[1, pointer]
-  align.encode(`?param`[0])
+  var `?param` = [getPtr align]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc transformAlign*(self: GPUParticles3D): GPUParticles3D_TransformAlign =
   var methodbind {.global.}: MethodBindPtr

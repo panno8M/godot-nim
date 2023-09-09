@@ -17,8 +17,7 @@ proc `srcImage=`*(self: Ref[GLTFTexture]; srcImage: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_src_image"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFTexture, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  srcImage.encode(`?param`[0])
+  var `?param` = [getPtr srcImage]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc sampler*(self: Ref[GLTFTexture]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -33,6 +32,5 @@ proc `sampler=`*(self: Ref[GLTFTexture]; sampler: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sampler"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFTexture, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  sampler.encode(`?param`[0])
+  var `?param` = [getPtr sampler]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

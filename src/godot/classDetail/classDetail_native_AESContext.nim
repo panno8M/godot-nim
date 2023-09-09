@@ -9,8 +9,7 @@ proc start*(self: Ref[AESContext]; mode: AESContext_Mode; key: PackedByteArray; 
   if unlikely(methodbind.isNil):
     let name: StringName = "start"
     methodbind = interface_ClassDB_getMethodBind(addr className AESContext, addr name, 3167574919)
-  var `?param`: array[3, pointer]
-  mode.encode(`?param`[0]); key.encode(`?param`[1]); iv.encode(`?param`[2])
+  var `?param` = [getPtr mode, getPtr key, getPtr iv]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -19,8 +18,7 @@ proc update*(self: Ref[AESContext]; src: PackedByteArray): PackedByteArray =
   if unlikely(methodbind.isNil):
     let name: StringName = "update"
     methodbind = interface_ClassDB_getMethodBind(addr className AESContext, addr name, 527836100)
-  var `?param`: array[1, pointer]
-  src.encode(`?param`[0])
+  var `?param` = [getPtr src]
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedByteArray)

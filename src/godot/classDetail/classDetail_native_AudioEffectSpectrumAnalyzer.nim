@@ -9,8 +9,7 @@ proc `bufferLength=`*(self: Ref[AudioEffectSpectrumAnalyzer]; seconds: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_buffer_length"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectSpectrumAnalyzer, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  seconds.encode(`?param`[0])
+  var `?param` = [getPtr seconds]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc bufferLength*(self: Ref[AudioEffectSpectrumAnalyzer]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `tapBackPos=`*(self: Ref[AudioEffectSpectrumAnalyzer]; seconds: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tap_back_pos"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectSpectrumAnalyzer, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  seconds.encode(`?param`[0])
+  var `?param` = [getPtr seconds]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc tapBackPos*(self: Ref[AudioEffectSpectrumAnalyzer]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `fftSize=`*(self: Ref[AudioEffectSpectrumAnalyzer]; size: AudioEffectSpectr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fft_size"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectSpectrumAnalyzer, addr name, 1202879215)
-  var `?param`: array[1, pointer]
-  size.encode(`?param`[0])
+  var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fftSize*(self: Ref[AudioEffectSpectrumAnalyzer]): AudioEffectSpectrumAnalyzer_FFTSize =
   var methodbind {.global.}: MethodBindPtr

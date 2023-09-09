@@ -9,8 +9,7 @@ proc open*(self: Ref[ZIPReader]; path: String): Error =
   if unlikely(methodbind.isNil):
     let name: StringName = "open"
     methodbind = interface_ClassDB_getMethodBind(addr className ZIPReader, addr name, 166001499)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -35,8 +34,7 @@ proc readFile*(self: Ref[ZIPReader]; path: String; caseSensitive: Bool = true): 
   if unlikely(methodbind.isNil):
     let name: StringName = "read_file"
     methodbind = interface_ClassDB_getMethodBind(addr className ZIPReader, addr name, 156385007)
-  var `?param`: array[2, pointer]
-  path.encode(`?param`[0]); caseSensitive.encode(`?param`[1])
+  var `?param` = [getPtr path, getPtr caseSensitive]
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedByteArray)

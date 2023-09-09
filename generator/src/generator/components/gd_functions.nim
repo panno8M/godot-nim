@@ -89,22 +89,21 @@ proc prerender_classMethod*(self: JsonMethod; self_type: ArgType; gpkind: GodotP
   var retptr = "nil"
   var paramArrayDef = ParagraphSt()
   var retDef = ParagraphSt()
-  var injection = JoinSt(delimiter: "; ")
+  var injection: seq[string]
   var paramcount: int
 
   for i, arg in result.args:
     if gpkind != gpkStaticMethod and i == 0:
       selfptr = &"getOwner {arg.name}"
     else:
-      injection.children.add &"{arg.name}.encode(`?param`[{paramcount}])"
+      injection.add &"getPtr {arg.name}"
       inc paramcount
 
   if paramcount != 0:
     discard +$$..paramArrayDef:
-      &"var `?param`: array[{paramcount}, pointer]"
-      injection
+      fmt "var `?param` = [{injection.join(\", \")}]"
     paramptr = "addr `?param`[0]"
-  
+
   if result.result.isSome:
     retDef.children.add &"var ret: encoded {get result.result}"
     retptr = "addr ret"

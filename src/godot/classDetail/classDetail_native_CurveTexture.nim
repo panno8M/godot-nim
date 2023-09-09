@@ -9,16 +9,14 @@ proc `width=`*(self: Ref[CurveTexture]; width: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_width"
     methodbind = interface_ClassDB_getMethodBind(addr className CurveTexture, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  width.encode(`?param`[0])
+  var `?param` = [getPtr width]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `curve=`*(self: Ref[CurveTexture]; curve: Ref[Curve]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_curve"
     methodbind = interface_ClassDB_getMethodBind(addr className CurveTexture, addr name, 270443179)
-  var `?param`: array[1, pointer]
-  curve.encode(`?param`[0])
+  var `?param` = [getPtr curve]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc curve*(self: Ref[CurveTexture]): Ref[Curve] =
   var methodbind {.global.}: MethodBindPtr
@@ -33,8 +31,7 @@ proc `textureMode=`*(self: Ref[CurveTexture]; textureMode: CurveTexture_TextureM
   if unlikely(methodbind.isNil):
     let name: StringName = "set_texture_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className CurveTexture, addr name, 1321955367)
-  var `?param`: array[1, pointer]
-  textureMode.encode(`?param`[0])
+  var `?param` = [getPtr textureMode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc textureMode*(self: Ref[CurveTexture]): CurveTexture_TextureMode =
   var methodbind {.global.}: MethodBindPtr

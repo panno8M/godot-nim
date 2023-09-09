@@ -152,14 +152,14 @@ proc getInstanceBinding[T: SomeClass](p_engine_object: ObjectPtr; _: typedesc[T]
     return cast[T](instance)
 
   # Otherwise, try to look up the correct binding callbacks.
-  # var binding_callbacks: ptr InstanceBindingCallbacks = nil
+  var binding_callbacks: ptr InstanceBindingCallbacks
   # var class_name: StringName
   # if interface_objectGetClassName(p_engine_object, library, addr class_name):
   #   binding_callbacks = ClassDB::get_instance_binding_callbacks(class_name);
-  # if binding_callbacks == nil:
-  #   binding_callbacks = &Object::_gde_binding_callbacks;
+  if binding_callbacks == nil:
+    binding_callbacks = addr T.callbacks
 
-  # return cast[ptr ObjectBase](interface_objectGetInstanceBinding(p_engine_object, token, binding_callbacks))
+  return cast[T](interface_objectGetInstanceBinding(p_engine_object, token, binding_callbacks))
 
 template encoded*[T: SomeClass](_: typedesc[T]): typedesc[ObjectPtr] = ObjectPtr
 template encode*[T: SomeClass](v: T; p: pointer) =

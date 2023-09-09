@@ -2,7 +2,7 @@ import std/unittest
 import godot
 import godot/logging
 
-# importClass Node
+importClass Node
 
 # To reduce compilation time, we recommend importing functions
 # on a class-by-class basis using the `importClass` macro. Or,
@@ -31,6 +31,8 @@ proc get_int_value*(self: Tester): int =
 method ready*(self: Tester) =
   test "Override engine-virtuals":
     check true
+  let node = self.getNode(init_NodePath"Node")
+  echo repr node
 
 proc test_pure* =
   suite "variants":

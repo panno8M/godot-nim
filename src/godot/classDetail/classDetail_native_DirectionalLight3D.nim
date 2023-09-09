@@ -9,8 +9,7 @@ proc `shadowMode=`*(self: DirectionalLight3D; mode: DirectionalLight3D_ShadowMod
   if unlikely(methodbind.isNil):
     let name: StringName = "set_shadow_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className DirectionalLight3D, addr name, 1261211726)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc shadowMode*(self: DirectionalLight3D): DirectionalLight3D_ShadowMode =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `blendSplits=`*(self: DirectionalLight3D; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_blend_splits"
     methodbind = interface_ClassDB_getMethodBind(addr className DirectionalLight3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isBlendSplitsEnabled*(self: DirectionalLight3D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `skyMode=`*(self: DirectionalLight3D; mode: DirectionalLight3D_SkyMode) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sky_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className DirectionalLight3D, addr name, 2691194817)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc skyMode*(self: DirectionalLight3D): DirectionalLight3D_SkyMode =
   var methodbind {.global.}: MethodBindPtr

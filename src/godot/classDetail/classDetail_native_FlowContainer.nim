@@ -17,8 +17,7 @@ proc `alignment=`*(self: FlowContainer; alignment: FlowContainer_AlignmentMode) 
   if unlikely(methodbind.isNil):
     let name: StringName = "set_alignment"
     methodbind = interface_ClassDB_getMethodBind(addr className FlowContainer, addr name, 575250951)
-  var `?param`: array[1, pointer]
-  alignment.encode(`?param`[0])
+  var `?param` = [getPtr alignment]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc alignment*(self: FlowContainer): FlowContainer_AlignmentMode =
   var methodbind {.global.}: MethodBindPtr
@@ -33,8 +32,7 @@ proc `vertical=`*(self: FlowContainer; vertical: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_vertical"
     methodbind = interface_ClassDB_getMethodBind(addr className FlowContainer, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  vertical.encode(`?param`[0])
+  var `?param` = [getPtr vertical]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isVertical*(self: FlowContainer): Bool =
   var methodbind {.global.}: MethodBindPtr

@@ -9,8 +9,7 @@ proc `mapWidth=`*(self: Ref[HeightMapShape3D]; width: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_map_width"
     methodbind = interface_ClassDB_getMethodBind(addr className HeightMapShape3D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  width.encode(`?param`[0])
+  var `?param` = [getPtr width]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc mapWidth*(self: Ref[HeightMapShape3D]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `mapDepth=`*(self: Ref[HeightMapShape3D]; height: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_map_depth"
     methodbind = interface_ClassDB_getMethodBind(addr className HeightMapShape3D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  height.encode(`?param`[0])
+  var `?param` = [getPtr height]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc mapDepth*(self: Ref[HeightMapShape3D]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `mapData=`*(self: Ref[HeightMapShape3D]; data: PackedFloat32Array) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_map_data"
     methodbind = interface_ClassDB_getMethodBind(addr className HeightMapShape3D, addr name, 2899603908)
-  var `?param`: array[1, pointer]
-  data.encode(`?param`[0])
+  var `?param` = [getPtr data]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc mapData*(self: Ref[HeightMapShape3D]): PackedFloat32Array =
   var methodbind {.global.}: MethodBindPtr

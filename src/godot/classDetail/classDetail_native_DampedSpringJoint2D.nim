@@ -9,8 +9,7 @@ proc `length=`*(self: DampedSpringJoint2D; length: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_length"
     methodbind = interface_ClassDB_getMethodBind(addr className DampedSpringJoint2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  length.encode(`?param`[0])
+  var `?param` = [getPtr length]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc length*(self: DampedSpringJoint2D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `restLength=`*(self: DampedSpringJoint2D; restLength: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_rest_length"
     methodbind = interface_ClassDB_getMethodBind(addr className DampedSpringJoint2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  restLength.encode(`?param`[0])
+  var `?param` = [getPtr restLength]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc restLength*(self: DampedSpringJoint2D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `stiffness=`*(self: DampedSpringJoint2D; stiffness: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_stiffness"
     methodbind = interface_ClassDB_getMethodBind(addr className DampedSpringJoint2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  stiffness.encode(`?param`[0])
+  var `?param` = [getPtr stiffness]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc stiffness*(self: DampedSpringJoint2D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `damping=`*(self: DampedSpringJoint2D; damping: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_damping"
     methodbind = interface_ClassDB_getMethodBind(addr className DampedSpringJoint2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  damping.encode(`?param`[0])
+  var `?param` = [getPtr damping]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc damping*(self: DampedSpringJoint2D): Float =
   var methodbind {.global.}: MethodBindPtr

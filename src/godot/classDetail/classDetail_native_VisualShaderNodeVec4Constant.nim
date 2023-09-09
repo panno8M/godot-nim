@@ -9,8 +9,7 @@ proc `constant=`*(self: Ref[VisualShaderNodeVec4Constant]; constant: Quaternion)
   if unlikely(methodbind.isNil):
     let name: StringName = "set_constant"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeVec4Constant, addr name, 1727505552)
-  var `?param`: array[1, pointer]
-  constant.encode(`?param`[0])
+  var `?param` = [getPtr constant]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc constant*(self: Ref[VisualShaderNodeVec4Constant]): Quaternion =
   var methodbind {.global.}: MethodBindPtr

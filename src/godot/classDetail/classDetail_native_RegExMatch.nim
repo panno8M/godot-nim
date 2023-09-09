@@ -41,8 +41,7 @@ proc getString*(self: Ref[RegExMatch]; name: ptr Variant = nil): String =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_string"
     methodbind = interface_ClassDB_getMethodBind(addr className RegExMatch, addr name, 687115856)
-  var `?param`: array[1, pointer]
-  name.encode(`?param`[0])
+  var `?param` = [getPtr name]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
@@ -51,8 +50,7 @@ proc getStart*(self: Ref[RegExMatch]; name: ptr Variant = nil): int32 =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_start"
     methodbind = interface_ClassDB_getMethodBind(addr className RegExMatch, addr name, 490464691)
-  var `?param`: array[1, pointer]
-  name.encode(`?param`[0])
+  var `?param` = [getPtr name]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
@@ -61,8 +59,7 @@ proc getEnd*(self: Ref[RegExMatch]; name: ptr Variant = nil): int32 =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_end"
     methodbind = interface_ClassDB_getMethodBind(addr className RegExMatch, addr name, 490464691)
-  var `?param`: array[1, pointer]
-  name.encode(`?param`[0])
+  var `?param` = [getPtr name]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)

@@ -9,8 +9,7 @@ proc `size=`*(self: Decal; size: Vector3) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_size"
     methodbind = interface_ClassDB_getMethodBind(addr className Decal, addr name, 3460891852)
-  var `?param`: array[1, pointer]
-  size.encode(`?param`[0])
+  var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc size*(self: Decal): Vector3 =
   var methodbind {.global.}: MethodBindPtr
@@ -25,16 +24,14 @@ proc `texture=`*(self: Decal; `type`: Decal_DecalTexture; texture: Ref[Texture2D
   if unlikely(methodbind.isNil):
     let name: StringName = "set_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className Decal, addr name, 2086764391)
-  var `?param`: array[2, pointer]
-  `type`.encode(`?param`[0]); texture.encode(`?param`[1])
+  var `?param` = [getPtr `type`, getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc texture*(self: Decal; `type`: Decal_DecalTexture): Ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className Decal, addr name, 3244119503)
-  var `?param`: array[1, pointer]
-  `type`.encode(`?param`[0])
+  var `?param` = [getPtr `type`]
   var ret: encoded Ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[Texture2D])
@@ -43,8 +40,7 @@ proc `emissionEnergy=`*(self: Decal; energy: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_emission_energy"
     methodbind = interface_ClassDB_getMethodBind(addr className Decal, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  energy.encode(`?param`[0])
+  var `?param` = [getPtr energy]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc emissionEnergy*(self: Decal): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -59,8 +55,7 @@ proc `albedoMix=`*(self: Decal; energy: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_albedo_mix"
     methodbind = interface_ClassDB_getMethodBind(addr className Decal, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  energy.encode(`?param`[0])
+  var `?param` = [getPtr energy]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc albedoMix*(self: Decal): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -75,8 +70,7 @@ proc `modulate=`*(self: Decal; color: Color) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_modulate"
     methodbind = interface_ClassDB_getMethodBind(addr className Decal, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  color.encode(`?param`[0])
+  var `?param` = [getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc modulate*(self: Decal): Color =
   var methodbind {.global.}: MethodBindPtr
@@ -91,8 +85,7 @@ proc `upperFade=`*(self: Decal; fade: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_upper_fade"
     methodbind = interface_ClassDB_getMethodBind(addr className Decal, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  fade.encode(`?param`[0])
+  var `?param` = [getPtr fade]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc upperFade*(self: Decal): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -107,8 +100,7 @@ proc `lowerFade=`*(self: Decal; fade: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_lower_fade"
     methodbind = interface_ClassDB_getMethodBind(addr className Decal, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  fade.encode(`?param`[0])
+  var `?param` = [getPtr fade]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc lowerFade*(self: Decal): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -123,8 +115,7 @@ proc `normalFade=`*(self: Decal; fade: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_normal_fade"
     methodbind = interface_ClassDB_getMethodBind(addr className Decal, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  fade.encode(`?param`[0])
+  var `?param` = [getPtr fade]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc normalFade*(self: Decal): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -139,8 +130,7 @@ proc `enableDistanceFade=`*(self: Decal; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_enable_distance_fade"
     methodbind = interface_ClassDB_getMethodBind(addr className Decal, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isDistanceFadeEnabled*(self: Decal): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -155,8 +145,7 @@ proc `distanceFadeBegin=`*(self: Decal; distance: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_distance_fade_begin"
     methodbind = interface_ClassDB_getMethodBind(addr className Decal, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  distance.encode(`?param`[0])
+  var `?param` = [getPtr distance]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc distanceFadeBegin*(self: Decal): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -171,8 +160,7 @@ proc `distanceFadeLength=`*(self: Decal; distance: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_distance_fade_length"
     methodbind = interface_ClassDB_getMethodBind(addr className Decal, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  distance.encode(`?param`[0])
+  var `?param` = [getPtr distance]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc distanceFadeLength*(self: Decal): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -187,8 +175,7 @@ proc `cullMask=`*(self: Decal; mask: uint32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_cull_mask"
     methodbind = interface_ClassDB_getMethodBind(addr className Decal, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  mask.encode(`?param`[0])
+  var `?param` = [getPtr mask]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc cullMask*(self: Decal): uint32 =
   var methodbind {.global.}: MethodBindPtr

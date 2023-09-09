@@ -9,8 +9,7 @@ proc save*(self: Ref[CryptoKey]; path: String; publicOnly: Bool = false): Error 
   if unlikely(methodbind.isNil):
     let name: StringName = "save"
     methodbind = interface_ClassDB_getMethodBind(addr className CryptoKey, addr name, 885841341)
-  var `?param`: array[2, pointer]
-  path.encode(`?param`[0]); publicOnly.encode(`?param`[1])
+  var `?param` = [getPtr path, getPtr publicOnly]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -19,8 +18,7 @@ proc load*(self: Ref[CryptoKey]; path: String; publicOnly: Bool = false): Error 
   if unlikely(methodbind.isNil):
     let name: StringName = "load"
     methodbind = interface_ClassDB_getMethodBind(addr className CryptoKey, addr name, 885841341)
-  var `?param`: array[2, pointer]
-  path.encode(`?param`[0]); publicOnly.encode(`?param`[1])
+  var `?param` = [getPtr path, getPtr publicOnly]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -37,8 +35,7 @@ proc saveToString*(self: Ref[CryptoKey]; publicOnly: Bool = false): String =
   if unlikely(methodbind.isNil):
     let name: StringName = "save_to_string"
     methodbind = interface_ClassDB_getMethodBind(addr className CryptoKey, addr name, 32795936)
-  var `?param`: array[1, pointer]
-  publicOnly.encode(`?param`[0])
+  var `?param` = [getPtr publicOnly]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
@@ -47,8 +44,7 @@ proc loadFromString*(self: Ref[CryptoKey]; stringKey: String; publicOnly: Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "load_from_string"
     methodbind = interface_ClassDB_getMethodBind(addr className CryptoKey, addr name, 885841341)
-  var `?param`: array[2, pointer]
-  stringKey.encode(`?param`[0]); publicOnly.encode(`?param`[1])
+  var `?param` = [getPtr stringKey, getPtr publicOnly]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)

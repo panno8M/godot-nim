@@ -9,8 +9,7 @@ proc `function=`*(self: Ref[VisualShaderNodeUIntFunc]; `func`: VisualShaderNodeU
   if unlikely(methodbind.isNil):
     let name: StringName = "set_function"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeUIntFunc, addr name, 2273148961)
-  var `?param`: array[1, pointer]
-  `func`.encode(`?param`[0])
+  var `?param` = [getPtr `func`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc function*(self: Ref[VisualShaderNodeUIntFunc]): VisualShaderNodeUIntFunc_Function =
   var methodbind {.global.}: MethodBindPtr

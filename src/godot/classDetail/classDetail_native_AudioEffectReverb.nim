@@ -9,8 +9,7 @@ proc `predelayMsec=`*(self: Ref[AudioEffectReverb]; msec: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_predelay_msec"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectReverb, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  msec.encode(`?param`[0])
+  var `?param` = [getPtr msec]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc predelayMsec*(self: Ref[AudioEffectReverb]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `predelayFeedback=`*(self: Ref[AudioEffectReverb]; feedback: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_predelay_feedback"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectReverb, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  feedback.encode(`?param`[0])
+  var `?param` = [getPtr feedback]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc predelayFeedback*(self: Ref[AudioEffectReverb]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `roomSize=`*(self: Ref[AudioEffectReverb]; size: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_room_size"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectReverb, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  size.encode(`?param`[0])
+  var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc roomSize*(self: Ref[AudioEffectReverb]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `damping=`*(self: Ref[AudioEffectReverb]; amount: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_damping"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectReverb, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  amount.encode(`?param`[0])
+  var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc damping*(self: Ref[AudioEffectReverb]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `spread=`*(self: Ref[AudioEffectReverb]; amount: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_spread"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectReverb, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  amount.encode(`?param`[0])
+  var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc spread*(self: Ref[AudioEffectReverb]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc `dry=`*(self: Ref[AudioEffectReverb]; amount: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_dry"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectReverb, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  amount.encode(`?param`[0])
+  var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc dry*(self: Ref[AudioEffectReverb]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -105,8 +99,7 @@ proc `wet=`*(self: Ref[AudioEffectReverb]; amount: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_wet"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectReverb, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  amount.encode(`?param`[0])
+  var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc wet*(self: Ref[AudioEffectReverb]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -121,8 +114,7 @@ proc `hpf=`*(self: Ref[AudioEffectReverb]; amount: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_hpf"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectReverb, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  amount.encode(`?param`[0])
+  var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc hpf*(self: Ref[AudioEffectReverb]): Float =
   var methodbind {.global.}: MethodBindPtr

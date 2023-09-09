@@ -9,8 +9,7 @@ proc `enableMode=`*(self: VisibleOnScreenEnabler2D; mode: VisibleOnScreenEnabler
   if unlikely(methodbind.isNil):
     let name: StringName = "set_enable_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className VisibleOnScreenEnabler2D, addr name, 2961788752)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc enableMode*(self: VisibleOnScreenEnabler2D): VisibleOnScreenEnabler2D_EnableMode =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `enableNodePath=`*(self: VisibleOnScreenEnabler2D; path: NodePath) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_enable_node_path"
     methodbind = interface_ClassDB_getMethodBind(addr className VisibleOnScreenEnabler2D, addr name, 1348162250)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc enableNodePath*(self: VisibleOnScreenEnabler2D): NodePath =
   var methodbind {.global.}: MethodBindPtr

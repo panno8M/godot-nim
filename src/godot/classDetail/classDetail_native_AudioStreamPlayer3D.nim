@@ -9,8 +9,7 @@ proc `stream=`*(self: AudioStreamPlayer3D; stream: Ref[AudioStream]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_stream"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer3D, addr name, 2210767741)
-  var `?param`: array[1, pointer]
-  stream.encode(`?param`[0])
+  var `?param` = [getPtr stream]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc stream*(self: AudioStreamPlayer3D): Ref[AudioStream] =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `volumeDb=`*(self: AudioStreamPlayer3D; volumeDb: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_volume_db"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  volumeDb.encode(`?param`[0])
+  var `?param` = [getPtr volumeDb]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc volumeDb*(self: AudioStreamPlayer3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `unitSize=`*(self: AudioStreamPlayer3D; unitSize: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_unit_size"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  unitSize.encode(`?param`[0])
+  var `?param` = [getPtr unitSize]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc unitSize*(self: AudioStreamPlayer3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `maxDb=`*(self: AudioStreamPlayer3D; maxDb: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_max_db"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  maxDb.encode(`?param`[0])
+  var `?param` = [getPtr maxDb]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc maxDb*(self: AudioStreamPlayer3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `pitchScale=`*(self: AudioStreamPlayer3D; pitchScale: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_pitch_scale"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  pitchScale.encode(`?param`[0])
+  var `?param` = [getPtr pitchScale]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc pitchScale*(self: AudioStreamPlayer3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -89,16 +84,14 @@ proc play*(self: AudioStreamPlayer3D; fromPosition: Float = 0.0) =
   if unlikely(methodbind.isNil):
     let name: StringName = "play"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer3D, addr name, 1958160172)
-  var `?param`: array[1, pointer]
-  fromPosition.encode(`?param`[0])
+  var `?param` = [getPtr fromPosition]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc seek*(self: AudioStreamPlayer3D; toPosition: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "seek"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  toPosition.encode(`?param`[0])
+  var `?param` = [getPtr toPosition]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc stop*(self: AudioStreamPlayer3D) =
   var methodbind {.global.}: MethodBindPtr
@@ -127,8 +120,7 @@ proc `bus=`*(self: AudioStreamPlayer3D; bus: StringName) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_bus"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer3D, addr name, 3304788590)
-  var `?param`: array[1, pointer]
-  bus.encode(`?param`[0])
+  var `?param` = [getPtr bus]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc bus*(self: AudioStreamPlayer3D): StringName =
   var methodbind {.global.}: MethodBindPtr
@@ -143,8 +135,7 @@ proc `autoplay=`*(self: AudioStreamPlayer3D; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_autoplay"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isAutoplayEnabled*(self: AudioStreamPlayer3D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -159,8 +150,7 @@ proc `maxDistance=`*(self: AudioStreamPlayer3D; meters: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_max_distance"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  meters.encode(`?param`[0])
+  var `?param` = [getPtr meters]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc maxDistance*(self: AudioStreamPlayer3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -175,8 +165,7 @@ proc `areaMask=`*(self: AudioStreamPlayer3D; mask: uint32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_area_mask"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer3D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  mask.encode(`?param`[0])
+  var `?param` = [getPtr mask]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc areaMask*(self: AudioStreamPlayer3D): uint32 =
   var methodbind {.global.}: MethodBindPtr
@@ -191,8 +180,7 @@ proc `emissionAngle=`*(self: AudioStreamPlayer3D; degrees: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_emission_angle"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  degrees.encode(`?param`[0])
+  var `?param` = [getPtr degrees]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc emissionAngle*(self: AudioStreamPlayer3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -207,8 +195,7 @@ proc `emissionAngleEnabled=`*(self: AudioStreamPlayer3D; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_emission_angle_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isEmissionAngleEnabled*(self: AudioStreamPlayer3D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -223,8 +210,7 @@ proc `emissionAngleFilterAttenuationDb=`*(self: AudioStreamPlayer3D; db: Float) 
   if unlikely(methodbind.isNil):
     let name: StringName = "set_emission_angle_filter_attenuation_db"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  db.encode(`?param`[0])
+  var `?param` = [getPtr db]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc emissionAngleFilterAttenuationDb*(self: AudioStreamPlayer3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -239,8 +225,7 @@ proc `attenuationFilterCutoffHz=`*(self: AudioStreamPlayer3D; degrees: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_attenuation_filter_cutoff_hz"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  degrees.encode(`?param`[0])
+  var `?param` = [getPtr degrees]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc attenuationFilterCutoffHz*(self: AudioStreamPlayer3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -255,8 +240,7 @@ proc `attenuationFilterDb=`*(self: AudioStreamPlayer3D; db: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_attenuation_filter_db"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  db.encode(`?param`[0])
+  var `?param` = [getPtr db]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc attenuationFilterDb*(self: AudioStreamPlayer3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -271,8 +255,7 @@ proc `attenuationModel=`*(self: AudioStreamPlayer3D; model: AudioStreamPlayer3D_
   if unlikely(methodbind.isNil):
     let name: StringName = "set_attenuation_model"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer3D, addr name, 2988086229)
-  var `?param`: array[1, pointer]
-  model.encode(`?param`[0])
+  var `?param` = [getPtr model]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc attenuationModel*(self: AudioStreamPlayer3D): AudioStreamPlayer3D_AttenuationModel =
   var methodbind {.global.}: MethodBindPtr
@@ -287,8 +270,7 @@ proc `dopplerTracking=`*(self: AudioStreamPlayer3D; mode: AudioStreamPlayer3D_Do
   if unlikely(methodbind.isNil):
     let name: StringName = "set_doppler_tracking"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer3D, addr name, 3968161450)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc dopplerTracking*(self: AudioStreamPlayer3D): AudioStreamPlayer3D_DopplerTracking =
   var methodbind {.global.}: MethodBindPtr
@@ -303,8 +285,7 @@ proc `streamPaused=`*(self: AudioStreamPlayer3D; pause: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_stream_paused"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  pause.encode(`?param`[0])
+  var `?param` = [getPtr pause]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc streamPaused*(self: AudioStreamPlayer3D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -319,8 +300,7 @@ proc `maxPolyphony=`*(self: AudioStreamPlayer3D; maxPolyphony: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_max_polyphony"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer3D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  maxPolyphony.encode(`?param`[0])
+  var `?param` = [getPtr maxPolyphony]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc maxPolyphony*(self: AudioStreamPlayer3D): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -335,8 +315,7 @@ proc `panningStrength=`*(self: AudioStreamPlayer3D; panningStrength: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_panning_strength"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  panningStrength.encode(`?param`[0])
+  var `?param` = [getPtr panningStrength]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc panningStrength*(self: AudioStreamPlayer3D): Float =
   var methodbind {.global.}: MethodBindPtr

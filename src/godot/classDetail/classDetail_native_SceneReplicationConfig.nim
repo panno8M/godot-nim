@@ -17,16 +17,14 @@ proc addProperty*(self: Ref[SceneReplicationConfig]; path: NodePath; index: int3
   if unlikely(methodbind.isNil):
     let name: StringName = "add_property"
     methodbind = interface_ClassDB_getMethodBind(addr className SceneReplicationConfig, addr name, 3818401521)
-  var `?param`: array[2, pointer]
-  path.encode(`?param`[0]); index.encode(`?param`[1])
+  var `?param` = [getPtr path, getPtr index]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc hasProperty*(self: Ref[SceneReplicationConfig]; path: NodePath): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "has_property"
     methodbind = interface_ClassDB_getMethodBind(addr className SceneReplicationConfig, addr name, 861721659)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -35,16 +33,14 @@ proc removeProperty*(self: Ref[SceneReplicationConfig]; path: NodePath) =
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_property"
     methodbind = interface_ClassDB_getMethodBind(addr className SceneReplicationConfig, addr name, 1348162250)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc propertyGetIndex*(self: Ref[SceneReplicationConfig]; path: NodePath): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "property_get_index"
     methodbind = interface_ClassDB_getMethodBind(addr className SceneReplicationConfig, addr name, 1382022557)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
@@ -53,8 +49,7 @@ proc propertyGetSpawn*(self: Ref[SceneReplicationConfig]; path: NodePath): Bool 
   if unlikely(methodbind.isNil):
     let name: StringName = "property_get_spawn"
     methodbind = interface_ClassDB_getMethodBind(addr className SceneReplicationConfig, addr name, 3456846888)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -63,16 +58,14 @@ proc propertySetSpawn*(self: Ref[SceneReplicationConfig]; path: NodePath; enable
   if unlikely(methodbind.isNil):
     let name: StringName = "property_set_spawn"
     methodbind = interface_ClassDB_getMethodBind(addr className SceneReplicationConfig, addr name, 3868023870)
-  var `?param`: array[2, pointer]
-  path.encode(`?param`[0]); enabled.encode(`?param`[1])
+  var `?param` = [getPtr path, getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc propertyGetSync*(self: Ref[SceneReplicationConfig]; path: NodePath): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "property_get_sync"
     methodbind = interface_ClassDB_getMethodBind(addr className SceneReplicationConfig, addr name, 3456846888)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -81,16 +74,14 @@ proc propertySetSync*(self: Ref[SceneReplicationConfig]; path: NodePath; enabled
   if unlikely(methodbind.isNil):
     let name: StringName = "property_set_sync"
     methodbind = interface_ClassDB_getMethodBind(addr className SceneReplicationConfig, addr name, 3868023870)
-  var `?param`: array[2, pointer]
-  path.encode(`?param`[0]); enabled.encode(`?param`[1])
+  var `?param` = [getPtr path, getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc propertyGetWatch*(self: Ref[SceneReplicationConfig]; path: NodePath): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "property_get_watch"
     methodbind = interface_ClassDB_getMethodBind(addr className SceneReplicationConfig, addr name, 3456846888)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -99,6 +90,5 @@ proc propertySetWatch*(self: Ref[SceneReplicationConfig]; path: NodePath; enable
   if unlikely(methodbind.isNil):
     let name: StringName = "property_set_watch"
     methodbind = interface_ClassDB_getMethodBind(addr className SceneReplicationConfig, addr name, 3868023870)
-  var `?param`: array[2, pointer]
-  path.encode(`?param`[0]); enabled.encode(`?param`[1])
+  var `?param` = [getPtr path, getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

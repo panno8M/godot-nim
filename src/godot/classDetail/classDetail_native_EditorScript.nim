@@ -9,8 +9,7 @@ proc addRootNode*(self: Ref[EditorScript]; node: Node) =
   if unlikely(methodbind.isNil):
     let name: StringName = "add_root_node"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorScript, addr name, 1078189570)
-  var `?param`: array[1, pointer]
-  node.encode(`?param`[0])
+  var `?param` = [getPtr node]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getScene*(self: Ref[EditorScript]): Node =
   var methodbind {.global.}: MethodBindPtr

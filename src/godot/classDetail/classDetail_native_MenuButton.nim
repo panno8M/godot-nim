@@ -23,8 +23,7 @@ proc `switchOnHover=`*(self: MenuButton; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_switch_on_hover"
     methodbind = interface_ClassDB_getMethodBind(addr className MenuButton, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isSwitchOnHover*(self: MenuButton): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -39,16 +38,14 @@ proc setDisableShortcuts*(self: MenuButton; disabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_disable_shortcuts"
     methodbind = interface_ClassDB_getMethodBind(addr className MenuButton, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  disabled.encode(`?param`[0])
+  var `?param` = [getPtr disabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `itemCount=`*(self: MenuButton; count: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_item_count"
     methodbind = interface_ClassDB_getMethodBind(addr className MenuButton, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  count.encode(`?param`[0])
+  var `?param` = [getPtr count]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc itemCount*(self: MenuButton): int32 =
   var methodbind {.global.}: MethodBindPtr

@@ -15,8 +15,7 @@ proc createItem*(self: Tree; parent: TreeItem = nil; index: int32 = -1): TreeIte
   if unlikely(methodbind.isNil):
     let name: StringName = "create_item"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 528467046)
-  var `?param`: array[2, pointer]
-  parent.encode(`?param`[0]); index.encode(`?param`[1])
+  var `?param` = [getPtr parent, getPtr index]
   var ret: encoded TreeItem
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TreeItem)
@@ -33,40 +32,35 @@ proc setColumnCustomMinimumWidth*(self: Tree; column: int32; minWidth: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_column_custom_minimum_width"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 3937882851)
-  var `?param`: array[2, pointer]
-  column.encode(`?param`[0]); minWidth.encode(`?param`[1])
+  var `?param` = [getPtr column, getPtr minWidth]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setColumnExpand*(self: Tree; column: int32; expand: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_column_expand"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 300928843)
-  var `?param`: array[2, pointer]
-  column.encode(`?param`[0]); expand.encode(`?param`[1])
+  var `?param` = [getPtr column, getPtr expand]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setColumnExpandRatio*(self: Tree; column: int32; ratio: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_column_expand_ratio"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 3937882851)
-  var `?param`: array[2, pointer]
-  column.encode(`?param`[0]); ratio.encode(`?param`[1])
+  var `?param` = [getPtr column, getPtr ratio]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setColumnClipContent*(self: Tree; column: int32; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_column_clip_content"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 300928843)
-  var `?param`: array[2, pointer]
-  column.encode(`?param`[0]); enable.encode(`?param`[1])
+  var `?param` = [getPtr column, getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isColumnExpanding*(self: Tree; column: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_column_expanding"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 1116898809)
-  var `?param`: array[1, pointer]
-  column.encode(`?param`[0])
+  var `?param` = [getPtr column]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -75,8 +69,7 @@ proc isColumnClippingContent*(self: Tree; column: int32): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "is_column_clipping_content"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 1116898809)
-  var `?param`: array[1, pointer]
-  column.encode(`?param`[0])
+  var `?param` = [getPtr column]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -85,8 +78,7 @@ proc getColumnExpandRatio*(self: Tree; column: int32): int32 =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_column_expand_ratio"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 923996154)
-  var `?param`: array[1, pointer]
-  column.encode(`?param`[0])
+  var `?param` = [getPtr column]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
@@ -95,8 +87,7 @@ proc getColumnWidth*(self: Tree; column: int32): int32 =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_column_width"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 923996154)
-  var `?param`: array[1, pointer]
-  column.encode(`?param`[0])
+  var `?param` = [getPtr column]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
@@ -105,8 +96,7 @@ proc `hideRoot=`*(self: Tree; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_hide_root"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isRootHidden*(self: Tree): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -121,8 +111,7 @@ proc getNextSelected*(self: Tree; `from`: TreeItem): TreeItem =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_next_selected"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 873446299)
-  var `?param`: array[1, pointer]
-  `from`.encode(`?param`[0])
+  var `?param` = [getPtr `from`]
   var ret: encoded TreeItem
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TreeItem)
@@ -139,8 +128,7 @@ proc setSelected*(self: Tree; item: TreeItem; column: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_selected"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 2662547442)
-  var `?param`: array[2, pointer]
-  item.encode(`?param`[0]); column.encode(`?param`[1])
+  var `?param` = [getPtr item, getPtr column]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getSelectedColumn*(self: Tree): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -163,8 +151,7 @@ proc `selectMode=`*(self: Tree; mode: Tree_SelectMode) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_select_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 3223887270)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc selectMode*(self: Tree): Tree_SelectMode =
   var methodbind {.global.}: MethodBindPtr
@@ -185,8 +172,7 @@ proc `columns=`*(self: Tree; amount: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_columns"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  amount.encode(`?param`[0])
+  var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc columns*(self: Tree): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -217,8 +203,7 @@ proc editSelected*(self: Tree; forceEdit: Bool = false): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "edit_selected"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 2595650253)
-  var `?param`: array[1, pointer]
-  forceEdit.encode(`?param`[0])
+  var `?param` = [getPtr forceEdit]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -235,8 +220,7 @@ proc getItemAreaRect*(self: Tree; item: TreeItem; column: int32 = -1; buttonInde
   if unlikely(methodbind.isNil):
     let name: StringName = "get_item_area_rect"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 1235226180)
-  var `?param`: array[3, pointer]
-  item.encode(`?param`[0]); column.encode(`?param`[1]); buttonIndex.encode(`?param`[2])
+  var `?param` = [getPtr item, getPtr column, getPtr buttonIndex]
   var ret: encoded Rect2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Rect2)
@@ -245,8 +229,7 @@ proc getItemAtPosition*(self: Tree; position: Vector2): TreeItem =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_item_at_position"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 4193340126)
-  var `?param`: array[1, pointer]
-  position.encode(`?param`[0])
+  var `?param` = [getPtr position]
   var ret: encoded TreeItem
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TreeItem)
@@ -255,8 +238,7 @@ proc getColumnAtPosition*(self: Tree; position: Vector2): int32 =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_column_at_position"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 3820158470)
-  var `?param`: array[1, pointer]
-  position.encode(`?param`[0])
+  var `?param` = [getPtr position]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
@@ -265,8 +247,7 @@ proc getDropSectionAtPosition*(self: Tree; position: Vector2): int32 =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_drop_section_at_position"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 3820158470)
-  var `?param`: array[1, pointer]
-  position.encode(`?param`[0])
+  var `?param` = [getPtr position]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
@@ -275,8 +256,7 @@ proc getButtonIdAtPosition*(self: Tree; position: Vector2): int32 =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_button_id_at_position"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 3820158470)
-  var `?param`: array[1, pointer]
-  position.encode(`?param`[0])
+  var `?param` = [getPtr position]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
@@ -291,8 +271,7 @@ proc `columnTitlesVisible=`*(self: Tree; visible: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_column_titles_visible"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  visible.encode(`?param`[0])
+  var `?param` = [getPtr visible]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc areColumnTitlesVisible*(self: Tree): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -307,16 +286,14 @@ proc setColumnTitle*(self: Tree; column: int32; title: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_column_title"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 501894301)
-  var `?param`: array[2, pointer]
-  column.encode(`?param`[0]); title.encode(`?param`[1])
+  var `?param` = [getPtr column, getPtr title]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getColumnTitle*(self: Tree; column: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_column_title"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 844755477)
-  var `?param`: array[1, pointer]
-  column.encode(`?param`[0])
+  var `?param` = [getPtr column]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
@@ -325,16 +302,14 @@ proc setColumnTitleAlignment*(self: Tree; column: int32; titleAlignment: Horizon
   if unlikely(methodbind.isNil):
     let name: StringName = "set_column_title_alignment"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 3276431499)
-  var `?param`: array[2, pointer]
-  column.encode(`?param`[0]); titleAlignment.encode(`?param`[1])
+  var `?param` = [getPtr column, getPtr titleAlignment]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getColumnTitleAlignment*(self: Tree; column: int32): HorizontalAlignment =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_column_title_alignment"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 4171562184)
-  var `?param`: array[1, pointer]
-  column.encode(`?param`[0])
+  var `?param` = [getPtr column]
   var ret: encoded HorizontalAlignment
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(HorizontalAlignment)
@@ -343,16 +318,14 @@ proc setColumnTitleDirection*(self: Tree; column: int32; direction: Control_Text
   if unlikely(methodbind.isNil):
     let name: StringName = "set_column_title_direction"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 1707680378)
-  var `?param`: array[2, pointer]
-  column.encode(`?param`[0]); direction.encode(`?param`[1])
+  var `?param` = [getPtr column, getPtr direction]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getColumnTitleDirection*(self: Tree; column: int32): Control_TextDirection =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_column_title_direction"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 4235602388)
-  var `?param`: array[1, pointer]
-  column.encode(`?param`[0])
+  var `?param` = [getPtr column]
   var ret: encoded Control_TextDirection
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Control_TextDirection)
@@ -361,16 +334,14 @@ proc setColumnTitleLanguage*(self: Tree; column: int32; language: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_column_title_language"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 501894301)
-  var `?param`: array[2, pointer]
-  column.encode(`?param`[0]); language.encode(`?param`[1])
+  var `?param` = [getPtr column, getPtr language]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getColumnTitleLanguage*(self: Tree; column: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_column_title_language"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 844755477)
-  var `?param`: array[1, pointer]
-  column.encode(`?param`[0])
+  var `?param` = [getPtr column]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
@@ -387,16 +358,14 @@ proc scrollToItem*(self: Tree; item: TreeItem; centerOnItem: Bool = false) =
   if unlikely(methodbind.isNil):
     let name: StringName = "scroll_to_item"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 1314737213)
-  var `?param`: array[2, pointer]
-  item.encode(`?param`[0]); centerOnItem.encode(`?param`[1])
+  var `?param` = [getPtr item, getPtr centerOnItem]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `hScrollEnabled=`*(self: Tree; hScroll: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_h_scroll_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  hScroll.encode(`?param`[0])
+  var `?param` = [getPtr hScroll]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isHScrollEnabled*(self: Tree): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -411,8 +380,7 @@ proc `vScrollEnabled=`*(self: Tree; hScroll: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_v_scroll_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  hScroll.encode(`?param`[0])
+  var `?param` = [getPtr hScroll]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isVScrollEnabled*(self: Tree): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -427,8 +395,7 @@ proc `hideFolding=`*(self: Tree; hide: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_hide_folding"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  hide.encode(`?param`[0])
+  var `?param` = [getPtr hide]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isFoldingHidden*(self: Tree): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -443,8 +410,7 @@ proc `enableRecursiveFolding=`*(self: Tree; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_enable_recursive_folding"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isRecursiveFoldingEnabled*(self: Tree): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -459,8 +425,7 @@ proc `dropModeFlags=`*(self: Tree; flags: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_drop_mode_flags"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  flags.encode(`?param`[0])
+  var `?param` = [getPtr flags]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc dropModeFlags*(self: Tree): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -475,8 +440,7 @@ proc `allowRmbSelect=`*(self: Tree; allow: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_allow_rmb_select"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  allow.encode(`?param`[0])
+  var `?param` = [getPtr allow]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc allowRmbSelect*(self: Tree): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -491,8 +455,7 @@ proc `allowReselect=`*(self: Tree; allow: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_allow_reselect"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  allow.encode(`?param`[0])
+  var `?param` = [getPtr allow]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc allowReselect*(self: Tree): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -507,8 +470,7 @@ proc `allowSearch=`*(self: Tree; allow: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_allow_search"
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  allow.encode(`?param`[0])
+  var `?param` = [getPtr allow]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc allowSearch*(self: Tree): Bool =
   var methodbind {.global.}: MethodBindPtr

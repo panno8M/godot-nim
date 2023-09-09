@@ -9,8 +9,7 @@ proc `multimesh=`*(self: MultiMeshInstance2D; multimesh: Ref[MultiMesh]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_multimesh"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiMeshInstance2D, addr name, 2246127404)
-  var `?param`: array[1, pointer]
-  multimesh.encode(`?param`[0])
+  var `?param` = [getPtr multimesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc multimesh*(self: MultiMeshInstance2D): Ref[MultiMesh] =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `texture=`*(self: MultiMeshInstance2D; texture: Ref[Texture2D]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiMeshInstance2D, addr name, 4051416890)
-  var `?param`: array[1, pointer]
-  texture.encode(`?param`[0])
+  var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc texture*(self: MultiMeshInstance2D): Ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr

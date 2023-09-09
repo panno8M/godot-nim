@@ -9,8 +9,7 @@ proc `color=`*(self: Ref[StyleBoxLine]; color: Color) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_color"
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxLine, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  color.encode(`?param`[0])
+  var `?param` = [getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc color*(self: Ref[StyleBoxLine]): Color =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `thickness=`*(self: Ref[StyleBoxLine]; thickness: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_thickness"
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxLine, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  thickness.encode(`?param`[0])
+  var `?param` = [getPtr thickness]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc thickness*(self: Ref[StyleBoxLine]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `growBegin=`*(self: Ref[StyleBoxLine]; offset: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_grow_begin"
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxLine, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  offset.encode(`?param`[0])
+  var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc growBegin*(self: Ref[StyleBoxLine]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `growEnd=`*(self: Ref[StyleBoxLine]; offset: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_grow_end"
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxLine, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  offset.encode(`?param`[0])
+  var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc growEnd*(self: Ref[StyleBoxLine]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `vertical=`*(self: Ref[StyleBoxLine]; vertical: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_vertical"
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxLine, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  vertical.encode(`?param`[0])
+  var `?param` = [getPtr vertical]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isVertical*(self: Ref[StyleBoxLine]): Bool =
   var methodbind {.global.}: MethodBindPtr

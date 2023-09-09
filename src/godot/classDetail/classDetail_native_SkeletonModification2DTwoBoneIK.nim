@@ -9,8 +9,7 @@ proc `targetNode=`*(self: Ref[SkeletonModification2DTwoBoneIK]; targetNodepath: 
   if unlikely(methodbind.isNil):
     let name: StringName = "set_target_node"
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DTwoBoneIK, addr name, 1348162250)
-  var `?param`: array[1, pointer]
-  targetNodepath.encode(`?param`[0])
+  var `?param` = [getPtr targetNodepath]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc tarnode*(self: Ref[SkeletonModification2DTwoBoneIK]): NodePath =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `targetMinimumDistance=`*(self: Ref[SkeletonModification2DTwoBoneIK]; minim
   if unlikely(methodbind.isNil):
     let name: StringName = "set_target_minimum_distance"
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DTwoBoneIK, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  minimumDistance.encode(`?param`[0])
+  var `?param` = [getPtr minimumDistance]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc tarminimumDistance*(self: Ref[SkeletonModification2DTwoBoneIK]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `targetMaximumDistance=`*(self: Ref[SkeletonModification2DTwoBoneIK]; maxim
   if unlikely(methodbind.isNil):
     let name: StringName = "set_target_maximum_distance"
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DTwoBoneIK, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  maximumDistance.encode(`?param`[0])
+  var `?param` = [getPtr maximumDistance]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc tarmaximumDistance*(self: Ref[SkeletonModification2DTwoBoneIK]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `flipBendDirection=`*(self: Ref[SkeletonModification2DTwoBoneIK]; flipDirec
   if unlikely(methodbind.isNil):
     let name: StringName = "set_flip_bend_direction"
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DTwoBoneIK, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  flipDirection.encode(`?param`[0])
+  var `?param` = [getPtr flipDirection]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc flipBendDirection*(self: Ref[SkeletonModification2DTwoBoneIK]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc setJointOneBone2dNode*(self: Ref[SkeletonModification2DTwoBoneIK]; bone2dNo
   if unlikely(methodbind.isNil):
     let name: StringName = "set_joint_one_bone2d_node"
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DTwoBoneIK, addr name, 1348162250)
-  var `?param`: array[1, pointer]
-  bone2dNode.encode(`?param`[0])
+  var `?param` = [getPtr bone2dNode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getJointOneBone2dNode*(self: Ref[SkeletonModification2DTwoBoneIK]): NodePath =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc setJointOneBoneIdx*(self: Ref[SkeletonModification2DTwoBoneIK]; boneIdx: in
   if unlikely(methodbind.isNil):
     let name: StringName = "set_joint_one_bone_idx"
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DTwoBoneIK, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  boneIdx.encode(`?param`[0])
+  var `?param` = [getPtr boneIdx]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getJointOneBoneIdx*(self: Ref[SkeletonModification2DTwoBoneIK]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -105,8 +99,7 @@ proc setJointTwoBone2dNode*(self: Ref[SkeletonModification2DTwoBoneIK]; bone2dNo
   if unlikely(methodbind.isNil):
     let name: StringName = "set_joint_two_bone2d_node"
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DTwoBoneIK, addr name, 1348162250)
-  var `?param`: array[1, pointer]
-  bone2dNode.encode(`?param`[0])
+  var `?param` = [getPtr bone2dNode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getJointTwoBone2dNode*(self: Ref[SkeletonModification2DTwoBoneIK]): NodePath =
   var methodbind {.global.}: MethodBindPtr
@@ -121,8 +114,7 @@ proc setJointTwoBoneIdx*(self: Ref[SkeletonModification2DTwoBoneIK]; boneIdx: in
   if unlikely(methodbind.isNil):
     let name: StringName = "set_joint_two_bone_idx"
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DTwoBoneIK, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  boneIdx.encode(`?param`[0])
+  var `?param` = [getPtr boneIdx]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getJointTwoBoneIdx*(self: Ref[SkeletonModification2DTwoBoneIK]): int32 =
   var methodbind {.global.}: MethodBindPtr

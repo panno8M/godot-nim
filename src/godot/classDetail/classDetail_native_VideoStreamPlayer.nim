@@ -9,8 +9,7 @@ proc `stream=`*(self: VideoStreamPlayer; stream: Ref[VideoStream]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_stream"
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayer, addr name, 2317102564)
-  var `?param`: array[1, pointer]
-  stream.encode(`?param`[0])
+  var `?param` = [getPtr stream]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc stream*(self: VideoStreamPlayer): Ref[VideoStream] =
   var methodbind {.global.}: MethodBindPtr
@@ -45,8 +44,7 @@ proc `paused=`*(self: VideoStreamPlayer; paused: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_paused"
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayer, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  paused.encode(`?param`[0])
+  var `?param` = [getPtr paused]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isPaused*(self: VideoStreamPlayer): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -61,8 +59,7 @@ proc `volume=`*(self: VideoStreamPlayer; volume: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_volume"
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayer, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  volume.encode(`?param`[0])
+  var `?param` = [getPtr volume]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc volume*(self: VideoStreamPlayer): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -77,8 +74,7 @@ proc `volumeDb=`*(self: VideoStreamPlayer; db: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_volume_db"
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayer, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  db.encode(`?param`[0])
+  var `?param` = [getPtr db]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc volumeDb*(self: VideoStreamPlayer): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -93,8 +89,7 @@ proc `audioTrack=`*(self: VideoStreamPlayer; track: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_audio_track"
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayer, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  track.encode(`?param`[0])
+  var `?param` = [getPtr track]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc audioTrack*(self: VideoStreamPlayer): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -117,8 +112,7 @@ proc `streamPosition=`*(self: VideoStreamPlayer; position: float64) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_stream_position"
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayer, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  position.encode(`?param`[0])
+  var `?param` = [getPtr position]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc streamPosition*(self: VideoStreamPlayer): float64 =
   var methodbind {.global.}: MethodBindPtr
@@ -133,8 +127,7 @@ proc `autoplay=`*(self: VideoStreamPlayer; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_autoplay"
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayer, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc hasAutoplay*(self: VideoStreamPlayer): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -149,8 +142,7 @@ proc `expand=`*(self: VideoStreamPlayer; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_expand"
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayer, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc hasExpand*(self: VideoStreamPlayer): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -165,8 +157,7 @@ proc `bufferingMsec=`*(self: VideoStreamPlayer; msec: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_buffering_msec"
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayer, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  msec.encode(`?param`[0])
+  var `?param` = [getPtr msec]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc bufferingMsec*(self: VideoStreamPlayer): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -181,8 +172,7 @@ proc `bus=`*(self: VideoStreamPlayer; bus: StringName) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_bus"
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayer, addr name, 3304788590)
-  var `?param`: array[1, pointer]
-  bus.encode(`?param`[0])
+  var `?param` = [getPtr bus]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc bus*(self: VideoStreamPlayer): StringName =
   var methodbind {.global.}: MethodBindPtr

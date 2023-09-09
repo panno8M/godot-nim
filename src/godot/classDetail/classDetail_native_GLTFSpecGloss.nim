@@ -17,8 +17,7 @@ proc `diffuseImg=`*(self: Ref[GLTFSpecGloss]; diffuseImg: Ref[Image]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_diffuse_img"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSpecGloss, addr name, 532598488)
-  var `?param`: array[1, pointer]
-  diffuseImg.encode(`?param`[0])
+  var `?param` = [getPtr diffuseImg]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc diffuseFactor*(self: Ref[GLTFSpecGloss]): Color =
   var methodbind {.global.}: MethodBindPtr
@@ -33,8 +32,7 @@ proc `diffuseFactor=`*(self: Ref[GLTFSpecGloss]; diffuseFactor: Color) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_diffuse_factor"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSpecGloss, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  diffuseFactor.encode(`?param`[0])
+  var `?param` = [getPtr diffuseFactor]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc glossFactor*(self: Ref[GLTFSpecGloss]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -49,8 +47,7 @@ proc `glossFactor=`*(self: Ref[GLTFSpecGloss]; glossFactor: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_gloss_factor"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSpecGloss, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  glossFactor.encode(`?param`[0])
+  var `?param` = [getPtr glossFactor]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc specularFactor*(self: Ref[GLTFSpecGloss]): Color =
   var methodbind {.global.}: MethodBindPtr
@@ -65,8 +62,7 @@ proc `specularFactor=`*(self: Ref[GLTFSpecGloss]; specularFactor: Color) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_specular_factor"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSpecGloss, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  specularFactor.encode(`?param`[0])
+  var `?param` = [getPtr specularFactor]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc specGlossImg*(self: Ref[GLTFSpecGloss]): Ref[Image] =
   var methodbind {.global.}: MethodBindPtr
@@ -81,6 +77,5 @@ proc `specGlossImg=`*(self: Ref[GLTFSpecGloss]; specGlossImg: Ref[Image]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_spec_gloss_img"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSpecGloss, addr name, 532598488)
-  var `?param`: array[1, pointer]
-  specGlossImg.encode(`?param`[0])
+  var `?param` = [getPtr specGlossImg]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

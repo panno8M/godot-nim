@@ -9,8 +9,7 @@ proc `value=`*(self: Ref[RDPipelineSpecializationConstant]; value: ptr Variant) 
   if unlikely(methodbind.isNil):
     let name: StringName = "set_value"
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineSpecializationConstant, addr name, 1114965689)
-  var `?param`: array[1, pointer]
-  value.encode(`?param`[0])
+  var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc value*(self: Ref[RDPipelineSpecializationConstant]): Variant =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `constantId=`*(self: Ref[RDPipelineSpecializationConstant]; constantId: uin
   if unlikely(methodbind.isNil):
     let name: StringName = "set_constant_id"
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineSpecializationConstant, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  constantId.encode(`?param`[0])
+  var `?param` = [getPtr constantId]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc constantId*(self: Ref[RDPipelineSpecializationConstant]): uint32 =
   var methodbind {.global.}: MethodBindPtr

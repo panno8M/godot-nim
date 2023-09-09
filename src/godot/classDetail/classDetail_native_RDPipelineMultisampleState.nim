@@ -9,8 +9,7 @@ proc `sampleCount=`*(self: Ref[RDPipelineMultisampleState]; pMember: RenderingDe
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sample_count"
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineMultisampleState, addr name, 3774171498)
-  var `?param`: array[1, pointer]
-  pMember.encode(`?param`[0])
+  var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc sampleCount*(self: Ref[RDPipelineMultisampleState]): RenderingDevice_TextureSamples =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `enableSampleShading=`*(self: Ref[RDPipelineMultisampleState]; pMember: Boo
   if unlikely(methodbind.isNil):
     let name: StringName = "set_enable_sample_shading"
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineMultisampleState, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  pMember.encode(`?param`[0])
+  var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc enableSampleShading*(self: Ref[RDPipelineMultisampleState]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `minSampleShading=`*(self: Ref[RDPipelineMultisampleState]; pMember: Float)
   if unlikely(methodbind.isNil):
     let name: StringName = "set_min_sample_shading"
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineMultisampleState, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  pMember.encode(`?param`[0])
+  var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc minSampleShading*(self: Ref[RDPipelineMultisampleState]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `enableAlphaToCoverage=`*(self: Ref[RDPipelineMultisampleState]; pMember: B
   if unlikely(methodbind.isNil):
     let name: StringName = "set_enable_alpha_to_coverage"
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineMultisampleState, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  pMember.encode(`?param`[0])
+  var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc enableAlphaToCoverage*(self: Ref[RDPipelineMultisampleState]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `enableAlphaToOne=`*(self: Ref[RDPipelineMultisampleState]; pMember: Bool) 
   if unlikely(methodbind.isNil):
     let name: StringName = "set_enable_alpha_to_one"
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineMultisampleState, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  pMember.encode(`?param`[0])
+  var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc enableAlphaToOne*(self: Ref[RDPipelineMultisampleState]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc `sampleMasks=`*(self: Ref[RDPipelineMultisampleState]; masks: TypedArray[In
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sample_masks"
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineMultisampleState, addr name, 381264803)
-  var `?param`: array[1, pointer]
-  masks.encode(`?param`[0])
+  var `?param` = [getPtr masks]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc sampleMasks*(self: Ref[RDPipelineMultisampleState]): TypedArray[Int] =
   var methodbind {.global.}: MethodBindPtr

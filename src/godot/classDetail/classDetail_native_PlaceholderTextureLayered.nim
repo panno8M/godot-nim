@@ -9,8 +9,7 @@ proc `size=`*(self: Ref[PlaceholderTextureLayered]; size: Vector2i) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_size"
     methodbind = interface_ClassDB_getMethodBind(addr className PlaceholderTextureLayered, addr name, 1130785943)
-  var `?param`: array[1, pointer]
-  size.encode(`?param`[0])
+  var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc size*(self: Ref[PlaceholderTextureLayered]): Vector2i =
   var methodbind {.global.}: MethodBindPtr
@@ -25,6 +24,5 @@ proc `layers=`*(self: Ref[PlaceholderTextureLayered]; layers: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_layers"
     methodbind = interface_ClassDB_getMethodBind(addr className PlaceholderTextureLayered, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  layers.encode(`?param`[0])
+  var `?param` = [getPtr layers]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

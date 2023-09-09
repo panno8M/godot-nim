@@ -9,8 +9,7 @@ proc stringify*(data: ptr Variant; indent: String = ""; sortKeys: Bool = true; f
   if unlikely(methodbind.isNil):
     let name: StringName = "stringify"
     methodbind = interface_ClassDB_getMethodBind(addr className JSON, addr name, 2656701787)
-  var `?param`: array[4, pointer]
-  data.encode(`?param`[0]); indent.encode(`?param`[1]); sortKeys.encode(`?param`[2]); fullPrecision.encode(`?param`[3])
+  var `?param` = [getPtr data, getPtr indent, getPtr sortKeys, getPtr fullPrecision]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(String)
@@ -19,8 +18,7 @@ proc parseString*(jsonString: String): Variant {.staticOf: JSON.} =
   if unlikely(methodbind.isNil):
     let name: StringName = "parse_string"
     methodbind = interface_ClassDB_getMethodBind(addr className JSON, addr name, 309047738)
-  var `?param`: array[1, pointer]
-  jsonString.encode(`?param`[0])
+  var `?param` = [getPtr jsonString]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
@@ -29,8 +27,7 @@ proc parse*(self: Ref[JSON]; jsonText: String; keepText: Bool = false): Error =
   if unlikely(methodbind.isNil):
     let name: StringName = "parse"
     methodbind = interface_ClassDB_getMethodBind(addr className JSON, addr name, 885841341)
-  var `?param`: array[2, pointer]
-  jsonText.encode(`?param`[0]); keepText.encode(`?param`[1])
+  var `?param` = [getPtr jsonText, getPtr keepText]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -47,8 +44,7 @@ proc `data=`*(self: Ref[JSON]; data: ptr Variant) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_data"
     methodbind = interface_ClassDB_getMethodBind(addr className JSON, addr name, 1114965689)
-  var `?param`: array[1, pointer]
-  data.encode(`?param`[0])
+  var `?param` = [getPtr data]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getParsedText*(self: Ref[JSON]): String =
   var methodbind {.global.}: MethodBindPtr

@@ -9,8 +9,7 @@ proc `formatOverride=`*(self: Ref[RDTextureView]; pMember: RenderingDevice_DataF
   if unlikely(methodbind.isNil):
     let name: StringName = "set_format_override"
     methodbind = interface_ClassDB_getMethodBind(addr className RDTextureView, addr name, 565531219)
-  var `?param`: array[1, pointer]
-  pMember.encode(`?param`[0])
+  var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc formatOverride*(self: Ref[RDTextureView]): RenderingDevice_DataFormat =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `swizzleR=`*(self: Ref[RDTextureView]; pMember: RenderingDevice_TextureSwiz
   if unlikely(methodbind.isNil):
     let name: StringName = "set_swizzle_r"
     methodbind = interface_ClassDB_getMethodBind(addr className RDTextureView, addr name, 3833362581)
-  var `?param`: array[1, pointer]
-  pMember.encode(`?param`[0])
+  var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc swizzleR*(self: Ref[RDTextureView]): RenderingDevice_TextureSwizzle =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `swizzleG=`*(self: Ref[RDTextureView]; pMember: RenderingDevice_TextureSwiz
   if unlikely(methodbind.isNil):
     let name: StringName = "set_swizzle_g"
     methodbind = interface_ClassDB_getMethodBind(addr className RDTextureView, addr name, 3833362581)
-  var `?param`: array[1, pointer]
-  pMember.encode(`?param`[0])
+  var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc swizzleG*(self: Ref[RDTextureView]): RenderingDevice_TextureSwizzle =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `swizzleB=`*(self: Ref[RDTextureView]; pMember: RenderingDevice_TextureSwiz
   if unlikely(methodbind.isNil):
     let name: StringName = "set_swizzle_b"
     methodbind = interface_ClassDB_getMethodBind(addr className RDTextureView, addr name, 3833362581)
-  var `?param`: array[1, pointer]
-  pMember.encode(`?param`[0])
+  var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc swizzleB*(self: Ref[RDTextureView]): RenderingDevice_TextureSwizzle =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `swizzleA=`*(self: Ref[RDTextureView]; pMember: RenderingDevice_TextureSwiz
   if unlikely(methodbind.isNil):
     let name: StringName = "set_swizzle_a"
     methodbind = interface_ClassDB_getMethodBind(addr className RDTextureView, addr name, 3833362581)
-  var `?param`: array[1, pointer]
-  pMember.encode(`?param`[0])
+  var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc swizzleA*(self: Ref[RDTextureView]): RenderingDevice_TextureSwizzle =
   var methodbind {.global.}: MethodBindPtr

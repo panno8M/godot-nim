@@ -9,8 +9,7 @@ proc `panorama=`*(self: Ref[PanoramaSkyMaterial]; texture: Ref[Texture2D]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_panorama"
     methodbind = interface_ClassDB_getMethodBind(addr className PanoramaSkyMaterial, addr name, 4051416890)
-  var `?param`: array[1, pointer]
-  texture.encode(`?param`[0])
+  var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc panorama*(self: Ref[PanoramaSkyMaterial]): Ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `filteringEnabled=`*(self: Ref[PanoramaSkyMaterial]; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_filtering_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className PanoramaSkyMaterial, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isFilteringEnabled*(self: Ref[PanoramaSkyMaterial]): Bool =
   var methodbind {.global.}: MethodBindPtr

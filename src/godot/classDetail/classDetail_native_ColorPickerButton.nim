@@ -9,8 +9,7 @@ proc `pickColor=`*(self: ColorPickerButton; color: Color) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_pick_color"
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPickerButton, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  color.encode(`?param`[0])
+  var `?param` = [getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc pickColor*(self: ColorPickerButton): Color =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +40,7 @@ proc `editAlpha=`*(self: ColorPickerButton; show: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_edit_alpha"
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPickerButton, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  show.encode(`?param`[0])
+  var `?param` = [getPtr show]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isEditingAlpha*(self: ColorPickerButton): Bool =
   var methodbind {.global.}: MethodBindPtr

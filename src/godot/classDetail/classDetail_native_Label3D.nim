@@ -9,8 +9,7 @@ proc `horizontalAlignment=`*(self: Label3D; alignment: HorizontalAlignment) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_horizontal_alignment"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 2312603777)
-  var `?param`: array[1, pointer]
-  alignment.encode(`?param`[0])
+  var `?param` = [getPtr alignment]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc horizontalAlignment*(self: Label3D): HorizontalAlignment =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `verticalAlignment=`*(self: Label3D; alignment: VerticalAlignment) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_vertical_alignment"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 1796458609)
-  var `?param`: array[1, pointer]
-  alignment.encode(`?param`[0])
+  var `?param` = [getPtr alignment]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc verticalAlignment*(self: Label3D): VerticalAlignment =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `modulate=`*(self: Label3D; modulate: Color) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_modulate"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  modulate.encode(`?param`[0])
+  var `?param` = [getPtr modulate]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc modulate*(self: Label3D): Color =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `outlineModulate=`*(self: Label3D; modulate: Color) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_outline_modulate"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  modulate.encode(`?param`[0])
+  var `?param` = [getPtr modulate]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc outlineModulate*(self: Label3D): Color =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `text=`*(self: Label3D; text: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_text"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  text.encode(`?param`[0])
+  var `?param` = [getPtr text]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc text*(self: Label3D): String =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc `textDirection=`*(self: Label3D; direction: TextServer_Direction) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_text_direction"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 1418190634)
-  var `?param`: array[1, pointer]
-  direction.encode(`?param`[0])
+  var `?param` = [getPtr direction]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc textDirection*(self: Label3D): TextServer_Direction =
   var methodbind {.global.}: MethodBindPtr
@@ -105,8 +99,7 @@ proc `language=`*(self: Label3D; language: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_language"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  language.encode(`?param`[0])
+  var `?param` = [getPtr language]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc language*(self: Label3D): String =
   var methodbind {.global.}: MethodBindPtr
@@ -121,8 +114,7 @@ proc `structuredTextBidiOverride=`*(self: Label3D; parser: TextServer_Structured
   if unlikely(methodbind.isNil):
     let name: StringName = "set_structured_text_bidi_override"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 55961453)
-  var `?param`: array[1, pointer]
-  parser.encode(`?param`[0])
+  var `?param` = [getPtr parser]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc structuredTextBidiOverride*(self: Label3D): TextServer_StructuredTextParser =
   var methodbind {.global.}: MethodBindPtr
@@ -137,8 +129,7 @@ proc `structuredTextBidiOverrideOptions=`*(self: Label3D; args: Array) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_structured_text_bidi_override_options"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 381264803)
-  var `?param`: array[1, pointer]
-  args.encode(`?param`[0])
+  var `?param` = [getPtr args]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc structuredTextBidiOverrideOptions*(self: Label3D): Array =
   var methodbind {.global.}: MethodBindPtr
@@ -153,8 +144,7 @@ proc `uppercase=`*(self: Label3D; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_uppercase"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isUppercase*(self: Label3D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -169,8 +159,7 @@ proc `renderPriority=`*(self: Label3D; priority: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_render_priority"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  priority.encode(`?param`[0])
+  var `?param` = [getPtr priority]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc renderPriority*(self: Label3D): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -185,8 +174,7 @@ proc `outlineRenderPriority=`*(self: Label3D; priority: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_outline_render_priority"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  priority.encode(`?param`[0])
+  var `?param` = [getPtr priority]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc outlineRenderPriority*(self: Label3D): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -201,8 +189,7 @@ proc `font=`*(self: Label3D; font: Ref[Font]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_font"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 1262170328)
-  var `?param`: array[1, pointer]
-  font.encode(`?param`[0])
+  var `?param` = [getPtr font]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc font*(self: Label3D): Ref[Font] =
   var methodbind {.global.}: MethodBindPtr
@@ -217,8 +204,7 @@ proc `fontSize=`*(self: Label3D; size: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_font_size"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  size.encode(`?param`[0])
+  var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fontSize*(self: Label3D): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -233,8 +219,7 @@ proc `outlineSize=`*(self: Label3D; outlineSize: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_outline_size"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  outlineSize.encode(`?param`[0])
+  var `?param` = [getPtr outlineSize]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc outlineSize*(self: Label3D): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -249,8 +234,7 @@ proc `lineSpacing=`*(self: Label3D; lineSpacing: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_line_spacing"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  lineSpacing.encode(`?param`[0])
+  var `?param` = [getPtr lineSpacing]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc lineSpacing*(self: Label3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -265,8 +249,7 @@ proc `autowrapMode=`*(self: Label3D; autowrapMode: TextServer_AutowrapMode) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_autowrap_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 3289138044)
-  var `?param`: array[1, pointer]
-  autowrapMode.encode(`?param`[0])
+  var `?param` = [getPtr autowrapMode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc autowrapMode*(self: Label3D): TextServer_AutowrapMode =
   var methodbind {.global.}: MethodBindPtr
@@ -281,8 +264,7 @@ proc `justificationFlags=`*(self: Label3D; justificationFlags: set[TextServer_Ju
   if unlikely(methodbind.isNil):
     let name: StringName = "set_justification_flags"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 2877345813)
-  var `?param`: array[1, pointer]
-  justificationFlags.encode(`?param`[0])
+  var `?param` = [getPtr justificationFlags]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc justificationFlags*(self: Label3D): set[TextServer_JustificationFlag] =
   var methodbind {.global.}: MethodBindPtr
@@ -297,8 +279,7 @@ proc `width=`*(self: Label3D; width: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_width"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  width.encode(`?param`[0])
+  var `?param` = [getPtr width]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc width*(self: Label3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -313,8 +294,7 @@ proc `pixelSize=`*(self: Label3D; pixelSize: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_pixel_size"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  pixelSize.encode(`?param`[0])
+  var `?param` = [getPtr pixelSize]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc pixelSize*(self: Label3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -329,8 +309,7 @@ proc `offset=`*(self: Label3D; offset: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  offset.encode(`?param`[0])
+  var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc offset*(self: Label3D): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -345,16 +324,14 @@ proc `drawFlag=`*(self: Label3D; flag: Label3D_DrawFlags; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_draw_flag"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 1285833066)
-  var `?param`: array[2, pointer]
-  flag.encode(`?param`[0]); enabled.encode(`?param`[1])
+  var `?param` = [getPtr flag, getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc drawFlag*(self: Label3D; flag: Label3D_DrawFlags): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_draw_flag"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 259226453)
-  var `?param`: array[1, pointer]
-  flag.encode(`?param`[0])
+  var `?param` = [getPtr flag]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -363,8 +340,7 @@ proc `billboardMode=`*(self: Label3D; mode: BaseMaterial3D_BillboardMode) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_billboard_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 4202036497)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc billboardMode*(self: Label3D): BaseMaterial3D_BillboardMode =
   var methodbind {.global.}: MethodBindPtr
@@ -379,8 +355,7 @@ proc `alphaCutMode=`*(self: Label3D; mode: Label3D_AlphaCutMode) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_alpha_cut_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 2549142916)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc alphaCutMode*(self: Label3D): Label3D_AlphaCutMode =
   var methodbind {.global.}: MethodBindPtr
@@ -395,8 +370,7 @@ proc `alphaScissorThreshold=`*(self: Label3D; threshold: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_alpha_scissor_threshold"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  threshold.encode(`?param`[0])
+  var `?param` = [getPtr threshold]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc alphaScissorThreshold*(self: Label3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -411,8 +385,7 @@ proc `alphaHashScale=`*(self: Label3D; threshold: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_alpha_hash_scale"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  threshold.encode(`?param`[0])
+  var `?param` = [getPtr threshold]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc alphaHashScale*(self: Label3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -427,8 +400,7 @@ proc `alphaAntialiasing=`*(self: Label3D; alphaAa: BaseMaterial3D_AlphaAntiAlias
   if unlikely(methodbind.isNil):
     let name: StringName = "set_alpha_antialiasing"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 3212649852)
-  var `?param`: array[1, pointer]
-  alphaAa.encode(`?param`[0])
+  var `?param` = [getPtr alphaAa]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc alphaAntialiasing*(self: Label3D): BaseMaterial3D_AlphaAntiAliasing =
   var methodbind {.global.}: MethodBindPtr
@@ -443,8 +415,7 @@ proc `alphaAntialiasingEdge=`*(self: Label3D; edge: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_alpha_antialiasing_edge"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  edge.encode(`?param`[0])
+  var `?param` = [getPtr edge]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc alphaAntialiasingEdge*(self: Label3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -459,8 +430,7 @@ proc `textureFilter=`*(self: Label3D; mode: BaseMaterial3D_TextureFilter) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_texture_filter"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 22904437)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc textureFilter*(self: Label3D): BaseMaterial3D_TextureFilter =
   var methodbind {.global.}: MethodBindPtr

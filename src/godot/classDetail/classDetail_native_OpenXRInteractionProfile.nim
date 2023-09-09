@@ -9,8 +9,7 @@ proc `interactionProfilePath=`*(self: Ref[OpenXRInteractionProfile]; interaction
   if unlikely(methodbind.isNil):
     let name: StringName = "set_interaction_profile_path"
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRInteractionProfile, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  interactionProfilePath.encode(`?param`[0])
+  var `?param` = [getPtr interactionProfilePath]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc interactionProfilePath*(self: Ref[OpenXRInteractionProfile]): String =
   var methodbind {.global.}: MethodBindPtr
@@ -33,8 +32,7 @@ proc getBinding*(self: Ref[OpenXRInteractionProfile]; index: int32): Ref[OpenXRI
   if unlikely(methodbind.isNil):
     let name: StringName = "get_binding"
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRInteractionProfile, addr name, 3934429652)
-  var `?param`: array[1, pointer]
-  index.encode(`?param`[0])
+  var `?param` = [getPtr index]
   var ret: encoded Ref[OpenXRIPBinding]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[OpenXRIPBinding])
@@ -43,8 +41,7 @@ proc `bindings=`*(self: Ref[OpenXRInteractionProfile]; bindings: Array) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_bindings"
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRInteractionProfile, addr name, 381264803)
-  var `?param`: array[1, pointer]
-  bindings.encode(`?param`[0])
+  var `?param` = [getPtr bindings]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc bindings*(self: Ref[OpenXRInteractionProfile]): Array =
   var methodbind {.global.}: MethodBindPtr

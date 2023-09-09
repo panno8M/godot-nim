@@ -9,8 +9,7 @@ proc `mode=`*(self: Ref[AudioEffectDistortion]; mode: AudioEffectDistortion_Mode
   if unlikely(methodbind.isNil):
     let name: StringName = "set_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDistortion, addr name, 1314744793)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc mode*(self: Ref[AudioEffectDistortion]): AudioEffectDistortion_Mode =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `preGain=`*(self: Ref[AudioEffectDistortion]; preGain: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_pre_gain"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDistortion, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  preGain.encode(`?param`[0])
+  var `?param` = [getPtr preGain]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc preGain*(self: Ref[AudioEffectDistortion]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `keepHfHz=`*(self: Ref[AudioEffectDistortion]; keepHfHz: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_keep_hf_hz"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDistortion, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  keepHfHz.encode(`?param`[0])
+  var `?param` = [getPtr keepHfHz]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc keepHfHz*(self: Ref[AudioEffectDistortion]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `drive=`*(self: Ref[AudioEffectDistortion]; drive: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_drive"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDistortion, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  drive.encode(`?param`[0])
+  var `?param` = [getPtr drive]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc drive*(self: Ref[AudioEffectDistortion]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `postGain=`*(self: Ref[AudioEffectDistortion]; postGain: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_post_gain"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDistortion, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  postGain.encode(`?param`[0])
+  var `?param` = [getPtr postGain]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc postGain*(self: Ref[AudioEffectDistortion]): Float =
   var methodbind {.global.}: MethodBindPtr

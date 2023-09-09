@@ -9,16 +9,14 @@ proc resourceChanged*(self: CollisionShape3D; resource: Ref[Resource]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "resource_changed"
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionShape3D, addr name, 968641751)
-  var `?param`: array[1, pointer]
-  resource.encode(`?param`[0])
+  var `?param` = [getPtr resource]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `shape=`*(self: CollisionShape3D; shape: Ref[Shape3D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionShape3D, addr name, 1549710052)
-  var `?param`: array[1, pointer]
-  shape.encode(`?param`[0])
+  var `?param` = [getPtr shape]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc shape*(self: CollisionShape3D): Ref[Shape3D] =
   var methodbind {.global.}: MethodBindPtr
@@ -33,8 +31,7 @@ proc `disabled=`*(self: CollisionShape3D; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_disabled"
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionShape3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isDisabled*(self: CollisionShape3D): Bool =
   var methodbind {.global.}: MethodBindPtr

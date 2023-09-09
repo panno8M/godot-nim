@@ -9,8 +9,7 @@ proc `objectId=`*(self: Ref[EncodedObjectAsID]; id: uint64) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_object_id"
     methodbind = interface_ClassDB_getMethodBind(addr className EncodedObjectAsID, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  id.encode(`?param`[0])
+  var `?param` = [getPtr id]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc objectId*(self: Ref[EncodedObjectAsID]): uint64 =
   var methodbind {.global.}: MethodBindPtr

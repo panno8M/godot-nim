@@ -9,8 +9,7 @@ proc connectNode*(self: GraphEdit; fromNode: StringName; fromPort: int32; toNode
   if unlikely(methodbind.isNil):
     let name: StringName = "connect_node"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 195065850)
-  var `?param`: array[4, pointer]
-  fromNode.encode(`?param`[0]); fromPort.encode(`?param`[1]); toNode.encode(`?param`[2]); toPort.encode(`?param`[3])
+  var `?param` = [getPtr fromNode, getPtr fromPort, getPtr toNode, getPtr toPort]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -19,8 +18,7 @@ proc isNodeConnected*(self: GraphEdit; fromNode: StringName; fromPort: int32; to
   if unlikely(methodbind.isNil):
     let name: StringName = "is_node_connected"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 4216241294)
-  var `?param`: array[4, pointer]
-  fromNode.encode(`?param`[0]); fromPort.encode(`?param`[1]); toNode.encode(`?param`[2]); toPort.encode(`?param`[3])
+  var `?param` = [getPtr fromNode, getPtr fromPort, getPtr toNode, getPtr toPort]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -29,16 +27,14 @@ proc disconnectNode*(self: GraphEdit; fromNode: StringName; fromPort: int32; toN
   if unlikely(methodbind.isNil):
     let name: StringName = "disconnect_node"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 1933654315)
-  var `?param`: array[4, pointer]
-  fromNode.encode(`?param`[0]); fromPort.encode(`?param`[1]); toNode.encode(`?param`[2]); toPort.encode(`?param`[3])
+  var `?param` = [getPtr fromNode, getPtr fromPort, getPtr toNode, getPtr toPort]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setConnectionActivity*(self: GraphEdit; fromNode: StringName; fromPort: int32; toNode: StringName; toPort: int32; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_connection_activity"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 1141899943)
-  var `?param`: array[5, pointer]
-  fromNode.encode(`?param`[0]); fromPort.encode(`?param`[1]); toNode.encode(`?param`[2]); toPort.encode(`?param`[3]); amount.encode(`?param`[4])
+  var `?param` = [getPtr fromNode, getPtr fromPort, getPtr toNode, getPtr toPort, getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getConnectionList*(self: GraphEdit): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
@@ -73,64 +69,56 @@ proc `scrollOfs=`*(self: GraphEdit; offset: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_scroll_ofs"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  offset.encode(`?param`[0])
+  var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc addValidRightDisconnectType*(self: GraphEdit; `type`: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_valid_right_disconnect_type"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  `type`.encode(`?param`[0])
+  var `?param` = [getPtr `type`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc removeValidRightDisconnectType*(self: GraphEdit; `type`: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_valid_right_disconnect_type"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  `type`.encode(`?param`[0])
+  var `?param` = [getPtr `type`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc addValidLeftDisconnectType*(self: GraphEdit; `type`: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_valid_left_disconnect_type"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  `type`.encode(`?param`[0])
+  var `?param` = [getPtr `type`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc removeValidLeftDisconnectType*(self: GraphEdit; `type`: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_valid_left_disconnect_type"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  `type`.encode(`?param`[0])
+  var `?param` = [getPtr `type`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc addValidConnectionType*(self: GraphEdit; fromType: int32; toType: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_valid_connection_type"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 3937882851)
-  var `?param`: array[2, pointer]
-  fromType.encode(`?param`[0]); toType.encode(`?param`[1])
+  var `?param` = [getPtr fromType, getPtr toType]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc removeValidConnectionType*(self: GraphEdit; fromType: int32; toType: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_valid_connection_type"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 3937882851)
-  var `?param`: array[2, pointer]
-  fromType.encode(`?param`[0]); toType.encode(`?param`[1])
+  var `?param` = [getPtr fromType, getPtr toType]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isValidConnectionType*(self: GraphEdit; fromType: int32; toType: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_valid_connection_type"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 2522259332)
-  var `?param`: array[2, pointer]
-  fromType.encode(`?param`[0]); toType.encode(`?param`[1])
+  var `?param` = [getPtr fromType, getPtr toType]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -139,8 +127,7 @@ proc getConnectionLine*(self: GraphEdit; fromNode: Vector2; toNode: Vector2): Pa
   if unlikely(methodbind.isNil):
     let name: StringName = "get_connection_line"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 1562168077)
-  var `?param`: array[2, pointer]
-  fromNode.encode(`?param`[0]); toNode.encode(`?param`[1])
+  var `?param` = [getPtr fromNode, getPtr toNode]
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedVector2Array)
@@ -149,8 +136,7 @@ proc `panningScheme=`*(self: GraphEdit; scheme: GraphEdit_PanningScheme) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_panning_scheme"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 18893313)
-  var `?param`: array[1, pointer]
-  scheme.encode(`?param`[0])
+  var `?param` = [getPtr scheme]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc panningScheme*(self: GraphEdit): GraphEdit_PanningScheme =
   var methodbind {.global.}: MethodBindPtr
@@ -165,8 +151,7 @@ proc `zoom=`*(self: GraphEdit; zoom: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_zoom"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  zoom.encode(`?param`[0])
+  var `?param` = [getPtr zoom]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc zoom*(self: GraphEdit): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -181,8 +166,7 @@ proc `zoomMin=`*(self: GraphEdit; zoomMin: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_zoom_min"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  zoomMin.encode(`?param`[0])
+  var `?param` = [getPtr zoomMin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc zoomMin*(self: GraphEdit): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -197,8 +181,7 @@ proc `zoomMax=`*(self: GraphEdit; zoomMax: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_zoom_max"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  zoomMax.encode(`?param`[0])
+  var `?param` = [getPtr zoomMax]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc zoomMax*(self: GraphEdit): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -213,8 +196,7 @@ proc `zoomStep=`*(self: GraphEdit; zoomStep: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_zoom_step"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  zoomStep.encode(`?param`[0])
+  var `?param` = [getPtr zoomStep]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc zoomStep*(self: GraphEdit): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -229,8 +211,7 @@ proc `showZoomLabel=`*(self: GraphEdit; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_show_zoom_label"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isShowingZoomLabel*(self: GraphEdit): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -245,8 +226,7 @@ proc `snap=`*(self: GraphEdit; pixels: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_snap"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  pixels.encode(`?param`[0])
+  var `?param` = [getPtr pixels]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc snap*(self: GraphEdit): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -261,8 +241,7 @@ proc `useSnap=`*(self: GraphEdit; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_use_snap"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isUsingSnap*(self: GraphEdit): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -277,8 +256,7 @@ proc `connectionLinesCurvature=`*(self: GraphEdit; curvature: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_connection_lines_curvature"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  curvature.encode(`?param`[0])
+  var `?param` = [getPtr curvature]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc connectionLinesCurvature*(self: GraphEdit): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -293,8 +271,7 @@ proc `connectionLinesThickness=`*(self: GraphEdit; pixels: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_connection_lines_thickness"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  pixels.encode(`?param`[0])
+  var `?param` = [getPtr pixels]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc connectionLinesThickness*(self: GraphEdit): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -309,8 +286,7 @@ proc `connectionLinesAntialiased=`*(self: GraphEdit; pixels: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_connection_lines_antialiased"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  pixels.encode(`?param`[0])
+  var `?param` = [getPtr pixels]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isConnectionLinesAntialiased*(self: GraphEdit): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -325,8 +301,7 @@ proc `minimapSize=`*(self: GraphEdit; size: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_minimap_size"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  size.encode(`?param`[0])
+  var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc minimapSize*(self: GraphEdit): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -341,8 +316,7 @@ proc `minimapOpacity=`*(self: GraphEdit; opacity: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_minimap_opacity"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  opacity.encode(`?param`[0])
+  var `?param` = [getPtr opacity]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc minimapOpacity*(self: GraphEdit): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -357,8 +331,7 @@ proc `minimapEnabled=`*(self: GraphEdit; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_minimap_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isMinimapEnabled*(self: GraphEdit): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -373,8 +346,7 @@ proc `arrangeNodesButtonHidden=`*(self: GraphEdit; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_arrange_nodes_button_hidden"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isArrangeNodesButtonHidden*(self: GraphEdit): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -389,8 +361,7 @@ proc `rightDisconnects=`*(self: GraphEdit; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_right_disconnects"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isRightDisconnectsEnabled*(self: GraphEdit): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -419,6 +390,5 @@ proc setSelected*(self: GraphEdit; node: Node) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_selected"
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 1078189570)
-  var `?param`: array[1, pointer]
-  node.encode(`?param`[0])
+  var `?param` = [getPtr node]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

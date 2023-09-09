@@ -9,8 +9,7 @@ proc `materialOverride=`*(self: GeometryInstance3D; material: Ref[Material]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_material_override"
     methodbind = interface_ClassDB_getMethodBind(addr className GeometryInstance3D, addr name, 2757459619)
-  var `?param`: array[1, pointer]
-  material.encode(`?param`[0])
+  var `?param` = [getPtr material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc materialOverride*(self: GeometryInstance3D): Ref[Material] =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `materialOverlay=`*(self: GeometryInstance3D; material: Ref[Material]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_material_overlay"
     methodbind = interface_ClassDB_getMethodBind(addr className GeometryInstance3D, addr name, 2757459619)
-  var `?param`: array[1, pointer]
-  material.encode(`?param`[0])
+  var `?param` = [getPtr material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc materialOverlay*(self: GeometryInstance3D): Ref[Material] =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `castShadowsSetting=`*(self: GeometryInstance3D; shadowCastingSetting: Geom
   if unlikely(methodbind.isNil):
     let name: StringName = "set_cast_shadows_setting"
     methodbind = interface_ClassDB_getMethodBind(addr className GeometryInstance3D, addr name, 856677339)
-  var `?param`: array[1, pointer]
-  shadowCastingSetting.encode(`?param`[0])
+  var `?param` = [getPtr shadowCastingSetting]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc castShadowsSetting*(self: GeometryInstance3D): GeometryInstance3D_ShadowCastingSetting =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `lodBias=`*(self: GeometryInstance3D; bias: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_lod_bias"
     methodbind = interface_ClassDB_getMethodBind(addr className GeometryInstance3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  bias.encode(`?param`[0])
+  var `?param` = [getPtr bias]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc lodBias*(self: GeometryInstance3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `transparency=`*(self: GeometryInstance3D; transparency: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_transparency"
     methodbind = interface_ClassDB_getMethodBind(addr className GeometryInstance3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  transparency.encode(`?param`[0])
+  var `?param` = [getPtr transparency]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc transparency*(self: GeometryInstance3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc `visibilityRangeEndMargin=`*(self: GeometryInstance3D; distance: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_visibility_range_end_margin"
     methodbind = interface_ClassDB_getMethodBind(addr className GeometryInstance3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  distance.encode(`?param`[0])
+  var `?param` = [getPtr distance]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc visibilityRangeEndMargin*(self: GeometryInstance3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -105,8 +99,7 @@ proc `visibilityRangeEnd=`*(self: GeometryInstance3D; distance: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_visibility_range_end"
     methodbind = interface_ClassDB_getMethodBind(addr className GeometryInstance3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  distance.encode(`?param`[0])
+  var `?param` = [getPtr distance]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc visibilityRangeEnd*(self: GeometryInstance3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -121,8 +114,7 @@ proc `visibilityRangeBeginMargin=`*(self: GeometryInstance3D; distance: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_visibility_range_begin_margin"
     methodbind = interface_ClassDB_getMethodBind(addr className GeometryInstance3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  distance.encode(`?param`[0])
+  var `?param` = [getPtr distance]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc visibilityRangeBeginMargin*(self: GeometryInstance3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -137,8 +129,7 @@ proc `visibilityRangeBegin=`*(self: GeometryInstance3D; distance: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_visibility_range_begin"
     methodbind = interface_ClassDB_getMethodBind(addr className GeometryInstance3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  distance.encode(`?param`[0])
+  var `?param` = [getPtr distance]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc visibilityRangeBegin*(self: GeometryInstance3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -153,8 +144,7 @@ proc `visibilityRangeFadeMode=`*(self: GeometryInstance3D; mode: GeometryInstanc
   if unlikely(methodbind.isNil):
     let name: StringName = "set_visibility_range_fade_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className GeometryInstance3D, addr name, 1440117808)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc visibilityRangeFadeMode*(self: GeometryInstance3D): GeometryInstance3D_VisibilityRangeFadeMode =
   var methodbind {.global.}: MethodBindPtr
@@ -169,16 +159,14 @@ proc setInstanceShaderParameter*(self: GeometryInstance3D; name: StringName; val
   if unlikely(methodbind.isNil):
     let name: StringName = "set_instance_shader_parameter"
     methodbind = interface_ClassDB_getMethodBind(addr className GeometryInstance3D, addr name, 3776071444)
-  var `?param`: array[2, pointer]
-  name.encode(`?param`[0]); value.encode(`?param`[1])
+  var `?param` = [getPtr name, getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getInstanceShaderParameter*(self: GeometryInstance3D; name: StringName): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_instance_shader_parameter"
     methodbind = interface_ClassDB_getMethodBind(addr className GeometryInstance3D, addr name, 2760726917)
-  var `?param`: array[1, pointer]
-  name.encode(`?param`[0])
+  var `?param` = [getPtr name]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
@@ -187,8 +175,7 @@ proc `extraCullMargin=`*(self: GeometryInstance3D; margin: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_extra_cull_margin"
     methodbind = interface_ClassDB_getMethodBind(addr className GeometryInstance3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  margin.encode(`?param`[0])
+  var `?param` = [getPtr margin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc extraCullMargin*(self: GeometryInstance3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -203,8 +190,7 @@ proc `lightmapScale=`*(self: GeometryInstance3D; scale: GeometryInstance3D_Light
   if unlikely(methodbind.isNil):
     let name: StringName = "set_lightmap_scale"
     methodbind = interface_ClassDB_getMethodBind(addr className GeometryInstance3D, addr name, 2462696582)
-  var `?param`: array[1, pointer]
-  scale.encode(`?param`[0])
+  var `?param` = [getPtr scale]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc lightmapScale*(self: GeometryInstance3D): GeometryInstance3D_LightmapScale =
   var methodbind {.global.}: MethodBindPtr
@@ -219,8 +205,7 @@ proc `giMode=`*(self: GeometryInstance3D; mode: GeometryInstance3D_GIMode) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_gi_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className GeometryInstance3D, addr name, 2548557163)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc giMode*(self: GeometryInstance3D): GeometryInstance3D_GIMode =
   var methodbind {.global.}: MethodBindPtr
@@ -235,8 +220,7 @@ proc `ignoreOcclusionCulling=`*(self: GeometryInstance3D; ignoreCulling: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ignore_occlusion_culling"
     methodbind = interface_ClassDB_getMethodBind(addr className GeometryInstance3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  ignoreCulling.encode(`?param`[0])
+  var `?param` = [getPtr ignoreCulling]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isIgnoringOcclusionCulling*(self: GeometryInstance3D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -251,8 +235,7 @@ proc `customAabb=`*(self: GeometryInstance3D; aabb: AABB) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_custom_aabb"
     methodbind = interface_ClassDB_getMethodBind(addr className GeometryInstance3D, addr name, 259215842)
-  var `?param`: array[1, pointer]
-  aabb.encode(`?param`[0])
+  var `?param` = [getPtr aabb]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc customAabb*(self: GeometryInstance3D): AABB =
   var methodbind {.global.}: MethodBindPtr

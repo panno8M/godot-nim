@@ -9,8 +9,7 @@ proc `curve=`*(self: Path2D; curve: Ref[Curve2D]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_curve"
     methodbind = interface_ClassDB_getMethodBind(addr className Path2D, addr name, 659985499)
-  var `?param`: array[1, pointer]
-  curve.encode(`?param`[0])
+  var `?param` = [getPtr curve]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc curve*(self: Path2D): Ref[Curve2D] =
   var methodbind {.global.}: MethodBindPtr

@@ -9,8 +9,7 @@ proc `data=`*(self: Ref[AudioStreamWAV]; data: PackedByteArray) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_data"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamWAV, addr name, 2971499966)
-  var `?param`: array[1, pointer]
-  data.encode(`?param`[0])
+  var `?param` = [getPtr data]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc data*(self: Ref[AudioStreamWAV]): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `format=`*(self: Ref[AudioStreamWAV]; format: AudioStreamWAV_Format) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_format"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamWAV, addr name, 60648488)
-  var `?param`: array[1, pointer]
-  format.encode(`?param`[0])
+  var `?param` = [getPtr format]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc format*(self: Ref[AudioStreamWAV]): AudioStreamWAV_Format =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `loopMode=`*(self: Ref[AudioStreamWAV]; loopMode: AudioStreamWAV_LoopMode) 
   if unlikely(methodbind.isNil):
     let name: StringName = "set_loop_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamWAV, addr name, 2444882972)
-  var `?param`: array[1, pointer]
-  loopMode.encode(`?param`[0])
+  var `?param` = [getPtr loopMode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc loopMode*(self: Ref[AudioStreamWAV]): AudioStreamWAV_LoopMode =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `loopBegin=`*(self: Ref[AudioStreamWAV]; loopBegin: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_loop_begin"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamWAV, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  loopBegin.encode(`?param`[0])
+  var `?param` = [getPtr loopBegin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc loopBegin*(self: Ref[AudioStreamWAV]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `loopEnd=`*(self: Ref[AudioStreamWAV]; loopEnd: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_loop_end"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamWAV, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  loopEnd.encode(`?param`[0])
+  var `?param` = [getPtr loopEnd]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc loopEnd*(self: Ref[AudioStreamWAV]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc `mixRate=`*(self: Ref[AudioStreamWAV]; mixRate: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_mix_rate"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamWAV, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  mixRate.encode(`?param`[0])
+  var `?param` = [getPtr mixRate]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc mixRate*(self: Ref[AudioStreamWAV]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -105,8 +99,7 @@ proc `stereo=`*(self: Ref[AudioStreamWAV]; stereo: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_stereo"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamWAV, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  stereo.encode(`?param`[0])
+  var `?param` = [getPtr stereo]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isStereo*(self: Ref[AudioStreamWAV]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -121,8 +114,7 @@ proc saveToWav*(self: Ref[AudioStreamWAV]; path: String): Error =
   if unlikely(methodbind.isNil):
     let name: StringName = "save_to_wav"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamWAV, addr name, 166001499)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)

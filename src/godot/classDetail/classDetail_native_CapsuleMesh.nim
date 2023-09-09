@@ -9,8 +9,7 @@ proc `radius=`*(self: Ref[CapsuleMesh]; radius: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_radius"
     methodbind = interface_ClassDB_getMethodBind(addr className CapsuleMesh, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  radius.encode(`?param`[0])
+  var `?param` = [getPtr radius]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc radius*(self: Ref[CapsuleMesh]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `height=`*(self: Ref[CapsuleMesh]; height: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_height"
     methodbind = interface_ClassDB_getMethodBind(addr className CapsuleMesh, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  height.encode(`?param`[0])
+  var `?param` = [getPtr height]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc height*(self: Ref[CapsuleMesh]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `radialSegments=`*(self: Ref[CapsuleMesh]; segments: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_radial_segments"
     methodbind = interface_ClassDB_getMethodBind(addr className CapsuleMesh, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  segments.encode(`?param`[0])
+  var `?param` = [getPtr segments]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc radialSegments*(self: Ref[CapsuleMesh]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `rings=`*(self: Ref[CapsuleMesh]; rings: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_rings"
     methodbind = interface_ClassDB_getMethodBind(addr className CapsuleMesh, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  rings.encode(`?param`[0])
+  var `?param` = [getPtr rings]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc rings*(self: Ref[CapsuleMesh]): int32 =
   var methodbind {.global.}: MethodBindPtr

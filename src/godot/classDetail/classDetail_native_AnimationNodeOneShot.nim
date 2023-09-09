@@ -9,8 +9,7 @@ proc `fadeinTime=`*(self: Ref[AnimationNodeOneShot]; time: float64) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fadein_time"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeOneShot, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  time.encode(`?param`[0])
+  var `?param` = [getPtr time]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fadeinTime*(self: Ref[AnimationNodeOneShot]): float64 =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `fadeinCurve=`*(self: Ref[AnimationNodeOneShot]; curve: Ref[Curve]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fadein_curve"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeOneShot, addr name, 270443179)
-  var `?param`: array[1, pointer]
-  curve.encode(`?param`[0])
+  var `?param` = [getPtr curve]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fadeinCurve*(self: Ref[AnimationNodeOneShot]): Ref[Curve] =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `fadeoutTime=`*(self: Ref[AnimationNodeOneShot]; time: float64) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fadeout_time"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeOneShot, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  time.encode(`?param`[0])
+  var `?param` = [getPtr time]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fadeoutTime*(self: Ref[AnimationNodeOneShot]): float64 =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `fadeoutCurve=`*(self: Ref[AnimationNodeOneShot]; curve: Ref[Curve]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fadeout_curve"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeOneShot, addr name, 270443179)
-  var `?param`: array[1, pointer]
-  curve.encode(`?param`[0])
+  var `?param` = [getPtr curve]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fadeoutCurve*(self: Ref[AnimationNodeOneShot]): Ref[Curve] =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `autorestart=`*(self: Ref[AnimationNodeOneShot]; active: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_autorestart"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeOneShot, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  active.encode(`?param`[0])
+  var `?param` = [getPtr active]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc hasAutorestart*(self: Ref[AnimationNodeOneShot]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc `autorestartDelay=`*(self: Ref[AnimationNodeOneShot]; time: float64) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_autorestart_delay"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeOneShot, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  time.encode(`?param`[0])
+  var `?param` = [getPtr time]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc autorestartDelay*(self: Ref[AnimationNodeOneShot]): float64 =
   var methodbind {.global.}: MethodBindPtr
@@ -105,8 +99,7 @@ proc `autorestartRandomDelay=`*(self: Ref[AnimationNodeOneShot]; time: float64) 
   if unlikely(methodbind.isNil):
     let name: StringName = "set_autorestart_random_delay"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeOneShot, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  time.encode(`?param`[0])
+  var `?param` = [getPtr time]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc autorestartRandomDelay*(self: Ref[AnimationNodeOneShot]): float64 =
   var methodbind {.global.}: MethodBindPtr
@@ -121,8 +114,7 @@ proc `mixMode=`*(self: Ref[AnimationNodeOneShot]; mode: AnimationNodeOneShot_Mix
   if unlikely(methodbind.isNil):
     let name: StringName = "set_mix_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeOneShot, addr name, 1018899799)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc mixMode*(self: Ref[AnimationNodeOneShot]): AnimationNodeOneShot_MixMode =
   var methodbind {.global.}: MethodBindPtr

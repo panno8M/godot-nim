@@ -9,8 +9,7 @@ proc `textureType=`*(self: Ref[VisualShaderNodeTextureParameter]; `type`: Visual
   if unlikely(methodbind.isNil):
     let name: StringName = "set_texture_type"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeTextureParameter, addr name, 2227296876)
-  var `?param`: array[1, pointer]
-  `type`.encode(`?param`[0])
+  var `?param` = [getPtr `type`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc textureType*(self: Ref[VisualShaderNodeTextureParameter]): VisualShaderNodeTextureParameter_TextureType =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `colorDefault=`*(self: Ref[VisualShaderNodeTextureParameter]; color: Visual
   if unlikely(methodbind.isNil):
     let name: StringName = "set_color_default"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeTextureParameter, addr name, 4217624432)
-  var `?param`: array[1, pointer]
-  color.encode(`?param`[0])
+  var `?param` = [getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc colorDefault*(self: Ref[VisualShaderNodeTextureParameter]): VisualShaderNodeTextureParameter_ColorDefault =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `textureFilter=`*(self: Ref[VisualShaderNodeTextureParameter]; filter: Visu
   if unlikely(methodbind.isNil):
     let name: StringName = "set_texture_filter"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeTextureParameter, addr name, 2147684752)
-  var `?param`: array[1, pointer]
-  filter.encode(`?param`[0])
+  var `?param` = [getPtr filter]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc textureFilter*(self: Ref[VisualShaderNodeTextureParameter]): VisualShaderNodeTextureParameter_TextureFilter =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `textureRepeat=`*(self: Ref[VisualShaderNodeTextureParameter]; repeat: Visu
   if unlikely(methodbind.isNil):
     let name: StringName = "set_texture_repeat"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeTextureParameter, addr name, 2036143070)
-  var `?param`: array[1, pointer]
-  repeat.encode(`?param`[0])
+  var `?param` = [getPtr repeat]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc textureRepeat*(self: Ref[VisualShaderNodeTextureParameter]): VisualShaderNodeTextureParameter_TextureRepeat =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `textureSource=`*(self: Ref[VisualShaderNodeTextureParameter]; source: Visu
   if unlikely(methodbind.isNil):
     let name: StringName = "set_texture_source"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeTextureParameter, addr name, 1212687372)
-  var `?param`: array[1, pointer]
-  source.encode(`?param`[0])
+  var `?param` = [getPtr source]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc textureSource*(self: Ref[VisualShaderNodeTextureParameter]): VisualShaderNodeTextureParameter_TextureSource =
   var methodbind {.global.}: MethodBindPtr

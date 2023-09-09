@@ -17,8 +17,7 @@ proc `avoidanceEnabled=`*(self: NavigationObstacle2D; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_avoidance_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationObstacle2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc avoidanceEnabled*(self: NavigationObstacle2D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -33,8 +32,7 @@ proc setNavigationMap*(self: NavigationObstacle2D; navigationMap: RID) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_navigation_map"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationObstacle2D, addr name, 2722037293)
-  var `?param`: array[1, pointer]
-  navigationMap.encode(`?param`[0])
+  var `?param` = [getPtr navigationMap]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getNavigationMap*(self: NavigationObstacle2D): RID =
   var methodbind {.global.}: MethodBindPtr
@@ -49,8 +47,7 @@ proc `radius=`*(self: NavigationObstacle2D; radius: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_radius"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationObstacle2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  radius.encode(`?param`[0])
+  var `?param` = [getPtr radius]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc radius*(self: NavigationObstacle2D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -65,8 +62,7 @@ proc `velocity=`*(self: NavigationObstacle2D; velocity: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_velocity"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationObstacle2D, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  velocity.encode(`?param`[0])
+  var `?param` = [getPtr velocity]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc velocity*(self: NavigationObstacle2D): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -81,8 +77,7 @@ proc `vertices=`*(self: NavigationObstacle2D; vertices: PackedVector2Array) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_vertices"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationObstacle2D, addr name, 1509147220)
-  var `?param`: array[1, pointer]
-  vertices.encode(`?param`[0])
+  var `?param` = [getPtr vertices]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc vertices*(self: NavigationObstacle2D): PackedVector2Array =
   var methodbind {.global.}: MethodBindPtr
@@ -97,8 +92,7 @@ proc `avoidanceLayers=`*(self: NavigationObstacle2D; layers: uint32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_avoidance_layers"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationObstacle2D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  layers.encode(`?param`[0])
+  var `?param` = [getPtr layers]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc avoidanceLayers*(self: NavigationObstacle2D): uint32 =
   var methodbind {.global.}: MethodBindPtr
@@ -113,16 +107,14 @@ proc setAvoidanceLayerValue*(self: NavigationObstacle2D; layerNumber: int32; val
   if unlikely(methodbind.isNil):
     let name: StringName = "set_avoidance_layer_value"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationObstacle2D, addr name, 300928843)
-  var `?param`: array[2, pointer]
-  layerNumber.encode(`?param`[0]); value.encode(`?param`[1])
+  var `?param` = [getPtr layerNumber, getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getAvoidanceLayerValue*(self: NavigationObstacle2D; layerNumber: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_avoidance_layer_value"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationObstacle2D, addr name, 1116898809)
-  var `?param`: array[1, pointer]
-  layerNumber.encode(`?param`[0])
+  var `?param` = [getPtr layerNumber]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)

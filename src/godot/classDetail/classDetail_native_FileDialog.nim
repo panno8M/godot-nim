@@ -15,16 +15,14 @@ proc addFilter*(self: FileDialog; filter: String; description: String = "") =
   if unlikely(methodbind.isNil):
     let name: StringName = "add_filter"
     methodbind = interface_ClassDB_getMethodBind(addr className FileDialog, addr name, 233059325)
-  var `?param`: array[2, pointer]
-  filter.encode(`?param`[0]); description.encode(`?param`[1])
+  var `?param` = [getPtr filter, getPtr description]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `filters=`*(self: FileDialog; filters: PackedStringArray) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_filters"
     methodbind = interface_ClassDB_getMethodBind(addr className FileDialog, addr name, 4015028928)
-  var `?param`: array[1, pointer]
-  filters.encode(`?param`[0])
+  var `?param` = [getPtr filters]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc filters*(self: FileDialog): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
@@ -63,32 +61,28 @@ proc `currentDir=`*(self: FileDialog; dir: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_current_dir"
     methodbind = interface_ClassDB_getMethodBind(addr className FileDialog, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  dir.encode(`?param`[0])
+  var `?param` = [getPtr dir]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `currentFile=`*(self: FileDialog; file: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_current_file"
     methodbind = interface_ClassDB_getMethodBind(addr className FileDialog, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  file.encode(`?param`[0])
+  var `?param` = [getPtr file]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `currentPath=`*(self: FileDialog; path: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_current_path"
     methodbind = interface_ClassDB_getMethodBind(addr className FileDialog, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `modeOverridesTitle=`*(self: FileDialog; override: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_mode_overrides_title"
     methodbind = interface_ClassDB_getMethodBind(addr className FileDialog, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  override.encode(`?param`[0])
+  var `?param` = [getPtr override]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isModeOverridingTitle*(self: FileDialog): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -103,8 +97,7 @@ proc `fileMode=`*(self: FileDialog; mode: FileDialog_FileMode) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_file_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className FileDialog, addr name, 3654936397)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fileMode*(self: FileDialog): FileDialog_FileMode =
   var methodbind {.global.}: MethodBindPtr
@@ -135,8 +128,7 @@ proc `access=`*(self: FileDialog; access: FileDialog_Access) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_access"
     methodbind = interface_ClassDB_getMethodBind(addr className FileDialog, addr name, 4104413466)
-  var `?param`: array[1, pointer]
-  access.encode(`?param`[0])
+  var `?param` = [getPtr access]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc access*(self: FileDialog): FileDialog_Access =
   var methodbind {.global.}: MethodBindPtr
@@ -151,8 +143,7 @@ proc `rootSubfolder=`*(self: FileDialog; dir: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_root_subfolder"
     methodbind = interface_ClassDB_getMethodBind(addr className FileDialog, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  dir.encode(`?param`[0])
+  var `?param` = [getPtr dir]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc rootSubfolder*(self: FileDialog): String =
   var methodbind {.global.}: MethodBindPtr
@@ -167,8 +158,7 @@ proc `showHiddenFiles=`*(self: FileDialog; show: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_show_hidden_files"
     methodbind = interface_ClassDB_getMethodBind(addr className FileDialog, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  show.encode(`?param`[0])
+  var `?param` = [getPtr show]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isShowingHiddenFiles*(self: FileDialog): Bool =
   var methodbind {.global.}: MethodBindPtr

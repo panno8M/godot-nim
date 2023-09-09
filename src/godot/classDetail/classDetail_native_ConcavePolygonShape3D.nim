@@ -9,8 +9,7 @@ proc `faces=`*(self: Ref[ConcavePolygonShape3D]; faces: PackedVector3Array) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_faces"
     methodbind = interface_ClassDB_getMethodBind(addr className ConcavePolygonShape3D, addr name, 334873810)
-  var `?param`: array[1, pointer]
-  faces.encode(`?param`[0])
+  var `?param` = [getPtr faces]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc faces*(self: Ref[ConcavePolygonShape3D]): PackedVector3Array =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `backfaceCollisionEnabled=`*(self: Ref[ConcavePolygonShape3D]; enabled: Boo
   if unlikely(methodbind.isNil):
     let name: StringName = "set_backface_collision_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className ConcavePolygonShape3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isBackfaceCollisionEnabled*(self: Ref[ConcavePolygonShape3D]): Bool =
   var methodbind {.global.}: MethodBindPtr

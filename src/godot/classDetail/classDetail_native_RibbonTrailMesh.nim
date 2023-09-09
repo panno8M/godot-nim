@@ -9,8 +9,7 @@ proc `size=`*(self: Ref[RibbonTrailMesh]; size: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_size"
     methodbind = interface_ClassDB_getMethodBind(addr className RibbonTrailMesh, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  size.encode(`?param`[0])
+  var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc size*(self: Ref[RibbonTrailMesh]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `sections=`*(self: Ref[RibbonTrailMesh]; sections: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sections"
     methodbind = interface_ClassDB_getMethodBind(addr className RibbonTrailMesh, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  sections.encode(`?param`[0])
+  var `?param` = [getPtr sections]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc sections*(self: Ref[RibbonTrailMesh]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `sectionLength=`*(self: Ref[RibbonTrailMesh]; sectionLength: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_section_length"
     methodbind = interface_ClassDB_getMethodBind(addr className RibbonTrailMesh, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  sectionLength.encode(`?param`[0])
+  var `?param` = [getPtr sectionLength]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc sectionLength*(self: Ref[RibbonTrailMesh]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `sectionSegments=`*(self: Ref[RibbonTrailMesh]; sectionSegments: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_section_segments"
     methodbind = interface_ClassDB_getMethodBind(addr className RibbonTrailMesh, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  sectionSegments.encode(`?param`[0])
+  var `?param` = [getPtr sectionSegments]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc sectionSegments*(self: Ref[RibbonTrailMesh]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `curve=`*(self: Ref[RibbonTrailMesh]; curve: Ref[Curve]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_curve"
     methodbind = interface_ClassDB_getMethodBind(addr className RibbonTrailMesh, addr name, 270443179)
-  var `?param`: array[1, pointer]
-  curve.encode(`?param`[0])
+  var `?param` = [getPtr curve]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc curve*(self: Ref[RibbonTrailMesh]): Ref[Curve] =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc `shape=`*(self: Ref[RibbonTrailMesh]; shape: RibbonTrailMesh_Shape) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className RibbonTrailMesh, addr name, 1684440262)
-  var `?param`: array[1, pointer]
-  shape.encode(`?param`[0])
+  var `?param` = [getPtr shape]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc shape*(self: Ref[RibbonTrailMesh]): RibbonTrailMesh_Shape =
   var methodbind {.global.}: MethodBindPtr

@@ -9,8 +9,7 @@ proc `windowId=`*(self: Ref[InputEventFromWindow]; id: int64) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_window_id"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventFromWindow, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  id.encode(`?param`[0])
+  var `?param` = [getPtr id]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc windowId*(self: Ref[InputEventFromWindow]): int64 =
   var methodbind {.global.}: MethodBindPtr

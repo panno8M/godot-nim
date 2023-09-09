@@ -9,8 +9,7 @@ proc `gradient=`*(self: Ref[GradientTexture1D]; gradient: Ref[Gradient]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_gradient"
     methodbind = interface_ClassDB_getMethodBind(addr className GradientTexture1D, addr name, 2756054477)
-  var `?param`: array[1, pointer]
-  gradient.encode(`?param`[0])
+  var `?param` = [getPtr gradient]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc gradient*(self: Ref[GradientTexture1D]): Ref[Gradient] =
   var methodbind {.global.}: MethodBindPtr
@@ -25,16 +24,14 @@ proc `width=`*(self: Ref[GradientTexture1D]; width: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_width"
     methodbind = interface_ClassDB_getMethodBind(addr className GradientTexture1D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  width.encode(`?param`[0])
+  var `?param` = [getPtr width]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `useHdr=`*(self: Ref[GradientTexture1D]; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_use_hdr"
     methodbind = interface_ClassDB_getMethodBind(addr className GradientTexture1D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isUsingHdr*(self: Ref[GradientTexture1D]): Bool =
   var methodbind {.global.}: MethodBindPtr

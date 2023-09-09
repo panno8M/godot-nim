@@ -9,8 +9,7 @@ proc `material=`*(self: Ref[PrimitiveMesh]; material: Ref[Material]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_material"
     methodbind = interface_ClassDB_getMethodBind(addr className PrimitiveMesh, addr name, 2757459619)
-  var `?param`: array[1, pointer]
-  material.encode(`?param`[0])
+  var `?param` = [getPtr material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc material*(self: Ref[PrimitiveMesh]): Ref[Material] =
   var methodbind {.global.}: MethodBindPtr
@@ -33,8 +32,7 @@ proc `customAabb=`*(self: Ref[PrimitiveMesh]; aabb: AABB) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_custom_aabb"
     methodbind = interface_ClassDB_getMethodBind(addr className PrimitiveMesh, addr name, 259215842)
-  var `?param`: array[1, pointer]
-  aabb.encode(`?param`[0])
+  var `?param` = [getPtr aabb]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc customAabb*(self: Ref[PrimitiveMesh]): AABB =
   var methodbind {.global.}: MethodBindPtr
@@ -49,8 +47,7 @@ proc `flipFaces=`*(self: Ref[PrimitiveMesh]; flipFaces: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_flip_faces"
     methodbind = interface_ClassDB_getMethodBind(addr className PrimitiveMesh, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  flipFaces.encode(`?param`[0])
+  var `?param` = [getPtr flipFaces]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc flipFaces*(self: Ref[PrimitiveMesh]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -65,8 +62,7 @@ proc `addUv2=`*(self: Ref[PrimitiveMesh]; addUv2: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_add_uv2"
     methodbind = interface_ClassDB_getMethodBind(addr className PrimitiveMesh, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  addUv2.encode(`?param`[0])
+  var `?param` = [getPtr addUv2]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc addUv2*(self: Ref[PrimitiveMesh]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -81,8 +77,7 @@ proc `uv2Padding=`*(self: Ref[PrimitiveMesh]; uv2Padding: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_uv2_padding"
     methodbind = interface_ClassDB_getMethodBind(addr className PrimitiveMesh, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  uv2Padding.encode(`?param`[0])
+  var `?param` = [getPtr uv2Padding]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc uv2Padding*(self: Ref[PrimitiveMesh]): Float =
   var methodbind {.global.}: MethodBindPtr

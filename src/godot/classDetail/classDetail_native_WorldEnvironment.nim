@@ -9,8 +9,7 @@ proc `environment=`*(self: WorldEnvironment; env: Ref[Environment]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_environment"
     methodbind = interface_ClassDB_getMethodBind(addr className WorldEnvironment, addr name, 4143518816)
-  var `?param`: array[1, pointer]
-  env.encode(`?param`[0])
+  var `?param` = [getPtr env]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc environment*(self: WorldEnvironment): Ref[Environment] =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `cameraAttributes=`*(self: WorldEnvironment; cameraAttributes: Ref[CameraAt
   if unlikely(methodbind.isNil):
     let name: StringName = "set_camera_attributes"
     methodbind = interface_ClassDB_getMethodBind(addr className WorldEnvironment, addr name, 2817810567)
-  var `?param`: array[1, pointer]
-  cameraAttributes.encode(`?param`[0])
+  var `?param` = [getPtr cameraAttributes]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc cameraAttributes*(self: WorldEnvironment): Ref[CameraAttributes] =
   var methodbind {.global.}: MethodBindPtr

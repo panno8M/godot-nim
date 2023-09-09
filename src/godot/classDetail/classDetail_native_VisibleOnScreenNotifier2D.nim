@@ -9,8 +9,7 @@ proc `rect=`*(self: VisibleOnScreenNotifier2D; rect: Rect2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_rect"
     methodbind = interface_ClassDB_getMethodBind(addr className VisibleOnScreenNotifier2D, addr name, 2046264180)
-  var `?param`: array[1, pointer]
-  rect.encode(`?param`[0])
+  var `?param` = [getPtr rect]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc rect*(self: VisibleOnScreenNotifier2D): Rect2 =
   var methodbind {.global.}: MethodBindPtr

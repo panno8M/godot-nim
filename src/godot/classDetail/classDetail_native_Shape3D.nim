@@ -9,8 +9,7 @@ proc `customSolverBias=`*(self: Ref[Shape3D]; bias: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_custom_solver_bias"
     methodbind = interface_ClassDB_getMethodBind(addr className Shape3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  bias.encode(`?param`[0])
+  var `?param` = [getPtr bias]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc customSolverBias*(self: Ref[Shape3D]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `margin=`*(self: Ref[Shape3D]; margin: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_margin"
     methodbind = interface_ClassDB_getMethodBind(addr className Shape3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  margin.encode(`?param`[0])
+  var `?param` = [getPtr margin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc margin*(self: Ref[Shape3D]): Float =
   var methodbind {.global.}: MethodBindPtr

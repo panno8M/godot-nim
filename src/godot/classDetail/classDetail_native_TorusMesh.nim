@@ -9,8 +9,7 @@ proc `innerRadius=`*(self: Ref[TorusMesh]; radius: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_inner_radius"
     methodbind = interface_ClassDB_getMethodBind(addr className TorusMesh, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  radius.encode(`?param`[0])
+  var `?param` = [getPtr radius]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc innerRadius*(self: Ref[TorusMesh]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `outerRadius=`*(self: Ref[TorusMesh]; radius: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_outer_radius"
     methodbind = interface_ClassDB_getMethodBind(addr className TorusMesh, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  radius.encode(`?param`[0])
+  var `?param` = [getPtr radius]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc outerRadius*(self: Ref[TorusMesh]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `rings=`*(self: Ref[TorusMesh]; rings: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_rings"
     methodbind = interface_ClassDB_getMethodBind(addr className TorusMesh, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  rings.encode(`?param`[0])
+  var `?param` = [getPtr rings]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc rings*(self: Ref[TorusMesh]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `ringSegments=`*(self: Ref[TorusMesh]; rings: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ring_segments"
     methodbind = interface_ClassDB_getMethodBind(addr className TorusMesh, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  rings.encode(`?param`[0])
+  var `?param` = [getPtr rings]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc ringSegments*(self: Ref[TorusMesh]): int32 =
   var methodbind {.global.}: MethodBindPtr

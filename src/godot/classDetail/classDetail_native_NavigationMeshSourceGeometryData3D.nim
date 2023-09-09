@@ -9,8 +9,7 @@ proc `vertices=`*(self: Ref[NavigationMeshSourceGeometryData3D]; vertices: Packe
   if unlikely(methodbind.isNil):
     let name: StringName = "set_vertices"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMeshSourceGeometryData3D, addr name, 2899603908)
-  var `?param`: array[1, pointer]
-  vertices.encode(`?param`[0])
+  var `?param` = [getPtr vertices]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc vertices*(self: Ref[NavigationMeshSourceGeometryData3D]): PackedFloat32Array =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `indices=`*(self: Ref[NavigationMeshSourceGeometryData3D]; indices: PackedI
   if unlikely(methodbind.isNil):
     let name: StringName = "set_indices"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMeshSourceGeometryData3D, addr name, 3614634198)
-  var `?param`: array[1, pointer]
-  indices.encode(`?param`[0])
+  var `?param` = [getPtr indices]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc indices*(self: Ref[NavigationMeshSourceGeometryData3D]): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
@@ -55,22 +53,19 @@ proc addMesh*(self: Ref[NavigationMeshSourceGeometryData3D]; mesh: Ref[Mesh]; xf
   if unlikely(methodbind.isNil):
     let name: StringName = "add_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMeshSourceGeometryData3D, addr name, 975462459)
-  var `?param`: array[2, pointer]
-  mesh.encode(`?param`[0]); xform.encode(`?param`[1])
+  var `?param` = [getPtr mesh, getPtr xform]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc addMeshArray*(self: Ref[NavigationMeshSourceGeometryData3D]; meshArray: Array; xform: Transform3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_mesh_array"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMeshSourceGeometryData3D, addr name, 4235710913)
-  var `?param`: array[2, pointer]
-  meshArray.encode(`?param`[0]); xform.encode(`?param`[1])
+  var `?param` = [getPtr meshArray, getPtr xform]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc addFaces*(self: Ref[NavigationMeshSourceGeometryData3D]; faces: PackedVector3Array; xform: Transform3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_faces"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMeshSourceGeometryData3D, addr name, 1440358797)
-  var `?param`: array[2, pointer]
-  faces.encode(`?param`[0]); xform.encode(`?param`[1])
+  var `?param` = [getPtr faces, getPtr xform]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

@@ -9,8 +9,7 @@ proc pckStart*(self: Ref[PCKPacker]; pckName: String; alignment: int32 = 32; key
   if unlikely(methodbind.isNil):
     let name: StringName = "pck_start"
     methodbind = interface_ClassDB_getMethodBind(addr className PCKPacker, addr name, 3232891339)
-  var `?param`: array[4, pointer]
-  pckName.encode(`?param`[0]); alignment.encode(`?param`[1]); key.encode(`?param`[2]); encryptDirectory.encode(`?param`[3])
+  var `?param` = [getPtr pckName, getPtr alignment, getPtr key, getPtr encryptDirectory]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -19,8 +18,7 @@ proc addFile*(self: Ref[PCKPacker]; pckPath: String; sourcePath: String; encrypt
   if unlikely(methodbind.isNil):
     let name: StringName = "add_file"
     methodbind = interface_ClassDB_getMethodBind(addr className PCKPacker, addr name, 2215643711)
-  var `?param`: array[3, pointer]
-  pckPath.encode(`?param`[0]); sourcePath.encode(`?param`[1]); encrypt.encode(`?param`[2])
+  var `?param` = [getPtr pckPath, getPtr sourcePath, getPtr encrypt]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -29,8 +27,7 @@ proc flush*(self: Ref[PCKPacker]; verbose: Bool = false): Error =
   if unlikely(methodbind.isNil):
     let name: StringName = "flush"
     methodbind = interface_ClassDB_getMethodBind(addr className PCKPacker, addr name, 1633102583)
-  var `?param`: array[1, pointer]
-  verbose.encode(`?param`[0])
+  var `?param` = [getPtr verbose]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)

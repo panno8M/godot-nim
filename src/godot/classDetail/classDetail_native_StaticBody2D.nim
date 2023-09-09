@@ -9,16 +9,14 @@ proc `constantLinearVelocity=`*(self: StaticBody2D; vel: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_constant_linear_velocity"
     methodbind = interface_ClassDB_getMethodBind(addr className StaticBody2D, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  vel.encode(`?param`[0])
+  var `?param` = [getPtr vel]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `constantAngularVelocity=`*(self: StaticBody2D; vel: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_constant_angular_velocity"
     methodbind = interface_ClassDB_getMethodBind(addr className StaticBody2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  vel.encode(`?param`[0])
+  var `?param` = [getPtr vel]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc constantLinearVelocity*(self: StaticBody2D): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `physicsMaterialOverride=`*(self: StaticBody2D; physicsMaterialOverride: Re
   if unlikely(methodbind.isNil):
     let name: StringName = "set_physics_material_override"
     methodbind = interface_ClassDB_getMethodBind(addr className StaticBody2D, addr name, 1784508650)
-  var `?param`: array[1, pointer]
-  physicsMaterialOverride.encode(`?param`[0])
+  var `?param` = [getPtr physicsMaterialOverride]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc physicsMaterialOverride*(self: StaticBody2D): Ref[PhysicsMaterial] =
   var methodbind {.global.}: MethodBindPtr

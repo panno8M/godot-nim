@@ -9,8 +9,7 @@ proc `shortcut=`*(self: Ref[InputEventShortcut]; shortcut: Ref[Shortcut]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_shortcut"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventShortcut, addr name, 857163497)
-  var `?param`: array[1, pointer]
-  shortcut.encode(`?param`[0])
+  var `?param` = [getPtr shortcut]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc shortcut*(self: Ref[InputEventShortcut]): Ref[Shortcut] =
   var methodbind {.global.}: MethodBindPtr

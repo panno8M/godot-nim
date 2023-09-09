@@ -9,8 +9,7 @@ proc `radius=`*(self: CSGCylinder3D; radius: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_radius"
     methodbind = interface_ClassDB_getMethodBind(addr className CSGCylinder3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  radius.encode(`?param`[0])
+  var `?param` = [getPtr radius]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc radius*(self: CSGCylinder3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `height=`*(self: CSGCylinder3D; height: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_height"
     methodbind = interface_ClassDB_getMethodBind(addr className CSGCylinder3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  height.encode(`?param`[0])
+  var `?param` = [getPtr height]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc height*(self: CSGCylinder3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `sides=`*(self: CSGCylinder3D; sides: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sides"
     methodbind = interface_ClassDB_getMethodBind(addr className CSGCylinder3D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  sides.encode(`?param`[0])
+  var `?param` = [getPtr sides]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc sides*(self: CSGCylinder3D): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `cone=`*(self: CSGCylinder3D; cone: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_cone"
     methodbind = interface_ClassDB_getMethodBind(addr className CSGCylinder3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  cone.encode(`?param`[0])
+  var `?param` = [getPtr cone]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isCone*(self: CSGCylinder3D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `material=`*(self: CSGCylinder3D; material: Ref[Material]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_material"
     methodbind = interface_ClassDB_getMethodBind(addr className CSGCylinder3D, addr name, 2757459619)
-  var `?param`: array[1, pointer]
-  material.encode(`?param`[0])
+  var `?param` = [getPtr material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc material*(self: CSGCylinder3D): Ref[Material] =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc `smoothFaces=`*(self: CSGCylinder3D; smoothFaces: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_smooth_faces"
     methodbind = interface_ClassDB_getMethodBind(addr className CSGCylinder3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  smoothFaces.encode(`?param`[0])
+  var `?param` = [getPtr smoothFaces]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc smoothFaces*(self: CSGCylinder3D): Bool =
   var methodbind {.global.}: MethodBindPtr

@@ -17,8 +17,7 @@ proc `skinRoot=`*(self: Ref[GLTFSkin]; skinRoot: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_skin_root"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkin, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  skinRoot.encode(`?param`[0])
+  var `?param` = [getPtr skinRoot]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc jointsOriginal*(self: Ref[GLTFSkin]): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
@@ -33,8 +32,7 @@ proc `jointsOriginal=`*(self: Ref[GLTFSkin]; jointsOriginal: PackedInt32Array) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_joints_original"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkin, addr name, 3614634198)
-  var `?param`: array[1, pointer]
-  jointsOriginal.encode(`?param`[0])
+  var `?param` = [getPtr jointsOriginal]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc inverseBinds*(self: Ref[GLTFSkin]): TypedArray[Transform3D] =
   var methodbind {.global.}: MethodBindPtr
@@ -49,8 +47,7 @@ proc `inverseBinds=`*(self: Ref[GLTFSkin]; inverseBinds: TypedArray[Transform3D]
   if unlikely(methodbind.isNil):
     let name: StringName = "set_inverse_binds"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkin, addr name, 381264803)
-  var `?param`: array[1, pointer]
-  inverseBinds.encode(`?param`[0])
+  var `?param` = [getPtr inverseBinds]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc joints*(self: Ref[GLTFSkin]): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
@@ -65,8 +62,7 @@ proc `joints=`*(self: Ref[GLTFSkin]; joints: PackedInt32Array) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_joints"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkin, addr name, 3614634198)
-  var `?param`: array[1, pointer]
-  joints.encode(`?param`[0])
+  var `?param` = [getPtr joints]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc nonJoints*(self: Ref[GLTFSkin]): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
@@ -81,8 +77,7 @@ proc `nonJoints=`*(self: Ref[GLTFSkin]; nonJoints: PackedInt32Array) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_non_joints"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkin, addr name, 3614634198)
-  var `?param`: array[1, pointer]
-  nonJoints.encode(`?param`[0])
+  var `?param` = [getPtr nonJoints]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc roots*(self: Ref[GLTFSkin]): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
@@ -97,8 +92,7 @@ proc `roots=`*(self: Ref[GLTFSkin]; roots: PackedInt32Array) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_roots"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkin, addr name, 3614634198)
-  var `?param`: array[1, pointer]
-  roots.encode(`?param`[0])
+  var `?param` = [getPtr roots]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc skeleton*(self: Ref[GLTFSkin]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -113,8 +107,7 @@ proc `skeleton=`*(self: Ref[GLTFSkin]; skeleton: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_skeleton"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkin, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  skeleton.encode(`?param`[0])
+  var `?param` = [getPtr skeleton]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc jointIToBoneI*(self: Ref[GLTFSkin]): Dictionary =
   var methodbind {.global.}: MethodBindPtr
@@ -129,8 +122,7 @@ proc `jointIToBoneI=`*(self: Ref[GLTFSkin]; jointIToBoneI: Dictionary) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_joint_i_to_bone_i"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkin, addr name, 4155329257)
-  var `?param`: array[1, pointer]
-  jointIToBoneI.encode(`?param`[0])
+  var `?param` = [getPtr jointIToBoneI]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc jointIToName*(self: Ref[GLTFSkin]): Dictionary =
   var methodbind {.global.}: MethodBindPtr
@@ -145,8 +137,7 @@ proc `jointIToName=`*(self: Ref[GLTFSkin]; jointIToName: Dictionary) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_joint_i_to_name"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkin, addr name, 4155329257)
-  var `?param`: array[1, pointer]
-  jointIToName.encode(`?param`[0])
+  var `?param` = [getPtr jointIToName]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc godotSkin*(self: Ref[GLTFSkin]): Ref[Skin] =
   var methodbind {.global.}: MethodBindPtr
@@ -161,6 +152,5 @@ proc `godotSkin=`*(self: Ref[GLTFSkin]; godotSkin: Ref[Skin]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_godot_skin"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkin, addr name, 3971435618)
-  var `?param`: array[1, pointer]
-  godotSkin.encode(`?param`[0])
+  var `?param` = [getPtr godotSkin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

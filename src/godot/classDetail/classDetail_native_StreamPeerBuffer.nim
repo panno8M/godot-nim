@@ -9,8 +9,7 @@ proc seek*(self: Ref[StreamPeerBuffer]; position: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "seek"
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeerBuffer, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  position.encode(`?param`[0])
+  var `?param` = [getPtr position]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getSize*(self: Ref[StreamPeerBuffer]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -33,16 +32,14 @@ proc resize*(self: Ref[StreamPeerBuffer]; size: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "resize"
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeerBuffer, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  size.encode(`?param`[0])
+  var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `dataArray=`*(self: Ref[StreamPeerBuffer]; data: PackedByteArray) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_data_array"
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeerBuffer, addr name, 2971499966)
-  var `?param`: array[1, pointer]
-  data.encode(`?param`[0])
+  var `?param` = [getPtr data]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc dataArray*(self: Ref[StreamPeerBuffer]): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr

@@ -9,8 +9,7 @@ proc `colorAttachments=`*(self: Ref[RDFramebufferPass]; pMember: PackedInt32Arra
   if unlikely(methodbind.isNil):
     let name: StringName = "set_color_attachments"
     methodbind = interface_ClassDB_getMethodBind(addr className RDFramebufferPass, addr name, 3614634198)
-  var `?param`: array[1, pointer]
-  pMember.encode(`?param`[0])
+  var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc colorAttachments*(self: Ref[RDFramebufferPass]): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `inputAttachments=`*(self: Ref[RDFramebufferPass]; pMember: PackedInt32Arra
   if unlikely(methodbind.isNil):
     let name: StringName = "set_input_attachments"
     methodbind = interface_ClassDB_getMethodBind(addr className RDFramebufferPass, addr name, 3614634198)
-  var `?param`: array[1, pointer]
-  pMember.encode(`?param`[0])
+  var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc inputAttachments*(self: Ref[RDFramebufferPass]): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `resolveAttachments=`*(self: Ref[RDFramebufferPass]; pMember: PackedInt32Ar
   if unlikely(methodbind.isNil):
     let name: StringName = "set_resolve_attachments"
     methodbind = interface_ClassDB_getMethodBind(addr className RDFramebufferPass, addr name, 3614634198)
-  var `?param`: array[1, pointer]
-  pMember.encode(`?param`[0])
+  var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc resolveAttachments*(self: Ref[RDFramebufferPass]): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `preserveAttachments=`*(self: Ref[RDFramebufferPass]; pMember: PackedInt32A
   if unlikely(methodbind.isNil):
     let name: StringName = "set_preserve_attachments"
     methodbind = interface_ClassDB_getMethodBind(addr className RDFramebufferPass, addr name, 3614634198)
-  var `?param`: array[1, pointer]
-  pMember.encode(`?param`[0])
+  var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc preserveAttachments*(self: Ref[RDFramebufferPass]): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `depthAttachment=`*(self: Ref[RDFramebufferPass]; pMember: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_depth_attachment"
     methodbind = interface_ClassDB_getMethodBind(addr className RDFramebufferPass, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  pMember.encode(`?param`[0])
+  var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc depthAttachment*(self: Ref[RDFramebufferPass]): int32 =
   var methodbind {.global.}: MethodBindPtr

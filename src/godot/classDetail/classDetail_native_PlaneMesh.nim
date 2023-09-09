@@ -9,8 +9,7 @@ proc `size=`*(self: Ref[PlaneMesh]; size: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_size"
     methodbind = interface_ClassDB_getMethodBind(addr className PlaneMesh, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  size.encode(`?param`[0])
+  var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc size*(self: Ref[PlaneMesh]): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `subdivideWidth=`*(self: Ref[PlaneMesh]; subdivide: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_subdivide_width"
     methodbind = interface_ClassDB_getMethodBind(addr className PlaneMesh, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  subdivide.encode(`?param`[0])
+  var `?param` = [getPtr subdivide]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc subdivideWidth*(self: Ref[PlaneMesh]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `subdivideDepth=`*(self: Ref[PlaneMesh]; subdivide: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_subdivide_depth"
     methodbind = interface_ClassDB_getMethodBind(addr className PlaneMesh, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  subdivide.encode(`?param`[0])
+  var `?param` = [getPtr subdivide]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc subdivideDepth*(self: Ref[PlaneMesh]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `centerOffset=`*(self: Ref[PlaneMesh]; offset: Vector3) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_center_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className PlaneMesh, addr name, 3460891852)
-  var `?param`: array[1, pointer]
-  offset.encode(`?param`[0])
+  var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc centerOffset*(self: Ref[PlaneMesh]): Vector3 =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `orientation=`*(self: Ref[PlaneMesh]; orientation: PlaneMesh_Orientation) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_orientation"
     methodbind = interface_ClassDB_getMethodBind(addr className PlaneMesh, addr name, 2751399687)
-  var `?param`: array[1, pointer]
-  orientation.encode(`?param`[0])
+  var `?param` = [getPtr orientation]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc orientation*(self: Ref[PlaneMesh]): PlaneMesh_Orientation =
   var methodbind {.global.}: MethodBindPtr

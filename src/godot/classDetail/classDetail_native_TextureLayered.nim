@@ -57,8 +57,7 @@ proc getLayerData*(self: Ref[TextureLayered]; layer: int32): Ref[Image] =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_layer_data"
     methodbind = interface_ClassDB_getMethodBind(addr className TextureLayered, addr name, 3655284255)
-  var `?param`: array[1, pointer]
-  layer.encode(`?param`[0])
+  var `?param` = [getPtr layer]
   var ret: encoded Ref[Image]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[Image])

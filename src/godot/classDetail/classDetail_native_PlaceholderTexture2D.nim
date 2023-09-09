@@ -9,6 +9,5 @@ proc `size=`*(self: Ref[PlaceholderTexture2D]; size: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_size"
     methodbind = interface_ClassDB_getMethodBind(addr className PlaceholderTexture2D, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  size.encode(`?param`[0])
+  var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

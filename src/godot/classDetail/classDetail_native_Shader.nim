@@ -17,8 +17,7 @@ proc `code=`*(self: Ref[Shader]; code: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_code"
     methodbind = interface_ClassDB_getMethodBind(addr className Shader, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  code.encode(`?param`[0])
+  var `?param` = [getPtr code]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc code*(self: Ref[Shader]): String =
   var methodbind {.global.}: MethodBindPtr
@@ -33,16 +32,14 @@ proc setDefaultTextureParameter*(self: Ref[Shader]; name: StringName; texture: R
   if unlikely(methodbind.isNil):
     let name: StringName = "set_default_texture_parameter"
     methodbind = interface_ClassDB_getMethodBind(addr className Shader, addr name, 1628453603)
-  var `?param`: array[3, pointer]
-  name.encode(`?param`[0]); texture.encode(`?param`[1]); index.encode(`?param`[2])
+  var `?param` = [getPtr name, getPtr texture, getPtr index]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getDefaultTextureParameter*(self: Ref[Shader]; name: StringName; index: int32 = 0): Ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_default_texture_parameter"
     methodbind = interface_ClassDB_getMethodBind(addr className Shader, addr name, 3823812009)
-  var `?param`: array[2, pointer]
-  name.encode(`?param`[0]); index.encode(`?param`[1])
+  var `?param` = [getPtr name, getPtr index]
   var ret: encoded Ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[Texture2D])
@@ -51,8 +48,7 @@ proc getShaderUniformList*(self: Ref[Shader]; getGroups: Bool = false): Array =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_shader_uniform_list"
     methodbind = interface_ClassDB_getMethodBind(addr className Shader, addr name, 1230511656)
-  var `?param`: array[1, pointer]
-  getGroups.encode(`?param`[0])
+  var `?param` = [getPtr getGroups]
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Array)

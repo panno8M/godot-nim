@@ -9,8 +9,7 @@ proc `layer=`*(self: CanvasLayer; layer: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_layer"
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasLayer, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  layer.encode(`?param`[0])
+  var `?param` = [getPtr layer]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc layer*(self: CanvasLayer): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `visible=`*(self: CanvasLayer; visible: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_visible"
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasLayer, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  visible.encode(`?param`[0])
+  var `?param` = [getPtr visible]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isVisible*(self: CanvasLayer): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -53,8 +51,7 @@ proc `transform=`*(self: CanvasLayer; transform: Transform2D) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_transform"
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasLayer, addr name, 2761652528)
-  var `?param`: array[1, pointer]
-  transform.encode(`?param`[0])
+  var `?param` = [getPtr transform]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc transform*(self: CanvasLayer): Transform2D =
   var methodbind {.global.}: MethodBindPtr
@@ -77,8 +74,7 @@ proc `offset=`*(self: CanvasLayer; offset: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasLayer, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  offset.encode(`?param`[0])
+  var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc offset*(self: CanvasLayer): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -93,8 +89,7 @@ proc `rotation=`*(self: CanvasLayer; radians: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_rotation"
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasLayer, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  radians.encode(`?param`[0])
+  var `?param` = [getPtr radians]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc rotation*(self: CanvasLayer): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -109,8 +104,7 @@ proc `scale=`*(self: CanvasLayer; scale: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_scale"
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasLayer, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  scale.encode(`?param`[0])
+  var `?param` = [getPtr scale]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc scale*(self: CanvasLayer): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -125,8 +119,7 @@ proc `followViewport=`*(self: CanvasLayer; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_follow_viewport"
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasLayer, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isFollowingViewport*(self: CanvasLayer): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -141,8 +134,7 @@ proc `followViewportScale=`*(self: CanvasLayer; scale: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_follow_viewport_scale"
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasLayer, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  scale.encode(`?param`[0])
+  var `?param` = [getPtr scale]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc followViewportScale*(self: CanvasLayer): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -157,8 +149,7 @@ proc `customViewport=`*(self: CanvasLayer; viewport: Node) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_custom_viewport"
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasLayer, addr name, 1078189570)
-  var `?param`: array[1, pointer]
-  viewport.encode(`?param`[0])
+  var `?param` = [getPtr viewport]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc customViewport*(self: CanvasLayer): Node =
   var methodbind {.global.}: MethodBindPtr

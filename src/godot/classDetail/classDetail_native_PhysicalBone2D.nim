@@ -25,16 +25,14 @@ proc `autoConfigureJoint=`*(self: PhysicalBone2D; autoConfigureJoint: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_auto_configure_joint"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  autoConfigureJoint.encode(`?param`[0])
+  var `?param` = [getPtr autoConfigureJoint]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `simulatePhysics=`*(self: PhysicalBone2D; simulatePhysics: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_simulate_physics"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  simulatePhysics.encode(`?param`[0])
+  var `?param` = [getPtr simulatePhysics]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc simulatePhysics*(self: PhysicalBone2D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +55,7 @@ proc `bone2dNodepath=`*(self: PhysicalBone2D; nodepath: NodePath) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_bone2d_nodepath"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone2D, addr name, 1348162250)
-  var `?param`: array[1, pointer]
-  nodepath.encode(`?param`[0])
+  var `?param` = [getPtr nodepath]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc bone2dNodepath*(self: PhysicalBone2D): NodePath =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +70,7 @@ proc `bone2dIndex=`*(self: PhysicalBone2D; boneIndex: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_bone2d_index"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone2D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  boneIndex.encode(`?param`[0])
+  var `?param` = [getPtr boneIndex]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc bone2dIndex*(self: PhysicalBone2D): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +85,7 @@ proc `followBoneWhenSimulating=`*(self: PhysicalBone2D; followBone: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_follow_bone_when_simulating"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  followBone.encode(`?param`[0])
+  var `?param` = [getPtr followBone]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc followBoneWhenSimulating*(self: PhysicalBone2D): Bool =
   var methodbind {.global.}: MethodBindPtr

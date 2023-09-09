@@ -9,8 +9,7 @@ proc `texture=`*(self: TextureRect; texture: Ref[Texture2D]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className TextureRect, addr name, 4051416890)
-  var `?param`: array[1, pointer]
-  texture.encode(`?param`[0])
+  var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc texture*(self: TextureRect): Ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `expandMode=`*(self: TextureRect; expandMode: TextureRect_ExpandMode) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_expand_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className TextureRect, addr name, 1870766882)
-  var `?param`: array[1, pointer]
-  expandMode.encode(`?param`[0])
+  var `?param` = [getPtr expandMode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc expandMode*(self: TextureRect): TextureRect_ExpandMode =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `flipH=`*(self: TextureRect; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_flip_h"
     methodbind = interface_ClassDB_getMethodBind(addr className TextureRect, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isFlippedH*(self: TextureRect): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `flipV=`*(self: TextureRect; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_flip_v"
     methodbind = interface_ClassDB_getMethodBind(addr className TextureRect, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isFlippedV*(self: TextureRect): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `stretchMode=`*(self: TextureRect; stretchMode: TextureRect_StretchMode) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_stretch_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className TextureRect, addr name, 58788729)
-  var `?param`: array[1, pointer]
-  stretchMode.encode(`?param`[0])
+  var `?param` = [getPtr stretchMode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc stretchMode*(self: TextureRect): TextureRect_StretchMode =
   var methodbind {.global.}: MethodBindPtr

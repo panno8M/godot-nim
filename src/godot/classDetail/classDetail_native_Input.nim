@@ -17,8 +17,7 @@ proc isKeyPressed*(self: Input; keycode: Key): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "is_key_pressed"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 1938909964)
-  var `?param`: array[1, pointer]
-  keycode.encode(`?param`[0])
+  var `?param` = [getPtr keycode]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -27,8 +26,7 @@ proc isPhysicalKeyPressed*(self: Input; keycode: Key): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "is_physical_key_pressed"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 1938909964)
-  var `?param`: array[1, pointer]
-  keycode.encode(`?param`[0])
+  var `?param` = [getPtr keycode]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -37,8 +35,7 @@ proc isKeyLabelPressed*(self: Input; keycode: Key): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "is_key_label_pressed"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 1938909964)
-  var `?param`: array[1, pointer]
-  keycode.encode(`?param`[0])
+  var `?param` = [getPtr keycode]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -47,8 +44,7 @@ proc isMouseButtonPressed*(self: Input; button: MouseButton): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "is_mouse_button_pressed"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 1821097125)
-  var `?param`: array[1, pointer]
-  button.encode(`?param`[0])
+  var `?param` = [getPtr button]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -57,8 +53,7 @@ proc isJoyButtonPressed*(self: Input; device: int32; button: JoyButton): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "is_joy_button_pressed"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 787208542)
-  var `?param`: array[2, pointer]
-  device.encode(`?param`[0]); button.encode(`?param`[1])
+  var `?param` = [getPtr device, getPtr button]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -67,8 +62,7 @@ proc isActionPressed*(self: Input; action: StringName; exactMatch: Bool = false)
   if unlikely(methodbind.isNil):
     let name: StringName = "is_action_pressed"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 1558498928)
-  var `?param`: array[2, pointer]
-  action.encode(`?param`[0]); exactMatch.encode(`?param`[1])
+  var `?param` = [getPtr action, getPtr exactMatch]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -77,8 +71,7 @@ proc isActionJustPressed*(self: Input; action: StringName; exactMatch: Bool = fa
   if unlikely(methodbind.isNil):
     let name: StringName = "is_action_just_pressed"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 1558498928)
-  var `?param`: array[2, pointer]
-  action.encode(`?param`[0]); exactMatch.encode(`?param`[1])
+  var `?param` = [getPtr action, getPtr exactMatch]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -87,8 +80,7 @@ proc isActionJustReleased*(self: Input; action: StringName; exactMatch: Bool = f
   if unlikely(methodbind.isNil):
     let name: StringName = "is_action_just_released"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 1558498928)
-  var `?param`: array[2, pointer]
-  action.encode(`?param`[0]); exactMatch.encode(`?param`[1])
+  var `?param` = [getPtr action, getPtr exactMatch]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -97,8 +89,7 @@ proc getActionStrength*(self: Input; action: StringName; exactMatch: Bool = fals
   if unlikely(methodbind.isNil):
     let name: StringName = "get_action_strength"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 801543509)
-  var `?param`: array[2, pointer]
-  action.encode(`?param`[0]); exactMatch.encode(`?param`[1])
+  var `?param` = [getPtr action, getPtr exactMatch]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
@@ -107,8 +98,7 @@ proc getActionRawStrength*(self: Input; action: StringName; exactMatch: Bool = f
   if unlikely(methodbind.isNil):
     let name: StringName = "get_action_raw_strength"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 801543509)
-  var `?param`: array[2, pointer]
-  action.encode(`?param`[0]); exactMatch.encode(`?param`[1])
+  var `?param` = [getPtr action, getPtr exactMatch]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
@@ -117,8 +107,7 @@ proc getAxis*(self: Input; negativeAction: StringName; positiveAction: StringNam
   if unlikely(methodbind.isNil):
     let name: StringName = "get_axis"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 1958752504)
-  var `?param`: array[2, pointer]
-  negativeAction.encode(`?param`[0]); positiveAction.encode(`?param`[1])
+  var `?param` = [getPtr negativeAction, getPtr positiveAction]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
@@ -127,8 +116,7 @@ proc getVector*(self: Input; negativeX: StringName; positiveX: StringName; negat
   if unlikely(methodbind.isNil):
     let name: StringName = "get_vector"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 1517139831)
-  var `?param`: array[5, pointer]
-  negativeX.encode(`?param`[0]); positiveX.encode(`?param`[1]); negativeY.encode(`?param`[2]); positiveY.encode(`?param`[3]); deadzone.encode(`?param`[4])
+  var `?param` = [getPtr negativeX, getPtr positiveX, getPtr negativeY, getPtr positiveY, getPtr deadzone]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2)
@@ -137,24 +125,21 @@ proc addJoyMapping*(self: Input; mapping: String; updateExisting: Bool = false) 
   if unlikely(methodbind.isNil):
     let name: StringName = "add_joy_mapping"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 1168363258)
-  var `?param`: array[2, pointer]
-  mapping.encode(`?param`[0]); updateExisting.encode(`?param`[1])
+  var `?param` = [getPtr mapping, getPtr updateExisting]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc removeJoyMapping*(self: Input; guid: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_joy_mapping"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  guid.encode(`?param`[0])
+  var `?param` = [getPtr guid]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isJoyKnown*(self: Input; device: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_joy_known"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 3067735520)
-  var `?param`: array[1, pointer]
-  device.encode(`?param`[0])
+  var `?param` = [getPtr device]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -163,8 +148,7 @@ proc getJoyAxis*(self: Input; device: int32; axis: JoyAxis): Float =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_joy_axis"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 4063175957)
-  var `?param`: array[2, pointer]
-  device.encode(`?param`[0]); axis.encode(`?param`[1])
+  var `?param` = [getPtr device, getPtr axis]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
@@ -173,8 +157,7 @@ proc getJoyName*(self: Input; device: int32): String =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_joy_name"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 990163283)
-  var `?param`: array[1, pointer]
-  device.encode(`?param`[0])
+  var `?param` = [getPtr device]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
@@ -183,8 +166,7 @@ proc getJoyGuid*(self: Input; device: int32): String =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_joy_guid"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 844755477)
-  var `?param`: array[1, pointer]
-  device.encode(`?param`[0])
+  var `?param` = [getPtr device]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
@@ -201,8 +183,7 @@ proc getJoyVibrationStrength*(self: Input; device: int32): Vector2 =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_joy_vibration_strength"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 3114997196)
-  var `?param`: array[1, pointer]
-  device.encode(`?param`[0])
+  var `?param` = [getPtr device]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2)
@@ -211,8 +192,7 @@ proc getJoyVibrationDuration*(self: Input; device: int32): Float =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_joy_vibration_duration"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 4025615559)
-  var `?param`: array[1, pointer]
-  device.encode(`?param`[0])
+  var `?param` = [getPtr device]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
@@ -221,24 +201,21 @@ proc startJoyVibration*(self: Input; device: int32; weakMagnitude: Float; strong
   if unlikely(methodbind.isNil):
     let name: StringName = "start_joy_vibration"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 1890603622)
-  var `?param`: array[4, pointer]
-  device.encode(`?param`[0]); weakMagnitude.encode(`?param`[1]); strongMagnitude.encode(`?param`[2]); duration.encode(`?param`[3])
+  var `?param` = [getPtr device, getPtr weakMagnitude, getPtr strongMagnitude, getPtr duration]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc stopJoyVibration*(self: Input; device: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "stop_joy_vibration"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  device.encode(`?param`[0])
+  var `?param` = [getPtr device]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc vibrateHandheld*(self: Input; durationMs: int32 = 500) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "vibrate_handheld"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 955504365)
-  var `?param`: array[1, pointer]
-  durationMs.encode(`?param`[0])
+  var `?param` = [getPtr durationMs]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getGravity*(self: Input): Vector3 =
   var methodbind {.global.}: MethodBindPtr
@@ -277,32 +254,28 @@ proc setGravity*(self: Input; value: Vector3) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_gravity"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 3460891852)
-  var `?param`: array[1, pointer]
-  value.encode(`?param`[0])
+  var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setAccelerometer*(self: Input; value: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_accelerometer"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 3460891852)
-  var `?param`: array[1, pointer]
-  value.encode(`?param`[0])
+  var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setMagnetometer*(self: Input; value: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_magnetometer"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 3460891852)
-  var `?param`: array[1, pointer]
-  value.encode(`?param`[0])
+  var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setGyroscope*(self: Input; value: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_gyroscope"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 3460891852)
-  var `?param`: array[1, pointer]
-  value.encode(`?param`[0])
+  var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getLastMouseVelocity*(self: Input): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -325,8 +298,7 @@ proc `mouseMode=`*(self: Input; mode: Input_MouseMode) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_mouse_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 2228490894)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc mouseMode*(self: Input): Input_MouseMode =
   var methodbind {.global.}: MethodBindPtr
@@ -341,32 +313,28 @@ proc warpMouse*(self: Input; position: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "warp_mouse"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  position.encode(`?param`[0])
+  var `?param` = [getPtr position]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc actionPress*(self: Input; action: StringName; strength: Float = 1.0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "action_press"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 573731101)
-  var `?param`: array[2, pointer]
-  action.encode(`?param`[0]); strength.encode(`?param`[1])
+  var `?param` = [getPtr action, getPtr strength]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc actionRelease*(self: Input; action: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "action_release"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 3304788590)
-  var `?param`: array[1, pointer]
-  action.encode(`?param`[0])
+  var `?param` = [getPtr action]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setDefaultCursorShape*(self: Input; shape: Input_CursorShape = cursorArrow) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_default_cursor_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 2124816902)
-  var `?param`: array[1, pointer]
-  shape.encode(`?param`[0])
+  var `?param` = [getPtr shape]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getCurrentCursorShape*(self: Input): Input_CursorShape =
   var methodbind {.global.}: MethodBindPtr
@@ -381,24 +349,21 @@ proc setCustomMouseCursor*(self: Input; image: Ref[Resource]; shape: Input_Curso
   if unlikely(methodbind.isNil):
     let name: StringName = "set_custom_mouse_cursor"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 3489634142)
-  var `?param`: array[3, pointer]
-  image.encode(`?param`[0]); shape.encode(`?param`[1]); hotspot.encode(`?param`[2])
+  var `?param` = [getPtr image, getPtr shape, getPtr hotspot]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc parseInputEvent*(self: Input; event: Ref[InputEvent]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "parse_input_event"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 3754044979)
-  var `?param`: array[1, pointer]
-  event.encode(`?param`[0])
+  var `?param` = [getPtr event]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `useAccumulatedInput=`*(self: Input; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_use_accumulated_input"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isUsingAccumulatedInput*(self: Input): Bool =
   var methodbind {.global.}: MethodBindPtr

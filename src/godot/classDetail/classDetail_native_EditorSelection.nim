@@ -15,16 +15,14 @@ proc addNode*(self: EditorSelection; node: Node) =
   if unlikely(methodbind.isNil):
     let name: StringName = "add_node"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorSelection, addr name, 1078189570)
-  var `?param`: array[1, pointer]
-  node.encode(`?param`[0])
+  var `?param` = [getPtr node]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc removeNode*(self: EditorSelection; node: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_node"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorSelection, addr name, 1078189570)
-  var `?param`: array[1, pointer]
-  node.encode(`?param`[0])
+  var `?param` = [getPtr node]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getSelectedNodes*(self: EditorSelection): TypedArray[Node] =
   var methodbind {.global.}: MethodBindPtr

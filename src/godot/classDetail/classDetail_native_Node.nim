@@ -15,16 +15,14 @@ proc addSibling*(self: Node; sibling: Node; forceReadableName: Bool = false) =
   if unlikely(methodbind.isNil):
     let name: StringName = "add_sibling"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 2570952461)
-  var `?param`: array[2, pointer]
-  sibling.encode(`?param`[0]); forceReadableName.encode(`?param`[1])
+  var `?param` = [getPtr sibling, getPtr forceReadableName]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `name=`*(self: Node; name: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_name"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  name.encode(`?param`[0])
+  var `?param` = [getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc name*(self: Node): StringName =
   var methodbind {.global.}: MethodBindPtr
@@ -39,32 +37,28 @@ proc addChild*(self: Node; node: Node; forceReadableName: Bool = false; internal
   if unlikely(methodbind.isNil):
     let name: StringName = "add_child"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 3070154285)
-  var `?param`: array[3, pointer]
-  node.encode(`?param`[0]); forceReadableName.encode(`?param`[1]); internal.encode(`?param`[2])
+  var `?param` = [getPtr node, getPtr forceReadableName, getPtr internal]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc removeChild*(self: Node; node: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_child"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 1078189570)
-  var `?param`: array[1, pointer]
-  node.encode(`?param`[0])
+  var `?param` = [getPtr node]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc reparent*(self: Node; newParent: Node; keepGlobalTransform: Bool = true) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "reparent"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 2570952461)
-  var `?param`: array[2, pointer]
-  newParent.encode(`?param`[0]); keepGlobalTransform.encode(`?param`[1])
+  var `?param` = [getPtr newParent, getPtr keepGlobalTransform]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getChildCount*(self: Node; includeInternal: Bool = false): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_child_count"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 894402480)
-  var `?param`: array[1, pointer]
-  includeInternal.encode(`?param`[0])
+  var `?param` = [getPtr includeInternal]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
@@ -73,8 +67,7 @@ proc getChildren*(self: Node; includeInternal: Bool = false): TypedArray[Node] =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_children"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 873284517)
-  var `?param`: array[1, pointer]
-  includeInternal.encode(`?param`[0])
+  var `?param` = [getPtr includeInternal]
   var ret: encoded TypedArray[Node]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TypedArray[Node])
@@ -83,8 +76,7 @@ proc getChild*(self: Node; idx: int32; includeInternal: Bool = false): Node =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_child"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 541253412)
-  var `?param`: array[2, pointer]
-  idx.encode(`?param`[0]); includeInternal.encode(`?param`[1])
+  var `?param` = [getPtr idx, getPtr includeInternal]
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Node)
@@ -93,8 +85,7 @@ proc hasNode*(self: Node; path: NodePath): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "has_node"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 861721659)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -103,8 +94,7 @@ proc getNode*(self: Node; path: NodePath): Node =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_node"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 2734337346)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Node)
@@ -113,8 +103,7 @@ proc getNodeOrNull*(self: Node; path: NodePath): Node =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_node_or_null"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 2734337346)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Node)
@@ -131,8 +120,7 @@ proc findChild*(self: Node; pattern: String; recursive: Bool = true; owned: Bool
   if unlikely(methodbind.isNil):
     let name: StringName = "find_child"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 4253159453)
-  var `?param`: array[3, pointer]
-  pattern.encode(`?param`[0]); recursive.encode(`?param`[1]); owned.encode(`?param`[2])
+  var `?param` = [getPtr pattern, getPtr recursive, getPtr owned]
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Node)
@@ -141,8 +129,7 @@ proc findChildren*(self: Node; pattern: String; `type`: String = ""; recursive: 
   if unlikely(methodbind.isNil):
     let name: StringName = "find_children"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 1585018254)
-  var `?param`: array[4, pointer]
-  pattern.encode(`?param`[0]); `type`.encode(`?param`[1]); recursive.encode(`?param`[2]); owned.encode(`?param`[3])
+  var `?param` = [getPtr pattern, getPtr `type`, getPtr recursive, getPtr owned]
   var ret: encoded TypedArray[Node]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TypedArray[Node])
@@ -151,8 +138,7 @@ proc findParent*(self: Node; pattern: String): Node =
   if unlikely(methodbind.isNil):
     let name: StringName = "find_parent"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 1140089439)
-  var `?param`: array[1, pointer]
-  pattern.encode(`?param`[0])
+  var `?param` = [getPtr pattern]
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Node)
@@ -161,8 +147,7 @@ proc hasNodeAndResource*(self: Node; path: NodePath): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "has_node_and_resource"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 861721659)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -171,8 +156,7 @@ proc getNodeAndResource*(self: Node; path: NodePath): Array =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_node_and_resource"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 502563882)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Array)
@@ -189,8 +173,7 @@ proc isAncestorOf*(self: Node; node: Node): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "is_ancestor_of"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 3093956946)
-  var `?param`: array[1, pointer]
-  node.encode(`?param`[0])
+  var `?param` = [getPtr node]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -199,8 +182,7 @@ proc isGreaterThan*(self: Node; node: Node): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "is_greater_than"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 3093956946)
-  var `?param`: array[1, pointer]
-  node.encode(`?param`[0])
+  var `?param` = [getPtr node]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -217,8 +199,7 @@ proc getPathTo*(self: Node; node: Node; useUniquePath: Bool = false): NodePath =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_path_to"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 498846349)
-  var `?param`: array[2, pointer]
-  node.encode(`?param`[0]); useUniquePath.encode(`?param`[1])
+  var `?param` = [getPtr node, getPtr useUniquePath]
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(NodePath)
@@ -227,24 +208,21 @@ proc addToGroup*(self: Node; group: StringName; persistent: Bool = false) =
   if unlikely(methodbind.isNil):
     let name: StringName = "add_to_group"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 3683006648)
-  var `?param`: array[2, pointer]
-  group.encode(`?param`[0]); persistent.encode(`?param`[1])
+  var `?param` = [getPtr group, getPtr persistent]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc removeFromGroup*(self: Node; group: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_from_group"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 3304788590)
-  var `?param`: array[1, pointer]
-  group.encode(`?param`[0])
+  var `?param` = [getPtr group]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isInGroup*(self: Node; group: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_in_group"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 2619796661)
-  var `?param`: array[1, pointer]
-  group.encode(`?param`[0])
+  var `?param` = [getPtr group]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -253,8 +231,7 @@ proc moveChild*(self: Node; childNode: Node; toIndex: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "move_child"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 3315886247)
-  var `?param`: array[2, pointer]
-  childNode.encode(`?param`[0]); toIndex.encode(`?param`[1])
+  var `?param` = [getPtr childNode, getPtr toIndex]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getGroups*(self: Node): TypedArray[StringName] =
   var methodbind {.global.}: MethodBindPtr
@@ -269,8 +246,7 @@ proc `owner=`*(self: Node; owner: Node) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_owner"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 1078189570)
-  var `?param`: array[1, pointer]
-  owner.encode(`?param`[0])
+  var `?param` = [getPtr owner]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc owner*(self: Node): Node =
   var methodbind {.global.}: MethodBindPtr
@@ -285,8 +261,7 @@ proc getIndex*(self: Node; includeInternal: Bool = false): int32 =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_index"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 894402480)
-  var `?param`: array[1, pointer]
-  includeInternal.encode(`?param`[0])
+  var `?param` = [getPtr includeInternal]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
@@ -307,8 +282,7 @@ proc `sceneFilePath=`*(self: Node; sceneFilePath: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_scene_file_path"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  sceneFilePath.encode(`?param`[0])
+  var `?param` = [getPtr sceneFilePath]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc sceneFilePath*(self: Node): String =
   var methodbind {.global.}: MethodBindPtr
@@ -323,24 +297,21 @@ proc propagateNotification*(self: Node; what: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "propagate_notification"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  what.encode(`?param`[0])
+  var `?param` = [getPtr what]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc propagateCall*(self: Node; `method`: StringName; args: Array = init_Array(); parentFirst: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "propagate_call"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 1667910434)
-  var `?param`: array[3, pointer]
-  `method`.encode(`?param`[0]); args.encode(`?param`[1]); parentFirst.encode(`?param`[2])
+  var `?param` = [getPtr `method`, getPtr args, getPtr parentFirst]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setPhysicsProcess*(self: Node; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_physics_process"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getPhysicsProcessDeltaTime*(self: Node): float64 =
   var methodbind {.global.}: MethodBindPtr
@@ -371,16 +342,14 @@ proc setProcess*(self: Node; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_process"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `processPriority=`*(self: Node; priority: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_process_priority"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  priority.encode(`?param`[0])
+  var `?param` = [getPtr priority]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc processPriority*(self: Node): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -395,8 +364,7 @@ proc `physicsProcessPriority=`*(self: Node; priority: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_physics_process_priority"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  priority.encode(`?param`[0])
+  var `?param` = [getPtr priority]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc physicsProcessPriority*(self: Node): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -419,8 +387,7 @@ proc setProcessInput*(self: Node; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_process_input"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isProcessingInput*(self: Node): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -435,8 +402,7 @@ proc setProcessShortcutInput*(self: Node; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_process_shortcut_input"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isProcessingShortcutInput*(self: Node): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -451,8 +417,7 @@ proc setProcessUnhandledInput*(self: Node; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_process_unhandled_input"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isProcessingUnhandledInput*(self: Node): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -467,8 +432,7 @@ proc setProcessUnhandledKeyInput*(self: Node; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_process_unhandled_key_input"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isProcessingUnhandledKeyInput*(self: Node): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -483,8 +447,7 @@ proc `processMode=`*(self: Node; mode: Node_ProcessMode) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_process_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 1841290486)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc processMode*(self: Node): Node_ProcessMode =
   var methodbind {.global.}: MethodBindPtr
@@ -507,8 +470,7 @@ proc `processThreadGroup=`*(self: Node; mode: Node_ProcessThreadGroup) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_process_thread_group"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 2275442745)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc processThreadGroup*(self: Node): Node_ProcessThreadGroup =
   var methodbind {.global.}: MethodBindPtr
@@ -523,8 +485,7 @@ proc `processThreadMessages=`*(self: Node; flags: set[Node_ProcessThreadMessages
   if unlikely(methodbind.isNil):
     let name: StringName = "set_process_thread_messages"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 1357280998)
-  var `?param`: array[1, pointer]
-  flags.encode(`?param`[0])
+  var `?param` = [getPtr flags]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc processThreadMessages*(self: Node): set[Node_ProcessThreadMessages] =
   var methodbind {.global.}: MethodBindPtr
@@ -539,8 +500,7 @@ proc `processThreadGroupOrder=`*(self: Node; order: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_process_thread_group_order"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  order.encode(`?param`[0])
+  var `?param` = [getPtr order]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc processThreadGroupOrder*(self: Node): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -555,8 +515,7 @@ proc setDisplayFolded*(self: Node; fold: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_display_folded"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  fold.encode(`?param`[0])
+  var `?param` = [getPtr fold]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isDisplayedFolded*(self: Node): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -571,8 +530,7 @@ proc setProcessInternal*(self: Node; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_process_internal"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isProcessingInternal*(self: Node): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -587,8 +545,7 @@ proc setPhysicsProcessInternal*(self: Node; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_physics_process_internal"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isPhysicsProcessingInternal*(self: Node): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -635,8 +592,7 @@ proc duplicate*(self: Node; flags: int32 = 15): Node =
   if unlikely(methodbind.isNil):
     let name: StringName = "duplicate"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 3511555459)
-  var `?param`: array[1, pointer]
-  flags.encode(`?param`[0])
+  var `?param` = [getPtr flags]
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Node)
@@ -645,16 +601,14 @@ proc replaceBy*(self: Node; node: Node; keepGroups: Bool = false) =
   if unlikely(methodbind.isNil):
     let name: StringName = "replace_by"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 2570952461)
-  var `?param`: array[2, pointer]
-  node.encode(`?param`[0]); keepGroups.encode(`?param`[1])
+  var `?param` = [getPtr node, getPtr keepGroups]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setSceneInstanceLoadPlaceholder*(self: Node; loadPlaceholder: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_scene_instance_load_placeholder"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  loadPlaceholder.encode(`?param`[0])
+  var `?param` = [getPtr loadPlaceholder]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getSceneInstanceLoadPlaceholder*(self: Node): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -669,16 +623,14 @@ proc setEditableInstance*(self: Node; node: Node; isEditable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_editable_instance"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 2731852923)
-  var `?param`: array[2, pointer]
-  node.encode(`?param`[0]); isEditable.encode(`?param`[1])
+  var `?param` = [getPtr node, getPtr isEditable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isEditableInstance*(self: Node; node: Node): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_editable_instance"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 3093956946)
-  var `?param`: array[1, pointer]
-  node.encode(`?param`[0])
+  var `?param` = [getPtr node]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -715,8 +667,7 @@ proc setMultiplayerAuthority*(self: Node; id: int32; recursive: Bool = true) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_multiplayer_authority"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 4023243586)
-  var `?param`: array[2, pointer]
-  id.encode(`?param`[0]); recursive.encode(`?param`[1])
+  var `?param` = [getPtr id, getPtr recursive]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getMultiplayerAuthority*(self: Node): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -747,16 +698,14 @@ proc rpcConfig*(self: Node; `method`: StringName; config: ptr Variant) =
   if unlikely(methodbind.isNil):
     let name: StringName = "rpc_config"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 3776071444)
-  var `?param`: array[2, pointer]
-  `method`.encode(`?param`[0]); config.encode(`?param`[1])
+  var `?param` = [getPtr `method`, getPtr config]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `editorDescription=`*(self: Node; editorDescription: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_editor_description"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  editorDescription.encode(`?param`[0])
+  var `?param` = [getPtr editorDescription]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc editorDescription*(self: Node): String =
   var methodbind {.global.}: MethodBindPtr
@@ -771,8 +720,7 @@ proc `uniqueNameInOwner=`*(self: Node; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_unique_name_in_owner"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isUniqueNameInOwner*(self: Node): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -787,8 +735,7 @@ proc rpc*(self: Node; `method`: StringName): Error =
   if unlikely(methodbind.isNil):
     let name: StringName = "rpc"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 4047867050)
-  var `?param`: array[1, pointer]
-  `method`.encode(`?param`[0])
+  var `?param` = [getPtr `method`]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -797,8 +744,7 @@ proc rpcId*(self: Node; peerId: Int; `method`: StringName): Error =
   if unlikely(methodbind.isNil):
     let name: StringName = "rpc_id"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 361499283)
-  var `?param`: array[2, pointer]
-  peerId.encode(`?param`[0]); `method`.encode(`?param`[1])
+  var `?param` = [getPtr peerId, getPtr `method`]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -813,8 +759,7 @@ proc callDeferredThreadGroup*(self: Node; `method`: StringName): Variant =
   if unlikely(methodbind.isNil):
     let name: StringName = "call_deferred_thread_group"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 3400424181)
-  var `?param`: array[1, pointer]
-  `method`.encode(`?param`[0])
+  var `?param` = [getPtr `method`]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
@@ -823,24 +768,21 @@ proc setDeferredThreadGroup*(self: Node; property: StringName; value: ptr Varian
   if unlikely(methodbind.isNil):
     let name: StringName = "set_deferred_thread_group"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 3776071444)
-  var `?param`: array[2, pointer]
-  property.encode(`?param`[0]); value.encode(`?param`[1])
+  var `?param` = [getPtr property, getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc notifyDeferredThreadGroup*(self: Node; what: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "notify_deferred_thread_group"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  what.encode(`?param`[0])
+  var `?param` = [getPtr what]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc callThreadSafe*(self: Node; `method`: StringName): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "call_thread_safe"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 3400424181)
-  var `?param`: array[1, pointer]
-  `method`.encode(`?param`[0])
+  var `?param` = [getPtr `method`]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
@@ -849,14 +791,12 @@ proc setThreadSafe*(self: Node; property: StringName; value: ptr Variant) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_thread_safe"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 3776071444)
-  var `?param`: array[2, pointer]
-  property.encode(`?param`[0]); value.encode(`?param`[1])
+  var `?param` = [getPtr property, getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc notifyThreadSafe*(self: Node; what: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "notify_thread_safe"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  what.encode(`?param`[0])
+  var `?param` = [getPtr what]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

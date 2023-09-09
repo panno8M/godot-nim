@@ -9,8 +9,7 @@ proc `opType=`*(self: Ref[VisualShaderNodeDerivativeFunc]; `type`: VisualShaderN
   if unlikely(methodbind.isNil):
     let name: StringName = "set_op_type"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeDerivativeFunc, addr name, 377800221)
-  var `?param`: array[1, pointer]
-  `type`.encode(`?param`[0])
+  var `?param` = [getPtr `type`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc opType*(self: Ref[VisualShaderNodeDerivativeFunc]): VisualShaderNodeDerivativeFunc_OpType =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `function=`*(self: Ref[VisualShaderNodeDerivativeFunc]; `func`: VisualShade
   if unlikely(methodbind.isNil):
     let name: StringName = "set_function"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeDerivativeFunc, addr name, 1944704156)
-  var `?param`: array[1, pointer]
-  `func`.encode(`?param`[0])
+  var `?param` = [getPtr `func`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc function*(self: Ref[VisualShaderNodeDerivativeFunc]): VisualShaderNodeDerivativeFunc_Function =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `precision=`*(self: Ref[VisualShaderNodeDerivativeFunc]; precision: VisualS
   if unlikely(methodbind.isNil):
     let name: StringName = "set_precision"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeDerivativeFunc, addr name, 797270566)
-  var `?param`: array[1, pointer]
-  precision.encode(`?param`[0])
+  var `?param` = [getPtr precision]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc precision*(self: Ref[VisualShaderNodeDerivativeFunc]): VisualShaderNodeDerivativeFunc_Precision =
   var methodbind {.global.}: MethodBindPtr

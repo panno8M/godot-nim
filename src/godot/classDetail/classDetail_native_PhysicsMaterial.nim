@@ -9,8 +9,7 @@ proc `friction=`*(self: Ref[PhysicsMaterial]; friction: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_friction"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsMaterial, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  friction.encode(`?param`[0])
+  var `?param` = [getPtr friction]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc friction*(self: Ref[PhysicsMaterial]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `rough=`*(self: Ref[PhysicsMaterial]; rough: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_rough"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsMaterial, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  rough.encode(`?param`[0])
+  var `?param` = [getPtr rough]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isRough*(self: Ref[PhysicsMaterial]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `bounce=`*(self: Ref[PhysicsMaterial]; bounce: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_bounce"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsMaterial, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  bounce.encode(`?param`[0])
+  var `?param` = [getPtr bounce]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc bounce*(self: Ref[PhysicsMaterial]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `absorbent=`*(self: Ref[PhysicsMaterial]; absorbent: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_absorbent"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsMaterial, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  absorbent.encode(`?param`[0])
+  var `?param` = [getPtr absorbent]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isAbsorbent*(self: Ref[PhysicsMaterial]): Bool =
   var methodbind {.global.}: MethodBindPtr

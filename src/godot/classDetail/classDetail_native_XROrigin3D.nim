@@ -9,8 +9,7 @@ proc `worldScale=`*(self: XROrigin3D; worldScale: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_world_scale"
     methodbind = interface_ClassDB_getMethodBind(addr className XROrigin3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  worldScale.encode(`?param`[0])
+  var `?param` = [getPtr worldScale]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc worldScale*(self: XROrigin3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `current=`*(self: XROrigin3D; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_current"
     methodbind = interface_ClassDB_getMethodBind(addr className XROrigin3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isCurrent*(self: XROrigin3D): Bool =
   var methodbind {.global.}: MethodBindPtr

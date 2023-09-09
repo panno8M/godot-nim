@@ -9,8 +9,7 @@ proc `mesh=`*(self: Ref[VisualShaderNodeParticleMeshEmitter]; mesh: Ref[Mesh]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeParticleMeshEmitter, addr name, 194775623)
-  var `?param`: array[1, pointer]
-  mesh.encode(`?param`[0])
+  var `?param` = [getPtr mesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc mesh*(self: Ref[VisualShaderNodeParticleMeshEmitter]): Ref[Mesh] =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `useAllSurfaces=`*(self: Ref[VisualShaderNodeParticleMeshEmitter]; enabled:
   if unlikely(methodbind.isNil):
     let name: StringName = "set_use_all_surfaces"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeParticleMeshEmitter, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isUseAllSurfaces*(self: Ref[VisualShaderNodeParticleMeshEmitter]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `surfaceIndex=`*(self: Ref[VisualShaderNodeParticleMeshEmitter]; surfaceInd
   if unlikely(methodbind.isNil):
     let name: StringName = "set_surface_index"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeParticleMeshEmitter, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  surfaceIndex.encode(`?param`[0])
+  var `?param` = [getPtr surfaceIndex]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc surfaceIndex*(self: Ref[VisualShaderNodeParticleMeshEmitter]): int32 =
   var methodbind {.global.}: MethodBindPtr

@@ -9,8 +9,7 @@ proc `shape=`*(self: CollisionShape2D; shape: Ref[Shape2D]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionShape2D, addr name, 771364740)
-  var `?param`: array[1, pointer]
-  shape.encode(`?param`[0])
+  var `?param` = [getPtr shape]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc shape*(self: CollisionShape2D): Ref[Shape2D] =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `disabled=`*(self: CollisionShape2D; disabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_disabled"
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionShape2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  disabled.encode(`?param`[0])
+  var `?param` = [getPtr disabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isDisabled*(self: CollisionShape2D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `oneWayCollision=`*(self: CollisionShape2D; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_one_way_collision"
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionShape2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isOneWayCollisionEnabled*(self: CollisionShape2D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `oneWayCollisionMargin=`*(self: CollisionShape2D; margin: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_one_way_collision_margin"
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionShape2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  margin.encode(`?param`[0])
+  var `?param` = [getPtr margin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc oneWayCollisionMargin*(self: CollisionShape2D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `debugColor=`*(self: CollisionShape2D; color: Color) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_debug_color"
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionShape2D, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  color.encode(`?param`[0])
+  var `?param` = [getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc debugColor*(self: CollisionShape2D): Color =
   var methodbind {.global.}: MethodBindPtr

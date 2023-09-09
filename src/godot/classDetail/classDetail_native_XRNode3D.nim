@@ -9,8 +9,7 @@ proc `tracker=`*(self: XRNode3D; trackerName: StringName) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tracker"
     methodbind = interface_ClassDB_getMethodBind(addr className XRNode3D, addr name, 3304788590)
-  var `?param`: array[1, pointer]
-  trackerName.encode(`?param`[0])
+  var `?param` = [getPtr trackerName]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc tracker*(self: XRNode3D): StringName =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `poseName=`*(self: XRNode3D; pose: StringName) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_pose_name"
     methodbind = interface_ClassDB_getMethodBind(addr className XRNode3D, addr name, 3304788590)
-  var `?param`: array[1, pointer]
-  pose.encode(`?param`[0])
+  var `?param` = [getPtr pose]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc poseName*(self: XRNode3D): StringName =
   var methodbind {.global.}: MethodBindPtr
@@ -65,6 +63,5 @@ proc triggerHapticPulse*(self: XRNode3D; actionName: String; frequency: float64;
   if unlikely(methodbind.isNil):
     let name: StringName = "trigger_haptic_pulse"
     methodbind = interface_ClassDB_getMethodBind(addr className XRNode3D, addr name, 508576839)
-  var `?param`: array[5, pointer]
-  actionName.encode(`?param`[0]); frequency.encode(`?param`[1]); amplitude.encode(`?param`[2]); durationSec.encode(`?param`[3]); delaySec.encode(`?param`[4])
+  var `?param` = [getPtr actionName, getPtr frequency, getPtr amplitude, getPtr durationSec, getPtr delaySec]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

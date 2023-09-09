@@ -9,8 +9,7 @@ proc `nodeA=`*(self: Joint2D; node: NodePath) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_node_a"
     methodbind = interface_ClassDB_getMethodBind(addr className Joint2D, addr name, 1348162250)
-  var `?param`: array[1, pointer]
-  node.encode(`?param`[0])
+  var `?param` = [getPtr node]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc nodeA*(self: Joint2D): NodePath =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `nodeB=`*(self: Joint2D; node: NodePath) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_node_b"
     methodbind = interface_ClassDB_getMethodBind(addr className Joint2D, addr name, 1348162250)
-  var `?param`: array[1, pointer]
-  node.encode(`?param`[0])
+  var `?param` = [getPtr node]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc nodeB*(self: Joint2D): NodePath =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `bias=`*(self: Joint2D; bias: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_bias"
     methodbind = interface_ClassDB_getMethodBind(addr className Joint2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  bias.encode(`?param`[0])
+  var `?param` = [getPtr bias]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc bias*(self: Joint2D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `excludeNodesFromCollision=`*(self: Joint2D; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_exclude_nodes_from_collision"
     methodbind = interface_ClassDB_getMethodBind(addr className Joint2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc excludeNodesFromCollision*(self: Joint2D): Bool =
   var methodbind {.global.}: MethodBindPtr

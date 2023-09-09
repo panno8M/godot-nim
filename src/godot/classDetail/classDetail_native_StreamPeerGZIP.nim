@@ -9,8 +9,7 @@ proc startCompression*(self: Ref[StreamPeerGZIP]; useDeflate: Bool = false; buff
   if unlikely(methodbind.isNil):
     let name: StringName = "start_compression"
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeerGZIP, addr name, 781582770)
-  var `?param`: array[2, pointer]
-  useDeflate.encode(`?param`[0]); bufferSize.encode(`?param`[1])
+  var `?param` = [getPtr useDeflate, getPtr bufferSize]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -19,8 +18,7 @@ proc startDecompression*(self: Ref[StreamPeerGZIP]; useDeflate: Bool = false; bu
   if unlikely(methodbind.isNil):
     let name: StringName = "start_decompression"
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeerGZIP, addr name, 781582770)
-  var `?param`: array[2, pointer]
-  useDeflate.encode(`?param`[0]); bufferSize.encode(`?param`[1])
+  var `?param` = [getPtr useDeflate, getPtr bufferSize]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)

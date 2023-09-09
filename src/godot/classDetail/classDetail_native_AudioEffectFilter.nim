@@ -9,8 +9,7 @@ proc `cutoff=`*(self: Ref[AudioEffectFilter]; freq: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_cutoff"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectFilter, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  freq.encode(`?param`[0])
+  var `?param` = [getPtr freq]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc cutoff*(self: Ref[AudioEffectFilter]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `resonance=`*(self: Ref[AudioEffectFilter]; amount: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_resonance"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectFilter, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  amount.encode(`?param`[0])
+  var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc resonance*(self: Ref[AudioEffectFilter]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `gain=`*(self: Ref[AudioEffectFilter]; amount: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_gain"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectFilter, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  amount.encode(`?param`[0])
+  var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc gain*(self: Ref[AudioEffectFilter]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `db=`*(self: Ref[AudioEffectFilter]; amount: AudioEffectFilter_FilterDB) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_db"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectFilter, addr name, 771740901)
-  var `?param`: array[1, pointer]
-  amount.encode(`?param`[0])
+  var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc db*(self: Ref[AudioEffectFilter]): AudioEffectFilter_FilterDB =
   var methodbind {.global.}: MethodBindPtr

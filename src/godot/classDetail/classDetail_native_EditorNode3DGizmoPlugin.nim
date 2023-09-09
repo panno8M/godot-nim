@@ -9,40 +9,35 @@ proc createMaterial*(self: Ref[EditorNode3DGizmoPlugin]; name: String; color: Co
   if unlikely(methodbind.isNil):
     let name: StringName = "create_material"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorNode3DGizmoPlugin, addr name, 3486012546)
-  var `?param`: array[5, pointer]
-  name.encode(`?param`[0]); color.encode(`?param`[1]); billboard.encode(`?param`[2]); onTop.encode(`?param`[3]); useVertexColor.encode(`?param`[4])
+  var `?param` = [getPtr name, getPtr color, getPtr billboard, getPtr onTop, getPtr useVertexColor]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc createIconMaterial*(self: Ref[EditorNode3DGizmoPlugin]; name: String; texture: Ref[Texture2D]; onTop: Bool = false; color: Color = init_Color(1, 1, 1, 1)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_icon_material"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorNode3DGizmoPlugin, addr name, 2976007329)
-  var `?param`: array[4, pointer]
-  name.encode(`?param`[0]); texture.encode(`?param`[1]); onTop.encode(`?param`[2]); color.encode(`?param`[3])
+  var `?param` = [getPtr name, getPtr texture, getPtr onTop, getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc createHandleMaterial*(self: Ref[EditorNode3DGizmoPlugin]; name: String; billboard: Bool = false; texture: Ref[Texture2D] = default Ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_handle_material"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorNode3DGizmoPlugin, addr name, 2486475223)
-  var `?param`: array[3, pointer]
-  name.encode(`?param`[0]); billboard.encode(`?param`[1]); texture.encode(`?param`[2])
+  var `?param` = [getPtr name, getPtr billboard, getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc addMaterial*(self: Ref[EditorNode3DGizmoPlugin]; name: String; material: Ref[StandardMaterial3D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_material"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorNode3DGizmoPlugin, addr name, 1374068695)
-  var `?param`: array[2, pointer]
-  name.encode(`?param`[0]); material.encode(`?param`[1])
+  var `?param` = [getPtr name, getPtr material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getMaterial*(self: Ref[EditorNode3DGizmoPlugin]; name: String; gizmo: Ref[EditorNode3DGizmo] = default Ref[EditorNode3DGizmo]): Ref[StandardMaterial3D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_material"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorNode3DGizmoPlugin, addr name, 3501703615)
-  var `?param`: array[2, pointer]
-  name.encode(`?param`[0]); gizmo.encode(`?param`[1])
+  var `?param` = [getPtr name, getPtr gizmo]
   var ret: encoded Ref[StandardMaterial3D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[StandardMaterial3D])

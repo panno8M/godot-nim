@@ -9,8 +9,7 @@ proc `horizontalAlignment=`*(self: Ref[TextMesh]; alignment: HorizontalAlignment
   if unlikely(methodbind.isNil):
     let name: StringName = "set_horizontal_alignment"
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 2312603777)
-  var `?param`: array[1, pointer]
-  alignment.encode(`?param`[0])
+  var `?param` = [getPtr alignment]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc horizontalAlignment*(self: Ref[TextMesh]): HorizontalAlignment =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `verticalAlignment=`*(self: Ref[TextMesh]; alignment: VerticalAlignment) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_vertical_alignment"
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 1796458609)
-  var `?param`: array[1, pointer]
-  alignment.encode(`?param`[0])
+  var `?param` = [getPtr alignment]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc verticalAlignment*(self: Ref[TextMesh]): VerticalAlignment =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `text=`*(self: Ref[TextMesh]; text: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_text"
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  text.encode(`?param`[0])
+  var `?param` = [getPtr text]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc text*(self: Ref[TextMesh]): String =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `font=`*(self: Ref[TextMesh]; font: Ref[Font]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_font"
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 1262170328)
-  var `?param`: array[1, pointer]
-  font.encode(`?param`[0])
+  var `?param` = [getPtr font]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc font*(self: Ref[TextMesh]): Ref[Font] =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `fontSize=`*(self: Ref[TextMesh]; fontSize: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_font_size"
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  fontSize.encode(`?param`[0])
+  var `?param` = [getPtr fontSize]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fontSize*(self: Ref[TextMesh]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc `lineSpacing=`*(self: Ref[TextMesh]; lineSpacing: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_line_spacing"
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  lineSpacing.encode(`?param`[0])
+  var `?param` = [getPtr lineSpacing]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc lineSpacing*(self: Ref[TextMesh]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -105,8 +99,7 @@ proc `autowrapMode=`*(self: Ref[TextMesh]; autowrapMode: TextServer_AutowrapMode
   if unlikely(methodbind.isNil):
     let name: StringName = "set_autowrap_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 3289138044)
-  var `?param`: array[1, pointer]
-  autowrapMode.encode(`?param`[0])
+  var `?param` = [getPtr autowrapMode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc autowrapMode*(self: Ref[TextMesh]): TextServer_AutowrapMode =
   var methodbind {.global.}: MethodBindPtr
@@ -121,8 +114,7 @@ proc `justificationFlags=`*(self: Ref[TextMesh]; justificationFlags: set[TextSer
   if unlikely(methodbind.isNil):
     let name: StringName = "set_justification_flags"
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 2877345813)
-  var `?param`: array[1, pointer]
-  justificationFlags.encode(`?param`[0])
+  var `?param` = [getPtr justificationFlags]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc justificationFlags*(self: Ref[TextMesh]): set[TextServer_JustificationFlag] =
   var methodbind {.global.}: MethodBindPtr
@@ -137,8 +129,7 @@ proc `depth=`*(self: Ref[TextMesh]; depth: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_depth"
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  depth.encode(`?param`[0])
+  var `?param` = [getPtr depth]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc depth*(self: Ref[TextMesh]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -153,8 +144,7 @@ proc `width=`*(self: Ref[TextMesh]; width: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_width"
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  width.encode(`?param`[0])
+  var `?param` = [getPtr width]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc width*(self: Ref[TextMesh]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -169,8 +159,7 @@ proc `pixelSize=`*(self: Ref[TextMesh]; pixelSize: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_pixel_size"
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  pixelSize.encode(`?param`[0])
+  var `?param` = [getPtr pixelSize]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc pixelSize*(self: Ref[TextMesh]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -185,8 +174,7 @@ proc `offset=`*(self: Ref[TextMesh]; offset: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  offset.encode(`?param`[0])
+  var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc offset*(self: Ref[TextMesh]): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -201,8 +189,7 @@ proc `curveStep=`*(self: Ref[TextMesh]; curveStep: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_curve_step"
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  curveStep.encode(`?param`[0])
+  var `?param` = [getPtr curveStep]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc curveStep*(self: Ref[TextMesh]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -217,8 +204,7 @@ proc `textDirection=`*(self: Ref[TextMesh]; direction: TextServer_Direction) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_text_direction"
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 1418190634)
-  var `?param`: array[1, pointer]
-  direction.encode(`?param`[0])
+  var `?param` = [getPtr direction]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc textDirection*(self: Ref[TextMesh]): TextServer_Direction =
   var methodbind {.global.}: MethodBindPtr
@@ -233,8 +219,7 @@ proc `language=`*(self: Ref[TextMesh]; language: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_language"
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  language.encode(`?param`[0])
+  var `?param` = [getPtr language]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc language*(self: Ref[TextMesh]): String =
   var methodbind {.global.}: MethodBindPtr
@@ -249,8 +234,7 @@ proc `structuredTextBidiOverride=`*(self: Ref[TextMesh]; parser: TextServer_Stru
   if unlikely(methodbind.isNil):
     let name: StringName = "set_structured_text_bidi_override"
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 55961453)
-  var `?param`: array[1, pointer]
-  parser.encode(`?param`[0])
+  var `?param` = [getPtr parser]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc structuredTextBidiOverride*(self: Ref[TextMesh]): TextServer_StructuredTextParser =
   var methodbind {.global.}: MethodBindPtr
@@ -265,8 +249,7 @@ proc `structuredTextBidiOverrideOptions=`*(self: Ref[TextMesh]; args: Array) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_structured_text_bidi_override_options"
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 381264803)
-  var `?param`: array[1, pointer]
-  args.encode(`?param`[0])
+  var `?param` = [getPtr args]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc structuredTextBidiOverrideOptions*(self: Ref[TextMesh]): Array =
   var methodbind {.global.}: MethodBindPtr
@@ -281,8 +264,7 @@ proc `uppercase=`*(self: Ref[TextMesh]; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_uppercase"
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isUppercase*(self: Ref[TextMesh]): Bool =
   var methodbind {.global.}: MethodBindPtr

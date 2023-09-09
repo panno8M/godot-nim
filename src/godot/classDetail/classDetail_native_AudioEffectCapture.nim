@@ -9,8 +9,7 @@ proc canGetBuffer*(self: Ref[AudioEffectCapture]; frames: int32): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "can_get_buffer"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectCapture, addr name, 1116898809)
-  var `?param`: array[1, pointer]
-  frames.encode(`?param`[0])
+  var `?param` = [getPtr frames]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -19,8 +18,7 @@ proc getBuffer*(self: Ref[AudioEffectCapture]; frames: int32): PackedVector2Arra
   if unlikely(methodbind.isNil):
     let name: StringName = "get_buffer"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectCapture, addr name, 2649534757)
-  var `?param`: array[1, pointer]
-  frames.encode(`?param`[0])
+  var `?param` = [getPtr frames]
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedVector2Array)
@@ -35,8 +33,7 @@ proc `bufferLength=`*(self: Ref[AudioEffectCapture]; bufferLengthSeconds: Float)
   if unlikely(methodbind.isNil):
     let name: StringName = "set_buffer_length"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectCapture, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  bufferLengthSeconds.encode(`?param`[0])
+  var `?param` = [getPtr bufferLengthSeconds]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc bufferLength*(self: Ref[AudioEffectCapture]): Float =
   var methodbind {.global.}: MethodBindPtr

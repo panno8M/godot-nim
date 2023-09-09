@@ -9,8 +9,7 @@ proc `rest=`*(self: Bone2D; rest: Transform2D) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_rest"
     methodbind = interface_ClassDB_getMethodBind(addr className Bone2D, addr name, 2761652528)
-  var `?param`: array[1, pointer]
-  rest.encode(`?param`[0])
+  var `?param` = [getPtr rest]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc rest*(self: Bone2D): Transform2D =
   var methodbind {.global.}: MethodBindPtr
@@ -47,8 +46,7 @@ proc setAutocalculateLengthAndAngle*(self: Bone2D; autoCalculate: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_autocalculate_length_and_angle"
     methodbind = interface_ClassDB_getMethodBind(addr className Bone2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  autoCalculate.encode(`?param`[0])
+  var `?param` = [getPtr autoCalculate]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getAutocalculateLengthAndAngle*(self: Bone2D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -63,8 +61,7 @@ proc setLength*(self: Bone2D; length: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_length"
     methodbind = interface_ClassDB_getMethodBind(addr className Bone2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  length.encode(`?param`[0])
+  var `?param` = [getPtr length]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getLength*(self: Bone2D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -79,8 +76,7 @@ proc setBoneAngle*(self: Bone2D; angle: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_bone_angle"
     methodbind = interface_ClassDB_getMethodBind(addr className Bone2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  angle.encode(`?param`[0])
+  var `?param` = [getPtr angle]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getBoneAngle*(self: Bone2D): Float =
   var methodbind {.global.}: MethodBindPtr

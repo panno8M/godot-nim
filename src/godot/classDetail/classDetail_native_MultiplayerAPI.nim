@@ -25,8 +25,7 @@ proc `multiplayerPeer=`*(self: Ref[MultiplayerAPI]; peer: Ref[MultiplayerPeer]) 
   if unlikely(methodbind.isNil):
     let name: StringName = "set_multiplayer_peer"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerAPI, addr name, 3694835298)
-  var `?param`: array[1, pointer]
-  peer.encode(`?param`[0])
+  var `?param` = [getPtr peer]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getUniqueId*(self: Ref[MultiplayerAPI]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -65,8 +64,7 @@ proc rpc*(self: Ref[MultiplayerAPI]; peer: int32; `object`: Object; `method`: St
   if unlikely(methodbind.isNil):
     let name: StringName = "rpc"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerAPI, addr name, 1833408346)
-  var `?param`: array[4, pointer]
-  peer.encode(`?param`[0]); `object`.encode(`?param`[1]); `method`.encode(`?param`[2]); arguments.encode(`?param`[3])
+  var `?param` = [getPtr peer, getPtr `object`, getPtr `method`, getPtr arguments]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -75,8 +73,7 @@ proc objectConfigurationAdd*(self: Ref[MultiplayerAPI]; `object`: Object; config
   if unlikely(methodbind.isNil):
     let name: StringName = "object_configuration_add"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerAPI, addr name, 1171879464)
-  var `?param`: array[2, pointer]
-  `object`.encode(`?param`[0]); configuration.encode(`?param`[1])
+  var `?param` = [getPtr `object`, getPtr configuration]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -85,8 +82,7 @@ proc objectConfigurationRemove*(self: Ref[MultiplayerAPI]; `object`: Object; con
   if unlikely(methodbind.isNil):
     let name: StringName = "object_configuration_remove"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerAPI, addr name, 1171879464)
-  var `?param`: array[2, pointer]
-  `object`.encode(`?param`[0]); configuration.encode(`?param`[1])
+  var `?param` = [getPtr `object`, getPtr configuration]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -103,8 +99,7 @@ proc setDefaultInterface*(interfaceName: StringName) {.staticOf: MultiplayerAPI.
   if unlikely(methodbind.isNil):
     let name: StringName = "set_default_interface"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerAPI, addr name, 3304788590)
-  var `?param`: array[1, pointer]
-  interfaceName.encode(`?param`[0])
+  var `?param` = [getPtr interfaceName]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], nil)
 proc getDefaultInterface*: StringName {.staticOf: MultiplayerAPI.} =
   var methodbind {.global.}: MethodBindPtr

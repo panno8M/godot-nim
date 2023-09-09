@@ -9,8 +9,7 @@ proc `billboardType=`*(self: Ref[VisualShaderNodeBillboard]; billboardType: Visu
   if unlikely(methodbind.isNil):
     let name: StringName = "set_billboard_type"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeBillboard, addr name, 1227463289)
-  var `?param`: array[1, pointer]
-  billboardType.encode(`?param`[0])
+  var `?param` = [getPtr billboardType]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc billboardType*(self: Ref[VisualShaderNodeBillboard]): VisualShaderNodeBillboard_BillboardType =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `keepScaleEnabled=`*(self: Ref[VisualShaderNodeBillboard]; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_keep_scale_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeBillboard, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isKeepScaleEnabled*(self: Ref[VisualShaderNodeBillboard]): Bool =
   var methodbind {.global.}: MethodBindPtr

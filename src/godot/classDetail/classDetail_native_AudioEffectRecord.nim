@@ -9,8 +9,7 @@ proc setRecordingActive*(self: Ref[AudioEffectRecord]; record: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_recording_active"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectRecord, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  record.encode(`?param`[0])
+  var `?param` = [getPtr record]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isRecordingActive*(self: Ref[AudioEffectRecord]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `format=`*(self: Ref[AudioEffectRecord]; format: AudioStreamWAV_Format) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_format"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectRecord, addr name, 60648488)
-  var `?param`: array[1, pointer]
-  format.encode(`?param`[0])
+  var `?param` = [getPtr format]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc format*(self: Ref[AudioEffectRecord]): AudioStreamWAV_Format =
   var methodbind {.global.}: MethodBindPtr

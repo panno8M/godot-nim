@@ -9,8 +9,7 @@ proc `buttonMask=`*(self: Ref[InputEventMouse]; buttonMask: set[MouseButtonMask]
   if unlikely(methodbind.isNil):
     let name: StringName = "set_button_mask"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventMouse, addr name, 3950145251)
-  var `?param`: array[1, pointer]
-  buttonMask.encode(`?param`[0])
+  var `?param` = [getPtr buttonMask]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc buttonMask*(self: Ref[InputEventMouse]): set[MouseButtonMask] =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `position=`*(self: Ref[InputEventMouse]; position: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_position"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventMouse, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  position.encode(`?param`[0])
+  var `?param` = [getPtr position]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc position*(self: Ref[InputEventMouse]): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `globalPosition=`*(self: Ref[InputEventMouse]; globalPosition: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_global_position"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventMouse, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  globalPosition.encode(`?param`[0])
+  var `?param` = [getPtr globalPosition]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc globalPosition*(self: Ref[InputEventMouse]): Vector2 =
   var methodbind {.global.}: MethodBindPtr

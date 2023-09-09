@@ -9,8 +9,7 @@ proc `physicsTicksPerSecond=`*(self: Engine; physicsTicksPerSecond: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_physics_ticks_per_second"
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  physicsTicksPerSecond.encode(`?param`[0])
+  var `?param` = [getPtr physicsTicksPerSecond]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc physicsTicksPerSecond*(self: Engine): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `maxPhysicsStepsPerFrame=`*(self: Engine; maxPhysicsSteps: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_max_physics_steps_per_frame"
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  maxPhysicsSteps.encode(`?param`[0])
+  var `?param` = [getPtr maxPhysicsSteps]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc maxPhysicsStepsPerFrame*(self: Engine): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `physicsJitterFix=`*(self: Engine; physicsJitterFix: float64) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_physics_jitter_fix"
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  physicsJitterFix.encode(`?param`[0])
+  var `?param` = [getPtr physicsJitterFix]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc physicsJitterFix*(self: Engine): float64 =
   var methodbind {.global.}: MethodBindPtr
@@ -65,8 +62,7 @@ proc `maxFps=`*(self: Engine; maxFps: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_max_fps"
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  maxFps.encode(`?param`[0])
+  var `?param` = [getPtr maxFps]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc maxFps*(self: Engine): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -81,8 +77,7 @@ proc `timeScale=`*(self: Engine; timeScale: float64) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_time_scale"
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  timeScale.encode(`?param`[0])
+  var `?param` = [getPtr timeScale]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc timeScale*(self: Engine): float64 =
   var methodbind {.global.}: MethodBindPtr
@@ -201,8 +196,7 @@ proc hasSingleton*(self: Engine; name: StringName): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "has_singleton"
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 2619796661)
-  var `?param`: array[1, pointer]
-  name.encode(`?param`[0])
+  var `?param` = [getPtr name]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -211,8 +205,7 @@ proc getSingleton*(self: Engine; name: StringName): Object =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_singleton"
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 1371597918)
-  var `?param`: array[1, pointer]
-  name.encode(`?param`[0])
+  var `?param` = [getPtr name]
   var ret: encoded Object
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Object)
@@ -221,16 +214,14 @@ proc registerSingleton*(self: Engine; name: StringName; instance: Object) =
   if unlikely(methodbind.isNil):
     let name: StringName = "register_singleton"
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 965313290)
-  var `?param`: array[2, pointer]
-  name.encode(`?param`[0]); instance.encode(`?param`[1])
+  var `?param` = [getPtr name, getPtr instance]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc unregisterSingleton*(self: Engine; name: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "unregister_singleton"
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 3304788590)
-  var `?param`: array[1, pointer]
-  name.encode(`?param`[0])
+  var `?param` = [getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getSingletonList*(self: Engine): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
@@ -245,8 +236,7 @@ proc registerScriptLanguage*(self: Engine; language: ScriptLanguage): Error =
   if unlikely(methodbind.isNil):
     let name: StringName = "register_script_language"
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 1850254898)
-  var `?param`: array[1, pointer]
-  language.encode(`?param`[0])
+  var `?param` = [getPtr language]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -255,8 +245,7 @@ proc unregisterScriptLanguage*(self: Engine; language: ScriptLanguage): Error =
   if unlikely(methodbind.isNil):
     let name: StringName = "unregister_script_language"
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 1850254898)
-  var `?param`: array[1, pointer]
-  language.encode(`?param`[0])
+  var `?param` = [getPtr language]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -273,8 +262,7 @@ proc getScriptLanguage*(self: Engine; index: int32): ScriptLanguage =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_script_language"
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 2151255799)
-  var `?param`: array[1, pointer]
-  index.encode(`?param`[0])
+  var `?param` = [getPtr index]
   var ret: encoded ScriptLanguage
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(ScriptLanguage)
@@ -299,8 +287,7 @@ proc `printErrorMessages=`*(self: Engine; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_print_error_messages"
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isPrintingErrorMessages*(self: Engine): Bool =
   var methodbind {.global.}: MethodBindPtr

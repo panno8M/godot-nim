@@ -9,8 +9,7 @@ proc `defaultValueEnabled=`*(self: Ref[VisualShaderNodeTransformParameter]; enab
   if unlikely(methodbind.isNil):
     let name: StringName = "set_default_value_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeTransformParameter, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isDefaultValueEnabled*(self: Ref[VisualShaderNodeTransformParameter]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `defaultValue=`*(self: Ref[VisualShaderNodeTransformParameter]; value: Tran
   if unlikely(methodbind.isNil):
     let name: StringName = "set_default_value"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeTransformParameter, addr name, 2952846383)
-  var `?param`: array[1, pointer]
-  value.encode(`?param`[0])
+  var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc defaultValue*(self: Ref[VisualShaderNodeTransformParameter]): Transform3D =
   var methodbind {.global.}: MethodBindPtr

@@ -9,8 +9,7 @@ proc save*(self: Ref[X509Certificate]; path: String): Error =
   if unlikely(methodbind.isNil):
     let name: StringName = "save"
     methodbind = interface_ClassDB_getMethodBind(addr className X509Certificate, addr name, 166001499)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -19,8 +18,7 @@ proc load*(self: Ref[X509Certificate]; path: String): Error =
   if unlikely(methodbind.isNil):
     let name: StringName = "load"
     methodbind = interface_ClassDB_getMethodBind(addr className X509Certificate, addr name, 166001499)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -37,8 +35,7 @@ proc loadFromString*(self: Ref[X509Certificate]; string: String): Error =
   if unlikely(methodbind.isNil):
     let name: StringName = "load_from_string"
     methodbind = interface_ClassDB_getMethodBind(addr className X509Certificate, addr name, 166001499)
-  var `?param`: array[1, pointer]
-  string.encode(`?param`[0])
+  var `?param` = [getPtr string]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)

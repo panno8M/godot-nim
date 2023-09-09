@@ -9,8 +9,7 @@ proc create*(`from`: Vector2; to: Vector2; collisionMask: uint32 = 4294967295'u3
   if unlikely(methodbind.isNil):
     let name: StringName = "create"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsRayQueryParameters2D, addr name, 1118143851)
-  var `?param`: array[4, pointer]
-  `from`.encode(`?param`[0]); to.encode(`?param`[1]); collisionMask.encode(`?param`[2]); exclude.encode(`?param`[3])
+  var `?param` = [getPtr `from`, getPtr to, getPtr collisionMask, getPtr exclude]
   var ret: encoded Ref[PhysicsRayQueryParameters2D]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[PhysicsRayQueryParameters2D])
@@ -19,8 +18,7 @@ proc `from=`*(self: Ref[PhysicsRayQueryParameters2D]; `from`: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_from"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsRayQueryParameters2D, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  `from`.encode(`?param`[0])
+  var `?param` = [getPtr `from`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `from`*(self: Ref[PhysicsRayQueryParameters2D]): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -35,8 +33,7 @@ proc `to=`*(self: Ref[PhysicsRayQueryParameters2D]; to: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_to"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsRayQueryParameters2D, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  to.encode(`?param`[0])
+  var `?param` = [getPtr to]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc to*(self: Ref[PhysicsRayQueryParameters2D]): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -51,8 +48,7 @@ proc `collisionMask=`*(self: Ref[PhysicsRayQueryParameters2D]; collisionMask: ui
   if unlikely(methodbind.isNil):
     let name: StringName = "set_collision_mask"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsRayQueryParameters2D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  collisionMask.encode(`?param`[0])
+  var `?param` = [getPtr collisionMask]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc collisionMask*(self: Ref[PhysicsRayQueryParameters2D]): uint32 =
   var methodbind {.global.}: MethodBindPtr
@@ -67,8 +63,7 @@ proc `exclude=`*(self: Ref[PhysicsRayQueryParameters2D]; exclude: TypedArray[RID
   if unlikely(methodbind.isNil):
     let name: StringName = "set_exclude"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsRayQueryParameters2D, addr name, 381264803)
-  var `?param`: array[1, pointer]
-  exclude.encode(`?param`[0])
+  var `?param` = [getPtr exclude]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc exclude*(self: Ref[PhysicsRayQueryParameters2D]): TypedArray[RID] =
   var methodbind {.global.}: MethodBindPtr
@@ -83,8 +78,7 @@ proc `collideWithBodies=`*(self: Ref[PhysicsRayQueryParameters2D]; enable: Bool)
   if unlikely(methodbind.isNil):
     let name: StringName = "set_collide_with_bodies"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsRayQueryParameters2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isCollideWithBodiesEnabled*(self: Ref[PhysicsRayQueryParameters2D]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -99,8 +93,7 @@ proc `collideWithAreas=`*(self: Ref[PhysicsRayQueryParameters2D]; enable: Bool) 
   if unlikely(methodbind.isNil):
     let name: StringName = "set_collide_with_areas"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsRayQueryParameters2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isCollideWithAreasEnabled*(self: Ref[PhysicsRayQueryParameters2D]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -115,8 +108,7 @@ proc `hitFromInside=`*(self: Ref[PhysicsRayQueryParameters2D]; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_hit_from_inside"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsRayQueryParameters2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isHitFromInsideEnabled*(self: Ref[PhysicsRayQueryParameters2D]): Bool =
   var methodbind {.global.}: MethodBindPtr

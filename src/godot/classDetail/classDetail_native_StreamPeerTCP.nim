@@ -9,8 +9,7 @@ proc `bind`*(self: Ref[StreamPeerTCP]; port: int32; host: String = "*"): Error =
   if unlikely(methodbind.isNil):
     let name: StringName = "bind"
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeerTCP, addr name, 4025329869)
-  var `?param`: array[2, pointer]
-  port.encode(`?param`[0]); host.encode(`?param`[1])
+  var `?param` = [getPtr port, getPtr host]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -19,8 +18,7 @@ proc connectToHost*(self: Ref[StreamPeerTCP]; host: String; port: int32): Error 
   if unlikely(methodbind.isNil):
     let name: StringName = "connect_to_host"
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeerTCP, addr name, 993915709)
-  var `?param`: array[2, pointer]
-  host.encode(`?param`[0]); port.encode(`?param`[1])
+  var `?param` = [getPtr host, getPtr port]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -75,6 +73,5 @@ proc setNoDelay*(self: Ref[StreamPeerTCP]; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_no_delay"
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeerTCP, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

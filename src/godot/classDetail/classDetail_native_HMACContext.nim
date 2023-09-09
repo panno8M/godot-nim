@@ -9,8 +9,7 @@ proc start*(self: Ref[HMACContext]; hashType: HashingContext_HashType; key: Pack
   if unlikely(methodbind.isNil):
     let name: StringName = "start"
     methodbind = interface_ClassDB_getMethodBind(addr className HMACContext, addr name, 3537364598)
-  var `?param`: array[2, pointer]
-  hashType.encode(`?param`[0]); key.encode(`?param`[1])
+  var `?param` = [getPtr hashType, getPtr key]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -19,8 +18,7 @@ proc update*(self: Ref[HMACContext]; data: PackedByteArray): Error =
   if unlikely(methodbind.isNil):
     let name: StringName = "update"
     methodbind = interface_ClassDB_getMethodBind(addr className HMACContext, addr name, 680677267)
-  var `?param`: array[1, pointer]
-  data.encode(`?param`[0])
+  var `?param` = [getPtr data]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)

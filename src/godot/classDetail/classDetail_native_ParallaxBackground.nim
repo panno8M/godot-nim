@@ -9,8 +9,7 @@ proc `scrollOffset=`*(self: ParallaxBackground; offset: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_scroll_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className ParallaxBackground, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  offset.encode(`?param`[0])
+  var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc scrollOffset*(self: ParallaxBackground): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `scrollBaseOffset=`*(self: ParallaxBackground; offset: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_scroll_base_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className ParallaxBackground, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  offset.encode(`?param`[0])
+  var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc scrollBaseOffset*(self: ParallaxBackground): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `scrollBaseScale=`*(self: ParallaxBackground; scale: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_scroll_base_scale"
     methodbind = interface_ClassDB_getMethodBind(addr className ParallaxBackground, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  scale.encode(`?param`[0])
+  var `?param` = [getPtr scale]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc scrollBaseScale*(self: ParallaxBackground): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `limitBegin=`*(self: ParallaxBackground; offset: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_limit_begin"
     methodbind = interface_ClassDB_getMethodBind(addr className ParallaxBackground, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  offset.encode(`?param`[0])
+  var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc limitBegin*(self: ParallaxBackground): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `limitEnd=`*(self: ParallaxBackground; offset: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_limit_end"
     methodbind = interface_ClassDB_getMethodBind(addr className ParallaxBackground, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  offset.encode(`?param`[0])
+  var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc limitEnd*(self: ParallaxBackground): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc `ignoreCameraZoom=`*(self: ParallaxBackground; ignore: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ignore_camera_zoom"
     methodbind = interface_ClassDB_getMethodBind(addr className ParallaxBackground, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  ignore.encode(`?param`[0])
+  var `?param` = [getPtr ignore]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isIgnoreCameraZoom*(self: ParallaxBackground): Bool =
   var methodbind {.global.}: MethodBindPtr

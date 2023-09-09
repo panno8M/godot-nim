@@ -9,8 +9,7 @@ proc `mesh=`*(self: ImporterMeshInstance3D; mesh: Ref[ImporterMesh]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className ImporterMeshInstance3D, addr name, 2255166972)
-  var `?param`: array[1, pointer]
-  mesh.encode(`?param`[0])
+  var `?param` = [getPtr mesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc mesh*(self: ImporterMeshInstance3D): Ref[ImporterMesh] =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `skin=`*(self: ImporterMeshInstance3D; skin: Ref[Skin]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_skin"
     methodbind = interface_ClassDB_getMethodBind(addr className ImporterMeshInstance3D, addr name, 3971435618)
-  var `?param`: array[1, pointer]
-  skin.encode(`?param`[0])
+  var `?param` = [getPtr skin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc skin*(self: ImporterMeshInstance3D): Ref[Skin] =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `skeletonPath=`*(self: ImporterMeshInstance3D; skeletonPath: NodePath) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_skeleton_path"
     methodbind = interface_ClassDB_getMethodBind(addr className ImporterMeshInstance3D, addr name, 1348162250)
-  var `?param`: array[1, pointer]
-  skeletonPath.encode(`?param`[0])
+  var `?param` = [getPtr skeletonPath]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc skeletonPath*(self: ImporterMeshInstance3D): NodePath =
   var methodbind {.global.}: MethodBindPtr

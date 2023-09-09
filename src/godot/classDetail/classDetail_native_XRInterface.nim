@@ -33,8 +33,7 @@ proc `primary=`*(self: Ref[XRInterface]; primary: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_primary"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  primary.encode(`?param`[0])
+  var `?param` = [getPtr primary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isInitialized*(self: Ref[XRInterface]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -95,16 +94,14 @@ proc triggerHapticPulse*(self: Ref[XRInterface]; actionName: String; trackerName
   if unlikely(methodbind.isNil):
     let name: StringName = "trigger_haptic_pulse"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 3752640163)
-  var `?param`: array[6, pointer]
-  actionName.encode(`?param`[0]); trackerName.encode(`?param`[1]); frequency.encode(`?param`[2]); amplitude.encode(`?param`[3]); durationSec.encode(`?param`[4]); delaySec.encode(`?param`[5])
+  var `?param` = [getPtr actionName, getPtr trackerName, getPtr frequency, getPtr amplitude, getPtr durationSec, getPtr delaySec]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc supportsPlayAreaMode*(self: Ref[XRInterface]; mode: XRInterface_PlayAreaMode): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "supports_play_area_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 3429955281)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -121,8 +118,7 @@ proc `playAreaMode=`*(self: Ref[XRInterface]; mode: XRInterface_PlayAreaMode): B
   if unlikely(methodbind.isNil):
     let name: StringName = "set_play_area_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 3429955281)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -147,8 +143,7 @@ proc `anchorDetectionIsEnabled=`*(self: Ref[XRInterface]; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_anchor_detection_is_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getCameraFeedId*(self: Ref[XRInterface]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -193,8 +188,7 @@ proc getTransformForView*(self: Ref[XRInterface]; view: uint32; camTransform: Tr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_transform_for_view"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 518934792)
-  var `?param`: array[2, pointer]
-  view.encode(`?param`[0]); camTransform.encode(`?param`[1])
+  var `?param` = [getPtr view, getPtr camTransform]
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Transform3D)
@@ -203,8 +197,7 @@ proc getProjectionForView*(self: Ref[XRInterface]; view: uint32; aspect: float64
   if unlikely(methodbind.isNil):
     let name: StringName = "get_projection_for_view"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 3766090294)
-  var `?param`: array[4, pointer]
-  view.encode(`?param`[0]); aspect.encode(`?param`[1]); near.encode(`?param`[2]); far.encode(`?param`[3])
+  var `?param` = [getPtr view, getPtr aspect, getPtr near, getPtr far]
   var ret: encoded Projection
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Projection)
@@ -221,8 +214,7 @@ proc setEnvironmentBlendMode*(self: Ref[XRInterface]; mode: XRInterface_Environm
   if unlikely(methodbind.isNil):
     let name: StringName = "set_environment_blend_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 551152418)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)

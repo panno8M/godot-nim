@@ -9,8 +9,7 @@ proc `shadowMode=`*(self: OmniLight3D; mode: OmniLight3D_ShadowMode) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_shadow_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className OmniLight3D, addr name, 121862228)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc shadowMode*(self: OmniLight3D): OmniLight3D_ShadowMode =
   var methodbind {.global.}: MethodBindPtr

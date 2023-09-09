@@ -9,8 +9,7 @@ proc parse*(self: Ref[Expression]; expression: String; inputNames: PackedStringA
   if unlikely(methodbind.isNil):
     let name: StringName = "parse"
     methodbind = interface_ClassDB_getMethodBind(addr className Expression, addr name, 3658149758)
-  var `?param`: array[2, pointer]
-  expression.encode(`?param`[0]); inputNames.encode(`?param`[1])
+  var `?param` = [getPtr expression, getPtr inputNames]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -19,8 +18,7 @@ proc execute*(self: Ref[Expression]; inputs: Array = init_Array(); baseInstance:
   if unlikely(methodbind.isNil):
     let name: StringName = "execute"
     methodbind = interface_ClassDB_getMethodBind(addr className Expression, addr name, 3712471238)
-  var `?param`: array[4, pointer]
-  inputs.encode(`?param`[0]); baseInstance.encode(`?param`[1]); showError.encode(`?param`[2]); constCallsOnly.encode(`?param`[3])
+  var `?param` = [getPtr inputs, getPtr baseInstance, getPtr showError, getPtr constCallsOnly]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)

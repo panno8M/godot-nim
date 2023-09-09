@@ -15,8 +15,7 @@ proc acceptStream*(self: Ref[StreamPeerTLS]; stream: Ref[StreamPeer]; serverOpti
   if unlikely(methodbind.isNil):
     let name: StringName = "accept_stream"
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeerTLS, addr name, 4292689651)
-  var `?param`: array[2, pointer]
-  stream.encode(`?param`[0]); serverOptions.encode(`?param`[1])
+  var `?param` = [getPtr stream, getPtr serverOptions]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -25,8 +24,7 @@ proc connectToStream*(self: Ref[StreamPeerTLS]; stream: Ref[StreamPeer]; commonN
   if unlikely(methodbind.isNil):
     let name: StringName = "connect_to_stream"
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeerTLS, addr name, 1325480781)
-  var `?param`: array[3, pointer]
-  stream.encode(`?param`[0]); commonName.encode(`?param`[1]); clientOptions.encode(`?param`[2])
+  var `?param` = [getPtr stream, getPtr commonName, getPtr clientOptions]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)

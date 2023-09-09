@@ -9,8 +9,7 @@ proc `cullMask=`*(self: GPUParticlesAttractor3D; mask: uint32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_cull_mask"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesAttractor3D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  mask.encode(`?param`[0])
+  var `?param` = [getPtr mask]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc cullMask*(self: GPUParticlesAttractor3D): uint32 =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `strength=`*(self: GPUParticlesAttractor3D; strength: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_strength"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesAttractor3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  strength.encode(`?param`[0])
+  var `?param` = [getPtr strength]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc strength*(self: GPUParticlesAttractor3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `attenuation=`*(self: GPUParticlesAttractor3D; attenuation: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_attenuation"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesAttractor3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  attenuation.encode(`?param`[0])
+  var `?param` = [getPtr attenuation]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc attenuation*(self: GPUParticlesAttractor3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `directionality=`*(self: GPUParticlesAttractor3D; amount: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_directionality"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesAttractor3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  amount.encode(`?param`[0])
+  var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc directionality*(self: GPUParticlesAttractor3D): Float =
   var methodbind {.global.}: MethodBindPtr

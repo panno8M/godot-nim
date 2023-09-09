@@ -9,8 +9,7 @@ proc `parameterName=`*(self: Ref[VisualShaderNodeParameter]; name: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_parameter_name"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeParameter, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  name.encode(`?param`[0])
+  var `?param` = [getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc parameterName*(self: Ref[VisualShaderNodeParameter]): String =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `qualifier=`*(self: Ref[VisualShaderNodeParameter]; qualifier: VisualShader
   if unlikely(methodbind.isNil):
     let name: StringName = "set_qualifier"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeParameter, addr name, 1276489447)
-  var `?param`: array[1, pointer]
-  qualifier.encode(`?param`[0])
+  var `?param` = [getPtr qualifier]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc qualifier*(self: Ref[VisualShaderNodeParameter]): VisualShaderNodeParameter_Qualifier =
   var methodbind {.global.}: MethodBindPtr

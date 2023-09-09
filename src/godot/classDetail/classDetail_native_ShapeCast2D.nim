@@ -9,8 +9,7 @@ proc `enabled=`*(self: ShapeCast2D; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isEnabled*(self: ShapeCast2D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `shape=`*(self: ShapeCast2D; shape: Ref[Shape2D]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 771364740)
-  var `?param`: array[1, pointer]
-  shape.encode(`?param`[0])
+  var `?param` = [getPtr shape]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc shape*(self: ShapeCast2D): Ref[Shape2D] =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `targetPosition=`*(self: ShapeCast2D; localPoint: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_target_position"
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  localPoint.encode(`?param`[0])
+  var `?param` = [getPtr localPoint]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc tarposition*(self: ShapeCast2D): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `margin=`*(self: ShapeCast2D; margin: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_margin"
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  margin.encode(`?param`[0])
+  var `?param` = [getPtr margin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc margin*(self: ShapeCast2D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `maxResults=`*(self: ShapeCast2D; maxRetvals: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_max_results"
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  maxRetvals.encode(`?param`[0])
+  var `?param` = [getPtr maxRetvals]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc maxResults*(self: ShapeCast2D): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -111,8 +106,7 @@ proc getCollider*(self: ShapeCast2D; index: int32): Object =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_collider"
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 3332903315)
-  var `?param`: array[1, pointer]
-  index.encode(`?param`[0])
+  var `?param` = [getPtr index]
   var ret: encoded Object
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Object)
@@ -121,8 +115,7 @@ proc getColliderRid*(self: ShapeCast2D; index: int32): RID =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_collider_rid"
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 495598643)
-  var `?param`: array[1, pointer]
-  index.encode(`?param`[0])
+  var `?param` = [getPtr index]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(RID)
@@ -131,8 +124,7 @@ proc getColliderShape*(self: ShapeCast2D; index: int32): int32 =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_collider_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 923996154)
-  var `?param`: array[1, pointer]
-  index.encode(`?param`[0])
+  var `?param` = [getPtr index]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
@@ -141,8 +133,7 @@ proc getCollisionPoint*(self: ShapeCast2D; index: int32): Vector2 =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_collision_point"
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 2299179447)
-  var `?param`: array[1, pointer]
-  index.encode(`?param`[0])
+  var `?param` = [getPtr index]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2)
@@ -151,8 +142,7 @@ proc getCollisionNormal*(self: ShapeCast2D; index: int32): Vector2 =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_collision_normal"
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 2299179447)
-  var `?param`: array[1, pointer]
-  index.encode(`?param`[0])
+  var `?param` = [getPtr index]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2)
@@ -177,32 +167,28 @@ proc addExceptionRid*(self: ShapeCast2D; rid: RID) =
   if unlikely(methodbind.isNil):
     let name: StringName = "add_exception_rid"
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 2722037293)
-  var `?param`: array[1, pointer]
-  rid.encode(`?param`[0])
+  var `?param` = [getPtr rid]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc addException*(self: ShapeCast2D; node: CollisionObject2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_exception"
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 3090941106)
-  var `?param`: array[1, pointer]
-  node.encode(`?param`[0])
+  var `?param` = [getPtr node]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc removeExceptionRid*(self: ShapeCast2D; rid: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_exception_rid"
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 2722037293)
-  var `?param`: array[1, pointer]
-  rid.encode(`?param`[0])
+  var `?param` = [getPtr rid]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc removeException*(self: ShapeCast2D; node: CollisionObject2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_exception"
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 3090941106)
-  var `?param`: array[1, pointer]
-  node.encode(`?param`[0])
+  var `?param` = [getPtr node]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc clearExceptions*(self: ShapeCast2D) =
   var methodbind {.global.}: MethodBindPtr
@@ -215,8 +201,7 @@ proc `collisionMask=`*(self: ShapeCast2D; mask: uint32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_collision_mask"
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  mask.encode(`?param`[0])
+  var `?param` = [getPtr mask]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc collisionMask*(self: ShapeCast2D): uint32 =
   var methodbind {.global.}: MethodBindPtr
@@ -231,16 +216,14 @@ proc setCollisionMaskValue*(self: ShapeCast2D; layerNumber: int32; value: Bool) 
   if unlikely(methodbind.isNil):
     let name: StringName = "set_collision_mask_value"
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 300928843)
-  var `?param`: array[2, pointer]
-  layerNumber.encode(`?param`[0]); value.encode(`?param`[1])
+  var `?param` = [getPtr layerNumber, getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getCollisionMaskValue*(self: ShapeCast2D; layerNumber: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_collision_mask_value"
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 1116898809)
-  var `?param`: array[1, pointer]
-  layerNumber.encode(`?param`[0])
+  var `?param` = [getPtr layerNumber]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -249,8 +232,7 @@ proc `excludeParentBody=`*(self: ShapeCast2D; mask: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_exclude_parent_body"
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  mask.encode(`?param`[0])
+  var `?param` = [getPtr mask]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc excludeParentBody*(self: ShapeCast2D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -265,8 +247,7 @@ proc `collideWithAreas=`*(self: ShapeCast2D; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_collide_with_areas"
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isCollideWithAreasEnabled*(self: ShapeCast2D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -281,8 +262,7 @@ proc `collideWithBodies=`*(self: ShapeCast2D; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_collide_with_bodies"
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isCollideWithBodiesEnabled*(self: ShapeCast2D): Bool =
   var methodbind {.global.}: MethodBindPtr

@@ -9,8 +9,7 @@ proc `closed=`*(self: Ref[OccluderPolygon2D]; closed: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_closed"
     methodbind = interface_ClassDB_getMethodBind(addr className OccluderPolygon2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  closed.encode(`?param`[0])
+  var `?param` = [getPtr closed]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isClosed*(self: Ref[OccluderPolygon2D]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `cullMode=`*(self: Ref[OccluderPolygon2D]; cullMode: OccluderPolygon2D_Cull
   if unlikely(methodbind.isNil):
     let name: StringName = "set_cull_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className OccluderPolygon2D, addr name, 3500863002)
-  var `?param`: array[1, pointer]
-  cullMode.encode(`?param`[0])
+  var `?param` = [getPtr cullMode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc cullMode*(self: Ref[OccluderPolygon2D]): OccluderPolygon2D_CullMode =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `polygon=`*(self: Ref[OccluderPolygon2D]; polygon: PackedVector2Array) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_polygon"
     methodbind = interface_ClassDB_getMethodBind(addr className OccluderPolygon2D, addr name, 1509147220)
-  var `?param`: array[1, pointer]
-  polygon.encode(`?param`[0])
+  var `?param` = [getPtr polygon]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc polygon*(self: Ref[OccluderPolygon2D]): PackedVector2Array =
   var methodbind {.global.}: MethodBindPtr

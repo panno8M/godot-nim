@@ -9,8 +9,7 @@ proc `points=`*(self: Line2D; points: PackedVector2Array) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_points"
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 1509147220)
-  var `?param`: array[1, pointer]
-  points.encode(`?param`[0])
+  var `?param` = [getPtr points]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc points*(self: Line2D): PackedVector2Array =
   var methodbind {.global.}: MethodBindPtr
@@ -25,16 +24,14 @@ proc setPointPosition*(self: Line2D; index: int32; position: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_point_position"
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 163021252)
-  var `?param`: array[2, pointer]
-  index.encode(`?param`[0]); position.encode(`?param`[1])
+  var `?param` = [getPtr index, getPtr position]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getPointPosition*(self: Line2D; index: int32): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_point_position"
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 2299179447)
-  var `?param`: array[1, pointer]
-  index.encode(`?param`[0])
+  var `?param` = [getPtr index]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2)
@@ -51,16 +48,14 @@ proc addPoint*(self: Line2D; position: Vector2; index: int32 = -1) =
   if unlikely(methodbind.isNil):
     let name: StringName = "add_point"
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 468506575)
-  var `?param`: array[2, pointer]
-  position.encode(`?param`[0]); index.encode(`?param`[1])
+  var `?param` = [getPtr position, getPtr index]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc removePoint*(self: Line2D; index: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_point"
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  index.encode(`?param`[0])
+  var `?param` = [getPtr index]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc clearPoints*(self: Line2D) =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +68,7 @@ proc `width=`*(self: Line2D; width: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_width"
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  width.encode(`?param`[0])
+  var `?param` = [getPtr width]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc width*(self: Line2D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +83,7 @@ proc `curve=`*(self: Line2D; curve: Ref[Curve]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_curve"
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 270443179)
-  var `?param`: array[1, pointer]
-  curve.encode(`?param`[0])
+  var `?param` = [getPtr curve]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc curve*(self: Line2D): Ref[Curve] =
   var methodbind {.global.}: MethodBindPtr
@@ -105,8 +98,7 @@ proc `defaultColor=`*(self: Line2D; color: Color) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_default_color"
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  color.encode(`?param`[0])
+  var `?param` = [getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc defaultColor*(self: Line2D): Color =
   var methodbind {.global.}: MethodBindPtr
@@ -121,8 +113,7 @@ proc `gradient=`*(self: Line2D; color: Ref[Gradient]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_gradient"
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 2756054477)
-  var `?param`: array[1, pointer]
-  color.encode(`?param`[0])
+  var `?param` = [getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc gradient*(self: Line2D): Ref[Gradient] =
   var methodbind {.global.}: MethodBindPtr
@@ -137,8 +128,7 @@ proc `texture=`*(self: Line2D; texture: Ref[Texture2D]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 4051416890)
-  var `?param`: array[1, pointer]
-  texture.encode(`?param`[0])
+  var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc texture*(self: Line2D): Ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
@@ -153,8 +143,7 @@ proc `textureMode=`*(self: Line2D; mode: Line2D_LineTextureMode) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_texture_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 1952559516)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc textureMode*(self: Line2D): Line2D_LineTextureMode =
   var methodbind {.global.}: MethodBindPtr
@@ -169,8 +158,7 @@ proc `jointMode=`*(self: Line2D; mode: Line2D_LineJointMode) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_joint_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 604292979)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc jointMode*(self: Line2D): Line2D_LineJointMode =
   var methodbind {.global.}: MethodBindPtr
@@ -185,8 +173,7 @@ proc `beginCapMode=`*(self: Line2D; mode: Line2D_LineCapMode) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_begin_cap_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 1669024546)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc beginCapMode*(self: Line2D): Line2D_LineCapMode =
   var methodbind {.global.}: MethodBindPtr
@@ -201,8 +188,7 @@ proc `endCapMode=`*(self: Line2D; mode: Line2D_LineCapMode) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_end_cap_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 1669024546)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc endCapMode*(self: Line2D): Line2D_LineCapMode =
   var methodbind {.global.}: MethodBindPtr
@@ -217,8 +203,7 @@ proc `sharpLimit=`*(self: Line2D; limit: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sharp_limit"
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  limit.encode(`?param`[0])
+  var `?param` = [getPtr limit]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc sharpLimit*(self: Line2D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -233,8 +218,7 @@ proc `roundPrecision=`*(self: Line2D; precision: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_round_precision"
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  precision.encode(`?param`[0])
+  var `?param` = [getPtr precision]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc roundPrecision*(self: Line2D): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -249,8 +233,7 @@ proc `antialiased=`*(self: Line2D; antialiased: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_antialiased"
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  antialiased.encode(`?param`[0])
+  var `?param` = [getPtr antialiased]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc antialiased*(self: Line2D): Bool =
   var methodbind {.global.}: MethodBindPtr

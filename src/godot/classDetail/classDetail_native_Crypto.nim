@@ -9,8 +9,7 @@ proc generateRandomBytes*(self: Ref[Crypto]; size: int32): PackedByteArray =
   if unlikely(methodbind.isNil):
     let name: StringName = "generate_random_bytes"
     methodbind = interface_ClassDB_getMethodBind(addr className Crypto, addr name, 47165747)
-  var `?param`: array[1, pointer]
-  size.encode(`?param`[0])
+  var `?param` = [getPtr size]
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedByteArray)
@@ -19,8 +18,7 @@ proc generateRsa*(self: Ref[Crypto]; size: int32): Ref[CryptoKey] =
   if unlikely(methodbind.isNil):
     let name: StringName = "generate_rsa"
     methodbind = interface_ClassDB_getMethodBind(addr className Crypto, addr name, 1237515462)
-  var `?param`: array[1, pointer]
-  size.encode(`?param`[0])
+  var `?param` = [getPtr size]
   var ret: encoded Ref[CryptoKey]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[CryptoKey])
@@ -29,8 +27,7 @@ proc generateSelfSignedCertificate*(self: Ref[Crypto]; key: Ref[CryptoKey]; issu
   if unlikely(methodbind.isNil):
     let name: StringName = "generate_self_signed_certificate"
     methodbind = interface_ClassDB_getMethodBind(addr className Crypto, addr name, 947314696)
-  var `?param`: array[4, pointer]
-  key.encode(`?param`[0]); issuerName.encode(`?param`[1]); notBefore.encode(`?param`[2]); notAfter.encode(`?param`[3])
+  var `?param` = [getPtr key, getPtr issuerName, getPtr notBefore, getPtr notAfter]
   var ret: encoded Ref[X509Certificate]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[X509Certificate])
@@ -39,8 +36,7 @@ proc sign*(self: Ref[Crypto]; hashType: HashingContext_HashType; hash: PackedByt
   if unlikely(methodbind.isNil):
     let name: StringName = "sign"
     methodbind = interface_ClassDB_getMethodBind(addr className Crypto, addr name, 1673662703)
-  var `?param`: array[3, pointer]
-  hashType.encode(`?param`[0]); hash.encode(`?param`[1]); key.encode(`?param`[2])
+  var `?param` = [getPtr hashType, getPtr hash, getPtr key]
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedByteArray)
@@ -49,8 +45,7 @@ proc verify*(self: Ref[Crypto]; hashType: HashingContext_HashType; hash: PackedB
   if unlikely(methodbind.isNil):
     let name: StringName = "verify"
     methodbind = interface_ClassDB_getMethodBind(addr className Crypto, addr name, 2805902225)
-  var `?param`: array[4, pointer]
-  hashType.encode(`?param`[0]); hash.encode(`?param`[1]); signature.encode(`?param`[2]); key.encode(`?param`[3])
+  var `?param` = [getPtr hashType, getPtr hash, getPtr signature, getPtr key]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -59,8 +54,7 @@ proc encrypt*(self: Ref[Crypto]; key: Ref[CryptoKey]; plaintext: PackedByteArray
   if unlikely(methodbind.isNil):
     let name: StringName = "encrypt"
     methodbind = interface_ClassDB_getMethodBind(addr className Crypto, addr name, 2361793670)
-  var `?param`: array[2, pointer]
-  key.encode(`?param`[0]); plaintext.encode(`?param`[1])
+  var `?param` = [getPtr key, getPtr plaintext]
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedByteArray)
@@ -69,8 +63,7 @@ proc decrypt*(self: Ref[Crypto]; key: Ref[CryptoKey]; ciphertext: PackedByteArra
   if unlikely(methodbind.isNil):
     let name: StringName = "decrypt"
     methodbind = interface_ClassDB_getMethodBind(addr className Crypto, addr name, 2361793670)
-  var `?param`: array[2, pointer]
-  key.encode(`?param`[0]); ciphertext.encode(`?param`[1])
+  var `?param` = [getPtr key, getPtr ciphertext]
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedByteArray)
@@ -79,8 +72,7 @@ proc hmacDigest*(self: Ref[Crypto]; hashType: HashingContext_HashType; key: Pack
   if unlikely(methodbind.isNil):
     let name: StringName = "hmac_digest"
     methodbind = interface_ClassDB_getMethodBind(addr className Crypto, addr name, 2368951203)
-  var `?param`: array[3, pointer]
-  hashType.encode(`?param`[0]); key.encode(`?param`[1]); msg.encode(`?param`[2])
+  var `?param` = [getPtr hashType, getPtr key, getPtr msg]
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedByteArray)
@@ -89,8 +81,7 @@ proc constantTimeCompare*(self: Ref[Crypto]; trusted: PackedByteArray; received:
   if unlikely(methodbind.isNil):
     let name: StringName = "constant_time_compare"
     methodbind = interface_ClassDB_getMethodBind(addr className Crypto, addr name, 1024142237)
-  var `?param`: array[2, pointer]
-  trusted.encode(`?param`[0]); received.encode(`?param`[1])
+  var `?param` = [getPtr trusted, getPtr received]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)

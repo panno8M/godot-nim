@@ -17,8 +17,7 @@ proc `from=`*(self: Ref[PhysicsTestMotionParameters2D]; `from`: Transform2D) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_from"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionParameters2D, addr name, 2761652528)
-  var `?param`: array[1, pointer]
-  `from`.encode(`?param`[0])
+  var `?param` = [getPtr `from`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc motion*(self: Ref[PhysicsTestMotionParameters2D]): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -33,8 +32,7 @@ proc `motion=`*(self: Ref[PhysicsTestMotionParameters2D]; motion: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_motion"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionParameters2D, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  motion.encode(`?param`[0])
+  var `?param` = [getPtr motion]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc margin*(self: Ref[PhysicsTestMotionParameters2D]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -49,8 +47,7 @@ proc `margin=`*(self: Ref[PhysicsTestMotionParameters2D]; margin: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_margin"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionParameters2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  margin.encode(`?param`[0])
+  var `?param` = [getPtr margin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isCollideSeparationRayEnabled*(self: Ref[PhysicsTestMotionParameters2D]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -65,8 +62,7 @@ proc `collideSeparationRayEnabled=`*(self: Ref[PhysicsTestMotionParameters2D]; e
   if unlikely(methodbind.isNil):
     let name: StringName = "set_collide_separation_ray_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionParameters2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc excludeBodies*(self: Ref[PhysicsTestMotionParameters2D]): TypedArray[RID] =
   var methodbind {.global.}: MethodBindPtr
@@ -81,8 +77,7 @@ proc `excludeBodies=`*(self: Ref[PhysicsTestMotionParameters2D]; excludeList: Ty
   if unlikely(methodbind.isNil):
     let name: StringName = "set_exclude_bodies"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionParameters2D, addr name, 381264803)
-  var `?param`: array[1, pointer]
-  excludeList.encode(`?param`[0])
+  var `?param` = [getPtr excludeList]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc excludeObjects*(self: Ref[PhysicsTestMotionParameters2D]): TypedArray[Int] =
   var methodbind {.global.}: MethodBindPtr
@@ -97,8 +92,7 @@ proc `excludeObjects=`*(self: Ref[PhysicsTestMotionParameters2D]; excludeList: T
   if unlikely(methodbind.isNil):
     let name: StringName = "set_exclude_objects"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionParameters2D, addr name, 381264803)
-  var `?param`: array[1, pointer]
-  excludeList.encode(`?param`[0])
+  var `?param` = [getPtr excludeList]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isRecoveryAsCollisionEnabled*(self: Ref[PhysicsTestMotionParameters2D]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -113,6 +107,5 @@ proc `recoveryAsCollisionEnabled=`*(self: Ref[PhysicsTestMotionParameters2D]; en
   if unlikely(methodbind.isNil):
     let name: StringName = "set_recovery_as_collision_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionParameters2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

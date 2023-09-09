@@ -9,8 +9,7 @@ proc `events=`*(self: Ref[Shortcut]; events: Array) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_events"
     methodbind = interface_ClassDB_getMethodBind(addr className Shortcut, addr name, 381264803)
-  var `?param`: array[1, pointer]
-  events.encode(`?param`[0])
+  var `?param` = [getPtr events]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc events*(self: Ref[Shortcut]): Array =
   var methodbind {.global.}: MethodBindPtr
@@ -33,8 +32,7 @@ proc matchesEvent*(self: Ref[Shortcut]; event: Ref[InputEvent]): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "matches_event"
     methodbind = interface_ClassDB_getMethodBind(addr className Shortcut, addr name, 3738334489)
-  var `?param`: array[1, pointer]
-  event.encode(`?param`[0])
+  var `?param` = [getPtr event]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)

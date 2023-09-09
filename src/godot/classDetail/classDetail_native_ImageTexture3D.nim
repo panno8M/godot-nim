@@ -9,8 +9,7 @@ proc create*(self: Ref[ImageTexture3D]; format: Image_Format; width: int32; heig
   if unlikely(methodbind.isNil):
     let name: StringName = "create"
     methodbind = interface_ClassDB_getMethodBind(addr className ImageTexture3D, addr name, 1130379827)
-  var `?param`: array[6, pointer]
-  format.encode(`?param`[0]); width.encode(`?param`[1]); height.encode(`?param`[2]); depth.encode(`?param`[3]); useMipmaps.encode(`?param`[4]); data.encode(`?param`[5])
+  var `?param` = [getPtr format, getPtr width, getPtr height, getPtr depth, getPtr useMipmaps, getPtr data]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -19,6 +18,5 @@ proc update*(self: Ref[ImageTexture3D]; data: TypedArray[Image]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "update"
     methodbind = interface_ClassDB_getMethodBind(addr className ImageTexture3D, addr name, 381264803)
-  var `?param`: array[1, pointer]
-  data.encode(`?param`[0])
+  var `?param` = [getPtr data]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

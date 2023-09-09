@@ -9,8 +9,7 @@ proc `source=`*(self: Ref[VisualShaderNodeSample3D]; value: VisualShaderNodeSamp
   if unlikely(methodbind.isNil):
     let name: StringName = "set_source"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeSample3D, addr name, 3315130991)
-  var `?param`: array[1, pointer]
-  value.encode(`?param`[0])
+  var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc source*(self: Ref[VisualShaderNodeSample3D]): VisualShaderNodeSample3D_Source =
   var methodbind {.global.}: MethodBindPtr

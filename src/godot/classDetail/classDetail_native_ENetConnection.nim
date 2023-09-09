@@ -9,8 +9,7 @@ proc createHostBound*(self: Ref[ENetConnection]; bindAddress: String; bindPort: 
   if unlikely(methodbind.isNil):
     let name: StringName = "create_host_bound"
     methodbind = interface_ClassDB_getMethodBind(addr className ENetConnection, addr name, 866250949)
-  var `?param`: array[6, pointer]
-  bindAddress.encode(`?param`[0]); bindPort.encode(`?param`[1]); maxPeers.encode(`?param`[2]); maxChannels.encode(`?param`[3]); inBandwidth.encode(`?param`[4]); outBandwidth.encode(`?param`[5])
+  var `?param` = [getPtr bindAddress, getPtr bindPort, getPtr maxPeers, getPtr maxChannels, getPtr inBandwidth, getPtr outBandwidth]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -19,8 +18,7 @@ proc createHost*(self: Ref[ENetConnection]; maxPeers: int32 = 32; maxChannels: i
   if unlikely(methodbind.isNil):
     let name: StringName = "create_host"
     methodbind = interface_ClassDB_getMethodBind(addr className ENetConnection, addr name, 117198950)
-  var `?param`: array[4, pointer]
-  maxPeers.encode(`?param`[0]); maxChannels.encode(`?param`[1]); inBandwidth.encode(`?param`[2]); outBandwidth.encode(`?param`[3])
+  var `?param` = [getPtr maxPeers, getPtr maxChannels, getPtr inBandwidth, getPtr outBandwidth]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -35,8 +33,7 @@ proc connectToHost*(self: Ref[ENetConnection]; address: String; port: int32; cha
   if unlikely(methodbind.isNil):
     let name: StringName = "connect_to_host"
     methodbind = interface_ClassDB_getMethodBind(addr className ENetConnection, addr name, 385984708)
-  var `?param`: array[4, pointer]
-  address.encode(`?param`[0]); port.encode(`?param`[1]); channels.encode(`?param`[2]); data.encode(`?param`[3])
+  var `?param` = [getPtr address, getPtr port, getPtr channels, getPtr data]
   var ret: encoded Ref[ENetPacketPeer]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[ENetPacketPeer])
@@ -45,8 +42,7 @@ proc service*(self: Ref[ENetConnection]; timeout: int32 = 0): Array =
   if unlikely(methodbind.isNil):
     let name: StringName = "service"
     methodbind = interface_ClassDB_getMethodBind(addr className ENetConnection, addr name, 2402345344)
-  var `?param`: array[1, pointer]
-  timeout.encode(`?param`[0])
+  var `?param` = [getPtr timeout]
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Array)
@@ -61,40 +57,35 @@ proc bandwidthLimit*(self: Ref[ENetConnection]; inBandwidth: int32 = 0; outBandw
   if unlikely(methodbind.isNil):
     let name: StringName = "bandwidth_limit"
     methodbind = interface_ClassDB_getMethodBind(addr className ENetConnection, addr name, 2302169788)
-  var `?param`: array[2, pointer]
-  inBandwidth.encode(`?param`[0]); outBandwidth.encode(`?param`[1])
+  var `?param` = [getPtr inBandwidth, getPtr outBandwidth]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc channelLimit*(self: Ref[ENetConnection]; limit: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "channel_limit"
     methodbind = interface_ClassDB_getMethodBind(addr className ENetConnection, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  limit.encode(`?param`[0])
+  var `?param` = [getPtr limit]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc broadcast*(self: Ref[ENetConnection]; channel: int32; packet: PackedByteArray; flags: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "broadcast"
     methodbind = interface_ClassDB_getMethodBind(addr className ENetConnection, addr name, 2772371345)
-  var `?param`: array[3, pointer]
-  channel.encode(`?param`[0]); packet.encode(`?param`[1]); flags.encode(`?param`[2])
+  var `?param` = [getPtr channel, getPtr packet, getPtr flags]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc compress*(self: Ref[ENetConnection]; mode: ENetConnection_CompressionMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "compress"
     methodbind = interface_ClassDB_getMethodBind(addr className ENetConnection, addr name, 2660215187)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc dtlsServerSetup*(self: Ref[ENetConnection]; serverOptions: Ref[TLSOptions]): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "dtls_server_setup"
     methodbind = interface_ClassDB_getMethodBind(addr className ENetConnection, addr name, 1262296096)
-  var `?param`: array[1, pointer]
-  serverOptions.encode(`?param`[0])
+  var `?param` = [getPtr serverOptions]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -103,8 +94,7 @@ proc dtlsClientSetup*(self: Ref[ENetConnection]; hostname: String; clientOptions
   if unlikely(methodbind.isNil):
     let name: StringName = "dtls_client_setup"
     methodbind = interface_ClassDB_getMethodBind(addr className ENetConnection, addr name, 3097527179)
-  var `?param`: array[2, pointer]
-  hostname.encode(`?param`[0]); clientOptions.encode(`?param`[1])
+  var `?param` = [getPtr hostname, getPtr clientOptions]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -113,16 +103,14 @@ proc refuseNewConnections*(self: Ref[ENetConnection]; refuse: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "refuse_new_connections"
     methodbind = interface_ClassDB_getMethodBind(addr className ENetConnection, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  refuse.encode(`?param`[0])
+  var `?param` = [getPtr refuse]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc popStatistic*(self: Ref[ENetConnection]; statistic: ENetConnection_HostStatistic): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "pop_statistic"
     methodbind = interface_ClassDB_getMethodBind(addr className ENetConnection, addr name, 2166904170)
-  var `?param`: array[1, pointer]
-  statistic.encode(`?param`[0])
+  var `?param` = [getPtr statistic]
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(float64)
@@ -155,6 +143,5 @@ proc socketSend*(self: Ref[ENetConnection]; destinationAddress: String; destinat
   if unlikely(methodbind.isNil):
     let name: StringName = "socket_send"
     methodbind = interface_ClassDB_getMethodBind(addr className ENetConnection, addr name, 1100646812)
-  var `?param`: array[3, pointer]
-  destinationAddress.encode(`?param`[0]); destinationPort.encode(`?param`[1]); packet.encode(`?param`[2])
+  var `?param` = [getPtr destinationAddress, getPtr destinationPort, getPtr packet]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

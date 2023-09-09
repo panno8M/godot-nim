@@ -17,6 +17,5 @@ proc addSyntaxHighlighter*(self: ScriptEditorBase; highlighter: Ref[EditorSyntax
   if unlikely(methodbind.isNil):
     let name: StringName = "add_syntax_highlighter"
     methodbind = interface_ClassDB_getMethodBind(addr className ScriptEditorBase, addr name, 1092774468)
-  var `?param`: array[1, pointer]
-  highlighter.encode(`?param`[0])
+  var `?param` = [getPtr highlighter]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

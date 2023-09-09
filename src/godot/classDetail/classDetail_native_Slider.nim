@@ -9,8 +9,7 @@ proc `ticks=`*(self: Slider; count: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ticks"
     methodbind = interface_ClassDB_getMethodBind(addr className Slider, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  count.encode(`?param`[0])
+  var `?param` = [getPtr count]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc ticks*(self: Slider): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -33,16 +32,14 @@ proc `ticksOnBorders=`*(self: Slider; ticksOnBorder: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ticks_on_borders"
     methodbind = interface_ClassDB_getMethodBind(addr className Slider, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  ticksOnBorder.encode(`?param`[0])
+  var `?param` = [getPtr ticksOnBorder]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `editable=`*(self: Slider; editable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_editable"
     methodbind = interface_ClassDB_getMethodBind(addr className Slider, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  editable.encode(`?param`[0])
+  var `?param` = [getPtr editable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isEditable*(self: Slider): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `scrollable=`*(self: Slider; scrollable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_scrollable"
     methodbind = interface_ClassDB_getMethodBind(addr className Slider, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  scrollable.encode(`?param`[0])
+  var `?param` = [getPtr scrollable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isScrollable*(self: Slider): Bool =
   var methodbind {.global.}: MethodBindPtr

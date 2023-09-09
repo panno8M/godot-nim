@@ -9,8 +9,7 @@ proc `flags=`*(self: Ref[VisualShaderNodeParticleEmit]; flags: VisualShaderNodeP
   if unlikely(methodbind.isNil):
     let name: StringName = "set_flags"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeParticleEmit, addr name, 3960756792)
-  var `?param`: array[1, pointer]
-  flags.encode(`?param`[0])
+  var `?param` = [getPtr flags]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc flags*(self: Ref[VisualShaderNodeParticleEmit]): VisualShaderNodeParticleEmit_EmitFlags =
   var methodbind {.global.}: MethodBindPtr

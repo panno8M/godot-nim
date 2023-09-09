@@ -9,8 +9,7 @@ proc `density=`*(self: Ref[FogMaterial]; density: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_density"
     methodbind = interface_ClassDB_getMethodBind(addr className FogMaterial, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  density.encode(`?param`[0])
+  var `?param` = [getPtr density]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc density*(self: Ref[FogMaterial]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `albedo=`*(self: Ref[FogMaterial]; albedo: Color) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_albedo"
     methodbind = interface_ClassDB_getMethodBind(addr className FogMaterial, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  albedo.encode(`?param`[0])
+  var `?param` = [getPtr albedo]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc albedo*(self: Ref[FogMaterial]): Color =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `emission=`*(self: Ref[FogMaterial]; emission: Color) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_emission"
     methodbind = interface_ClassDB_getMethodBind(addr className FogMaterial, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  emission.encode(`?param`[0])
+  var `?param` = [getPtr emission]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc emission*(self: Ref[FogMaterial]): Color =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `heightFalloff=`*(self: Ref[FogMaterial]; heightFalloff: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_height_falloff"
     methodbind = interface_ClassDB_getMethodBind(addr className FogMaterial, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  heightFalloff.encode(`?param`[0])
+  var `?param` = [getPtr heightFalloff]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc heightFalloff*(self: Ref[FogMaterial]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `edgeFade=`*(self: Ref[FogMaterial]; edgeFade: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_edge_fade"
     methodbind = interface_ClassDB_getMethodBind(addr className FogMaterial, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  edgeFade.encode(`?param`[0])
+  var `?param` = [getPtr edgeFade]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc edgeFade*(self: Ref[FogMaterial]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc `densityTexture=`*(self: Ref[FogMaterial]; densityTexture: Ref[Texture3D]) 
   if unlikely(methodbind.isNil):
     let name: StringName = "set_density_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className FogMaterial, addr name, 1188404210)
-  var `?param`: array[1, pointer]
-  densityTexture.encode(`?param`[0])
+  var `?param` = [getPtr densityTexture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc densityTexture*(self: Ref[FogMaterial]): Ref[Texture3D] =
   var methodbind {.global.}: MethodBindPtr

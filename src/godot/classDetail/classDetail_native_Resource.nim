@@ -9,16 +9,14 @@ proc `path=`*(self: Ref[Resource]; path: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_path"
     methodbind = interface_ClassDB_getMethodBind(addr className Resource, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc takeOverPath*(self: Ref[Resource]; path: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "take_over_path"
     methodbind = interface_ClassDB_getMethodBind(addr className Resource, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc path*(self: Ref[Resource]): String =
   var methodbind {.global.}: MethodBindPtr
@@ -33,8 +31,7 @@ proc `name=`*(self: Ref[Resource]; name: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_name"
     methodbind = interface_ClassDB_getMethodBind(addr className Resource, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  name.encode(`?param`[0])
+  var `?param` = [getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc name*(self: Ref[Resource]): String =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `localToScene=`*(self: Ref[Resource]; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_local_to_scene"
     methodbind = interface_ClassDB_getMethodBind(addr className Resource, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isLocalToScene*(self: Ref[Resource]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -93,8 +89,7 @@ proc duplicate*(self: Ref[Resource]; subresources: Bool = false): Ref[Resource] 
   if unlikely(methodbind.isNil):
     let name: StringName = "duplicate"
     methodbind = interface_ClassDB_getMethodBind(addr className Resource, addr name, 482882304)
-  var `?param`: array[1, pointer]
-  subresources.encode(`?param`[0])
+  var `?param` = [getPtr subresources]
   var ret: encoded Ref[Resource]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[Resource])

@@ -9,8 +9,7 @@ proc isButtonPressed*(self: XRController3D; name: StringName): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "is_button_pressed"
     methodbind = interface_ClassDB_getMethodBind(addr className XRController3D, addr name, 2619796661)
-  var `?param`: array[1, pointer]
-  name.encode(`?param`[0])
+  var `?param` = [getPtr name]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -19,8 +18,7 @@ proc getInput*(self: XRController3D; name: StringName): Variant =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_input"
     methodbind = interface_ClassDB_getMethodBind(addr className XRController3D, addr name, 2760726917)
-  var `?param`: array[1, pointer]
-  name.encode(`?param`[0])
+  var `?param` = [getPtr name]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
@@ -29,8 +27,7 @@ proc getFloat*(self: XRController3D; name: StringName): Float =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_float"
     methodbind = interface_ClassDB_getMethodBind(addr className XRController3D, addr name, 2349060816)
-  var `?param`: array[1, pointer]
-  name.encode(`?param`[0])
+  var `?param` = [getPtr name]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
@@ -39,8 +36,7 @@ proc getVector2*(self: XRController3D; name: StringName): Vector2 =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_vector2"
     methodbind = interface_ClassDB_getMethodBind(addr className XRController3D, addr name, 3100822709)
-  var `?param`: array[1, pointer]
-  name.encode(`?param`[0])
+  var `?param` = [getPtr name]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2)

@@ -9,16 +9,14 @@ proc `stageSource=`*(self: Ref[RDShaderSource]; stage: RenderingDevice_ShaderSta
   if unlikely(methodbind.isNil):
     let name: StringName = "set_stage_source"
     methodbind = interface_ClassDB_getMethodBind(addr className RDShaderSource, addr name, 620821314)
-  var `?param`: array[2, pointer]
-  stage.encode(`?param`[0]); source.encode(`?param`[1])
+  var `?param` = [getPtr stage, getPtr source]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc stageSource*(self: Ref[RDShaderSource]; stage: RenderingDevice_ShaderStage): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_stage_source"
     methodbind = interface_ClassDB_getMethodBind(addr className RDShaderSource, addr name, 3354920045)
-  var `?param`: array[1, pointer]
-  stage.encode(`?param`[0])
+  var `?param` = [getPtr stage]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
@@ -27,8 +25,7 @@ proc `language=`*(self: Ref[RDShaderSource]; language: RenderingDevice_ShaderLan
   if unlikely(methodbind.isNil):
     let name: StringName = "set_language"
     methodbind = interface_ClassDB_getMethodBind(addr className RDShaderSource, addr name, 3422186742)
-  var `?param`: array[1, pointer]
-  language.encode(`?param`[0])
+  var `?param` = [getPtr language]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc language*(self: Ref[RDShaderSource]): RenderingDevice_ShaderLanguage =
   var methodbind {.global.}: MethodBindPtr

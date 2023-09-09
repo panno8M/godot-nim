@@ -29,24 +29,21 @@ proc alert*(self: OS; text: String; title: String = "Alert!") =
   if unlikely(methodbind.isNil):
     let name: StringName = "alert"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 233059325)
-  var `?param`: array[2, pointer]
-  text.encode(`?param`[0]); title.encode(`?param`[1])
+  var `?param` = [getPtr text, getPtr title]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc crash*(self: OS; message: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "crash"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  message.encode(`?param`[0])
+  var `?param` = [getPtr message]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `lowProcessorUsageMode=`*(self: OS; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_low_processor_usage_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isInLowProcessorUsageMode*(self: OS): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -61,8 +58,7 @@ proc `lowProcessorUsageModeSleepUsec=`*(self: OS; usec: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_low_processor_usage_mode_sleep_usec"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  usec.encode(`?param`[0])
+  var `?param` = [getPtr usec]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc lowProcessorUsageModeSleepUsec*(self: OS): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -77,8 +73,7 @@ proc `deltaSmoothing=`*(self: OS; deltaSmoothingEnabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_delta_smoothing"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  deltaSmoothingEnabled.encode(`?param`[0])
+  var `?param` = [getPtr deltaSmoothingEnabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isDeltaSmoothingEnabled*(self: OS): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -117,8 +112,7 @@ proc getSystemFontPath*(self: OS; fontName: String; weight: int32 = 400; stretch
   if unlikely(methodbind.isNil):
     let name: StringName = "get_system_font_path"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 2262142305)
-  var `?param`: array[4, pointer]
-  fontName.encode(`?param`[0]); weight.encode(`?param`[1]); stretch.encode(`?param`[2]); italic.encode(`?param`[3])
+  var `?param` = [getPtr fontName, getPtr weight, getPtr stretch, getPtr italic]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
@@ -127,8 +121,7 @@ proc getSystemFontPathForText*(self: OS; fontName: String; text: String; locale:
   if unlikely(methodbind.isNil):
     let name: StringName = "get_system_font_path_for_text"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 3824042574)
-  var `?param`: array[7, pointer]
-  fontName.encode(`?param`[0]); text.encode(`?param`[1]); locale.encode(`?param`[2]); script.encode(`?param`[3]); weight.encode(`?param`[4]); stretch.encode(`?param`[5]); italic.encode(`?param`[6])
+  var `?param` = [getPtr fontName, getPtr text, getPtr locale, getPtr script, getPtr weight, getPtr stretch, getPtr italic]
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedStringArray)
@@ -153,8 +146,7 @@ proc execute*(self: OS; path: String; arguments: PackedStringArray; output: Arra
   if unlikely(methodbind.isNil):
     let name: StringName = "execute"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 2881709059)
-  var `?param`: array[5, pointer]
-  path.encode(`?param`[0]); arguments.encode(`?param`[1]); output.encode(`?param`[2]); readStderr.encode(`?param`[3]); openConsole.encode(`?param`[4])
+  var `?param` = [getPtr path, getPtr arguments, getPtr output, getPtr readStderr, getPtr openConsole]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
@@ -163,8 +155,7 @@ proc createProcess*(self: OS; path: String; arguments: PackedStringArray; openCo
   if unlikely(methodbind.isNil):
     let name: StringName = "create_process"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 2903767230)
-  var `?param`: array[3, pointer]
-  path.encode(`?param`[0]); arguments.encode(`?param`[1]); openConsole.encode(`?param`[2])
+  var `?param` = [getPtr path, getPtr arguments, getPtr openConsole]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
@@ -173,8 +164,7 @@ proc createInstance*(self: OS; arguments: PackedStringArray): int32 =
   if unlikely(methodbind.isNil):
     let name: StringName = "create_instance"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 1080601263)
-  var `?param`: array[1, pointer]
-  arguments.encode(`?param`[0])
+  var `?param` = [getPtr arguments]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
@@ -183,8 +173,7 @@ proc kill*(self: OS; pid: int32): Error =
   if unlikely(methodbind.isNil):
     let name: StringName = "kill"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 844576869)
-  var `?param`: array[1, pointer]
-  pid.encode(`?param`[0])
+  var `?param` = [getPtr pid]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -193,8 +182,7 @@ proc shellOpen*(self: OS; uri: String): Error =
   if unlikely(methodbind.isNil):
     let name: StringName = "shell_open"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 166001499)
-  var `?param`: array[1, pointer]
-  uri.encode(`?param`[0])
+  var `?param` = [getPtr uri]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -203,8 +191,7 @@ proc shellShowInFileManager*(self: OS; fileOrDirPath: String; openFolder: Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "shell_show_in_file_manager"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 885841341)
-  var `?param`: array[2, pointer]
-  fileOrDirPath.encode(`?param`[0]); openFolder.encode(`?param`[1])
+  var `?param` = [getPtr fileOrDirPath, getPtr openFolder]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -213,8 +200,7 @@ proc isProcessRunning*(self: OS; pid: int32): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "is_process_running"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 1116898809)
-  var `?param`: array[1, pointer]
-  pid.encode(`?param`[0])
+  var `?param` = [getPtr pid]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -231,8 +217,7 @@ proc hasEnvironment*(self: OS; variable: String): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "has_environment"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 3927539163)
-  var `?param`: array[1, pointer]
-  variable.encode(`?param`[0])
+  var `?param` = [getPtr variable]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -241,8 +226,7 @@ proc getEnvironment*(self: OS; variable: String): String =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_environment"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 3135753539)
-  var `?param`: array[1, pointer]
-  variable.encode(`?param`[0])
+  var `?param` = [getPtr variable]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
@@ -251,16 +235,14 @@ proc setEnvironment*(self: OS; variable: String; value: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_environment"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 3605043004)
-  var `?param`: array[2, pointer]
-  variable.encode(`?param`[0]); value.encode(`?param`[1])
+  var `?param` = [getPtr variable, getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc unsetEnvironment*(self: OS; variable: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "unset_environment"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 3089850668)
-  var `?param`: array[1, pointer]
-  variable.encode(`?param`[0])
+  var `?param` = [getPtr variable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getName*(self: OS): String =
   var methodbind {.global.}: MethodBindPtr
@@ -315,8 +297,7 @@ proc setRestartOnExit*(self: OS; restart: Bool; arguments: PackedStringArray = P
   if unlikely(methodbind.isNil):
     let name: StringName = "set_restart_on_exit"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 611198603)
-  var `?param`: array[2, pointer]
-  restart.encode(`?param`[0]); arguments.encode(`?param`[1])
+  var `?param` = [getPtr restart, getPtr arguments]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isRestartOnExitSet*(self: OS): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -339,16 +320,14 @@ proc delayUsec*(self: OS; usec: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "delay_usec"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 998575451)
-  var `?param`: array[1, pointer]
-  usec.encode(`?param`[0])
+  var `?param` = [getPtr usec]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc delayMsec*(self: OS; msec: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "delay_msec"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 998575451)
-  var `?param`: array[1, pointer]
-  msec.encode(`?param`[0])
+  var `?param` = [getPtr msec]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getLocale*(self: OS): String =
   var methodbind {.global.}: MethodBindPtr
@@ -427,8 +406,7 @@ proc moveToTrash*(self: OS; path: String): Error =
   if unlikely(methodbind.isNil):
     let name: StringName = "move_to_trash"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 2113323047)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -445,8 +423,7 @@ proc getSystemDir*(self: OS; dir: OS_SystemDir; sharedStorage: Bool = true): Str
   if unlikely(methodbind.isNil):
     let name: StringName = "get_system_dir"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 1965199849)
-  var `?param`: array[2, pointer]
-  dir.encode(`?param`[0]); sharedStorage.encode(`?param`[1])
+  var `?param` = [getPtr dir, getPtr sharedStorage]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
@@ -487,8 +464,7 @@ proc getKeycodeString*(self: OS; code: Key): String =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_keycode_string"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 2261993717)
-  var `?param`: array[1, pointer]
-  code.encode(`?param`[0])
+  var `?param` = [getPtr code]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
@@ -497,8 +473,7 @@ proc isKeycodeUnicode*(self: OS; code: Int): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "is_keycode_unicode"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 1116898809)
-  var `?param`: array[1, pointer]
-  code.encode(`?param`[0])
+  var `?param` = [getPtr code]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -507,8 +482,7 @@ proc findKeycodeFromString*(self: OS; string: String): Key =
   if unlikely(methodbind.isNil):
     let name: StringName = "find_keycode_from_string"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 1084858572)
-  var `?param`: array[1, pointer]
-  string.encode(`?param`[0])
+  var `?param` = [getPtr string]
   var ret: encoded Key
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Key)
@@ -517,16 +491,14 @@ proc setUseFileAccessSaveAndSwap*(self: OS; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_use_file_access_save_and_swap"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setThreadName*(self: OS; name: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_thread_name"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 166001499)
-  var `?param`: array[1, pointer]
-  name.encode(`?param`[0])
+  var `?param` = [getPtr name]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -551,8 +523,7 @@ proc hasFeature*(self: OS; tagName: String): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "has_feature"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 3927539163)
-  var `?param`: array[1, pointer]
-  tagName.encode(`?param`[0])
+  var `?param` = [getPtr tagName]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -561,8 +532,7 @@ proc requestPermission*(self: OS; name: String): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "request_permission"
     methodbind = interface_ClassDB_getMethodBind(addr className OS, addr name, 2323990056)
-  var `?param`: array[1, pointer]
-  name.encode(`?param`[0])
+  var `?param` = [getPtr name]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)

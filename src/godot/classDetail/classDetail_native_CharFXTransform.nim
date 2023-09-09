@@ -17,8 +17,7 @@ proc `range=`*(self: Ref[CharFXTransform]; range: Vector2i) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_range"
     methodbind = interface_ClassDB_getMethodBind(addr className CharFXTransform, addr name, 1130785943)
-  var `?param`: array[1, pointer]
-  range.encode(`?param`[0])
+  var `?param` = [getPtr range]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc elapsedTime*(self: Ref[CharFXTransform]): float64 =
   var methodbind {.global.}: MethodBindPtr
@@ -33,8 +32,7 @@ proc `elapsedTime=`*(self: Ref[CharFXTransform]; time: float64) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_elapsed_time"
     methodbind = interface_ClassDB_getMethodBind(addr className CharFXTransform, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  time.encode(`?param`[0])
+  var `?param` = [getPtr time]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isVisible*(self: Ref[CharFXTransform]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -49,8 +47,7 @@ proc `visibility=`*(self: Ref[CharFXTransform]; visibility: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_visibility"
     methodbind = interface_ClassDB_getMethodBind(addr className CharFXTransform, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  visibility.encode(`?param`[0])
+  var `?param` = [getPtr visibility]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isOutline*(self: Ref[CharFXTransform]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -65,8 +62,7 @@ proc `outline=`*(self: Ref[CharFXTransform]; outline: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_outline"
     methodbind = interface_ClassDB_getMethodBind(addr className CharFXTransform, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  outline.encode(`?param`[0])
+  var `?param` = [getPtr outline]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc offset*(self: Ref[CharFXTransform]): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -81,8 +77,7 @@ proc `offset=`*(self: Ref[CharFXTransform]; offset: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className CharFXTransform, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  offset.encode(`?param`[0])
+  var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc color*(self: Ref[CharFXTransform]): Color =
   var methodbind {.global.}: MethodBindPtr
@@ -97,8 +92,7 @@ proc `color=`*(self: Ref[CharFXTransform]; color: Color) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_color"
     methodbind = interface_ClassDB_getMethodBind(addr className CharFXTransform, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  color.encode(`?param`[0])
+  var `?param` = [getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc environment*(self: Ref[CharFXTransform]): Dictionary =
   var methodbind {.global.}: MethodBindPtr
@@ -113,8 +107,7 @@ proc `environment=`*(self: Ref[CharFXTransform]; environment: Dictionary) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_environment"
     methodbind = interface_ClassDB_getMethodBind(addr className CharFXTransform, addr name, 4155329257)
-  var `?param`: array[1, pointer]
-  environment.encode(`?param`[0])
+  var `?param` = [getPtr environment]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc glyphIndex*(self: Ref[CharFXTransform]): uint32 =
   var methodbind {.global.}: MethodBindPtr
@@ -129,8 +122,7 @@ proc `glyphIndex=`*(self: Ref[CharFXTransform]; glyphIndex: uint32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_glyph_index"
     methodbind = interface_ClassDB_getMethodBind(addr className CharFXTransform, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  glyphIndex.encode(`?param`[0])
+  var `?param` = [getPtr glyphIndex]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc relativeIndex*(self: Ref[CharFXTransform]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -145,8 +137,7 @@ proc `relativeIndex=`*(self: Ref[CharFXTransform]; relativeIndex: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_relative_index"
     methodbind = interface_ClassDB_getMethodBind(addr className CharFXTransform, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  relativeIndex.encode(`?param`[0])
+  var `?param` = [getPtr relativeIndex]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc glyphCount*(self: Ref[CharFXTransform]): uint8 =
   var methodbind {.global.}: MethodBindPtr
@@ -161,8 +152,7 @@ proc `glyphCount=`*(self: Ref[CharFXTransform]; glyphCount: uint8) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_glyph_count"
     methodbind = interface_ClassDB_getMethodBind(addr className CharFXTransform, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  glyphCount.encode(`?param`[0])
+  var `?param` = [getPtr glyphCount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc glyphFlags*(self: Ref[CharFXTransform]): uint16 =
   var methodbind {.global.}: MethodBindPtr
@@ -177,8 +167,7 @@ proc `glyphFlags=`*(self: Ref[CharFXTransform]; glyphFlags: uint16) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_glyph_flags"
     methodbind = interface_ClassDB_getMethodBind(addr className CharFXTransform, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  glyphFlags.encode(`?param`[0])
+  var `?param` = [getPtr glyphFlags]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc font*(self: Ref[CharFXTransform]): RID =
   var methodbind {.global.}: MethodBindPtr
@@ -193,6 +182,5 @@ proc `font=`*(self: Ref[CharFXTransform]; font: RID) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_font"
     methodbind = interface_ClassDB_getMethodBind(addr className CharFXTransform, addr name, 2722037293)
-  var `?param`: array[1, pointer]
-  font.encode(`?param`[0])
+  var `?param` = [getPtr font]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

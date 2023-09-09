@@ -9,8 +9,7 @@ proc fromNode*(bodyNode: CollisionObject3D): Ref[GLTFPhysicsBody] {.staticOf: GL
   if unlikely(methodbind.isNil):
     let name: StringName = "from_node"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFPhysicsBody, addr name, 420544174)
-  var `?param`: array[1, pointer]
-  bodyNode.encode(`?param`[0])
+  var `?param` = [getPtr bodyNode]
   var ret: encoded Ref[GLTFPhysicsBody]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[GLTFPhysicsBody])
@@ -27,8 +26,7 @@ proc fromDictionary*(dictionary: Dictionary): Ref[GLTFPhysicsBody] {.staticOf: G
   if unlikely(methodbind.isNil):
     let name: StringName = "from_dictionary"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFPhysicsBody, addr name, 1177544336)
-  var `?param`: array[1, pointer]
-  dictionary.encode(`?param`[0])
+  var `?param` = [getPtr dictionary]
   var ret: encoded Ref[GLTFPhysicsBody]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[GLTFPhysicsBody])
@@ -53,8 +51,7 @@ proc `bodyType=`*(self: Ref[GLTFPhysicsBody]; bodyType: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_body_type"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFPhysicsBody, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  bodyType.encode(`?param`[0])
+  var `?param` = [getPtr bodyType]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc mass*(self: Ref[GLTFPhysicsBody]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -69,8 +66,7 @@ proc `mass=`*(self: Ref[GLTFPhysicsBody]; mass: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_mass"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFPhysicsBody, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  mass.encode(`?param`[0])
+  var `?param` = [getPtr mass]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc linearVelocity*(self: Ref[GLTFPhysicsBody]): Vector3 =
   var methodbind {.global.}: MethodBindPtr
@@ -85,8 +81,7 @@ proc `linearVelocity=`*(self: Ref[GLTFPhysicsBody]; linearVelocity: Vector3) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_linear_velocity"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFPhysicsBody, addr name, 3460891852)
-  var `?param`: array[1, pointer]
-  linearVelocity.encode(`?param`[0])
+  var `?param` = [getPtr linearVelocity]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc angularVelocity*(self: Ref[GLTFPhysicsBody]): Vector3 =
   var methodbind {.global.}: MethodBindPtr
@@ -101,8 +96,7 @@ proc `angularVelocity=`*(self: Ref[GLTFPhysicsBody]; angularVelocity: Vector3) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_angular_velocity"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFPhysicsBody, addr name, 3460891852)
-  var `?param`: array[1, pointer]
-  angularVelocity.encode(`?param`[0])
+  var `?param` = [getPtr angularVelocity]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc inertiaTensor*(self: Ref[GLTFPhysicsBody]): Basis =
   var methodbind {.global.}: MethodBindPtr
@@ -117,6 +111,5 @@ proc `inertiaTensor=`*(self: Ref[GLTFPhysicsBody]; inertiaTensor: Basis) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_inertia_tensor"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFPhysicsBody, addr name, 1055510324)
-  var `?param`: array[1, pointer]
-  inertiaTensor.encode(`?param`[0])
+  var `?param` = [getPtr inertiaTensor]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

@@ -9,16 +9,14 @@ proc setBytecode*(self: Ref[RDShaderFile]; bytecode: Ref[RDShaderSPIRV]; version
   if unlikely(methodbind.isNil):
     let name: StringName = "set_bytecode"
     methodbind = interface_ClassDB_getMethodBind(addr className RDShaderFile, addr name, 1558064255)
-  var `?param`: array[2, pointer]
-  bytecode.encode(`?param`[0]); version.encode(`?param`[1])
+  var `?param` = [getPtr bytecode, getPtr version]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getSpirv*(self: Ref[RDShaderFile]; version: StringName = ""): Ref[RDShaderSPIRV] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_spirv"
     methodbind = interface_ClassDB_getMethodBind(addr className RDShaderFile, addr name, 3340165340)
-  var `?param`: array[1, pointer]
-  version.encode(`?param`[0])
+  var `?param` = [getPtr version]
   var ret: encoded Ref[RDShaderSPIRV]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[RDShaderSPIRV])
@@ -35,8 +33,7 @@ proc `baseError=`*(self: Ref[RDShaderFile]; error: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_base_error"
     methodbind = interface_ClassDB_getMethodBind(addr className RDShaderFile, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  error.encode(`?param`[0])
+  var `?param` = [getPtr error]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc baseError*(self: Ref[RDShaderFile]): String =
   var methodbind {.global.}: MethodBindPtr

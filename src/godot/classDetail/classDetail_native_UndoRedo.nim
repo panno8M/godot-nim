@@ -9,16 +9,14 @@ proc createAction*(self: UndoRedo; name: String; mergeMode: UndoRedo_MergeMode =
   if unlikely(methodbind.isNil):
     let name: StringName = "create_action"
     methodbind = interface_ClassDB_getMethodBind(addr className UndoRedo, addr name, 3900135403)
-  var `?param`: array[3, pointer]
-  name.encode(`?param`[0]); mergeMode.encode(`?param`[1]); backwardUndoOps.encode(`?param`[2])
+  var `?param` = [getPtr name, getPtr mergeMode, getPtr backwardUndoOps]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc commitAction*(self: UndoRedo; execute: Bool = true) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "commit_action"
     methodbind = interface_ClassDB_getMethodBind(addr className UndoRedo, addr name, 3216645846)
-  var `?param`: array[1, pointer]
-  execute.encode(`?param`[0])
+  var `?param` = [getPtr execute]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isCommittingAction*(self: UndoRedo): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -33,48 +31,42 @@ proc addDoMethod*(self: UndoRedo; callable: Callable) =
   if unlikely(methodbind.isNil):
     let name: StringName = "add_do_method"
     methodbind = interface_ClassDB_getMethodBind(addr className UndoRedo, addr name, 1611583062)
-  var `?param`: array[1, pointer]
-  callable.encode(`?param`[0])
+  var `?param` = [getPtr callable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc addUndoMethod*(self: UndoRedo; callable: Callable) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_undo_method"
     methodbind = interface_ClassDB_getMethodBind(addr className UndoRedo, addr name, 1611583062)
-  var `?param`: array[1, pointer]
-  callable.encode(`?param`[0])
+  var `?param` = [getPtr callable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc addDoProperty*(self: UndoRedo; `object`: Object; property: StringName; value: ptr Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_do_property"
     methodbind = interface_ClassDB_getMethodBind(addr className UndoRedo, addr name, 1017172818)
-  var `?param`: array[3, pointer]
-  `object`.encode(`?param`[0]); property.encode(`?param`[1]); value.encode(`?param`[2])
+  var `?param` = [getPtr `object`, getPtr property, getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc addUndoProperty*(self: UndoRedo; `object`: Object; property: StringName; value: ptr Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_undo_property"
     methodbind = interface_ClassDB_getMethodBind(addr className UndoRedo, addr name, 1017172818)
-  var `?param`: array[3, pointer]
-  `object`.encode(`?param`[0]); property.encode(`?param`[1]); value.encode(`?param`[2])
+  var `?param` = [getPtr `object`, getPtr property, getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc addDoReference*(self: UndoRedo; `object`: Object) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_do_reference"
     methodbind = interface_ClassDB_getMethodBind(addr className UndoRedo, addr name, 3975164845)
-  var `?param`: array[1, pointer]
-  `object`.encode(`?param`[0])
+  var `?param` = [getPtr `object`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc addUndoReference*(self: UndoRedo; `object`: Object) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_undo_reference"
     methodbind = interface_ClassDB_getMethodBind(addr className UndoRedo, addr name, 3975164845)
-  var `?param`: array[1, pointer]
-  `object`.encode(`?param`[0])
+  var `?param` = [getPtr `object`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc startForceKeepInMergeEnds*(self: UndoRedo) =
   var methodbind {.global.}: MethodBindPtr
@@ -109,8 +101,7 @@ proc getActionName*(self: UndoRedo; id: int32): String =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_action_name"
     methodbind = interface_ClassDB_getMethodBind(addr className UndoRedo, addr name, 990163283)
-  var `?param`: array[1, pointer]
-  id.encode(`?param`[0])
+  var `?param` = [getPtr id]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
@@ -119,8 +110,7 @@ proc clearHistory*(self: UndoRedo; increaseVersion: Bool = true) =
   if unlikely(methodbind.isNil):
     let name: StringName = "clear_history"
     methodbind = interface_ClassDB_getMethodBind(addr className UndoRedo, addr name, 3216645846)
-  var `?param`: array[1, pointer]
-  increaseVersion.encode(`?param`[0])
+  var `?param` = [getPtr increaseVersion]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getCurrentActionName*(self: UndoRedo): String =
   var methodbind {.global.}: MethodBindPtr

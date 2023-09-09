@@ -9,8 +9,7 @@ proc `position=`*(self: Ref[PhysicsPointQueryParameters3D]; position: Vector3) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_position"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsPointQueryParameters3D, addr name, 3460891852)
-  var `?param`: array[1, pointer]
-  position.encode(`?param`[0])
+  var `?param` = [getPtr position]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc position*(self: Ref[PhysicsPointQueryParameters3D]): Vector3 =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `collisionMask=`*(self: Ref[PhysicsPointQueryParameters3D]; collisionMask: 
   if unlikely(methodbind.isNil):
     let name: StringName = "set_collision_mask"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsPointQueryParameters3D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  collisionMask.encode(`?param`[0])
+  var `?param` = [getPtr collisionMask]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc collisionMask*(self: Ref[PhysicsPointQueryParameters3D]): uint32 =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `exclude=`*(self: Ref[PhysicsPointQueryParameters3D]; exclude: TypedArray[R
   if unlikely(methodbind.isNil):
     let name: StringName = "set_exclude"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsPointQueryParameters3D, addr name, 381264803)
-  var `?param`: array[1, pointer]
-  exclude.encode(`?param`[0])
+  var `?param` = [getPtr exclude]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc exclude*(self: Ref[PhysicsPointQueryParameters3D]): TypedArray[RID] =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `collideWithBodies=`*(self: Ref[PhysicsPointQueryParameters3D]; enable: Boo
   if unlikely(methodbind.isNil):
     let name: StringName = "set_collide_with_bodies"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsPointQueryParameters3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isCollideWithBodiesEnabled*(self: Ref[PhysicsPointQueryParameters3D]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `collideWithAreas=`*(self: Ref[PhysicsPointQueryParameters3D]; enable: Bool
   if unlikely(methodbind.isNil):
     let name: StringName = "set_collide_with_areas"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsPointQueryParameters3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isCollideWithAreasEnabled*(self: Ref[PhysicsPointQueryParameters3D]): Bool =
   var methodbind {.global.}: MethodBindPtr

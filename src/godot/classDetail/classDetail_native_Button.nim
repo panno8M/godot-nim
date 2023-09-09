@@ -9,8 +9,7 @@ proc `text=`*(self: Button; text: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_text"
     methodbind = interface_ClassDB_getMethodBind(addr className Button, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  text.encode(`?param`[0])
+  var `?param` = [getPtr text]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc text*(self: Button): String =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `textOverrunBehavior=`*(self: Button; overrunBehavior: TextServer_OverrunBe
   if unlikely(methodbind.isNil):
     let name: StringName = "set_text_overrun_behavior"
     methodbind = interface_ClassDB_getMethodBind(addr className Button, addr name, 1008890932)
-  var `?param`: array[1, pointer]
-  overrunBehavior.encode(`?param`[0])
+  var `?param` = [getPtr overrunBehavior]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc textOverrunBehavior*(self: Button): TextServer_OverrunBehavior =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `textDirection=`*(self: Button; direction: Control_TextDirection) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_text_direction"
     methodbind = interface_ClassDB_getMethodBind(addr className Button, addr name, 119160795)
-  var `?param`: array[1, pointer]
-  direction.encode(`?param`[0])
+  var `?param` = [getPtr direction]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc textDirection*(self: Button): Control_TextDirection =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `language=`*(self: Button; language: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_language"
     methodbind = interface_ClassDB_getMethodBind(addr className Button, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  language.encode(`?param`[0])
+  var `?param` = [getPtr language]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc language*(self: Button): String =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `buttonIcon=`*(self: Button; texture: Ref[Texture2D]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_button_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className Button, addr name, 4051416890)
-  var `?param`: array[1, pointer]
-  texture.encode(`?param`[0])
+  var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc buttonIcon*(self: Button): Ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc `flat=`*(self: Button; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_flat"
     methodbind = interface_ClassDB_getMethodBind(addr className Button, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isFlat*(self: Button): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -105,8 +99,7 @@ proc `clipText=`*(self: Button; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_clip_text"
     methodbind = interface_ClassDB_getMethodBind(addr className Button, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc clipText*(self: Button): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -121,8 +114,7 @@ proc `textAlignment=`*(self: Button; alignment: HorizontalAlignment) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_text_alignment"
     methodbind = interface_ClassDB_getMethodBind(addr className Button, addr name, 2312603777)
-  var `?param`: array[1, pointer]
-  alignment.encode(`?param`[0])
+  var `?param` = [getPtr alignment]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc textAlignment*(self: Button): HorizontalAlignment =
   var methodbind {.global.}: MethodBindPtr
@@ -137,8 +129,7 @@ proc `iconAlignment=`*(self: Button; iconAlignment: HorizontalAlignment) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_icon_alignment"
     methodbind = interface_ClassDB_getMethodBind(addr className Button, addr name, 2312603777)
-  var `?param`: array[1, pointer]
-  iconAlignment.encode(`?param`[0])
+  var `?param` = [getPtr iconAlignment]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc iconAlignment*(self: Button): HorizontalAlignment =
   var methodbind {.global.}: MethodBindPtr
@@ -153,8 +144,7 @@ proc `verticalIconAlignment=`*(self: Button; verticalIconAlignment: VerticalAlig
   if unlikely(methodbind.isNil):
     let name: StringName = "set_vertical_icon_alignment"
     methodbind = interface_ClassDB_getMethodBind(addr className Button, addr name, 1796458609)
-  var `?param`: array[1, pointer]
-  verticalIconAlignment.encode(`?param`[0])
+  var `?param` = [getPtr verticalIconAlignment]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc verticalIconAlignment*(self: Button): VerticalAlignment =
   var methodbind {.global.}: MethodBindPtr
@@ -169,8 +159,7 @@ proc `expandIcon=`*(self: Button; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_expand_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className Button, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isExpandIcon*(self: Button): Bool =
   var methodbind {.global.}: MethodBindPtr

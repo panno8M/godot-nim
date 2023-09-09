@@ -9,8 +9,7 @@ proc tweenProperty*(self: Ref[Tween]; `object`: Object; property: NodePath; fina
   if unlikely(methodbind.isNil):
     let name: StringName = "tween_property"
     methodbind = interface_ClassDB_getMethodBind(addr className Tween, addr name, 4049770449)
-  var `?param`: array[4, pointer]
-  `object`.encode(`?param`[0]); property.encode(`?param`[1]); finalVal.encode(`?param`[2]); duration.encode(`?param`[3])
+  var `?param` = [getPtr `object`, getPtr property, getPtr finalVal, getPtr duration]
   var ret: encoded Ref[PropertyTweener]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[PropertyTweener])
@@ -19,8 +18,7 @@ proc tweenInterval*(self: Ref[Tween]; time: float64): Ref[IntervalTweener] =
   if unlikely(methodbind.isNil):
     let name: StringName = "tween_interval"
     methodbind = interface_ClassDB_getMethodBind(addr className Tween, addr name, 413360199)
-  var `?param`: array[1, pointer]
-  time.encode(`?param`[0])
+  var `?param` = [getPtr time]
   var ret: encoded Ref[IntervalTweener]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[IntervalTweener])
@@ -29,8 +27,7 @@ proc tweenCallback*(self: Ref[Tween]; callback: Callable): Ref[CallbackTweener] 
   if unlikely(methodbind.isNil):
     let name: StringName = "tween_callback"
     methodbind = interface_ClassDB_getMethodBind(addr className Tween, addr name, 1540176488)
-  var `?param`: array[1, pointer]
-  callback.encode(`?param`[0])
+  var `?param` = [getPtr callback]
   var ret: encoded Ref[CallbackTweener]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[CallbackTweener])
@@ -39,8 +36,7 @@ proc tweenMethod*(self: Ref[Tween]; `method`: Callable; `from`: ptr Variant; to:
   if unlikely(methodbind.isNil):
     let name: StringName = "tween_method"
     methodbind = interface_ClassDB_getMethodBind(addr className Tween, addr name, 2337877153)
-  var `?param`: array[4, pointer]
-  `method`.encode(`?param`[0]); `from`.encode(`?param`[1]); to.encode(`?param`[2]); duration.encode(`?param`[3])
+  var `?param` = [getPtr `method`, getPtr `from`, getPtr to, getPtr duration]
   var ret: encoded Ref[MethodTweener]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[MethodTweener])
@@ -49,8 +45,7 @@ proc customStep*(self: Ref[Tween]; delta: float64): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "custom_step"
     methodbind = interface_ClassDB_getMethodBind(addr className Tween, addr name, 330693286)
-  var `?param`: array[1, pointer]
-  delta.encode(`?param`[0])
+  var `?param` = [getPtr delta]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -107,8 +102,7 @@ proc bindNode*(self: Ref[Tween]; node: Node): Ref[Tween] =
   if unlikely(methodbind.isNil):
     let name: StringName = "bind_node"
     methodbind = interface_ClassDB_getMethodBind(addr className Tween, addr name, 2946786331)
-  var `?param`: array[1, pointer]
-  node.encode(`?param`[0])
+  var `?param` = [getPtr node]
   var ret: encoded Ref[Tween]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[Tween])
@@ -117,8 +111,7 @@ proc setProcessMode*(self: Ref[Tween]; mode: Tween_TweenProcessMode): Ref[Tween]
   if unlikely(methodbind.isNil):
     let name: StringName = "set_process_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className Tween, addr name, 855258840)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   var ret: encoded Ref[Tween]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[Tween])
@@ -127,8 +120,7 @@ proc setPauseMode*(self: Ref[Tween]; mode: Tween_TweenPauseMode): Ref[Tween] =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_pause_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className Tween, addr name, 3363368837)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   var ret: encoded Ref[Tween]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[Tween])
@@ -137,8 +129,7 @@ proc setParallel*(self: Ref[Tween]; parallel: Bool = true): Ref[Tween] =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_parallel"
     methodbind = interface_ClassDB_getMethodBind(addr className Tween, addr name, 1942052223)
-  var `?param`: array[1, pointer]
-  parallel.encode(`?param`[0])
+  var `?param` = [getPtr parallel]
   var ret: encoded Ref[Tween]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[Tween])
@@ -147,8 +138,7 @@ proc setLoops*(self: Ref[Tween]; loops: int32 = 0): Ref[Tween] =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_loops"
     methodbind = interface_ClassDB_getMethodBind(addr className Tween, addr name, 2670836414)
-  var `?param`: array[1, pointer]
-  loops.encode(`?param`[0])
+  var `?param` = [getPtr loops]
   var ret: encoded Ref[Tween]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[Tween])
@@ -165,8 +155,7 @@ proc setSpeedScale*(self: Ref[Tween]; speed: Float): Ref[Tween] =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_speed_scale"
     methodbind = interface_ClassDB_getMethodBind(addr className Tween, addr name, 3961971106)
-  var `?param`: array[1, pointer]
-  speed.encode(`?param`[0])
+  var `?param` = [getPtr speed]
   var ret: encoded Ref[Tween]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[Tween])
@@ -175,8 +164,7 @@ proc setTrans*(self: Ref[Tween]; trans: Tween_TransitionType): Ref[Tween] =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_trans"
     methodbind = interface_ClassDB_getMethodBind(addr className Tween, addr name, 3965963875)
-  var `?param`: array[1, pointer]
-  trans.encode(`?param`[0])
+  var `?param` = [getPtr trans]
   var ret: encoded Ref[Tween]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[Tween])
@@ -185,8 +173,7 @@ proc setEase*(self: Ref[Tween]; ease: Tween_EaseType): Ref[Tween] =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ease"
     methodbind = interface_ClassDB_getMethodBind(addr className Tween, addr name, 1208117252)
-  var `?param`: array[1, pointer]
-  ease.encode(`?param`[0])
+  var `?param` = [getPtr ease]
   var ret: encoded Ref[Tween]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[Tween])
@@ -211,8 +198,7 @@ proc interpolateValue*(initialValue: ptr Variant; deltaValue: ptr Variant; elaps
   if unlikely(methodbind.isNil):
     let name: StringName = "interpolate_value"
     methodbind = interface_ClassDB_getMethodBind(addr className Tween, addr name, 3452526450)
-  var `?param`: array[6, pointer]
-  initialValue.encode(`?param`[0]); deltaValue.encode(`?param`[1]); elapsedTime.encode(`?param`[2]); duration.encode(`?param`[3]); transType.encode(`?param`[4]); easeType.encode(`?param`[5])
+  var `?param` = [getPtr initialValue, getPtr deltaValue, getPtr elapsedTime, getPtr duration, getPtr transType, getPtr easeType]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)

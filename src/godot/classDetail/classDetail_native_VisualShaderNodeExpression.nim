@@ -9,8 +9,7 @@ proc `expression=`*(self: Ref[VisualShaderNodeExpression]; expression: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_expression"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeExpression, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  expression.encode(`?param`[0])
+  var `?param` = [getPtr expression]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc expression*(self: Ref[VisualShaderNodeExpression]): String =
   var methodbind {.global.}: MethodBindPtr

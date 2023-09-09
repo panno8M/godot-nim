@@ -9,8 +9,7 @@ proc playStream*(self: Ref[AudioStreamPlaybackPolyphonic]; stream: Ref[AudioStre
   if unlikely(methodbind.isNil):
     let name: StringName = "play_stream"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlaybackPolyphonic, addr name, 3792189967)
-  var `?param`: array[4, pointer]
-  stream.encode(`?param`[0]); fromOffset.encode(`?param`[1]); volumeDb.encode(`?param`[2]); pitchScale.encode(`?param`[3])
+  var `?param` = [getPtr stream, getPtr fromOffset, getPtr volumeDb, getPtr pitchScale]
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
@@ -19,24 +18,21 @@ proc setStreamVolume*(self: Ref[AudioStreamPlaybackPolyphonic]; stream: int64; v
   if unlikely(methodbind.isNil):
     let name: StringName = "set_stream_volume"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlaybackPolyphonic, addr name, 1602489585)
-  var `?param`: array[2, pointer]
-  stream.encode(`?param`[0]); volumeDb.encode(`?param`[1])
+  var `?param` = [getPtr stream, getPtr volumeDb]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setStreamPitchScale*(self: Ref[AudioStreamPlaybackPolyphonic]; stream: int64; pitchScale: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_stream_pitch_scale"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlaybackPolyphonic, addr name, 1602489585)
-  var `?param`: array[2, pointer]
-  stream.encode(`?param`[0]); pitchScale.encode(`?param`[1])
+  var `?param` = [getPtr stream, getPtr pitchScale]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isStreamPlaying*(self: Ref[AudioStreamPlaybackPolyphonic]; stream: int64): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_stream_playing"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlaybackPolyphonic, addr name, 1116898809)
-  var `?param`: array[1, pointer]
-  stream.encode(`?param`[0])
+  var `?param` = [getPtr stream]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -45,6 +41,5 @@ proc stopStream*(self: Ref[AudioStreamPlaybackPolyphonic]; stream: int64) =
   if unlikely(methodbind.isNil):
     let name: StringName = "stop_stream"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlaybackPolyphonic, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  stream.encode(`?param`[0])
+  var `?param` = [getPtr stream]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

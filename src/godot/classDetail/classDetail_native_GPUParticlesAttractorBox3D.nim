@@ -9,8 +9,7 @@ proc `size=`*(self: GPUParticlesAttractorBox3D; size: Vector3) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_size"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesAttractorBox3D, addr name, 3460891852)
-  var `?param`: array[1, pointer]
-  size.encode(`?param`[0])
+  var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc size*(self: GPUParticlesAttractorBox3D): Vector3 =
   var methodbind {.global.}: MethodBindPtr

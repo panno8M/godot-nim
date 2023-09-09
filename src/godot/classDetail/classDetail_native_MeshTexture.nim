@@ -9,8 +9,7 @@ proc `mesh=`*(self: Ref[MeshTexture]; mesh: Ref[Mesh]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshTexture, addr name, 194775623)
-  var `?param`: array[1, pointer]
-  mesh.encode(`?param`[0])
+  var `?param` = [getPtr mesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc mesh*(self: Ref[MeshTexture]): Ref[Mesh] =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `imageSize=`*(self: Ref[MeshTexture]; size: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_image_size"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshTexture, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  size.encode(`?param`[0])
+  var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc imageSize*(self: Ref[MeshTexture]): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `baseTexture=`*(self: Ref[MeshTexture]; texture: Ref[Texture2D]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_base_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshTexture, addr name, 4051416890)
-  var `?param`: array[1, pointer]
-  texture.encode(`?param`[0])
+  var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc baseTexture*(self: Ref[MeshTexture]): Ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr

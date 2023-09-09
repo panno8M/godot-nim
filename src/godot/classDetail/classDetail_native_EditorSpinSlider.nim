@@ -9,8 +9,7 @@ proc `label=`*(self: EditorSpinSlider; label: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_label"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorSpinSlider, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  label.encode(`?param`[0])
+  var `?param` = [getPtr label]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc label*(self: EditorSpinSlider): String =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `suffix=`*(self: EditorSpinSlider; suffix: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_suffix"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorSpinSlider, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  suffix.encode(`?param`[0])
+  var `?param` = [getPtr suffix]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc suffix*(self: EditorSpinSlider): String =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `readOnly=`*(self: EditorSpinSlider; readOnly: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_read_only"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorSpinSlider, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  readOnly.encode(`?param`[0])
+  var `?param` = [getPtr readOnly]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isReadOnly*(self: EditorSpinSlider): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `flat=`*(self: EditorSpinSlider; flat: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_flat"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorSpinSlider, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  flat.encode(`?param`[0])
+  var `?param` = [getPtr flat]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isFlat*(self: EditorSpinSlider): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `hideSlider=`*(self: EditorSpinSlider; hideSlider: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_hide_slider"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorSpinSlider, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  hideSlider.encode(`?param`[0])
+  var `?param` = [getPtr hideSlider]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isHidingSlider*(self: EditorSpinSlider): Bool =
   var methodbind {.global.}: MethodBindPtr

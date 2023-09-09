@@ -9,8 +9,7 @@ proc `load=`*(self: Ref[CompressedTexture2D]; path: String): Error =
   if unlikely(methodbind.isNil):
     let name: StringName = "load"
     methodbind = interface_ClassDB_getMethodBind(addr className CompressedTexture2D, addr name, 166001499)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)

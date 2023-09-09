@@ -25,8 +25,7 @@ proc `active=`*(self: Ref[CameraFeed]; active: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_active"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraFeed, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  active.encode(`?param`[0])
+  var `?param` = [getPtr active]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getName*(self: Ref[CameraFeed]): String =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +56,7 @@ proc `transform=`*(self: Ref[CameraFeed]; transform: Transform2D) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_transform"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraFeed, addr name, 2761652528)
-  var `?param`: array[1, pointer]
-  transform.encode(`?param`[0])
+  var `?param` = [getPtr transform]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getDatatype*(self: Ref[CameraFeed]): CameraFeed_FeedDataType =
   var methodbind {.global.}: MethodBindPtr

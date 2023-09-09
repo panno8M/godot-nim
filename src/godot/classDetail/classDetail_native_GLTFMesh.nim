@@ -17,8 +17,7 @@ proc `mesh=`*(self: Ref[GLTFMesh]; mesh: Ref[ImporterMesh]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFMesh, addr name, 2255166972)
-  var `?param`: array[1, pointer]
-  mesh.encode(`?param`[0])
+  var `?param` = [getPtr mesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc blendWeights*(self: Ref[GLTFMesh]): PackedFloat32Array =
   var methodbind {.global.}: MethodBindPtr
@@ -33,8 +32,7 @@ proc `blendWeights=`*(self: Ref[GLTFMesh]; blendWeights: PackedFloat32Array) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_blend_weights"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFMesh, addr name, 2899603908)
-  var `?param`: array[1, pointer]
-  blendWeights.encode(`?param`[0])
+  var `?param` = [getPtr blendWeights]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc instanceMaterials*(self: Ref[GLTFMesh]): TypedArray[Material] =
   var methodbind {.global.}: MethodBindPtr
@@ -49,6 +47,5 @@ proc `instanceMaterials=`*(self: Ref[GLTFMesh]; instanceMaterials: TypedArray[Ma
   if unlikely(methodbind.isNil):
     let name: StringName = "set_instance_materials"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFMesh, addr name, 381264803)
-  var `?param`: array[1, pointer]
-  instanceMaterials.encode(`?param`[0])
+  var `?param` = [getPtr instanceMaterials]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

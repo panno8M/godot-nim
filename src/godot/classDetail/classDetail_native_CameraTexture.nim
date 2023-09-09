@@ -9,8 +9,7 @@ proc `cameraFeedId=`*(self: Ref[CameraTexture]; feedId: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_camera_feed_id"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraTexture, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  feedId.encode(`?param`[0])
+  var `?param` = [getPtr feedId]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc cameraFeedId*(self: Ref[CameraTexture]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `whichFeed=`*(self: Ref[CameraTexture]; whichFeed: CameraServer_FeedImage) 
   if unlikely(methodbind.isNil):
     let name: StringName = "set_which_feed"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraTexture, addr name, 1595299230)
-  var `?param`: array[1, pointer]
-  whichFeed.encode(`?param`[0])
+  var `?param` = [getPtr whichFeed]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc whichFeed*(self: Ref[CameraTexture]): CameraServer_FeedImage =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `cameraActive=`*(self: Ref[CameraTexture]; active: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_camera_active"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraTexture, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  active.encode(`?param`[0])
+  var `?param` = [getPtr active]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc cameraActive*(self: Ref[CameraTexture]): Bool =
   var methodbind {.global.}: MethodBindPtr

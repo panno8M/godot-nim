@@ -9,8 +9,7 @@ proc `operator=`*(self: Ref[VisualShaderNodeUIntOp]; op: VisualShaderNodeUIntOp_
   if unlikely(methodbind.isNil):
     let name: StringName = "set_operator"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeUIntOp, addr name, 3463048345)
-  var `?param`: array[1, pointer]
-  op.encode(`?param`[0])
+  var `?param` = [getPtr op]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc operator*(self: Ref[VisualShaderNodeUIntOp]): VisualShaderNodeUIntOp_Operator =
   var methodbind {.global.}: MethodBindPtr

@@ -9,8 +9,7 @@ proc getDatetimeDictFromUnixTime*(self: Time; unixTimeVal: int64): Dictionary =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_datetime_dict_from_unix_time"
     methodbind = interface_ClassDB_getMethodBind(addr className Time, addr name, 3485342025)
-  var `?param`: array[1, pointer]
-  unixTimeVal.encode(`?param`[0])
+  var `?param` = [getPtr unixTimeVal]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Dictionary)
@@ -19,8 +18,7 @@ proc getDateDictFromUnixTime*(self: Time; unixTimeVal: int64): Dictionary =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_date_dict_from_unix_time"
     methodbind = interface_ClassDB_getMethodBind(addr className Time, addr name, 3485342025)
-  var `?param`: array[1, pointer]
-  unixTimeVal.encode(`?param`[0])
+  var `?param` = [getPtr unixTimeVal]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Dictionary)
@@ -29,8 +27,7 @@ proc getTimeDictFromUnixTime*(self: Time; unixTimeVal: int64): Dictionary =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_time_dict_from_unix_time"
     methodbind = interface_ClassDB_getMethodBind(addr className Time, addr name, 3485342025)
-  var `?param`: array[1, pointer]
-  unixTimeVal.encode(`?param`[0])
+  var `?param` = [getPtr unixTimeVal]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Dictionary)
@@ -39,8 +36,7 @@ proc getDatetimeStringFromUnixTime*(self: Time; unixTimeVal: int64; useSpace: Bo
   if unlikely(methodbind.isNil):
     let name: StringName = "get_datetime_string_from_unix_time"
     methodbind = interface_ClassDB_getMethodBind(addr className Time, addr name, 2311239925)
-  var `?param`: array[2, pointer]
-  unixTimeVal.encode(`?param`[0]); useSpace.encode(`?param`[1])
+  var `?param` = [getPtr unixTimeVal, getPtr useSpace]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
@@ -49,8 +45,7 @@ proc getDateStringFromUnixTime*(self: Time; unixTimeVal: int64): String =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_date_string_from_unix_time"
     methodbind = interface_ClassDB_getMethodBind(addr className Time, addr name, 844755477)
-  var `?param`: array[1, pointer]
-  unixTimeVal.encode(`?param`[0])
+  var `?param` = [getPtr unixTimeVal]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
@@ -59,8 +54,7 @@ proc getTimeStringFromUnixTime*(self: Time; unixTimeVal: int64): String =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_time_string_from_unix_time"
     methodbind = interface_ClassDB_getMethodBind(addr className Time, addr name, 844755477)
-  var `?param`: array[1, pointer]
-  unixTimeVal.encode(`?param`[0])
+  var `?param` = [getPtr unixTimeVal]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
@@ -69,8 +63,7 @@ proc getDatetimeDictFromDatetimeString*(self: Time; datetime: String; weekday: B
   if unlikely(methodbind.isNil):
     let name: StringName = "get_datetime_dict_from_datetime_string"
     methodbind = interface_ClassDB_getMethodBind(addr className Time, addr name, 3253569256)
-  var `?param`: array[2, pointer]
-  datetime.encode(`?param`[0]); weekday.encode(`?param`[1])
+  var `?param` = [getPtr datetime, getPtr weekday]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Dictionary)
@@ -79,8 +72,7 @@ proc getDatetimeStringFromDatetimeDict*(self: Time; datetime: Dictionary; useSpa
   if unlikely(methodbind.isNil):
     let name: StringName = "get_datetime_string_from_datetime_dict"
     methodbind = interface_ClassDB_getMethodBind(addr className Time, addr name, 1898123706)
-  var `?param`: array[2, pointer]
-  datetime.encode(`?param`[0]); useSpace.encode(`?param`[1])
+  var `?param` = [getPtr datetime, getPtr useSpace]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
@@ -89,8 +81,7 @@ proc getUnixTimeFromDatetimeDict*(self: Time; datetime: Dictionary): int64 =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_unix_time_from_datetime_dict"
     methodbind = interface_ClassDB_getMethodBind(addr className Time, addr name, 3021115443)
-  var `?param`: array[1, pointer]
-  datetime.encode(`?param`[0])
+  var `?param` = [getPtr datetime]
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
@@ -99,8 +90,7 @@ proc getUnixTimeFromDatetimeString*(self: Time; datetime: String): int64 =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_unix_time_from_datetime_string"
     methodbind = interface_ClassDB_getMethodBind(addr className Time, addr name, 1321353865)
-  var `?param`: array[1, pointer]
-  datetime.encode(`?param`[0])
+  var `?param` = [getPtr datetime]
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
@@ -109,8 +99,7 @@ proc getOffsetStringFromOffsetMinutes*(self: Time; offsetMinutes: int64): String
   if unlikely(methodbind.isNil):
     let name: StringName = "get_offset_string_from_offset_minutes"
     methodbind = interface_ClassDB_getMethodBind(addr className Time, addr name, 844755477)
-  var `?param`: array[1, pointer]
-  offsetMinutes.encode(`?param`[0])
+  var `?param` = [getPtr offsetMinutes]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
@@ -119,8 +108,7 @@ proc getDatetimeDictFromSystem*(self: Time; utc: Bool = false): Dictionary =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_datetime_dict_from_system"
     methodbind = interface_ClassDB_getMethodBind(addr className Time, addr name, 205769976)
-  var `?param`: array[1, pointer]
-  utc.encode(`?param`[0])
+  var `?param` = [getPtr utc]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Dictionary)
@@ -129,8 +117,7 @@ proc getDateDictFromSystem*(self: Time; utc: Bool = false): Dictionary =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_date_dict_from_system"
     methodbind = interface_ClassDB_getMethodBind(addr className Time, addr name, 205769976)
-  var `?param`: array[1, pointer]
-  utc.encode(`?param`[0])
+  var `?param` = [getPtr utc]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Dictionary)
@@ -139,8 +126,7 @@ proc getTimeDictFromSystem*(self: Time; utc: Bool = false): Dictionary =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_time_dict_from_system"
     methodbind = interface_ClassDB_getMethodBind(addr className Time, addr name, 205769976)
-  var `?param`: array[1, pointer]
-  utc.encode(`?param`[0])
+  var `?param` = [getPtr utc]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Dictionary)
@@ -149,8 +135,7 @@ proc getDatetimeStringFromSystem*(self: Time; utc: Bool = false; useSpace: Bool 
   if unlikely(methodbind.isNil):
     let name: StringName = "get_datetime_string_from_system"
     methodbind = interface_ClassDB_getMethodBind(addr className Time, addr name, 1136425492)
-  var `?param`: array[2, pointer]
-  utc.encode(`?param`[0]); useSpace.encode(`?param`[1])
+  var `?param` = [getPtr utc, getPtr useSpace]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
@@ -159,8 +144,7 @@ proc getDateStringFromSystem*(self: Time; utc: Bool = false): String =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_date_string_from_system"
     methodbind = interface_ClassDB_getMethodBind(addr className Time, addr name, 1162154673)
-  var `?param`: array[1, pointer]
-  utc.encode(`?param`[0])
+  var `?param` = [getPtr utc]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
@@ -169,8 +153,7 @@ proc getTimeStringFromSystem*(self: Time; utc: Bool = false): String =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_time_string_from_system"
     methodbind = interface_ClassDB_getMethodBind(addr className Time, addr name, 1162154673)
-  var `?param`: array[1, pointer]
-  utc.encode(`?param`[0])
+  var `?param` = [getPtr utc]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)

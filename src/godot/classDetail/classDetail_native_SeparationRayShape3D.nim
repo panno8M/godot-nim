@@ -9,8 +9,7 @@ proc `length=`*(self: Ref[SeparationRayShape3D]; length: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_length"
     methodbind = interface_ClassDB_getMethodBind(addr className SeparationRayShape3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  length.encode(`?param`[0])
+  var `?param` = [getPtr length]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc length*(self: Ref[SeparationRayShape3D]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `slideOnSlope=`*(self: Ref[SeparationRayShape3D]; active: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_slide_on_slope"
     methodbind = interface_ClassDB_getMethodBind(addr className SeparationRayShape3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  active.encode(`?param`[0])
+  var `?param` = [getPtr active]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc slideOnSlope*(self: Ref[SeparationRayShape3D]): Bool =
   var methodbind {.global.}: MethodBindPtr

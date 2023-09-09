@@ -9,8 +9,7 @@ proc `position=`*(self: Ref[InputEventGesture]; position: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_position"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventGesture, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  position.encode(`?param`[0])
+  var `?param` = [getPtr position]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc position*(self: Ref[InputEventGesture]): Vector2 =
   var methodbind {.global.}: MethodBindPtr

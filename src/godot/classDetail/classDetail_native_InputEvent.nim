@@ -9,8 +9,7 @@ proc `device=`*(self: Ref[InputEvent]; device: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_device"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  device.encode(`?param`[0])
+  var `?param` = [getPtr device]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc device*(self: Ref[InputEvent]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc isAction*(self: Ref[InputEvent]; action: StringName; exactMatch: Bool = fal
   if unlikely(methodbind.isNil):
     let name: StringName = "is_action"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 1558498928)
-  var `?param`: array[2, pointer]
-  action.encode(`?param`[0]); exactMatch.encode(`?param`[1])
+  var `?param` = [getPtr action, getPtr exactMatch]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -35,8 +33,7 @@ proc isActionPressed*(self: Ref[InputEvent]; action: StringName; allowEcho: Bool
   if unlikely(methodbind.isNil):
     let name: StringName = "is_action_pressed"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 1631499404)
-  var `?param`: array[3, pointer]
-  action.encode(`?param`[0]); allowEcho.encode(`?param`[1]); exactMatch.encode(`?param`[2])
+  var `?param` = [getPtr action, getPtr allowEcho, getPtr exactMatch]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -45,8 +42,7 @@ proc isActionReleased*(self: Ref[InputEvent]; action: StringName; exactMatch: Bo
   if unlikely(methodbind.isNil):
     let name: StringName = "is_action_released"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 1558498928)
-  var `?param`: array[2, pointer]
-  action.encode(`?param`[0]); exactMatch.encode(`?param`[1])
+  var `?param` = [getPtr action, getPtr exactMatch]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -55,8 +51,7 @@ proc getActionStrength*(self: Ref[InputEvent]; action: StringName; exactMatch: B
   if unlikely(methodbind.isNil):
     let name: StringName = "get_action_strength"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 801543509)
-  var `?param`: array[2, pointer]
-  action.encode(`?param`[0]); exactMatch.encode(`?param`[1])
+  var `?param` = [getPtr action, getPtr exactMatch]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
@@ -105,8 +100,7 @@ proc isMatch*(self: Ref[InputEvent]; event: Ref[InputEvent]; exactMatch: Bool = 
   if unlikely(methodbind.isNil):
     let name: StringName = "is_match"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 3392494811)
-  var `?param`: array[2, pointer]
-  event.encode(`?param`[0]); exactMatch.encode(`?param`[1])
+  var `?param` = [getPtr event, getPtr exactMatch]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -123,8 +117,7 @@ proc accumulate*(self: Ref[InputEvent]; withEvent: Ref[InputEvent]): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "accumulate"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 1062211774)
-  var `?param`: array[1, pointer]
-  withEvent.encode(`?param`[0])
+  var `?param` = [getPtr withEvent]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -133,8 +126,7 @@ proc xformedBy*(self: Ref[InputEvent]; xform: Transform2D; localOfs: Vector2 = g
   if unlikely(methodbind.isNil):
     let name: StringName = "xformed_by"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 2747409789)
-  var `?param`: array[2, pointer]
-  xform.encode(`?param`[0]); localOfs.encode(`?param`[1])
+  var `?param` = [getPtr xform, getPtr localOfs]
   var ret: encoded Ref[InputEvent]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[InputEvent])

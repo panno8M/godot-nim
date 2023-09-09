@@ -9,8 +9,7 @@ proc setBase*(self: VisualInstance3D; base: RID) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_base"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualInstance3D, addr name, 2722037293)
-  var `?param`: array[1, pointer]
-  base.encode(`?param`[0])
+  var `?param` = [getPtr base]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getBase*(self: VisualInstance3D): RID =
   var methodbind {.global.}: MethodBindPtr
@@ -33,8 +32,7 @@ proc `layerMask=`*(self: VisualInstance3D; mask: uint32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_layer_mask"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualInstance3D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  mask.encode(`?param`[0])
+  var `?param` = [getPtr mask]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc layerMask*(self: VisualInstance3D): uint32 =
   var methodbind {.global.}: MethodBindPtr
@@ -49,16 +47,14 @@ proc setLayerMaskValue*(self: VisualInstance3D; layerNumber: int32; value: Bool)
   if unlikely(methodbind.isNil):
     let name: StringName = "set_layer_mask_value"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualInstance3D, addr name, 300928843)
-  var `?param`: array[2, pointer]
-  layerNumber.encode(`?param`[0]); value.encode(`?param`[1])
+  var `?param` = [getPtr layerNumber, getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getLayerMaskValue*(self: VisualInstance3D; layerNumber: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_layer_mask_value"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualInstance3D, addr name, 1116898809)
-  var `?param`: array[1, pointer]
-  layerNumber.encode(`?param`[0])
+  var `?param` = [getPtr layerNumber]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -67,8 +63,7 @@ proc `sortingOffset=`*(self: VisualInstance3D; offset: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sorting_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualInstance3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  offset.encode(`?param`[0])
+  var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc sortingOffset*(self: VisualInstance3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -83,8 +78,7 @@ proc `sortingUseAabbCenter=`*(self: VisualInstance3D; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sorting_use_aabb_center"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualInstance3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isSortingUseAabbCenter*(self: VisualInstance3D): Bool =
   var methodbind {.global.}: MethodBindPtr

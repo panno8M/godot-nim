@@ -33,8 +33,7 @@ proc `environment=`*(self: Ref[World3D]; env: Ref[Environment]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_environment"
     methodbind = interface_ClassDB_getMethodBind(addr className World3D, addr name, 4143518816)
-  var `?param`: array[1, pointer]
-  env.encode(`?param`[0])
+  var `?param` = [getPtr env]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc environment*(self: Ref[World3D]): Ref[Environment] =
   var methodbind {.global.}: MethodBindPtr
@@ -49,8 +48,7 @@ proc `fallbackEnvironment=`*(self: Ref[World3D]; env: Ref[Environment]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fallback_environment"
     methodbind = interface_ClassDB_getMethodBind(addr className World3D, addr name, 4143518816)
-  var `?param`: array[1, pointer]
-  env.encode(`?param`[0])
+  var `?param` = [getPtr env]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fallbackEnvironment*(self: Ref[World3D]): Ref[Environment] =
   var methodbind {.global.}: MethodBindPtr
@@ -65,8 +63,7 @@ proc `cameraAttributes=`*(self: Ref[World3D]; attributes: Ref[CameraAttributes])
   if unlikely(methodbind.isNil):
     let name: StringName = "set_camera_attributes"
     methodbind = interface_ClassDB_getMethodBind(addr className World3D, addr name, 2817810567)
-  var `?param`: array[1, pointer]
-  attributes.encode(`?param`[0])
+  var `?param` = [getPtr attributes]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc cameraAttributes*(self: Ref[World3D]): Ref[CameraAttributes] =
   var methodbind {.global.}: MethodBindPtr

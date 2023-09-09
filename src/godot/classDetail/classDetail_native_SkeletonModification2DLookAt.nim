@@ -9,8 +9,7 @@ proc `bone2dNode=`*(self: Ref[SkeletonModification2DLookAt]; bone2dNodepath: Nod
   if unlikely(methodbind.isNil):
     let name: StringName = "set_bone2d_node"
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DLookAt, addr name, 1348162250)
-  var `?param`: array[1, pointer]
-  bone2dNodepath.encode(`?param`[0])
+  var `?param` = [getPtr bone2dNodepath]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc bone2dNode*(self: Ref[SkeletonModification2DLookAt]): NodePath =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `boneIndex=`*(self: Ref[SkeletonModification2DLookAt]; boneIdx: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_bone_index"
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DLookAt, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  boneIdx.encode(`?param`[0])
+  var `?param` = [getPtr boneIdx]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc boneIndex*(self: Ref[SkeletonModification2DLookAt]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `targetNode=`*(self: Ref[SkeletonModification2DLookAt]; targetNodepath: Nod
   if unlikely(methodbind.isNil):
     let name: StringName = "set_target_node"
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DLookAt, addr name, 1348162250)
-  var `?param`: array[1, pointer]
-  targetNodepath.encode(`?param`[0])
+  var `?param` = [getPtr targetNodepath]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc tarnode*(self: Ref[SkeletonModification2DLookAt]): NodePath =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc setAdditionalRotation*(self: Ref[SkeletonModification2DLookAt]; rotation: F
   if unlikely(methodbind.isNil):
     let name: StringName = "set_additional_rotation"
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DLookAt, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  rotation.encode(`?param`[0])
+  var `?param` = [getPtr rotation]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getAdditionalRotation*(self: Ref[SkeletonModification2DLookAt]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc setEnableConstraint*(self: Ref[SkeletonModification2DLookAt]; enableConstra
   if unlikely(methodbind.isNil):
     let name: StringName = "set_enable_constraint"
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DLookAt, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enableConstraint.encode(`?param`[0])
+  var `?param` = [getPtr enableConstraint]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getEnableConstraint*(self: Ref[SkeletonModification2DLookAt]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc setConstraintAngleMin*(self: Ref[SkeletonModification2DLookAt]; angleMin: F
   if unlikely(methodbind.isNil):
     let name: StringName = "set_constraint_angle_min"
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DLookAt, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  angleMin.encode(`?param`[0])
+  var `?param` = [getPtr angleMin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getConstraintAngleMin*(self: Ref[SkeletonModification2DLookAt]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -105,8 +99,7 @@ proc setConstraintAngleMax*(self: Ref[SkeletonModification2DLookAt]; angleMax: F
   if unlikely(methodbind.isNil):
     let name: StringName = "set_constraint_angle_max"
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DLookAt, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  angleMax.encode(`?param`[0])
+  var `?param` = [getPtr angleMax]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getConstraintAngleMax*(self: Ref[SkeletonModification2DLookAt]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -121,8 +114,7 @@ proc setConstraintAngleInvert*(self: Ref[SkeletonModification2DLookAt]; invert: 
   if unlikely(methodbind.isNil):
     let name: StringName = "set_constraint_angle_invert"
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DLookAt, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  invert.encode(`?param`[0])
+  var `?param` = [getPtr invert]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getConstraintAngleInvert*(self: Ref[SkeletonModification2DLookAt]): Bool =
   var methodbind {.global.}: MethodBindPtr

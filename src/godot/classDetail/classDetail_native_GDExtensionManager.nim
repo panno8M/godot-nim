@@ -9,8 +9,7 @@ proc loadExtension*(self: GDExtensionManager; path: String): GDExtensionManager_
   if unlikely(methodbind.isNil):
     let name: StringName = "load_extension"
     methodbind = interface_ClassDB_getMethodBind(addr className GDExtensionManager, addr name, 4024158731)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   var ret: encoded GDExtensionManager_LoadStatus
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(GDExtensionManager_LoadStatus)
@@ -19,8 +18,7 @@ proc reloadExtension*(self: GDExtensionManager; path: String): GDExtensionManage
   if unlikely(methodbind.isNil):
     let name: StringName = "reload_extension"
     methodbind = interface_ClassDB_getMethodBind(addr className GDExtensionManager, addr name, 4024158731)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   var ret: encoded GDExtensionManager_LoadStatus
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(GDExtensionManager_LoadStatus)
@@ -29,8 +27,7 @@ proc unloadExtension*(self: GDExtensionManager; path: String): GDExtensionManage
   if unlikely(methodbind.isNil):
     let name: StringName = "unload_extension"
     methodbind = interface_ClassDB_getMethodBind(addr className GDExtensionManager, addr name, 4024158731)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   var ret: encoded GDExtensionManager_LoadStatus
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(GDExtensionManager_LoadStatus)
@@ -39,8 +36,7 @@ proc isExtensionLoaded*(self: GDExtensionManager; path: String): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "is_extension_loaded"
     methodbind = interface_ClassDB_getMethodBind(addr className GDExtensionManager, addr name, 3927539163)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -57,8 +53,7 @@ proc getExtension*(self: GDExtensionManager; path: String): Ref[GDExtension] =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_extension"
     methodbind = interface_ClassDB_getMethodBind(addr className GDExtensionManager, addr name, 49743343)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   var ret: encoded Ref[GDExtension]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[GDExtension])

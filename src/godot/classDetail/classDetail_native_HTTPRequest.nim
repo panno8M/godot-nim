@@ -9,8 +9,7 @@ proc request*(self: HTTPRequest; url: String; customHeaders: PackedStringArray =
   if unlikely(methodbind.isNil):
     let name: StringName = "request"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 2720304520)
-  var `?param`: array[4, pointer]
-  url.encode(`?param`[0]); customHeaders.encode(`?param`[1]); `method`.encode(`?param`[2]); requestData.encode(`?param`[3])
+  var `?param` = [getPtr url, getPtr customHeaders, getPtr `method`, getPtr requestData]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -19,8 +18,7 @@ proc requestRaw*(self: HTTPRequest; url: String; customHeaders: PackedStringArra
   if unlikely(methodbind.isNil):
     let name: StringName = "request_raw"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 4282724657)
-  var `?param`: array[4, pointer]
-  url.encode(`?param`[0]); customHeaders.encode(`?param`[1]); `method`.encode(`?param`[2]); requestDataRaw.encode(`?param`[3])
+  var `?param` = [getPtr url, getPtr customHeaders, getPtr `method`, getPtr requestDataRaw]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -35,8 +33,7 @@ proc setTlsOptions*(self: HTTPRequest; clientOptions: Ref[TLSOptions]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tls_options"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 2210231844)
-  var `?param`: array[1, pointer]
-  clientOptions.encode(`?param`[0])
+  var `?param` = [getPtr clientOptions]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getHttpClientStatus*(self: HTTPRequest): HTTPClient_Status =
   var methodbind {.global.}: MethodBindPtr
@@ -51,8 +48,7 @@ proc `useThreads=`*(self: HTTPRequest; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_use_threads"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isUsingThreads*(self: HTTPRequest): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -67,8 +63,7 @@ proc `acceptGzip=`*(self: HTTPRequest; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_accept_gzip"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isAcceptingGzip*(self: HTTPRequest): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -83,8 +78,7 @@ proc `bodySizeLimit=`*(self: HTTPRequest; bytes: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_body_size_limit"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  bytes.encode(`?param`[0])
+  var `?param` = [getPtr bytes]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc bodySizeLimit*(self: HTTPRequest): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -99,8 +93,7 @@ proc `maxRedirects=`*(self: HTTPRequest; amount: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_max_redirects"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  amount.encode(`?param`[0])
+  var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc maxRedirects*(self: HTTPRequest): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -115,8 +108,7 @@ proc `downloadFile=`*(self: HTTPRequest; path: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_download_file"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc downloadFile*(self: HTTPRequest): String =
   var methodbind {.global.}: MethodBindPtr
@@ -147,8 +139,7 @@ proc `timeout=`*(self: HTTPRequest; timeout: float64) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_timeout"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  timeout.encode(`?param`[0])
+  var `?param` = [getPtr timeout]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc timeout*(self: HTTPRequest): float64 =
   var methodbind {.global.}: MethodBindPtr
@@ -163,8 +154,7 @@ proc `downloadChunkSize=`*(self: HTTPRequest; chunkSize: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_download_chunk_size"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  chunkSize.encode(`?param`[0])
+  var `?param` = [getPtr chunkSize]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc downloadChunkSize*(self: HTTPRequest): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -179,14 +169,12 @@ proc setHttpProxy*(self: HTTPRequest; host: String; port: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_http_proxy"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 2956805083)
-  var `?param`: array[2, pointer]
-  host.encode(`?param`[0]); port.encode(`?param`[1])
+  var `?param` = [getPtr host, getPtr port]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setHttpsProxy*(self: HTTPRequest; host: String; port: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_https_proxy"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 2956805083)
-  var `?param`: array[2, pointer]
-  host.encode(`?param`[0]); port.encode(`?param`[1])
+  var `?param` = [getPtr host, getPtr port]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

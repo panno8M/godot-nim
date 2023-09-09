@@ -9,8 +9,7 @@ proc getLineSyntaxHighlighting*(self: Ref[SyntaxHighlighter]; line: int32): Dict
   if unlikely(methodbind.isNil):
     let name: StringName = "get_line_syntax_highlighting"
     methodbind = interface_ClassDB_getMethodBind(addr className SyntaxHighlighter, addr name, 3554694381)
-  var `?param`: array[1, pointer]
-  line.encode(`?param`[0])
+  var `?param` = [getPtr line]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Dictionary)

@@ -9,24 +9,21 @@ proc addBlendPoint*(self: Ref[AnimationNodeBlendSpace1D]; node: Ref[AnimationRoo
   if unlikely(methodbind.isNil):
     let name: StringName = "add_blend_point"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendSpace1D, addr name, 4069484420)
-  var `?param`: array[3, pointer]
-  node.encode(`?param`[0]); pos.encode(`?param`[1]); atIndex.encode(`?param`[2])
+  var `?param` = [getPtr node, getPtr pos, getPtr atIndex]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setBlendPointPosition*(self: Ref[AnimationNodeBlendSpace1D]; point: int32; pos: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_blend_point_position"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendSpace1D, addr name, 1602489585)
-  var `?param`: array[2, pointer]
-  point.encode(`?param`[0]); pos.encode(`?param`[1])
+  var `?param` = [getPtr point, getPtr pos]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getBlendPointPosition*(self: Ref[AnimationNodeBlendSpace1D]; point: int32): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_blend_point_position"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendSpace1D, addr name, 2339986948)
-  var `?param`: array[1, pointer]
-  point.encode(`?param`[0])
+  var `?param` = [getPtr point]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
@@ -35,16 +32,14 @@ proc setBlendPointNode*(self: Ref[AnimationNodeBlendSpace1D]; point: int32; node
   if unlikely(methodbind.isNil):
     let name: StringName = "set_blend_point_node"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendSpace1D, addr name, 4240341528)
-  var `?param`: array[2, pointer]
-  point.encode(`?param`[0]); node.encode(`?param`[1])
+  var `?param` = [getPtr point, getPtr node]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getBlendPointNode*(self: Ref[AnimationNodeBlendSpace1D]; point: int32): Ref[AnimationRootNode] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_blend_point_node"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendSpace1D, addr name, 665599029)
-  var `?param`: array[1, pointer]
-  point.encode(`?param`[0])
+  var `?param` = [getPtr point]
   var ret: encoded Ref[AnimationRootNode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[AnimationRootNode])
@@ -53,8 +48,7 @@ proc removeBlendPoint*(self: Ref[AnimationNodeBlendSpace1D]; point: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_blend_point"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendSpace1D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  point.encode(`?param`[0])
+  var `?param` = [getPtr point]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getBlendPointCount*(self: Ref[AnimationNodeBlendSpace1D]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -69,8 +63,7 @@ proc `minSpace=`*(self: Ref[AnimationNodeBlendSpace1D]; minSpace: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_min_space"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendSpace1D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  minSpace.encode(`?param`[0])
+  var `?param` = [getPtr minSpace]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc minSpace*(self: Ref[AnimationNodeBlendSpace1D]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -85,8 +78,7 @@ proc `maxSpace=`*(self: Ref[AnimationNodeBlendSpace1D]; maxSpace: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_max_space"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendSpace1D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  maxSpace.encode(`?param`[0])
+  var `?param` = [getPtr maxSpace]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc maxSpace*(self: Ref[AnimationNodeBlendSpace1D]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -101,8 +93,7 @@ proc `snap=`*(self: Ref[AnimationNodeBlendSpace1D]; snap: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_snap"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendSpace1D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  snap.encode(`?param`[0])
+  var `?param` = [getPtr snap]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc snap*(self: Ref[AnimationNodeBlendSpace1D]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -117,8 +108,7 @@ proc `valueLabel=`*(self: Ref[AnimationNodeBlendSpace1D]; text: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_value_label"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendSpace1D, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  text.encode(`?param`[0])
+  var `?param` = [getPtr text]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc valueLabel*(self: Ref[AnimationNodeBlendSpace1D]): String =
   var methodbind {.global.}: MethodBindPtr
@@ -133,8 +123,7 @@ proc `blendMode=`*(self: Ref[AnimationNodeBlendSpace1D]; mode: AnimationNodeBlen
   if unlikely(methodbind.isNil):
     let name: StringName = "set_blend_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendSpace1D, addr name, 2600869457)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc blendMode*(self: Ref[AnimationNodeBlendSpace1D]): AnimationNodeBlendSpace1D_BlendMode =
   var methodbind {.global.}: MethodBindPtr
@@ -149,8 +138,7 @@ proc `useSync=`*(self: Ref[AnimationNodeBlendSpace1D]; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_use_sync"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendSpace1D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isUsingSync*(self: Ref[AnimationNodeBlendSpace1D]): Bool =
   var methodbind {.global.}: MethodBindPtr

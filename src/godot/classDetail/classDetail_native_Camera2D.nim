@@ -9,8 +9,7 @@ proc `offset=`*(self: Camera2D; offset: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  offset.encode(`?param`[0])
+  var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc offset*(self: Camera2D): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `anchorMode=`*(self: Camera2D; anchorMode: Camera2D_AnchorMode) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_anchor_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 2050398218)
-  var `?param`: array[1, pointer]
-  anchorMode.encode(`?param`[0])
+  var `?param` = [getPtr anchorMode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc anchorMode*(self: Camera2D): Camera2D_AnchorMode =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `ignoreRotation=`*(self: Camera2D; ignore: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ignore_rotation"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  ignore.encode(`?param`[0])
+  var `?param` = [getPtr ignore]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isIgnoringRotation*(self: Camera2D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `processCallback=`*(self: Camera2D; mode: Camera2D_Camera2DProcessCallback)
   if unlikely(methodbind.isNil):
     let name: StringName = "set_process_callback"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 4201947462)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc processCallback*(self: Camera2D): Camera2D_Camera2DProcessCallback =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `enabled=`*(self: Camera2D; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isEnabled*(self: Camera2D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -103,16 +98,14 @@ proc `limit=`*(self: Camera2D; margin: Side; limit: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_limit"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 437707142)
-  var `?param`: array[2, pointer]
-  margin.encode(`?param`[0]); limit.encode(`?param`[1])
+  var `?param` = [getPtr margin, getPtr limit]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc limit*(self: Camera2D; margin: Side): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_limit"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 1983885014)
-  var `?param`: array[1, pointer]
-  margin.encode(`?param`[0])
+  var `?param` = [getPtr margin]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
@@ -121,8 +114,7 @@ proc `limitSmoothingEnabled=`*(self: Camera2D; limitSmoothingEnabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_limit_smoothing_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  limitSmoothingEnabled.encode(`?param`[0])
+  var `?param` = [getPtr limitSmoothingEnabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isLimitSmoothingEnabled*(self: Camera2D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -137,8 +129,7 @@ proc `dragVerticalEnabled=`*(self: Camera2D; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_drag_vertical_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isDragVerticalEnabled*(self: Camera2D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -153,8 +144,7 @@ proc `dragHorizontalEnabled=`*(self: Camera2D; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_drag_horizontal_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isDragHorizontalEnabled*(self: Camera2D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -169,8 +159,7 @@ proc `dragVerticalOffset=`*(self: Camera2D; offset: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_drag_vertical_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  offset.encode(`?param`[0])
+  var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc dragVerticalOffset*(self: Camera2D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -185,8 +174,7 @@ proc `dragHorizontalOffset=`*(self: Camera2D; offset: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_drag_horizontal_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  offset.encode(`?param`[0])
+  var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc dragHorizontalOffset*(self: Camera2D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -201,16 +189,14 @@ proc `dragMargin=`*(self: Camera2D; margin: Side; dragMargin: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_drag_margin"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 4290182280)
-  var `?param`: array[2, pointer]
-  margin.encode(`?param`[0]); dragMargin.encode(`?param`[1])
+  var `?param` = [getPtr margin, getPtr dragMargin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc dragMargin*(self: Camera2D; margin: Side): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_drag_margin"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 2869120046)
-  var `?param`: array[1, pointer]
-  margin.encode(`?param`[0])
+  var `?param` = [getPtr margin]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
@@ -235,8 +221,7 @@ proc `zoom=`*(self: Camera2D; zoom: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_zoom"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  zoom.encode(`?param`[0])
+  var `?param` = [getPtr zoom]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc zoom*(self: Camera2D): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -251,8 +236,7 @@ proc `customViewport=`*(self: Camera2D; viewport: Node) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_custom_viewport"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 1078189570)
-  var `?param`: array[1, pointer]
-  viewport.encode(`?param`[0])
+  var `?param` = [getPtr viewport]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc customViewport*(self: Camera2D): Node =
   var methodbind {.global.}: MethodBindPtr
@@ -267,8 +251,7 @@ proc `positionSmoothingSpeed=`*(self: Camera2D; positionSmoothingSpeed: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_position_smoothing_speed"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  positionSmoothingSpeed.encode(`?param`[0])
+  var `?param` = [getPtr positionSmoothingSpeed]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc positionSmoothingSpeed*(self: Camera2D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -283,8 +266,7 @@ proc `positionSmoothingEnabled=`*(self: Camera2D; positionSmoothingSpeed: Bool) 
   if unlikely(methodbind.isNil):
     let name: StringName = "set_position_smoothing_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  positionSmoothingSpeed.encode(`?param`[0])
+  var `?param` = [getPtr positionSmoothingSpeed]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isPositionSmoothingEnabled*(self: Camera2D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -299,8 +281,7 @@ proc `rotationSmoothingEnabled=`*(self: Camera2D; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_rotation_smoothing_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isRotationSmoothingEnabled*(self: Camera2D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -315,8 +296,7 @@ proc `rotationSmoothingSpeed=`*(self: Camera2D; speed: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_rotation_smoothing_speed"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  speed.encode(`?param`[0])
+  var `?param` = [getPtr speed]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc rotationSmoothingSpeed*(self: Camera2D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -349,8 +329,7 @@ proc `screenDrawingEnabled=`*(self: Camera2D; screenDrawingEnabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_screen_drawing_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  screenDrawingEnabled.encode(`?param`[0])
+  var `?param` = [getPtr screenDrawingEnabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isScreenDrawingEnabled*(self: Camera2D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -365,8 +344,7 @@ proc `limitDrawingEnabled=`*(self: Camera2D; limitDrawingEnabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_limit_drawing_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  limitDrawingEnabled.encode(`?param`[0])
+  var `?param` = [getPtr limitDrawingEnabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isLimitDrawingEnabled*(self: Camera2D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -381,8 +359,7 @@ proc `marginDrawingEnabled=`*(self: Camera2D; marginDrawingEnabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_margin_drawing_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  marginDrawingEnabled.encode(`?param`[0])
+  var `?param` = [getPtr marginDrawingEnabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isMarginDrawingEnabled*(self: Camera2D): Bool =
   var methodbind {.global.}: MethodBindPtr

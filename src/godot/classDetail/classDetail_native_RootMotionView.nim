@@ -9,8 +9,7 @@ proc `animationPath=`*(self: RootMotionView; path: NodePath) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_animation_path"
     methodbind = interface_ClassDB_getMethodBind(addr className RootMotionView, addr name, 1348162250)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc animationPath*(self: RootMotionView): NodePath =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `color=`*(self: RootMotionView; color: Color) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_color"
     methodbind = interface_ClassDB_getMethodBind(addr className RootMotionView, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  color.encode(`?param`[0])
+  var `?param` = [getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc color*(self: RootMotionView): Color =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `cellSize=`*(self: RootMotionView; size: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_cell_size"
     methodbind = interface_ClassDB_getMethodBind(addr className RootMotionView, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  size.encode(`?param`[0])
+  var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc cellSize*(self: RootMotionView): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `radius=`*(self: RootMotionView; size: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_radius"
     methodbind = interface_ClassDB_getMethodBind(addr className RootMotionView, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  size.encode(`?param`[0])
+  var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc radius*(self: RootMotionView): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `zeroY=`*(self: RootMotionView; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_zero_y"
     methodbind = interface_ClassDB_getMethodBind(addr className RootMotionView, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc zeroY*(self: RootMotionView): Bool =
   var methodbind {.global.}: MethodBindPtr

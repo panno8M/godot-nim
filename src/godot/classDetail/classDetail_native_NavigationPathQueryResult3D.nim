@@ -9,8 +9,7 @@ proc `path=`*(self: Ref[NavigationPathQueryResult3D]; path: PackedVector3Array) 
   if unlikely(methodbind.isNil):
     let name: StringName = "set_path"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPathQueryResult3D, addr name, 334873810)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc path*(self: Ref[NavigationPathQueryResult3D]): PackedVector3Array =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `pathTypes=`*(self: Ref[NavigationPathQueryResult3D]; pathTypes: PackedInt3
   if unlikely(methodbind.isNil):
     let name: StringName = "set_path_types"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPathQueryResult3D, addr name, 3614634198)
-  var `?param`: array[1, pointer]
-  pathTypes.encode(`?param`[0])
+  var `?param` = [getPtr pathTypes]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc pathTypes*(self: Ref[NavigationPathQueryResult3D]): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `pathRids=`*(self: Ref[NavigationPathQueryResult3D]; pathRids: TypedArray[R
   if unlikely(methodbind.isNil):
     let name: StringName = "set_path_rids"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPathQueryResult3D, addr name, 381264803)
-  var `?param`: array[1, pointer]
-  pathRids.encode(`?param`[0])
+  var `?param` = [getPtr pathRids]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc pathRids*(self: Ref[NavigationPathQueryResult3D]): TypedArray[RID] =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `pathOwnerIds=`*(self: Ref[NavigationPathQueryResult3D]; pathOwnerIds: Pack
   if unlikely(methodbind.isNil):
     let name: StringName = "set_path_owner_ids"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPathQueryResult3D, addr name, 3709968205)
-  var `?param`: array[1, pointer]
-  pathOwnerIds.encode(`?param`[0])
+  var `?param` = [getPtr pathOwnerIds]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc pathOwnerIds*(self: Ref[NavigationPathQueryResult3D]): PackedInt64Array =
   var methodbind {.global.}: MethodBindPtr

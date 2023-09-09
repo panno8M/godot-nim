@@ -9,8 +9,7 @@ proc moveAndCollide*(self: PhysicsBody3D; motion: Vector3; testOnly: Bool = fals
   if unlikely(methodbind.isNil):
     let name: StringName = "move_and_collide"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsBody3D, addr name, 2825704414)
-  var `?param`: array[5, pointer]
-  motion.encode(`?param`[0]); testOnly.encode(`?param`[1]); safeMargin.encode(`?param`[2]); recoveryAsCollision.encode(`?param`[3]); maxCollisions.encode(`?param`[4])
+  var `?param` = [getPtr motion, getPtr testOnly, getPtr safeMargin, getPtr recoveryAsCollision, getPtr maxCollisions]
   var ret: encoded Ref[KinematicCollision3D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[KinematicCollision3D])
@@ -19,8 +18,7 @@ proc testMove*(self: PhysicsBody3D; `from`: Transform3D; motion: Vector3; collis
   if unlikely(methodbind.isNil):
     let name: StringName = "test_move"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsBody3D, addr name, 680299713)
-  var `?param`: array[6, pointer]
-  `from`.encode(`?param`[0]); motion.encode(`?param`[1]); collision.encode(`?param`[2]); safeMargin.encode(`?param`[3]); recoveryAsCollision.encode(`?param`[4]); maxCollisions.encode(`?param`[5])
+  var `?param` = [getPtr `from`, getPtr motion, getPtr collision, getPtr safeMargin, getPtr recoveryAsCollision, getPtr maxCollisions]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -29,16 +27,14 @@ proc `axisLock=`*(self: PhysicsBody3D; axis: PhysicsServer3D_BodyAxis; lock: Boo
   if unlikely(methodbind.isNil):
     let name: StringName = "set_axis_lock"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsBody3D, addr name, 1787895195)
-  var `?param`: array[2, pointer]
-  axis.encode(`?param`[0]); lock.encode(`?param`[1])
+  var `?param` = [getPtr axis, getPtr lock]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc axisLock*(self: PhysicsBody3D; axis: PhysicsServer3D_BodyAxis): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_axis_lock"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsBody3D, addr name, 2264617709)
-  var `?param`: array[1, pointer]
-  axis.encode(`?param`[0])
+  var `?param` = [getPtr axis]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -55,14 +51,12 @@ proc addCollisionExceptionWith*(self: PhysicsBody3D; body: Node) =
   if unlikely(methodbind.isNil):
     let name: StringName = "add_collision_exception_with"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsBody3D, addr name, 1078189570)
-  var `?param`: array[1, pointer]
-  body.encode(`?param`[0])
+  var `?param` = [getPtr body]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc removeCollisionExceptionWith*(self: PhysicsBody3D; body: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_collision_exception_with"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsBody3D, addr name, 1078189570)
-  var `?param`: array[1, pointer]
-  body.encode(`?param`[0])
+  var `?param` = [getPtr body]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

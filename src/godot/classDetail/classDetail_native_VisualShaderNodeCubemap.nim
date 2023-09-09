@@ -9,8 +9,7 @@ proc `source=`*(self: Ref[VisualShaderNodeCubemap]; value: VisualShaderNodeCubem
   if unlikely(methodbind.isNil):
     let name: StringName = "set_source"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeCubemap, addr name, 1625400621)
-  var `?param`: array[1, pointer]
-  value.encode(`?param`[0])
+  var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc source*(self: Ref[VisualShaderNodeCubemap]): VisualShaderNodeCubemap_Source =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `cubeMap=`*(self: Ref[VisualShaderNodeCubemap]; value: Ref[Cubemap]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_cube_map"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeCubemap, addr name, 2219800736)
-  var `?param`: array[1, pointer]
-  value.encode(`?param`[0])
+  var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc cubeMap*(self: Ref[VisualShaderNodeCubemap]): Ref[Cubemap] =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `textureType=`*(self: Ref[VisualShaderNodeCubemap]; value: VisualShaderNode
   if unlikely(methodbind.isNil):
     let name: StringName = "set_texture_type"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeCubemap, addr name, 1899718876)
-  var `?param`: array[1, pointer]
-  value.encode(`?param`[0])
+  var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc textureType*(self: Ref[VisualShaderNodeCubemap]): VisualShaderNodeCubemap_TextureType =
   var methodbind {.global.}: MethodBindPtr

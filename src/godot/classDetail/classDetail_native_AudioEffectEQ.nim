@@ -9,16 +9,14 @@ proc setBandGainDb*(self: Ref[AudioEffectEQ]; bandIdx: int32; volumeDb: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_band_gain_db"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectEQ, addr name, 1602489585)
-  var `?param`: array[2, pointer]
-  bandIdx.encode(`?param`[0]); volumeDb.encode(`?param`[1])
+  var `?param` = [getPtr bandIdx, getPtr volumeDb]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getBandGainDb*(self: Ref[AudioEffectEQ]; bandIdx: int32): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_band_gain_db"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectEQ, addr name, 2339986948)
-  var `?param`: array[1, pointer]
-  bandIdx.encode(`?param`[0])
+  var `?param` = [getPtr bandIdx]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)

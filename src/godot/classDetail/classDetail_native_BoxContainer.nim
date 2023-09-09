@@ -9,8 +9,7 @@ proc addSpacer*(self: BoxContainer; begin: Bool): Control =
   if unlikely(methodbind.isNil):
     let name: StringName = "add_spacer"
     methodbind = interface_ClassDB_getMethodBind(addr className BoxContainer, addr name, 1326660695)
-  var `?param`: array[1, pointer]
-  begin.encode(`?param`[0])
+  var `?param` = [getPtr begin]
   var ret: encoded Control
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Control)
@@ -19,8 +18,7 @@ proc `alignment=`*(self: BoxContainer; alignment: BoxContainer_AlignmentMode) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_alignment"
     methodbind = interface_ClassDB_getMethodBind(addr className BoxContainer, addr name, 2456745134)
-  var `?param`: array[1, pointer]
-  alignment.encode(`?param`[0])
+  var `?param` = [getPtr alignment]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc alignment*(self: BoxContainer): BoxContainer_AlignmentMode =
   var methodbind {.global.}: MethodBindPtr
@@ -35,8 +33,7 @@ proc `vertical=`*(self: BoxContainer; vertical: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_vertical"
     methodbind = interface_ClassDB_getMethodBind(addr className BoxContainer, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  vertical.encode(`?param`[0])
+  var `?param` = [getPtr vertical]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isVertical*(self: BoxContainer): Bool =
   var methodbind {.global.}: MethodBindPtr

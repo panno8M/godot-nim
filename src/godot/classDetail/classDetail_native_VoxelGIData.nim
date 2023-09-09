@@ -9,8 +9,7 @@ proc allocate*(self: Ref[VoxelGIData]; toCellXform: Transform3D; aabb: AABB; oct
   if unlikely(methodbind.isNil):
     let name: StringName = "allocate"
     methodbind = interface_ClassDB_getMethodBind(addr className VoxelGIData, addr name, 4041601946)
-  var `?param`: array[7, pointer]
-  toCellXform.encode(`?param`[0]); aabb.encode(`?param`[1]); octreeSize.encode(`?param`[2]); octreeCells.encode(`?param`[3]); dataCells.encode(`?param`[4]); distanceField.encode(`?param`[5]); levelCounts.encode(`?param`[6])
+  var `?param` = [getPtr toCellXform, getPtr aabb, getPtr octreeSize, getPtr octreeCells, getPtr dataCells, getPtr distanceField, getPtr levelCounts]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getBounds*(self: Ref[VoxelGIData]): AABB =
   var methodbind {.global.}: MethodBindPtr
@@ -65,8 +64,7 @@ proc `dynamicRange=`*(self: Ref[VoxelGIData]; dynamicRange: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_dynamic_range"
     methodbind = interface_ClassDB_getMethodBind(addr className VoxelGIData, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  dynamicRange.encode(`?param`[0])
+  var `?param` = [getPtr dynamicRange]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc dynamicRange*(self: Ref[VoxelGIData]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -81,8 +79,7 @@ proc `energy=`*(self: Ref[VoxelGIData]; energy: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_energy"
     methodbind = interface_ClassDB_getMethodBind(addr className VoxelGIData, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  energy.encode(`?param`[0])
+  var `?param` = [getPtr energy]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc energy*(self: Ref[VoxelGIData]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -97,8 +94,7 @@ proc `bias=`*(self: Ref[VoxelGIData]; bias: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_bias"
     methodbind = interface_ClassDB_getMethodBind(addr className VoxelGIData, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  bias.encode(`?param`[0])
+  var `?param` = [getPtr bias]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc bias*(self: Ref[VoxelGIData]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -113,8 +109,7 @@ proc `normalBias=`*(self: Ref[VoxelGIData]; bias: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_normal_bias"
     methodbind = interface_ClassDB_getMethodBind(addr className VoxelGIData, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  bias.encode(`?param`[0])
+  var `?param` = [getPtr bias]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc normalBias*(self: Ref[VoxelGIData]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -129,8 +124,7 @@ proc `propagation=`*(self: Ref[VoxelGIData]; propagation: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_propagation"
     methodbind = interface_ClassDB_getMethodBind(addr className VoxelGIData, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  propagation.encode(`?param`[0])
+  var `?param` = [getPtr propagation]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc propagation*(self: Ref[VoxelGIData]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -145,8 +139,7 @@ proc `interior=`*(self: Ref[VoxelGIData]; interior: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_interior"
     methodbind = interface_ClassDB_getMethodBind(addr className VoxelGIData, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  interior.encode(`?param`[0])
+  var `?param` = [getPtr interior]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isInterior*(self: Ref[VoxelGIData]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -161,8 +154,7 @@ proc `useTwoBounces=`*(self: Ref[VoxelGIData]; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_use_two_bounces"
     methodbind = interface_ClassDB_getMethodBind(addr className VoxelGIData, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isUsingTwoBounces*(self: Ref[VoxelGIData]): Bool =
   var methodbind {.global.}: MethodBindPtr

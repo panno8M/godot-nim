@@ -9,8 +9,7 @@ proc `radius=`*(self: VehicleWheel3D; length: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_radius"
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  length.encode(`?param`[0])
+  var `?param` = [getPtr length]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc radius*(self: VehicleWheel3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `suspensionRestLength=`*(self: VehicleWheel3D; length: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_suspension_rest_length"
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  length.encode(`?param`[0])
+  var `?param` = [getPtr length]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc suspensionRestLength*(self: VehicleWheel3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `suspensionTravel=`*(self: VehicleWheel3D; length: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_suspension_travel"
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  length.encode(`?param`[0])
+  var `?param` = [getPtr length]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc suspensionTravel*(self: VehicleWheel3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `suspensionStiffness=`*(self: VehicleWheel3D; length: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_suspension_stiffness"
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  length.encode(`?param`[0])
+  var `?param` = [getPtr length]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc suspensionStiffness*(self: VehicleWheel3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `suspensionMaxForce=`*(self: VehicleWheel3D; length: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_suspension_max_force"
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  length.encode(`?param`[0])
+  var `?param` = [getPtr length]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc suspensionMaxForce*(self: VehicleWheel3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc `dampingCompression=`*(self: VehicleWheel3D; length: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_damping_compression"
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  length.encode(`?param`[0])
+  var `?param` = [getPtr length]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc dampingCompression*(self: VehicleWheel3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -105,8 +99,7 @@ proc `dampingRelaxation=`*(self: VehicleWheel3D; length: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_damping_relaxation"
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  length.encode(`?param`[0])
+  var `?param` = [getPtr length]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc dampingRelaxation*(self: VehicleWheel3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -121,8 +114,7 @@ proc `useAsTraction=`*(self: VehicleWheel3D; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_use_as_traction"
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isUsedAsTraction*(self: VehicleWheel3D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -137,8 +129,7 @@ proc `useAsSteering=`*(self: VehicleWheel3D; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_use_as_steering"
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isUsedAsSteering*(self: VehicleWheel3D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -153,8 +144,7 @@ proc `frictionSlip=`*(self: VehicleWheel3D; length: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_friction_slip"
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  length.encode(`?param`[0])
+  var `?param` = [getPtr length]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc frictionSlip*(self: VehicleWheel3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -185,8 +175,7 @@ proc `rollInfluence=`*(self: VehicleWheel3D; rollInfluence: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_roll_influence"
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  rollInfluence.encode(`?param`[0])
+  var `?param` = [getPtr rollInfluence]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc rollInfluence*(self: VehicleWheel3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -217,8 +206,7 @@ proc `engineForce=`*(self: VehicleWheel3D; engineForce: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_engine_force"
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  engineForce.encode(`?param`[0])
+  var `?param` = [getPtr engineForce]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc engineForce*(self: VehicleWheel3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -233,8 +221,7 @@ proc `brake=`*(self: VehicleWheel3D; brake: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_brake"
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  brake.encode(`?param`[0])
+  var `?param` = [getPtr brake]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc brake*(self: VehicleWheel3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -249,8 +236,7 @@ proc `steering=`*(self: VehicleWheel3D; steering: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_steering"
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  steering.encode(`?param`[0])
+  var `?param` = [getPtr steering]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc steering*(self: VehicleWheel3D): Float =
   var methodbind {.global.}: MethodBindPtr

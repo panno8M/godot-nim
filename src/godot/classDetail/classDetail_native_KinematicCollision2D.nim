@@ -41,8 +41,7 @@ proc getAngle*(self: Ref[KinematicCollision2D]; upDirection: Vector2 = gdvec(0, 
   if unlikely(methodbind.isNil):
     let name: StringName = "get_angle"
     methodbind = interface_ClassDB_getMethodBind(addr className KinematicCollision2D, addr name, 2841063350)
-  var `?param`: array[1, pointer]
-  upDirection.encode(`?param`[0])
+  var `?param` = [getPtr upDirection]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)

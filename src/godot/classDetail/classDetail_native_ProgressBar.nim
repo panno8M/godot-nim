@@ -9,8 +9,7 @@ proc `fillMode=`*(self: ProgressBar; mode: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fill_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className ProgressBar, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fillMode*(self: ProgressBar): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `showPercentage=`*(self: ProgressBar; visible: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_show_percentage"
     methodbind = interface_ClassDB_getMethodBind(addr className ProgressBar, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  visible.encode(`?param`[0])
+  var `?param` = [getPtr visible]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isPercentageShown*(self: ProgressBar): Bool =
   var methodbind {.global.}: MethodBindPtr

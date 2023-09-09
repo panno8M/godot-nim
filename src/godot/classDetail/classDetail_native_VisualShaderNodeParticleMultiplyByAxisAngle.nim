@@ -9,8 +9,7 @@ proc `degreesMode=`*(self: Ref[VisualShaderNodeParticleMultiplyByAxisAngle]; ena
   if unlikely(methodbind.isNil):
     let name: StringName = "set_degrees_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeParticleMultiplyByAxisAngle, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isDegreesMode*(self: Ref[VisualShaderNodeParticleMultiplyByAxisAngle]): Bool =
   var methodbind {.global.}: MethodBindPtr

@@ -9,8 +9,7 @@ proc `a=`*(self: Ref[SegmentShape2D]; a: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_a"
     methodbind = interface_ClassDB_getMethodBind(addr className SegmentShape2D, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  a.encode(`?param`[0])
+  var `?param` = [getPtr a]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc a*(self: Ref[SegmentShape2D]): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `b=`*(self: Ref[SegmentShape2D]; b: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_b"
     methodbind = interface_ClassDB_getMethodBind(addr className SegmentShape2D, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  b.encode(`?param`[0])
+  var `?param` = [getPtr b]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc b*(self: Ref[SegmentShape2D]): Vector2 =
   var methodbind {.global.}: MethodBindPtr

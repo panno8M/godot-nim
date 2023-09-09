@@ -9,8 +9,7 @@ proc `polygon=`*(self: CollisionPolygon2D; polygon: PackedVector2Array) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_polygon"
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionPolygon2D, addr name, 1509147220)
-  var `?param`: array[1, pointer]
-  polygon.encode(`?param`[0])
+  var `?param` = [getPtr polygon]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc polygon*(self: CollisionPolygon2D): PackedVector2Array =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `buildMode=`*(self: CollisionPolygon2D; buildMode: CollisionPolygon2D_Build
   if unlikely(methodbind.isNil):
     let name: StringName = "set_build_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionPolygon2D, addr name, 2780803135)
-  var `?param`: array[1, pointer]
-  buildMode.encode(`?param`[0])
+  var `?param` = [getPtr buildMode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc buildMode*(self: CollisionPolygon2D): CollisionPolygon2D_BuildMode =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `disabled=`*(self: CollisionPolygon2D; disabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_disabled"
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionPolygon2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  disabled.encode(`?param`[0])
+  var `?param` = [getPtr disabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isDisabled*(self: CollisionPolygon2D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `oneWayCollision=`*(self: CollisionPolygon2D; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_one_way_collision"
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionPolygon2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isOneWayCollisionEnabled*(self: CollisionPolygon2D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `oneWayCollisionMargin=`*(self: CollisionPolygon2D; margin: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_one_way_collision_margin"
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionPolygon2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  margin.encode(`?param`[0])
+  var `?param` = [getPtr margin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc oneWayCollisionMargin*(self: CollisionPolygon2D): Float =
   var methodbind {.global.}: MethodBindPtr

@@ -9,8 +9,7 @@ proc `locale=`*(self: Ref[Translation]; locale: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_locale"
     methodbind = interface_ClassDB_getMethodBind(addr className Translation, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  locale.encode(`?param`[0])
+  var `?param` = [getPtr locale]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc locale*(self: Ref[Translation]): String =
   var methodbind {.global.}: MethodBindPtr
@@ -25,24 +24,21 @@ proc addMessage*(self: Ref[Translation]; srcMessage: StringName; xlatedMessage: 
   if unlikely(methodbind.isNil):
     let name: StringName = "add_message"
     methodbind = interface_ClassDB_getMethodBind(addr className Translation, addr name, 971803314)
-  var `?param`: array[3, pointer]
-  srcMessage.encode(`?param`[0]); xlatedMessage.encode(`?param`[1]); context.encode(`?param`[2])
+  var `?param` = [getPtr srcMessage, getPtr xlatedMessage, getPtr context]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc addPluralMessage*(self: Ref[Translation]; srcMessage: StringName; xlatedMessages: PackedStringArray; context: StringName = "") =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_plural_message"
     methodbind = interface_ClassDB_getMethodBind(addr className Translation, addr name, 360316719)
-  var `?param`: array[3, pointer]
-  srcMessage.encode(`?param`[0]); xlatedMessages.encode(`?param`[1]); context.encode(`?param`[2])
+  var `?param` = [getPtr srcMessage, getPtr xlatedMessages, getPtr context]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getMessage*(self: Ref[Translation]; srcMessage: StringName; context: StringName = ""): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_message"
     methodbind = interface_ClassDB_getMethodBind(addr className Translation, addr name, 58037827)
-  var `?param`: array[2, pointer]
-  srcMessage.encode(`?param`[0]); context.encode(`?param`[1])
+  var `?param` = [getPtr srcMessage, getPtr context]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(StringName)
@@ -51,8 +47,7 @@ proc getPluralMessage*(self: Ref[Translation]; srcMessage: StringName; srcPlural
   if unlikely(methodbind.isNil):
     let name: StringName = "get_plural_message"
     methodbind = interface_ClassDB_getMethodBind(addr className Translation, addr name, 1333931916)
-  var `?param`: array[4, pointer]
-  srcMessage.encode(`?param`[0]); srcPluralMessage.encode(`?param`[1]); n.encode(`?param`[2]); context.encode(`?param`[3])
+  var `?param` = [getPtr srcMessage, getPtr srcPluralMessage, getPtr n, getPtr context]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(StringName)
@@ -61,8 +56,7 @@ proc eraseMessage*(self: Ref[Translation]; srcMessage: StringName; context: Stri
   if unlikely(methodbind.isNil):
     let name: StringName = "erase_message"
     methodbind = interface_ClassDB_getMethodBind(addr className Translation, addr name, 3919944288)
-  var `?param`: array[2, pointer]
-  srcMessage.encode(`?param`[0]); context.encode(`?param`[1])
+  var `?param` = [getPtr srcMessage, getPtr context]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getMessageList*(self: Ref[Translation]): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr

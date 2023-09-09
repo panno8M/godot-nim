@@ -9,8 +9,7 @@ proc `baseType=`*(self: EditorResourcePicker; baseType: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_base_type"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorResourcePicker, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  baseType.encode(`?param`[0])
+  var `?param` = [getPtr baseType]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc baseType*(self: EditorResourcePicker): String =
   var methodbind {.global.}: MethodBindPtr
@@ -33,8 +32,7 @@ proc `editedResource=`*(self: EditorResourcePicker; resource: Ref[Resource]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_edited_resource"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorResourcePicker, addr name, 968641751)
-  var `?param`: array[1, pointer]
-  resource.encode(`?param`[0])
+  var `?param` = [getPtr resource]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc editedResource*(self: EditorResourcePicker): Ref[Resource] =
   var methodbind {.global.}: MethodBindPtr
@@ -49,8 +47,7 @@ proc `toggleMode=`*(self: EditorResourcePicker; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_toggle_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorResourcePicker, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isToggleMode*(self: EditorResourcePicker): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -65,16 +62,14 @@ proc setTogglePressed*(self: EditorResourcePicker; pressed: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_toggle_pressed"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorResourcePicker, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  pressed.encode(`?param`[0])
+  var `?param` = [getPtr pressed]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `editable=`*(self: EditorResourcePicker; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_editable"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorResourcePicker, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isEditable*(self: EditorResourcePicker): Bool =
   var methodbind {.global.}: MethodBindPtr

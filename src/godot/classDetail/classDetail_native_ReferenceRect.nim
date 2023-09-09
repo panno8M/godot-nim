@@ -17,8 +17,7 @@ proc `borderColor=`*(self: ReferenceRect; color: Color) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_border_color"
     methodbind = interface_ClassDB_getMethodBind(addr className ReferenceRect, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  color.encode(`?param`[0])
+  var `?param` = [getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc borderWidth*(self: ReferenceRect): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -33,8 +32,7 @@ proc `borderWidth=`*(self: ReferenceRect; width: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_border_width"
     methodbind = interface_ClassDB_getMethodBind(addr className ReferenceRect, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  width.encode(`?param`[0])
+  var `?param` = [getPtr width]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc editorOnly*(self: ReferenceRect): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -49,6 +47,5 @@ proc `editorOnly=`*(self: ReferenceRect; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_editor_only"
     methodbind = interface_ClassDB_getMethodBind(addr className ReferenceRect, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

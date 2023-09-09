@@ -9,8 +9,7 @@ proc `code=`*(self: Ref[ShaderInclude]; code: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_code"
     methodbind = interface_ClassDB_getMethodBind(addr className ShaderInclude, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  code.encode(`?param`[0])
+  var `?param` = [getPtr code]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc code*(self: Ref[ShaderInclude]): String =
   var methodbind {.global.}: MethodBindPtr

@@ -25,8 +25,7 @@ proc `fallbackBaseScale=`*(self: ThemeDB; baseScale: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fallback_base_scale"
     methodbind = interface_ClassDB_getMethodBind(addr className ThemeDB, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  baseScale.encode(`?param`[0])
+  var `?param` = [getPtr baseScale]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fallbackBaseScale*(self: ThemeDB): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +40,7 @@ proc `fallbackFont=`*(self: ThemeDB; font: Ref[Font]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fallback_font"
     methodbind = interface_ClassDB_getMethodBind(addr className ThemeDB, addr name, 1262170328)
-  var `?param`: array[1, pointer]
-  font.encode(`?param`[0])
+  var `?param` = [getPtr font]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fallbackFont*(self: ThemeDB): Ref[Font] =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +55,7 @@ proc `fallbackFontSize=`*(self: ThemeDB; fontSize: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fallback_font_size"
     methodbind = interface_ClassDB_getMethodBind(addr className ThemeDB, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  fontSize.encode(`?param`[0])
+  var `?param` = [getPtr fontSize]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fallbackFontSize*(self: ThemeDB): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +70,7 @@ proc `fallbackIcon=`*(self: ThemeDB; icon: Ref[Texture2D]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fallback_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className ThemeDB, addr name, 4051416890)
-  var `?param`: array[1, pointer]
-  icon.encode(`?param`[0])
+  var `?param` = [getPtr icon]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fallbackIcon*(self: ThemeDB): Ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +85,7 @@ proc `fallbackStylebox=`*(self: ThemeDB; stylebox: Ref[StyleBox]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fallback_stylebox"
     methodbind = interface_ClassDB_getMethodBind(addr className ThemeDB, addr name, 2797200388)
-  var `?param`: array[1, pointer]
-  stylebox.encode(`?param`[0])
+  var `?param` = [getPtr stylebox]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fallbackStylebox*(self: ThemeDB): Ref[StyleBox] =
   var methodbind {.global.}: MethodBindPtr

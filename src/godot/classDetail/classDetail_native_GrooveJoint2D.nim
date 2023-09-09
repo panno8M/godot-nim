@@ -9,8 +9,7 @@ proc `length=`*(self: GrooveJoint2D; length: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_length"
     methodbind = interface_ClassDB_getMethodBind(addr className GrooveJoint2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  length.encode(`?param`[0])
+  var `?param` = [getPtr length]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc length*(self: GrooveJoint2D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `initialOffset=`*(self: GrooveJoint2D; offset: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_initial_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className GrooveJoint2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  offset.encode(`?param`[0])
+  var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc initialOffset*(self: GrooveJoint2D): Float =
   var methodbind {.global.}: MethodBindPtr

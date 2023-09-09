@@ -9,8 +9,7 @@ proc `normal=`*(self: Ref[WorldBoundaryShape2D]; normal: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_normal"
     methodbind = interface_ClassDB_getMethodBind(addr className WorldBoundaryShape2D, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  normal.encode(`?param`[0])
+  var `?param` = [getPtr normal]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc normal*(self: Ref[WorldBoundaryShape2D]): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `distance=`*(self: Ref[WorldBoundaryShape2D]; distance: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_distance"
     methodbind = interface_ClassDB_getMethodBind(addr className WorldBoundaryShape2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  distance.encode(`?param`[0])
+  var `?param` = [getPtr distance]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc distance*(self: Ref[WorldBoundaryShape2D]): Float =
   var methodbind {.global.}: MethodBindPtr

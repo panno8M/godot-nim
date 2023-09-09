@@ -9,8 +9,7 @@ proc restartEditor*(self: EditorInterface; save: Bool = true) =
   if unlikely(methodbind.isNil):
     let name: StringName = "restart_editor"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 3216645846)
-  var `?param`: array[1, pointer]
-  save.encode(`?param`[0])
+  var `?param` = [getPtr save]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getCommandPalette*(self: EditorInterface): EditorCommandPalette =
   var methodbind {.global.}: MethodBindPtr
@@ -65,8 +64,7 @@ proc makeMeshPreviews*(self: EditorInterface; meshes: TypedArray[Mesh]; previewS
   if unlikely(methodbind.isNil):
     let name: StringName = "make_mesh_previews"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 878078554)
-  var `?param`: array[2, pointer]
-  meshes.encode(`?param`[0]); previewSize.encode(`?param`[1])
+  var `?param` = [getPtr meshes, getPtr previewSize]
   var ret: encoded TypedArray[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TypedArray[Texture2D])
@@ -75,16 +73,14 @@ proc setPluginEnabled*(self: EditorInterface; plugin: String; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_plugin_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 2678287736)
-  var `?param`: array[2, pointer]
-  plugin.encode(`?param`[0]); enabled.encode(`?param`[1])
+  var `?param` = [getPtr plugin, getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isPluginEnabled*(self: EditorInterface; plugin: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_plugin_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 3927539163)
-  var `?param`: array[1, pointer]
-  plugin.encode(`?param`[0])
+  var `?param` = [getPtr plugin]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -117,16 +113,14 @@ proc setMainScreenEditor*(self: EditorInterface; name: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_main_screen_editor"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  name.encode(`?param`[0])
+  var `?param` = [getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `distractionFreeMode=`*(self: EditorInterface; enter: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_distraction_free_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enter.encode(`?param`[0])
+  var `?param` = [getPtr enter]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isDistractionFreeModeEnabled*(self: EditorInterface): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -149,32 +143,28 @@ proc popupDialog*(self: EditorInterface; dialog: Window; rect: Rect2i = init_Rec
   if unlikely(methodbind.isNil):
     let name: StringName = "popup_dialog"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 2478844058)
-  var `?param`: array[2, pointer]
-  dialog.encode(`?param`[0]); rect.encode(`?param`[1])
+  var `?param` = [getPtr dialog, getPtr rect]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc popupDialogCentered*(self: EditorInterface; dialog: Window; minsize: Vector2i = gdveci(0, 0)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "popup_dialog_centered"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 1723337679)
-  var `?param`: array[2, pointer]
-  dialog.encode(`?param`[0]); minsize.encode(`?param`[1])
+  var `?param` = [getPtr dialog, getPtr minsize]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc popupDialogCenteredRatio*(self: EditorInterface; dialog: Window; ratio: Float = 0.8) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "popup_dialog_centered_ratio"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 1310934579)
-  var `?param`: array[2, pointer]
-  dialog.encode(`?param`[0]); ratio.encode(`?param`[1])
+  var `?param` = [getPtr dialog, getPtr ratio]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc popupDialogCenteredClamped*(self: EditorInterface; dialog: Window; minsize: Vector2i = gdveci(0, 0); fallbackRatio: Float = 0.75) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "popup_dialog_centered_clamped"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 3433759678)
-  var `?param`: array[3, pointer]
-  dialog.encode(`?param`[0]); minsize.encode(`?param`[1]); fallbackRatio.encode(`?param`[2])
+  var `?param` = [getPtr dialog, getPtr minsize, getPtr fallbackRatio]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getFileSystemDock*(self: EditorInterface): FileSystemDock =
   var methodbind {.global.}: MethodBindPtr
@@ -189,8 +179,7 @@ proc selectFile*(self: EditorInterface; file: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "select_file"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  file.encode(`?param`[0])
+  var `?param` = [getPtr file]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getSelectedPaths*(self: EditorInterface): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
@@ -229,48 +218,42 @@ proc inspectObject*(self: EditorInterface; `object`: Object; forProperty: String
   if unlikely(methodbind.isNil):
     let name: StringName = "inspect_object"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 2564140749)
-  var `?param`: array[3, pointer]
-  `object`.encode(`?param`[0]); forProperty.encode(`?param`[1]); inspectorOnly.encode(`?param`[2])
+  var `?param` = [getPtr `object`, getPtr forProperty, getPtr inspectorOnly]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc editResource*(self: EditorInterface; resource: Ref[Resource]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "edit_resource"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 968641751)
-  var `?param`: array[1, pointer]
-  resource.encode(`?param`[0])
+  var `?param` = [getPtr resource]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc editNode*(self: EditorInterface; node: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "edit_node"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 1078189570)
-  var `?param`: array[1, pointer]
-  node.encode(`?param`[0])
+  var `?param` = [getPtr node]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc editScript*(self: EditorInterface; script: Ref[Script]; line: int32 = -1; column: int32 = 0; grabFocus: Bool = true) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "edit_script"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 3664508569)
-  var `?param`: array[4, pointer]
-  script.encode(`?param`[0]); line.encode(`?param`[1]); column.encode(`?param`[2]); grabFocus.encode(`?param`[3])
+  var `?param` = [getPtr script, getPtr line, getPtr column, getPtr grabFocus]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc openSceneFromPath*(self: EditorInterface; sceneFilepath: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "open_scene_from_path"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  sceneFilepath.encode(`?param`[0])
+  var `?param` = [getPtr sceneFilepath]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc reloadSceneFromPath*(self: EditorInterface; sceneFilepath: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "reload_scene_from_path"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  sceneFilepath.encode(`?param`[0])
+  var `?param` = [getPtr sceneFilepath]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getOpenScenes*(self: EditorInterface): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
@@ -301,8 +284,7 @@ proc saveSceneAs*(self: EditorInterface; path: String; withPreview: Bool = true)
   if unlikely(methodbind.isNil):
     let name: StringName = "save_scene_as"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 1168363258)
-  var `?param`: array[2, pointer]
-  path.encode(`?param`[0]); withPreview.encode(`?param`[1])
+  var `?param` = [getPtr path, getPtr withPreview]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc markSceneAsUnsaved*(self: EditorInterface) =
   var methodbind {.global.}: MethodBindPtr
@@ -327,8 +309,7 @@ proc playCustomScene*(self: EditorInterface; sceneFilepath: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "play_custom_scene"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  sceneFilepath.encode(`?param`[0])
+  var `?param` = [getPtr sceneFilepath]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc stopPlayingScene*(self: EditorInterface) =
   var methodbind {.global.}: MethodBindPtr
@@ -357,8 +338,7 @@ proc `movieMakerEnabled=`*(self: EditorInterface; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_movie_maker_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isMovieMakerEnabled*(self: EditorInterface): Bool =
   var methodbind {.global.}: MethodBindPtr

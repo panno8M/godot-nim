@@ -9,8 +9,7 @@ proc `pathfindingAlgorithm=`*(self: Ref[NavigationPathQueryParameters3D]; pathfi
   if unlikely(methodbind.isNil):
     let name: StringName = "set_pathfinding_algorithm"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPathQueryParameters3D, addr name, 394560454)
-  var `?param`: array[1, pointer]
-  pathfindingAlgorithm.encode(`?param`[0])
+  var `?param` = [getPtr pathfindingAlgorithm]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc pathfindingAlgorithm*(self: Ref[NavigationPathQueryParameters3D]): NavigationPathQueryParameters3D_PathfindingAlgorithm =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `pathPostprocessing=`*(self: Ref[NavigationPathQueryParameters3D]; pathPost
   if unlikely(methodbind.isNil):
     let name: StringName = "set_path_postprocessing"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPathQueryParameters3D, addr name, 2267362344)
-  var `?param`: array[1, pointer]
-  pathPostprocessing.encode(`?param`[0])
+  var `?param` = [getPtr pathPostprocessing]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc pathPostprocessing*(self: Ref[NavigationPathQueryParameters3D]): NavigationPathQueryParameters3D_PathPostProcessing =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `map=`*(self: Ref[NavigationPathQueryParameters3D]; map: RID) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_map"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPathQueryParameters3D, addr name, 2722037293)
-  var `?param`: array[1, pointer]
-  map.encode(`?param`[0])
+  var `?param` = [getPtr map]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc map*(self: Ref[NavigationPathQueryParameters3D]): RID =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `startPosition=`*(self: Ref[NavigationPathQueryParameters3D]; startPosition
   if unlikely(methodbind.isNil):
     let name: StringName = "set_start_position"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPathQueryParameters3D, addr name, 3460891852)
-  var `?param`: array[1, pointer]
-  startPosition.encode(`?param`[0])
+  var `?param` = [getPtr startPosition]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc startPosition*(self: Ref[NavigationPathQueryParameters3D]): Vector3 =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `targetPosition=`*(self: Ref[NavigationPathQueryParameters3D]; targetPositi
   if unlikely(methodbind.isNil):
     let name: StringName = "set_target_position"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPathQueryParameters3D, addr name, 3460891852)
-  var `?param`: array[1, pointer]
-  targetPosition.encode(`?param`[0])
+  var `?param` = [getPtr targetPosition]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc tarposition*(self: Ref[NavigationPathQueryParameters3D]): Vector3 =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc `navigationLayers=`*(self: Ref[NavigationPathQueryParameters3D]; navigation
   if unlikely(methodbind.isNil):
     let name: StringName = "set_navigation_layers"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPathQueryParameters3D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  navigationLayers.encode(`?param`[0])
+  var `?param` = [getPtr navigationLayers]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc navigationLayers*(self: Ref[NavigationPathQueryParameters3D]): uint32 =
   var methodbind {.global.}: MethodBindPtr
@@ -105,8 +99,7 @@ proc `metadataFlags=`*(self: Ref[NavigationPathQueryParameters3D]; flags: set[Na
   if unlikely(methodbind.isNil):
     let name: StringName = "set_metadata_flags"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPathQueryParameters3D, addr name, 2713846708)
-  var `?param`: array[1, pointer]
-  flags.encode(`?param`[0])
+  var `?param` = [getPtr flags]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc metadataFlags*(self: Ref[NavigationPathQueryParameters3D]): set[NavigationPathQueryParameters3D_PathMetadataFlags] =
   var methodbind {.global.}: MethodBindPtr

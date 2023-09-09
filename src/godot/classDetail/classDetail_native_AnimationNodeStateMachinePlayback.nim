@@ -9,16 +9,14 @@ proc travel*(self: Ref[AnimationNodeStateMachinePlayback]; toNode: StringName; r
   if unlikely(methodbind.isNil):
     let name: StringName = "travel"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachinePlayback, addr name, 3683006648)
-  var `?param`: array[2, pointer]
-  toNode.encode(`?param`[0]); resetOnTeleport.encode(`?param`[1])
+  var `?param` = [getPtr toNode, getPtr resetOnTeleport]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc start*(self: Ref[AnimationNodeStateMachinePlayback]; node: StringName; reset: Bool = true) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "start"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachinePlayback, addr name, 3683006648)
-  var `?param`: array[2, pointer]
-  node.encode(`?param`[0]); reset.encode(`?param`[1])
+  var `?param` = [getPtr node, getPtr reset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc next*(self: Ref[AnimationNodeStateMachinePlayback]) =
   var methodbind {.global.}: MethodBindPtr

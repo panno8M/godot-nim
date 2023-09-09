@@ -9,8 +9,7 @@ proc `background=`*(self: Ref[Environment]; mode: Environment_BGMode) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_background"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 4071623990)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc background*(self: Ref[Environment]): Environment_BGMode =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `sky=`*(self: Ref[Environment]; sky: Ref[Sky]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sky"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 3336722921)
-  var `?param`: array[1, pointer]
-  sky.encode(`?param`[0])
+  var `?param` = [getPtr sky]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc sky*(self: Ref[Environment]): Ref[Sky] =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `skyCustomFov=`*(self: Ref[Environment]; scale: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sky_custom_fov"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  scale.encode(`?param`[0])
+  var `?param` = [getPtr scale]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc skyCustomFov*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `skyRotation=`*(self: Ref[Environment]; eulerRadians: Vector3) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sky_rotation"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 3460891852)
-  var `?param`: array[1, pointer]
-  eulerRadians.encode(`?param`[0])
+  var `?param` = [getPtr eulerRadians]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc skyRotation*(self: Ref[Environment]): Vector3 =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `bgColor=`*(self: Ref[Environment]; color: Color) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_bg_color"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  color.encode(`?param`[0])
+  var `?param` = [getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc bgColor*(self: Ref[Environment]): Color =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc `bgEnergyMultiplier=`*(self: Ref[Environment]; energy: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_bg_energy_multiplier"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  energy.encode(`?param`[0])
+  var `?param` = [getPtr energy]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc bgEnergyMultiplier*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -105,8 +99,7 @@ proc `bgIntensity=`*(self: Ref[Environment]; energy: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_bg_intensity"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  energy.encode(`?param`[0])
+  var `?param` = [getPtr energy]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc bgIntensity*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -121,8 +114,7 @@ proc `canvasMaxLayer=`*(self: Ref[Environment]; layer: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_canvas_max_layer"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  layer.encode(`?param`[0])
+  var `?param` = [getPtr layer]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc canvasMaxLayer*(self: Ref[Environment]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -137,8 +129,7 @@ proc `cameraFeedId=`*(self: Ref[Environment]; id: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_camera_feed_id"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  id.encode(`?param`[0])
+  var `?param` = [getPtr id]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc cameraFeedId*(self: Ref[Environment]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -153,8 +144,7 @@ proc `ambientLightColor=`*(self: Ref[Environment]; color: Color) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ambient_light_color"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  color.encode(`?param`[0])
+  var `?param` = [getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc ambientLightColor*(self: Ref[Environment]): Color =
   var methodbind {.global.}: MethodBindPtr
@@ -169,8 +159,7 @@ proc `ambientSource=`*(self: Ref[Environment]; source: Environment_AmbientSource
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ambient_source"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 2607780160)
-  var `?param`: array[1, pointer]
-  source.encode(`?param`[0])
+  var `?param` = [getPtr source]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc ambientSource*(self: Ref[Environment]): Environment_AmbientSource =
   var methodbind {.global.}: MethodBindPtr
@@ -185,8 +174,7 @@ proc `ambientLightEnergy=`*(self: Ref[Environment]; energy: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ambient_light_energy"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  energy.encode(`?param`[0])
+  var `?param` = [getPtr energy]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc ambientLightEnergy*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -201,8 +189,7 @@ proc `ambientLightSkyContribution=`*(self: Ref[Environment]; ratio: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ambient_light_sky_contribution"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  ratio.encode(`?param`[0])
+  var `?param` = [getPtr ratio]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc ambientLightSkyContribution*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -217,8 +204,7 @@ proc `reflectionSource=`*(self: Ref[Environment]; source: Environment_Reflection
   if unlikely(methodbind.isNil):
     let name: StringName = "set_reflection_source"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 299673197)
-  var `?param`: array[1, pointer]
-  source.encode(`?param`[0])
+  var `?param` = [getPtr source]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc reflectionSource*(self: Ref[Environment]): Environment_ReflectionSource =
   var methodbind {.global.}: MethodBindPtr
@@ -233,8 +219,7 @@ proc `tonemapper=`*(self: Ref[Environment]; mode: Environment_ToneMapper) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tonemapper"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1509116664)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc tonemapper*(self: Ref[Environment]): Environment_ToneMapper =
   var methodbind {.global.}: MethodBindPtr
@@ -249,8 +234,7 @@ proc `tonemapExposure=`*(self: Ref[Environment]; exposure: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tonemap_exposure"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  exposure.encode(`?param`[0])
+  var `?param` = [getPtr exposure]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc tonemapExposure*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -265,8 +249,7 @@ proc `tonemapWhite=`*(self: Ref[Environment]; white: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tonemap_white"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  white.encode(`?param`[0])
+  var `?param` = [getPtr white]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc tonemapWhite*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -281,8 +264,7 @@ proc `ssrEnabled=`*(self: Ref[Environment]; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ssr_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isSsrEnabled*(self: Ref[Environment]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -297,8 +279,7 @@ proc `ssrMaxSteps=`*(self: Ref[Environment]; maxSteps: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ssr_max_steps"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  maxSteps.encode(`?param`[0])
+  var `?param` = [getPtr maxSteps]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc ssrMaxSteps*(self: Ref[Environment]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -313,8 +294,7 @@ proc `ssrFadeIn=`*(self: Ref[Environment]; fadeIn: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ssr_fade_in"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  fadeIn.encode(`?param`[0])
+  var `?param` = [getPtr fadeIn]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc ssrFadeIn*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -329,8 +309,7 @@ proc `ssrFadeOut=`*(self: Ref[Environment]; fadeOut: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ssr_fade_out"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  fadeOut.encode(`?param`[0])
+  var `?param` = [getPtr fadeOut]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc ssrFadeOut*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -345,8 +324,7 @@ proc `ssrDepthTolerance=`*(self: Ref[Environment]; depthTolerance: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ssr_depth_tolerance"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  depthTolerance.encode(`?param`[0])
+  var `?param` = [getPtr depthTolerance]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc ssrDepthTolerance*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -361,8 +339,7 @@ proc `ssaoEnabled=`*(self: Ref[Environment]; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ssao_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isSsaoEnabled*(self: Ref[Environment]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -377,8 +354,7 @@ proc `ssaoRadius=`*(self: Ref[Environment]; radius: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ssao_radius"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  radius.encode(`?param`[0])
+  var `?param` = [getPtr radius]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc ssaoRadius*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -393,8 +369,7 @@ proc `ssaoIntensity=`*(self: Ref[Environment]; intensity: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ssao_intensity"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  intensity.encode(`?param`[0])
+  var `?param` = [getPtr intensity]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc ssaoIntensity*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -409,8 +384,7 @@ proc `ssaoPower=`*(self: Ref[Environment]; power: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ssao_power"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  power.encode(`?param`[0])
+  var `?param` = [getPtr power]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc ssaoPower*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -425,8 +399,7 @@ proc `ssaoDetail=`*(self: Ref[Environment]; detail: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ssao_detail"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  detail.encode(`?param`[0])
+  var `?param` = [getPtr detail]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc ssaoDetail*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -441,8 +414,7 @@ proc `ssaoHorizon=`*(self: Ref[Environment]; horizon: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ssao_horizon"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  horizon.encode(`?param`[0])
+  var `?param` = [getPtr horizon]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc ssaoHorizon*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -457,8 +429,7 @@ proc `ssaoSharpness=`*(self: Ref[Environment]; sharpness: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ssao_sharpness"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  sharpness.encode(`?param`[0])
+  var `?param` = [getPtr sharpness]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc ssaoSharpness*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -473,8 +444,7 @@ proc `ssaoDirectLightAffect=`*(self: Ref[Environment]; amount: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ssao_direct_light_affect"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  amount.encode(`?param`[0])
+  var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc ssaoDirectLightAffect*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -489,8 +459,7 @@ proc `ssaoAoChannelAffect=`*(self: Ref[Environment]; amount: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ssao_ao_channel_affect"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  amount.encode(`?param`[0])
+  var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc ssaoAoChannelAffect*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -505,8 +474,7 @@ proc `ssilEnabled=`*(self: Ref[Environment]; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ssil_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isSsilEnabled*(self: Ref[Environment]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -521,8 +489,7 @@ proc `ssilRadius=`*(self: Ref[Environment]; radius: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ssil_radius"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  radius.encode(`?param`[0])
+  var `?param` = [getPtr radius]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc ssilRadius*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -537,8 +504,7 @@ proc `ssilIntensity=`*(self: Ref[Environment]; intensity: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ssil_intensity"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  intensity.encode(`?param`[0])
+  var `?param` = [getPtr intensity]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc ssilIntensity*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -553,8 +519,7 @@ proc `ssilSharpness=`*(self: Ref[Environment]; sharpness: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ssil_sharpness"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  sharpness.encode(`?param`[0])
+  var `?param` = [getPtr sharpness]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc ssilSharpness*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -569,8 +534,7 @@ proc `ssilNormalRejection=`*(self: Ref[Environment]; normalRejection: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ssil_normal_rejection"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  normalRejection.encode(`?param`[0])
+  var `?param` = [getPtr normalRejection]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc ssilNormalRejection*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -585,8 +549,7 @@ proc `sdfgiEnabled=`*(self: Ref[Environment]; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sdfgi_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isSdfgiEnabled*(self: Ref[Environment]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -601,8 +564,7 @@ proc `sdfgiCascades=`*(self: Ref[Environment]; amount: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sdfgi_cascades"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  amount.encode(`?param`[0])
+  var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc sdfgiCascades*(self: Ref[Environment]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -617,8 +579,7 @@ proc `sdfgiMinCellSize=`*(self: Ref[Environment]; size: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sdfgi_min_cell_size"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  size.encode(`?param`[0])
+  var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc sdfgiMinCellSize*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -633,8 +594,7 @@ proc `sdfgiMaxDistance=`*(self: Ref[Environment]; distance: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sdfgi_max_distance"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  distance.encode(`?param`[0])
+  var `?param` = [getPtr distance]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc sdfgiMaxDistance*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -649,8 +609,7 @@ proc `sdfgiCascade0Distance=`*(self: Ref[Environment]; distance: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sdfgi_cascade0_distance"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  distance.encode(`?param`[0])
+  var `?param` = [getPtr distance]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc sdfgiCascade0Distance*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -665,8 +624,7 @@ proc `sdfgiYScale=`*(self: Ref[Environment]; scale: Environment_SDFGIYScale) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sdfgi_y_scale"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 3608608372)
-  var `?param`: array[1, pointer]
-  scale.encode(`?param`[0])
+  var `?param` = [getPtr scale]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc sdfgiYScale*(self: Ref[Environment]): Environment_SDFGIYScale =
   var methodbind {.global.}: MethodBindPtr
@@ -681,8 +639,7 @@ proc `sdfgiUseOcclusion=`*(self: Ref[Environment]; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sdfgi_use_occlusion"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isSdfgiUsingOcclusion*(self: Ref[Environment]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -697,8 +654,7 @@ proc `sdfgiBounceFeedback=`*(self: Ref[Environment]; amount: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sdfgi_bounce_feedback"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  amount.encode(`?param`[0])
+  var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc sdfgiBounceFeedback*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -713,8 +669,7 @@ proc `sdfgiReadSkyLight=`*(self: Ref[Environment]; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sdfgi_read_sky_light"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isSdfgiReadingSkyLight*(self: Ref[Environment]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -729,8 +684,7 @@ proc `sdfgiEnergy=`*(self: Ref[Environment]; amount: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sdfgi_energy"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  amount.encode(`?param`[0])
+  var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc sdfgiEnergy*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -745,8 +699,7 @@ proc `sdfgiNormalBias=`*(self: Ref[Environment]; bias: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sdfgi_normal_bias"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  bias.encode(`?param`[0])
+  var `?param` = [getPtr bias]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc sdfgiNormalBias*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -761,8 +714,7 @@ proc `sdfgiProbeBias=`*(self: Ref[Environment]; bias: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sdfgi_probe_bias"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  bias.encode(`?param`[0])
+  var `?param` = [getPtr bias]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc sdfgiProbeBias*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -777,8 +729,7 @@ proc `glowEnabled=`*(self: Ref[Environment]; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_glow_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isGlowEnabled*(self: Ref[Environment]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -793,16 +744,14 @@ proc setGlowLevel*(self: Ref[Environment]; idx: int32; intensity: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_glow_level"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1602489585)
-  var `?param`: array[2, pointer]
-  idx.encode(`?param`[0]); intensity.encode(`?param`[1])
+  var `?param` = [getPtr idx, getPtr intensity]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getGlowLevel*(self: Ref[Environment]; idx: int32): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_glow_level"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 2339986948)
-  var `?param`: array[1, pointer]
-  idx.encode(`?param`[0])
+  var `?param` = [getPtr idx]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
@@ -811,8 +760,7 @@ proc `glowNormalized=`*(self: Ref[Environment]; normalize: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_glow_normalized"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  normalize.encode(`?param`[0])
+  var `?param` = [getPtr normalize]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isGlowNormalized*(self: Ref[Environment]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -827,8 +775,7 @@ proc `glowIntensity=`*(self: Ref[Environment]; intensity: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_glow_intensity"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  intensity.encode(`?param`[0])
+  var `?param` = [getPtr intensity]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc glowIntensity*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -843,8 +790,7 @@ proc `glowStrength=`*(self: Ref[Environment]; strength: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_glow_strength"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  strength.encode(`?param`[0])
+  var `?param` = [getPtr strength]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc glowStrength*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -859,8 +805,7 @@ proc `glowMix=`*(self: Ref[Environment]; mix: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_glow_mix"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  mix.encode(`?param`[0])
+  var `?param` = [getPtr mix]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc glowMix*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -875,8 +820,7 @@ proc `glowBloom=`*(self: Ref[Environment]; amount: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_glow_bloom"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  amount.encode(`?param`[0])
+  var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc glowBloom*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -891,8 +835,7 @@ proc `glowBlendMode=`*(self: Ref[Environment]; mode: Environment_GlowBlendMode) 
   if unlikely(methodbind.isNil):
     let name: StringName = "set_glow_blend_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 2561587761)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc glowBlendMode*(self: Ref[Environment]): Environment_GlowBlendMode =
   var methodbind {.global.}: MethodBindPtr
@@ -907,8 +850,7 @@ proc `glowHdrBleedThreshold=`*(self: Ref[Environment]; threshold: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_glow_hdr_bleed_threshold"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  threshold.encode(`?param`[0])
+  var `?param` = [getPtr threshold]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc glowHdrBleedThreshold*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -923,8 +865,7 @@ proc `glowHdrBleedScale=`*(self: Ref[Environment]; scale: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_glow_hdr_bleed_scale"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  scale.encode(`?param`[0])
+  var `?param` = [getPtr scale]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc glowHdrBleedScale*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -939,8 +880,7 @@ proc `glowHdrLuminanceCap=`*(self: Ref[Environment]; amount: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_glow_hdr_luminance_cap"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  amount.encode(`?param`[0])
+  var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc glowHdrLuminanceCap*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -955,8 +895,7 @@ proc `glowMapStrength=`*(self: Ref[Environment]; strength: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_glow_map_strength"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  strength.encode(`?param`[0])
+  var `?param` = [getPtr strength]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc glowMapStrength*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -971,8 +910,7 @@ proc `glowMap=`*(self: Ref[Environment]; mode: Ref[Texture]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_glow_map"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1790811099)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc glowMap*(self: Ref[Environment]): Ref[Texture] =
   var methodbind {.global.}: MethodBindPtr
@@ -987,8 +925,7 @@ proc `fogEnabled=`*(self: Ref[Environment]; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fog_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isFogEnabled*(self: Ref[Environment]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -1003,8 +940,7 @@ proc `fogLightColor=`*(self: Ref[Environment]; lightColor: Color) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fog_light_color"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  lightColor.encode(`?param`[0])
+  var `?param` = [getPtr lightColor]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fogLightColor*(self: Ref[Environment]): Color =
   var methodbind {.global.}: MethodBindPtr
@@ -1019,8 +955,7 @@ proc `fogLightEnergy=`*(self: Ref[Environment]; lightEnergy: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fog_light_energy"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  lightEnergy.encode(`?param`[0])
+  var `?param` = [getPtr lightEnergy]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fogLightEnergy*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -1035,8 +970,7 @@ proc `fogSunScatter=`*(self: Ref[Environment]; sunScatter: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fog_sun_scatter"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  sunScatter.encode(`?param`[0])
+  var `?param` = [getPtr sunScatter]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fogSunScatter*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -1051,8 +985,7 @@ proc `fogDensity=`*(self: Ref[Environment]; density: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fog_density"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  density.encode(`?param`[0])
+  var `?param` = [getPtr density]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fogDensity*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -1067,8 +1000,7 @@ proc `fogHeight=`*(self: Ref[Environment]; height: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fog_height"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  height.encode(`?param`[0])
+  var `?param` = [getPtr height]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fogHeight*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -1083,8 +1015,7 @@ proc `fogHeightDensity=`*(self: Ref[Environment]; heightDensity: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fog_height_density"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  heightDensity.encode(`?param`[0])
+  var `?param` = [getPtr heightDensity]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fogHeightDensity*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -1099,8 +1030,7 @@ proc `fogAerialPerspective=`*(self: Ref[Environment]; aerialPerspective: Float) 
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fog_aerial_perspective"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  aerialPerspective.encode(`?param`[0])
+  var `?param` = [getPtr aerialPerspective]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fogAerialPerspective*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -1115,8 +1045,7 @@ proc `fogSkyAffect=`*(self: Ref[Environment]; skyAffect: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fog_sky_affect"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  skyAffect.encode(`?param`[0])
+  var `?param` = [getPtr skyAffect]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fogSkyAffect*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -1131,8 +1060,7 @@ proc `volumetricFogEnabled=`*(self: Ref[Environment]; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_volumetric_fog_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isVolumetricFogEnabled*(self: Ref[Environment]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -1147,8 +1075,7 @@ proc `volumetricFogEmission=`*(self: Ref[Environment]; color: Color) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_volumetric_fog_emission"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  color.encode(`?param`[0])
+  var `?param` = [getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc volumetricFogEmission*(self: Ref[Environment]): Color =
   var methodbind {.global.}: MethodBindPtr
@@ -1163,8 +1090,7 @@ proc `volumetricFogAlbedo=`*(self: Ref[Environment]; color: Color) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_volumetric_fog_albedo"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  color.encode(`?param`[0])
+  var `?param` = [getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc volumetricFogAlbedo*(self: Ref[Environment]): Color =
   var methodbind {.global.}: MethodBindPtr
@@ -1179,8 +1105,7 @@ proc `volumetricFogDensity=`*(self: Ref[Environment]; density: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_volumetric_fog_density"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  density.encode(`?param`[0])
+  var `?param` = [getPtr density]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc volumetricFogDensity*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -1195,8 +1120,7 @@ proc `volumetricFogEmissionEnergy=`*(self: Ref[Environment]; begin: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_volumetric_fog_emission_energy"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  begin.encode(`?param`[0])
+  var `?param` = [getPtr begin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc volumetricFogEmissionEnergy*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -1211,8 +1135,7 @@ proc `volumetricFogAnisotropy=`*(self: Ref[Environment]; anisotropy: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_volumetric_fog_anisotropy"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  anisotropy.encode(`?param`[0])
+  var `?param` = [getPtr anisotropy]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc volumetricFogAnisotropy*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -1227,8 +1150,7 @@ proc `volumetricFogLength=`*(self: Ref[Environment]; length: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_volumetric_fog_length"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  length.encode(`?param`[0])
+  var `?param` = [getPtr length]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc volumetricFogLength*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -1243,8 +1165,7 @@ proc `volumetricFogDetailSpread=`*(self: Ref[Environment]; detailSpread: Float) 
   if unlikely(methodbind.isNil):
     let name: StringName = "set_volumetric_fog_detail_spread"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  detailSpread.encode(`?param`[0])
+  var `?param` = [getPtr detailSpread]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc volumetricFogDetailSpread*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -1259,8 +1180,7 @@ proc `volumetricFogGiInject=`*(self: Ref[Environment]; giInject: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_volumetric_fog_gi_inject"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  giInject.encode(`?param`[0])
+  var `?param` = [getPtr giInject]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc volumetricFogGiInject*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -1275,8 +1195,7 @@ proc `volumetricFogAmbientInject=`*(self: Ref[Environment]; enabled: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_volumetric_fog_ambient_inject"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc volumetricFogAmbientInject*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -1291,8 +1210,7 @@ proc `volumetricFogSkyAffect=`*(self: Ref[Environment]; skyAffect: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_volumetric_fog_sky_affect"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  skyAffect.encode(`?param`[0])
+  var `?param` = [getPtr skyAffect]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc volumetricFogSkyAffect*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -1307,8 +1225,7 @@ proc `volumetricFogTemporalReprojectionEnabled=`*(self: Ref[Environment]; enable
   if unlikely(methodbind.isNil):
     let name: StringName = "set_volumetric_fog_temporal_reprojection_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isVolumetricFogTemporalReprojectionEnabled*(self: Ref[Environment]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -1323,8 +1240,7 @@ proc `volumetricFogTemporalReprojectionAmount=`*(self: Ref[Environment]; tempora
   if unlikely(methodbind.isNil):
     let name: StringName = "set_volumetric_fog_temporal_reprojection_amount"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  temporalReprojectionAmount.encode(`?param`[0])
+  var `?param` = [getPtr temporalReprojectionAmount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc volumetricFogTemporalReprojectionAmount*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -1339,8 +1255,7 @@ proc `adjustmentEnabled=`*(self: Ref[Environment]; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_adjustment_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isAdjustmentEnabled*(self: Ref[Environment]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -1355,8 +1270,7 @@ proc `adjustmentBrightness=`*(self: Ref[Environment]; brightness: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_adjustment_brightness"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  brightness.encode(`?param`[0])
+  var `?param` = [getPtr brightness]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc adjustmentBrightness*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -1371,8 +1285,7 @@ proc `adjustmentContrast=`*(self: Ref[Environment]; contrast: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_adjustment_contrast"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  contrast.encode(`?param`[0])
+  var `?param` = [getPtr contrast]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc adjustmentContrast*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -1387,8 +1300,7 @@ proc `adjustmentSaturation=`*(self: Ref[Environment]; saturation: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_adjustment_saturation"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  saturation.encode(`?param`[0])
+  var `?param` = [getPtr saturation]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc adjustmentSaturation*(self: Ref[Environment]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -1403,8 +1315,7 @@ proc `adjustmentColorCorrection=`*(self: Ref[Environment]; colorCorrection: Ref[
   if unlikely(methodbind.isNil):
     let name: StringName = "set_adjustment_color_correction"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1790811099)
-  var `?param`: array[1, pointer]
-  colorCorrection.encode(`?param`[0])
+  var `?param` = [getPtr colorCorrection]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc adjustmentColorCorrection*(self: Ref[Environment]): Ref[Texture] =
   var methodbind {.global.}: MethodBindPtr

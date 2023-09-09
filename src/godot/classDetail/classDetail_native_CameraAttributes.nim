@@ -9,8 +9,7 @@ proc `exposureMultiplier=`*(self: Ref[CameraAttributes]; multiplier: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_exposure_multiplier"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributes, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  multiplier.encode(`?param`[0])
+  var `?param` = [getPtr multiplier]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc exposureMultiplier*(self: Ref[CameraAttributes]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `exposureSensitivity=`*(self: Ref[CameraAttributes]; sensitivity: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_exposure_sensitivity"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributes, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  sensitivity.encode(`?param`[0])
+  var `?param` = [getPtr sensitivity]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc exposureSensitivity*(self: Ref[CameraAttributes]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `autoExposureEnabled=`*(self: Ref[CameraAttributes]; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_auto_exposure_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributes, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isAutoExposureEnabled*(self: Ref[CameraAttributes]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `autoExposureSpeed=`*(self: Ref[CameraAttributes]; exposureSpeed: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_auto_exposure_speed"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributes, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  exposureSpeed.encode(`?param`[0])
+  var `?param` = [getPtr exposureSpeed]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc autoExposureSpeed*(self: Ref[CameraAttributes]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `autoExposureScale=`*(self: Ref[CameraAttributes]; exposureGrey: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_auto_exposure_scale"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributes, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  exposureGrey.encode(`?param`[0])
+  var `?param` = [getPtr exposureGrey]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc autoExposureScale*(self: Ref[CameraAttributes]): Float =
   var methodbind {.global.}: MethodBindPtr

@@ -15,8 +15,7 @@ proc connectToPeer*(self: Ref[PacketPeerDTLS]; packetPeer: Ref[PacketPeerUDP]; h
   if unlikely(methodbind.isNil):
     let name: StringName = "connect_to_peer"
     methodbind = interface_ClassDB_getMethodBind(addr className PacketPeerDTLS, addr name, 1801538152)
-  var `?param`: array[3, pointer]
-  packetPeer.encode(`?param`[0]); hostname.encode(`?param`[1]); clientOptions.encode(`?param`[2])
+  var `?param` = [getPtr packetPeer, getPtr hostname, getPtr clientOptions]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)

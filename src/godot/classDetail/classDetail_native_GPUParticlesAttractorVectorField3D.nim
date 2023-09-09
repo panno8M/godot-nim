@@ -9,8 +9,7 @@ proc `size=`*(self: GPUParticlesAttractorVectorField3D; size: Vector3) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_size"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesAttractorVectorField3D, addr name, 3460891852)
-  var `?param`: array[1, pointer]
-  size.encode(`?param`[0])
+  var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc size*(self: GPUParticlesAttractorVectorField3D): Vector3 =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `texture=`*(self: GPUParticlesAttractorVectorField3D; texture: Ref[Texture3
   if unlikely(methodbind.isNil):
     let name: StringName = "set_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesAttractorVectorField3D, addr name, 1188404210)
-  var `?param`: array[1, pointer]
-  texture.encode(`?param`[0])
+  var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc texture*(self: GPUParticlesAttractorVectorField3D): Ref[Texture3D] =
   var methodbind {.global.}: MethodBindPtr

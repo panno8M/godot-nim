@@ -9,8 +9,7 @@ proc `antialiasing=`*(self: Ref[SystemFont]; antialiasing: TextServer_FontAntial
   if unlikely(methodbind.isNil):
     let name: StringName = "set_antialiasing"
     methodbind = interface_ClassDB_getMethodBind(addr className SystemFont, addr name, 1669900)
-  var `?param`: array[1, pointer]
-  antialiasing.encode(`?param`[0])
+  var `?param` = [getPtr antialiasing]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc antialiasing*(self: Ref[SystemFont]): TextServer_FontAntialiasing =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `generateMipmaps=`*(self: Ref[SystemFont]; generateMipmaps: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_generate_mipmaps"
     methodbind = interface_ClassDB_getMethodBind(addr className SystemFont, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  generateMipmaps.encode(`?param`[0])
+  var `?param` = [getPtr generateMipmaps]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc generateMipmaps*(self: Ref[SystemFont]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `allowSystemFallback=`*(self: Ref[SystemFont]; allowSystemFallback: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_allow_system_fallback"
     methodbind = interface_ClassDB_getMethodBind(addr className SystemFont, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  allowSystemFallback.encode(`?param`[0])
+  var `?param` = [getPtr allowSystemFallback]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isAllowSystemFallback*(self: Ref[SystemFont]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `forceAutohinter=`*(self: Ref[SystemFont]; forceAutohinter: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_force_autohinter"
     methodbind = interface_ClassDB_getMethodBind(addr className SystemFont, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  forceAutohinter.encode(`?param`[0])
+  var `?param` = [getPtr forceAutohinter]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isForceAutohinter*(self: Ref[SystemFont]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `hinting=`*(self: Ref[SystemFont]; hinting: TextServer_Hinting) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_hinting"
     methodbind = interface_ClassDB_getMethodBind(addr className SystemFont, addr name, 1827459492)
-  var `?param`: array[1, pointer]
-  hinting.encode(`?param`[0])
+  var `?param` = [getPtr hinting]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc hinting*(self: Ref[SystemFont]): TextServer_Hinting =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc `subpixelPositioning=`*(self: Ref[SystemFont]; subpixelPositioning: TextSer
   if unlikely(methodbind.isNil):
     let name: StringName = "set_subpixel_positioning"
     methodbind = interface_ClassDB_getMethodBind(addr className SystemFont, addr name, 4225742182)
-  var `?param`: array[1, pointer]
-  subpixelPositioning.encode(`?param`[0])
+  var `?param` = [getPtr subpixelPositioning]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc subpixelPositioning*(self: Ref[SystemFont]): TextServer_SubpixelPositioning =
   var methodbind {.global.}: MethodBindPtr
@@ -105,8 +99,7 @@ proc `multichannelSignedDistanceField=`*(self: Ref[SystemFont]; msdf: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_multichannel_signed_distance_field"
     methodbind = interface_ClassDB_getMethodBind(addr className SystemFont, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  msdf.encode(`?param`[0])
+  var `?param` = [getPtr msdf]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isMultichannelSignedDistanceField*(self: Ref[SystemFont]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -121,8 +114,7 @@ proc `msdfPixelRange=`*(self: Ref[SystemFont]; msdfPixelRange: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_msdf_pixel_range"
     methodbind = interface_ClassDB_getMethodBind(addr className SystemFont, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  msdfPixelRange.encode(`?param`[0])
+  var `?param` = [getPtr msdfPixelRange]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc msdfPixelRange*(self: Ref[SystemFont]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -137,8 +129,7 @@ proc `msdfSize=`*(self: Ref[SystemFont]; msdfSize: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_msdf_size"
     methodbind = interface_ClassDB_getMethodBind(addr className SystemFont, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  msdfSize.encode(`?param`[0])
+  var `?param` = [getPtr msdfSize]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc msdfSize*(self: Ref[SystemFont]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -153,8 +144,7 @@ proc `oversampling=`*(self: Ref[SystemFont]; oversampling: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_oversampling"
     methodbind = interface_ClassDB_getMethodBind(addr className SystemFont, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  oversampling.encode(`?param`[0])
+  var `?param` = [getPtr oversampling]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc oversampling*(self: Ref[SystemFont]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -177,8 +167,7 @@ proc `fontNames=`*(self: Ref[SystemFont]; names: PackedStringArray) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_font_names"
     methodbind = interface_ClassDB_getMethodBind(addr className SystemFont, addr name, 4015028928)
-  var `?param`: array[1, pointer]
-  names.encode(`?param`[0])
+  var `?param` = [getPtr names]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fontItalic*(self: Ref[SystemFont]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -193,22 +182,19 @@ proc `fontItalic=`*(self: Ref[SystemFont]; italic: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_font_italic"
     methodbind = interface_ClassDB_getMethodBind(addr className SystemFont, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  italic.encode(`?param`[0])
+  var `?param` = [getPtr italic]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `fontWeight=`*(self: Ref[SystemFont]; weight: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_font_weight"
     methodbind = interface_ClassDB_getMethodBind(addr className SystemFont, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  weight.encode(`?param`[0])
+  var `?param` = [getPtr weight]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `fontStretch=`*(self: Ref[SystemFont]; stretch: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_font_stretch"
     methodbind = interface_ClassDB_getMethodBind(addr className SystemFont, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  stretch.encode(`?param`[0])
+  var `?param` = [getPtr stretch]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

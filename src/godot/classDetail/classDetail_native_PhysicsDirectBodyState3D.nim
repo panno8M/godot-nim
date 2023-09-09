@@ -81,8 +81,7 @@ proc `linearVelocity=`*(self: PhysicsDirectBodyState3D; velocity: Vector3) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_linear_velocity"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectBodyState3D, addr name, 3460891852)
-  var `?param`: array[1, pointer]
-  velocity.encode(`?param`[0])
+  var `?param` = [getPtr velocity]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc linearVelocity*(self: PhysicsDirectBodyState3D): Vector3 =
   var methodbind {.global.}: MethodBindPtr
@@ -97,8 +96,7 @@ proc `angularVelocity=`*(self: PhysicsDirectBodyState3D; velocity: Vector3) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_angular_velocity"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectBodyState3D, addr name, 3460891852)
-  var `?param`: array[1, pointer]
-  velocity.encode(`?param`[0])
+  var `?param` = [getPtr velocity]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc angularVelocity*(self: PhysicsDirectBodyState3D): Vector3 =
   var methodbind {.global.}: MethodBindPtr
@@ -113,8 +111,7 @@ proc `transform=`*(self: PhysicsDirectBodyState3D; transform: Transform3D) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_transform"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectBodyState3D, addr name, 2952846383)
-  var `?param`: array[1, pointer]
-  transform.encode(`?param`[0])
+  var `?param` = [getPtr transform]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc transform*(self: PhysicsDirectBodyState3D): Transform3D =
   var methodbind {.global.}: MethodBindPtr
@@ -129,8 +126,7 @@ proc getVelocityAtLocalPosition*(self: PhysicsDirectBodyState3D; localPosition: 
   if unlikely(methodbind.isNil):
     let name: StringName = "get_velocity_at_local_position"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectBodyState3D, addr name, 192990374)
-  var `?param`: array[1, pointer]
-  localPosition.encode(`?param`[0])
+  var `?param` = [getPtr localPosition]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector3)
@@ -139,80 +135,70 @@ proc applyCentralImpulse*(self: PhysicsDirectBodyState3D; impulse: Vector3 = gdv
   if unlikely(methodbind.isNil):
     let name: StringName = "apply_central_impulse"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectBodyState3D, addr name, 2007698547)
-  var `?param`: array[1, pointer]
-  impulse.encode(`?param`[0])
+  var `?param` = [getPtr impulse]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc applyImpulse*(self: PhysicsDirectBodyState3D; impulse: Vector3; position: Vector3 = gdvec(0, 0, 0)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "apply_impulse"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectBodyState3D, addr name, 1002852006)
-  var `?param`: array[2, pointer]
-  impulse.encode(`?param`[0]); position.encode(`?param`[1])
+  var `?param` = [getPtr impulse, getPtr position]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc applyTorqueImpulse*(self: PhysicsDirectBodyState3D; impulse: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "apply_torque_impulse"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectBodyState3D, addr name, 3460891852)
-  var `?param`: array[1, pointer]
-  impulse.encode(`?param`[0])
+  var `?param` = [getPtr impulse]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc applyCentralForce*(self: PhysicsDirectBodyState3D; force: Vector3 = gdvec(0, 0, 0)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "apply_central_force"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectBodyState3D, addr name, 2007698547)
-  var `?param`: array[1, pointer]
-  force.encode(`?param`[0])
+  var `?param` = [getPtr force]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc applyForce*(self: PhysicsDirectBodyState3D; force: Vector3; position: Vector3 = gdvec(0, 0, 0)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "apply_force"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectBodyState3D, addr name, 1002852006)
-  var `?param`: array[2, pointer]
-  force.encode(`?param`[0]); position.encode(`?param`[1])
+  var `?param` = [getPtr force, getPtr position]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc applyTorque*(self: PhysicsDirectBodyState3D; torque: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "apply_torque"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectBodyState3D, addr name, 3460891852)
-  var `?param`: array[1, pointer]
-  torque.encode(`?param`[0])
+  var `?param` = [getPtr torque]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc addConstantCentralForce*(self: PhysicsDirectBodyState3D; force: Vector3 = gdvec(0, 0, 0)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_constant_central_force"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectBodyState3D, addr name, 2007698547)
-  var `?param`: array[1, pointer]
-  force.encode(`?param`[0])
+  var `?param` = [getPtr force]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc addConstantForce*(self: PhysicsDirectBodyState3D; force: Vector3; position: Vector3 = gdvec(0, 0, 0)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_constant_force"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectBodyState3D, addr name, 1002852006)
-  var `?param`: array[2, pointer]
-  force.encode(`?param`[0]); position.encode(`?param`[1])
+  var `?param` = [getPtr force, getPtr position]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc addConstantTorque*(self: PhysicsDirectBodyState3D; torque: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_constant_torque"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectBodyState3D, addr name, 3460891852)
-  var `?param`: array[1, pointer]
-  torque.encode(`?param`[0])
+  var `?param` = [getPtr torque]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setConstantForce*(self: PhysicsDirectBodyState3D; force: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_constant_force"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectBodyState3D, addr name, 3460891852)
-  var `?param`: array[1, pointer]
-  force.encode(`?param`[0])
+  var `?param` = [getPtr force]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getConstantForce*(self: PhysicsDirectBodyState3D): Vector3 =
   var methodbind {.global.}: MethodBindPtr
@@ -227,8 +213,7 @@ proc setConstantTorque*(self: PhysicsDirectBodyState3D; torque: Vector3) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_constant_torque"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectBodyState3D, addr name, 3460891852)
-  var `?param`: array[1, pointer]
-  torque.encode(`?param`[0])
+  var `?param` = [getPtr torque]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getConstantTorque*(self: PhysicsDirectBodyState3D): Vector3 =
   var methodbind {.global.}: MethodBindPtr
@@ -243,8 +228,7 @@ proc `sleepState=`*(self: PhysicsDirectBodyState3D; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sleep_state"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectBodyState3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isSleeping*(self: PhysicsDirectBodyState3D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -267,8 +251,7 @@ proc getContactLocalPosition*(self: PhysicsDirectBodyState3D; contactIdx: int32)
   if unlikely(methodbind.isNil):
     let name: StringName = "get_contact_local_position"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectBodyState3D, addr name, 711720468)
-  var `?param`: array[1, pointer]
-  contactIdx.encode(`?param`[0])
+  var `?param` = [getPtr contactIdx]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector3)
@@ -277,8 +260,7 @@ proc getContactLocalNormal*(self: PhysicsDirectBodyState3D; contactIdx: int32): 
   if unlikely(methodbind.isNil):
     let name: StringName = "get_contact_local_normal"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectBodyState3D, addr name, 711720468)
-  var `?param`: array[1, pointer]
-  contactIdx.encode(`?param`[0])
+  var `?param` = [getPtr contactIdx]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector3)
@@ -287,8 +269,7 @@ proc getContactImpulse*(self: PhysicsDirectBodyState3D; contactIdx: int32): Vect
   if unlikely(methodbind.isNil):
     let name: StringName = "get_contact_impulse"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectBodyState3D, addr name, 711720468)
-  var `?param`: array[1, pointer]
-  contactIdx.encode(`?param`[0])
+  var `?param` = [getPtr contactIdx]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector3)
@@ -297,8 +278,7 @@ proc getContactLocalShape*(self: PhysicsDirectBodyState3D; contactIdx: int32): i
   if unlikely(methodbind.isNil):
     let name: StringName = "get_contact_local_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectBodyState3D, addr name, 923996154)
-  var `?param`: array[1, pointer]
-  contactIdx.encode(`?param`[0])
+  var `?param` = [getPtr contactIdx]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
@@ -307,8 +287,7 @@ proc getContactLocalVelocityAtPosition*(self: PhysicsDirectBodyState3D; contactI
   if unlikely(methodbind.isNil):
     let name: StringName = "get_contact_local_velocity_at_position"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectBodyState3D, addr name, 711720468)
-  var `?param`: array[1, pointer]
-  contactIdx.encode(`?param`[0])
+  var `?param` = [getPtr contactIdx]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector3)
@@ -317,8 +296,7 @@ proc getContactCollider*(self: PhysicsDirectBodyState3D; contactIdx: int32): RID
   if unlikely(methodbind.isNil):
     let name: StringName = "get_contact_collider"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectBodyState3D, addr name, 495598643)
-  var `?param`: array[1, pointer]
-  contactIdx.encode(`?param`[0])
+  var `?param` = [getPtr contactIdx]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(RID)
@@ -327,8 +305,7 @@ proc getContactColliderPosition*(self: PhysicsDirectBodyState3D; contactIdx: int
   if unlikely(methodbind.isNil):
     let name: StringName = "get_contact_collider_position"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectBodyState3D, addr name, 711720468)
-  var `?param`: array[1, pointer]
-  contactIdx.encode(`?param`[0])
+  var `?param` = [getPtr contactIdx]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector3)
@@ -337,8 +314,7 @@ proc getContactColliderId*(self: PhysicsDirectBodyState3D; contactIdx: int32): u
   if unlikely(methodbind.isNil):
     let name: StringName = "get_contact_collider_id"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectBodyState3D, addr name, 923996154)
-  var `?param`: array[1, pointer]
-  contactIdx.encode(`?param`[0])
+  var `?param` = [getPtr contactIdx]
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(uint64)
@@ -347,8 +323,7 @@ proc getContactColliderObject*(self: PhysicsDirectBodyState3D; contactIdx: int32
   if unlikely(methodbind.isNil):
     let name: StringName = "get_contact_collider_object"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectBodyState3D, addr name, 3332903315)
-  var `?param`: array[1, pointer]
-  contactIdx.encode(`?param`[0])
+  var `?param` = [getPtr contactIdx]
   var ret: encoded Object
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Object)
@@ -357,8 +332,7 @@ proc getContactColliderShape*(self: PhysicsDirectBodyState3D; contactIdx: int32)
   if unlikely(methodbind.isNil):
     let name: StringName = "get_contact_collider_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectBodyState3D, addr name, 923996154)
-  var `?param`: array[1, pointer]
-  contactIdx.encode(`?param`[0])
+  var `?param` = [getPtr contactIdx]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
@@ -367,8 +341,7 @@ proc getContactColliderVelocityAtPosition*(self: PhysicsDirectBodyState3D; conta
   if unlikely(methodbind.isNil):
     let name: StringName = "get_contact_collider_velocity_at_position"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectBodyState3D, addr name, 711720468)
-  var `?param`: array[1, pointer]
-  contactIdx.encode(`?param`[0])
+  var `?param` = [getPtr contactIdx]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector3)

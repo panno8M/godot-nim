@@ -9,8 +9,7 @@ proc addTask*(self: WorkerThreadPool; action: Callable; highPriority: Bool = fal
   if unlikely(methodbind.isNil):
     let name: StringName = "add_task"
     methodbind = interface_ClassDB_getMethodBind(addr className WorkerThreadPool, addr name, 3976347598)
-  var `?param`: array[3, pointer]
-  action.encode(`?param`[0]); highPriority.encode(`?param`[1]); description.encode(`?param`[2])
+  var `?param` = [getPtr action, getPtr highPriority, getPtr description]
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
@@ -19,8 +18,7 @@ proc isTaskCompleted*(self: WorkerThreadPool; taskId: int64): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "is_task_completed"
     methodbind = interface_ClassDB_getMethodBind(addr className WorkerThreadPool, addr name, 1116898809)
-  var `?param`: array[1, pointer]
-  taskId.encode(`?param`[0])
+  var `?param` = [getPtr taskId]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -29,8 +27,7 @@ proc waitForTaskCompletion*(self: WorkerThreadPool; taskId: int64): Error =
   if unlikely(methodbind.isNil):
     let name: StringName = "wait_for_task_completion"
     methodbind = interface_ClassDB_getMethodBind(addr className WorkerThreadPool, addr name, 844576869)
-  var `?param`: array[1, pointer]
-  taskId.encode(`?param`[0])
+  var `?param` = [getPtr taskId]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -39,8 +36,7 @@ proc addGroupTask*(self: WorkerThreadPool; action: Callable; elements: int32; ta
   if unlikely(methodbind.isNil):
     let name: StringName = "add_group_task"
     methodbind = interface_ClassDB_getMethodBind(addr className WorkerThreadPool, addr name, 2377228549)
-  var `?param`: array[5, pointer]
-  action.encode(`?param`[0]); elements.encode(`?param`[1]); tasksNeeded.encode(`?param`[2]); highPriority.encode(`?param`[3]); description.encode(`?param`[4])
+  var `?param` = [getPtr action, getPtr elements, getPtr tasksNeeded, getPtr highPriority, getPtr description]
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
@@ -49,8 +45,7 @@ proc isGroupTaskCompleted*(self: WorkerThreadPool; groupId: int64): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "is_group_task_completed"
     methodbind = interface_ClassDB_getMethodBind(addr className WorkerThreadPool, addr name, 1116898809)
-  var `?param`: array[1, pointer]
-  groupId.encode(`?param`[0])
+  var `?param` = [getPtr groupId]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -59,8 +54,7 @@ proc getGroupProcessedElementCount*(self: WorkerThreadPool; groupId: int64): uin
   if unlikely(methodbind.isNil):
     let name: StringName = "get_group_processed_element_count"
     methodbind = interface_ClassDB_getMethodBind(addr className WorkerThreadPool, addr name, 923996154)
-  var `?param`: array[1, pointer]
-  groupId.encode(`?param`[0])
+  var `?param` = [getPtr groupId]
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(uint32)
@@ -69,6 +63,5 @@ proc waitForGroupTaskCompletion*(self: WorkerThreadPool; groupId: int64) =
   if unlikely(methodbind.isNil):
     let name: StringName = "wait_for_group_task_completion"
     methodbind = interface_ClassDB_getMethodBind(addr className WorkerThreadPool, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  groupId.encode(`?param`[0])
+  var `?param` = [getPtr groupId]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

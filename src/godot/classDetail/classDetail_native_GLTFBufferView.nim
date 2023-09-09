@@ -17,8 +17,7 @@ proc `buffer=`*(self: Ref[GLTFBufferView]; buffer: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_buffer"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFBufferView, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  buffer.encode(`?param`[0])
+  var `?param` = [getPtr buffer]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc byteOffset*(self: Ref[GLTFBufferView]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -33,8 +32,7 @@ proc `byteOffset=`*(self: Ref[GLTFBufferView]; byteOffset: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_byte_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFBufferView, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  byteOffset.encode(`?param`[0])
+  var `?param` = [getPtr byteOffset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc byteLength*(self: Ref[GLTFBufferView]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -49,8 +47,7 @@ proc `byteLength=`*(self: Ref[GLTFBufferView]; byteLength: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_byte_length"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFBufferView, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  byteLength.encode(`?param`[0])
+  var `?param` = [getPtr byteLength]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc byteStride*(self: Ref[GLTFBufferView]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -65,8 +62,7 @@ proc `byteStride=`*(self: Ref[GLTFBufferView]; byteStride: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_byte_stride"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFBufferView, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  byteStride.encode(`?param`[0])
+  var `?param` = [getPtr byteStride]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc indices*(self: Ref[GLTFBufferView]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -81,6 +77,5 @@ proc `indices=`*(self: Ref[GLTFBufferView]; indices: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_indices"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFBufferView, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  indices.encode(`?param`[0])
+  var `?param` = [getPtr indices]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

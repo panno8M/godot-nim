@@ -14,16 +14,21 @@ This project is in the early stages of development and most features are not yet
 
 ### 🟢Available
 
+#### Nim to Godot
+
 * Define your Godot-Class
 * Instantiate your Godot-Class from editor
+* Define and call your **Simple** Godot-Class method
+* Define and use your Godot-Class property
+
+#### Godot to Nim
+
 * Override virtual hooks (E.g. `_ready`, `_process`) with nim
-* Define and call your **Simple** Godot-Class method at any place
-* Define and use your Godot-Class property at any place
+* Call engine's Godot-Class method with nim (E.g. `Node.get_node`)
 
 ### 🟡Never tested yet
 
 * Safe destruction of objects by GC
-* Correctly convert between Godot class and Nim object
 
 ### ⚫In progress
 
@@ -36,8 +41,6 @@ This project is in the early stages of development and most features are not yet
   * [ ] Support static
   * [ ] Support virtual
   * [ ] Support default-value
-* [ ] Get/Instantiate engine object
-* [ ] Call engine class method
 * [ ] Prepare PropertyInfo template
 * [ ] Auto-react to typical notifications
 * [ ] Define constants
@@ -46,7 +49,6 @@ This project is in the early stages of development and most features are not yet
 
 * Integrate Nim's ref with Godot's RefCounted
 * Instantiate engine class in nim
-* Call engine class method from nim
 
 ...And so on.
 

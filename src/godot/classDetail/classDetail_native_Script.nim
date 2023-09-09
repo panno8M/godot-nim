@@ -17,8 +17,7 @@ proc instanceHas*(self: Ref[Script]; baseObject: Object): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "instance_has"
     methodbind = interface_ClassDB_getMethodBind(addr className Script, addr name, 397768994)
-  var `?param`: array[1, pointer]
-  baseObject.encode(`?param`[0])
+  var `?param` = [getPtr baseObject]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -43,16 +42,14 @@ proc `sourceCode=`*(self: Ref[Script]; source: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_source_code"
     methodbind = interface_ClassDB_getMethodBind(addr className Script, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  source.encode(`?param`[0])
+  var `?param` = [getPtr source]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc reload*(self: Ref[Script]; keepState: Bool = false): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "reload"
     methodbind = interface_ClassDB_getMethodBind(addr className Script, addr name, 1633102583)
-  var `?param`: array[1, pointer]
-  keepState.encode(`?param`[0])
+  var `?param` = [getPtr keepState]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -77,8 +74,7 @@ proc hasScriptSignal*(self: Ref[Script]; signalName: StringName): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "has_script_signal"
     methodbind = interface_ClassDB_getMethodBind(addr className Script, addr name, 2619796661)
-  var `?param`: array[1, pointer]
-  signalName.encode(`?param`[0])
+  var `?param` = [getPtr signalName]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -119,8 +115,7 @@ proc getPropertyDefaultValue*(self: Ref[Script]; property: StringName): Variant 
   if unlikely(methodbind.isNil):
     let name: StringName = "get_property_default_value"
     methodbind = interface_ClassDB_getMethodBind(addr className Script, addr name, 2138907829)
-  var `?param`: array[1, pointer]
-  property.encode(`?param`[0])
+  var `?param` = [getPtr property]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)

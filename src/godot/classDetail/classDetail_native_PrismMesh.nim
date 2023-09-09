@@ -9,8 +9,7 @@ proc `leftToRight=`*(self: Ref[PrismMesh]; leftToRight: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_left_to_right"
     methodbind = interface_ClassDB_getMethodBind(addr className PrismMesh, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  leftToRight.encode(`?param`[0])
+  var `?param` = [getPtr leftToRight]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc leftToRight*(self: Ref[PrismMesh]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `size=`*(self: Ref[PrismMesh]; size: Vector3) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_size"
     methodbind = interface_ClassDB_getMethodBind(addr className PrismMesh, addr name, 3460891852)
-  var `?param`: array[1, pointer]
-  size.encode(`?param`[0])
+  var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc size*(self: Ref[PrismMesh]): Vector3 =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `subdivideWidth=`*(self: Ref[PrismMesh]; segments: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_subdivide_width"
     methodbind = interface_ClassDB_getMethodBind(addr className PrismMesh, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  segments.encode(`?param`[0])
+  var `?param` = [getPtr segments]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc subdivideWidth*(self: Ref[PrismMesh]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `subdivideHeight=`*(self: Ref[PrismMesh]; segments: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_subdivide_height"
     methodbind = interface_ClassDB_getMethodBind(addr className PrismMesh, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  segments.encode(`?param`[0])
+  var `?param` = [getPtr segments]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc subdivideHeight*(self: Ref[PrismMesh]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `subdivideDepth=`*(self: Ref[PrismMesh]; segments: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_subdivide_depth"
     methodbind = interface_ClassDB_getMethodBind(addr className PrismMesh, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  segments.encode(`?param`[0])
+  var `?param` = [getPtr segments]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc subdivideDepth*(self: Ref[PrismMesh]): int32 =
   var methodbind {.global.}: MethodBindPtr

@@ -9,8 +9,7 @@ proc mixAudio*(self: Ref[VideoStreamPlayback]; numFrames: int32; buffer: PackedF
   if unlikely(methodbind.isNil):
     let name: StringName = "mix_audio"
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayback, addr name, 1369271885)
-  var `?param`: array[3, pointer]
-  numFrames.encode(`?param`[0]); buffer.encode(`?param`[1]); offset.encode(`?param`[2])
+  var `?param` = [getPtr numFrames, getPtr buffer, getPtr offset]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)

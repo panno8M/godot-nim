@@ -9,8 +9,7 @@ proc projectRayNormal*(self: Camera3D; screenPoint: Vector2): Vector3 =
   if unlikely(methodbind.isNil):
     let name: StringName = "project_ray_normal"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 1718073306)
-  var `?param`: array[1, pointer]
-  screenPoint.encode(`?param`[0])
+  var `?param` = [getPtr screenPoint]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector3)
@@ -19,8 +18,7 @@ proc projectLocalRayNormal*(self: Camera3D; screenPoint: Vector2): Vector3 =
   if unlikely(methodbind.isNil):
     let name: StringName = "project_local_ray_normal"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 1718073306)
-  var `?param`: array[1, pointer]
-  screenPoint.encode(`?param`[0])
+  var `?param` = [getPtr screenPoint]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector3)
@@ -29,8 +27,7 @@ proc projectRayOrigin*(self: Camera3D; screenPoint: Vector2): Vector3 =
   if unlikely(methodbind.isNil):
     let name: StringName = "project_ray_origin"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 1718073306)
-  var `?param`: array[1, pointer]
-  screenPoint.encode(`?param`[0])
+  var `?param` = [getPtr screenPoint]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector3)
@@ -39,8 +36,7 @@ proc unprojectPosition*(self: Camera3D; worldPoint: Vector3): Vector2 =
   if unlikely(methodbind.isNil):
     let name: StringName = "unproject_position"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 3758901831)
-  var `?param`: array[1, pointer]
-  worldPoint.encode(`?param`[0])
+  var `?param` = [getPtr worldPoint]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2)
@@ -49,8 +45,7 @@ proc isPositionBehind*(self: Camera3D; worldPoint: Vector3): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "is_position_behind"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 3108956480)
-  var `?param`: array[1, pointer]
-  worldPoint.encode(`?param`[0])
+  var `?param` = [getPtr worldPoint]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -59,8 +54,7 @@ proc projectPosition*(self: Camera3D; screenPoint: Vector2; zDepth: Float): Vect
   if unlikely(methodbind.isNil):
     let name: StringName = "project_position"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 2171975744)
-  var `?param`: array[2, pointer]
-  screenPoint.encode(`?param`[0]); zDepth.encode(`?param`[1])
+  var `?param` = [getPtr screenPoint, getPtr zDepth]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector3)
@@ -69,24 +63,21 @@ proc setPerspective*(self: Camera3D; fov: Float; zNear: Float; zFar: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_perspective"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 2385087082)
-  var `?param`: array[3, pointer]
-  fov.encode(`?param`[0]); zNear.encode(`?param`[1]); zFar.encode(`?param`[2])
+  var `?param` = [getPtr fov, getPtr zNear, getPtr zFar]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setOrthogonal*(self: Camera3D; size: Float; zNear: Float; zFar: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_orthogonal"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 2385087082)
-  var `?param`: array[3, pointer]
-  size.encode(`?param`[0]); zNear.encode(`?param`[1]); zFar.encode(`?param`[2])
+  var `?param` = [getPtr size, getPtr zNear, getPtr zFar]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setFrustum*(self: Camera3D; size: Float; offset: Vector2; zNear: Float; zFar: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_frustum"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 354890663)
-  var `?param`: array[4, pointer]
-  size.encode(`?param`[0]); offset.encode(`?param`[1]); zNear.encode(`?param`[2]); zFar.encode(`?param`[3])
+  var `?param` = [getPtr size, getPtr offset, getPtr zNear, getPtr zFar]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc makeCurrent*(self: Camera3D) =
   var methodbind {.global.}: MethodBindPtr
@@ -99,16 +90,14 @@ proc clearCurrent*(self: Camera3D; enableNext: Bool = true) =
   if unlikely(methodbind.isNil):
     let name: StringName = "clear_current"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 3216645846)
-  var `?param`: array[1, pointer]
-  enableNext.encode(`?param`[0])
+  var `?param` = [getPtr enableNext]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `current=`*(self: Camera3D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_current"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isCurrent*(self: Camera3D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -171,40 +160,35 @@ proc `fov=`*(self: Camera3D; fov: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fov"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  fov.encode(`?param`[0])
+  var `?param` = [getPtr fov]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `frustumOffset=`*(self: Camera3D; offset: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_frustum_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  offset.encode(`?param`[0])
+  var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `size=`*(self: Camera3D; size: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_size"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  size.encode(`?param`[0])
+  var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `far=`*(self: Camera3D; far: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_far"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  far.encode(`?param`[0])
+  var `?param` = [getPtr far]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `near=`*(self: Camera3D; near: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_near"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  near.encode(`?param`[0])
+  var `?param` = [getPtr near]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc projection*(self: Camera3D): Camera3D_ProjectionType =
   var methodbind {.global.}: MethodBindPtr
@@ -219,16 +203,14 @@ proc `projection=`*(self: Camera3D; mode: Camera3D_ProjectionType) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_projection"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 4218540108)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `hOffset=`*(self: Camera3D; offset: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_h_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  offset.encode(`?param`[0])
+  var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc hOffset*(self: Camera3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -243,8 +225,7 @@ proc `vOffset=`*(self: Camera3D; offset: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_v_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  offset.encode(`?param`[0])
+  var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc vOffset*(self: Camera3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -259,8 +240,7 @@ proc `cullMask=`*(self: Camera3D; mask: uint32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_cull_mask"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  mask.encode(`?param`[0])
+  var `?param` = [getPtr mask]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc cullMask*(self: Camera3D): uint32 =
   var methodbind {.global.}: MethodBindPtr
@@ -275,8 +255,7 @@ proc `environment=`*(self: Camera3D; env: Ref[Environment]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_environment"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 4143518816)
-  var `?param`: array[1, pointer]
-  env.encode(`?param`[0])
+  var `?param` = [getPtr env]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc environment*(self: Camera3D): Ref[Environment] =
   var methodbind {.global.}: MethodBindPtr
@@ -291,8 +270,7 @@ proc `attributes=`*(self: Camera3D; env: Ref[CameraAttributes]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_attributes"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 2817810567)
-  var `?param`: array[1, pointer]
-  env.encode(`?param`[0])
+  var `?param` = [getPtr env]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc attributes*(self: Camera3D): Ref[CameraAttributes] =
   var methodbind {.global.}: MethodBindPtr
@@ -307,8 +285,7 @@ proc `keepAspectMode=`*(self: Camera3D; mode: Camera3D_KeepAspect) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_keep_aspect_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 1740651252)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc keepAspectMode*(self: Camera3D): Camera3D_KeepAspect =
   var methodbind {.global.}: MethodBindPtr
@@ -323,8 +300,7 @@ proc `dopplerTracking=`*(self: Camera3D; mode: Camera3D_DopplerTracking) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_doppler_tracking"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 3109431270)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc dopplerTracking*(self: Camera3D): Camera3D_DopplerTracking =
   var methodbind {.global.}: MethodBindPtr
@@ -347,8 +323,7 @@ proc isPositionInFrustum*(self: Camera3D; worldPoint: Vector3): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "is_position_in_frustum"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 3108956480)
-  var `?param`: array[1, pointer]
-  worldPoint.encode(`?param`[0])
+  var `?param` = [getPtr worldPoint]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -373,16 +348,14 @@ proc setCullMaskValue*(self: Camera3D; layerNumber: int32; value: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_cull_mask_value"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 300928843)
-  var `?param`: array[2, pointer]
-  layerNumber.encode(`?param`[0]); value.encode(`?param`[1])
+  var `?param` = [getPtr layerNumber, getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getCullMaskValue*(self: Camera3D; layerNumber: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_cull_mask_value"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 1116898809)
-  var `?param`: array[1, pointer]
-  layerNumber.encode(`?param`[0])
+  var `?param` = [getPtr layerNumber]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)

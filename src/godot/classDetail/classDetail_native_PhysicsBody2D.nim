@@ -9,8 +9,7 @@ proc moveAndCollide*(self: PhysicsBody2D; motion: Vector2; testOnly: Bool = fals
   if unlikely(methodbind.isNil):
     let name: StringName = "move_and_collide"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsBody2D, addr name, 1529961754)
-  var `?param`: array[4, pointer]
-  motion.encode(`?param`[0]); testOnly.encode(`?param`[1]); safeMargin.encode(`?param`[2]); recoveryAsCollision.encode(`?param`[3])
+  var `?param` = [getPtr motion, getPtr testOnly, getPtr safeMargin, getPtr recoveryAsCollision]
   var ret: encoded Ref[KinematicCollision2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[KinematicCollision2D])
@@ -19,8 +18,7 @@ proc testMove*(self: PhysicsBody2D; `from`: Transform2D; motion: Vector2; collis
   if unlikely(methodbind.isNil):
     let name: StringName = "test_move"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsBody2D, addr name, 1369208982)
-  var `?param`: array[5, pointer]
-  `from`.encode(`?param`[0]); motion.encode(`?param`[1]); collision.encode(`?param`[2]); safeMargin.encode(`?param`[3]); recoveryAsCollision.encode(`?param`[4])
+  var `?param` = [getPtr `from`, getPtr motion, getPtr collision, getPtr safeMargin, getPtr recoveryAsCollision]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -37,14 +35,12 @@ proc addCollisionExceptionWith*(self: PhysicsBody2D; body: Node) =
   if unlikely(methodbind.isNil):
     let name: StringName = "add_collision_exception_with"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsBody2D, addr name, 1078189570)
-  var `?param`: array[1, pointer]
-  body.encode(`?param`[0])
+  var `?param` = [getPtr body]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc removeCollisionExceptionWith*(self: PhysicsBody2D; body: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_collision_exception_with"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsBody2D, addr name, 1078189570)
-  var `?param`: array[1, pointer]
-  body.encode(`?param`[0])
+  var `?param` = [getPtr body]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

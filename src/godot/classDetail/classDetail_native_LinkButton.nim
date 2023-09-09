@@ -9,8 +9,7 @@ proc `text=`*(self: LinkButton; text: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_text"
     methodbind = interface_ClassDB_getMethodBind(addr className LinkButton, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  text.encode(`?param`[0])
+  var `?param` = [getPtr text]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc text*(self: LinkButton): String =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `textDirection=`*(self: LinkButton; direction: Control_TextDirection) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_text_direction"
     methodbind = interface_ClassDB_getMethodBind(addr className LinkButton, addr name, 119160795)
-  var `?param`: array[1, pointer]
-  direction.encode(`?param`[0])
+  var `?param` = [getPtr direction]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc textDirection*(self: LinkButton): Control_TextDirection =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `language=`*(self: LinkButton; language: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_language"
     methodbind = interface_ClassDB_getMethodBind(addr className LinkButton, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  language.encode(`?param`[0])
+  var `?param` = [getPtr language]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc language*(self: LinkButton): String =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `uri=`*(self: LinkButton; uri: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_uri"
     methodbind = interface_ClassDB_getMethodBind(addr className LinkButton, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  uri.encode(`?param`[0])
+  var `?param` = [getPtr uri]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc uri*(self: LinkButton): String =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `underlineMode=`*(self: LinkButton; underlineMode: LinkButton_UnderlineMode
   if unlikely(methodbind.isNil):
     let name: StringName = "set_underline_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className LinkButton, addr name, 4032947085)
-  var `?param`: array[1, pointer]
-  underlineMode.encode(`?param`[0])
+  var `?param` = [getPtr underlineMode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc underlineMode*(self: LinkButton): LinkButton_UnderlineMode =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc `structuredTextBidiOverride=`*(self: LinkButton; parser: TextServer_Structu
   if unlikely(methodbind.isNil):
     let name: StringName = "set_structured_text_bidi_override"
     methodbind = interface_ClassDB_getMethodBind(addr className LinkButton, addr name, 55961453)
-  var `?param`: array[1, pointer]
-  parser.encode(`?param`[0])
+  var `?param` = [getPtr parser]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc structuredTextBidiOverride*(self: LinkButton): TextServer_StructuredTextParser =
   var methodbind {.global.}: MethodBindPtr
@@ -105,8 +99,7 @@ proc `structuredTextBidiOverrideOptions=`*(self: LinkButton; args: Array) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_structured_text_bidi_override_options"
     methodbind = interface_ClassDB_getMethodBind(addr className LinkButton, addr name, 381264803)
-  var `?param`: array[1, pointer]
-  args.encode(`?param`[0])
+  var `?param` = [getPtr args]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc structuredTextBidiOverrideOptions*(self: LinkButton): Array =
   var methodbind {.global.}: MethodBindPtr

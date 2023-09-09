@@ -9,8 +9,7 @@ proc `panPullout=`*(self: Ref[AudioEffectStereoEnhance]; amount: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_pan_pullout"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectStereoEnhance, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  amount.encode(`?param`[0])
+  var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc panPullout*(self: Ref[AudioEffectStereoEnhance]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `timePullout=`*(self: Ref[AudioEffectStereoEnhance]; amount: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_time_pullout"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectStereoEnhance, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  amount.encode(`?param`[0])
+  var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc timePullout*(self: Ref[AudioEffectStereoEnhance]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `surround=`*(self: Ref[AudioEffectStereoEnhance]; amount: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_surround"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectStereoEnhance, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  amount.encode(`?param`[0])
+  var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc surround*(self: Ref[AudioEffectStereoEnhance]): Float =
   var methodbind {.global.}: MethodBindPtr

@@ -15,6 +15,5 @@ proc fitChildInRect*(self: Container; child: Control; rect: Rect2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "fit_child_in_rect"
     methodbind = interface_ClassDB_getMethodBind(addr className Container, addr name, 1993438598)
-  var `?param`: array[2, pointer]
-  child.encode(`?param`[0]); rect.encode(`?param`[1])
+  var `?param` = [getPtr child, getPtr rect]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

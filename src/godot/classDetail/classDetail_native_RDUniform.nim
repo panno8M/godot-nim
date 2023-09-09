@@ -9,8 +9,7 @@ proc `uniformType=`*(self: Ref[RDUniform]; pMember: RenderingDevice_UniformType)
   if unlikely(methodbind.isNil):
     let name: StringName = "set_uniform_type"
     methodbind = interface_ClassDB_getMethodBind(addr className RDUniform, addr name, 1664894931)
-  var `?param`: array[1, pointer]
-  pMember.encode(`?param`[0])
+  var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc uniformType*(self: Ref[RDUniform]): RenderingDevice_UniformType =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `binding=`*(self: Ref[RDUniform]; pMember: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_binding"
     methodbind = interface_ClassDB_getMethodBind(addr className RDUniform, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  pMember.encode(`?param`[0])
+  var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc binding*(self: Ref[RDUniform]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc addId*(self: Ref[RDUniform]; id: RID) =
   if unlikely(methodbind.isNil):
     let name: StringName = "add_id"
     methodbind = interface_ClassDB_getMethodBind(addr className RDUniform, addr name, 2722037293)
-  var `?param`: array[1, pointer]
-  id.encode(`?param`[0])
+  var `?param` = [getPtr id]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc clearIds*(self: Ref[RDUniform]) =
   var methodbind {.global.}: MethodBindPtr

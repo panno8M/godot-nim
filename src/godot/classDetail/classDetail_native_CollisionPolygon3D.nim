@@ -9,8 +9,7 @@ proc `depth=`*(self: CollisionPolygon3D; depth: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_depth"
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionPolygon3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  depth.encode(`?param`[0])
+  var `?param` = [getPtr depth]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc depth*(self: CollisionPolygon3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `polygon=`*(self: CollisionPolygon3D; polygon: PackedVector2Array) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_polygon"
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionPolygon3D, addr name, 1509147220)
-  var `?param`: array[1, pointer]
-  polygon.encode(`?param`[0])
+  var `?param` = [getPtr polygon]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc polygon*(self: CollisionPolygon3D): PackedVector2Array =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `disabled=`*(self: CollisionPolygon3D; disabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_disabled"
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionPolygon3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  disabled.encode(`?param`[0])
+  var `?param` = [getPtr disabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isDisabled*(self: CollisionPolygon3D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `margin=`*(self: CollisionPolygon3D; margin: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_margin"
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionPolygon3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  margin.encode(`?param`[0])
+  var `?param` = [getPtr margin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc margin*(self: CollisionPolygon3D): Float =
   var methodbind {.global.}: MethodBindPtr

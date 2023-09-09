@@ -25,24 +25,21 @@ proc registerSyntaxHighlighter*(self: ScriptEditor; syntaxHighlighter: Ref[Edito
   if unlikely(methodbind.isNil):
     let name: StringName = "register_syntax_highlighter"
     methodbind = interface_ClassDB_getMethodBind(addr className ScriptEditor, addr name, 1092774468)
-  var `?param`: array[1, pointer]
-  syntaxHighlighter.encode(`?param`[0])
+  var `?param` = [getPtr syntaxHighlighter]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc unregisterSyntaxHighlighter*(self: ScriptEditor; syntaxHighlighter: Ref[EditorSyntaxHighlighter]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "unregister_syntax_highlighter"
     methodbind = interface_ClassDB_getMethodBind(addr className ScriptEditor, addr name, 1092774468)
-  var `?param`: array[1, pointer]
-  syntaxHighlighter.encode(`?param`[0])
+  var `?param` = [getPtr syntaxHighlighter]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc gotoLine*(self: ScriptEditor; lineNumber: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "goto_line"
     methodbind = interface_ClassDB_getMethodBind(addr className ScriptEditor, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  lineNumber.encode(`?param`[0])
+  var `?param` = [getPtr lineNumber]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getCurrentScript*(self: ScriptEditor): Ref[Script] =
   var methodbind {.global.}: MethodBindPtr
@@ -65,6 +62,5 @@ proc openScriptCreateDialog*(self: ScriptEditor; baseName: String; basePath: Str
   if unlikely(methodbind.isNil):
     let name: StringName = "open_script_create_dialog"
     methodbind = interface_ClassDB_getMethodBind(addr className ScriptEditor, addr name, 3186203200)
-  var `?param`: array[2, pointer]
-  baseName.encode(`?param`[0]); basePath.encode(`?param`[1])
+  var `?param` = [getPtr baseName, getPtr basePath]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

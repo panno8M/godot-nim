@@ -9,8 +9,7 @@ proc `maxConcavity=`*(self: Ref[MeshConvexDecompositionSettings]; maxConcavity: 
   if unlikely(methodbind.isNil):
     let name: StringName = "set_max_concavity"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshConvexDecompositionSettings, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  maxConcavity.encode(`?param`[0])
+  var `?param` = [getPtr maxConcavity]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc maxConcavity*(self: Ref[MeshConvexDecompositionSettings]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `symmetryPlanesClippingBias=`*(self: Ref[MeshConvexDecompositionSettings]; 
   if unlikely(methodbind.isNil):
     let name: StringName = "set_symmetry_planes_clipping_bias"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshConvexDecompositionSettings, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  symmetryPlanesClippingBias.encode(`?param`[0])
+  var `?param` = [getPtr symmetryPlanesClippingBias]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc symmetryPlanesClippingBias*(self: Ref[MeshConvexDecompositionSettings]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `revolutionAxesClippingBias=`*(self: Ref[MeshConvexDecompositionSettings]; 
   if unlikely(methodbind.isNil):
     let name: StringName = "set_revolution_axes_clipping_bias"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshConvexDecompositionSettings, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  revolutionAxesClippingBias.encode(`?param`[0])
+  var `?param` = [getPtr revolutionAxesClippingBias]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc revolutionAxesClippingBias*(self: Ref[MeshConvexDecompositionSettings]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `minVolumePerConvexHull=`*(self: Ref[MeshConvexDecompositionSettings]; minV
   if unlikely(methodbind.isNil):
     let name: StringName = "set_min_volume_per_convex_hull"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshConvexDecompositionSettings, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  minVolumePerConvexHull.encode(`?param`[0])
+  var `?param` = [getPtr minVolumePerConvexHull]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc minVolumePerConvexHull*(self: Ref[MeshConvexDecompositionSettings]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `resolution=`*(self: Ref[MeshConvexDecompositionSettings]; minVolumePerConv
   if unlikely(methodbind.isNil):
     let name: StringName = "set_resolution"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshConvexDecompositionSettings, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  minVolumePerConvexHull.encode(`?param`[0])
+  var `?param` = [getPtr minVolumePerConvexHull]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc resolution*(self: Ref[MeshConvexDecompositionSettings]): uint32 =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc `maxNumVerticesPerConvexHull=`*(self: Ref[MeshConvexDecompositionSettings];
   if unlikely(methodbind.isNil):
     let name: StringName = "set_max_num_vertices_per_convex_hull"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshConvexDecompositionSettings, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  maxNumVerticesPerConvexHull.encode(`?param`[0])
+  var `?param` = [getPtr maxNumVerticesPerConvexHull]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc maxNumVerticesPerConvexHull*(self: Ref[MeshConvexDecompositionSettings]): uint32 =
   var methodbind {.global.}: MethodBindPtr
@@ -105,8 +99,7 @@ proc `planeDownsampling=`*(self: Ref[MeshConvexDecompositionSettings]; planeDown
   if unlikely(methodbind.isNil):
     let name: StringName = "set_plane_downsampling"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshConvexDecompositionSettings, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  planeDownsampling.encode(`?param`[0])
+  var `?param` = [getPtr planeDownsampling]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc planeDownsampling*(self: Ref[MeshConvexDecompositionSettings]): uint32 =
   var methodbind {.global.}: MethodBindPtr
@@ -121,8 +114,7 @@ proc `convexHullDownsampling=`*(self: Ref[MeshConvexDecompositionSettings]; conv
   if unlikely(methodbind.isNil):
     let name: StringName = "set_convex_hull_downsampling"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshConvexDecompositionSettings, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  convexHullDownsampling.encode(`?param`[0])
+  var `?param` = [getPtr convexHullDownsampling]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc convexHullDownsampling*(self: Ref[MeshConvexDecompositionSettings]): uint32 =
   var methodbind {.global.}: MethodBindPtr
@@ -137,8 +129,7 @@ proc `normalizeMesh=`*(self: Ref[MeshConvexDecompositionSettings]; normalizeMesh
   if unlikely(methodbind.isNil):
     let name: StringName = "set_normalize_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshConvexDecompositionSettings, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  normalizeMesh.encode(`?param`[0])
+  var `?param` = [getPtr normalizeMesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc normalizeMesh*(self: Ref[MeshConvexDecompositionSettings]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -153,8 +144,7 @@ proc `mode=`*(self: Ref[MeshConvexDecompositionSettings]; mode: MeshConvexDecomp
   if unlikely(methodbind.isNil):
     let name: StringName = "set_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshConvexDecompositionSettings, addr name, 1668072869)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc mode*(self: Ref[MeshConvexDecompositionSettings]): MeshConvexDecompositionSettings_Mode =
   var methodbind {.global.}: MethodBindPtr
@@ -169,8 +159,7 @@ proc `convexHullApproximation=`*(self: Ref[MeshConvexDecompositionSettings]; con
   if unlikely(methodbind.isNil):
     let name: StringName = "set_convex_hull_approximation"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshConvexDecompositionSettings, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  convexHullApproximation.encode(`?param`[0])
+  var `?param` = [getPtr convexHullApproximation]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc convexHullApproximation*(self: Ref[MeshConvexDecompositionSettings]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -185,8 +174,7 @@ proc `maxConvexHulls=`*(self: Ref[MeshConvexDecompositionSettings]; maxConvexHul
   if unlikely(methodbind.isNil):
     let name: StringName = "set_max_convex_hulls"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshConvexDecompositionSettings, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  maxConvexHulls.encode(`?param`[0])
+  var `?param` = [getPtr maxConvexHulls]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc maxConvexHulls*(self: Ref[MeshConvexDecompositionSettings]): uint32 =
   var methodbind {.global.}: MethodBindPtr
@@ -201,8 +189,7 @@ proc `projectHullVertices=`*(self: Ref[MeshConvexDecompositionSettings]; project
   if unlikely(methodbind.isNil):
     let name: StringName = "set_project_hull_vertices"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshConvexDecompositionSettings, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  projectHullVertices.encode(`?param`[0])
+  var `?param` = [getPtr projectHullVertices]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc projectHullVertices*(self: Ref[MeshConvexDecompositionSettings]): Bool =
   var methodbind {.global.}: MethodBindPtr

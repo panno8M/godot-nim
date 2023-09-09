@@ -9,8 +9,7 @@ proc fromNode*(lightNode: Light3D): Ref[GLTFLight] {.staticOf: GLTFLight.} =
   if unlikely(methodbind.isNil):
     let name: StringName = "from_node"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFLight, addr name, 3907677874)
-  var `?param`: array[1, pointer]
-  lightNode.encode(`?param`[0])
+  var `?param` = [getPtr lightNode]
   var ret: encoded Ref[GLTFLight]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[GLTFLight])
@@ -27,8 +26,7 @@ proc fromDictionary*(dictionary: Dictionary): Ref[GLTFLight] {.staticOf: GLTFLig
   if unlikely(methodbind.isNil):
     let name: StringName = "from_dictionary"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFLight, addr name, 4057087208)
-  var `?param`: array[1, pointer]
-  dictionary.encode(`?param`[0])
+  var `?param` = [getPtr dictionary]
   var ret: encoded Ref[GLTFLight]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[GLTFLight])
@@ -53,8 +51,7 @@ proc `color=`*(self: Ref[GLTFLight]; color: Color) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_color"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFLight, addr name, 2920490490)
-  var `?param`: array[1, pointer]
-  color.encode(`?param`[0])
+  var `?param` = [getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc intensity*(self: Ref[GLTFLight]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -69,8 +66,7 @@ proc `intensity=`*(self: Ref[GLTFLight]; intensity: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_intensity"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFLight, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  intensity.encode(`?param`[0])
+  var `?param` = [getPtr intensity]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc lightType*(self: Ref[GLTFLight]): String =
   var methodbind {.global.}: MethodBindPtr
@@ -85,8 +81,7 @@ proc `lightType=`*(self: Ref[GLTFLight]; lightType: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_light_type"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFLight, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  lightType.encode(`?param`[0])
+  var `?param` = [getPtr lightType]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc range*(self: Ref[GLTFLight]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -101,8 +96,7 @@ proc `range=`*(self: Ref[GLTFLight]; range: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_range"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFLight, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  range.encode(`?param`[0])
+  var `?param` = [getPtr range]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc innerConeAngle*(self: Ref[GLTFLight]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -117,8 +111,7 @@ proc `innerConeAngle=`*(self: Ref[GLTFLight]; innerConeAngle: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_inner_cone_angle"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFLight, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  innerConeAngle.encode(`?param`[0])
+  var `?param` = [getPtr innerConeAngle]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc outerConeAngle*(self: Ref[GLTFLight]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -133,6 +126,5 @@ proc `outerConeAngle=`*(self: Ref[GLTFLight]; outerConeAngle: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_outer_cone_angle"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFLight, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  outerConeAngle.encode(`?param`[0])
+  var `?param` = [getPtr outerConeAngle]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

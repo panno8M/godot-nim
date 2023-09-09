@@ -31,8 +31,7 @@ proc `writeMode=`*(self: Ref[WebRTCDataChannel]; writeMode: WebRTCDataChannel_Wr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_write_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCDataChannel, addr name, 1999768052)
-  var `?param`: array[1, pointer]
-  writeMode.encode(`?param`[0])
+  var `?param` = [getPtr writeMode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc writeMode*(self: Ref[WebRTCDataChannel]): WebRTCDataChannel_WriteMode =
   var methodbind {.global.}: MethodBindPtr

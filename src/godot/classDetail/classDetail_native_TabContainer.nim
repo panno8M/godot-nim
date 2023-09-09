@@ -17,8 +17,7 @@ proc `currentTab=`*(self: TabContainer; tabIdx: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_current_tab"
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  tabIdx.encode(`?param`[0])
+  var `?param` = [getPtr tabIdx]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc currentTab*(self: TabContainer): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -49,8 +48,7 @@ proc getTabControl*(self: TabContainer; tabIdx: int32): Control =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_tab_control"
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 1065994134)
-  var `?param`: array[1, pointer]
-  tabIdx.encode(`?param`[0])
+  var `?param` = [getPtr tabIdx]
   var ret: encoded Control
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Control)
@@ -59,8 +57,7 @@ proc `tabAlignment=`*(self: TabContainer; alignment: TabBar_AlignmentMode) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tab_alignment"
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 2413632353)
-  var `?param`: array[1, pointer]
-  alignment.encode(`?param`[0])
+  var `?param` = [getPtr alignment]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc tabAlignment*(self: TabContainer): TabBar_AlignmentMode =
   var methodbind {.global.}: MethodBindPtr
@@ -75,8 +72,7 @@ proc `clipTabs=`*(self: TabContainer; clipTabs: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_clip_tabs"
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  clipTabs.encode(`?param`[0])
+  var `?param` = [getPtr clipTabs]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc clipTabs*(self: TabContainer): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -91,8 +87,7 @@ proc `tabsVisible=`*(self: TabContainer; visible: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tabs_visible"
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  visible.encode(`?param`[0])
+  var `?param` = [getPtr visible]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc areTabsVisible*(self: TabContainer): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -107,8 +102,7 @@ proc `allTabsInFront=`*(self: TabContainer; isFront: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_all_tabs_in_front"
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  isFront.encode(`?param`[0])
+  var `?param` = [getPtr isFront]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isAllTabsInFront*(self: TabContainer): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -123,16 +117,14 @@ proc setTabTitle*(self: TabContainer; tabIdx: int32; title: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tab_title"
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 501894301)
-  var `?param`: array[2, pointer]
-  tabIdx.encode(`?param`[0]); title.encode(`?param`[1])
+  var `?param` = [getPtr tabIdx, getPtr title]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getTabTitle*(self: TabContainer; tabIdx: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_tab_title"
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 844755477)
-  var `?param`: array[1, pointer]
-  tabIdx.encode(`?param`[0])
+  var `?param` = [getPtr tabIdx]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
@@ -141,16 +133,14 @@ proc setTabIcon*(self: TabContainer; tabIdx: int32; icon: Ref[Texture2D]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tab_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 666127730)
-  var `?param`: array[2, pointer]
-  tabIdx.encode(`?param`[0]); icon.encode(`?param`[1])
+  var `?param` = [getPtr tabIdx, getPtr icon]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getTabIcon*(self: TabContainer; tabIdx: int32): Ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_tab_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 3536238170)
-  var `?param`: array[1, pointer]
-  tabIdx.encode(`?param`[0])
+  var `?param` = [getPtr tabIdx]
   var ret: encoded Ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[Texture2D])
@@ -159,16 +149,14 @@ proc setTabDisabled*(self: TabContainer; tabIdx: int32; disabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tab_disabled"
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 300928843)
-  var `?param`: array[2, pointer]
-  tabIdx.encode(`?param`[0]); disabled.encode(`?param`[1])
+  var `?param` = [getPtr tabIdx, getPtr disabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isTabDisabled*(self: TabContainer; tabIdx: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_tab_disabled"
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 1116898809)
-  var `?param`: array[1, pointer]
-  tabIdx.encode(`?param`[0])
+  var `?param` = [getPtr tabIdx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -177,16 +165,14 @@ proc setTabHidden*(self: TabContainer; tabIdx: int32; hidden: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tab_hidden"
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 300928843)
-  var `?param`: array[2, pointer]
-  tabIdx.encode(`?param`[0]); hidden.encode(`?param`[1])
+  var `?param` = [getPtr tabIdx, getPtr hidden]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isTabHidden*(self: TabContainer; tabIdx: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_tab_hidden"
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 1116898809)
-  var `?param`: array[1, pointer]
-  tabIdx.encode(`?param`[0])
+  var `?param` = [getPtr tabIdx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -195,16 +181,14 @@ proc setTabMetadata*(self: TabContainer; tabIdx: int32; metadata: ptr Variant) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tab_metadata"
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 2152698145)
-  var `?param`: array[2, pointer]
-  tabIdx.encode(`?param`[0]); metadata.encode(`?param`[1])
+  var `?param` = [getPtr tabIdx, getPtr metadata]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getTabMetadata*(self: TabContainer; tabIdx: int32): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_tab_metadata"
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 4227898402)
-  var `?param`: array[1, pointer]
-  tabIdx.encode(`?param`[0])
+  var `?param` = [getPtr tabIdx]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
@@ -213,16 +197,14 @@ proc setTabButtonIcon*(self: TabContainer; tabIdx: int32; icon: Ref[Texture2D]) 
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tab_button_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 666127730)
-  var `?param`: array[2, pointer]
-  tabIdx.encode(`?param`[0]); icon.encode(`?param`[1])
+  var `?param` = [getPtr tabIdx, getPtr icon]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getTabButtonIcon*(self: TabContainer; tabIdx: int32): Ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_tab_button_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 3536238170)
-  var `?param`: array[1, pointer]
-  tabIdx.encode(`?param`[0])
+  var `?param` = [getPtr tabIdx]
   var ret: encoded Ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[Texture2D])
@@ -231,8 +213,7 @@ proc getTabIdxAtPoint*(self: TabContainer; point: Vector2): int32 =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_tab_idx_at_point"
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 3820158470)
-  var `?param`: array[1, pointer]
-  point.encode(`?param`[0])
+  var `?param` = [getPtr point]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
@@ -241,8 +222,7 @@ proc getTabIdxFromControl*(self: TabContainer; control: Control): int32 =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_tab_idx_from_control"
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 2787397975)
-  var `?param`: array[1, pointer]
-  control.encode(`?param`[0])
+  var `?param` = [getPtr control]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
@@ -251,8 +231,7 @@ proc setPopup*(self: TabContainer; popup: Node) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_popup"
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 1078189570)
-  var `?param`: array[1, pointer]
-  popup.encode(`?param`[0])
+  var `?param` = [getPtr popup]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getPopup*(self: TabContainer): Popup =
   var methodbind {.global.}: MethodBindPtr
@@ -267,8 +246,7 @@ proc `dragToRearrangeEnabled=`*(self: TabContainer; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_drag_to_rearrange_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc dragToRearrangeEnabled*(self: TabContainer): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -283,8 +261,7 @@ proc `tabsRearrangeGroup=`*(self: TabContainer; groupId: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tabs_rearrange_group"
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  groupId.encode(`?param`[0])
+  var `?param` = [getPtr groupId]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc tabsRearrangeGroup*(self: TabContainer): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -299,8 +276,7 @@ proc `useHiddenTabsForMinSize=`*(self: TabContainer; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_use_hidden_tabs_for_min_size"
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc useHiddenTabsForMinSize*(self: TabContainer): Bool =
   var methodbind {.global.}: MethodBindPtr

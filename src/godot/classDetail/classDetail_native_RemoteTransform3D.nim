@@ -9,8 +9,7 @@ proc `remoteNode=`*(self: RemoteTransform3D; path: NodePath) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_remote_node"
     methodbind = interface_ClassDB_getMethodBind(addr className RemoteTransform3D, addr name, 1348162250)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc remoteNode*(self: RemoteTransform3D): NodePath =
   var methodbind {.global.}: MethodBindPtr
@@ -31,8 +30,7 @@ proc `useGlobalCoordinates=`*(self: RemoteTransform3D; useGlobalCoordinates: Boo
   if unlikely(methodbind.isNil):
     let name: StringName = "set_use_global_coordinates"
     methodbind = interface_ClassDB_getMethodBind(addr className RemoteTransform3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  useGlobalCoordinates.encode(`?param`[0])
+  var `?param` = [getPtr useGlobalCoordinates]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc useGlobalCoordinates*(self: RemoteTransform3D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -47,8 +45,7 @@ proc `updatePosition=`*(self: RemoteTransform3D; updateRemotePosition: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_update_position"
     methodbind = interface_ClassDB_getMethodBind(addr className RemoteTransform3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  updateRemotePosition.encode(`?param`[0])
+  var `?param` = [getPtr updateRemotePosition]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc updatePosition*(self: RemoteTransform3D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -63,8 +60,7 @@ proc `updateRotation=`*(self: RemoteTransform3D; updateRemoteRotation: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_update_rotation"
     methodbind = interface_ClassDB_getMethodBind(addr className RemoteTransform3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  updateRemoteRotation.encode(`?param`[0])
+  var `?param` = [getPtr updateRemoteRotation]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc updateRotation*(self: RemoteTransform3D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -79,8 +75,7 @@ proc `updateScale=`*(self: RemoteTransform3D; updateRemoteScale: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_update_scale"
     methodbind = interface_ClassDB_getMethodBind(addr className RemoteTransform3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  updateRemoteScale.encode(`?param`[0])
+  var `?param` = [getPtr updateRemoteScale]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc updateScale*(self: RemoteTransform3D): Bool =
   var methodbind {.global.}: MethodBindPtr

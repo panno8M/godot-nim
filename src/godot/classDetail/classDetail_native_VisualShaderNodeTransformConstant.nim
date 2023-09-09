@@ -9,8 +9,7 @@ proc `constant=`*(self: Ref[VisualShaderNodeTransformConstant]; constant: Transf
   if unlikely(methodbind.isNil):
     let name: StringName = "set_constant"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeTransformConstant, addr name, 2952846383)
-  var `?param`: array[1, pointer]
-  constant.encode(`?param`[0])
+  var `?param` = [getPtr constant]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc constant*(self: Ref[VisualShaderNodeTransformConstant]): Transform3D =
   var methodbind {.global.}: MethodBindPtr

@@ -9,8 +9,7 @@ proc setHeldModificationStack*(self: Ref[SkeletonModification2DStackHolder]; hel
   if unlikely(methodbind.isNil):
     let name: StringName = "set_held_modification_stack"
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DStackHolder, addr name, 3907307132)
-  var `?param`: array[1, pointer]
-  heldModificationStack.encode(`?param`[0])
+  var `?param` = [getPtr heldModificationStack]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getHeldModificationStack*(self: Ref[SkeletonModification2DStackHolder]): Ref[SkeletonModificationStack2D] =
   var methodbind {.global.}: MethodBindPtr

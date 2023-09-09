@@ -9,8 +9,7 @@ proc addInterface*(self: TextServerManager; `interface`: Ref[TextServer]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "add_interface"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServerManager, addr name, 1799689403)
-  var `?param`: array[1, pointer]
-  `interface`.encode(`?param`[0])
+  var `?param` = [getPtr `interface`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getInterfaceCount*(self: TextServerManager): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -25,16 +24,14 @@ proc removeInterface*(self: TextServerManager; `interface`: Ref[TextServer]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_interface"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServerManager, addr name, 1799689403)
-  var `?param`: array[1, pointer]
-  `interface`.encode(`?param`[0])
+  var `?param` = [getPtr `interface`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getInterface*(self: TextServerManager; idx: int32): Ref[TextServer] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_interface"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServerManager, addr name, 1672475555)
-  var `?param`: array[1, pointer]
-  idx.encode(`?param`[0])
+  var `?param` = [getPtr idx]
   var ret: encoded Ref[TextServer]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[TextServer])
@@ -51,8 +48,7 @@ proc findInterface*(self: TextServerManager; name: String): Ref[TextServer] =
   if unlikely(methodbind.isNil):
     let name: StringName = "find_interface"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServerManager, addr name, 2240905781)
-  var `?param`: array[1, pointer]
-  name.encode(`?param`[0])
+  var `?param` = [getPtr name]
   var ret: encoded Ref[TextServer]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[TextServer])
@@ -61,8 +57,7 @@ proc setPrimaryInterface*(self: TextServerManager; index: Ref[TextServer]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_primary_interface"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServerManager, addr name, 1799689403)
-  var `?param`: array[1, pointer]
-  index.encode(`?param`[0])
+  var `?param` = [getPtr index]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getPrimaryInterface*(self: TextServerManager): Ref[TextServer] =
   var methodbind {.global.}: MethodBindPtr

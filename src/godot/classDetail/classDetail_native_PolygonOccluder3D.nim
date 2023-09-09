@@ -9,8 +9,7 @@ proc `polygon=`*(self: Ref[PolygonOccluder3D]; polygon: PackedVector2Array) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_polygon"
     methodbind = interface_ClassDB_getMethodBind(addr className PolygonOccluder3D, addr name, 1509147220)
-  var `?param`: array[1, pointer]
-  polygon.encode(`?param`[0])
+  var `?param` = [getPtr polygon]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc polygon*(self: Ref[PolygonOccluder3D]): PackedVector2Array =
   var methodbind {.global.}: MethodBindPtr

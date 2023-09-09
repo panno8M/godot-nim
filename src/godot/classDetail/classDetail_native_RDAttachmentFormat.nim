@@ -9,8 +9,7 @@ proc `format=`*(self: Ref[RDAttachmentFormat]; pMember: RenderingDevice_DataForm
   if unlikely(methodbind.isNil):
     let name: StringName = "set_format"
     methodbind = interface_ClassDB_getMethodBind(addr className RDAttachmentFormat, addr name, 565531219)
-  var `?param`: array[1, pointer]
-  pMember.encode(`?param`[0])
+  var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc format*(self: Ref[RDAttachmentFormat]): RenderingDevice_DataFormat =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `samples=`*(self: Ref[RDAttachmentFormat]; pMember: RenderingDevice_Texture
   if unlikely(methodbind.isNil):
     let name: StringName = "set_samples"
     methodbind = interface_ClassDB_getMethodBind(addr className RDAttachmentFormat, addr name, 3774171498)
-  var `?param`: array[1, pointer]
-  pMember.encode(`?param`[0])
+  var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc samples*(self: Ref[RDAttachmentFormat]): RenderingDevice_TextureSamples =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `usageFlags=`*(self: Ref[RDAttachmentFormat]; pMember: uint32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_usage_flags"
     methodbind = interface_ClassDB_getMethodBind(addr className RDAttachmentFormat, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  pMember.encode(`?param`[0])
+  var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc usageFlags*(self: Ref[RDAttachmentFormat]): uint32 =
   var methodbind {.global.}: MethodBindPtr

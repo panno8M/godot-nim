@@ -57,64 +57,56 @@ proc `value=`*(self: Range; value: float64) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_value"
     methodbind = interface_ClassDB_getMethodBind(addr className Range, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  value.encode(`?param`[0])
+  var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setValueNoSignal*(self: Range; value: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_value_no_signal"
     methodbind = interface_ClassDB_getMethodBind(addr className Range, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  value.encode(`?param`[0])
+  var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `min=`*(self: Range; minimum: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_min"
     methodbind = interface_ClassDB_getMethodBind(addr className Range, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  minimum.encode(`?param`[0])
+  var `?param` = [getPtr minimum]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `max=`*(self: Range; maximum: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_max"
     methodbind = interface_ClassDB_getMethodBind(addr className Range, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  maximum.encode(`?param`[0])
+  var `?param` = [getPtr maximum]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `step=`*(self: Range; step: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_step"
     methodbind = interface_ClassDB_getMethodBind(addr className Range, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  step.encode(`?param`[0])
+  var `?param` = [getPtr step]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `page=`*(self: Range; pagesize: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_page"
     methodbind = interface_ClassDB_getMethodBind(addr className Range, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  pagesize.encode(`?param`[0])
+  var `?param` = [getPtr pagesize]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `asRatio=`*(self: Range; value: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_as_ratio"
     methodbind = interface_ClassDB_getMethodBind(addr className Range, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  value.encode(`?param`[0])
+  var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `useRoundedValues=`*(self: Range; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_use_rounded_values"
     methodbind = interface_ClassDB_getMethodBind(addr className Range, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isUsingRoundedValues*(self: Range): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -129,8 +121,7 @@ proc `expRatio=`*(self: Range; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_exp_ratio"
     methodbind = interface_ClassDB_getMethodBind(addr className Range, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isRatioExp*(self: Range): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -145,8 +136,7 @@ proc `allowGreater=`*(self: Range; allow: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_allow_greater"
     methodbind = interface_ClassDB_getMethodBind(addr className Range, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  allow.encode(`?param`[0])
+  var `?param` = [getPtr allow]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isGreaterAllowed*(self: Range): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -161,8 +151,7 @@ proc `allowLesser=`*(self: Range; allow: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_allow_lesser"
     methodbind = interface_ClassDB_getMethodBind(addr className Range, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  allow.encode(`?param`[0])
+  var `?param` = [getPtr allow]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isLesserAllowed*(self: Range): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -177,8 +166,7 @@ proc share*(self: Range; with: Node) =
   if unlikely(methodbind.isNil):
     let name: StringName = "share"
     methodbind = interface_ClassDB_getMethodBind(addr className Range, addr name, 1078189570)
-  var `?param`: array[1, pointer]
-  with.encode(`?param`[0])
+  var `?param` = [getPtr with]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc unshare*(self: Range) =
   var methodbind {.global.}: MethodBindPtr

@@ -9,8 +9,7 @@ proc `mode=`*(self: Ref[VisualShaderNodeParticleAccelerator]; mode: VisualShader
   if unlikely(methodbind.isNil):
     let name: StringName = "set_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeParticleAccelerator, addr name, 3457585749)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc mode*(self: Ref[VisualShaderNodeParticleAccelerator]): VisualShaderNodeParticleAccelerator_Mode =
   var methodbind {.global.}: MethodBindPtr

@@ -9,8 +9,7 @@ proc `spriteFrames=`*(self: AnimatedSprite2D; spriteFrames: Ref[SpriteFrames]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sprite_frames"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedSprite2D, addr name, 905781144)
-  var `?param`: array[1, pointer]
-  spriteFrames.encode(`?param`[0])
+  var `?param` = [getPtr spriteFrames]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc spriteFrames*(self: AnimatedSprite2D): Ref[SpriteFrames] =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `animation=`*(self: AnimatedSprite2D; name: StringName) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_animation"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedSprite2D, addr name, 3304788590)
-  var `?param`: array[1, pointer]
-  name.encode(`?param`[0])
+  var `?param` = [getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc animation*(self: AnimatedSprite2D): StringName =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `autoplay=`*(self: AnimatedSprite2D; name: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_autoplay"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedSprite2D, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  name.encode(`?param`[0])
+  var `?param` = [getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc autoplay*(self: AnimatedSprite2D): String =
   var methodbind {.global.}: MethodBindPtr
@@ -65,16 +62,14 @@ proc play*(self: AnimatedSprite2D; name: StringName = ""; customSpeed: Float = 1
   if unlikely(methodbind.isNil):
     let name: StringName = "play"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedSprite2D, addr name, 2372066587)
-  var `?param`: array[3, pointer]
-  name.encode(`?param`[0]); customSpeed.encode(`?param`[1]); fromEnd.encode(`?param`[2])
+  var `?param` = [getPtr name, getPtr customSpeed, getPtr fromEnd]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc playBackwards*(self: AnimatedSprite2D; name: StringName = "") =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "play_backwards"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedSprite2D, addr name, 1421762485)
-  var `?param`: array[1, pointer]
-  name.encode(`?param`[0])
+  var `?param` = [getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc pause*(self: AnimatedSprite2D) =
   var methodbind {.global.}: MethodBindPtr
@@ -93,8 +88,7 @@ proc `centered=`*(self: AnimatedSprite2D; centered: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_centered"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedSprite2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  centered.encode(`?param`[0])
+  var `?param` = [getPtr centered]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isCentered*(self: AnimatedSprite2D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -109,8 +103,7 @@ proc `offset=`*(self: AnimatedSprite2D; offset: Vector2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedSprite2D, addr name, 743155724)
-  var `?param`: array[1, pointer]
-  offset.encode(`?param`[0])
+  var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc offset*(self: AnimatedSprite2D): Vector2 =
   var methodbind {.global.}: MethodBindPtr
@@ -125,8 +118,7 @@ proc `flipH=`*(self: AnimatedSprite2D; flipH: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_flip_h"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedSprite2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  flipH.encode(`?param`[0])
+  var `?param` = [getPtr flipH]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isFlippedH*(self: AnimatedSprite2D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -141,8 +133,7 @@ proc `flipV=`*(self: AnimatedSprite2D; flipV: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_flip_v"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedSprite2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  flipV.encode(`?param`[0])
+  var `?param` = [getPtr flipV]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isFlippedV*(self: AnimatedSprite2D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -157,8 +148,7 @@ proc `frame=`*(self: AnimatedSprite2D; frame: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_frame"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedSprite2D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  frame.encode(`?param`[0])
+  var `?param` = [getPtr frame]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc frame*(self: AnimatedSprite2D): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -173,8 +163,7 @@ proc `frameProgress=`*(self: AnimatedSprite2D; progress: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_frame_progress"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedSprite2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  progress.encode(`?param`[0])
+  var `?param` = [getPtr progress]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc frameProgress*(self: AnimatedSprite2D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -189,16 +178,14 @@ proc setFrameAndProgress*(self: AnimatedSprite2D; frame: int32; progress: Float)
   if unlikely(methodbind.isNil):
     let name: StringName = "set_frame_and_progress"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedSprite2D, addr name, 1602489585)
-  var `?param`: array[2, pointer]
-  frame.encode(`?param`[0]); progress.encode(`?param`[1])
+  var `?param` = [getPtr frame, getPtr progress]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `speedScale=`*(self: AnimatedSprite2D; speedScale: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_speed_scale"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedSprite2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  speedScale.encode(`?param`[0])
+  var `?param` = [getPtr speedScale]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc speedScale*(self: AnimatedSprite2D): Float =
   var methodbind {.global.}: MethodBindPtr

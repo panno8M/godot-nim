@@ -9,8 +9,7 @@ proc `size=`*(self: CSGBox3D; size: Vector3) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_size"
     methodbind = interface_ClassDB_getMethodBind(addr className CSGBox3D, addr name, 3460891852)
-  var `?param`: array[1, pointer]
-  size.encode(`?param`[0])
+  var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc size*(self: CSGBox3D): Vector3 =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `material=`*(self: CSGBox3D; material: Ref[Material]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_material"
     methodbind = interface_ClassDB_getMethodBind(addr className CSGBox3D, addr name, 2757459619)
-  var `?param`: array[1, pointer]
-  material.encode(`?param`[0])
+  var `?param` = [getPtr material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc material*(self: CSGBox3D): Ref[Material] =
   var methodbind {.global.}: MethodBindPtr

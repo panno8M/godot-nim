@@ -9,8 +9,7 @@ proc `lightmapSizeHint=`*(self: Ref[Mesh]; size: Vector2i) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_lightmap_size_hint"
     methodbind = interface_ClassDB_getMethodBind(addr className Mesh, addr name, 1130785943)
-  var `?param`: array[1, pointer]
-  size.encode(`?param`[0])
+  var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc lightmapSizeHint*(self: Ref[Mesh]): Vector2i =
   var methodbind {.global.}: MethodBindPtr
@@ -49,8 +48,7 @@ proc surfaceGetArrays*(self: Ref[Mesh]; surfIdx: int32): Array =
   if unlikely(methodbind.isNil):
     let name: StringName = "surface_get_arrays"
     methodbind = interface_ClassDB_getMethodBind(addr className Mesh, addr name, 663333327)
-  var `?param`: array[1, pointer]
-  surfIdx.encode(`?param`[0])
+  var `?param` = [getPtr surfIdx]
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Array)
@@ -59,8 +57,7 @@ proc surfaceGetBlendShapeArrays*(self: Ref[Mesh]; surfIdx: int32): TypedArray[Ar
   if unlikely(methodbind.isNil):
     let name: StringName = "surface_get_blend_shape_arrays"
     methodbind = interface_ClassDB_getMethodBind(addr className Mesh, addr name, 663333327)
-  var `?param`: array[1, pointer]
-  surfIdx.encode(`?param`[0])
+  var `?param` = [getPtr surfIdx]
   var ret: encoded TypedArray[Array]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TypedArray[Array])
@@ -69,16 +66,14 @@ proc surfaceSetMaterial*(self: Ref[Mesh]; surfIdx: int32; material: Ref[Material
   if unlikely(methodbind.isNil):
     let name: StringName = "surface_set_material"
     methodbind = interface_ClassDB_getMethodBind(addr className Mesh, addr name, 3671737478)
-  var `?param`: array[2, pointer]
-  surfIdx.encode(`?param`[0]); material.encode(`?param`[1])
+  var `?param` = [getPtr surfIdx, getPtr material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc surfaceGetMaterial*(self: Ref[Mesh]; surfIdx: int32): Ref[Material] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "surface_get_material"
     methodbind = interface_ClassDB_getMethodBind(addr className Mesh, addr name, 2897466400)
-  var `?param`: array[1, pointer]
-  surfIdx.encode(`?param`[0])
+  var `?param` = [getPtr surfIdx]
   var ret: encoded Ref[Material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[Material])
@@ -103,8 +98,7 @@ proc createConvexShape*(self: Ref[Mesh]; clean: Bool = true; simplify: Bool = fa
   if unlikely(methodbind.isNil):
     let name: StringName = "create_convex_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className Mesh, addr name, 2529984628)
-  var `?param`: array[2, pointer]
-  clean.encode(`?param`[0]); simplify.encode(`?param`[1])
+  var `?param` = [getPtr clean, getPtr simplify]
   var ret: encoded Ref[ConvexPolygonShape3D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[ConvexPolygonShape3D])
@@ -113,8 +107,7 @@ proc createOutline*(self: Ref[Mesh]; margin: Float): Ref[Mesh] =
   if unlikely(methodbind.isNil):
     let name: StringName = "create_outline"
     methodbind = interface_ClassDB_getMethodBind(addr className Mesh, addr name, 1208642001)
-  var `?param`: array[1, pointer]
-  margin.encode(`?param`[0])
+  var `?param` = [getPtr margin]
   var ret: encoded Ref[Mesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[Mesh])

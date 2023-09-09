@@ -9,8 +9,7 @@ proc `timeLeft=`*(self: Ref[SceneTreeTimer]; time: float64) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_time_left"
     methodbind = interface_ClassDB_getMethodBind(addr className SceneTreeTimer, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  time.encode(`?param`[0])
+  var `?param` = [getPtr time]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc timeLeft*(self: Ref[SceneTreeTimer]): float64 =
   var methodbind {.global.}: MethodBindPtr

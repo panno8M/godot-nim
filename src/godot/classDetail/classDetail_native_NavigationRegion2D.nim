@@ -9,8 +9,7 @@ proc `navigationPolygon=`*(self: NavigationRegion2D; navigationPolygon: Ref[Navi
   if unlikely(methodbind.isNil):
     let name: StringName = "set_navigation_polygon"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationRegion2D, addr name, 1515040758)
-  var `?param`: array[1, pointer]
-  navigationPolygon.encode(`?param`[0])
+  var `?param` = [getPtr navigationPolygon]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc navigationPolygon*(self: NavigationRegion2D): Ref[NavigationPolygon] =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `enabled=`*(self: NavigationRegion2D; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationRegion2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isEnabled*(self: NavigationRegion2D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `useEdgeConnections=`*(self: NavigationRegion2D; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_use_edge_connections"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationRegion2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc useEdgeConnections*(self: NavigationRegion2D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `navigationLayers=`*(self: NavigationRegion2D; navigationLayers: uint32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_navigation_layers"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationRegion2D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  navigationLayers.encode(`?param`[0])
+  var `?param` = [getPtr navigationLayers]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc navigationLayers*(self: NavigationRegion2D): uint32 =
   var methodbind {.global.}: MethodBindPtr
@@ -73,16 +69,14 @@ proc setNavigationLayerValue*(self: NavigationRegion2D; layerNumber: int32; valu
   if unlikely(methodbind.isNil):
     let name: StringName = "set_navigation_layer_value"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationRegion2D, addr name, 300928843)
-  var `?param`: array[2, pointer]
-  layerNumber.encode(`?param`[0]); value.encode(`?param`[1])
+  var `?param` = [getPtr layerNumber, getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getNavigationLayerValue*(self: NavigationRegion2D; layerNumber: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_navigation_layer_value"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationRegion2D, addr name, 1116898809)
-  var `?param`: array[1, pointer]
-  layerNumber.encode(`?param`[0])
+  var `?param` = [getPtr layerNumber]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -91,8 +85,7 @@ proc `constrainAvoidance=`*(self: NavigationRegion2D; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_constrain_avoidance"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationRegion2D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc constrainAvoidance*(self: NavigationRegion2D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -107,8 +100,7 @@ proc `avoidanceLayers=`*(self: NavigationRegion2D; layers: uint32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_avoidance_layers"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationRegion2D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  layers.encode(`?param`[0])
+  var `?param` = [getPtr layers]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc avoidanceLayers*(self: NavigationRegion2D): uint32 =
   var methodbind {.global.}: MethodBindPtr
@@ -123,16 +115,14 @@ proc setAvoidanceLayerValue*(self: NavigationRegion2D; layerNumber: int32; value
   if unlikely(methodbind.isNil):
     let name: StringName = "set_avoidance_layer_value"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationRegion2D, addr name, 300928843)
-  var `?param`: array[2, pointer]
-  layerNumber.encode(`?param`[0]); value.encode(`?param`[1])
+  var `?param` = [getPtr layerNumber, getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getAvoidanceLayerValue*(self: NavigationRegion2D; layerNumber: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_avoidance_layer_value"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationRegion2D, addr name, 1116898809)
-  var `?param`: array[1, pointer]
-  layerNumber.encode(`?param`[0])
+  var `?param` = [getPtr layerNumber]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -149,8 +139,7 @@ proc `enterCost=`*(self: NavigationRegion2D; enterCost: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_enter_cost"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationRegion2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  enterCost.encode(`?param`[0])
+  var `?param` = [getPtr enterCost]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc enterCost*(self: NavigationRegion2D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -165,8 +154,7 @@ proc `travelCost=`*(self: NavigationRegion2D; travelCost: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_travel_cost"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationRegion2D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  travelCost.encode(`?param`[0])
+  var `?param` = [getPtr travelCost]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc travelCost*(self: NavigationRegion2D): Float =
   var methodbind {.global.}: MethodBindPtr

@@ -9,8 +9,7 @@ proc createFromImage*(image: Ref[Image]): Ref[ImageTexture] {.staticOf: ImageTex
   if unlikely(methodbind.isNil):
     let name: StringName = "create_from_image"
     methodbind = interface_ClassDB_getMethodBind(addr className ImageTexture, addr name, 2775144163)
-  var `?param`: array[1, pointer]
-  image.encode(`?param`[0])
+  var `?param` = [getPtr image]
   var ret: encoded Ref[ImageTexture]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[ImageTexture])
@@ -27,22 +26,19 @@ proc setImage*(self: Ref[ImageTexture]; image: Ref[Image]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_image"
     methodbind = interface_ClassDB_getMethodBind(addr className ImageTexture, addr name, 532598488)
-  var `?param`: array[1, pointer]
-  image.encode(`?param`[0])
+  var `?param` = [getPtr image]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc update*(self: Ref[ImageTexture]; image: Ref[Image]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "update"
     methodbind = interface_ClassDB_getMethodBind(addr className ImageTexture, addr name, 532598488)
-  var `?param`: array[1, pointer]
-  image.encode(`?param`[0])
+  var `?param` = [getPtr image]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setSizeOverride*(self: Ref[ImageTexture]; size: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_size_override"
     methodbind = interface_ClassDB_getMethodBind(addr className ImageTexture, addr name, 1130785943)
-  var `?param`: array[1, pointer]
-  size.encode(`?param`[0])
+  var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

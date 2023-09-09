@@ -17,8 +17,7 @@ proc `cancelButtonText=`*(self: ConfirmationDialog; text: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_cancel_button_text"
     methodbind = interface_ClassDB_getMethodBind(addr className ConfirmationDialog, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  text.encode(`?param`[0])
+  var `?param` = [getPtr text]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc cancelButtonText*(self: ConfirmationDialog): String =
   var methodbind {.global.}: MethodBindPtr

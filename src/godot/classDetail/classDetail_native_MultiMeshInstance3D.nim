@@ -9,8 +9,7 @@ proc `multimesh=`*(self: MultiMeshInstance3D; multimesh: Ref[MultiMesh]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_multimesh"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiMeshInstance3D, addr name, 2246127404)
-  var `?param`: array[1, pointer]
-  multimesh.encode(`?param`[0])
+  var `?param` = [getPtr multimesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc multimesh*(self: MultiMeshInstance3D): Ref[MultiMesh] =
   var methodbind {.global.}: MethodBindPtr

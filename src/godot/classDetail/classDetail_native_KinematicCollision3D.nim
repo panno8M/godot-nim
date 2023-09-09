@@ -41,8 +41,7 @@ proc getPosition*(self: Ref[KinematicCollision3D]; collisionIndex: int32 = 0): V
   if unlikely(methodbind.isNil):
     let name: StringName = "get_position"
     methodbind = interface_ClassDB_getMethodBind(addr className KinematicCollision3D, addr name, 1914908202)
-  var `?param`: array[1, pointer]
-  collisionIndex.encode(`?param`[0])
+  var `?param` = [getPtr collisionIndex]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector3)
@@ -51,8 +50,7 @@ proc getNormal*(self: Ref[KinematicCollision3D]; collisionIndex: int32 = 0): Vec
   if unlikely(methodbind.isNil):
     let name: StringName = "get_normal"
     methodbind = interface_ClassDB_getMethodBind(addr className KinematicCollision3D, addr name, 1914908202)
-  var `?param`: array[1, pointer]
-  collisionIndex.encode(`?param`[0])
+  var `?param` = [getPtr collisionIndex]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector3)
@@ -61,8 +59,7 @@ proc getAngle*(self: Ref[KinematicCollision3D]; collisionIndex: int32 = 0; upDir
   if unlikely(methodbind.isNil):
     let name: StringName = "get_angle"
     methodbind = interface_ClassDB_getMethodBind(addr className KinematicCollision3D, addr name, 1242741860)
-  var `?param`: array[2, pointer]
-  collisionIndex.encode(`?param`[0]); upDirection.encode(`?param`[1])
+  var `?param` = [getPtr collisionIndex, getPtr upDirection]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
@@ -71,8 +68,7 @@ proc getLocalShape*(self: Ref[KinematicCollision3D]; collisionIndex: int32 = 0):
   if unlikely(methodbind.isNil):
     let name: StringName = "get_local_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className KinematicCollision3D, addr name, 2639523548)
-  var `?param`: array[1, pointer]
-  collisionIndex.encode(`?param`[0])
+  var `?param` = [getPtr collisionIndex]
   var ret: encoded Object
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Object)
@@ -81,8 +77,7 @@ proc getCollider*(self: Ref[KinematicCollision3D]; collisionIndex: int32 = 0): O
   if unlikely(methodbind.isNil):
     let name: StringName = "get_collider"
     methodbind = interface_ClassDB_getMethodBind(addr className KinematicCollision3D, addr name, 2639523548)
-  var `?param`: array[1, pointer]
-  collisionIndex.encode(`?param`[0])
+  var `?param` = [getPtr collisionIndex]
   var ret: encoded Object
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Object)
@@ -91,8 +86,7 @@ proc getColliderId*(self: Ref[KinematicCollision3D]; collisionIndex: int32 = 0):
   if unlikely(methodbind.isNil):
     let name: StringName = "get_collider_id"
     methodbind = interface_ClassDB_getMethodBind(addr className KinematicCollision3D, addr name, 1591665591)
-  var `?param`: array[1, pointer]
-  collisionIndex.encode(`?param`[0])
+  var `?param` = [getPtr collisionIndex]
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(uint64)
@@ -101,8 +95,7 @@ proc getColliderRid*(self: Ref[KinematicCollision3D]; collisionIndex: int32 = 0)
   if unlikely(methodbind.isNil):
     let name: StringName = "get_collider_rid"
     methodbind = interface_ClassDB_getMethodBind(addr className KinematicCollision3D, addr name, 1231817359)
-  var `?param`: array[1, pointer]
-  collisionIndex.encode(`?param`[0])
+  var `?param` = [getPtr collisionIndex]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(RID)
@@ -111,8 +104,7 @@ proc getColliderShape*(self: Ref[KinematicCollision3D]; collisionIndex: int32 = 
   if unlikely(methodbind.isNil):
     let name: StringName = "get_collider_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className KinematicCollision3D, addr name, 2639523548)
-  var `?param`: array[1, pointer]
-  collisionIndex.encode(`?param`[0])
+  var `?param` = [getPtr collisionIndex]
   var ret: encoded Object
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Object)
@@ -121,8 +113,7 @@ proc getColliderShapeIndex*(self: Ref[KinematicCollision3D]; collisionIndex: int
   if unlikely(methodbind.isNil):
     let name: StringName = "get_collider_shape_index"
     methodbind = interface_ClassDB_getMethodBind(addr className KinematicCollision3D, addr name, 1591665591)
-  var `?param`: array[1, pointer]
-  collisionIndex.encode(`?param`[0])
+  var `?param` = [getPtr collisionIndex]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
@@ -131,8 +122,7 @@ proc getColliderVelocity*(self: Ref[KinematicCollision3D]; collisionIndex: int32
   if unlikely(methodbind.isNil):
     let name: StringName = "get_collider_velocity"
     methodbind = interface_ClassDB_getMethodBind(addr className KinematicCollision3D, addr name, 1914908202)
-  var `?param`: array[1, pointer]
-  collisionIndex.encode(`?param`[0])
+  var `?param` = [getPtr collisionIndex]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector3)

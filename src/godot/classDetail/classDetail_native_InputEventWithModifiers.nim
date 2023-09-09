@@ -9,8 +9,7 @@ proc `commandOrControlAutoremap=`*(self: Ref[InputEventWithModifiers]; enable: B
   if unlikely(methodbind.isNil):
     let name: StringName = "set_command_or_control_autoremap"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventWithModifiers, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isCommandOrControlAutoremap*(self: Ref[InputEventWithModifiers]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -33,8 +32,7 @@ proc `altPressed=`*(self: Ref[InputEventWithModifiers]; pressed: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_alt_pressed"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventWithModifiers, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  pressed.encode(`?param`[0])
+  var `?param` = [getPtr pressed]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isAltPressed*(self: Ref[InputEventWithModifiers]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -49,8 +47,7 @@ proc `shiftPressed=`*(self: Ref[InputEventWithModifiers]; pressed: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_shift_pressed"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventWithModifiers, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  pressed.encode(`?param`[0])
+  var `?param` = [getPtr pressed]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isShiftPressed*(self: Ref[InputEventWithModifiers]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -65,8 +62,7 @@ proc `ctrlPressed=`*(self: Ref[InputEventWithModifiers]; pressed: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ctrl_pressed"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventWithModifiers, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  pressed.encode(`?param`[0])
+  var `?param` = [getPtr pressed]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isCtrlPressed*(self: Ref[InputEventWithModifiers]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -81,8 +77,7 @@ proc `metaPressed=`*(self: Ref[InputEventWithModifiers]; pressed: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_meta_pressed"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventWithModifiers, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  pressed.encode(`?param`[0])
+  var `?param` = [getPtr pressed]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isMetaPressed*(self: Ref[InputEventWithModifiers]): Bool =
   var methodbind {.global.}: MethodBindPtr

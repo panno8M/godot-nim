@@ -9,8 +9,7 @@ proc `pan=`*(self: Ref[AudioEffectPanner]; cpanume: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_pan"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectPanner, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  cpanume.encode(`?param`[0])
+  var `?param` = [getPtr cpanume]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc pan*(self: Ref[AudioEffectPanner]): Float =
   var methodbind {.global.}: MethodBindPtr

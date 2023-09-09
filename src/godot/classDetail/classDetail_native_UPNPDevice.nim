@@ -25,8 +25,7 @@ proc addPortMapping*(self: Ref[UPNPDevice]; port: int32; portInternal: int32 = 0
   if unlikely(methodbind.isNil):
     let name: StringName = "add_port_mapping"
     methodbind = interface_ClassDB_getMethodBind(addr className UPNPDevice, addr name, 3358934458)
-  var `?param`: array[5, pointer]
-  port.encode(`?param`[0]); portInternal.encode(`?param`[1]); desc.encode(`?param`[2]); proto.encode(`?param`[3]); duration.encode(`?param`[4])
+  var `?param` = [getPtr port, getPtr portInternal, getPtr desc, getPtr proto, getPtr duration]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
@@ -35,8 +34,7 @@ proc deletePortMapping*(self: Ref[UPNPDevice]; port: int32; proto: String = "UDP
   if unlikely(methodbind.isNil):
     let name: StringName = "delete_port_mapping"
     methodbind = interface_ClassDB_getMethodBind(addr className UPNPDevice, addr name, 760296170)
-  var `?param`: array[2, pointer]
-  port.encode(`?param`[0]); proto.encode(`?param`[1])
+  var `?param` = [getPtr port, getPtr proto]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
@@ -45,8 +43,7 @@ proc `descriptionUrl=`*(self: Ref[UPNPDevice]; url: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_description_url"
     methodbind = interface_ClassDB_getMethodBind(addr className UPNPDevice, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  url.encode(`?param`[0])
+  var `?param` = [getPtr url]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc descriptionUrl*(self: Ref[UPNPDevice]): String =
   var methodbind {.global.}: MethodBindPtr
@@ -61,8 +58,7 @@ proc `serviceType=`*(self: Ref[UPNPDevice]; `type`: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_service_type"
     methodbind = interface_ClassDB_getMethodBind(addr className UPNPDevice, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  `type`.encode(`?param`[0])
+  var `?param` = [getPtr `type`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc serviceType*(self: Ref[UPNPDevice]): String =
   var methodbind {.global.}: MethodBindPtr
@@ -77,8 +73,7 @@ proc `igdControlUrl=`*(self: Ref[UPNPDevice]; url: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_igd_control_url"
     methodbind = interface_ClassDB_getMethodBind(addr className UPNPDevice, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  url.encode(`?param`[0])
+  var `?param` = [getPtr url]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc igdControlUrl*(self: Ref[UPNPDevice]): String =
   var methodbind {.global.}: MethodBindPtr
@@ -93,8 +88,7 @@ proc `igdServiceType=`*(self: Ref[UPNPDevice]; `type`: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_igd_service_type"
     methodbind = interface_ClassDB_getMethodBind(addr className UPNPDevice, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  `type`.encode(`?param`[0])
+  var `?param` = [getPtr `type`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc igdServiceType*(self: Ref[UPNPDevice]): String =
   var methodbind {.global.}: MethodBindPtr
@@ -109,8 +103,7 @@ proc `igdOurAddr=`*(self: Ref[UPNPDevice]; `addr`: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_igd_our_addr"
     methodbind = interface_ClassDB_getMethodBind(addr className UPNPDevice, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  `addr`.encode(`?param`[0])
+  var `?param` = [getPtr `addr`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc igdOurAddr*(self: Ref[UPNPDevice]): String =
   var methodbind {.global.}: MethodBindPtr
@@ -125,8 +118,7 @@ proc `igdStatus=`*(self: Ref[UPNPDevice]; status: UPNPDevice_IGDStatus) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_igd_status"
     methodbind = interface_ClassDB_getMethodBind(addr className UPNPDevice, addr name, 519504122)
-  var `?param`: array[1, pointer]
-  status.encode(`?param`[0])
+  var `?param` = [getPtr status]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc igdStatus*(self: Ref[UPNPDevice]): UPNPDevice_IGDStatus =
   var methodbind {.global.}: MethodBindPtr

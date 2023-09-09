@@ -9,8 +9,7 @@ proc `gizmoExtents=`*(self: Marker3D; extents: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_gizmo_extents"
     methodbind = interface_ClassDB_getMethodBind(addr className Marker3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  extents.encode(`?param`[0])
+  var `?param` = [getPtr extents]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc gizmoExtents*(self: Marker3D): Float =
   var methodbind {.global.}: MethodBindPtr

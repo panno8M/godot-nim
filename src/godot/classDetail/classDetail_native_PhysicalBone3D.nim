@@ -9,24 +9,21 @@ proc applyCentralImpulse*(self: PhysicalBone3D; impulse: Vector3) =
   if unlikely(methodbind.isNil):
     let name: StringName = "apply_central_impulse"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 3460891852)
-  var `?param`: array[1, pointer]
-  impulse.encode(`?param`[0])
+  var `?param` = [getPtr impulse]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc applyImpulse*(self: PhysicalBone3D; impulse: Vector3; position: Vector3 = gdvec(0, 0, 0)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "apply_impulse"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 1002852006)
-  var `?param`: array[2, pointer]
-  impulse.encode(`?param`[0]); position.encode(`?param`[1])
+  var `?param` = [getPtr impulse, getPtr position]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `jointType=`*(self: PhysicalBone3D; jointType: PhysicalBone3D_JointType) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_joint_type"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 2289552604)
-  var `?param`: array[1, pointer]
-  jointType.encode(`?param`[0])
+  var `?param` = [getPtr jointType]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc jointType*(self: PhysicalBone3D): PhysicalBone3D_JointType =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +38,7 @@ proc `jointOffset=`*(self: PhysicalBone3D; offset: Transform3D) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_joint_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 2952846383)
-  var `?param`: array[1, pointer]
-  offset.encode(`?param`[0])
+  var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc jointOffset*(self: PhysicalBone3D): Transform3D =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +53,7 @@ proc `jointRotation=`*(self: PhysicalBone3D; euler: Vector3) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_joint_rotation"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 3460891852)
-  var `?param`: array[1, pointer]
-  euler.encode(`?param`[0])
+  var `?param` = [getPtr euler]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc jointRotation*(self: PhysicalBone3D): Vector3 =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +68,7 @@ proc `bodyOffset=`*(self: PhysicalBone3D; offset: Transform3D) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_body_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 2952846383)
-  var `?param`: array[1, pointer]
-  offset.encode(`?param`[0])
+  var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc bodyOffset*(self: PhysicalBone3D): Transform3D =
   var methodbind {.global.}: MethodBindPtr
@@ -113,8 +107,7 @@ proc `mass=`*(self: PhysicalBone3D; mass: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_mass"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  mass.encode(`?param`[0])
+  var `?param` = [getPtr mass]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc mass*(self: PhysicalBone3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -129,8 +122,7 @@ proc `friction=`*(self: PhysicalBone3D; friction: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_friction"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  friction.encode(`?param`[0])
+  var `?param` = [getPtr friction]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc friction*(self: PhysicalBone3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -145,8 +137,7 @@ proc `bounce=`*(self: PhysicalBone3D; bounce: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_bounce"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  bounce.encode(`?param`[0])
+  var `?param` = [getPtr bounce]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc bounce*(self: PhysicalBone3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -161,8 +152,7 @@ proc `gravityScale=`*(self: PhysicalBone3D; gravityScale: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_gravity_scale"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  gravityScale.encode(`?param`[0])
+  var `?param` = [getPtr gravityScale]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc gravityScale*(self: PhysicalBone3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -177,8 +167,7 @@ proc `linearDampMode=`*(self: PhysicalBone3D; linearDampMode: PhysicalBone3D_Dam
   if unlikely(methodbind.isNil):
     let name: StringName = "set_linear_damp_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 1244972221)
-  var `?param`: array[1, pointer]
-  linearDampMode.encode(`?param`[0])
+  var `?param` = [getPtr linearDampMode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc linearDampMode*(self: PhysicalBone3D): PhysicalBone3D_DampMode =
   var methodbind {.global.}: MethodBindPtr
@@ -193,8 +182,7 @@ proc `angularDampMode=`*(self: PhysicalBone3D; angularDampMode: PhysicalBone3D_D
   if unlikely(methodbind.isNil):
     let name: StringName = "set_angular_damp_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 1244972221)
-  var `?param`: array[1, pointer]
-  angularDampMode.encode(`?param`[0])
+  var `?param` = [getPtr angularDampMode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc angularDampMode*(self: PhysicalBone3D): PhysicalBone3D_DampMode =
   var methodbind {.global.}: MethodBindPtr
@@ -209,8 +197,7 @@ proc `linearDamp=`*(self: PhysicalBone3D; linearDamp: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_linear_damp"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  linearDamp.encode(`?param`[0])
+  var `?param` = [getPtr linearDamp]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc linearDamp*(self: PhysicalBone3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -225,8 +212,7 @@ proc `angularDamp=`*(self: PhysicalBone3D; angularDamp: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_angular_damp"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  angularDamp.encode(`?param`[0])
+  var `?param` = [getPtr angularDamp]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc angularDamp*(self: PhysicalBone3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -241,8 +227,7 @@ proc `linearVelocity=`*(self: PhysicalBone3D; linearVelocity: Vector3) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_linear_velocity"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 3460891852)
-  var `?param`: array[1, pointer]
-  linearVelocity.encode(`?param`[0])
+  var `?param` = [getPtr linearVelocity]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc linearVelocity*(self: PhysicalBone3D): Vector3 =
   var methodbind {.global.}: MethodBindPtr
@@ -257,8 +242,7 @@ proc `angularVelocity=`*(self: PhysicalBone3D; angularVelocity: Vector3) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_angular_velocity"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 3460891852)
-  var `?param`: array[1, pointer]
-  angularVelocity.encode(`?param`[0])
+  var `?param` = [getPtr angularVelocity]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc angularVelocity*(self: PhysicalBone3D): Vector3 =
   var methodbind {.global.}: MethodBindPtr
@@ -273,8 +257,7 @@ proc `useCustomIntegrator=`*(self: PhysicalBone3D; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_use_custom_integrator"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isUsingCustomIntegrator*(self: PhysicalBone3D): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -289,8 +272,7 @@ proc `canSleep=`*(self: PhysicalBone3D; ableToSleep: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_can_sleep"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  ableToSleep.encode(`?param`[0])
+  var `?param` = [getPtr ableToSleep]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isAbleToSleep*(self: PhysicalBone3D): Bool =
   var methodbind {.global.}: MethodBindPtr

@@ -9,8 +9,7 @@ proc `radianceSize=`*(self: Ref[Sky]; size: Sky_RadianceSize) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_radiance_size"
     methodbind = interface_ClassDB_getMethodBind(addr className Sky, addr name, 1512957179)
-  var `?param`: array[1, pointer]
-  size.encode(`?param`[0])
+  var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc radianceSize*(self: Ref[Sky]): Sky_RadianceSize =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `processMode=`*(self: Ref[Sky]; mode: Sky_ProcessMode) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_process_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className Sky, addr name, 875986769)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc processMode*(self: Ref[Sky]): Sky_ProcessMode =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `material=`*(self: Ref[Sky]; material: Ref[Material]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_material"
     methodbind = interface_ClassDB_getMethodBind(addr className Sky, addr name, 2757459619)
-  var `?param`: array[1, pointer]
-  material.encode(`?param`[0])
+  var `?param` = [getPtr material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc material*(self: Ref[Sky]): Ref[Material] =
   var methodbind {.global.}: MethodBindPtr

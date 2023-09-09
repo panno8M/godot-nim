@@ -9,8 +9,7 @@ proc `scriptOwner=`*(self: EditorScriptPicker; ownerNode: Node) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_script_owner"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorScriptPicker, addr name, 1078189570)
-  var `?param`: array[1, pointer]
-  ownerNode.encode(`?param`[0])
+  var `?param` = [getPtr ownerNode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc scriptOwner*(self: EditorScriptPicker): Node =
   var methodbind {.global.}: MethodBindPtr

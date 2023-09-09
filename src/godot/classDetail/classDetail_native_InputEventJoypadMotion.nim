@@ -9,8 +9,7 @@ proc `axis=`*(self: Ref[InputEventJoypadMotion]; axis: JoyAxis) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_axis"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventJoypadMotion, addr name, 1332685170)
-  var `?param`: array[1, pointer]
-  axis.encode(`?param`[0])
+  var `?param` = [getPtr axis]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc axis*(self: Ref[InputEventJoypadMotion]): JoyAxis =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `axisValue=`*(self: Ref[InputEventJoypadMotion]; axisValue: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_axis_value"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventJoypadMotion, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  axisValue.encode(`?param`[0])
+  var `?param` = [getPtr axisValue]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc axisValue*(self: Ref[InputEventJoypadMotion]): Float =
   var methodbind {.global.}: MethodBindPtr

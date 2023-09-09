@@ -9,8 +9,7 @@ proc `active=`*(self: AnimationTree; active: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_active"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationTree, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  active.encode(`?param`[0])
+  var `?param` = [getPtr active]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isActive*(self: AnimationTree): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `treeRoot=`*(self: AnimationTree; root: Ref[AnimationNode]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tree_root"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationTree, addr name, 712869711)
-  var `?param`: array[1, pointer]
-  root.encode(`?param`[0])
+  var `?param` = [getPtr root]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc treeRoot*(self: AnimationTree): Ref[AnimationNode] =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `processCallback=`*(self: AnimationTree; mode: AnimationTree_AnimationProce
   if unlikely(methodbind.isNil):
     let name: StringName = "set_process_callback"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationTree, addr name, 1723352826)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc processCallback*(self: AnimationTree): AnimationTree_AnimationProcessCallback =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `animationPlayer=`*(self: AnimationTree; root: NodePath) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_animation_player"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationTree, addr name, 1348162250)
-  var `?param`: array[1, pointer]
-  root.encode(`?param`[0])
+  var `?param` = [getPtr root]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc animationPlayer*(self: AnimationTree): NodePath =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `advanceExpressionBaseNode=`*(self: AnimationTree; node: NodePath) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_advance_expression_base_node"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationTree, addr name, 1348162250)
-  var `?param`: array[1, pointer]
-  node.encode(`?param`[0])
+  var `?param` = [getPtr node]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc advanceExpressionBaseNode*(self: AnimationTree): NodePath =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc `rootMotionTrack=`*(self: AnimationTree; path: NodePath) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_root_motion_track"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationTree, addr name, 1348162250)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc rootMotionTrack*(self: AnimationTree): NodePath =
   var methodbind {.global.}: MethodBindPtr
@@ -105,8 +99,7 @@ proc `audioMaxPolyphony=`*(self: AnimationTree; maxPolyphony: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_audio_max_polyphony"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationTree, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  maxPolyphony.encode(`?param`[0])
+  var `?param` = [getPtr maxPolyphony]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc audioMaxPolyphony*(self: AnimationTree): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -169,6 +162,5 @@ proc advance*(self: AnimationTree; delta: float64) =
   if unlikely(methodbind.isNil):
     let name: StringName = "advance"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationTree, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  delta.encode(`?param`[0])
+  var `?param` = [getPtr delta]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

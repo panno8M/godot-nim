@@ -9,16 +9,14 @@ proc setDefaultExtension*(extensionClass: StringName) {.staticOf: WebRTCPeerConn
   if unlikely(methodbind.isNil):
     let name: StringName = "set_default_extension"
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCPeerConnection, addr name, 3304788590)
-  var `?param`: array[1, pointer]
-  extensionClass.encode(`?param`[0])
+  var `?param` = [getPtr extensionClass]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], nil)
 proc initialize*(self: Ref[WebRTCPeerConnection]; configuration: Dictionary = init_Dictionary()): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "initialize"
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCPeerConnection, addr name, 2625064318)
-  var `?param`: array[1, pointer]
-  configuration.encode(`?param`[0])
+  var `?param` = [getPtr configuration]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -27,8 +25,7 @@ proc createDataChannel*(self: Ref[WebRTCPeerConnection]; label: String; options:
   if unlikely(methodbind.isNil):
     let name: StringName = "create_data_channel"
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCPeerConnection, addr name, 3997447457)
-  var `?param`: array[2, pointer]
-  label.encode(`?param`[0]); options.encode(`?param`[1])
+  var `?param` = [getPtr label, getPtr options]
   var ret: encoded Ref[WebRTCDataChannel]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[WebRTCDataChannel])
@@ -45,8 +42,7 @@ proc setLocalDescription*(self: Ref[WebRTCPeerConnection]; `type`: String; sdp: 
   if unlikely(methodbind.isNil):
     let name: StringName = "set_local_description"
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCPeerConnection, addr name, 852856452)
-  var `?param`: array[2, pointer]
-  `type`.encode(`?param`[0]); sdp.encode(`?param`[1])
+  var `?param` = [getPtr `type`, getPtr sdp]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -55,8 +51,7 @@ proc setRemoteDescription*(self: Ref[WebRTCPeerConnection]; `type`: String; sdp:
   if unlikely(methodbind.isNil):
     let name: StringName = "set_remote_description"
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCPeerConnection, addr name, 852856452)
-  var `?param`: array[2, pointer]
-  `type`.encode(`?param`[0]); sdp.encode(`?param`[1])
+  var `?param` = [getPtr `type`, getPtr sdp]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -65,8 +60,7 @@ proc addIceCandidate*(self: Ref[WebRTCPeerConnection]; media: String; index: int
   if unlikely(methodbind.isNil):
     let name: StringName = "add_ice_candidate"
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCPeerConnection, addr name, 3958950400)
-  var `?param`: array[3, pointer]
-  media.encode(`?param`[0]); index.encode(`?param`[1]); name.encode(`?param`[2])
+  var `?param` = [getPtr media, getPtr index, getPtr name]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)

@@ -9,8 +9,7 @@ proc `rangeMinHz=`*(self: Ref[AudioEffectPhaser]; hz: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_range_min_hz"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectPhaser, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  hz.encode(`?param`[0])
+  var `?param` = [getPtr hz]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc rangeMinHz*(self: Ref[AudioEffectPhaser]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `rangeMaxHz=`*(self: Ref[AudioEffectPhaser]; hz: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_range_max_hz"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectPhaser, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  hz.encode(`?param`[0])
+  var `?param` = [getPtr hz]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc rangeMaxHz*(self: Ref[AudioEffectPhaser]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `rateHz=`*(self: Ref[AudioEffectPhaser]; hz: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_rate_hz"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectPhaser, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  hz.encode(`?param`[0])
+  var `?param` = [getPtr hz]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc rateHz*(self: Ref[AudioEffectPhaser]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `feedback=`*(self: Ref[AudioEffectPhaser]; fbk: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_feedback"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectPhaser, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  fbk.encode(`?param`[0])
+  var `?param` = [getPtr fbk]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc feedback*(self: Ref[AudioEffectPhaser]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `depth=`*(self: Ref[AudioEffectPhaser]; depth: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_depth"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectPhaser, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  depth.encode(`?param`[0])
+  var `?param` = [getPtr depth]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc depth*(self: Ref[AudioEffectPhaser]): Float =
   var methodbind {.global.}: MethodBindPtr

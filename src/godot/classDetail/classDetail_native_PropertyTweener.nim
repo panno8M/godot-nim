@@ -9,8 +9,7 @@ proc `from`*(self: Ref[PropertyTweener]; value: ptr Variant): Ref[PropertyTweene
   if unlikely(methodbind.isNil):
     let name: StringName = "from"
     methodbind = interface_ClassDB_getMethodBind(addr className PropertyTweener, addr name, 4190193059)
-  var `?param`: array[1, pointer]
-  value.encode(`?param`[0])
+  var `?param` = [getPtr value]
   var ret: encoded Ref[PropertyTweener]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[PropertyTweener])
@@ -35,8 +34,7 @@ proc setTrans*(self: Ref[PropertyTweener]; trans: Tween_TransitionType): Ref[Pro
   if unlikely(methodbind.isNil):
     let name: StringName = "set_trans"
     methodbind = interface_ClassDB_getMethodBind(addr className PropertyTweener, addr name, 1899107404)
-  var `?param`: array[1, pointer]
-  trans.encode(`?param`[0])
+  var `?param` = [getPtr trans]
   var ret: encoded Ref[PropertyTweener]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[PropertyTweener])
@@ -45,8 +43,7 @@ proc setEase*(self: Ref[PropertyTweener]; ease: Tween_EaseType): Ref[PropertyTwe
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ease"
     methodbind = interface_ClassDB_getMethodBind(addr className PropertyTweener, addr name, 1080455622)
-  var `?param`: array[1, pointer]
-  ease.encode(`?param`[0])
+  var `?param` = [getPtr ease]
   var ret: encoded Ref[PropertyTweener]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[PropertyTweener])
@@ -55,8 +52,7 @@ proc setDelay*(self: Ref[PropertyTweener]; delay: float64): Ref[PropertyTweener]
   if unlikely(methodbind.isNil):
     let name: StringName = "set_delay"
     methodbind = interface_ClassDB_getMethodBind(addr className PropertyTweener, addr name, 2171559331)
-  var `?param`: array[1, pointer]
-  delay.encode(`?param`[0])
+  var `?param` = [getPtr delay]
   var ret: encoded Ref[PropertyTweener]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[PropertyTweener])

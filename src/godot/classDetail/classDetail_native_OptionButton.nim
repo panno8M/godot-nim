@@ -9,72 +9,63 @@ proc addItem*(self: OptionButton; label: String; id: int32 = -1) =
   if unlikely(methodbind.isNil):
     let name: StringName = "add_item"
     methodbind = interface_ClassDB_getMethodBind(addr className OptionButton, addr name, 3043792800)
-  var `?param`: array[2, pointer]
-  label.encode(`?param`[0]); id.encode(`?param`[1])
+  var `?param` = [getPtr label, getPtr id]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc addIconItem*(self: OptionButton; texture: Ref[Texture2D]; label: String; id: int32 = -1) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_icon_item"
     methodbind = interface_ClassDB_getMethodBind(addr className OptionButton, addr name, 3944051090)
-  var `?param`: array[3, pointer]
-  texture.encode(`?param`[0]); label.encode(`?param`[1]); id.encode(`?param`[2])
+  var `?param` = [getPtr texture, getPtr label, getPtr id]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setItemText*(self: OptionButton; idx: int32; text: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_item_text"
     methodbind = interface_ClassDB_getMethodBind(addr className OptionButton, addr name, 501894301)
-  var `?param`: array[2, pointer]
-  idx.encode(`?param`[0]); text.encode(`?param`[1])
+  var `?param` = [getPtr idx, getPtr text]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setItemIcon*(self: OptionButton; idx: int32; texture: Ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_item_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className OptionButton, addr name, 666127730)
-  var `?param`: array[2, pointer]
-  idx.encode(`?param`[0]); texture.encode(`?param`[1])
+  var `?param` = [getPtr idx, getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setItemDisabled*(self: OptionButton; idx: int32; disabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_item_disabled"
     methodbind = interface_ClassDB_getMethodBind(addr className OptionButton, addr name, 300928843)
-  var `?param`: array[2, pointer]
-  idx.encode(`?param`[0]); disabled.encode(`?param`[1])
+  var `?param` = [getPtr idx, getPtr disabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setItemId*(self: OptionButton; idx: int32; id: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_item_id"
     methodbind = interface_ClassDB_getMethodBind(addr className OptionButton, addr name, 3937882851)
-  var `?param`: array[2, pointer]
-  idx.encode(`?param`[0]); id.encode(`?param`[1])
+  var `?param` = [getPtr idx, getPtr id]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setItemMetadata*(self: OptionButton; idx: int32; metadata: ptr Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_item_metadata"
     methodbind = interface_ClassDB_getMethodBind(addr className OptionButton, addr name, 2152698145)
-  var `?param`: array[2, pointer]
-  idx.encode(`?param`[0]); metadata.encode(`?param`[1])
+  var `?param` = [getPtr idx, getPtr metadata]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setItemTooltip*(self: OptionButton; idx: int32; tooltip: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_item_tooltip"
     methodbind = interface_ClassDB_getMethodBind(addr className OptionButton, addr name, 501894301)
-  var `?param`: array[2, pointer]
-  idx.encode(`?param`[0]); tooltip.encode(`?param`[1])
+  var `?param` = [getPtr idx, getPtr tooltip]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getItemText*(self: OptionButton; idx: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_item_text"
     methodbind = interface_ClassDB_getMethodBind(addr className OptionButton, addr name, 844755477)
-  var `?param`: array[1, pointer]
-  idx.encode(`?param`[0])
+  var `?param` = [getPtr idx]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
@@ -83,8 +74,7 @@ proc getItemIcon*(self: OptionButton; idx: int32): Ref[Texture2D] =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_item_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className OptionButton, addr name, 3536238170)
-  var `?param`: array[1, pointer]
-  idx.encode(`?param`[0])
+  var `?param` = [getPtr idx]
   var ret: encoded Ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[Texture2D])
@@ -93,8 +83,7 @@ proc getItemId*(self: OptionButton; idx: int32): int32 =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_item_id"
     methodbind = interface_ClassDB_getMethodBind(addr className OptionButton, addr name, 923996154)
-  var `?param`: array[1, pointer]
-  idx.encode(`?param`[0])
+  var `?param` = [getPtr idx]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
@@ -103,8 +92,7 @@ proc getItemIndex*(self: OptionButton; id: int32): int32 =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_item_index"
     methodbind = interface_ClassDB_getMethodBind(addr className OptionButton, addr name, 923996154)
-  var `?param`: array[1, pointer]
-  id.encode(`?param`[0])
+  var `?param` = [getPtr id]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
@@ -113,8 +101,7 @@ proc getItemMetadata*(self: OptionButton; idx: int32): Variant =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_item_metadata"
     methodbind = interface_ClassDB_getMethodBind(addr className OptionButton, addr name, 4227898402)
-  var `?param`: array[1, pointer]
-  idx.encode(`?param`[0])
+  var `?param` = [getPtr idx]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
@@ -123,8 +110,7 @@ proc getItemTooltip*(self: OptionButton; idx: int32): String =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_item_tooltip"
     methodbind = interface_ClassDB_getMethodBind(addr className OptionButton, addr name, 844755477)
-  var `?param`: array[1, pointer]
-  idx.encode(`?param`[0])
+  var `?param` = [getPtr idx]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
@@ -133,8 +119,7 @@ proc isItemDisabled*(self: OptionButton; idx: int32): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "is_item_disabled"
     methodbind = interface_ClassDB_getMethodBind(addr className OptionButton, addr name, 1116898809)
-  var `?param`: array[1, pointer]
-  idx.encode(`?param`[0])
+  var `?param` = [getPtr idx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -143,8 +128,7 @@ proc isItemSeparator*(self: OptionButton; idx: int32): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "is_item_separator"
     methodbind = interface_ClassDB_getMethodBind(addr className OptionButton, addr name, 1116898809)
-  var `?param`: array[1, pointer]
-  idx.encode(`?param`[0])
+  var `?param` = [getPtr idx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -153,8 +137,7 @@ proc addSeparator*(self: OptionButton; text: String = "") =
   if unlikely(methodbind.isNil):
     let name: StringName = "add_separator"
     methodbind = interface_ClassDB_getMethodBind(addr className OptionButton, addr name, 3005725572)
-  var `?param`: array[1, pointer]
-  text.encode(`?param`[0])
+  var `?param` = [getPtr text]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc clear*(self: OptionButton) =
   var methodbind {.global.}: MethodBindPtr
@@ -167,8 +150,7 @@ proc select*(self: OptionButton; idx: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "select"
     methodbind = interface_ClassDB_getMethodBind(addr className OptionButton, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  idx.encode(`?param`[0])
+  var `?param` = [getPtr idx]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc selected*(self: OptionButton): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -199,8 +181,7 @@ proc removeItem*(self: OptionButton; idx: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_item"
     methodbind = interface_ClassDB_getMethodBind(addr className OptionButton, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  idx.encode(`?param`[0])
+  var `?param` = [getPtr idx]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getPopup*(self: OptionButton): PopupMenu =
   var methodbind {.global.}: MethodBindPtr
@@ -221,8 +202,7 @@ proc `itemCount=`*(self: OptionButton; count: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_item_count"
     methodbind = interface_ClassDB_getMethodBind(addr className OptionButton, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  count.encode(`?param`[0])
+  var `?param` = [getPtr count]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc itemCount*(self: OptionButton): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -245,8 +225,7 @@ proc getSelectableItem*(self: OptionButton; fromLast: Bool = false): int32 =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_selectable_item"
     methodbind = interface_ClassDB_getMethodBind(addr className OptionButton, addr name, 894402480)
-  var `?param`: array[1, pointer]
-  fromLast.encode(`?param`[0])
+  var `?param` = [getPtr fromLast]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
@@ -255,8 +234,7 @@ proc `fitToLongestItem=`*(self: OptionButton; fit: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fit_to_longest_item"
     methodbind = interface_ClassDB_getMethodBind(addr className OptionButton, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  fit.encode(`?param`[0])
+  var `?param` = [getPtr fit]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isFitToLongestItem*(self: OptionButton): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -271,8 +249,7 @@ proc `allowReselect=`*(self: OptionButton; allow: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_allow_reselect"
     methodbind = interface_ClassDB_getMethodBind(addr className OptionButton, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  allow.encode(`?param`[0])
+  var `?param` = [getPtr allow]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc allowReselect*(self: OptionButton): Bool =
   var methodbind {.global.}: MethodBindPtr

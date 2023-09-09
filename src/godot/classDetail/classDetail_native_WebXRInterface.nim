@@ -9,16 +9,14 @@ proc isSessionSupported*(self: Ref[WebXRInterface]; sessionMode: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "is_session_supported"
     methodbind = interface_ClassDB_getMethodBind(addr className WebXRInterface, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  sessionMode.encode(`?param`[0])
+  var `?param` = [getPtr sessionMode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `sessionMode=`*(self: Ref[WebXRInterface]; sessionMode: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_session_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className WebXRInterface, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  sessionMode.encode(`?param`[0])
+  var `?param` = [getPtr sessionMode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc sessionMode*(self: Ref[WebXRInterface]): String =
   var methodbind {.global.}: MethodBindPtr
@@ -33,8 +31,7 @@ proc `requiredFeatures=`*(self: Ref[WebXRInterface]; requiredFeatures: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_required_features"
     methodbind = interface_ClassDB_getMethodBind(addr className WebXRInterface, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  requiredFeatures.encode(`?param`[0])
+  var `?param` = [getPtr requiredFeatures]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc requiredFeatures*(self: Ref[WebXRInterface]): String =
   var methodbind {.global.}: MethodBindPtr
@@ -49,8 +46,7 @@ proc `optionalFeatures=`*(self: Ref[WebXRInterface]; optionalFeatures: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_optional_features"
     methodbind = interface_ClassDB_getMethodBind(addr className WebXRInterface, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  optionalFeatures.encode(`?param`[0])
+  var `?param` = [getPtr optionalFeatures]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc optionalFeatures*(self: Ref[WebXRInterface]): String =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `requestedReferenceSpaceTypes=`*(self: Ref[WebXRInterface]; requestedRefere
   if unlikely(methodbind.isNil):
     let name: StringName = "set_requested_reference_space_types"
     methodbind = interface_ClassDB_getMethodBind(addr className WebXRInterface, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  requestedReferenceSpaceTypes.encode(`?param`[0])
+  var `?param` = [getPtr requestedReferenceSpaceTypes]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc requestedReferenceSpaceTypes*(self: Ref[WebXRInterface]): String =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc isInputSourceActive*(self: Ref[WebXRInterface]; inputSourceId: int32): Bool
   if unlikely(methodbind.isNil):
     let name: StringName = "is_input_source_active"
     methodbind = interface_ClassDB_getMethodBind(addr className WebXRInterface, addr name, 1116898809)
-  var `?param`: array[1, pointer]
-  inputSourceId.encode(`?param`[0])
+  var `?param` = [getPtr inputSourceId]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -99,8 +93,7 @@ proc getInputSourceTracker*(self: Ref[WebXRInterface]; inputSourceId: int32): Re
   if unlikely(methodbind.isNil):
     let name: StringName = "get_input_source_tracker"
     methodbind = interface_ClassDB_getMethodBind(addr className WebXRInterface, addr name, 636011756)
-  var `?param`: array[1, pointer]
-  inputSourceId.encode(`?param`[0])
+  var `?param` = [getPtr inputSourceId]
   var ret: encoded Ref[XRPositionalTracker]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[XRPositionalTracker])
@@ -109,8 +102,7 @@ proc getInputSourceTargetRayMode*(self: Ref[WebXRInterface]; inputSourceId: int3
   if unlikely(methodbind.isNil):
     let name: StringName = "get_input_source_target_ray_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className WebXRInterface, addr name, 2852387453)
-  var `?param`: array[1, pointer]
-  inputSourceId.encode(`?param`[0])
+  var `?param` = [getPtr inputSourceId]
   var ret: encoded WebXRInterface_TargetRayMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(WebXRInterface_TargetRayMode)
@@ -135,8 +127,7 @@ proc setDisplayRefreshRate*(self: Ref[WebXRInterface]; refreshRate: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_display_refresh_rate"
     methodbind = interface_ClassDB_getMethodBind(addr className WebXRInterface, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  refreshRate.encode(`?param`[0])
+  var `?param` = [getPtr refreshRate]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getAvailableDisplayRefreshRates*(self: Ref[WebXRInterface]): Array =
   var methodbind {.global.}: MethodBindPtr

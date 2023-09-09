@@ -9,8 +9,7 @@ proc `factor=`*(self: Ref[InputEventMagnifyGesture]; factor: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_factor"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventMagnifyGesture, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  factor.encode(`?param`[0])
+  var `?param` = [getPtr factor]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc factor*(self: Ref[InputEventMagnifyGesture]): Float =
   var methodbind {.global.}: MethodBindPtr

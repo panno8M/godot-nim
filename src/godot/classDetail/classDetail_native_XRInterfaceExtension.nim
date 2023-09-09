@@ -33,16 +33,14 @@ proc addBlit*(self: Ref[XRInterfaceExtension]; renderTarget: RID; srcRect: Rect2
   if unlikely(methodbind.isNil):
     let name: StringName = "add_blit"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterfaceExtension, addr name, 258596971)
-  var `?param`: array[11, pointer]
-  renderTarget.encode(`?param`[0]); srcRect.encode(`?param`[1]); dstRect.encode(`?param`[2]); useLayer.encode(`?param`[3]); layer.encode(`?param`[4]); applyLensDistortion.encode(`?param`[5]); eyeCenter.encode(`?param`[6]); k1.encode(`?param`[7]); k2.encode(`?param`[8]); upscale.encode(`?param`[9]); aspectRatio.encode(`?param`[10])
+  var `?param` = [getPtr renderTarget, getPtr srcRect, getPtr dstRect, getPtr useLayer, getPtr layer, getPtr applyLensDistortion, getPtr eyeCenter, getPtr k1, getPtr k2, getPtr upscale, getPtr aspectRatio]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getRenderTargetTexture*(self: Ref[XRInterfaceExtension]; renderTarget: RID): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_render_target_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterfaceExtension, addr name, 41030802)
-  var `?param`: array[1, pointer]
-  renderTarget.encode(`?param`[0])
+  var `?param` = [getPtr renderTarget]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(RID)

@@ -9,8 +9,7 @@ proc `volumeDb=`*(self: Ref[AudioEffectAmplify]; volume: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_volume_db"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectAmplify, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  volume.encode(`?param`[0])
+  var `?param` = [getPtr volume]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc volumeDb*(self: Ref[AudioEffectAmplify]): Float =
   var methodbind {.global.}: MethodBindPtr

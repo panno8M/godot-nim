@@ -9,8 +9,7 @@ proc `columns=`*(self: GridContainer; columns: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_columns"
     methodbind = interface_ClassDB_getMethodBind(addr className GridContainer, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  columns.encode(`?param`[0])
+  var `?param` = [getPtr columns]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc columns*(self: GridContainer): int32 =
   var methodbind {.global.}: MethodBindPtr

@@ -9,8 +9,7 @@ proc `switchOnHover=`*(self: MenuBar; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_switch_on_hover"
     methodbind = interface_ClassDB_getMethodBind(addr className MenuBar, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isSwitchOnHover*(self: MenuBar): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -25,16 +24,14 @@ proc setDisableShortcuts*(self: MenuBar; disabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_disable_shortcuts"
     methodbind = interface_ClassDB_getMethodBind(addr className MenuBar, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  disabled.encode(`?param`[0])
+  var `?param` = [getPtr disabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `preferGlobalMenu=`*(self: MenuBar; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_prefer_global_menu"
     methodbind = interface_ClassDB_getMethodBind(addr className MenuBar, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isPreferGlobalMenu*(self: MenuBar): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -65,8 +62,7 @@ proc `textDirection=`*(self: MenuBar; direction: Control_TextDirection) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_text_direction"
     methodbind = interface_ClassDB_getMethodBind(addr className MenuBar, addr name, 119160795)
-  var `?param`: array[1, pointer]
-  direction.encode(`?param`[0])
+  var `?param` = [getPtr direction]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc textDirection*(self: MenuBar): Control_TextDirection =
   var methodbind {.global.}: MethodBindPtr
@@ -81,8 +77,7 @@ proc `language=`*(self: MenuBar; language: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_language"
     methodbind = interface_ClassDB_getMethodBind(addr className MenuBar, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  language.encode(`?param`[0])
+  var `?param` = [getPtr language]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc language*(self: MenuBar): String =
   var methodbind {.global.}: MethodBindPtr
@@ -97,8 +92,7 @@ proc `flat=`*(self: MenuBar; enabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_flat"
     methodbind = interface_ClassDB_getMethodBind(addr className MenuBar, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isFlat*(self: MenuBar): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -113,8 +107,7 @@ proc `startIndex=`*(self: MenuBar; enabled: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_start_index"
     methodbind = interface_ClassDB_getMethodBind(addr className MenuBar, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  enabled.encode(`?param`[0])
+  var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc startIndex*(self: MenuBar): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -129,16 +122,14 @@ proc setMenuTitle*(self: MenuBar; menu: int32; title: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_menu_title"
     methodbind = interface_ClassDB_getMethodBind(addr className MenuBar, addr name, 501894301)
-  var `?param`: array[2, pointer]
-  menu.encode(`?param`[0]); title.encode(`?param`[1])
+  var `?param` = [getPtr menu, getPtr title]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getMenuTitle*(self: MenuBar; menu: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_menu_title"
     methodbind = interface_ClassDB_getMethodBind(addr className MenuBar, addr name, 844755477)
-  var `?param`: array[1, pointer]
-  menu.encode(`?param`[0])
+  var `?param` = [getPtr menu]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
@@ -147,16 +138,14 @@ proc setMenuTooltip*(self: MenuBar; menu: int32; tooltip: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_menu_tooltip"
     methodbind = interface_ClassDB_getMethodBind(addr className MenuBar, addr name, 501894301)
-  var `?param`: array[2, pointer]
-  menu.encode(`?param`[0]); tooltip.encode(`?param`[1])
+  var `?param` = [getPtr menu, getPtr tooltip]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getMenuTooltip*(self: MenuBar; menu: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_menu_tooltip"
     methodbind = interface_ClassDB_getMethodBind(addr className MenuBar, addr name, 844755477)
-  var `?param`: array[1, pointer]
-  menu.encode(`?param`[0])
+  var `?param` = [getPtr menu]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
@@ -165,16 +154,14 @@ proc setMenuDisabled*(self: MenuBar; menu: int32; disabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_menu_disabled"
     methodbind = interface_ClassDB_getMethodBind(addr className MenuBar, addr name, 300928843)
-  var `?param`: array[2, pointer]
-  menu.encode(`?param`[0]); disabled.encode(`?param`[1])
+  var `?param` = [getPtr menu, getPtr disabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isMenuDisabled*(self: MenuBar; menu: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_menu_disabled"
     methodbind = interface_ClassDB_getMethodBind(addr className MenuBar, addr name, 1116898809)
-  var `?param`: array[1, pointer]
-  menu.encode(`?param`[0])
+  var `?param` = [getPtr menu]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -183,16 +170,14 @@ proc setMenuHidden*(self: MenuBar; menu: int32; hidden: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_menu_hidden"
     methodbind = interface_ClassDB_getMethodBind(addr className MenuBar, addr name, 300928843)
-  var `?param`: array[2, pointer]
-  menu.encode(`?param`[0]); hidden.encode(`?param`[1])
+  var `?param` = [getPtr menu, getPtr hidden]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isMenuHidden*(self: MenuBar; menu: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_menu_hidden"
     methodbind = interface_ClassDB_getMethodBind(addr className MenuBar, addr name, 1116898809)
-  var `?param`: array[1, pointer]
-  menu.encode(`?param`[0])
+  var `?param` = [getPtr menu]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -201,8 +186,7 @@ proc getMenuPopup*(self: MenuBar; menu: int32): PopupMenu =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_menu_popup"
     methodbind = interface_ClassDB_getMethodBind(addr className MenuBar, addr name, 2100501353)
-  var `?param`: array[1, pointer]
-  menu.encode(`?param`[0])
+  var `?param` = [getPtr menu]
   var ret: encoded PopupMenu
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PopupMenu)

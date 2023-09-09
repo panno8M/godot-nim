@@ -9,8 +9,7 @@ proc `transferChannel=`*(self: Ref[MultiplayerPeer]; channel: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_transfer_channel"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerPeer, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  channel.encode(`?param`[0])
+  var `?param` = [getPtr channel]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc transferChannel*(self: Ref[MultiplayerPeer]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `transferMode=`*(self: Ref[MultiplayerPeer]; mode: MultiplayerPeer_Transfer
   if unlikely(methodbind.isNil):
     let name: StringName = "set_transfer_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerPeer, addr name, 950411049)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc transferMode*(self: Ref[MultiplayerPeer]): MultiplayerPeer_TransferMode =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc setTargetPeer*(self: Ref[MultiplayerPeer]; id: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_target_peer"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerPeer, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  id.encode(`?param`[0])
+  var `?param` = [getPtr id]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getPacketPeer*(self: Ref[MultiplayerPeer]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -85,8 +82,7 @@ proc disconnectPeer*(self: Ref[MultiplayerPeer]; peer: int32; force: Bool = fals
   if unlikely(methodbind.isNil):
     let name: StringName = "disconnect_peer"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerPeer, addr name, 4023243586)
-  var `?param`: array[2, pointer]
-  peer.encode(`?param`[0]); force.encode(`?param`[1])
+  var `?param` = [getPtr peer, getPtr force]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getConnectionStatus*(self: Ref[MultiplayerPeer]): MultiplayerPeer_ConnectionStatus =
   var methodbind {.global.}: MethodBindPtr
@@ -117,8 +113,7 @@ proc `refuseNewConnections=`*(self: Ref[MultiplayerPeer]; enable: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_refuse_new_connections"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerPeer, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  enable.encode(`?param`[0])
+  var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isRefusingNewConnections*(self: Ref[MultiplayerPeer]): Bool =
   var methodbind {.global.}: MethodBindPtr

@@ -9,8 +9,7 @@ proc createFromString*(pattern: String): Ref[RegEx] {.staticOf: RegEx.} =
   if unlikely(methodbind.isNil):
     let name: StringName = "create_from_string"
     methodbind = interface_ClassDB_getMethodBind(addr className RegEx, addr name, 2150300909)
-  var `?param`: array[1, pointer]
-  pattern.encode(`?param`[0])
+  var `?param` = [getPtr pattern]
   var ret: encoded Ref[RegEx]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[RegEx])
@@ -25,8 +24,7 @@ proc compile*(self: Ref[RegEx]; pattern: String): Error =
   if unlikely(methodbind.isNil):
     let name: StringName = "compile"
     methodbind = interface_ClassDB_getMethodBind(addr className RegEx, addr name, 166001499)
-  var `?param`: array[1, pointer]
-  pattern.encode(`?param`[0])
+  var `?param` = [getPtr pattern]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
@@ -35,8 +33,7 @@ proc search*(self: Ref[RegEx]; subject: String; offset: int32 = 0; `end`: int32 
   if unlikely(methodbind.isNil):
     let name: StringName = "search"
     methodbind = interface_ClassDB_getMethodBind(addr className RegEx, addr name, 4087180739)
-  var `?param`: array[3, pointer]
-  subject.encode(`?param`[0]); offset.encode(`?param`[1]); `end`.encode(`?param`[2])
+  var `?param` = [getPtr subject, getPtr offset, getPtr `end`]
   var ret: encoded Ref[RegExMatch]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Ref[RegExMatch])
@@ -45,8 +42,7 @@ proc searchAll*(self: Ref[RegEx]; subject: String; offset: int32 = 0; `end`: int
   if unlikely(methodbind.isNil):
     let name: StringName = "search_all"
     methodbind = interface_ClassDB_getMethodBind(addr className RegEx, addr name, 3354100289)
-  var `?param`: array[3, pointer]
-  subject.encode(`?param`[0]); offset.encode(`?param`[1]); `end`.encode(`?param`[2])
+  var `?param` = [getPtr subject, getPtr offset, getPtr `end`]
   var ret: encoded TypedArray[RegExMatch]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TypedArray[RegExMatch])
@@ -55,8 +51,7 @@ proc sub*(self: Ref[RegEx]; subject: String; replacement: String; all: Bool = fa
   if unlikely(methodbind.isNil):
     let name: StringName = "sub"
     methodbind = interface_ClassDB_getMethodBind(addr className RegEx, addr name, 758293621)
-  var `?param`: array[5, pointer]
-  subject.encode(`?param`[0]); replacement.encode(`?param`[1]); all.encode(`?param`[2]); offset.encode(`?param`[3]); `end`.encode(`?param`[4])
+  var `?param` = [getPtr subject, getPtr replacement, getPtr all, getPtr offset, getPtr `end`]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)

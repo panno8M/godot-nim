@@ -9,8 +9,7 @@ proc `noiseType=`*(self: Ref[FastNoiseLite]; `type`: FastNoiseLite_NoiseType) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_noise_type"
     methodbind = interface_ClassDB_getMethodBind(addr className FastNoiseLite, addr name, 2624461392)
-  var `?param`: array[1, pointer]
-  `type`.encode(`?param`[0])
+  var `?param` = [getPtr `type`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc noiseType*(self: Ref[FastNoiseLite]): FastNoiseLite_NoiseType =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `seed=`*(self: Ref[FastNoiseLite]; seed: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_seed"
     methodbind = interface_ClassDB_getMethodBind(addr className FastNoiseLite, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  seed.encode(`?param`[0])
+  var `?param` = [getPtr seed]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc seed*(self: Ref[FastNoiseLite]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `frequency=`*(self: Ref[FastNoiseLite]; freq: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_frequency"
     methodbind = interface_ClassDB_getMethodBind(addr className FastNoiseLite, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  freq.encode(`?param`[0])
+  var `?param` = [getPtr freq]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc frequency*(self: Ref[FastNoiseLite]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `offset=`*(self: Ref[FastNoiseLite]; offset: Vector3) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className FastNoiseLite, addr name, 3460891852)
-  var `?param`: array[1, pointer]
-  offset.encode(`?param`[0])
+  var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc offset*(self: Ref[FastNoiseLite]): Vector3 =
   var methodbind {.global.}: MethodBindPtr
@@ -73,8 +69,7 @@ proc `fractalType=`*(self: Ref[FastNoiseLite]; `type`: FastNoiseLite_FractalType
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fractal_type"
     methodbind = interface_ClassDB_getMethodBind(addr className FastNoiseLite, addr name, 4132731174)
-  var `?param`: array[1, pointer]
-  `type`.encode(`?param`[0])
+  var `?param` = [getPtr `type`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fractalType*(self: Ref[FastNoiseLite]): FastNoiseLite_FractalType =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc `fractalOctaves=`*(self: Ref[FastNoiseLite]; octaveCount: int32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fractal_octaves"
     methodbind = interface_ClassDB_getMethodBind(addr className FastNoiseLite, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  octaveCount.encode(`?param`[0])
+  var `?param` = [getPtr octaveCount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fractalOctaves*(self: Ref[FastNoiseLite]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -105,8 +99,7 @@ proc `fractalLacunarity=`*(self: Ref[FastNoiseLite]; lacunarity: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fractal_lacunarity"
     methodbind = interface_ClassDB_getMethodBind(addr className FastNoiseLite, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  lacunarity.encode(`?param`[0])
+  var `?param` = [getPtr lacunarity]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fractalLacunarity*(self: Ref[FastNoiseLite]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -121,8 +114,7 @@ proc `fractalGain=`*(self: Ref[FastNoiseLite]; gain: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fractal_gain"
     methodbind = interface_ClassDB_getMethodBind(addr className FastNoiseLite, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  gain.encode(`?param`[0])
+  var `?param` = [getPtr gain]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fractalGain*(self: Ref[FastNoiseLite]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -137,8 +129,7 @@ proc `fractalWeightedStrength=`*(self: Ref[FastNoiseLite]; weightedStrength: Flo
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fractal_weighted_strength"
     methodbind = interface_ClassDB_getMethodBind(addr className FastNoiseLite, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  weightedStrength.encode(`?param`[0])
+  var `?param` = [getPtr weightedStrength]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fractalWeightedStrength*(self: Ref[FastNoiseLite]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -153,8 +144,7 @@ proc `fractalPingPongStrength=`*(self: Ref[FastNoiseLite]; pingPongStrength: Flo
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fractal_ping_pong_strength"
     methodbind = interface_ClassDB_getMethodBind(addr className FastNoiseLite, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  pingPongStrength.encode(`?param`[0])
+  var `?param` = [getPtr pingPongStrength]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc fractalPingPongStrength*(self: Ref[FastNoiseLite]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -169,8 +159,7 @@ proc `cellularDistanceFunction=`*(self: Ref[FastNoiseLite]; `func`: FastNoiseLit
   if unlikely(methodbind.isNil):
     let name: StringName = "set_cellular_distance_function"
     methodbind = interface_ClassDB_getMethodBind(addr className FastNoiseLite, addr name, 1006013267)
-  var `?param`: array[1, pointer]
-  `func`.encode(`?param`[0])
+  var `?param` = [getPtr `func`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc cellularDistanceFunction*(self: Ref[FastNoiseLite]): FastNoiseLite_CellularDistanceFunction =
   var methodbind {.global.}: MethodBindPtr
@@ -185,8 +174,7 @@ proc `cellularJitter=`*(self: Ref[FastNoiseLite]; jitter: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_cellular_jitter"
     methodbind = interface_ClassDB_getMethodBind(addr className FastNoiseLite, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  jitter.encode(`?param`[0])
+  var `?param` = [getPtr jitter]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc cellularJitter*(self: Ref[FastNoiseLite]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -201,8 +189,7 @@ proc `cellularReturnType=`*(self: Ref[FastNoiseLite]; ret: FastNoiseLite_Cellula
   if unlikely(methodbind.isNil):
     let name: StringName = "set_cellular_return_type"
     methodbind = interface_ClassDB_getMethodBind(addr className FastNoiseLite, addr name, 2654169698)
-  var `?param`: array[1, pointer]
-  ret.encode(`?param`[0])
+  var `?param` = [getPtr ret]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc cellularReturnType*(self: Ref[FastNoiseLite]): FastNoiseLite_CellularReturnType =
   var methodbind {.global.}: MethodBindPtr
@@ -217,8 +204,7 @@ proc `domainWarpEnabled=`*(self: Ref[FastNoiseLite]; domainWarpEnabled: Bool) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_domain_warp_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className FastNoiseLite, addr name, 2586408642)
-  var `?param`: array[1, pointer]
-  domainWarpEnabled.encode(`?param`[0])
+  var `?param` = [getPtr domainWarpEnabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isDomainWarpEnabled*(self: Ref[FastNoiseLite]): Bool =
   var methodbind {.global.}: MethodBindPtr
@@ -233,8 +219,7 @@ proc `domainWarpType=`*(self: Ref[FastNoiseLite]; domainWarpType: FastNoiseLite_
   if unlikely(methodbind.isNil):
     let name: StringName = "set_domain_warp_type"
     methodbind = interface_ClassDB_getMethodBind(addr className FastNoiseLite, addr name, 3629692980)
-  var `?param`: array[1, pointer]
-  domainWarpType.encode(`?param`[0])
+  var `?param` = [getPtr domainWarpType]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc domainWarpType*(self: Ref[FastNoiseLite]): FastNoiseLite_DomainWarpType =
   var methodbind {.global.}: MethodBindPtr
@@ -249,8 +234,7 @@ proc `domainWarpAmplitude=`*(self: Ref[FastNoiseLite]; domainWarpAmplitude: Floa
   if unlikely(methodbind.isNil):
     let name: StringName = "set_domain_warp_amplitude"
     methodbind = interface_ClassDB_getMethodBind(addr className FastNoiseLite, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  domainWarpAmplitude.encode(`?param`[0])
+  var `?param` = [getPtr domainWarpAmplitude]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc domainWarpAmplitude*(self: Ref[FastNoiseLite]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -265,8 +249,7 @@ proc `domainWarpFrequency=`*(self: Ref[FastNoiseLite]; domainWarpFrequency: Floa
   if unlikely(methodbind.isNil):
     let name: StringName = "set_domain_warp_frequency"
     methodbind = interface_ClassDB_getMethodBind(addr className FastNoiseLite, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  domainWarpFrequency.encode(`?param`[0])
+  var `?param` = [getPtr domainWarpFrequency]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc domainWarpFrequency*(self: Ref[FastNoiseLite]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -281,8 +264,7 @@ proc `domainWarpFractalType=`*(self: Ref[FastNoiseLite]; domainWarpFractalType: 
   if unlikely(methodbind.isNil):
     let name: StringName = "set_domain_warp_fractal_type"
     methodbind = interface_ClassDB_getMethodBind(addr className FastNoiseLite, addr name, 3999408287)
-  var `?param`: array[1, pointer]
-  domainWarpFractalType.encode(`?param`[0])
+  var `?param` = [getPtr domainWarpFractalType]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc domainWarpFractalType*(self: Ref[FastNoiseLite]): FastNoiseLite_DomainWarpFractalType =
   var methodbind {.global.}: MethodBindPtr
@@ -297,8 +279,7 @@ proc `domainWarpFractalOctaves=`*(self: Ref[FastNoiseLite]; domainWarpOctaveCoun
   if unlikely(methodbind.isNil):
     let name: StringName = "set_domain_warp_fractal_octaves"
     methodbind = interface_ClassDB_getMethodBind(addr className FastNoiseLite, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  domainWarpOctaveCount.encode(`?param`[0])
+  var `?param` = [getPtr domainWarpOctaveCount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc domainWarpFractalOctaves*(self: Ref[FastNoiseLite]): int32 =
   var methodbind {.global.}: MethodBindPtr
@@ -313,8 +294,7 @@ proc `domainWarpFractalLacunarity=`*(self: Ref[FastNoiseLite]; domainWarpLacunar
   if unlikely(methodbind.isNil):
     let name: StringName = "set_domain_warp_fractal_lacunarity"
     methodbind = interface_ClassDB_getMethodBind(addr className FastNoiseLite, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  domainWarpLacunarity.encode(`?param`[0])
+  var `?param` = [getPtr domainWarpLacunarity]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc domainWarpFractalLacunarity*(self: Ref[FastNoiseLite]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -329,8 +309,7 @@ proc `domainWarpFractalGain=`*(self: Ref[FastNoiseLite]; domainWarpGain: Float) 
   if unlikely(methodbind.isNil):
     let name: StringName = "set_domain_warp_fractal_gain"
     methodbind = interface_ClassDB_getMethodBind(addr className FastNoiseLite, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  domainWarpGain.encode(`?param`[0])
+  var `?param` = [getPtr domainWarpGain]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc domainWarpFractalGain*(self: Ref[FastNoiseLite]): Float =
   var methodbind {.global.}: MethodBindPtr

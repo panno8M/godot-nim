@@ -9,8 +9,7 @@ proc `inputName=`*(self: Ref[VisualShaderNodeInput]; name: String) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_input_name"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeInput, addr name, 83702148)
-  var `?param`: array[1, pointer]
-  name.encode(`?param`[0])
+  var `?param` = [getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc inputName*(self: Ref[VisualShaderNodeInput]): String =
   var methodbind {.global.}: MethodBindPtr

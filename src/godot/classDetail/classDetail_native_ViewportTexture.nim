@@ -9,8 +9,7 @@ proc `viewportPathInScene=`*(self: Ref[ViewportTexture]; path: NodePath) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_viewport_path_in_scene"
     methodbind = interface_ClassDB_getMethodBind(addr className ViewportTexture, addr name, 1348162250)
-  var `?param`: array[1, pointer]
-  path.encode(`?param`[0])
+  var `?param` = [getPtr path]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc viewportPathInScene*(self: Ref[ViewportTexture]): NodePath =
   var methodbind {.global.}: MethodBindPtr

@@ -17,8 +17,7 @@ proc `length=`*(self: SpringArm3D; length: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_length"
     methodbind = interface_ClassDB_getMethodBind(addr className SpringArm3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  length.encode(`?param`[0])
+  var `?param` = [getPtr length]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc length*(self: SpringArm3D): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -33,8 +32,7 @@ proc `shape=`*(self: SpringArm3D; shape: Ref[Shape3D]) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className SpringArm3D, addr name, 1549710052)
-  var `?param`: array[1, pointer]
-  shape.encode(`?param`[0])
+  var `?param` = [getPtr shape]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc shape*(self: SpringArm3D): Ref[Shape3D] =
   var methodbind {.global.}: MethodBindPtr
@@ -49,16 +47,14 @@ proc addExcludedObject*(self: SpringArm3D; rid: RID) =
   if unlikely(methodbind.isNil):
     let name: StringName = "add_excluded_object"
     methodbind = interface_ClassDB_getMethodBind(addr className SpringArm3D, addr name, 2722037293)
-  var `?param`: array[1, pointer]
-  rid.encode(`?param`[0])
+  var `?param` = [getPtr rid]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc removeExcludedObject*(self: SpringArm3D; rid: RID): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_excluded_object"
     methodbind = interface_ClassDB_getMethodBind(addr className SpringArm3D, addr name, 3521089500)
-  var `?param`: array[1, pointer]
-  rid.encode(`?param`[0])
+  var `?param` = [getPtr rid]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
@@ -73,8 +69,7 @@ proc `collisionMask=`*(self: SpringArm3D; mask: uint32) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_collision_mask"
     methodbind = interface_ClassDB_getMethodBind(addr className SpringArm3D, addr name, 1286410249)
-  var `?param`: array[1, pointer]
-  mask.encode(`?param`[0])
+  var `?param` = [getPtr mask]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc collisionMask*(self: SpringArm3D): uint32 =
   var methodbind {.global.}: MethodBindPtr
@@ -89,8 +84,7 @@ proc `margin=`*(self: SpringArm3D; margin: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_margin"
     methodbind = interface_ClassDB_getMethodBind(addr className SpringArm3D, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  margin.encode(`?param`[0])
+  var `?param` = [getPtr margin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc margin*(self: SpringArm3D): Float =
   var methodbind {.global.}: MethodBindPtr

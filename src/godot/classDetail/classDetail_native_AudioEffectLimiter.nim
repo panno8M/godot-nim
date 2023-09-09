@@ -9,8 +9,7 @@ proc `ceilingDb=`*(self: Ref[AudioEffectLimiter]; ceiling: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ceiling_db"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectLimiter, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  ceiling.encode(`?param`[0])
+  var `?param` = [getPtr ceiling]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc ceilingDb*(self: Ref[AudioEffectLimiter]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `thresholdDb=`*(self: Ref[AudioEffectLimiter]; threshold: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_threshold_db"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectLimiter, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  threshold.encode(`?param`[0])
+  var `?param` = [getPtr threshold]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc thresholdDb*(self: Ref[AudioEffectLimiter]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -41,8 +39,7 @@ proc `softClipDb=`*(self: Ref[AudioEffectLimiter]; softClip: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_soft_clip_db"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectLimiter, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  softClip.encode(`?param`[0])
+  var `?param` = [getPtr softClip]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc softClipDb*(self: Ref[AudioEffectLimiter]): Float =
   var methodbind {.global.}: MethodBindPtr
@@ -57,8 +54,7 @@ proc `softClipRatio=`*(self: Ref[AudioEffectLimiter]; softClip: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_soft_clip_ratio"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectLimiter, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  softClip.encode(`?param`[0])
+  var `?param` = [getPtr softClip]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc softClipRatio*(self: Ref[AudioEffectLimiter]): Float =
   var methodbind {.global.}: MethodBindPtr

@@ -9,8 +9,7 @@ proc `animation=`*(self: Ref[AnimationNodeAnimation]; name: StringName) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_animation"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeAnimation, addr name, 3304788590)
-  var `?param`: array[1, pointer]
-  name.encode(`?param`[0])
+  var `?param` = [getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc animation*(self: Ref[AnimationNodeAnimation]): StringName =
   var methodbind {.global.}: MethodBindPtr
@@ -25,8 +24,7 @@ proc `playMode=`*(self: Ref[AnimationNodeAnimation]; mode: AnimationNodeAnimatio
   if unlikely(methodbind.isNil):
     let name: StringName = "set_play_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeAnimation, addr name, 3347718873)
-  var `?param`: array[1, pointer]
-  mode.encode(`?param`[0])
+  var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc playMode*(self: Ref[AnimationNodeAnimation]): AnimationNodeAnimation_PlayMode =
   var methodbind {.global.}: MethodBindPtr

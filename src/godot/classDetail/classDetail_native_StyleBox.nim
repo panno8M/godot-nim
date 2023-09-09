@@ -17,24 +17,21 @@ proc `contentMargin=`*(self: Ref[StyleBox]; margin: Side; offset: Float) =
   if unlikely(methodbind.isNil):
     let name: StringName = "set_content_margin"
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBox, addr name, 4290182280)
-  var `?param`: array[2, pointer]
-  margin.encode(`?param`[0]); offset.encode(`?param`[1])
+  var `?param` = [getPtr margin, getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setContentMarginAll*(self: Ref[StyleBox]; offset: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_content_margin_all"
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBox, addr name, 373806689)
-  var `?param`: array[1, pointer]
-  offset.encode(`?param`[0])
+  var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc contentMargin*(self: Ref[StyleBox]; margin: Side): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_content_margin"
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBox, addr name, 2869120046)
-  var `?param`: array[1, pointer]
-  margin.encode(`?param`[0])
+  var `?param` = [getPtr margin]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
@@ -43,8 +40,7 @@ proc getMargin*(self: Ref[StyleBox]; margin: Side): Float =
   if unlikely(methodbind.isNil):
     let name: StringName = "get_margin"
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBox, addr name, 2869120046)
-  var `?param`: array[1, pointer]
-  margin.encode(`?param`[0])
+  var `?param` = [getPtr margin]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
@@ -61,8 +57,7 @@ proc draw*(self: Ref[StyleBox]; canvasItem: RID; rect: Rect2) =
   if unlikely(methodbind.isNil):
     let name: StringName = "draw"
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBox, addr name, 2275962004)
-  var `?param`: array[2, pointer]
-  canvasItem.encode(`?param`[0]); rect.encode(`?param`[1])
+  var `?param` = [getPtr canvasItem, getPtr rect]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getCurrentItemDrawn*(self: Ref[StyleBox]): CanvasItem =
   var methodbind {.global.}: MethodBindPtr
@@ -77,8 +72,7 @@ proc testMask*(self: Ref[StyleBox]; point: Vector2; rect: Rect2): Bool =
   if unlikely(methodbind.isNil):
     let name: StringName = "test_mask"
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBox, addr name, 3735564539)
-  var `?param`: array[2, pointer]
-  point.encode(`?param`[0]); rect.encode(`?param`[1])
+  var `?param` = [getPtr point, getPtr rect]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
