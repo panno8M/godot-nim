@@ -105,8 +105,7 @@ proc toNim*(e: JsonEnum; owner: TypeName = namespace.root): NimEnum =
         break
     result.fields.add NimEnumField(name: quoted NimVar.imitate"--PADDING_MAX--", value: 31, flags: {bitfield}, comment: fmt"To align size-of set[{result.name}] to size-of cuint.")
 
-  if is_bitfield:
-    result.pragmas.add "size: sizeof(cuint)"
+  result.pragmas.add "size: sizeof(cuint)"
 
 proc render*(self: NimEnum): Statement =
   result = ParagraphSt()
