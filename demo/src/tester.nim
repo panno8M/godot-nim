@@ -34,6 +34,12 @@ method ready*(self: Tester) =
   let node = self.getNode(init_NodePath"Node")
   echo repr node
 
+  let newObject = instantiate Object
+  echo repr newObject
+
+  let newNode = instantiate Node
+  self.addChild newNode
+
 proc test_pure* =
   suite "variants":
     test "String conversion":

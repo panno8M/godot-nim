@@ -36,13 +36,9 @@ template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
   template Inherit*(_: typedesc[Class]): typedesc[Inherits] = Inherits
 
   proc create {.implement: ClassCreateInstance, gensym.} =
-    bind init_engine_class
-
-    let new_object = new Class
-    init_engine_class(new_object, addr className EngineClass(Class))
+    bind instantiate
+    let new_object = instantiate Class
     GC_ref new_object
-    interfaceObjectSetInstance(new_object.owner, addr className(Class), cast[pointer](new_object))
-    interfaceObjectSetInstanceBinding(new_object.owner, token, cast[pointer](new_object), addr get_userdata(Class).callbacks)
     return new_object.owner
 
   proc free {.implement: ClassFreeInstance, gensym.} =

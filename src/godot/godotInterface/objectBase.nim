@@ -28,6 +28,7 @@ proc init_engine_class*(self: ObjectBase; godot_class: ptr StringName) =
 proc init_engine_class*(self: ObjectBase; godot_object: ObjectPtr) =
   self.owner = godot_object
 
+
 proc bind_virtuals*(S: typedesc[ObjectBase]; T: typedesc) =
   discard
 
@@ -78,6 +79,15 @@ proc vmethods*(T: typedesc[SomeClass]): TableRef[StringName, ClassCallVirtual] =
 
 proc getVirtual* {.implement: ClassGetVirtual.} =
   cast[ptr ClassUserData](p_userdata).virtualMethods.getOrDefault(p_name[], nil)
+
+
+proc instantiate*(T: typedesc[SomeClass]): T =
+  new result
+  init_engine_class(result, addr T.EngineClass.className)
+  when T is SomeUserClass:
+    interfaceObjectSetInstance(result.owner, addr T.className, cast[pointer](result))
+  interfaceObjectSetInstanceBinding(result.owner, token, cast[pointer](result), addr T.callbacks)
+
 
 # User Class callbacks
 # ====================
