@@ -14,17 +14,21 @@ This project is in the early stages of development and most features are not yet
 
 ### 🟢Available
 
-#### Nim to Godot
+#### Godot (Editor/GDScript) Side
 
-* Define your Godot-Class
-* Instantiate your Godot-Class from editor
-* Define and call your **Simple** Godot-Class method
-* Define and use your Godot-Class property
+* Add defined Extension-Class Node into scene
+* Instantiate Extension-Class
+* Call Extension-Class method
+* Use Extension-Class property
 
-#### Godot to Nim
+#### Nim (GDExtension) Side
 
-* Override virtual hooks (E.g. `_ready`, `_process`) with nim
-* Call engine's Godot-Class method with nim (E.g. `Node.get_node`)
+* Define Extension-Class
+* Define **Simple** Extension-Class method
+* Define Extension-Class property
+* Override virtual hooks of Engine-Class (E.g. `_ready`, `_process`)
+* Call Engine-Class method (E.g. `Node.get_node`)
+* Instantiate Engine-Class
 
 ### 🟡Never tested yet
 
@@ -48,7 +52,8 @@ This project is in the early stages of development and most features are not yet
 ### 🔴Still can't
 
 * Integrate Nim's ref with Godot's RefCounted
-* Instantiate engine class in nim
+* Acess to items of Godot's container (E.g. Array, Dictionary...)
+* Use RefCounted Class
 
 ...And so on.
 
