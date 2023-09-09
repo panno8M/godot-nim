@@ -1,7 +1,6 @@
 const
-  EngineDebugEnabled* {.booldefine.} = false
+  EngineDebugEnabled* {.booldefine.} = off
   DecimalPrecision* {.strdefine.} = "float" # ("double"|"float")
 
 const # Logging
-  DebugApiLoading* {.booldefine.} = off
-  DebugMemory* {.booldefine.} = on
+  TraceEngineCallback* {.booldefine.} = off

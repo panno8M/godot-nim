@@ -1,17 +1,19 @@
 import beyond/oop
 import std/tables
 import ../godotInterface_core
-
-
-type ObjectBase* = ref object of RootObj
-  isvalid* = true
-  owner*: ObjectPtr
+import ../pure/compileTimeSwitch
 
 type ClassUserData* = object
   virtualMethods*: TableRef[StringName, ClassCallVirtual]
   className*: StringName
   inheritName*: StringName
   callbacks*: InstanceBindingCallbacks
+
+type ObjectBaseObj* = object of RootObj
+  owner*: ObjectPtr
+type ObjectBase* = ref ObjectBaseObj
+
+proc `=destroy`(x: ObjectBaseObj)
 
 type
   SomeClass* = concept type t
@@ -23,33 +25,30 @@ type
     t is SomeClass
     t.EngineClass isnot t
 
-proc init_engine_class*(self: ObjectBase; godot_class: ptr StringName) =
-  self.owner = interface_classdb_construct_object(godot_class)
-proc init_engine_class*(self: ObjectBase; godot_object: ObjectPtr) =
-  self.owner = godot_object
-
-
 proc bind_virtuals*(S: typedesc[ObjectBase]; T: typedesc) =
   discard
 
+proc instantiate*(T: typedesc[SomeClass]): T =
+  new result
+  result.owner = interface_classdb_construct_object(addr T.EngineClass.className)
+  when T is SomeUserClass:
+    interfaceObjectSetInstance(result.owner, addr T.className, cast[pointer](result))
+  interfaceObjectSetInstanceBinding(result.owner, token, cast[pointer](result), addr T.callbacks)
+
 proc initialize(T: typedesc[SomeEngineClass]; userdata: ptr ClassUserData) =
   userdata.callbacks.create_callback = proc (p_token: pointer; p_instance: pointer): pointer {.gdcall.} =
+    when TraceEngineCallback == on:
+      echo "<- [Engine] create ", T
     let class = new T
-    init_engine_class(class, cast[ObjectPtr](p_instance))
+    class.owner = cast[ObjectPtr](p_instance)
     GC_ref class
     result = cast[pointer](class)
-  userdata.callbacks.free_callback = proc (p_token: pointer; p_instance: pointer; p_binding: pointer) {.gdcall.} =
-    let class = (cast[T](p_binding))
-    GC_unref class
-  userdata.callbacks.reference_callback = proc (p_token: pointer; p_binding: pointer; p_reference: Bool): Bool {.gdcall.} =
-    true
 
 proc initialize(T: typedesc[SomeUserClass]; userdata: ptr ClassUserData) =
-  userdata.callbacks = InstanceBindingCallbacks(
-    create_callback: (proc {.implement: InstanceBindingCreateCallback.} = discard),
-    free_callback: (proc {.implement: InstanceBindingFreeCallback.} = discard),
-    reference_callback: (proc {.implement: InstanceBindingReferenceCallback.} = true),
-  )
+  userdata.callbacks.create_callback = proc (p_token: pointer; p_instance: pointer): pointer {.gdcall.} =
+    when TraceEngineCallback == on:
+      echo "<- [Engine] create ", T
+
 
 proc get_userdata*(T: typedesc[SomeClass]): ptr ClassUserData =
   var userdata {.global.} : ClassUserData
@@ -60,6 +59,15 @@ proc get_userdata*(T: typedesc[SomeClass]): ptr ClassUserData =
       userdata.inheritName = $T.Inherit
     else:
       userdata.inheritName = ""
+
+    userdata.callbacks.free_callback = proc (p_token: pointer; p_instance: pointer; p_binding: pointer) {.gdcall.} =
+      when TraceEngineCallback == on:
+        echo "<- [Engine] free ", T
+    userdata.callbacks.reference_callback = proc (p_token: pointer; p_binding: pointer; p_reference: Bool): Bool {.gdcall.} =
+      when TraceEngineCallback == on:
+        echo "<- [Engine] reference ", T, " <reference= ", p_reference, ">"
+      true
+
     initialize(T, addr userdata)
   addr userdata
 
@@ -79,14 +87,6 @@ proc vmethods*(T: typedesc[SomeClass]): TableRef[StringName, ClassCallVirtual] =
 
 proc getVirtual* {.implement: ClassGetVirtual.} =
   cast[ptr ClassUserData](p_userdata).virtualMethods.getOrDefault(p_name[], nil)
-
-
-proc instantiate*(T: typedesc[SomeClass]): T =
-  new result
-  init_engine_class(result, addr T.EngineClass.className)
-  when T is SomeUserClass:
-    interfaceObjectSetInstance(result.owner, addr T.className, cast[pointer](result))
-  interfaceObjectSetInstanceBinding(result.owner, token, cast[pointer](result), addr T.callbacks)
 
 
 # User Class callbacks
@@ -123,3 +123,9 @@ proc get_propertyList_bind*(p_instance: ClassInstancePtr; r_count: ptr uint32): 
 method free_propertyList*(self: ObjectBase; p_list: ptr PropertyInfo) {.base.} = discard
 proc free_propertyList_bind*(p_instance: ClassInstancePtr; p_list: ptr PropertyInfo) {.gdcall.} =
   cast[ObjectBase](p_instance).free_propertyList(p_list)
+
+proc `=destroy`(x: ObjectBaseObj) =
+  if x.owner.isNil: return
+  try:
+    interfaceObjectDestroy(x.owner)
+  except Exception: discard

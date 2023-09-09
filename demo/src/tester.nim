@@ -31,14 +31,15 @@ proc get_int_value*(self: Tester): int =
 method ready*(self: Tester) =
   test "Override engine-virtuals":
     check true
-  let node = self.getNode(init_NodePath"Node")
-  echo repr node
 
-  let newObject = instantiate Object
-  echo repr newObject
+  echo repr self.getNodeOrNull(init_NodePath"Node")
 
-  let newNode = instantiate Node
-  self.addChild newNode
+  # FIXME cause memory leak...
+  let obj = instantiate Object
+  echo repr obj
+
+  self.addChild instantiate Node
+  self.addChild instantiate Node
 
 proc test_pure* =
   suite "variants":

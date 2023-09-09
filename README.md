@@ -32,7 +32,7 @@ This project is in the early stages of development and some features are not yet
 
 ### 🟡Never tested yet
 
-* Safe destruction of objects by GC
+* Safe destruction of Ref[object] by GC
 * Async Dispatch
 
 ### ⚫In progress

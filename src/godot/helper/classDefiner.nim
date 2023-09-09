@@ -1,6 +1,8 @@
 import beyond/macros
 import std/tables
 
+import ../pure/compileTimeSwitch
+
 import objectConverter
 
 import ../godotInterface
@@ -10,13 +12,13 @@ type
     name*, parent_name*: StringName
     creationInfo*: ClassCreationInfo
 
-proc register_class*(info: ClassRegistrationInfo) =
+proc register_class(info: ClassRegistrationInfo) =
   interfaceClassdbRegisterExtensionClass(library, addr info.name, addr info.parent_name, addr info.creationInfo)
 template register_class*(T: typedesc[SomeUserClass]) =
   mixin make_ClassRegistrationInfo
   mixin bind_virtuals
-  EngineClass(T).bind_virtuals(T)
   register_class(T.make_ClassRegistrationInfo(false, false))
+  EngineClass(T).bind_virtuals(T)
 
 template register_method*(T: typedesc[SomeUserClass]; p: proc) =
   mixin p
@@ -31,20 +33,19 @@ proc add_property*(T: typedesc[SomeUserClass]; P: typedesc; prop, setter, getter
   let info = propertyInfo(P, prop)
   T.add_property(info[], setter, getter)
 
+proc free_bind(p_userdata: pointer; p_instance: ClassInstancePtr) {.gdcall.} =
+  discard
 
 template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
   template Inherit*(_: typedesc[Class]): typedesc[Inherits] = Inherits
 
   proc create {.implement: ClassCreateInstance, gensym.} =
+    when TraceEngineCallback == on:
+      echo "   [Extent] create ", Class
     bind instantiate
     let new_object = instantiate Class
     GC_ref new_object
     return new_object.owner
-
-  proc free {.implement: ClassFreeInstance, gensym.} =
-    if p_instance.isNil: return
-    let obj = cast[Class](p_instance)
-    GC_unref obj
 
   proc make_ClassRegistrationInfo*(T: typedesc[Object]; is_virtual, is_abstract: bool): ClassRegistrationInfo =
     bind className
@@ -64,7 +65,7 @@ template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
         notification_func: notification_bind,
         to_string_func: to_string_bind,
         create_instance_func: create,
-        free_instance_func: free,
+        free_instance_func: free_bind,
         get_virtual_func: getVirtual,
         class_userdata: get_userdata(T),
       )
