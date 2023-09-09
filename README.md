@@ -10,7 +10,7 @@ Or clone this repo and execute `nimble debugdemo` to compile demo(test) project 
 
 ## Features
 
-This project is in the early stages of development and most features are not yet operational.
+This project is in the early stages of development and some features are not yet operational.
 
 ### 🟢Available
 
@@ -33,6 +33,7 @@ This project is in the early stages of development and most features are not yet
 ### 🟡Never tested yet
 
 * Safe destruction of objects by GC
+* Async Dispatch
 
 ### ⚫In progress
 
@@ -51,9 +52,11 @@ This project is in the early stages of development and most features are not yet
 
 ### 🔴Still can't
 
-* Integrate Nim's ref with Godot's RefCounted
-* Acess to items of Godot's container (E.g. Array, Dictionary...)
-* Use RefCounted Class
+* Integration of Nim's ref with Godot's RefCounted
+* Getting items of Godot's container (E.g. Array, Dictionary...)
+* Using RefCounted (sub)Class
+* Using Parallelism
+* Library hot reloading
 
 ...And so on.
 
