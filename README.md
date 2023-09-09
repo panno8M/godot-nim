@@ -22,7 +22,7 @@ This project is in the early stages of development and most features are not yet
 
 ### 🟡Never tested yet
 
-* Destroy object safety by GC
+* Safe destruction of objects by GC
 * Correctly convert between Godot class and Nim object
 
 ### ⚫In progress
