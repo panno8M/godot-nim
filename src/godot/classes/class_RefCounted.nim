@@ -5,9 +5,11 @@
 import ./../helper/standAloneEngineClassDefiner
 import ./class_Object
 
-type RefCounted* = ref object of Object
+type RefCountedObj* = object of ObjectObj
+type RefCounted* = ref RefCountedObj
 template Inherit*(_: typedesc[RefCounted]): typedesc = Object
 template EngineClass*(_: typedesc[RefCounted]): typedesc = RefCounted
+include "include/hook_prototype_RefCounted"
 proc initRef*(self: RefCounted): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -40,3 +42,4 @@ proc getReferenceCount*(self: RefCounted): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
+include "include/hook_RefCounted"

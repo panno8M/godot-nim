@@ -55,7 +55,8 @@ iterator parentalSorted*(classes: NimClasses): NimClasses =
 proc renderClassDefine(class: NimClass): Statement =
   let (name, inherits) = (class.name, class.inherits)
   return +$$..ParagraphSt():
-    &"type {name}* = ref object of {inherits}"
+    &"type {name}Obj* = object of {inherits}Obj"
+    &"type {name}* = ref {name}Obj"
     &"template Inherit*(_: typedesc[{name}]): typedesc = {inherits}"
     &"template EngineClass*(_: typedesc[{name}]): typedesc = {name}"
 proc renderLocalEnums(class: NimClass): Statement =

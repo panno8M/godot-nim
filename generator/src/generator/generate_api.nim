@@ -76,8 +76,10 @@ proc generate*(api: JsonNode) =
     of "Object", "RefCounted":
       let class_mdl = mdl("class_" & rend.class.name)
         .incl(standAloneEngineClassDefiner)
+      let prototype = new ParagraphSt
       discard +$$..class_mdl.contents:
         rend.define
+        prototype
         rend.essencial
         rend.detail
         rend.virtual
@@ -85,6 +87,8 @@ proc generate*(api: JsonNode) =
       d_classes.take class_mdl
       if rend.class.name == "RefCounted":
         discard class_mdl.incl(d_classes//"class_Object")
+        class_mdl.contents.children.add "include \"include/hook_RefCounted\""
+        prototype.children.add "include \"include/hook_prototype_RefCounted\""
 
     else:
       engineClassDefines_mdl.contents.children.add rend.define
