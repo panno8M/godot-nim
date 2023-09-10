@@ -8,7 +8,6 @@ import ../godotInterface/objectBase
 type Object* = objectBase.ObjectBase
 
 import ../logging; export logging
-import ../pure/compileTimeSwitch; export compileTimeSwitch
 import ../variants/variantsConstr_custom; export variantsConstr_custom
 import ../variants/variantsConstr_native; export variantsConstr_native
 import ./variantTypeSolver; export variantTypeSolver

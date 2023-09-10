@@ -48,7 +48,6 @@ let # modules
 let # externals
   d_beyond* = dir"beyond"
   beyond_oop* = dummy mdl"oop"
-  beyond_defects* = dummy mdl"defects"
 
 let # clouds
   variantsConstr* = cloud"variantsConstr".incl(
@@ -97,7 +96,6 @@ discard variantsConstr_native
 
 discard +/%..d_beyond:
   beyond_oop
-  beyond_defects
 
 discard +/%..d_root:
   godot

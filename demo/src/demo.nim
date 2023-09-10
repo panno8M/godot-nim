@@ -4,15 +4,10 @@ import std/[
   strutils,
   strformat,
 ]
-import beyond/[defects]
 import godot
 import godot/logging
 
 import ./tester
-
-defects.unimplementedCallback =
-  proc(msg: string) =
-    iam("unimplemented", stgLibrary).warn msg
 
 proc format {.implement: LogFormat.} =
   let data = GDLogData data
