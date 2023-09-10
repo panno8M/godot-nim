@@ -1,12 +1,10 @@
 #!/usr/bin/env -S nim c -r --gc:orc
 
-import beyond/meta/styledString
 import beyond/meta/modules
 import std/[
   json,
   sequtils,
   strutils,
-  strformat,
   sets,
   options,
 ]
@@ -14,14 +12,13 @@ import components/[
   gd_enum,
   classes,
   builtin_classes,
+  nativeStructs,
 ]
 import tool/[
   moduleTree,
   namespace,
   jsonapi,
 ]
-
-
 
 proc obtain_keys(node: JsonNode): HashSet[string] =
   if node.isNil: return
@@ -57,43 +54,6 @@ proc modulate(globalEnums: seq[JsonEnum]) =
     discard body.add render item.toNim()
   moduleTree.globalEnums.contents = body
 
-proc parseFormatIdentDef(s: string): NimIdentDef =
-  let spl = s.split(" ")
-  result.`type` = spl[0]
-  result.name = spl[1]
-  while result.name[0] == '*':
-    result.`type` = "ptr " & result.`type`
-    result.name = result.name[1..^1]
-  if result.name[^1] == ']':
-    let x = result.name.split('[')
-    result.name = x[0]
-    result.`type` = &"array[{x[1][0..^2]}, {result.`type`}]"
-
-  if spl.len >= 4:
-    result.default = some spl[3].replace(".f", "")
-  result.name = (result.name >!> Snake >=> NimVar) & "*"
-  result.`type` = result.`type`
-    .multiReplace( ("_t", ""), ("real", "real_elem"), ("::", "_") )
-  for t in ["int", "uint", "float"]:
-    if result.`type` == t:
-      result.`type`= "c" & t
-
-proc parseFormat(self: JsonStructure): seq[NimIdentDef] =
-  self.format.split(';').mapIt(it.parseFormatIdentDef)
-
-proc asProperties(f: seq[NimIdentDef]): Statement =
-  result = ParagraphSt()
-  for idef in f:
-    result.children.add $idef
-
-proc toNim(self: JsonStructure): Statement =
-  +$$..BlockSt(head: &"type {self.name}* = object"):
-    self.parseFormat.asProperties
-
-proc toNim(self: JsonStructures): Statement =
-  result = ParagraphSt()
-  for struct in self:
-    result.children.add struct.toNim
 
 proc generate*(api: JsonNode) =
   let api = api.to JsonAPI
@@ -121,4 +81,4 @@ proc generate*(api: JsonNode) =
     essencial_mdl.contents.children.add essencial
     essencial_mdl.contents.children.add virtual
 
-  moduleTree.nativeStructs.contents.children.add api.native_structures.toNim
+  moduleTree.nativeStructs.contents.children.add prerender api.native_structures

@@ -68,7 +68,8 @@ discard variants
   .incl(d_variants)
 discard nativeStructs
   .incl(
-    godotInterface)
+    godotInterface_core,
+    objectBase)
 discard engineClassDefines
   .incl(
     objectBase)

@@ -2,7 +2,8 @@
 # This module was generated automatically. #
 # Edits will be lost.                      #
 # ======================================== #
-import ./godotInterface
+import ./godotInterface/objectBase
+import ./godotInterface_core
 
 type AudioFrame* = object
   left*: cfloat
@@ -44,7 +45,7 @@ type PhysicsServer2DExtensionRayResult* = object
   normal*: Vector2
   rid*: RID
   colliderId*: ObjectID
-  collider*: ptr Object
+  collider*: ObjectBase
   shape*: cint
 type PhysicsServer2DExtensionShapeRestInfo* = object
   point*: Vector2
@@ -56,7 +57,7 @@ type PhysicsServer2DExtensionShapeRestInfo* = object
 type PhysicsServer2DExtensionShapeResult* = object
   rid*: RID
   colliderId*: ObjectID
-  collider*: ptr Object
+  collider*: ObjectBase
   shape*: cint
 type PhysicsServer3DExtensionMotionCollision* = object
   position*: Vector3
@@ -81,7 +82,7 @@ type PhysicsServer3DExtensionRayResult* = object
   normal*: Vector3
   rid*: RID
   colliderId*: ObjectID
-  collider*: ptr Object
+  collider*: ObjectBase
   shape*: cint
 type PhysicsServer3DExtensionShapeRestInfo* = object
   point*: Vector3
@@ -93,7 +94,7 @@ type PhysicsServer3DExtensionShapeRestInfo* = object
 type PhysicsServer3DExtensionShapeResult* = object
   rid*: RID
   colliderId*: ObjectID
-  collider*: ptr Object
+  collider*: ObjectBase
   shape*: cint
 type ScriptLanguageExtensionProfilingInfo* = object
   signature*: StringName
