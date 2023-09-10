@@ -1,4 +1,4 @@
-import ../godotInterface
+import ../godotInterface/objectBase
 import std/macros
 
 macro importClass*(T: typedesc[SomeEngineClass]): untyped =

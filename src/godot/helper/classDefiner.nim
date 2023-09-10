@@ -6,6 +6,7 @@ import ../pure/compileTimeSwitch
 import objectConverter
 
 import ../godotInterface
+import ../godotInterface/objectBase
 
 type
   ClassRegistrationInfo* = object

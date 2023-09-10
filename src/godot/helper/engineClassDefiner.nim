@@ -2,6 +2,9 @@ import beyond/oop/typestatics; export typestatics
 
 import objectConverter; export objectConverter
 import ../godotInterface; export godotInterface
+import ../godotInterface/objectBase; export objectBase
+import ../godotInterface/godotref; export godotref
+import ../godotInterface/engineClassDefines; export engineClassDefines
 import ../typedArray; export typedArray
 import ../nativeStructs; export nativeStructs
 import ../variants; export variants

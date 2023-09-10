@@ -1,4 +1,4 @@
-import godotInterface_core
+import godotInterface
 import variants/variantsConstr_native
 
 type TypedArray*[T] = distinct Array

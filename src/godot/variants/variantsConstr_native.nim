@@ -2,8 +2,7 @@
 # This module was generated automatically. #
 # Edits will be lost.                      #
 # ======================================== #
-import ./../godotInterface
-import ./../helper/variantTypeSolver
+import ./../helper/variantConstrDefiner
 
 var String_constr: array[4, PtrConstructor]
 proc load_String_constr* =

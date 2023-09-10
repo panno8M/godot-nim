@@ -2,8 +2,8 @@
 # This module was generated automatically. #
 # Edits will be lost.                      #
 # ======================================== #
+import ./godotInterface
 import ./godotInterface/objectBase
-import ./godotInterface_core
 
 type AudioFrame* = object
   left*: cfloat

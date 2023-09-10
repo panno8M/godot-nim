@@ -16,7 +16,6 @@ let # directories
 let # modules
   godot* = mdl"godot"
   godotInterface* = dummy mdl"godotInterface"
-  godotInterface_core* = dummy mdl"godotInterface_core"
 
   variants* = mdl"variants"
   variantsDetail_native* = mdl"variantsDetail_native"
@@ -35,6 +34,7 @@ let # modules
 
   variantTypeSolver* = dummy mdl"variantTypeSolver"
   variantDefiner* = dummy mdl"variantDefiner"
+  variantConstrDefiner* = dummy mdl"variantConstrDefiner"
   engineClassDefiner* = dummy mdl"engineClassDefiner"
   classDefiner* = dummy mdl"classDefiner"
   typedArray* = dummy mdl"typedArray"
@@ -68,7 +68,7 @@ discard variants
   .incl(d_variants)
 discard nativeStructs
   .incl(
-    godotInterface_core,
+    godotInterface,
     objectBase)
 discard engineClassDefines
   .incl(
@@ -89,8 +89,7 @@ discard variantsDetail_native
   .incl(d_variantsDetail_native)
 discard variantsConstr_native
   .incl(
-    variantTypeSolver,
-    godotInterface,
+    variantConstrDefiner,
   )
 
 # Tree-Diagram
@@ -103,13 +102,12 @@ discard +/%..d_beyond:
 discard +/%..d_root:
   godot
   +/%..d_godot:
-    internal godotInterface_core
     godotInterface
-    +/%..internal d_godotInterface:
+    +/%..d_godotInterface:
       engineClassDefines
       globalEnums
       localEnums
-      internal objectBase
+      objectBase
     nativeStructs
     variants
     +/%..internal d_variants:
@@ -129,6 +127,7 @@ discard +/%..d_root:
       classDefiner
       classImporter
       internal variantDefiner
+      internal variantConstrDefiner
       internal engineClassDefiner
 
     +/%..d_pure:

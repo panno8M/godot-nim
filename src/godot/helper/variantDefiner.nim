@@ -3,7 +3,7 @@ import std/[
 ]
 import beyond/macros
 
-import ../godotInterface_core; export godotInterface_core
+import ../godotInterface; export godotInterface
 import ../godotInterface/objectBase
 type Object* = objectBase.ObjectBase
 

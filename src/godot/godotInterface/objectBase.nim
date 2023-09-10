@@ -1,6 +1,6 @@
 import beyond/oop
 import std/tables
-import ../godotInterface_core
+import ../godotInterface
 import ../pure/compileTimeSwitch
 
 type ClassUserData* = object

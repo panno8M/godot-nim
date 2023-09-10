@@ -1,4 +1,4 @@
-import ../../godotInterface_core
+import ../../godotInterface
 import ../variantsDetail_native/variantsDetail_String
 import ../variantsConstr_native
 proc `$`*(x: String): string =

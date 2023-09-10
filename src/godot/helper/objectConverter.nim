@@ -1,5 +1,7 @@
 import variantTypeSolver
-import ../godotInterface as gd
+import ../godotInterface
+import ../godotInterface/objectBase
+import ../godotInterface/godotref
 import ../variants/variantsConstr_custom
 import ../variants/variantsDetail_custom/variantsDetail_stringUtils
 import ../typedArray
@@ -76,24 +78,24 @@ template convert_generic_params_forcecast(Decoded, Encoded): untyped =
     cast[Decoded[T]](v.get(Encoded))
 
 
-convert_alternative string, gd.String, init_String, `$`
+convert_alternative string, String, init_String, `$`
 
-convert_alternative_autocast int8, gd.Int
-convert_alternative_autocast int16, gd.Int
-convert_alternative_autocast int32, gd.Int
+convert_alternative_autocast int8, Int
+convert_alternative_autocast int16, Int
+convert_alternative_autocast int32, Int
 
-convert_alternative_autocast uint8, gd.Int
-convert_alternative_autocast uint16, gd.Int
-convert_alternative_autocast uint32, gd.Int
-convert_alternative_autocast uint64, gd.Int
+convert_alternative_autocast uint8, Int
+convert_alternative_autocast uint16, Int
+convert_alternative_autocast uint32, Int
+convert_alternative_autocast uint64, Int
 
-convert_alternative_autocast float32, gd.Float
+convert_alternative_autocast float32, Float
 
-convert_generics_forcecast enum, gd.Int
+convert_generics_forcecast enum, Int
 
-convert_generic_params_forcecast TypedArray, gd.Array
+convert_generic_params_forcecast TypedArray, Array
 
-convert_generic_params_forcecast set, gd.Int
+convert_generic_params_forcecast set, Int
 
 
 # pointer
