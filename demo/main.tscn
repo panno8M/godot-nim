@@ -4,9 +4,7 @@
 
 [node name="Main" type="Node"]
 
-[node name="TesterGD" type="Tester" parent="."]
+[node name="TesterGD" type="GodotSideTester" parent="."]
 script = ExtResource("1_x2b6x")
 
-[node name="TesterNIM" type="Tester" parent="."]
-
-[node name="Node" type="Node" parent="TesterNIM"]
+[node name="TesterNIM" type="NimSideTester" parent="."]

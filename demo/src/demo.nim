@@ -7,7 +7,8 @@ import std/[
 import godot
 import godot/logging
 
-import ./tester
+import ./nimSideTester
+import ./godotSideTester
 
 proc format {.implement: LogFormat.} =
   let data = GDLogData data
@@ -24,8 +25,8 @@ defaultGroup.loggers.add newConsoleLogger(format= format)
 proc initialize(lvl: InitializationLevel): void =
   if lvl != Initialization_Scene: return
 
-  tester.test_pure()
-  register tester.Tester
+  register NimSideTester
+  register GodotSideTester
 
 proc terminate(lvl: InitializationLevel): void =
   if lvl != Initialization_Scene: return

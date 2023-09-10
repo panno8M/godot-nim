@@ -33,5 +33,7 @@ converter init_String*(str: string): String =
   interface_stringNewWithLatin1Chars(addr result, cstring str)
 converter init_StringName*(str: string): StringName =
   init_StringName init_String str
+converter init_NodePath*(str: string): NodePath =
+  init_NodePath init_String str
 
 proc variant*: Variant = interface_variantNewNil(addr result)

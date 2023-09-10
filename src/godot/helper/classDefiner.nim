@@ -48,7 +48,7 @@ template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
     GC_ref new_object
     return new_object.owner
 
-  proc make_ClassRegistrationInfo*(T: typedesc[Object]; is_virtual, is_abstract: bool): ClassRegistrationInfo =
+  proc make_ClassRegistrationInfo*(T: typedesc[Class]; is_virtual, is_abstract: bool): ClassRegistrationInfo =
     bind className
 
     ClassRegistrationInfo(
