@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `from`*(self: Ref[PhysicsTestMotionParameters2D]): Transform2D =
+proc `from`*(self: PhysicsTestMotionParameters2D): Transform2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_from"
@@ -12,14 +12,14 @@ proc `from`*(self: Ref[PhysicsTestMotionParameters2D]): Transform2D =
   var ret: encoded Transform2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Transform2D)
-proc `from=`*(self: Ref[PhysicsTestMotionParameters2D]; `from`: Transform2D) =
+proc `from=`*(self: PhysicsTestMotionParameters2D; `from`: Transform2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_from"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionParameters2D, addr name, 2761652528)
   var `?param` = [getPtr `from`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc motion*(self: Ref[PhysicsTestMotionParameters2D]): Vector2 =
+proc motion*(self: PhysicsTestMotionParameters2D): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_motion"
@@ -27,14 +27,14 @@ proc motion*(self: Ref[PhysicsTestMotionParameters2D]): Vector2 =
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Vector2)
-proc `motion=`*(self: Ref[PhysicsTestMotionParameters2D]; motion: Vector2) =
+proc `motion=`*(self: PhysicsTestMotionParameters2D; motion: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_motion"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionParameters2D, addr name, 743155724)
   var `?param` = [getPtr motion]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc margin*(self: Ref[PhysicsTestMotionParameters2D]): Float =
+proc margin*(self: PhysicsTestMotionParameters2D): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_margin"
@@ -42,14 +42,14 @@ proc margin*(self: Ref[PhysicsTestMotionParameters2D]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `margin=`*(self: Ref[PhysicsTestMotionParameters2D]; margin: Float) =
+proc `margin=`*(self: PhysicsTestMotionParameters2D; margin: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_margin"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionParameters2D, addr name, 373806689)
   var `?param` = [getPtr margin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isCollideSeparationRayEnabled*(self: Ref[PhysicsTestMotionParameters2D]): Bool =
+proc isCollideSeparationRayEnabled*(self: PhysicsTestMotionParameters2D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_collide_separation_ray_enabled"
@@ -57,14 +57,14 @@ proc isCollideSeparationRayEnabled*(self: Ref[PhysicsTestMotionParameters2D]): B
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `collideSeparationRayEnabled=`*(self: Ref[PhysicsTestMotionParameters2D]; enabled: Bool) =
+proc `collideSeparationRayEnabled=`*(self: PhysicsTestMotionParameters2D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_collide_separation_ray_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionParameters2D, addr name, 2586408642)
   var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc excludeBodies*(self: Ref[PhysicsTestMotionParameters2D]): TypedArray[RID] =
+proc excludeBodies*(self: PhysicsTestMotionParameters2D): TypedArray[RID] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_exclude_bodies"
@@ -72,14 +72,14 @@ proc excludeBodies*(self: Ref[PhysicsTestMotionParameters2D]): TypedArray[RID] =
   var ret: encoded TypedArray[RID]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(TypedArray[RID])
-proc `excludeBodies=`*(self: Ref[PhysicsTestMotionParameters2D]; excludeList: TypedArray[RID]) =
+proc `excludeBodies=`*(self: PhysicsTestMotionParameters2D; excludeList: TypedArray[RID]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_exclude_bodies"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionParameters2D, addr name, 381264803)
   var `?param` = [getPtr excludeList]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc excludeObjects*(self: Ref[PhysicsTestMotionParameters2D]): TypedArray[Int] =
+proc excludeObjects*(self: PhysicsTestMotionParameters2D): TypedArray[Int] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_exclude_objects"
@@ -87,14 +87,14 @@ proc excludeObjects*(self: Ref[PhysicsTestMotionParameters2D]): TypedArray[Int] 
   var ret: encoded TypedArray[Int]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(TypedArray[Int])
-proc `excludeObjects=`*(self: Ref[PhysicsTestMotionParameters2D]; excludeList: TypedArray[Int]) =
+proc `excludeObjects=`*(self: PhysicsTestMotionParameters2D; excludeList: TypedArray[Int]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_exclude_objects"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionParameters2D, addr name, 381264803)
   var `?param` = [getPtr excludeList]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isRecoveryAsCollisionEnabled*(self: Ref[PhysicsTestMotionParameters2D]): Bool =
+proc isRecoveryAsCollisionEnabled*(self: PhysicsTestMotionParameters2D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_recovery_as_collision_enabled"
@@ -102,7 +102,7 @@ proc isRecoveryAsCollisionEnabled*(self: Ref[PhysicsTestMotionParameters2D]): Bo
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `recoveryAsCollisionEnabled=`*(self: Ref[PhysicsTestMotionParameters2D]; enabled: Bool) =
+proc `recoveryAsCollisionEnabled=`*(self: PhysicsTestMotionParameters2D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_recovery_as_collision_enabled"

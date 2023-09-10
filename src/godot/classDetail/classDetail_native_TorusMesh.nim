@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `innerRadius=`*(self: Ref[TorusMesh]; radius: Float) =
+proc `innerRadius=`*(self: TorusMesh; radius: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_inner_radius"
     methodbind = interface_ClassDB_getMethodBind(addr className TorusMesh, addr name, 373806689)
   var `?param` = [getPtr radius]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc innerRadius*(self: Ref[TorusMesh]): Float =
+proc innerRadius*(self: TorusMesh): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_inner_radius"
@@ -19,14 +19,14 @@ proc innerRadius*(self: Ref[TorusMesh]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `outerRadius=`*(self: Ref[TorusMesh]; radius: Float) =
+proc `outerRadius=`*(self: TorusMesh; radius: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_outer_radius"
     methodbind = interface_ClassDB_getMethodBind(addr className TorusMesh, addr name, 373806689)
   var `?param` = [getPtr radius]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc outerRadius*(self: Ref[TorusMesh]): Float =
+proc outerRadius*(self: TorusMesh): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_outer_radius"
@@ -34,14 +34,14 @@ proc outerRadius*(self: Ref[TorusMesh]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `rings=`*(self: Ref[TorusMesh]; rings: int32) =
+proc `rings=`*(self: TorusMesh; rings: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_rings"
     methodbind = interface_ClassDB_getMethodBind(addr className TorusMesh, addr name, 1286410249)
   var `?param` = [getPtr rings]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc rings*(self: Ref[TorusMesh]): int32 =
+proc rings*(self: TorusMesh): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_rings"
@@ -49,14 +49,14 @@ proc rings*(self: Ref[TorusMesh]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc `ringSegments=`*(self: Ref[TorusMesh]; rings: int32) =
+proc `ringSegments=`*(self: TorusMesh; rings: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ring_segments"
     methodbind = interface_ClassDB_getMethodBind(addr className TorusMesh, addr name, 1286410249)
   var `?param` = [getPtr rings]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc ringSegments*(self: Ref[TorusMesh]): int32 =
+proc ringSegments*(self: TorusMesh): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_ring_segments"

@@ -4,33 +4,33 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `environment=`*(self: WorldEnvironment; env: Ref[Environment]) =
+proc `environment=`*(self: WorldEnvironment; env: Environment) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_environment"
     methodbind = interface_ClassDB_getMethodBind(addr className WorldEnvironment, addr name, 4143518816)
   var `?param` = [getPtr env]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc environment*(self: WorldEnvironment): Ref[Environment] =
+proc environment*(self: WorldEnvironment): Environment =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_environment"
     methodbind = interface_ClassDB_getMethodBind(addr className WorldEnvironment, addr name, 3082064660)
-  var ret: encoded Ref[Environment]
+  var ret: encoded Environment
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Environment])
-proc `cameraAttributes=`*(self: WorldEnvironment; cameraAttributes: Ref[CameraAttributes]) =
+  (addr ret).decode(Environment)
+proc `cameraAttributes=`*(self: WorldEnvironment; cameraAttributes: CameraAttributes) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_camera_attributes"
     methodbind = interface_ClassDB_getMethodBind(addr className WorldEnvironment, addr name, 2817810567)
   var `?param` = [getPtr cameraAttributes]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc cameraAttributes*(self: WorldEnvironment): Ref[CameraAttributes] =
+proc cameraAttributes*(self: WorldEnvironment): CameraAttributes =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_camera_attributes"
     methodbind = interface_ClassDB_getMethodBind(addr className WorldEnvironment, addr name, 3921283215)
-  var ret: encoded Ref[CameraAttributes]
+  var ret: encoded CameraAttributes
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[CameraAttributes])
+  (addr ret).decode(CameraAttributes)

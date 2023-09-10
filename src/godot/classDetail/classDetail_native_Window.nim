@@ -417,21 +417,21 @@ proc childControlsChanged*(self: Window) =
     let name: StringName = "child_controls_changed"
     methodbind = interface_ClassDB_getMethodBind(addr className Window, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc `theme=`*(self: Window; theme: Ref[Theme]) =
+proc `theme=`*(self: Window; theme: Theme) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_theme"
     methodbind = interface_ClassDB_getMethodBind(addr className Window, addr name, 2326690814)
   var `?param` = [getPtr theme]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc theme*(self: Window): Ref[Theme] =
+proc theme*(self: Window): Theme =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_theme"
     methodbind = interface_ClassDB_getMethodBind(addr className Window, addr name, 3846893731)
-  var ret: encoded Ref[Theme]
+  var ret: encoded Theme
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Theme])
+  (addr ret).decode(Theme)
 proc `themeTypeVariation=`*(self: Window; themeType: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -459,21 +459,21 @@ proc endBulkThemeOverride*(self: Window) =
     let name: StringName = "end_bulk_theme_override"
     methodbind = interface_ClassDB_getMethodBind(addr className Window, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc addThemeIconOverride*(self: Window; name: StringName; texture: Ref[Texture2D]) =
+proc addThemeIconOverride*(self: Window; name: StringName; texture: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_theme_icon_override"
     methodbind = interface_ClassDB_getMethodBind(addr className Window, addr name, 1373065600)
   var `?param` = [getPtr name, getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addThemeStyleboxOverride*(self: Window; name: StringName; stylebox: Ref[StyleBox]) =
+proc addThemeStyleboxOverride*(self: Window; name: StringName; stylebox: StyleBox) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_theme_stylebox_override"
     methodbind = interface_ClassDB_getMethodBind(addr className Window, addr name, 4188838905)
   var `?param` = [getPtr name, getPtr stylebox]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addThemeFontOverride*(self: Window; name: StringName; font: Ref[Font]) =
+proc addThemeFontOverride*(self: Window; name: StringName; font: Font) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_theme_font_override"
@@ -543,33 +543,33 @@ proc removeThemeConstantOverride*(self: Window; name: StringName) =
     methodbind = interface_ClassDB_getMethodBind(addr className Window, addr name, 3304788590)
   var `?param` = [getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getThemeIcon*(self: Window; name: StringName; themeType: StringName = ""): Ref[Texture2D] =
+proc getThemeIcon*(self: Window; name: StringName; themeType: StringName = ""): Texture2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_theme_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className Window, addr name, 2336455395)
   var `?param` = [getPtr name, getPtr themeType]
-  var ret: encoded Ref[Texture2D]
+  var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[Texture2D])
-proc getThemeStylebox*(self: Window; name: StringName; themeType: StringName = ""): Ref[StyleBox] =
+  (addr ret).decode(Texture2D)
+proc getThemeStylebox*(self: Window; name: StringName; themeType: StringName = ""): StyleBox =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_theme_stylebox"
     methodbind = interface_ClassDB_getMethodBind(addr className Window, addr name, 2759935355)
   var `?param` = [getPtr name, getPtr themeType]
-  var ret: encoded Ref[StyleBox]
+  var ret: encoded StyleBox
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[StyleBox])
-proc getThemeFont*(self: Window; name: StringName; themeType: StringName = ""): Ref[Font] =
+  (addr ret).decode(StyleBox)
+proc getThemeFont*(self: Window; name: StringName; themeType: StringName = ""): Font =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_theme_font"
     methodbind = interface_ClassDB_getMethodBind(addr className Window, addr name, 387378635)
   var `?param` = [getPtr name, getPtr themeType]
-  var ret: encoded Ref[Font]
+  var ret: encoded Font
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[Font])
+  (addr ret).decode(Font)
 proc getThemeFontSize*(self: Window; name: StringName; themeType: StringName = ""): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -713,14 +713,14 @@ proc getThemeDefaultBaseScale*(self: Window): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc getThemeDefaultFont*(self: Window): Ref[Font] =
+proc getThemeDefaultFont*(self: Window): Font =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_theme_default_font"
     methodbind = interface_ClassDB_getMethodBind(addr className Window, addr name, 3229501585)
-  var ret: encoded Ref[Font]
+  var ret: encoded Font
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Font])
+  (addr ret).decode(Font)
 proc getThemeDefaultFontSize*(self: Window): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

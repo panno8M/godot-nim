@@ -4,21 +4,21 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `pressed=`*(self: Ref[InputEventKey]; pressed: Bool) =
+proc `pressed=`*(self: InputEventKey; pressed: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_pressed"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventKey, addr name, 2586408642)
   var `?param` = [getPtr pressed]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc `keycode=`*(self: Ref[InputEventKey]; keycode: Key) =
+proc `keycode=`*(self: InputEventKey; keycode: Key) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_keycode"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventKey, addr name, 888074362)
   var `?param` = [getPtr keycode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc keycode*(self: Ref[InputEventKey]): Key =
+proc keycode*(self: InputEventKey): Key =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_keycode"
@@ -26,14 +26,14 @@ proc keycode*(self: Ref[InputEventKey]): Key =
   var ret: encoded Key
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Key)
-proc `physicalKeycode=`*(self: Ref[InputEventKey]; physicalKeycode: Key) =
+proc `physicalKeycode=`*(self: InputEventKey; physicalKeycode: Key) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_physical_keycode"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventKey, addr name, 888074362)
   var `?param` = [getPtr physicalKeycode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc physicalKeycode*(self: Ref[InputEventKey]): Key =
+proc physicalKeycode*(self: InputEventKey): Key =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_physical_keycode"
@@ -41,14 +41,14 @@ proc physicalKeycode*(self: Ref[InputEventKey]): Key =
   var ret: encoded Key
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Key)
-proc `keyLabel=`*(self: Ref[InputEventKey]; keyLabel: Key) =
+proc `keyLabel=`*(self: InputEventKey; keyLabel: Key) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_key_label"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventKey, addr name, 888074362)
   var `?param` = [getPtr keyLabel]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc keyLabel*(self: Ref[InputEventKey]): Key =
+proc keyLabel*(self: InputEventKey): Key =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_key_label"
@@ -56,14 +56,14 @@ proc keyLabel*(self: Ref[InputEventKey]): Key =
   var ret: encoded Key
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Key)
-proc `unicode=`*(self: Ref[InputEventKey]; unicode: Int) =
+proc `unicode=`*(self: InputEventKey; unicode: Int) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_unicode"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventKey, addr name, 1286410249)
   var `?param` = [getPtr unicode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc unicode*(self: Ref[InputEventKey]): Int =
+proc unicode*(self: InputEventKey): Int =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_unicode"
@@ -71,14 +71,14 @@ proc unicode*(self: Ref[InputEventKey]): Int =
   var ret: encoded Int
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Int)
-proc `echo=`*(self: Ref[InputEventKey]; echo: Bool) =
+proc `echo=`*(self: InputEventKey; echo: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_echo"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventKey, addr name, 2586408642)
   var `?param` = [getPtr echo]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getKeycodeWithModifiers*(self: Ref[InputEventKey]): Key =
+proc getKeycodeWithModifiers*(self: InputEventKey): Key =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_keycode_with_modifiers"
@@ -86,7 +86,7 @@ proc getKeycodeWithModifiers*(self: Ref[InputEventKey]): Key =
   var ret: encoded Key
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Key)
-proc getPhysicalKeycodeWithModifiers*(self: Ref[InputEventKey]): Key =
+proc getPhysicalKeycodeWithModifiers*(self: InputEventKey): Key =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_physical_keycode_with_modifiers"
@@ -94,7 +94,7 @@ proc getPhysicalKeycodeWithModifiers*(self: Ref[InputEventKey]): Key =
   var ret: encoded Key
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Key)
-proc getKeyLabelWithModifiers*(self: Ref[InputEventKey]): Key =
+proc getKeyLabelWithModifiers*(self: InputEventKey): Key =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_key_label_with_modifiers"
@@ -102,7 +102,7 @@ proc getKeyLabelWithModifiers*(self: Ref[InputEventKey]): Key =
   var ret: encoded Key
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Key)
-proc asTextKeycode*(self: Ref[InputEventKey]): String =
+proc asTextKeycode*(self: InputEventKey): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "as_text_keycode"
@@ -110,7 +110,7 @@ proc asTextKeycode*(self: Ref[InputEventKey]): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(String)
-proc asTextPhysicalKeycode*(self: Ref[InputEventKey]): String =
+proc asTextPhysicalKeycode*(self: InputEventKey): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "as_text_physical_keycode"
@@ -118,7 +118,7 @@ proc asTextPhysicalKeycode*(self: Ref[InputEventKey]): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(String)
-proc asTextKeyLabel*(self: Ref[InputEventKey]): String =
+proc asTextKeyLabel*(self: InputEventKey): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "as_text_key_label"

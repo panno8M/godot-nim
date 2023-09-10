@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc createClient*(self: Ref[WebSocketMultiplayerPeer]; url: String; tlsClientOptions: Ref[TLSOptions] = default Ref[TLSOptions]): Error =
+proc createClient*(self: WebSocketMultiplayerPeer; url: String; tlsClientOptions: TLSOptions = default TLSOptions): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_client"
@@ -13,7 +13,7 @@ proc createClient*(self: Ref[WebSocketMultiplayerPeer]; url: String; tlsClientOp
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc createServer*(self: Ref[WebSocketMultiplayerPeer]; port: int32; bindAddress: String = "*"; tlsServerOptions: Ref[TLSOptions] = default Ref[TLSOptions]): Error =
+proc createServer*(self: WebSocketMultiplayerPeer; port: int32; bindAddress: String = "*"; tlsServerOptions: TLSOptions = default TLSOptions): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_server"
@@ -22,16 +22,16 @@ proc createServer*(self: Ref[WebSocketMultiplayerPeer]; port: int32; bindAddress
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc getPeer*(self: Ref[WebSocketMultiplayerPeer]; peerId: int32): Ref[WebSocketPeer] =
+proc getPeer*(self: WebSocketMultiplayerPeer; peerId: int32): WebSocketPeer =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_peer"
     methodbind = interface_ClassDB_getMethodBind(addr className WebSocketMultiplayerPeer, addr name, 1381378851)
   var `?param` = [getPtr peerId]
-  var ret: encoded Ref[WebSocketPeer]
+  var ret: encoded WebSocketPeer
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[WebSocketPeer])
-proc getPeerAddress*(self: Ref[WebSocketMultiplayerPeer]; id: int32): String =
+  (addr ret).decode(WebSocketPeer)
+proc getPeerAddress*(self: WebSocketMultiplayerPeer; id: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_peer_address"
@@ -40,7 +40,7 @@ proc getPeerAddress*(self: Ref[WebSocketMultiplayerPeer]; id: int32): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc getPeerPort*(self: Ref[WebSocketMultiplayerPeer]; id: int32): int32 =
+proc getPeerPort*(self: WebSocketMultiplayerPeer; id: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_peer_port"
@@ -49,7 +49,7 @@ proc getPeerPort*(self: Ref[WebSocketMultiplayerPeer]; id: int32): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc supportedProtocols*(self: Ref[WebSocketMultiplayerPeer]): PackedStringArray =
+proc supportedProtocols*(self: WebSocketMultiplayerPeer): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_supported_protocols"
@@ -57,14 +57,14 @@ proc supportedProtocols*(self: Ref[WebSocketMultiplayerPeer]): PackedStringArray
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(PackedStringArray)
-proc `supportedProtocols=`*(self: Ref[WebSocketMultiplayerPeer]; protocols: PackedStringArray) =
+proc `supportedProtocols=`*(self: WebSocketMultiplayerPeer; protocols: PackedStringArray) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_supported_protocols"
     methodbind = interface_ClassDB_getMethodBind(addr className WebSocketMultiplayerPeer, addr name, 4015028928)
   var `?param` = [getPtr protocols]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc handshakeHeaders*(self: Ref[WebSocketMultiplayerPeer]): PackedStringArray =
+proc handshakeHeaders*(self: WebSocketMultiplayerPeer): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_handshake_headers"
@@ -72,14 +72,14 @@ proc handshakeHeaders*(self: Ref[WebSocketMultiplayerPeer]): PackedStringArray =
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(PackedStringArray)
-proc `handshakeHeaders=`*(self: Ref[WebSocketMultiplayerPeer]; protocols: PackedStringArray) =
+proc `handshakeHeaders=`*(self: WebSocketMultiplayerPeer; protocols: PackedStringArray) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_handshake_headers"
     methodbind = interface_ClassDB_getMethodBind(addr className WebSocketMultiplayerPeer, addr name, 4015028928)
   var `?param` = [getPtr protocols]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc inboundBufferSize*(self: Ref[WebSocketMultiplayerPeer]): int32 =
+proc inboundBufferSize*(self: WebSocketMultiplayerPeer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_inbound_buffer_size"
@@ -87,14 +87,14 @@ proc inboundBufferSize*(self: Ref[WebSocketMultiplayerPeer]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc `inboundBufferSize=`*(self: Ref[WebSocketMultiplayerPeer]; bufferSize: int32) =
+proc `inboundBufferSize=`*(self: WebSocketMultiplayerPeer; bufferSize: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_inbound_buffer_size"
     methodbind = interface_ClassDB_getMethodBind(addr className WebSocketMultiplayerPeer, addr name, 1286410249)
   var `?param` = [getPtr bufferSize]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc outboundBufferSize*(self: Ref[WebSocketMultiplayerPeer]): int32 =
+proc outboundBufferSize*(self: WebSocketMultiplayerPeer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_outbound_buffer_size"
@@ -102,14 +102,14 @@ proc outboundBufferSize*(self: Ref[WebSocketMultiplayerPeer]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc `outboundBufferSize=`*(self: Ref[WebSocketMultiplayerPeer]; bufferSize: int32) =
+proc `outboundBufferSize=`*(self: WebSocketMultiplayerPeer; bufferSize: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_outbound_buffer_size"
     methodbind = interface_ClassDB_getMethodBind(addr className WebSocketMultiplayerPeer, addr name, 1286410249)
   var `?param` = [getPtr bufferSize]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc handshakeTimeout*(self: Ref[WebSocketMultiplayerPeer]): Float =
+proc handshakeTimeout*(self: WebSocketMultiplayerPeer): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_handshake_timeout"
@@ -117,21 +117,21 @@ proc handshakeTimeout*(self: Ref[WebSocketMultiplayerPeer]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `handshakeTimeout=`*(self: Ref[WebSocketMultiplayerPeer]; timeout: Float) =
+proc `handshakeTimeout=`*(self: WebSocketMultiplayerPeer; timeout: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_handshake_timeout"
     methodbind = interface_ClassDB_getMethodBind(addr className WebSocketMultiplayerPeer, addr name, 373806689)
   var `?param` = [getPtr timeout]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc `maxQueuedPackets=`*(self: Ref[WebSocketMultiplayerPeer]; maxQueuedPackets: int32) =
+proc `maxQueuedPackets=`*(self: WebSocketMultiplayerPeer; maxQueuedPackets: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_max_queued_packets"
     methodbind = interface_ClassDB_getMethodBind(addr className WebSocketMultiplayerPeer, addr name, 1286410249)
   var `?param` = [getPtr maxQueuedPackets]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc maxQueuedPackets*(self: Ref[WebSocketMultiplayerPeer]): int32 =
+proc maxQueuedPackets*(self: WebSocketMultiplayerPeer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_max_queued_packets"

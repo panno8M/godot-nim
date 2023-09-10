@@ -4,15 +4,15 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc open*(path: String): Ref[DirAccess] {.staticOf: DirAccess.} =
+proc open*(path: String): DirAccess {.staticOf: DirAccess.} =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "open"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 1923528528)
   var `?param` = [getPtr path]
-  var ret: encoded Ref[DirAccess]
+  var ret: encoded DirAccess
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[DirAccess])
+  (addr ret).decode(DirAccess)
 proc getOpenError*: Error {.staticOf: DirAccess.} =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -21,7 +21,7 @@ proc getOpenError*: Error {.staticOf: DirAccess.} =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, nil, nil, addr ret)
   (addr ret).decode(Error)
-proc listDirBegin*(self: Ref[DirAccess]): Error =
+proc listDirBegin*(self: DirAccess): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "list_dir_begin"
@@ -29,7 +29,7 @@ proc listDirBegin*(self: Ref[DirAccess]): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Error)
-proc getNext*(self: Ref[DirAccess]): String =
+proc getNext*(self: DirAccess): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_next"
@@ -37,7 +37,7 @@ proc getNext*(self: Ref[DirAccess]): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(String)
-proc currentIsDir*(self: Ref[DirAccess]): Bool =
+proc currentIsDir*(self: DirAccess): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "current_is_dir"
@@ -45,13 +45,13 @@ proc currentIsDir*(self: Ref[DirAccess]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc listDirEnd*(self: Ref[DirAccess]) =
+proc listDirEnd*(self: DirAccess) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "list_dir_end"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc getFiles*(self: Ref[DirAccess]): PackedStringArray =
+proc getFiles*(self: DirAccess): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_files"
@@ -68,7 +68,7 @@ proc getFilesAt*(path: String): PackedStringArray {.staticOf: DirAccess.} =
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(PackedStringArray)
-proc getDirectories*(self: Ref[DirAccess]): PackedStringArray =
+proc getDirectories*(self: DirAccess): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_directories"
@@ -102,7 +102,7 @@ proc getDriveName*(idx: int32): String {.staticOf: DirAccess.} =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc getCurrentDrive*(self: Ref[DirAccess]): int32 =
+proc getCurrentDrive*(self: DirAccess): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_current_drive"
@@ -110,7 +110,7 @@ proc getCurrentDrive*(self: Ref[DirAccess]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc changeDir*(self: Ref[DirAccess]; toDir: String): Error =
+proc changeDir*(self: DirAccess; toDir: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "change_dir"
@@ -119,7 +119,7 @@ proc changeDir*(self: Ref[DirAccess]; toDir: String): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc getCurrentDir*(self: Ref[DirAccess]; includeDrive: Bool = true): String =
+proc getCurrentDir*(self: DirAccess; includeDrive: Bool = true): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_current_dir"
@@ -128,7 +128,7 @@ proc getCurrentDir*(self: Ref[DirAccess]; includeDrive: Bool = true): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc makeDir*(self: Ref[DirAccess]; path: String): Error =
+proc makeDir*(self: DirAccess; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "make_dir"
@@ -146,7 +146,7 @@ proc makeDirAbsolute*(path: String): Error {.staticOf: DirAccess.} =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc makeDirRecursive*(self: Ref[DirAccess]; path: String): Error =
+proc makeDirRecursive*(self: DirAccess; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "make_dir_recursive"
@@ -164,7 +164,7 @@ proc makeDirRecursiveAbsolute*(path: String): Error {.staticOf: DirAccess.} =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc fileExists*(self: Ref[DirAccess]; path: String): Bool =
+proc fileExists*(self: DirAccess; path: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "file_exists"
@@ -173,7 +173,7 @@ proc fileExists*(self: Ref[DirAccess]; path: String): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc dirExists*(self: Ref[DirAccess]; path: String): Bool =
+proc dirExists*(self: DirAccess; path: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "dir_exists"
@@ -191,7 +191,7 @@ proc dirExistsAbsolute*(path: String): Bool {.staticOf: DirAccess.} =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc getSpaceLeft*(self: Ref[DirAccess]): uint64 =
+proc getSpaceLeft*(self: DirAccess): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_space_left"
@@ -199,7 +199,7 @@ proc getSpaceLeft*(self: Ref[DirAccess]): uint64 =
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(uint64)
-proc copy*(self: Ref[DirAccess]; `from`: String; to: String; chmodFlags: int32 = -1): Error =
+proc copy*(self: DirAccess; `from`: String; to: String; chmodFlags: int32 = -1): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "copy"
@@ -217,7 +217,7 @@ proc copyAbsolute*(`from`: String; to: String; chmodFlags: int32 = -1): Error {.
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc rename*(self: Ref[DirAccess]; `from`: String; to: String): Error =
+proc rename*(self: DirAccess; `from`: String; to: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "rename"
@@ -235,7 +235,7 @@ proc renameAbsolute*(`from`: String; to: String): Error {.staticOf: DirAccess.} 
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc remove*(self: Ref[DirAccess]; path: String): Error =
+proc remove*(self: DirAccess; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove"
@@ -253,14 +253,14 @@ proc removeAbsolute*(path: String): Error {.staticOf: DirAccess.} =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc `includeNavigational=`*(self: Ref[DirAccess]; enable: Bool) =
+proc `includeNavigational=`*(self: DirAccess; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_include_navigational"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 2586408642)
   var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc includeNavigational*(self: Ref[DirAccess]): Bool =
+proc includeNavigational*(self: DirAccess): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_include_navigational"
@@ -268,14 +268,14 @@ proc includeNavigational*(self: Ref[DirAccess]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `includeHidden=`*(self: Ref[DirAccess]; enable: Bool) =
+proc `includeHidden=`*(self: DirAccess; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_include_hidden"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 2586408642)
   var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc includeHidden*(self: Ref[DirAccess]): Bool =
+proc includeHidden*(self: DirAccess): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_include_hidden"

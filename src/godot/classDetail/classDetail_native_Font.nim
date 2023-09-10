@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc setFallbacks*(self: Ref[Font]; fallbacks: TypedArray[Font]) =
+proc setFallbacks*(self: Font; fallbacks: TypedArray[Font]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fallbacks"
     methodbind = interface_ClassDB_getMethodBind(addr className Font, addr name, 381264803)
   var `?param` = [getPtr fallbacks]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getFallbacks*(self: Ref[Font]): TypedArray[Font] =
+proc getFallbacks*(self: Font): TypedArray[Font] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_fallbacks"
@@ -19,7 +19,7 @@ proc getFallbacks*(self: Ref[Font]): TypedArray[Font] =
   var ret: encoded TypedArray[Font]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(TypedArray[Font])
-proc findVariation*(self: Ref[Font]; variationCoordinates: Dictionary; faceIndex: int32 = 0; strength: Float = 0.0; transform: Transform2D = init_Transform2D()): RID =
+proc findVariation*(self: Font; variationCoordinates: Dictionary; faceIndex: int32 = 0; strength: Float = 0.0; transform: Transform2D = init_Transform2D()): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "find_variation"
@@ -28,7 +28,7 @@ proc findVariation*(self: Ref[Font]; variationCoordinates: Dictionary; faceIndex
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(RID)
-proc getRids*(self: Ref[Font]): TypedArray[RID] =
+proc getRids*(self: Font): TypedArray[RID] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_rids"
@@ -36,7 +36,7 @@ proc getRids*(self: Ref[Font]): TypedArray[RID] =
   var ret: encoded TypedArray[RID]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(TypedArray[RID])
-proc getHeight*(self: Ref[Font]; fontSize: int32 = 16): Float =
+proc getHeight*(self: Font; fontSize: int32 = 16): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_height"
@@ -45,7 +45,7 @@ proc getHeight*(self: Ref[Font]; fontSize: int32 = 16): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
-proc getAscent*(self: Ref[Font]; fontSize: int32 = 16): Float =
+proc getAscent*(self: Font; fontSize: int32 = 16): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_ascent"
@@ -54,7 +54,7 @@ proc getAscent*(self: Ref[Font]; fontSize: int32 = 16): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
-proc getDescent*(self: Ref[Font]; fontSize: int32 = 16): Float =
+proc getDescent*(self: Font; fontSize: int32 = 16): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_descent"
@@ -63,7 +63,7 @@ proc getDescent*(self: Ref[Font]; fontSize: int32 = 16): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
-proc getUnderlinePosition*(self: Ref[Font]; fontSize: int32 = 16): Float =
+proc getUnderlinePosition*(self: Font; fontSize: int32 = 16): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_underline_position"
@@ -72,7 +72,7 @@ proc getUnderlinePosition*(self: Ref[Font]; fontSize: int32 = 16): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
-proc getUnderlineThickness*(self: Ref[Font]; fontSize: int32 = 16): Float =
+proc getUnderlineThickness*(self: Font; fontSize: int32 = 16): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_underline_thickness"
@@ -81,7 +81,7 @@ proc getUnderlineThickness*(self: Ref[Font]; fontSize: int32 = 16): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
-proc getFontName*(self: Ref[Font]): String =
+proc getFontName*(self: Font): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_font_name"
@@ -89,7 +89,7 @@ proc getFontName*(self: Ref[Font]): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(String)
-proc getFontStyleName*(self: Ref[Font]): String =
+proc getFontStyleName*(self: Font): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_font_style_name"
@@ -97,7 +97,7 @@ proc getFontStyleName*(self: Ref[Font]): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(String)
-proc getOtNameStrings*(self: Ref[Font]): Dictionary =
+proc getOtNameStrings*(self: Font): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_ot_name_strings"
@@ -105,7 +105,7 @@ proc getOtNameStrings*(self: Ref[Font]): Dictionary =
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Dictionary)
-proc getFontStyle*(self: Ref[Font]): set[TextServer_FontStyle] =
+proc getFontStyle*(self: Font): set[TextServer_FontStyle] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_font_style"
@@ -113,7 +113,7 @@ proc getFontStyle*(self: Ref[Font]): set[TextServer_FontStyle] =
   var ret: encoded set[TextServer_FontStyle]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(set[TextServer_FontStyle])
-proc getFontWeight*(self: Ref[Font]): int32 =
+proc getFontWeight*(self: Font): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_font_weight"
@@ -121,7 +121,7 @@ proc getFontWeight*(self: Ref[Font]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getFontStretch*(self: Ref[Font]): int32 =
+proc getFontStretch*(self: Font): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_font_stretch"
@@ -129,7 +129,7 @@ proc getFontStretch*(self: Ref[Font]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getSpacing*(self: Ref[Font]; spacing: TextServer_SpacingType): int32 =
+proc getSpacing*(self: Font; spacing: TextServer_SpacingType): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_spacing"
@@ -138,7 +138,7 @@ proc getSpacing*(self: Ref[Font]; spacing: TextServer_SpacingType): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc getOpentypeFeatures*(self: Ref[Font]): Dictionary =
+proc getOpentypeFeatures*(self: Font): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_opentype_features"
@@ -146,14 +146,14 @@ proc getOpentypeFeatures*(self: Ref[Font]): Dictionary =
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Dictionary)
-proc setCacheCapacity*(self: Ref[Font]; singleLine: int32; multiLine: int32) =
+proc setCacheCapacity*(self: Font; singleLine: int32; multiLine: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_cache_capacity"
     methodbind = interface_ClassDB_getMethodBind(addr className Font, addr name, 3937882851)
   var `?param` = [getPtr singleLine, getPtr multiLine]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getStringSize*(self: Ref[Font]; text: String; alignment: HorizontalAlignment = horizontalAlignmentLeft; width: Float = -1; fontSize: int32 = 16; justificationFlags: set[TextServer_JustificationFlag] = {}; direction: TextServer_Direction = directionAuto; orientation: TextServer_Orientation = orientationHorizontal): Vector2 =
+proc getStringSize*(self: Font; text: String; alignment: HorizontalAlignment = horizontalAlignmentLeft; width: Float = -1; fontSize: int32 = 16; justificationFlags: set[TextServer_JustificationFlag] = {}; direction: TextServer_Direction = directionAuto; orientation: TextServer_Orientation = orientationHorizontal): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_string_size"
@@ -162,7 +162,7 @@ proc getStringSize*(self: Ref[Font]; text: String; alignment: HorizontalAlignmen
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2)
-proc getMultilineStringSize*(self: Ref[Font]; text: String; alignment: HorizontalAlignment = horizontalAlignmentLeft; width: Float = -1; fontSize: int32 = 16; maxLines: int32 = -1; brkFlags: set[TextServer_LineBreakFlag] = {}; justificationFlags: set[TextServer_JustificationFlag] = {}; direction: TextServer_Direction = directionAuto; orientation: TextServer_Orientation = orientationHorizontal): Vector2 =
+proc getMultilineStringSize*(self: Font; text: String; alignment: HorizontalAlignment = horizontalAlignmentLeft; width: Float = -1; fontSize: int32 = 16; maxLines: int32 = -1; brkFlags: set[TextServer_LineBreakFlag] = {}; justificationFlags: set[TextServer_JustificationFlag] = {}; direction: TextServer_Direction = directionAuto; orientation: TextServer_Orientation = orientationHorizontal): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_multiline_string_size"
@@ -171,35 +171,35 @@ proc getMultilineStringSize*(self: Ref[Font]; text: String; alignment: Horizonta
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2)
-proc drawString*(self: Ref[Font]; canvasItem: RID; pos: Vector2; text: String; alignment: HorizontalAlignment = horizontalAlignmentLeft; width: Float = -1; fontSize: int32 = 16; modulate: Color = init_Color(1, 1, 1, 1); justificationFlags: set[TextServer_JustificationFlag] = {}; direction: TextServer_Direction = directionAuto; orientation: TextServer_Orientation = orientationHorizontal) =
+proc drawString*(self: Font; canvasItem: RID; pos: Vector2; text: String; alignment: HorizontalAlignment = horizontalAlignmentLeft; width: Float = -1; fontSize: int32 = 16; modulate: Color = init_Color(1, 1, 1, 1); justificationFlags: set[TextServer_JustificationFlag] = {}; direction: TextServer_Direction = directionAuto; orientation: TextServer_Orientation = orientationHorizontal) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "draw_string"
     methodbind = interface_ClassDB_getMethodBind(addr className Font, addr name, 2565402639)
   var `?param` = [getPtr canvasItem, getPtr pos, getPtr text, getPtr alignment, getPtr width, getPtr fontSize, getPtr modulate, getPtr justificationFlags, getPtr direction, getPtr orientation]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc drawMultilineString*(self: Ref[Font]; canvasItem: RID; pos: Vector2; text: String; alignment: HorizontalAlignment = horizontalAlignmentLeft; width: Float = -1; fontSize: int32 = 16; maxLines: int32 = -1; modulate: Color = init_Color(1, 1, 1, 1); brkFlags: set[TextServer_LineBreakFlag] = {}; justificationFlags: set[TextServer_JustificationFlag] = {}; direction: TextServer_Direction = directionAuto; orientation: TextServer_Orientation = orientationHorizontal) =
+proc drawMultilineString*(self: Font; canvasItem: RID; pos: Vector2; text: String; alignment: HorizontalAlignment = horizontalAlignmentLeft; width: Float = -1; fontSize: int32 = 16; maxLines: int32 = -1; modulate: Color = init_Color(1, 1, 1, 1); brkFlags: set[TextServer_LineBreakFlag] = {}; justificationFlags: set[TextServer_JustificationFlag] = {}; direction: TextServer_Direction = directionAuto; orientation: TextServer_Orientation = orientationHorizontal) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "draw_multiline_string"
     methodbind = interface_ClassDB_getMethodBind(addr className Font, addr name, 348869189)
   var `?param` = [getPtr canvasItem, getPtr pos, getPtr text, getPtr alignment, getPtr width, getPtr fontSize, getPtr maxLines, getPtr modulate, getPtr brkFlags, getPtr justificationFlags, getPtr direction, getPtr orientation]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc drawStringOutline*(self: Ref[Font]; canvasItem: RID; pos: Vector2; text: String; alignment: HorizontalAlignment = horizontalAlignmentLeft; width: Float = -1; fontSize: int32 = 16; size: int32 = 1; modulate: Color = init_Color(1, 1, 1, 1); justificationFlags: set[TextServer_JustificationFlag] = {}; direction: TextServer_Direction = directionAuto; orientation: TextServer_Orientation = orientationHorizontal) =
+proc drawStringOutline*(self: Font; canvasItem: RID; pos: Vector2; text: String; alignment: HorizontalAlignment = horizontalAlignmentLeft; width: Float = -1; fontSize: int32 = 16; size: int32 = 1; modulate: Color = init_Color(1, 1, 1, 1); justificationFlags: set[TextServer_JustificationFlag] = {}; direction: TextServer_Direction = directionAuto; orientation: TextServer_Orientation = orientationHorizontal) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "draw_string_outline"
     methodbind = interface_ClassDB_getMethodBind(addr className Font, addr name, 657875837)
   var `?param` = [getPtr canvasItem, getPtr pos, getPtr text, getPtr alignment, getPtr width, getPtr fontSize, getPtr size, getPtr modulate, getPtr justificationFlags, getPtr direction, getPtr orientation]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc drawMultilineStringOutline*(self: Ref[Font]; canvasItem: RID; pos: Vector2; text: String; alignment: HorizontalAlignment = horizontalAlignmentLeft; width: Float = -1; fontSize: int32 = 16; maxLines: int32 = -1; size: int32 = 1; modulate: Color = init_Color(1, 1, 1, 1); brkFlags: set[TextServer_LineBreakFlag] = {}; justificationFlags: set[TextServer_JustificationFlag] = {}; direction: TextServer_Direction = directionAuto; orientation: TextServer_Orientation = orientationHorizontal) =
+proc drawMultilineStringOutline*(self: Font; canvasItem: RID; pos: Vector2; text: String; alignment: HorizontalAlignment = horizontalAlignmentLeft; width: Float = -1; fontSize: int32 = 16; maxLines: int32 = -1; size: int32 = 1; modulate: Color = init_Color(1, 1, 1, 1); brkFlags: set[TextServer_LineBreakFlag] = {}; justificationFlags: set[TextServer_JustificationFlag] = {}; direction: TextServer_Direction = directionAuto; orientation: TextServer_Orientation = orientationHorizontal) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "draw_multiline_string_outline"
     methodbind = interface_ClassDB_getMethodBind(addr className Font, addr name, 1649790182)
   var `?param` = [getPtr canvasItem, getPtr pos, getPtr text, getPtr alignment, getPtr width, getPtr fontSize, getPtr maxLines, getPtr size, getPtr modulate, getPtr brkFlags, getPtr justificationFlags, getPtr direction, getPtr orientation]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getCharSize*(self: Ref[Font]; char: Int; fontSize: int32): Vector2 =
+proc getCharSize*(self: Font; char: Int; fontSize: int32): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_char_size"
@@ -208,7 +208,7 @@ proc getCharSize*(self: Ref[Font]; char: Int; fontSize: int32): Vector2 =
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2)
-proc drawChar*(self: Ref[Font]; canvasItem: RID; pos: Vector2; char: Int; fontSize: int32; modulate: Color = init_Color(1, 1, 1, 1)): Float =
+proc drawChar*(self: Font; canvasItem: RID; pos: Vector2; char: Int; fontSize: int32; modulate: Color = init_Color(1, 1, 1, 1)): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "draw_char"
@@ -217,7 +217,7 @@ proc drawChar*(self: Ref[Font]; canvasItem: RID; pos: Vector2; char: Int; fontSi
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
-proc drawCharOutline*(self: Ref[Font]; canvasItem: RID; pos: Vector2; char: Int; fontSize: int32; size: int32 = -1; modulate: Color = init_Color(1, 1, 1, 1)): Float =
+proc drawCharOutline*(self: Font; canvasItem: RID; pos: Vector2; char: Int; fontSize: int32; size: int32 = -1; modulate: Color = init_Color(1, 1, 1, 1)): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "draw_char_outline"
@@ -226,7 +226,7 @@ proc drawCharOutline*(self: Ref[Font]; canvasItem: RID; pos: Vector2; char: Int;
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
-proc hasChar*(self: Ref[Font]; char: Int): Bool =
+proc hasChar*(self: Font; char: Int): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "has_char"
@@ -235,7 +235,7 @@ proc hasChar*(self: Ref[Font]; char: Int): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc getSupportedChars*(self: Ref[Font]): String =
+proc getSupportedChars*(self: Font): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_supported_chars"
@@ -243,7 +243,7 @@ proc getSupportedChars*(self: Ref[Font]): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(String)
-proc isLanguageSupported*(self: Ref[Font]; language: String): Bool =
+proc isLanguageSupported*(self: Font; language: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_language_supported"
@@ -252,7 +252,7 @@ proc isLanguageSupported*(self: Ref[Font]; language: String): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc isScriptSupported*(self: Ref[Font]; script: String): Bool =
+proc isScriptSupported*(self: Font; script: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_script_supported"
@@ -261,7 +261,7 @@ proc isScriptSupported*(self: Ref[Font]; script: String): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc getSupportedFeatureList*(self: Ref[Font]): Dictionary =
+proc getSupportedFeatureList*(self: Font): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_supported_feature_list"
@@ -269,7 +269,7 @@ proc getSupportedFeatureList*(self: Ref[Font]): Dictionary =
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Dictionary)
-proc getSupportedVariationList*(self: Ref[Font]): Dictionary =
+proc getSupportedVariationList*(self: Font): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_supported_variation_list"
@@ -277,7 +277,7 @@ proc getSupportedVariationList*(self: Ref[Font]): Dictionary =
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Dictionary)
-proc getFaceCount*(self: Ref[Font]): int64 =
+proc getFaceCount*(self: Font): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_face_count"

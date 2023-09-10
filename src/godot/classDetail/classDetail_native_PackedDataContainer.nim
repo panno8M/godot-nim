@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc pack*(self: Ref[PackedDataContainer]; value: ptr Variant): Error =
+proc pack*(self: PackedDataContainer; value: ptr Variant): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "pack"
@@ -13,7 +13,7 @@ proc pack*(self: Ref[PackedDataContainer]; value: ptr Variant): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc size*(self: Ref[PackedDataContainer]): int32 =
+proc size*(self: PackedDataContainer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "size"

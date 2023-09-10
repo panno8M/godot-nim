@@ -4,36 +4,36 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `streamPeer=`*(self: Ref[PacketPeerStream]; peer: Ref[StreamPeer]) =
+proc `streamPeer=`*(self: PacketPeerStream; peer: StreamPeer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_stream_peer"
     methodbind = interface_ClassDB_getMethodBind(addr className PacketPeerStream, addr name, 3281897016)
   var `?param` = [getPtr peer]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc streamPeer*(self: Ref[PacketPeerStream]): Ref[StreamPeer] =
+proc streamPeer*(self: PacketPeerStream): StreamPeer =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_stream_peer"
     methodbind = interface_ClassDB_getMethodBind(addr className PacketPeerStream, addr name, 2741655269)
-  var ret: encoded Ref[StreamPeer]
+  var ret: encoded StreamPeer
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[StreamPeer])
-proc `inputBufferMaxSize=`*(self: Ref[PacketPeerStream]; maxSizeBytes: int32) =
+  (addr ret).decode(StreamPeer)
+proc `inputBufferMaxSize=`*(self: PacketPeerStream; maxSizeBytes: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_input_buffer_max_size"
     methodbind = interface_ClassDB_getMethodBind(addr className PacketPeerStream, addr name, 1286410249)
   var `?param` = [getPtr maxSizeBytes]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc `outputBufferMaxSize=`*(self: Ref[PacketPeerStream]; maxSizeBytes: int32) =
+proc `outputBufferMaxSize=`*(self: PacketPeerStream; maxSizeBytes: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_output_buffer_max_size"
     methodbind = interface_ClassDB_getMethodBind(addr className PacketPeerStream, addr name, 1286410249)
   var `?param` = [getPtr maxSizeBytes]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc inputBufferMaxSize*(self: Ref[PacketPeerStream]): int32 =
+proc inputBufferMaxSize*(self: PacketPeerStream): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_input_buffer_max_size"
@@ -41,7 +41,7 @@ proc inputBufferMaxSize*(self: Ref[PacketPeerStream]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc outputBufferMaxSize*(self: Ref[PacketPeerStream]): int32 =
+proc outputBufferMaxSize*(self: PacketPeerStream): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_output_buffer_max_size"

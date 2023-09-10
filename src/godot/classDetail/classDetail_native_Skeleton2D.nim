@@ -29,21 +29,21 @@ proc getSkeleton*(self: Skeleton2D): RID =
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(RID)
-proc setModificationStack*(self: Skeleton2D; modificationStack: Ref[SkeletonModificationStack2D]) =
+proc setModificationStack*(self: Skeleton2D; modificationStack: SkeletonModificationStack2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_modification_stack"
     methodbind = interface_ClassDB_getMethodBind(addr className Skeleton2D, addr name, 3907307132)
   var `?param` = [getPtr modificationStack]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getModificationStack*(self: Skeleton2D): Ref[SkeletonModificationStack2D] =
+proc getModificationStack*(self: Skeleton2D): SkeletonModificationStack2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_modification_stack"
     methodbind = interface_ClassDB_getMethodBind(addr className Skeleton2D, addr name, 2107508396)
-  var ret: encoded Ref[SkeletonModificationStack2D]
+  var ret: encoded SkeletonModificationStack2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[SkeletonModificationStack2D])
+  (addr ret).decode(SkeletonModificationStack2D)
 proc executeModifications*(self: Skeleton2D; delta: Float; executionMode: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

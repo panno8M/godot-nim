@@ -123,29 +123,29 @@ proc translatePlural*(self: TranslationServer; message: StringName; pluralMessag
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(StringName)
-proc addTranslation*(self: TranslationServer; translation: Ref[Translation]) =
+proc addTranslation*(self: TranslationServer; translation: Translation) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_translation"
     methodbind = interface_ClassDB_getMethodBind(addr className TranslationServer, addr name, 1466479800)
   var `?param` = [getPtr translation]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removeTranslation*(self: TranslationServer; translation: Ref[Translation]) =
+proc removeTranslation*(self: TranslationServer; translation: Translation) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_translation"
     methodbind = interface_ClassDB_getMethodBind(addr className TranslationServer, addr name, 1466479800)
   var `?param` = [getPtr translation]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getTranslationObject*(self: TranslationServer; locale: String): Ref[Translation] =
+proc getTranslationObject*(self: TranslationServer; locale: String): Translation =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_translation_object"
     methodbind = interface_ClassDB_getMethodBind(addr className TranslationServer, addr name, 2065240175)
   var `?param` = [getPtr locale]
-  var ret: encoded Ref[Translation]
+  var ret: encoded Translation
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[Translation])
+  (addr ret).decode(Translation)
 proc clear*(self: TranslationServer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

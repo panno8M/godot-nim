@@ -11,7 +11,7 @@ proc setDefaultExtension*(extensionClass: StringName) {.staticOf: WebRTCPeerConn
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCPeerConnection, addr name, 3304788590)
   var `?param` = [getPtr extensionClass]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], nil)
-proc initialize*(self: Ref[WebRTCPeerConnection]; configuration: Dictionary = init_Dictionary()): Error =
+proc initialize*(self: WebRTCPeerConnection; configuration: Dictionary = init_Dictionary()): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "initialize"
@@ -20,16 +20,16 @@ proc initialize*(self: Ref[WebRTCPeerConnection]; configuration: Dictionary = in
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc createDataChannel*(self: Ref[WebRTCPeerConnection]; label: String; options: Dictionary = init_Dictionary()): Ref[WebRTCDataChannel] =
+proc createDataChannel*(self: WebRTCPeerConnection; label: String; options: Dictionary = init_Dictionary()): WebRTCDataChannel =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_data_channel"
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCPeerConnection, addr name, 3997447457)
   var `?param` = [getPtr label, getPtr options]
-  var ret: encoded Ref[WebRTCDataChannel]
+  var ret: encoded WebRTCDataChannel
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[WebRTCDataChannel])
-proc createOffer*(self: Ref[WebRTCPeerConnection]): Error =
+  (addr ret).decode(WebRTCDataChannel)
+proc createOffer*(self: WebRTCPeerConnection): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_offer"
@@ -37,7 +37,7 @@ proc createOffer*(self: Ref[WebRTCPeerConnection]): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Error)
-proc setLocalDescription*(self: Ref[WebRTCPeerConnection]; `type`: String; sdp: String): Error =
+proc setLocalDescription*(self: WebRTCPeerConnection; `type`: String; sdp: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_local_description"
@@ -46,7 +46,7 @@ proc setLocalDescription*(self: Ref[WebRTCPeerConnection]; `type`: String; sdp: 
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc setRemoteDescription*(self: Ref[WebRTCPeerConnection]; `type`: String; sdp: String): Error =
+proc setRemoteDescription*(self: WebRTCPeerConnection; `type`: String; sdp: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_remote_description"
@@ -55,7 +55,7 @@ proc setRemoteDescription*(self: Ref[WebRTCPeerConnection]; `type`: String; sdp:
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc addIceCandidate*(self: Ref[WebRTCPeerConnection]; media: String; index: int32; name: String): Error =
+proc addIceCandidate*(self: WebRTCPeerConnection; media: String; index: int32; name: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_ice_candidate"
@@ -64,7 +64,7 @@ proc addIceCandidate*(self: Ref[WebRTCPeerConnection]; media: String; index: int
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc poll*(self: Ref[WebRTCPeerConnection]): Error =
+proc poll*(self: WebRTCPeerConnection): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "poll"
@@ -72,13 +72,13 @@ proc poll*(self: Ref[WebRTCPeerConnection]): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Error)
-proc close*(self: Ref[WebRTCPeerConnection]) =
+proc close*(self: WebRTCPeerConnection) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "close"
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCPeerConnection, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc getConnectionState*(self: Ref[WebRTCPeerConnection]): WebRTCPeerConnection_ConnectionState =
+proc getConnectionState*(self: WebRTCPeerConnection): WebRTCPeerConnection_ConnectionState =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_connection_state"
@@ -86,7 +86,7 @@ proc getConnectionState*(self: Ref[WebRTCPeerConnection]): WebRTCPeerConnection_
   var ret: encoded WebRTCPeerConnection_ConnectionState
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(WebRTCPeerConnection_ConnectionState)
-proc getGatheringState*(self: Ref[WebRTCPeerConnection]): WebRTCPeerConnection_GatheringState =
+proc getGatheringState*(self: WebRTCPeerConnection): WebRTCPeerConnection_GatheringState =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_gathering_state"
@@ -94,7 +94,7 @@ proc getGatheringState*(self: Ref[WebRTCPeerConnection]): WebRTCPeerConnection_G
   var ret: encoded WebRTCPeerConnection_GatheringState
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(WebRTCPeerConnection_GatheringState)
-proc getSignalingState*(self: Ref[WebRTCPeerConnection]): WebRTCPeerConnection_SignalingState =
+proc getSignalingState*(self: WebRTCPeerConnection): WebRTCPeerConnection_SignalingState =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_signaling_state"

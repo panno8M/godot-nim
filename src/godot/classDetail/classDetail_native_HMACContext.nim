@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc start*(self: Ref[HMACContext]; hashType: HashingContext_HashType; key: PackedByteArray): Error =
+proc start*(self: HMACContext; hashType: HashingContext_HashType; key: PackedByteArray): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "start"
@@ -13,7 +13,7 @@ proc start*(self: Ref[HMACContext]; hashType: HashingContext_HashType; key: Pack
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc update*(self: Ref[HMACContext]; data: PackedByteArray): Error =
+proc update*(self: HMACContext; data: PackedByteArray): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "update"
@@ -22,7 +22,7 @@ proc update*(self: Ref[HMACContext]; data: PackedByteArray): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc finish*(self: Ref[HMACContext]): PackedByteArray =
+proc finish*(self: HMACContext): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "finish"

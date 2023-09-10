@@ -4,21 +4,21 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `stream=`*(self: VideoStreamPlayer; stream: Ref[VideoStream]) =
+proc `stream=`*(self: VideoStreamPlayer; stream: VideoStream) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_stream"
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayer, addr name, 2317102564)
   var `?param` = [getPtr stream]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc stream*(self: VideoStreamPlayer): Ref[VideoStream] =
+proc stream*(self: VideoStreamPlayer): VideoStream =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_stream"
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayer, addr name, 438621487)
-  var ret: encoded Ref[VideoStream]
+  var ret: encoded VideoStream
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[VideoStream])
+  (addr ret).decode(VideoStream)
 proc play*(self: VideoStreamPlayer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -182,11 +182,11 @@ proc bus*(self: VideoStreamPlayer): StringName =
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(StringName)
-proc getVideoTexture*(self: VideoStreamPlayer): Ref[Texture2D] =
+proc getVideoTexture*(self: VideoStreamPlayer): Texture2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_video_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayer, addr name, 3635182373)
-  var ret: encoded Ref[Texture2D]
+  var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Texture2D])
+  (addr ret).decode(Texture2D)

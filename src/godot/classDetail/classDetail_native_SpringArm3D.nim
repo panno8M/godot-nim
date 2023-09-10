@@ -27,21 +27,21 @@ proc length*(self: SpringArm3D): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `shape=`*(self: SpringArm3D; shape: Ref[Shape3D]) =
+proc `shape=`*(self: SpringArm3D; shape: Shape3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className SpringArm3D, addr name, 1549710052)
   var `?param` = [getPtr shape]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc shape*(self: SpringArm3D): Ref[Shape3D] =
+proc shape*(self: SpringArm3D): Shape3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className SpringArm3D, addr name, 3214262478)
-  var ret: encoded Ref[Shape3D]
+  var ret: encoded Shape3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Shape3D])
+  (addr ret).decode(Shape3D)
 proc addExcludedObject*(self: SpringArm3D; rid: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

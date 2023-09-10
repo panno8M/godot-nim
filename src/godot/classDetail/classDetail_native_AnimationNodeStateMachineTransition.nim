@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `switchMode=`*(self: Ref[AnimationNodeStateMachineTransition]; mode: AnimationNodeStateMachineTransition_SwitchMode) =
+proc `switchMode=`*(self: AnimationNodeStateMachineTransition; mode: AnimationNodeStateMachineTransition_SwitchMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_switch_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachineTransition, addr name, 2074906633)
   var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc switchMode*(self: Ref[AnimationNodeStateMachineTransition]): AnimationNodeStateMachineTransition_SwitchMode =
+proc switchMode*(self: AnimationNodeStateMachineTransition): AnimationNodeStateMachineTransition_SwitchMode =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_switch_mode"
@@ -19,14 +19,14 @@ proc switchMode*(self: Ref[AnimationNodeStateMachineTransition]): AnimationNodeS
   var ret: encoded AnimationNodeStateMachineTransition_SwitchMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(AnimationNodeStateMachineTransition_SwitchMode)
-proc `advanceMode=`*(self: Ref[AnimationNodeStateMachineTransition]; mode: AnimationNodeStateMachineTransition_AdvanceMode) =
+proc `advanceMode=`*(self: AnimationNodeStateMachineTransition; mode: AnimationNodeStateMachineTransition_AdvanceMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_advance_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachineTransition, addr name, 1210869868)
   var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc advanceMode*(self: Ref[AnimationNodeStateMachineTransition]): AnimationNodeStateMachineTransition_AdvanceMode =
+proc advanceMode*(self: AnimationNodeStateMachineTransition): AnimationNodeStateMachineTransition_AdvanceMode =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_advance_mode"
@@ -34,14 +34,14 @@ proc advanceMode*(self: Ref[AnimationNodeStateMachineTransition]): AnimationNode
   var ret: encoded AnimationNodeStateMachineTransition_AdvanceMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(AnimationNodeStateMachineTransition_AdvanceMode)
-proc `advanceCondition=`*(self: Ref[AnimationNodeStateMachineTransition]; name: StringName) =
+proc `advanceCondition=`*(self: AnimationNodeStateMachineTransition; name: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_advance_condition"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachineTransition, addr name, 3304788590)
   var `?param` = [getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc advanceCondition*(self: Ref[AnimationNodeStateMachineTransition]): StringName =
+proc advanceCondition*(self: AnimationNodeStateMachineTransition): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_advance_condition"
@@ -49,14 +49,14 @@ proc advanceCondition*(self: Ref[AnimationNodeStateMachineTransition]): StringNa
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(StringName)
-proc `xfadeTime=`*(self: Ref[AnimationNodeStateMachineTransition]; secs: Float) =
+proc `xfadeTime=`*(self: AnimationNodeStateMachineTransition; secs: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_xfade_time"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachineTransition, addr name, 373806689)
   var `?param` = [getPtr secs]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc xfadeTime*(self: Ref[AnimationNodeStateMachineTransition]): Float =
+proc xfadeTime*(self: AnimationNodeStateMachineTransition): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_xfade_time"
@@ -64,29 +64,29 @@ proc xfadeTime*(self: Ref[AnimationNodeStateMachineTransition]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `xfadeCurve=`*(self: Ref[AnimationNodeStateMachineTransition]; curve: Ref[Curve]) =
+proc `xfadeCurve=`*(self: AnimationNodeStateMachineTransition; curve: Curve) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_xfade_curve"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachineTransition, addr name, 270443179)
   var `?param` = [getPtr curve]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc xfadeCurve*(self: Ref[AnimationNodeStateMachineTransition]): Ref[Curve] =
+proc xfadeCurve*(self: AnimationNodeStateMachineTransition): Curve =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_xfade_curve"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachineTransition, addr name, 2460114913)
-  var ret: encoded Ref[Curve]
+  var ret: encoded Curve
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Curve])
-proc `reset=`*(self: Ref[AnimationNodeStateMachineTransition]; reset: Bool) =
+  (addr ret).decode(Curve)
+proc `reset=`*(self: AnimationNodeStateMachineTransition; reset: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_reset"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachineTransition, addr name, 2586408642)
   var `?param` = [getPtr reset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isReset*(self: Ref[AnimationNodeStateMachineTransition]): Bool =
+proc isReset*(self: AnimationNodeStateMachineTransition): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_reset"
@@ -94,14 +94,14 @@ proc isReset*(self: Ref[AnimationNodeStateMachineTransition]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `priority=`*(self: Ref[AnimationNodeStateMachineTransition]; priority: int32) =
+proc `priority=`*(self: AnimationNodeStateMachineTransition; priority: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_priority"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachineTransition, addr name, 1286410249)
   var `?param` = [getPtr priority]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc priority*(self: Ref[AnimationNodeStateMachineTransition]): int32 =
+proc priority*(self: AnimationNodeStateMachineTransition): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_priority"
@@ -109,14 +109,14 @@ proc priority*(self: Ref[AnimationNodeStateMachineTransition]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc `advanceExpression=`*(self: Ref[AnimationNodeStateMachineTransition]; text: String) =
+proc `advanceExpression=`*(self: AnimationNodeStateMachineTransition; text: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_advance_expression"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachineTransition, addr name, 83702148)
   var `?param` = [getPtr text]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc advanceExpression*(self: Ref[AnimationNodeStateMachineTransition]): String =
+proc advanceExpression*(self: AnimationNodeStateMachineTransition): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_advance_expression"

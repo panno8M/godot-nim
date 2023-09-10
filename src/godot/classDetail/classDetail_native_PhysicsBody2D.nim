@@ -4,16 +4,16 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc moveAndCollide*(self: PhysicsBody2D; motion: Vector2; testOnly: Bool = false; safeMargin: Float = 0.08; recoveryAsCollision: Bool = false): Ref[KinematicCollision2D] =
+proc moveAndCollide*(self: PhysicsBody2D; motion: Vector2; testOnly: Bool = false; safeMargin: Float = 0.08; recoveryAsCollision: Bool = false): KinematicCollision2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "move_and_collide"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsBody2D, addr name, 1529961754)
   var `?param` = [getPtr motion, getPtr testOnly, getPtr safeMargin, getPtr recoveryAsCollision]
-  var ret: encoded Ref[KinematicCollision2D]
+  var ret: encoded KinematicCollision2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[KinematicCollision2D])
-proc testMove*(self: PhysicsBody2D; `from`: Transform2D; motion: Vector2; collision: Ref[KinematicCollision2D] = default Ref[KinematicCollision2D]; safeMargin: Float = 0.08; recoveryAsCollision: Bool = false): Bool =
+  (addr ret).decode(KinematicCollision2D)
+proc testMove*(self: PhysicsBody2D; `from`: Transform2D; motion: Vector2; collision: KinematicCollision2D = default KinematicCollision2D; safeMargin: Float = 0.08; recoveryAsCollision: Bool = false): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "test_move"

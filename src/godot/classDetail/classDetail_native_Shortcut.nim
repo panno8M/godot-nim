@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `events=`*(self: Ref[Shortcut]; events: Array) =
+proc `events=`*(self: Shortcut; events: Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_events"
     methodbind = interface_ClassDB_getMethodBind(addr className Shortcut, addr name, 381264803)
   var `?param` = [getPtr events]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc events*(self: Ref[Shortcut]): Array =
+proc events*(self: Shortcut): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_events"
@@ -19,7 +19,7 @@ proc events*(self: Ref[Shortcut]): Array =
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Array)
-proc hasValidEvent*(self: Ref[Shortcut]): Bool =
+proc hasValidEvent*(self: Shortcut): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "has_valid_event"
@@ -27,7 +27,7 @@ proc hasValidEvent*(self: Ref[Shortcut]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc matchesEvent*(self: Ref[Shortcut]; event: Ref[InputEvent]): Bool =
+proc matchesEvent*(self: Shortcut; event: InputEvent): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "matches_event"
@@ -36,7 +36,7 @@ proc matchesEvent*(self: Ref[Shortcut]; event: Ref[InputEvent]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc getAsText*(self: Ref[Shortcut]): String =
+proc getAsText*(self: Shortcut): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_as_text"

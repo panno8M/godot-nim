@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc size*(self: Ref[PackedDataContainerRef]): int32 =
+proc size*(self: PackedDataContainerRef): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "size"

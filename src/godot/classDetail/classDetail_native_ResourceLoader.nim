@@ -22,24 +22,24 @@ proc loadThreadedGetStatus*(self: ResourceLoader; path: String; progress: Array 
   var ret: encoded ResourceLoader_ThreadLoadStatus
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(ResourceLoader_ThreadLoadStatus)
-proc loadThreadedGet*(self: ResourceLoader; path: String): Ref[Resource] =
+proc loadThreadedGet*(self: ResourceLoader; path: String): Resource =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "load_threaded_get"
     methodbind = interface_ClassDB_getMethodBind(addr className ResourceLoader, addr name, 1748875256)
   var `?param` = [getPtr path]
-  var ret: encoded Ref[Resource]
+  var ret: encoded Resource
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[Resource])
-proc load*(self: ResourceLoader; path: String; typeHint: String = ""; cacheMode: ResourceLoader_CacheMode = cacheModeReuse): Ref[Resource] =
+  (addr ret).decode(Resource)
+proc load*(self: ResourceLoader; path: String; typeHint: String = ""; cacheMode: ResourceLoader_CacheMode = cacheModeReuse): Resource =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "load"
     methodbind = interface_ClassDB_getMethodBind(addr className ResourceLoader, addr name, 2622212233)
   var `?param` = [getPtr path, getPtr typeHint, getPtr cacheMode]
-  var ret: encoded Ref[Resource]
+  var ret: encoded Resource
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[Resource])
+  (addr ret).decode(Resource)
 proc getRecognizedExtensionsForType*(self: ResourceLoader; `type`: String): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,14 +49,14 @@ proc getRecognizedExtensionsForType*(self: ResourceLoader; `type`: String): Pack
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedStringArray)
-proc addResourceFormatLoader*(self: ResourceLoader; formatLoader: Ref[ResourceFormatLoader]; atFront: Bool = false) =
+proc addResourceFormatLoader*(self: ResourceLoader; formatLoader: ResourceFormatLoader; atFront: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_resource_format_loader"
     methodbind = interface_ClassDB_getMethodBind(addr className ResourceLoader, addr name, 2896595483)
   var `?param` = [getPtr formatLoader, getPtr atFront]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removeResourceFormatLoader*(self: ResourceLoader; formatLoader: Ref[ResourceFormatLoader]) =
+proc removeResourceFormatLoader*(self: ResourceLoader; formatLoader: ResourceFormatLoader) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_resource_format_loader"

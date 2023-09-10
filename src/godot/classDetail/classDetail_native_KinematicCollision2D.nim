@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc getPosition*(self: Ref[KinematicCollision2D]): Vector2 =
+proc getPosition*(self: KinematicCollision2D): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_position"
@@ -12,7 +12,7 @@ proc getPosition*(self: Ref[KinematicCollision2D]): Vector2 =
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Vector2)
-proc getNormal*(self: Ref[KinematicCollision2D]): Vector2 =
+proc getNormal*(self: KinematicCollision2D): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_normal"
@@ -20,7 +20,7 @@ proc getNormal*(self: Ref[KinematicCollision2D]): Vector2 =
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Vector2)
-proc getTravel*(self: Ref[KinematicCollision2D]): Vector2 =
+proc getTravel*(self: KinematicCollision2D): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_travel"
@@ -28,7 +28,7 @@ proc getTravel*(self: Ref[KinematicCollision2D]): Vector2 =
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Vector2)
-proc getRemainder*(self: Ref[KinematicCollision2D]): Vector2 =
+proc getRemainder*(self: KinematicCollision2D): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_remainder"
@@ -36,7 +36,7 @@ proc getRemainder*(self: Ref[KinematicCollision2D]): Vector2 =
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Vector2)
-proc getAngle*(self: Ref[KinematicCollision2D]; upDirection: Vector2 = gdvec(0, -1)): Float =
+proc getAngle*(self: KinematicCollision2D; upDirection: Vector2 = gdvec(0, -1)): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_angle"
@@ -45,7 +45,7 @@ proc getAngle*(self: Ref[KinematicCollision2D]; upDirection: Vector2 = gdvec(0, 
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
-proc getDepth*(self: Ref[KinematicCollision2D]): Float =
+proc getDepth*(self: KinematicCollision2D): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_depth"
@@ -53,7 +53,7 @@ proc getDepth*(self: Ref[KinematicCollision2D]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc getLocalShape*(self: Ref[KinematicCollision2D]): Object =
+proc getLocalShape*(self: KinematicCollision2D): Object =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_local_shape"
@@ -61,7 +61,7 @@ proc getLocalShape*(self: Ref[KinematicCollision2D]): Object =
   var ret: encoded Object
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Object)
-proc getCollider*(self: Ref[KinematicCollision2D]): Object =
+proc getCollider*(self: KinematicCollision2D): Object =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_collider"
@@ -69,7 +69,7 @@ proc getCollider*(self: Ref[KinematicCollision2D]): Object =
   var ret: encoded Object
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Object)
-proc getColliderId*(self: Ref[KinematicCollision2D]): uint64 =
+proc getColliderId*(self: KinematicCollision2D): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_collider_id"
@@ -77,7 +77,7 @@ proc getColliderId*(self: Ref[KinematicCollision2D]): uint64 =
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(uint64)
-proc getColliderRid*(self: Ref[KinematicCollision2D]): RID =
+proc getColliderRid*(self: KinematicCollision2D): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_collider_rid"
@@ -85,7 +85,7 @@ proc getColliderRid*(self: Ref[KinematicCollision2D]): RID =
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(RID)
-proc getColliderShape*(self: Ref[KinematicCollision2D]): Object =
+proc getColliderShape*(self: KinematicCollision2D): Object =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_collider_shape"
@@ -93,7 +93,7 @@ proc getColliderShape*(self: Ref[KinematicCollision2D]): Object =
   var ret: encoded Object
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Object)
-proc getColliderShapeIndex*(self: Ref[KinematicCollision2D]): int32 =
+proc getColliderShapeIndex*(self: KinematicCollision2D): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_collider_shape_index"
@@ -101,7 +101,7 @@ proc getColliderShapeIndex*(self: Ref[KinematicCollision2D]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getColliderVelocity*(self: Ref[KinematicCollision2D]): Vector2 =
+proc getColliderVelocity*(self: KinematicCollision2D): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_collider_velocity"

@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `radius=`*(self: Ref[CircleShape2D]; radius: Float) =
+proc `radius=`*(self: CircleShape2D; radius: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_radius"
     methodbind = interface_ClassDB_getMethodBind(addr className CircleShape2D, addr name, 373806689)
   var `?param` = [getPtr radius]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc radius*(self: Ref[CircleShape2D]): Float =
+proc radius*(self: CircleShape2D): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_radius"

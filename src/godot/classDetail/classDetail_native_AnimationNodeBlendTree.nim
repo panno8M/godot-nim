@@ -4,37 +4,37 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc addNode*(self: Ref[AnimationNodeBlendTree]; name: StringName; node: Ref[AnimationNode]; position: Vector2 = gdvec(0, 0)) =
+proc addNode*(self: AnimationNodeBlendTree; name: StringName; node: AnimationNode; position: Vector2 = gdvec(0, 0)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_node"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendTree, addr name, 2055804584)
   var `?param` = [getPtr name, getPtr node, getPtr position]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getNode*(self: Ref[AnimationNodeBlendTree]; name: StringName): Ref[AnimationNode] =
+proc getNode*(self: AnimationNodeBlendTree; name: StringName): AnimationNode =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_node"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendTree, addr name, 625644256)
   var `?param` = [getPtr name]
-  var ret: encoded Ref[AnimationNode]
+  var ret: encoded AnimationNode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[AnimationNode])
-proc removeNode*(self: Ref[AnimationNodeBlendTree]; name: StringName) =
+  (addr ret).decode(AnimationNode)
+proc removeNode*(self: AnimationNodeBlendTree; name: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_node"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendTree, addr name, 3304788590)
   var `?param` = [getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc renameNode*(self: Ref[AnimationNodeBlendTree]; name: StringName; newName: StringName) =
+proc renameNode*(self: AnimationNodeBlendTree; name: StringName; newName: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "rename_node"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendTree, addr name, 3740211285)
   var `?param` = [getPtr name, getPtr newName]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc hasNode*(self: Ref[AnimationNodeBlendTree]; name: StringName): Bool =
+proc hasNode*(self: AnimationNodeBlendTree; name: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "has_node"
@@ -43,28 +43,28 @@ proc hasNode*(self: Ref[AnimationNodeBlendTree]; name: StringName): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc connectNode*(self: Ref[AnimationNodeBlendTree]; inputNode: StringName; inputIndex: int32; outputNode: StringName) =
+proc connectNode*(self: AnimationNodeBlendTree; inputNode: StringName; inputIndex: int32; outputNode: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "connect_node"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendTree, addr name, 2168001410)
   var `?param` = [getPtr inputNode, getPtr inputIndex, getPtr outputNode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc disconnectNode*(self: Ref[AnimationNodeBlendTree]; inputNode: StringName; inputIndex: int32) =
+proc disconnectNode*(self: AnimationNodeBlendTree; inputNode: StringName; inputIndex: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "disconnect_node"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendTree, addr name, 2415702435)
   var `?param` = [getPtr inputNode, getPtr inputIndex]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setNodePosition*(self: Ref[AnimationNodeBlendTree]; name: StringName; position: Vector2) =
+proc setNodePosition*(self: AnimationNodeBlendTree; name: StringName; position: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_node_position"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendTree, addr name, 1999414630)
   var `?param` = [getPtr name, getPtr position]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getNodePosition*(self: Ref[AnimationNodeBlendTree]; name: StringName): Vector2 =
+proc getNodePosition*(self: AnimationNodeBlendTree; name: StringName): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_node_position"
@@ -73,14 +73,14 @@ proc getNodePosition*(self: Ref[AnimationNodeBlendTree]; name: StringName): Vect
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2)
-proc `graphOffset=`*(self: Ref[AnimationNodeBlendTree]; offset: Vector2) =
+proc `graphOffset=`*(self: AnimationNodeBlendTree; offset: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_graph_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendTree, addr name, 743155724)
   var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc graphOffset*(self: Ref[AnimationNodeBlendTree]): Vector2 =
+proc graphOffset*(self: AnimationNodeBlendTree): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_graph_offset"

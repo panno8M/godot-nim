@@ -187,22 +187,22 @@ proc getSuffix*(self: TreeItem; column: int32): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc setIcon*(self: TreeItem; column: int32; texture: Ref[Texture2D]) =
+proc setIcon*(self: TreeItem; column: int32; texture: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className TreeItem, addr name, 666127730)
   var `?param` = [getPtr column, getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getIcon*(self: TreeItem; column: int32): Ref[Texture2D] =
+proc getIcon*(self: TreeItem; column: int32): Texture2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className TreeItem, addr name, 3536238170)
   var `?param` = [getPtr column]
-  var ret: encoded Ref[Texture2D]
+  var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[Texture2D])
+  (addr ret).decode(Texture2D)
 proc setIconRegion*(self: TreeItem; column: int32; region: Rect2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -451,22 +451,22 @@ proc clearCustomColor*(self: TreeItem; column: int32) =
     methodbind = interface_ClassDB_getMethodBind(addr className TreeItem, addr name, 1286410249)
   var `?param` = [getPtr column]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setCustomFont*(self: TreeItem; column: int32; font: Ref[Font]) =
+proc setCustomFont*(self: TreeItem; column: int32; font: Font) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_custom_font"
     methodbind = interface_ClassDB_getMethodBind(addr className TreeItem, addr name, 2637609184)
   var `?param` = [getPtr column, getPtr font]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getCustomFont*(self: TreeItem; column: int32): Ref[Font] =
+proc getCustomFont*(self: TreeItem; column: int32): Font =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_custom_font"
     methodbind = interface_ClassDB_getMethodBind(addr className TreeItem, addr name, 4244553094)
   var `?param` = [getPtr column]
-  var ret: encoded Ref[Font]
+  var ret: encoded Font
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[Font])
+  (addr ret).decode(Font)
 proc setCustomFontSize*(self: TreeItem; column: int32; fontSize: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -522,7 +522,7 @@ proc isCustomSetAsButton*(self: TreeItem; column: int32): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc addButton*(self: TreeItem; column: int32; button: Ref[Texture2D]; id: int32 = -1; disabled: Bool = false; tooltipText: String = "") =
+proc addButton*(self: TreeItem; column: int32; button: Texture2D; id: int32 = -1; disabled: Bool = false; tooltipText: String = "") =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_button"
@@ -565,16 +565,16 @@ proc getButtonById*(self: TreeItem; column: int32; id: int32): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc getButton*(self: TreeItem; column: int32; buttonIndex: int32): Ref[Texture2D] =
+proc getButton*(self: TreeItem; column: int32; buttonIndex: int32): Texture2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_button"
     methodbind = interface_ClassDB_getMethodBind(addr className TreeItem, addr name, 2584904275)
   var `?param` = [getPtr column, getPtr buttonIndex]
-  var ret: encoded Ref[Texture2D]
+  var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[Texture2D])
-proc setButton*(self: TreeItem; column: int32; buttonIndex: int32; button: Ref[Texture2D]) =
+  (addr ret).decode(Texture2D)
+proc setButton*(self: TreeItem; column: int32; buttonIndex: int32; button: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_button"

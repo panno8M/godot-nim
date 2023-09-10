@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc texture2dCreate*(self: RenderingServer; image: Ref[Image]): RID =
+proc texture2dCreate*(self: RenderingServer; image: Image): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "texture_2d_create"
@@ -40,7 +40,7 @@ proc textureProxyCreate*(self: RenderingServer; base: RID): RID =
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(RID)
-proc texture2dUpdate*(self: RenderingServer; texture: RID; image: Ref[Image]; layer: int32) =
+proc texture2dUpdate*(self: RenderingServer; texture: RID; image: Image; layer: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "texture_2d_update"
@@ -86,24 +86,24 @@ proc texture3dPlaceholderCreate*(self: RenderingServer): RID =
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(RID)
-proc texture2dGet*(self: RenderingServer; texture: RID): Ref[Image] =
+proc texture2dGet*(self: RenderingServer; texture: RID): Image =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "texture_2d_get"
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 4206205781)
   var `?param` = [getPtr texture]
-  var ret: encoded Ref[Image]
+  var ret: encoded Image
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[Image])
-proc texture2dLayerGet*(self: RenderingServer; texture: RID; layer: int32): Ref[Image] =
+  (addr ret).decode(Image)
+proc texture2dLayerGet*(self: RenderingServer; texture: RID; layer: int32): Image =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "texture_2d_layer_get"
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 2705440895)
   var `?param` = [getPtr texture, getPtr layer]
-  var ret: encoded Ref[Image]
+  var ret: encoded Image
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[Image])
+  (addr ret).decode(Image)
 proc texture3dGet*(self: RenderingServer; texture: RID): TypedArray[Image] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -2055,15 +2055,15 @@ proc skySetMaterial*(self: RenderingServer; sky: RID; material: RID) =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 395945892)
   var `?param` = [getPtr sky, getPtr material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc skyBakePanorama*(self: RenderingServer; sky: RID; energy: Float; bakeIrradiance: Bool; size: Vector2i): Ref[Image] =
+proc skyBakePanorama*(self: RenderingServer; sky: RID; energy: Float; bakeIrradiance: Bool; size: Vector2i): Image =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "sky_bake_panorama"
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 3875285818)
   var `?param` = [getPtr sky, getPtr energy, getPtr bakeIrradiance, getPtr size]
-  var ret: encoded Ref[Image]
+  var ret: encoded Image
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[Image])
+  (addr ret).decode(Image)
 proc environmentCreate*(self: RenderingServer): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -2247,15 +2247,15 @@ proc environmentSetVolumetricFogFilterActive*(self: RenderingServer; active: Boo
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 2586408642)
   var `?param` = [getPtr active]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc environmentBakePanorama*(self: RenderingServer; environment: RID; bakeIrradiance: Bool; size: Vector2i): Ref[Image] =
+proc environmentBakePanorama*(self: RenderingServer; environment: RID; bakeIrradiance: Bool; size: Vector2i): Image =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "environment_bake_panorama"
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 2452908646)
   var `?param` = [getPtr environment, getPtr bakeIrradiance, getPtr size]
-  var ret: encoded Ref[Image]
+  var ret: encoded Image
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[Image])
+  (addr ret).decode(Image)
 proc screenSpaceRoughnessLimiterSetActive*(self: RenderingServer; enable: Bool; amount: Float; limit: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -3327,7 +3327,7 @@ proc getWhiteTexture*(self: RenderingServer): RID =
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(RID)
-proc setBootImage*(self: RenderingServer; image: Ref[Image]; color: Color; scale: Bool; useFilter: Bool = true) =
+proc setBootImage*(self: RenderingServer; image: Image; color: Color; scale: Bool; useFilter: Bool = true) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_boot_image"

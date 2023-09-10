@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc getSourceFile*(self: Ref[EditorScenePostImport]): String =
+proc getSourceFile*(self: EditorScenePostImport): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_source_file"

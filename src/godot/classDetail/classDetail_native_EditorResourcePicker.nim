@@ -27,21 +27,21 @@ proc getAllowedTypes*(self: EditorResourcePicker): PackedStringArray =
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(PackedStringArray)
-proc `editedResource=`*(self: EditorResourcePicker; resource: Ref[Resource]) =
+proc `editedResource=`*(self: EditorResourcePicker; resource: Resource) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_edited_resource"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorResourcePicker, addr name, 968641751)
   var `?param` = [getPtr resource]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc editedResource*(self: EditorResourcePicker): Ref[Resource] =
+proc editedResource*(self: EditorResourcePicker): Resource =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_edited_resource"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorResourcePicker, addr name, 2674603643)
-  var ret: encoded Ref[Resource]
+  var ret: encoded Resource
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Resource])
+  (addr ret).decode(Resource)
 proc `toggleMode=`*(self: EditorResourcePicker; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

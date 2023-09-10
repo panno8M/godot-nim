@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc setup*(self: Ref[PolygonPathFinder]; points: PackedVector2Array; connections: PackedInt32Array) =
+proc setup*(self: PolygonPathFinder; points: PackedVector2Array; connections: PackedInt32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "setup"
     methodbind = interface_ClassDB_getMethodBind(addr className PolygonPathFinder, addr name, 3251786936)
   var `?param` = [getPtr points, getPtr connections]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc findPath*(self: Ref[PolygonPathFinder]; `from`: Vector2; to: Vector2): PackedVector2Array =
+proc findPath*(self: PolygonPathFinder; `from`: Vector2; to: Vector2): PackedVector2Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "find_path"
@@ -20,7 +20,7 @@ proc findPath*(self: Ref[PolygonPathFinder]; `from`: Vector2; to: Vector2): Pack
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedVector2Array)
-proc getIntersections*(self: Ref[PolygonPathFinder]; `from`: Vector2; to: Vector2): PackedVector2Array =
+proc getIntersections*(self: PolygonPathFinder; `from`: Vector2; to: Vector2): PackedVector2Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_intersections"
@@ -29,7 +29,7 @@ proc getIntersections*(self: Ref[PolygonPathFinder]; `from`: Vector2; to: Vector
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedVector2Array)
-proc getClosestPoint*(self: Ref[PolygonPathFinder]; point: Vector2): Vector2 =
+proc getClosestPoint*(self: PolygonPathFinder; point: Vector2): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_closest_point"
@@ -38,7 +38,7 @@ proc getClosestPoint*(self: Ref[PolygonPathFinder]; point: Vector2): Vector2 =
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2)
-proc isPointInside*(self: Ref[PolygonPathFinder]; point: Vector2): Bool =
+proc isPointInside*(self: PolygonPathFinder; point: Vector2): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_point_inside"
@@ -47,14 +47,14 @@ proc isPointInside*(self: Ref[PolygonPathFinder]; point: Vector2): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc setPointPenalty*(self: Ref[PolygonPathFinder]; idx: int32; penalty: Float) =
+proc setPointPenalty*(self: PolygonPathFinder; idx: int32; penalty: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_point_penalty"
     methodbind = interface_ClassDB_getMethodBind(addr className PolygonPathFinder, addr name, 1602489585)
   var `?param` = [getPtr idx, getPtr penalty]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getPointPenalty*(self: Ref[PolygonPathFinder]; idx: int32): Float =
+proc getPointPenalty*(self: PolygonPathFinder; idx: int32): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_point_penalty"
@@ -63,7 +63,7 @@ proc getPointPenalty*(self: Ref[PolygonPathFinder]; idx: int32): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
-proc getBounds*(self: Ref[PolygonPathFinder]): Rect2 =
+proc getBounds*(self: PolygonPathFinder): Rect2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_bounds"

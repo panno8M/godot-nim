@@ -19,22 +19,22 @@ proc size*(self: Decal): Vector3 =
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Vector3)
-proc `texture=`*(self: Decal; `type`: Decal_DecalTexture; texture: Ref[Texture2D]) =
+proc `texture=`*(self: Decal; `type`: Decal_DecalTexture; texture: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className Decal, addr name, 2086764391)
   var `?param` = [getPtr `type`, getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc texture*(self: Decal; `type`: Decal_DecalTexture): Ref[Texture2D] =
+proc texture*(self: Decal; `type`: Decal_DecalTexture): Texture2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className Decal, addr name, 3244119503)
   var `?param` = [getPtr `type`]
-  var ret: encoded Ref[Texture2D]
+  var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[Texture2D])
+  (addr ret).decode(Texture2D)
 proc `emissionEnergy=`*(self: Decal; energy: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

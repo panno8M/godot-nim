@@ -4,21 +4,21 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `spriteFrames=`*(self: AnimatedSprite3D; spriteFrames: Ref[SpriteFrames]) =
+proc `spriteFrames=`*(self: AnimatedSprite3D; spriteFrames: SpriteFrames) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sprite_frames"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedSprite3D, addr name, 905781144)
   var `?param` = [getPtr spriteFrames]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc spriteFrames*(self: AnimatedSprite3D): Ref[SpriteFrames] =
+proc spriteFrames*(self: AnimatedSprite3D): SpriteFrames =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_sprite_frames"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedSprite3D, addr name, 3804851214)
-  var ret: encoded Ref[SpriteFrames]
+  var ret: encoded SpriteFrames
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[SpriteFrames])
+  (addr ret).decode(SpriteFrames)
 proc `animation=`*(self: AnimatedSprite3D; name: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

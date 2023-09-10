@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc generate*(self: Ref[OptimizedTranslation]; `from`: Ref[Translation]) =
+proc generate*(self: OptimizedTranslation; `from`: Translation) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "generate"

@@ -4,15 +4,15 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc getFeed*(self: CameraServer; index: int32): Ref[CameraFeed] =
+proc getFeed*(self: CameraServer; index: int32): CameraFeed =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_feed"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraServer, addr name, 361927068)
   var `?param` = [getPtr index]
-  var ret: encoded Ref[CameraFeed]
+  var ret: encoded CameraFeed
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[CameraFeed])
+  (addr ret).decode(CameraFeed)
 proc getFeedCount*(self: CameraServer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -29,14 +29,14 @@ proc feeds*(self: CameraServer): TypedArray[CameraFeed] =
   var ret: encoded TypedArray[CameraFeed]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(TypedArray[CameraFeed])
-proc addFeed*(self: CameraServer; feed: Ref[CameraFeed]) =
+proc addFeed*(self: CameraServer; feed: CameraFeed) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_feed"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraServer, addr name, 3204782488)
   var `?param` = [getPtr feed]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removeFeed*(self: CameraServer; feed: Ref[CameraFeed]) =
+proc removeFeed*(self: CameraServer; feed: CameraFeed) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_feed"

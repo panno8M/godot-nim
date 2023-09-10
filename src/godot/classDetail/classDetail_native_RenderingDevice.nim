@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc textureCreate*(self: RenderingDevice; format: Ref[RDTextureFormat]; view: Ref[RDTextureView]; data: TypedArray[PackedByteArray] = init_TypedArray[PackedByteArray]()): RID =
+proc textureCreate*(self: RenderingDevice; format: RDTextureFormat; view: RDTextureView; data: TypedArray[PackedByteArray] = init_TypedArray[PackedByteArray]()): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "texture_create"
@@ -13,7 +13,7 @@ proc textureCreate*(self: RenderingDevice; format: Ref[RDTextureFormat]; view: R
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(RID)
-proc textureCreateShared*(self: RenderingDevice; view: Ref[RDTextureView]; withTexture: RID): RID =
+proc textureCreateShared*(self: RenderingDevice; view: RDTextureView; withTexture: RID): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "texture_create_shared"
@@ -22,7 +22,7 @@ proc textureCreateShared*(self: RenderingDevice; view: Ref[RDTextureView]; withT
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(RID)
-proc textureCreateSharedFromSlice*(self: RenderingDevice; view: Ref[RDTextureView]; withTexture: RID; layer: uint32; mipmap: uint32; mipmaps: uint32 = 1'u32; sliceType: RenderingDevice_TextureSliceType = textureSlice2d): RID =
+proc textureCreateSharedFromSlice*(self: RenderingDevice; view: RDTextureView; withTexture: RID; layer: uint32; mipmap: uint32; mipmaps: uint32 = 1'u32; sliceType: RenderingDevice_TextureSliceType = textureSlice2d): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "texture_create_shared_from_slice"
@@ -193,7 +193,7 @@ proc framebufferIsValid*(self: RenderingDevice; framebuffer: RID): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc samplerCreate*(self: RenderingDevice; state: Ref[RDSamplerState]): RID =
+proc samplerCreate*(self: RenderingDevice; state: RDSamplerState): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "sampler_create"
@@ -256,16 +256,16 @@ proc indexArrayCreate*(self: RenderingDevice; indexBuffer: RID; indexOffset: uin
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(RID)
-proc shaderCompileSpirvFromSource*(self: RenderingDevice; shaderSource: Ref[RDShaderSource]; allowCache: Bool = true): Ref[RDShaderSPIRV] =
+proc shaderCompileSpirvFromSource*(self: RenderingDevice; shaderSource: RDShaderSource; allowCache: Bool = true): RDShaderSPIRV =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shader_compile_spirv_from_source"
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingDevice, addr name, 3459523685)
   var `?param` = [getPtr shaderSource, getPtr allowCache]
-  var ret: encoded Ref[RDShaderSPIRV]
+  var ret: encoded RDShaderSPIRV
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[RDShaderSPIRV])
-proc shaderCompileBinaryFromSpirv*(self: RenderingDevice; spirvData: Ref[RDShaderSPIRV]; name: String = ""): PackedByteArray =
+  (addr ret).decode(RDShaderSPIRV)
+proc shaderCompileBinaryFromSpirv*(self: RenderingDevice; spirvData: RDShaderSPIRV; name: String = ""): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shader_compile_binary_from_spirv"
@@ -274,7 +274,7 @@ proc shaderCompileBinaryFromSpirv*(self: RenderingDevice; spirvData: Ref[RDShade
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedByteArray)
-proc shaderCreateFromSpirv*(self: RenderingDevice; spirvData: Ref[RDShaderSPIRV]; name: String = ""): RID =
+proc shaderCreateFromSpirv*(self: RenderingDevice; spirvData: RDShaderSPIRV; name: String = ""): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shader_create_from_spirv"
@@ -373,7 +373,7 @@ proc bufferGetData*(self: RenderingDevice; buffer: RID; offsetBytes: uint32 = 0'
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedByteArray)
-proc renderPipelineCreate*(self: RenderingDevice; shader: RID; framebufferFormat: int64; vertexFormat: int64; primitive: RenderingDevice_RenderPrimitive; rasterizationState: Ref[RDPipelineRasterizationState]; multisampleState: Ref[RDPipelineMultisampleState]; stencilState: Ref[RDPipelineDepthStencilState]; colorBlendState: Ref[RDPipelineColorBlendState]; dynamicStateFlags: set[RenderingDevice_PipelineDynamicStateFlags] = {}; forRenderPass: uint32 = 0'u32; specializationConstants: TypedArray[RDPipelineSpecializationConstant] = init_TypedArray[RDPipelineSpecializationConstant]()): RID =
+proc renderPipelineCreate*(self: RenderingDevice; shader: RID; framebufferFormat: int64; vertexFormat: int64; primitive: RenderingDevice_RenderPrimitive; rasterizationState: RDPipelineRasterizationState; multisampleState: RDPipelineMultisampleState; stencilState: RDPipelineDepthStencilState; colorBlendState: RDPipelineColorBlendState; dynamicStateFlags: set[RenderingDevice_PipelineDynamicStateFlags] = {}; forRenderPass: uint32 = 0'u32; specializationConstants: TypedArray[RDPipelineSpecializationConstant] = init_TypedArray[RDPipelineSpecializationConstant]()): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "render_pipeline_create"

@@ -4,21 +4,21 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `navigationPolygon=`*(self: NavigationRegion2D; navigationPolygon: Ref[NavigationPolygon]) =
+proc `navigationPolygon=`*(self: NavigationRegion2D; navigationPolygon: NavigationPolygon) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_navigation_polygon"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationRegion2D, addr name, 1515040758)
   var `?param` = [getPtr navigationPolygon]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc navigationPolygon*(self: NavigationRegion2D): Ref[NavigationPolygon] =
+proc navigationPolygon*(self: NavigationRegion2D): NavigationPolygon =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_navigation_polygon"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationRegion2D, addr name, 1046532237)
-  var ret: encoded Ref[NavigationPolygon]
+  var ret: encoded NavigationPolygon
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[NavigationPolygon])
+  (addr ret).decode(NavigationPolygon)
 proc `enabled=`*(self: NavigationRegion2D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc startCompression*(self: Ref[StreamPeerGZIP]; useDeflate: Bool = false; bufferSize: int32 = 65535): Error =
+proc startCompression*(self: StreamPeerGZIP; useDeflate: Bool = false; bufferSize: int32 = 65535): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "start_compression"
@@ -13,7 +13,7 @@ proc startCompression*(self: Ref[StreamPeerGZIP]; useDeflate: Bool = false; buff
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc startDecompression*(self: Ref[StreamPeerGZIP]; useDeflate: Bool = false; bufferSize: int32 = 65535): Error =
+proc startDecompression*(self: StreamPeerGZIP; useDeflate: Bool = false; bufferSize: int32 = 65535): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "start_decompression"
@@ -22,7 +22,7 @@ proc startDecompression*(self: Ref[StreamPeerGZIP]; useDeflate: Bool = false; bu
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc finish*(self: Ref[StreamPeerGZIP]): Error =
+proc finish*(self: StreamPeerGZIP): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "finish"
@@ -30,7 +30,7 @@ proc finish*(self: Ref[StreamPeerGZIP]): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Error)
-proc clear*(self: Ref[StreamPeerGZIP]) =
+proc clear*(self: StreamPeerGZIP) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "clear"

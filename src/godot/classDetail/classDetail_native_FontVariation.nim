@@ -4,29 +4,29 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `baseFont=`*(self: Ref[FontVariation]; font: Ref[Font]) =
+proc `baseFont=`*(self: FontVariation; font: Font) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_base_font"
     methodbind = interface_ClassDB_getMethodBind(addr className FontVariation, addr name, 1262170328)
   var `?param` = [getPtr font]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc baseFont*(self: Ref[FontVariation]): Ref[Font] =
+proc baseFont*(self: FontVariation): Font =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_base_font"
     methodbind = interface_ClassDB_getMethodBind(addr className FontVariation, addr name, 3229501585)
-  var ret: encoded Ref[Font]
+  var ret: encoded Font
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Font])
-proc `variationOpentype=`*(self: Ref[FontVariation]; coords: Dictionary) =
+  (addr ret).decode(Font)
+proc `variationOpentype=`*(self: FontVariation; coords: Dictionary) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_variation_opentype"
     methodbind = interface_ClassDB_getMethodBind(addr className FontVariation, addr name, 4155329257)
   var `?param` = [getPtr coords]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc variationOpentype*(self: Ref[FontVariation]): Dictionary =
+proc variationOpentype*(self: FontVariation): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_variation_opentype"
@@ -34,14 +34,14 @@ proc variationOpentype*(self: Ref[FontVariation]): Dictionary =
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Dictionary)
-proc `variationEmbolden=`*(self: Ref[FontVariation]; strength: Float) =
+proc `variationEmbolden=`*(self: FontVariation; strength: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_variation_embolden"
     methodbind = interface_ClassDB_getMethodBind(addr className FontVariation, addr name, 373806689)
   var `?param` = [getPtr strength]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc variationEmbolden*(self: Ref[FontVariation]): Float =
+proc variationEmbolden*(self: FontVariation): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_variation_embolden"
@@ -49,14 +49,14 @@ proc variationEmbolden*(self: Ref[FontVariation]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `variationFaceIndex=`*(self: Ref[FontVariation]; faceIndex: int32) =
+proc `variationFaceIndex=`*(self: FontVariation; faceIndex: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_variation_face_index"
     methodbind = interface_ClassDB_getMethodBind(addr className FontVariation, addr name, 1286410249)
   var `?param` = [getPtr faceIndex]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc variationFaceIndex*(self: Ref[FontVariation]): int32 =
+proc variationFaceIndex*(self: FontVariation): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_variation_face_index"
@@ -64,14 +64,14 @@ proc variationFaceIndex*(self: Ref[FontVariation]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc `variationTransform=`*(self: Ref[FontVariation]; transform: Transform2D) =
+proc `variationTransform=`*(self: FontVariation; transform: Transform2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_variation_transform"
     methodbind = interface_ClassDB_getMethodBind(addr className FontVariation, addr name, 2761652528)
   var `?param` = [getPtr transform]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc variationTransform*(self: Ref[FontVariation]): Transform2D =
+proc variationTransform*(self: FontVariation): Transform2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_variation_transform"
@@ -79,14 +79,14 @@ proc variationTransform*(self: Ref[FontVariation]): Transform2D =
   var ret: encoded Transform2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Transform2D)
-proc `opentypeFeatures=`*(self: Ref[FontVariation]; features: Dictionary) =
+proc `opentypeFeatures=`*(self: FontVariation; features: Dictionary) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_opentype_features"
     methodbind = interface_ClassDB_getMethodBind(addr className FontVariation, addr name, 4155329257)
   var `?param` = [getPtr features]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc `spacing=`*(self: Ref[FontVariation]; spacing: TextServer_SpacingType; value: int32) =
+proc `spacing=`*(self: FontVariation; spacing: TextServer_SpacingType; value: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_spacing"

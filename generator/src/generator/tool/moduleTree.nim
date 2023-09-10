@@ -7,6 +7,7 @@ let # directories
   d_godot* = dir"godot"
   d_variants* = dir"variants"
   d_variantsDetail_native* = dir"variantsDetail_native"
+  d_classes* = dir"classes"
   d_classDetail* = dir"classDetail"
   d_helper* = dir"helper"
   d_pure* = dir"pure"
@@ -29,13 +30,13 @@ let # modules
   globalEnums* = mdl"globalEnums"
   localEnums* = mdl"localEnums"
   nativeStructs* = mdl"nativeStructs"
-  engineClassDefines* = mdl"engineClassDefines"
   objectBase* = dummy mdl"objectBase"
 
   variantTypeSolver* = dummy mdl"variantTypeSolver"
   variantDefiner* = dummy mdl"variantDefiner"
   variantConstrDefiner* = dummy mdl"variantConstrDefiner"
   engineClassDefiner* = dummy mdl"engineClassDefiner"
+  standAloneEngineClassDefiner* = dummy mdl"standAloneEngineClassDefiner"
   classDefiner* = dummy mdl"classDefiner"
   typedArray* = dummy mdl"typedArray"
   classImporter* = dummy mdl"classImporter"
@@ -69,9 +70,6 @@ discard nativeStructs
   .incl(
     godotInterface,
     objectBase)
-discard engineClassDefines
-  .incl(
-    objectBase)
 discard classDetail_all
   .exportModules_allowed
   .incl(d_classDetail)
@@ -102,12 +100,12 @@ discard +/%..d_root:
   +/%..d_godot:
     godotInterface
     +/%..d_godotInterface:
-      engineClassDefines
       globalEnums
       localEnums
       objectBase
     nativeStructs
     variants
+    d_classes
     +/%..internal d_variants:
       dummy mdl"variantsDetail_Variant"
       variantsDetail_native
@@ -127,6 +125,7 @@ discard +/%..d_root:
       internal variantDefiner
       internal variantConstrDefiner
       internal engineClassDefiner
+      internal standAloneEngineClassDefiner
 
     +/%..d_pure:
       compileTimeSwitch

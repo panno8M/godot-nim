@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc getVertices*(self: Ref[Occluder3D]): PackedVector3Array =
+proc getVertices*(self: Occluder3D): PackedVector3Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_vertices"
@@ -12,7 +12,7 @@ proc getVertices*(self: Ref[Occluder3D]): PackedVector3Array =
   var ret: encoded PackedVector3Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(PackedVector3Array)
-proc getIndices*(self: Ref[Occluder3D]): PackedInt32Array =
+proc getIndices*(self: Occluder3D): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_indices"

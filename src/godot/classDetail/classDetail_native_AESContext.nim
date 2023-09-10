@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc start*(self: Ref[AESContext]; mode: AESContext_Mode; key: PackedByteArray; iv: PackedByteArray = PackedByteArray()): Error =
+proc start*(self: AESContext; mode: AESContext_Mode; key: PackedByteArray; iv: PackedByteArray = PackedByteArray()): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "start"
@@ -13,7 +13,7 @@ proc start*(self: Ref[AESContext]; mode: AESContext_Mode; key: PackedByteArray; 
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc update*(self: Ref[AESContext]; src: PackedByteArray): PackedByteArray =
+proc update*(self: AESContext; src: PackedByteArray): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "update"
@@ -22,7 +22,7 @@ proc update*(self: Ref[AESContext]; src: PackedByteArray): PackedByteArray =
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedByteArray)
-proc getIvState*(self: Ref[AESContext]): PackedByteArray =
+proc getIvState*(self: AESContext): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_iv_state"
@@ -30,7 +30,7 @@ proc getIvState*(self: Ref[AESContext]): PackedByteArray =
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(PackedByteArray)
-proc finish*(self: Ref[AESContext]) =
+proc finish*(self: AESContext) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "finish"

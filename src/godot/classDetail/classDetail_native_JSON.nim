@@ -22,7 +22,7 @@ proc parseString*(jsonString: String): Variant {.staticOf: JSON.} =
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
-proc parse*(self: Ref[JSON]; jsonText: String; keepText: Bool = false): Error =
+proc parse*(self: JSON; jsonText: String; keepText: Bool = false): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "parse"
@@ -31,7 +31,7 @@ proc parse*(self: Ref[JSON]; jsonText: String; keepText: Bool = false): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc data*(self: Ref[JSON]): Variant =
+proc data*(self: JSON): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_data"
@@ -39,14 +39,14 @@ proc data*(self: Ref[JSON]): Variant =
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Variant)
-proc `data=`*(self: Ref[JSON]; data: ptr Variant) =
+proc `data=`*(self: JSON; data: ptr Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_data"
     methodbind = interface_ClassDB_getMethodBind(addr className JSON, addr name, 1114965689)
   var `?param` = [getPtr data]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getParsedText*(self: Ref[JSON]): String =
+proc getParsedText*(self: JSON): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_parsed_text"
@@ -54,7 +54,7 @@ proc getParsedText*(self: Ref[JSON]): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(String)
-proc getErrorLine*(self: Ref[JSON]): int32 =
+proc getErrorLine*(self: JSON): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_error_line"
@@ -62,7 +62,7 @@ proc getErrorLine*(self: Ref[JSON]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getErrorMessage*(self: Ref[JSON]): String =
+proc getErrorMessage*(self: JSON): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_error_message"

@@ -4,16 +4,16 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc createFromImage*(image: Ref[Image]): Ref[ImageTexture] {.staticOf: ImageTexture.} =
+proc createFromImage*(image: Image): ImageTexture {.staticOf: ImageTexture.} =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_from_image"
     methodbind = interface_ClassDB_getMethodBind(addr className ImageTexture, addr name, 2775144163)
   var `?param` = [getPtr image]
-  var ret: encoded Ref[ImageTexture]
+  var ret: encoded ImageTexture
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[ImageTexture])
-proc getFormat*(self: Ref[ImageTexture]): Image_Format =
+  (addr ret).decode(ImageTexture)
+proc getFormat*(self: ImageTexture): Image_Format =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_format"
@@ -21,21 +21,21 @@ proc getFormat*(self: Ref[ImageTexture]): Image_Format =
   var ret: encoded Image_Format
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Image_Format)
-proc setImage*(self: Ref[ImageTexture]; image: Ref[Image]) =
+proc setImage*(self: ImageTexture; image: Image) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_image"
     methodbind = interface_ClassDB_getMethodBind(addr className ImageTexture, addr name, 532598488)
   var `?param` = [getPtr image]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc update*(self: Ref[ImageTexture]; image: Ref[Image]) =
+proc update*(self: ImageTexture; image: Image) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "update"
     methodbind = interface_ClassDB_getMethodBind(addr className ImageTexture, addr name, 532598488)
   var `?param` = [getPtr image]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setSizeOverride*(self: Ref[ImageTexture]; size: Vector2i) =
+proc setSizeOverride*(self: ImageTexture; size: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_size_override"

@@ -4,13 +4,13 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc poll*(self: Ref[StreamPeerTLS]) =
+proc poll*(self: StreamPeerTLS) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "poll"
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeerTLS, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc acceptStream*(self: Ref[StreamPeerTLS]; stream: Ref[StreamPeer]; serverOptions: Ref[TLSOptions]): Error =
+proc acceptStream*(self: StreamPeerTLS; stream: StreamPeer; serverOptions: TLSOptions): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "accept_stream"
@@ -19,7 +19,7 @@ proc acceptStream*(self: Ref[StreamPeerTLS]; stream: Ref[StreamPeer]; serverOpti
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc connectToStream*(self: Ref[StreamPeerTLS]; stream: Ref[StreamPeer]; commonName: String; clientOptions: Ref[TLSOptions] = default Ref[TLSOptions]): Error =
+proc connectToStream*(self: StreamPeerTLS; stream: StreamPeer; commonName: String; clientOptions: TLSOptions = default TLSOptions): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "connect_to_stream"
@@ -28,7 +28,7 @@ proc connectToStream*(self: Ref[StreamPeerTLS]; stream: Ref[StreamPeer]; commonN
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc getStatus*(self: Ref[StreamPeerTLS]): StreamPeerTLS_Status =
+proc getStatus*(self: StreamPeerTLS): StreamPeerTLS_Status =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_status"
@@ -36,15 +36,15 @@ proc getStatus*(self: Ref[StreamPeerTLS]): StreamPeerTLS_Status =
   var ret: encoded StreamPeerTLS_Status
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(StreamPeerTLS_Status)
-proc getStream*(self: Ref[StreamPeerTLS]): Ref[StreamPeer] =
+proc getStream*(self: StreamPeerTLS): StreamPeer =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_stream"
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeerTLS, addr name, 2741655269)
-  var ret: encoded Ref[StreamPeer]
+  var ret: encoded StreamPeer
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[StreamPeer])
-proc disconnectFromStream*(self: Ref[StreamPeerTLS]) =
+  (addr ret).decode(StreamPeer)
+proc disconnectFromStream*(self: StreamPeerTLS) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "disconnect_from_stream"

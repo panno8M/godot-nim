@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `radius=`*(self: Ref[SphereMesh]; radius: Float) =
+proc `radius=`*(self: SphereMesh; radius: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_radius"
     methodbind = interface_ClassDB_getMethodBind(addr className SphereMesh, addr name, 373806689)
   var `?param` = [getPtr radius]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc radius*(self: Ref[SphereMesh]): Float =
+proc radius*(self: SphereMesh): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_radius"
@@ -19,14 +19,14 @@ proc radius*(self: Ref[SphereMesh]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `height=`*(self: Ref[SphereMesh]; height: Float) =
+proc `height=`*(self: SphereMesh; height: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_height"
     methodbind = interface_ClassDB_getMethodBind(addr className SphereMesh, addr name, 373806689)
   var `?param` = [getPtr height]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc height*(self: Ref[SphereMesh]): Float =
+proc height*(self: SphereMesh): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_height"
@@ -34,14 +34,14 @@ proc height*(self: Ref[SphereMesh]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `radialSegments=`*(self: Ref[SphereMesh]; radialSegments: int32) =
+proc `radialSegments=`*(self: SphereMesh; radialSegments: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_radial_segments"
     methodbind = interface_ClassDB_getMethodBind(addr className SphereMesh, addr name, 1286410249)
   var `?param` = [getPtr radialSegments]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc radialSegments*(self: Ref[SphereMesh]): int32 =
+proc radialSegments*(self: SphereMesh): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_radial_segments"
@@ -49,14 +49,14 @@ proc radialSegments*(self: Ref[SphereMesh]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc `rings=`*(self: Ref[SphereMesh]; rings: int32) =
+proc `rings=`*(self: SphereMesh; rings: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_rings"
     methodbind = interface_ClassDB_getMethodBind(addr className SphereMesh, addr name, 1286410249)
   var `?param` = [getPtr rings]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc rings*(self: Ref[SphereMesh]): int32 =
+proc rings*(self: SphereMesh): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_rings"
@@ -64,14 +64,14 @@ proc rings*(self: Ref[SphereMesh]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc `isHemisphere=`*(self: Ref[SphereMesh]; isHemisphere: Bool) =
+proc `isHemisphere=`*(self: SphereMesh; isHemisphere: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_is_hemisphere"
     methodbind = interface_ClassDB_getMethodBind(addr className SphereMesh, addr name, 2586408642)
   var `?param` = [getPtr isHemisphere]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isHemisphere*(self: Ref[SphereMesh]): Bool =
+proc isHemisphere*(self: SphereMesh): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_is_hemisphere"

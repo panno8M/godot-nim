@@ -4,13 +4,13 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc wait*(self: Ref[Semaphore]) =
+proc wait*(self: Semaphore) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "wait"
     methodbind = interface_ClassDB_getMethodBind(addr className Semaphore, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc tryWait*(self: Ref[Semaphore]): Bool =
+proc tryWait*(self: Semaphore): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "try_wait"
@@ -18,7 +18,7 @@ proc tryWait*(self: Ref[Semaphore]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc post*(self: Ref[Semaphore]) =
+proc post*(self: Semaphore) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "post"

@@ -154,7 +154,7 @@ proc isBusBypassingEffects*(self: AudioServer; busIdx: int32): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc addBusEffect*(self: AudioServer; busIdx: int32; effect: Ref[AudioEffect]; atPosition: int32 = -1) =
+proc addBusEffect*(self: AudioServer; busIdx: int32; effect: AudioEffect; atPosition: int32 = -1) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_bus_effect"
@@ -177,24 +177,24 @@ proc getBusEffectCount*(self: AudioServer; busIdx: int32): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc getBusEffect*(self: AudioServer; busIdx: int32; effectIdx: int32): Ref[AudioEffect] =
+proc getBusEffect*(self: AudioServer; busIdx: int32; effectIdx: int32): AudioEffect =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_bus_effect"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioServer, addr name, 726064442)
   var `?param` = [getPtr busIdx, getPtr effectIdx]
-  var ret: encoded Ref[AudioEffect]
+  var ret: encoded AudioEffect
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[AudioEffect])
-proc getBusEffectInstance*(self: AudioServer; busIdx: int32; effectIdx: int32; channel: int32 = 0): Ref[AudioEffectInstance] =
+  (addr ret).decode(AudioEffect)
+proc getBusEffectInstance*(self: AudioServer; busIdx: int32; effectIdx: int32; channel: int32 = 0): AudioEffectInstance =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_bus_effect_instance"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioServer, addr name, 2887144608)
   var `?param` = [getPtr busIdx, getPtr effectIdx, getPtr channel]
-  var ret: encoded Ref[AudioEffectInstance]
+  var ret: encoded AudioEffectInstance
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[AudioEffectInstance])
+  (addr ret).decode(AudioEffectInstance)
 proc swapBusEffects*(self: AudioServer; busIdx: int32; effectIdx: int32; byEffectIdx: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -349,21 +349,21 @@ proc `inputDevice=`*(self: AudioServer; name: String) =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioServer, addr name, 83702148)
   var `?param` = [getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setBusLayout*(self: AudioServer; busLayout: Ref[AudioBusLayout]) =
+proc setBusLayout*(self: AudioServer; busLayout: AudioBusLayout) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_bus_layout"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioServer, addr name, 3319058824)
   var `?param` = [getPtr busLayout]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc generateBusLayout*(self: AudioServer): Ref[AudioBusLayout] =
+proc generateBusLayout*(self: AudioServer): AudioBusLayout =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "generate_bus_layout"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioServer, addr name, 3769973890)
-  var ret: encoded Ref[AudioBusLayout]
+  var ret: encoded AudioBusLayout
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[AudioBusLayout])
+  (addr ret).decode(AudioBusLayout)
 proc setEnableTaggingUsedAudioStreams*(self: AudioServer; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

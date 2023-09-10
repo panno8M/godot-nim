@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `pathfindingAlgorithm=`*(self: Ref[NavigationPathQueryParameters2D]; pathfindingAlgorithm: NavigationPathQueryParameters2D_PathfindingAlgorithm) =
+proc `pathfindingAlgorithm=`*(self: NavigationPathQueryParameters2D; pathfindingAlgorithm: NavigationPathQueryParameters2D_PathfindingAlgorithm) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_pathfinding_algorithm"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPathQueryParameters2D, addr name, 2783519915)
   var `?param` = [getPtr pathfindingAlgorithm]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc pathfindingAlgorithm*(self: Ref[NavigationPathQueryParameters2D]): NavigationPathQueryParameters2D_PathfindingAlgorithm =
+proc pathfindingAlgorithm*(self: NavigationPathQueryParameters2D): NavigationPathQueryParameters2D_PathfindingAlgorithm =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_pathfinding_algorithm"
@@ -19,14 +19,14 @@ proc pathfindingAlgorithm*(self: Ref[NavigationPathQueryParameters2D]): Navigati
   var ret: encoded NavigationPathQueryParameters2D_PathfindingAlgorithm
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(NavigationPathQueryParameters2D_PathfindingAlgorithm)
-proc `pathPostprocessing=`*(self: Ref[NavigationPathQueryParameters2D]; pathPostprocessing: NavigationPathQueryParameters2D_PathPostProcessing) =
+proc `pathPostprocessing=`*(self: NavigationPathQueryParameters2D; pathPostprocessing: NavigationPathQueryParameters2D_PathPostProcessing) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_path_postprocessing"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPathQueryParameters2D, addr name, 2864409082)
   var `?param` = [getPtr pathPostprocessing]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc pathPostprocessing*(self: Ref[NavigationPathQueryParameters2D]): NavigationPathQueryParameters2D_PathPostProcessing =
+proc pathPostprocessing*(self: NavigationPathQueryParameters2D): NavigationPathQueryParameters2D_PathPostProcessing =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_path_postprocessing"
@@ -34,14 +34,14 @@ proc pathPostprocessing*(self: Ref[NavigationPathQueryParameters2D]): Navigation
   var ret: encoded NavigationPathQueryParameters2D_PathPostProcessing
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(NavigationPathQueryParameters2D_PathPostProcessing)
-proc `map=`*(self: Ref[NavigationPathQueryParameters2D]; map: RID) =
+proc `map=`*(self: NavigationPathQueryParameters2D; map: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_map"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPathQueryParameters2D, addr name, 2722037293)
   var `?param` = [getPtr map]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc map*(self: Ref[NavigationPathQueryParameters2D]): RID =
+proc map*(self: NavigationPathQueryParameters2D): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_map"
@@ -49,14 +49,14 @@ proc map*(self: Ref[NavigationPathQueryParameters2D]): RID =
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(RID)
-proc `startPosition=`*(self: Ref[NavigationPathQueryParameters2D]; startPosition: Vector2) =
+proc `startPosition=`*(self: NavigationPathQueryParameters2D; startPosition: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_start_position"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPathQueryParameters2D, addr name, 743155724)
   var `?param` = [getPtr startPosition]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc startPosition*(self: Ref[NavigationPathQueryParameters2D]): Vector2 =
+proc startPosition*(self: NavigationPathQueryParameters2D): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_start_position"
@@ -64,14 +64,14 @@ proc startPosition*(self: Ref[NavigationPathQueryParameters2D]): Vector2 =
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Vector2)
-proc `targetPosition=`*(self: Ref[NavigationPathQueryParameters2D]; targetPosition: Vector2) =
+proc `targetPosition=`*(self: NavigationPathQueryParameters2D; targetPosition: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_target_position"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPathQueryParameters2D, addr name, 743155724)
   var `?param` = [getPtr targetPosition]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc tarposition*(self: Ref[NavigationPathQueryParameters2D]): Vector2 =
+proc tarposition*(self: NavigationPathQueryParameters2D): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_target_position"
@@ -79,14 +79,14 @@ proc tarposition*(self: Ref[NavigationPathQueryParameters2D]): Vector2 =
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Vector2)
-proc `navigationLayers=`*(self: Ref[NavigationPathQueryParameters2D]; navigationLayers: uint32) =
+proc `navigationLayers=`*(self: NavigationPathQueryParameters2D; navigationLayers: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_navigation_layers"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPathQueryParameters2D, addr name, 1286410249)
   var `?param` = [getPtr navigationLayers]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc navigationLayers*(self: Ref[NavigationPathQueryParameters2D]): uint32 =
+proc navigationLayers*(self: NavigationPathQueryParameters2D): uint32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_navigation_layers"
@@ -94,14 +94,14 @@ proc navigationLayers*(self: Ref[NavigationPathQueryParameters2D]): uint32 =
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(uint32)
-proc `metadataFlags=`*(self: Ref[NavigationPathQueryParameters2D]; flags: set[NavigationPathQueryParameters2D_PathMetadataFlags]) =
+proc `metadataFlags=`*(self: NavigationPathQueryParameters2D; flags: set[NavigationPathQueryParameters2D_PathMetadataFlags]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_metadata_flags"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPathQueryParameters2D, addr name, 24274129)
   var `?param` = [getPtr flags]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc metadataFlags*(self: Ref[NavigationPathQueryParameters2D]): set[NavigationPathQueryParameters2D_PathMetadataFlags] =
+proc metadataFlags*(self: NavigationPathQueryParameters2D): set[NavigationPathQueryParameters2D_PathMetadataFlags] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_metadata_flags"

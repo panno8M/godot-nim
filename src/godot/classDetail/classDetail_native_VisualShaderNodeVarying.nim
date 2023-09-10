@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `varyingName=`*(self: Ref[VisualShaderNodeVarying]; name: String) =
+proc `varyingName=`*(self: VisualShaderNodeVarying; name: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_varying_name"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeVarying, addr name, 83702148)
   var `?param` = [getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc varyingName*(self: Ref[VisualShaderNodeVarying]): String =
+proc varyingName*(self: VisualShaderNodeVarying): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_varying_name"
@@ -19,14 +19,14 @@ proc varyingName*(self: Ref[VisualShaderNodeVarying]): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(String)
-proc `varyingType=`*(self: Ref[VisualShaderNodeVarying]; `type`: VisualShader_VaryingType) =
+proc `varyingType=`*(self: VisualShaderNodeVarying; `type`: VisualShader_VaryingType) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_varying_type"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeVarying, addr name, 3565867981)
   var `?param` = [getPtr `type`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc varyingType*(self: Ref[VisualShaderNodeVarying]): VisualShader_VaryingType =
+proc varyingType*(self: VisualShaderNodeVarying): VisualShader_VaryingType =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_varying_type"

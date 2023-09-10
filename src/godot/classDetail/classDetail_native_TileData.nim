@@ -49,21 +49,21 @@ proc transpose*(self: TileData): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `material=`*(self: TileData; material: Ref[Material]) =
+proc `material=`*(self: TileData; material: Material) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_material"
     methodbind = interface_ClassDB_getMethodBind(addr className TileData, addr name, 2757459619)
   var `?param` = [getPtr material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc material*(self: TileData): Ref[Material] =
+proc material*(self: TileData): Material =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_material"
     methodbind = interface_ClassDB_getMethodBind(addr className TileData, addr name, 5934680)
-  var ret: encoded Ref[Material]
+  var ret: encoded Material
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Material])
+  (addr ret).decode(Material)
 proc `textureOrigin=`*(self: TileData; textureOrigin: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,22 +124,22 @@ proc ySortOrigin*(self: TileData): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc setOccluder*(self: TileData; layerId: int32; occluderPolygon: Ref[OccluderPolygon2D]) =
+proc setOccluder*(self: TileData; layerId: int32; occluderPolygon: OccluderPolygon2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_occluder"
     methodbind = interface_ClassDB_getMethodBind(addr className TileData, addr name, 914399637)
   var `?param` = [getPtr layerId, getPtr occluderPolygon]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getOccluder*(self: TileData; layerId: int32): Ref[OccluderPolygon2D] =
+proc getOccluder*(self: TileData; layerId: int32): OccluderPolygon2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_occluder"
     methodbind = interface_ClassDB_getMethodBind(addr className TileData, addr name, 2458574231)
   var `?param` = [getPtr layerId]
-  var ret: encoded Ref[OccluderPolygon2D]
+  var ret: encoded OccluderPolygon2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[OccluderPolygon2D])
+  (addr ret).decode(OccluderPolygon2D)
 proc setConstantLinearVelocity*(self: TileData; layerId: int32; velocity: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -296,22 +296,22 @@ proc getTerrainPeeringBit*(self: TileData; peeringBit: TileSet_CellNeighbor): in
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc setNavigationPolygon*(self: TileData; layerId: int32; navigationPolygon: Ref[NavigationPolygon]) =
+proc setNavigationPolygon*(self: TileData; layerId: int32; navigationPolygon: NavigationPolygon) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_navigation_polygon"
     methodbind = interface_ClassDB_getMethodBind(addr className TileData, addr name, 2224691167)
   var `?param` = [getPtr layerId, getPtr navigationPolygon]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getNavigationPolygon*(self: TileData; layerId: int32): Ref[NavigationPolygon] =
+proc getNavigationPolygon*(self: TileData; layerId: int32): NavigationPolygon =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_navigation_polygon"
     methodbind = interface_ClassDB_getMethodBind(addr className TileData, addr name, 3991786031)
   var `?param` = [getPtr layerId]
-  var ret: encoded Ref[NavigationPolygon]
+  var ret: encoded NavigationPolygon
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[NavigationPolygon])
+  (addr ret).decode(NavigationPolygon)
 proc `probability=`*(self: TileData; probability: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

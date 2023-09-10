@@ -4,29 +4,29 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `texture=`*(self: Ref[TileSetAtlasSource]; texture: Ref[Texture2D]) =
+proc `texture=`*(self: TileSetAtlasSource; texture: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className TileSetAtlasSource, addr name, 4051416890)
   var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc texture*(self: Ref[TileSetAtlasSource]): Ref[Texture2D] =
+proc texture*(self: TileSetAtlasSource): Texture2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className TileSetAtlasSource, addr name, 3635182373)
-  var ret: encoded Ref[Texture2D]
+  var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Texture2D])
-proc `margins=`*(self: Ref[TileSetAtlasSource]; margins: Vector2i) =
+  (addr ret).decode(Texture2D)
+proc `margins=`*(self: TileSetAtlasSource; margins: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_margins"
     methodbind = interface_ClassDB_getMethodBind(addr className TileSetAtlasSource, addr name, 1130785943)
   var `?param` = [getPtr margins]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc margins*(self: Ref[TileSetAtlasSource]): Vector2i =
+proc margins*(self: TileSetAtlasSource): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_margins"
@@ -34,14 +34,14 @@ proc margins*(self: Ref[TileSetAtlasSource]): Vector2i =
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Vector2i)
-proc `separation=`*(self: Ref[TileSetAtlasSource]; separation: Vector2i) =
+proc `separation=`*(self: TileSetAtlasSource; separation: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_separation"
     methodbind = interface_ClassDB_getMethodBind(addr className TileSetAtlasSource, addr name, 1130785943)
   var `?param` = [getPtr separation]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc separation*(self: Ref[TileSetAtlasSource]): Vector2i =
+proc separation*(self: TileSetAtlasSource): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_separation"
@@ -49,14 +49,14 @@ proc separation*(self: Ref[TileSetAtlasSource]): Vector2i =
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Vector2i)
-proc `textureRegionSize=`*(self: Ref[TileSetAtlasSource]; textureRegionSize: Vector2i) =
+proc `textureRegionSize=`*(self: TileSetAtlasSource; textureRegionSize: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_texture_region_size"
     methodbind = interface_ClassDB_getMethodBind(addr className TileSetAtlasSource, addr name, 1130785943)
   var `?param` = [getPtr textureRegionSize]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc textureRegionSize*(self: Ref[TileSetAtlasSource]): Vector2i =
+proc textureRegionSize*(self: TileSetAtlasSource): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_texture_region_size"
@@ -64,14 +64,14 @@ proc textureRegionSize*(self: Ref[TileSetAtlasSource]): Vector2i =
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Vector2i)
-proc `useTexturePadding=`*(self: Ref[TileSetAtlasSource]; useTexturePadding: Bool) =
+proc `useTexturePadding=`*(self: TileSetAtlasSource; useTexturePadding: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_use_texture_padding"
     methodbind = interface_ClassDB_getMethodBind(addr className TileSetAtlasSource, addr name, 2586408642)
   var `?param` = [getPtr useTexturePadding]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc useTexturePadding*(self: Ref[TileSetAtlasSource]): Bool =
+proc useTexturePadding*(self: TileSetAtlasSource): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_use_texture_padding"
@@ -79,28 +79,28 @@ proc useTexturePadding*(self: Ref[TileSetAtlasSource]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc createTile*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i; size: Vector2i = gdveci(1, 1)) =
+proc createTile*(self: TileSetAtlasSource; atlasCoords: Vector2i; size: Vector2i = gdveci(1, 1)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_tile"
     methodbind = interface_ClassDB_getMethodBind(addr className TileSetAtlasSource, addr name, 1583819816)
   var `?param` = [getPtr atlasCoords, getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removeTile*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i) =
+proc removeTile*(self: TileSetAtlasSource; atlasCoords: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_tile"
     methodbind = interface_ClassDB_getMethodBind(addr className TileSetAtlasSource, addr name, 1130785943)
   var `?param` = [getPtr atlasCoords]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc moveTileInAtlas*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i; newAtlasCoords: Vector2i = gdveci(-1, -1); newSize: Vector2i = gdveci(-1, -1)) =
+proc moveTileInAtlas*(self: TileSetAtlasSource; atlasCoords: Vector2i; newAtlasCoords: Vector2i = gdveci(-1, -1); newSize: Vector2i = gdveci(-1, -1)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "move_tile_in_atlas"
     methodbind = interface_ClassDB_getMethodBind(addr className TileSetAtlasSource, addr name, 1375626516)
   var `?param` = [getPtr atlasCoords, getPtr newAtlasCoords, getPtr newSize]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getTileSizeInAtlas*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i): Vector2i =
+proc getTileSizeInAtlas*(self: TileSetAtlasSource; atlasCoords: Vector2i): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_tile_size_in_atlas"
@@ -109,7 +109,7 @@ proc getTileSizeInAtlas*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i): 
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2i)
-proc hasRoomForTile*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i; size: Vector2i; animationColumns: int32; animationSeparation: Vector2i; framesCount: int32; ignoredTile: Vector2i = gdveci(-1, -1)): Bool =
+proc hasRoomForTile*(self: TileSetAtlasSource; atlasCoords: Vector2i; size: Vector2i; animationColumns: int32; animationSeparation: Vector2i; framesCount: int32; ignoredTile: Vector2i = gdveci(-1, -1)): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "has_room_for_tile"
@@ -118,7 +118,7 @@ proc hasRoomForTile*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i; size:
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc getTilesToBeRemovedOnChange*(self: Ref[TileSetAtlasSource]; texture: Ref[Texture2D]; margins: Vector2i; separation: Vector2i; textureRegionSize: Vector2i): PackedVector2Array =
+proc getTilesToBeRemovedOnChange*(self: TileSetAtlasSource; texture: Texture2D; margins: Vector2i; separation: Vector2i; textureRegionSize: Vector2i): PackedVector2Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_tiles_to_be_removed_on_change"
@@ -127,7 +127,7 @@ proc getTilesToBeRemovedOnChange*(self: Ref[TileSetAtlasSource]; texture: Ref[Te
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedVector2Array)
-proc getTileAtCoords*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i): Vector2i =
+proc getTileAtCoords*(self: TileSetAtlasSource; atlasCoords: Vector2i): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_tile_at_coords"
@@ -136,14 +136,14 @@ proc getTileAtCoords*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i): Vec
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2i)
-proc setTileAnimationColumns*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i; frameColumns: int32) =
+proc setTileAnimationColumns*(self: TileSetAtlasSource; atlasCoords: Vector2i; frameColumns: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tile_animation_columns"
     methodbind = interface_ClassDB_getMethodBind(addr className TileSetAtlasSource, addr name, 3200960707)
   var `?param` = [getPtr atlasCoords, getPtr frameColumns]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getTileAnimationColumns*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i): int32 =
+proc getTileAnimationColumns*(self: TileSetAtlasSource; atlasCoords: Vector2i): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_tile_animation_columns"
@@ -152,14 +152,14 @@ proc getTileAnimationColumns*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc setTileAnimationSeparation*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i; separation: Vector2i) =
+proc setTileAnimationSeparation*(self: TileSetAtlasSource; atlasCoords: Vector2i; separation: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tile_animation_separation"
     methodbind = interface_ClassDB_getMethodBind(addr className TileSetAtlasSource, addr name, 1941061099)
   var `?param` = [getPtr atlasCoords, getPtr separation]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getTileAnimationSeparation*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i): Vector2i =
+proc getTileAnimationSeparation*(self: TileSetAtlasSource; atlasCoords: Vector2i): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_tile_animation_separation"
@@ -168,14 +168,14 @@ proc getTileAnimationSeparation*(self: Ref[TileSetAtlasSource]; atlasCoords: Vec
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2i)
-proc setTileAnimationSpeed*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i; speed: Float) =
+proc setTileAnimationSpeed*(self: TileSetAtlasSource; atlasCoords: Vector2i; speed: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tile_animation_speed"
     methodbind = interface_ClassDB_getMethodBind(addr className TileSetAtlasSource, addr name, 2262553149)
   var `?param` = [getPtr atlasCoords, getPtr speed]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getTileAnimationSpeed*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i): Float =
+proc getTileAnimationSpeed*(self: TileSetAtlasSource; atlasCoords: Vector2i): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_tile_animation_speed"
@@ -184,14 +184,14 @@ proc getTileAnimationSpeed*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
-proc setTileAnimationFramesCount*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i; framesCount: int32) =
+proc setTileAnimationFramesCount*(self: TileSetAtlasSource; atlasCoords: Vector2i; framesCount: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tile_animation_frames_count"
     methodbind = interface_ClassDB_getMethodBind(addr className TileSetAtlasSource, addr name, 3200960707)
   var `?param` = [getPtr atlasCoords, getPtr framesCount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getTileAnimationFramesCount*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i): int32 =
+proc getTileAnimationFramesCount*(self: TileSetAtlasSource; atlasCoords: Vector2i): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_tile_animation_frames_count"
@@ -200,14 +200,14 @@ proc getTileAnimationFramesCount*(self: Ref[TileSetAtlasSource]; atlasCoords: Ve
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc setTileAnimationFrameDuration*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i; frameIndex: int32; duration: Float) =
+proc setTileAnimationFrameDuration*(self: TileSetAtlasSource; atlasCoords: Vector2i; frameIndex: int32; duration: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tile_animation_frame_duration"
     methodbind = interface_ClassDB_getMethodBind(addr className TileSetAtlasSource, addr name, 2843487787)
   var `?param` = [getPtr atlasCoords, getPtr frameIndex, getPtr duration]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getTileAnimationFrameDuration*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i; frameIndex: int32): Float =
+proc getTileAnimationFrameDuration*(self: TileSetAtlasSource; atlasCoords: Vector2i; frameIndex: int32): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_tile_animation_frame_duration"
@@ -216,7 +216,7 @@ proc getTileAnimationFrameDuration*(self: Ref[TileSetAtlasSource]; atlasCoords: 
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
-proc getTileAnimationTotalDuration*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i): Float =
+proc getTileAnimationTotalDuration*(self: TileSetAtlasSource; atlasCoords: Vector2i): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_tile_animation_total_duration"
@@ -225,7 +225,7 @@ proc getTileAnimationTotalDuration*(self: Ref[TileSetAtlasSource]; atlasCoords: 
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
-proc createAlternativeTile*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i; alternativeIdOverride: int32 = -1): int32 =
+proc createAlternativeTile*(self: TileSetAtlasSource; atlasCoords: Vector2i; alternativeIdOverride: int32 = -1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_alternative_tile"
@@ -234,21 +234,21 @@ proc createAlternativeTile*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc removeAlternativeTile*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i; alternativeTile: int32) =
+proc removeAlternativeTile*(self: TileSetAtlasSource; atlasCoords: Vector2i; alternativeTile: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_alternative_tile"
     methodbind = interface_ClassDB_getMethodBind(addr className TileSetAtlasSource, addr name, 3200960707)
   var `?param` = [getPtr atlasCoords, getPtr alternativeTile]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setAlternativeTileId*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i; alternativeTile: int32; newId: int32) =
+proc setAlternativeTileId*(self: TileSetAtlasSource; atlasCoords: Vector2i; alternativeTile: int32; newId: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_alternative_tile_id"
     methodbind = interface_ClassDB_getMethodBind(addr className TileSetAtlasSource, addr name, 1499785778)
   var `?param` = [getPtr atlasCoords, getPtr alternativeTile, getPtr newId]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getNextAlternativeTileId*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i): int32 =
+proc getNextAlternativeTileId*(self: TileSetAtlasSource; atlasCoords: Vector2i): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_next_alternative_tile_id"
@@ -257,7 +257,7 @@ proc getNextAlternativeTileId*(self: Ref[TileSetAtlasSource]; atlasCoords: Vecto
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc getTileData*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i; alternativeTile: int32): TileData =
+proc getTileData*(self: TileSetAtlasSource; atlasCoords: Vector2i; alternativeTile: int32): TileData =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_tile_data"
@@ -266,7 +266,7 @@ proc getTileData*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i; alternat
   var ret: encoded TileData
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TileData)
-proc getAtlasGridSize*(self: Ref[TileSetAtlasSource]): Vector2i =
+proc getAtlasGridSize*(self: TileSetAtlasSource): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_atlas_grid_size"
@@ -274,7 +274,7 @@ proc getAtlasGridSize*(self: Ref[TileSetAtlasSource]): Vector2i =
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Vector2i)
-proc getTileTextureRegion*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i; frame: int32 = 0): Rect2i =
+proc getTileTextureRegion*(self: TileSetAtlasSource; atlasCoords: Vector2i; frame: int32 = 0): Rect2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_tile_texture_region"
@@ -283,15 +283,15 @@ proc getTileTextureRegion*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i;
   var ret: encoded Rect2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Rect2i)
-proc getRuntimeTexture*(self: Ref[TileSetAtlasSource]): Ref[Texture2D] =
+proc getRuntimeTexture*(self: TileSetAtlasSource): Texture2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_runtime_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className TileSetAtlasSource, addr name, 3635182373)
-  var ret: encoded Ref[Texture2D]
+  var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Texture2D])
-proc getRuntimeTileTextureRegion*(self: Ref[TileSetAtlasSource]; atlasCoords: Vector2i; frame: int32): Rect2i =
+  (addr ret).decode(Texture2D)
+proc getRuntimeTileTextureRegion*(self: TileSetAtlasSource; atlasCoords: Vector2i; frame: int32): Rect2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_runtime_tile_texture_region"

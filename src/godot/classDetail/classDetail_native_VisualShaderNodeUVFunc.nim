@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `function=`*(self: Ref[VisualShaderNodeUVFunc]; `func`: VisualShaderNodeUVFunc_Function) =
+proc `function=`*(self: VisualShaderNodeUVFunc; `func`: VisualShaderNodeUVFunc_Function) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_function"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeUVFunc, addr name, 765791915)
   var `?param` = [getPtr `func`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc function*(self: Ref[VisualShaderNodeUVFunc]): VisualShaderNodeUVFunc_Function =
+proc function*(self: VisualShaderNodeUVFunc): VisualShaderNodeUVFunc_Function =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_function"

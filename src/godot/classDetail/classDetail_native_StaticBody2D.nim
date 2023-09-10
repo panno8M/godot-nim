@@ -34,18 +34,18 @@ proc constantAngularVelocity*(self: StaticBody2D): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `physicsMaterialOverride=`*(self: StaticBody2D; physicsMaterialOverride: Ref[PhysicsMaterial]) =
+proc `physicsMaterialOverride=`*(self: StaticBody2D; physicsMaterialOverride: PhysicsMaterial) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_physics_material_override"
     methodbind = interface_ClassDB_getMethodBind(addr className StaticBody2D, addr name, 1784508650)
   var `?param` = [getPtr physicsMaterialOverride]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc physicsMaterialOverride*(self: StaticBody2D): Ref[PhysicsMaterial] =
+proc physicsMaterialOverride*(self: StaticBody2D): PhysicsMaterial =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_physics_material_override"
     methodbind = interface_ClassDB_getMethodBind(addr className StaticBody2D, addr name, 2521850424)
-  var ret: encoded Ref[PhysicsMaterial]
+  var ret: encoded PhysicsMaterial
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[PhysicsMaterial])
+  (addr ret).decode(PhysicsMaterial)

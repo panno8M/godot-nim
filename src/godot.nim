@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./godot/classEssencial; export classEssencial
+import ./godot/classes/class_Object; export class_Object
 import ./godot/godotInterface/engineClassDefines; export engineClassDefines
 import ./godot/godotInterface/globalEnums; export globalEnums
 import ./godot/godotInterface/localEnums; export localEnums

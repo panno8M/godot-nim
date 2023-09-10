@@ -4,36 +4,36 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `mesh=`*(self: ImporterMeshInstance3D; mesh: Ref[ImporterMesh]) =
+proc `mesh=`*(self: ImporterMeshInstance3D; mesh: ImporterMesh) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className ImporterMeshInstance3D, addr name, 2255166972)
   var `?param` = [getPtr mesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc mesh*(self: ImporterMeshInstance3D): Ref[ImporterMesh] =
+proc mesh*(self: ImporterMeshInstance3D): ImporterMesh =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className ImporterMeshInstance3D, addr name, 3161779525)
-  var ret: encoded Ref[ImporterMesh]
+  var ret: encoded ImporterMesh
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[ImporterMesh])
-proc `skin=`*(self: ImporterMeshInstance3D; skin: Ref[Skin]) =
+  (addr ret).decode(ImporterMesh)
+proc `skin=`*(self: ImporterMeshInstance3D; skin: Skin) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_skin"
     methodbind = interface_ClassDB_getMethodBind(addr className ImporterMeshInstance3D, addr name, 3971435618)
   var `?param` = [getPtr skin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc skin*(self: ImporterMeshInstance3D): Ref[Skin] =
+proc skin*(self: ImporterMeshInstance3D): Skin =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_skin"
     methodbind = interface_ClassDB_getMethodBind(addr className ImporterMeshInstance3D, addr name, 2074563878)
-  var ret: encoded Ref[Skin]
+  var ret: encoded Skin
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Skin])
+  (addr ret).decode(Skin)
 proc `skeletonPath=`*(self: ImporterMeshInstance3D; skeletonPath: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

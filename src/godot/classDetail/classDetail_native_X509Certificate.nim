@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc save*(self: Ref[X509Certificate]; path: String): Error =
+proc save*(self: X509Certificate; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "save"
@@ -13,7 +13,7 @@ proc save*(self: Ref[X509Certificate]; path: String): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc load*(self: Ref[X509Certificate]; path: String): Error =
+proc load*(self: X509Certificate; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "load"
@@ -22,7 +22,7 @@ proc load*(self: Ref[X509Certificate]; path: String): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc saveToString*(self: Ref[X509Certificate]): String =
+proc saveToString*(self: X509Certificate): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "save_to_string"
@@ -30,7 +30,7 @@ proc saveToString*(self: Ref[X509Certificate]): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(String)
-proc loadFromString*(self: Ref[X509Certificate]; string: String): Error =
+proc loadFromString*(self: X509Certificate; string: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "load_from_string"

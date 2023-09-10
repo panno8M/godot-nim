@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `factor=`*(self: Ref[InputEventMouseButton]; factor: Float) =
+proc `factor=`*(self: InputEventMouseButton; factor: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_factor"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventMouseButton, addr name, 373806689)
   var `?param` = [getPtr factor]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc factor*(self: Ref[InputEventMouseButton]): Float =
+proc factor*(self: InputEventMouseButton): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_factor"
@@ -19,14 +19,14 @@ proc factor*(self: Ref[InputEventMouseButton]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `buttonIndex=`*(self: Ref[InputEventMouseButton]; buttonIndex: MouseButton) =
+proc `buttonIndex=`*(self: InputEventMouseButton; buttonIndex: MouseButton) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_button_index"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventMouseButton, addr name, 3624991109)
   var `?param` = [getPtr buttonIndex]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc buttonIndex*(self: Ref[InputEventMouseButton]): MouseButton =
+proc buttonIndex*(self: InputEventMouseButton): MouseButton =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_button_index"
@@ -34,28 +34,28 @@ proc buttonIndex*(self: Ref[InputEventMouseButton]): MouseButton =
   var ret: encoded MouseButton
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(MouseButton)
-proc `pressed=`*(self: Ref[InputEventMouseButton]; pressed: Bool) =
+proc `pressed=`*(self: InputEventMouseButton; pressed: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_pressed"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventMouseButton, addr name, 2586408642)
   var `?param` = [getPtr pressed]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc `canceled=`*(self: Ref[InputEventMouseButton]; canceled: Bool) =
+proc `canceled=`*(self: InputEventMouseButton; canceled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_canceled"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventMouseButton, addr name, 2586408642)
   var `?param` = [getPtr canceled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc `doubleClick=`*(self: Ref[InputEventMouseButton]; doubleClick: Bool) =
+proc `doubleClick=`*(self: InputEventMouseButton; doubleClick: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_double_click"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventMouseButton, addr name, 2586408642)
   var `?param` = [getPtr doubleClick]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isDoubleClick*(self: Ref[InputEventMouseButton]): Bool =
+proc isDoubleClick*(self: InputEventMouseButton): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_double_click"

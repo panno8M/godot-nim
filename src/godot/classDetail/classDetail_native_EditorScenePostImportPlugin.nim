@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc getOptionValue*(self: Ref[EditorScenePostImportPlugin]; name: StringName): Variant =
+proc getOptionValue*(self: EditorScenePostImportPlugin; name: StringName): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_option_value"
@@ -13,14 +13,14 @@ proc getOptionValue*(self: Ref[EditorScenePostImportPlugin]; name: StringName): 
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
-proc addImportOption*(self: Ref[EditorScenePostImportPlugin]; name: String; value: ptr Variant) =
+proc addImportOption*(self: EditorScenePostImportPlugin; name: String; value: ptr Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_import_option"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorScenePostImportPlugin, addr name, 402577236)
   var `?param` = [getPtr name, getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addImportOptionAdvanced*(self: Ref[EditorScenePostImportPlugin]; `type`: Variant_Type; name: String; defaultValue: ptr Variant; hint: PropertyHint = propertyHintNone; hintString: String = ""; usageFlags: int32 = 6) =
+proc addImportOptionAdvanced*(self: EditorScenePostImportPlugin; `type`: Variant_Type; name: String; defaultValue: ptr Variant; hint: PropertyHint = propertyHintNone; hintString: String = ""; usageFlags: int32 = 6) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_import_option_advanced"

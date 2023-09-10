@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `source=`*(self: Ref[VisualShaderNodeTexture]; value: VisualShaderNodeTexture_Source) =
+proc `source=`*(self: VisualShaderNodeTexture; value: VisualShaderNodeTexture_Source) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_source"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeTexture, addr name, 905262939)
   var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc source*(self: Ref[VisualShaderNodeTexture]): VisualShaderNodeTexture_Source =
+proc source*(self: VisualShaderNodeTexture): VisualShaderNodeTexture_Source =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_source"
@@ -19,29 +19,29 @@ proc source*(self: Ref[VisualShaderNodeTexture]): VisualShaderNodeTexture_Source
   var ret: encoded VisualShaderNodeTexture_Source
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(VisualShaderNodeTexture_Source)
-proc `texture=`*(self: Ref[VisualShaderNodeTexture]; value: Ref[Texture2D]) =
+proc `texture=`*(self: VisualShaderNodeTexture; value: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeTexture, addr name, 4051416890)
   var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc texture*(self: Ref[VisualShaderNodeTexture]): Ref[Texture2D] =
+proc texture*(self: VisualShaderNodeTexture): Texture2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeTexture, addr name, 3635182373)
-  var ret: encoded Ref[Texture2D]
+  var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Texture2D])
-proc `textureType=`*(self: Ref[VisualShaderNodeTexture]; value: VisualShaderNodeTexture_TextureType) =
+  (addr ret).decode(Texture2D)
+proc `textureType=`*(self: VisualShaderNodeTexture; value: VisualShaderNodeTexture_TextureType) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_texture_type"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeTexture, addr name, 986314081)
   var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc textureType*(self: Ref[VisualShaderNodeTexture]): VisualShaderNodeTexture_TextureType =
+proc textureType*(self: VisualShaderNodeTexture): VisualShaderNodeTexture_TextureType =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_texture_type"

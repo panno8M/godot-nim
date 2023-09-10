@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc canInstantiate*(self: Ref[Script]): Bool =
+proc canInstantiate*(self: Script): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "can_instantiate"
@@ -12,7 +12,7 @@ proc canInstantiate*(self: Ref[Script]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc instanceHas*(self: Ref[Script]; baseObject: Object): Bool =
+proc instanceHas*(self: Script; baseObject: Object): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "instance_has"
@@ -21,7 +21,7 @@ proc instanceHas*(self: Ref[Script]; baseObject: Object): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc hasSourceCode*(self: Ref[Script]): Bool =
+proc hasSourceCode*(self: Script): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "has_source_code"
@@ -29,7 +29,7 @@ proc hasSourceCode*(self: Ref[Script]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc sourceCode*(self: Ref[Script]): String =
+proc sourceCode*(self: Script): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_source_code"
@@ -37,14 +37,14 @@ proc sourceCode*(self: Ref[Script]): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(String)
-proc `sourceCode=`*(self: Ref[Script]; source: String) =
+proc `sourceCode=`*(self: Script; source: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_source_code"
     methodbind = interface_ClassDB_getMethodBind(addr className Script, addr name, 83702148)
   var `?param` = [getPtr source]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc reload*(self: Ref[Script]; keepState: Bool = false): Error =
+proc reload*(self: Script; keepState: Bool = false): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "reload"
@@ -53,15 +53,15 @@ proc reload*(self: Ref[Script]; keepState: Bool = false): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc getBaseScript*(self: Ref[Script]): Ref[Script] =
+proc getBaseScript*(self: Script): Script =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_base_script"
     methodbind = interface_ClassDB_getMethodBind(addr className Script, addr name, 278624046)
-  var ret: encoded Ref[Script]
+  var ret: encoded Script
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Script])
-proc getInstanceBaseType*(self: Ref[Script]): StringName =
+  (addr ret).decode(Script)
+proc getInstanceBaseType*(self: Script): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_instance_base_type"
@@ -69,7 +69,7 @@ proc getInstanceBaseType*(self: Ref[Script]): StringName =
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(StringName)
-proc hasScriptSignal*(self: Ref[Script]; signalName: StringName): Bool =
+proc hasScriptSignal*(self: Script; signalName: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "has_script_signal"
@@ -78,7 +78,7 @@ proc hasScriptSignal*(self: Ref[Script]; signalName: StringName): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc getScriptPropertyList*(self: Ref[Script]): TypedArray[Dictionary] =
+proc getScriptPropertyList*(self: Script): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_script_property_list"
@@ -86,7 +86,7 @@ proc getScriptPropertyList*(self: Ref[Script]): TypedArray[Dictionary] =
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(TypedArray[Dictionary])
-proc getScriptMethodList*(self: Ref[Script]): TypedArray[Dictionary] =
+proc getScriptMethodList*(self: Script): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_script_method_list"
@@ -94,7 +94,7 @@ proc getScriptMethodList*(self: Ref[Script]): TypedArray[Dictionary] =
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(TypedArray[Dictionary])
-proc getScriptSignalList*(self: Ref[Script]): TypedArray[Dictionary] =
+proc getScriptSignalList*(self: Script): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_script_signal_list"
@@ -102,7 +102,7 @@ proc getScriptSignalList*(self: Ref[Script]): TypedArray[Dictionary] =
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(TypedArray[Dictionary])
-proc getScriptConstantMap*(self: Ref[Script]): Dictionary =
+proc getScriptConstantMap*(self: Script): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_script_constant_map"
@@ -110,7 +110,7 @@ proc getScriptConstantMap*(self: Ref[Script]): Dictionary =
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Dictionary)
-proc getPropertyDefaultValue*(self: Ref[Script]; property: StringName): Variant =
+proc getPropertyDefaultValue*(self: Script; property: StringName): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_property_default_value"
@@ -119,7 +119,7 @@ proc getPropertyDefaultValue*(self: Ref[Script]; property: StringName): Variant 
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
-proc isTool*(self: Ref[Script]): Bool =
+proc isTool*(self: Script): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_tool"

@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `cutoff=`*(self: Ref[AudioEffectFilter]; freq: Float) =
+proc `cutoff=`*(self: AudioEffectFilter; freq: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_cutoff"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectFilter, addr name, 373806689)
   var `?param` = [getPtr freq]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc cutoff*(self: Ref[AudioEffectFilter]): Float =
+proc cutoff*(self: AudioEffectFilter): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_cutoff"
@@ -19,14 +19,14 @@ proc cutoff*(self: Ref[AudioEffectFilter]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `resonance=`*(self: Ref[AudioEffectFilter]; amount: Float) =
+proc `resonance=`*(self: AudioEffectFilter; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_resonance"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectFilter, addr name, 373806689)
   var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc resonance*(self: Ref[AudioEffectFilter]): Float =
+proc resonance*(self: AudioEffectFilter): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_resonance"
@@ -34,14 +34,14 @@ proc resonance*(self: Ref[AudioEffectFilter]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `gain=`*(self: Ref[AudioEffectFilter]; amount: Float) =
+proc `gain=`*(self: AudioEffectFilter; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_gain"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectFilter, addr name, 373806689)
   var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc gain*(self: Ref[AudioEffectFilter]): Float =
+proc gain*(self: AudioEffectFilter): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_gain"
@@ -49,14 +49,14 @@ proc gain*(self: Ref[AudioEffectFilter]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `db=`*(self: Ref[AudioEffectFilter]; amount: AudioEffectFilter_FilterDB) =
+proc `db=`*(self: AudioEffectFilter; amount: AudioEffectFilter_FilterDB) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_db"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectFilter, addr name, 771740901)
   var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc db*(self: Ref[AudioEffectFilter]): AudioEffectFilter_FilterDB =
+proc db*(self: AudioEffectFilter): AudioEffectFilter_FilterDB =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_db"

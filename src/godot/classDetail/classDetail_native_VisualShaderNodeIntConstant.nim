@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `constant=`*(self: Ref[VisualShaderNodeIntConstant]; constant: int32) =
+proc `constant=`*(self: VisualShaderNodeIntConstant; constant: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_constant"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeIntConstant, addr name, 1286410249)
   var `?param` = [getPtr constant]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc constant*(self: Ref[VisualShaderNodeIntConstant]): int32 =
+proc constant*(self: VisualShaderNodeIntConstant): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_constant"

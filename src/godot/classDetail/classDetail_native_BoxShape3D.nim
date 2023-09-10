@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `size=`*(self: Ref[BoxShape3D]; size: Vector3) =
+proc `size=`*(self: BoxShape3D; size: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_size"
     methodbind = interface_ClassDB_getMethodBind(addr className BoxShape3D, addr name, 3460891852)
   var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc size*(self: Ref[BoxShape3D]): Vector3 =
+proc size*(self: BoxShape3D): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_size"

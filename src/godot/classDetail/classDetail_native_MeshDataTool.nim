@@ -4,13 +4,13 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc clear*(self: Ref[MeshDataTool]) =
+proc clear*(self: MeshDataTool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "clear"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshDataTool, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc createFromSurface*(self: Ref[MeshDataTool]; mesh: Ref[ArrayMesh]; surface: int32): Error =
+proc createFromSurface*(self: MeshDataTool; mesh: ArrayMesh; surface: int32): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_from_surface"
@@ -19,7 +19,7 @@ proc createFromSurface*(self: Ref[MeshDataTool]; mesh: Ref[ArrayMesh]; surface: 
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc commitToSurface*(self: Ref[MeshDataTool]; mesh: Ref[ArrayMesh]): Error =
+proc commitToSurface*(self: MeshDataTool; mesh: ArrayMesh): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "commit_to_surface"
@@ -28,7 +28,7 @@ proc commitToSurface*(self: Ref[MeshDataTool]; mesh: Ref[ArrayMesh]): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc getFormat*(self: Ref[MeshDataTool]): int32 =
+proc getFormat*(self: MeshDataTool): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_format"
@@ -36,7 +36,7 @@ proc getFormat*(self: Ref[MeshDataTool]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getVertexCount*(self: Ref[MeshDataTool]): int32 =
+proc getVertexCount*(self: MeshDataTool): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_vertex_count"
@@ -44,7 +44,7 @@ proc getVertexCount*(self: Ref[MeshDataTool]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getEdgeCount*(self: Ref[MeshDataTool]): int32 =
+proc getEdgeCount*(self: MeshDataTool): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_edge_count"
@@ -52,7 +52,7 @@ proc getEdgeCount*(self: Ref[MeshDataTool]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getFaceCount*(self: Ref[MeshDataTool]): int32 =
+proc getFaceCount*(self: MeshDataTool): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_face_count"
@@ -60,14 +60,14 @@ proc getFaceCount*(self: Ref[MeshDataTool]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc setVertex*(self: Ref[MeshDataTool]; idx: int32; vertex: Vector3) =
+proc setVertex*(self: MeshDataTool; idx: int32; vertex: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_vertex"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshDataTool, addr name, 1530502735)
   var `?param` = [getPtr idx, getPtr vertex]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getVertex*(self: Ref[MeshDataTool]; idx: int32): Vector3 =
+proc getVertex*(self: MeshDataTool; idx: int32): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_vertex"
@@ -76,14 +76,14 @@ proc getVertex*(self: Ref[MeshDataTool]; idx: int32): Vector3 =
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector3)
-proc setVertexNormal*(self: Ref[MeshDataTool]; idx: int32; normal: Vector3) =
+proc setVertexNormal*(self: MeshDataTool; idx: int32; normal: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_vertex_normal"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshDataTool, addr name, 1530502735)
   var `?param` = [getPtr idx, getPtr normal]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getVertexNormal*(self: Ref[MeshDataTool]; idx: int32): Vector3 =
+proc getVertexNormal*(self: MeshDataTool; idx: int32): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_vertex_normal"
@@ -92,14 +92,14 @@ proc getVertexNormal*(self: Ref[MeshDataTool]; idx: int32): Vector3 =
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector3)
-proc setVertexTangent*(self: Ref[MeshDataTool]; idx: int32; tangent: Plane) =
+proc setVertexTangent*(self: MeshDataTool; idx: int32; tangent: Plane) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_vertex_tangent"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshDataTool, addr name, 1104099133)
   var `?param` = [getPtr idx, getPtr tangent]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getVertexTangent*(self: Ref[MeshDataTool]; idx: int32): Plane =
+proc getVertexTangent*(self: MeshDataTool; idx: int32): Plane =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_vertex_tangent"
@@ -108,14 +108,14 @@ proc getVertexTangent*(self: Ref[MeshDataTool]; idx: int32): Plane =
   var ret: encoded Plane
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Plane)
-proc setVertexUv*(self: Ref[MeshDataTool]; idx: int32; uv: Vector2) =
+proc setVertexUv*(self: MeshDataTool; idx: int32; uv: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_vertex_uv"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshDataTool, addr name, 163021252)
   var `?param` = [getPtr idx, getPtr uv]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getVertexUv*(self: Ref[MeshDataTool]; idx: int32): Vector2 =
+proc getVertexUv*(self: MeshDataTool; idx: int32): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_vertex_uv"
@@ -124,14 +124,14 @@ proc getVertexUv*(self: Ref[MeshDataTool]; idx: int32): Vector2 =
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2)
-proc setVertexUv2*(self: Ref[MeshDataTool]; idx: int32; uv2: Vector2) =
+proc setVertexUv2*(self: MeshDataTool; idx: int32; uv2: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_vertex_uv2"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshDataTool, addr name, 163021252)
   var `?param` = [getPtr idx, getPtr uv2]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getVertexUv2*(self: Ref[MeshDataTool]; idx: int32): Vector2 =
+proc getVertexUv2*(self: MeshDataTool; idx: int32): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_vertex_uv2"
@@ -140,14 +140,14 @@ proc getVertexUv2*(self: Ref[MeshDataTool]; idx: int32): Vector2 =
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2)
-proc setVertexColor*(self: Ref[MeshDataTool]; idx: int32; color: Color) =
+proc setVertexColor*(self: MeshDataTool; idx: int32; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_vertex_color"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshDataTool, addr name, 2878471219)
   var `?param` = [getPtr idx, getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getVertexColor*(self: Ref[MeshDataTool]; idx: int32): Color =
+proc getVertexColor*(self: MeshDataTool; idx: int32): Color =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_vertex_color"
@@ -156,14 +156,14 @@ proc getVertexColor*(self: Ref[MeshDataTool]; idx: int32): Color =
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Color)
-proc setVertexBones*(self: Ref[MeshDataTool]; idx: int32; bones: PackedInt32Array) =
+proc setVertexBones*(self: MeshDataTool; idx: int32; bones: PackedInt32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_vertex_bones"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshDataTool, addr name, 3500328261)
   var `?param` = [getPtr idx, getPtr bones]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getVertexBones*(self: Ref[MeshDataTool]; idx: int32): PackedInt32Array =
+proc getVertexBones*(self: MeshDataTool; idx: int32): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_vertex_bones"
@@ -172,14 +172,14 @@ proc getVertexBones*(self: Ref[MeshDataTool]; idx: int32): PackedInt32Array =
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedInt32Array)
-proc setVertexWeights*(self: Ref[MeshDataTool]; idx: int32; weights: PackedFloat32Array) =
+proc setVertexWeights*(self: MeshDataTool; idx: int32; weights: PackedFloat32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_vertex_weights"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshDataTool, addr name, 1345852415)
   var `?param` = [getPtr idx, getPtr weights]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getVertexWeights*(self: Ref[MeshDataTool]; idx: int32): PackedFloat32Array =
+proc getVertexWeights*(self: MeshDataTool; idx: int32): PackedFloat32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_vertex_weights"
@@ -188,14 +188,14 @@ proc getVertexWeights*(self: Ref[MeshDataTool]; idx: int32): PackedFloat32Array 
   var ret: encoded PackedFloat32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedFloat32Array)
-proc setVertexMeta*(self: Ref[MeshDataTool]; idx: int32; meta: ptr Variant) =
+proc setVertexMeta*(self: MeshDataTool; idx: int32; meta: ptr Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_vertex_meta"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshDataTool, addr name, 2152698145)
   var `?param` = [getPtr idx, getPtr meta]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getVertexMeta*(self: Ref[MeshDataTool]; idx: int32): Variant =
+proc getVertexMeta*(self: MeshDataTool; idx: int32): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_vertex_meta"
@@ -204,7 +204,7 @@ proc getVertexMeta*(self: Ref[MeshDataTool]; idx: int32): Variant =
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
-proc getVertexEdges*(self: Ref[MeshDataTool]; idx: int32): PackedInt32Array =
+proc getVertexEdges*(self: MeshDataTool; idx: int32): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_vertex_edges"
@@ -213,7 +213,7 @@ proc getVertexEdges*(self: Ref[MeshDataTool]; idx: int32): PackedInt32Array =
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedInt32Array)
-proc getVertexFaces*(self: Ref[MeshDataTool]; idx: int32): PackedInt32Array =
+proc getVertexFaces*(self: MeshDataTool; idx: int32): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_vertex_faces"
@@ -222,7 +222,7 @@ proc getVertexFaces*(self: Ref[MeshDataTool]; idx: int32): PackedInt32Array =
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedInt32Array)
-proc getEdgeVertex*(self: Ref[MeshDataTool]; idx: int32; vertex: int32): int32 =
+proc getEdgeVertex*(self: MeshDataTool; idx: int32; vertex: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_edge_vertex"
@@ -231,7 +231,7 @@ proc getEdgeVertex*(self: Ref[MeshDataTool]; idx: int32; vertex: int32): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc getEdgeFaces*(self: Ref[MeshDataTool]; idx: int32): PackedInt32Array =
+proc getEdgeFaces*(self: MeshDataTool; idx: int32): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_edge_faces"
@@ -240,14 +240,14 @@ proc getEdgeFaces*(self: Ref[MeshDataTool]; idx: int32): PackedInt32Array =
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedInt32Array)
-proc setEdgeMeta*(self: Ref[MeshDataTool]; idx: int32; meta: ptr Variant) =
+proc setEdgeMeta*(self: MeshDataTool; idx: int32; meta: ptr Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_edge_meta"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshDataTool, addr name, 2152698145)
   var `?param` = [getPtr idx, getPtr meta]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getEdgeMeta*(self: Ref[MeshDataTool]; idx: int32): Variant =
+proc getEdgeMeta*(self: MeshDataTool; idx: int32): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_edge_meta"
@@ -256,7 +256,7 @@ proc getEdgeMeta*(self: Ref[MeshDataTool]; idx: int32): Variant =
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
-proc getFaceVertex*(self: Ref[MeshDataTool]; idx: int32; vertex: int32): int32 =
+proc getFaceVertex*(self: MeshDataTool; idx: int32; vertex: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_face_vertex"
@@ -265,7 +265,7 @@ proc getFaceVertex*(self: Ref[MeshDataTool]; idx: int32; vertex: int32): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc getFaceEdge*(self: Ref[MeshDataTool]; idx: int32; edge: int32): int32 =
+proc getFaceEdge*(self: MeshDataTool; idx: int32; edge: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_face_edge"
@@ -274,14 +274,14 @@ proc getFaceEdge*(self: Ref[MeshDataTool]; idx: int32; edge: int32): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc setFaceMeta*(self: Ref[MeshDataTool]; idx: int32; meta: ptr Variant) =
+proc setFaceMeta*(self: MeshDataTool; idx: int32; meta: ptr Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_face_meta"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshDataTool, addr name, 2152698145)
   var `?param` = [getPtr idx, getPtr meta]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getFaceMeta*(self: Ref[MeshDataTool]; idx: int32): Variant =
+proc getFaceMeta*(self: MeshDataTool; idx: int32): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_face_meta"
@@ -290,7 +290,7 @@ proc getFaceMeta*(self: Ref[MeshDataTool]; idx: int32): Variant =
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
-proc getFaceNormal*(self: Ref[MeshDataTool]; idx: int32): Vector3 =
+proc getFaceNormal*(self: MeshDataTool; idx: int32): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_face_normal"
@@ -299,18 +299,18 @@ proc getFaceNormal*(self: Ref[MeshDataTool]; idx: int32): Vector3 =
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector3)
-proc setMaterial*(self: Ref[MeshDataTool]; material: Ref[Material]) =
+proc setMaterial*(self: MeshDataTool; material: Material) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_material"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshDataTool, addr name, 2757459619)
   var `?param` = [getPtr material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getMaterial*(self: Ref[MeshDataTool]): Ref[Material] =
+proc getMaterial*(self: MeshDataTool): Material =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_material"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshDataTool, addr name, 5934680)
-  var ret: encoded Ref[Material]
+  var ret: encoded Material
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Material])
+  (addr ret).decode(Material)

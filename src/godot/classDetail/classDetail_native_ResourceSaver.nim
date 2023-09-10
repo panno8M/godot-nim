@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc save*(self: ResourceSaver; resource: Ref[Resource]; path: String = ""; flags: set[ResourceSaver_SaverFlags] = {}): Error =
+proc save*(self: ResourceSaver; resource: Resource; path: String = ""; flags: set[ResourceSaver_SaverFlags] = {}): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "save"
@@ -13,7 +13,7 @@ proc save*(self: ResourceSaver; resource: Ref[Resource]; path: String = ""; flag
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc getRecognizedExtensions*(self: ResourceSaver; `type`: Ref[Resource]): PackedStringArray =
+proc getRecognizedExtensions*(self: ResourceSaver; `type`: Resource): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_recognized_extensions"
@@ -22,14 +22,14 @@ proc getRecognizedExtensions*(self: ResourceSaver; `type`: Ref[Resource]): Packe
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedStringArray)
-proc addResourceFormatSaver*(self: ResourceSaver; formatSaver: Ref[ResourceFormatSaver]; atFront: Bool = false) =
+proc addResourceFormatSaver*(self: ResourceSaver; formatSaver: ResourceFormatSaver; atFront: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_resource_format_saver"
     methodbind = interface_ClassDB_getMethodBind(addr className ResourceSaver, addr name, 362894272)
   var `?param` = [getPtr formatSaver, getPtr atFront]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removeResourceFormatSaver*(self: ResourceSaver; formatSaver: Ref[ResourceFormatSaver]) =
+proc removeResourceFormatSaver*(self: ResourceSaver; formatSaver: ResourceFormatSaver) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_resource_format_saver"

@@ -13,24 +13,24 @@ proc eval*(self: JavaScriptBridge; code: String; useGlobalExecutionContext: Bool
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
-proc getInterface*(self: JavaScriptBridge; `interface`: String): Ref[JavaScriptObject] =
+proc getInterface*(self: JavaScriptBridge; `interface`: String): JavaScriptObject =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_interface"
     methodbind = interface_ClassDB_getMethodBind(addr className JavaScriptBridge, addr name, 1355533281)
   var `?param` = [getPtr `interface`]
-  var ret: encoded Ref[JavaScriptObject]
+  var ret: encoded JavaScriptObject
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[JavaScriptObject])
-proc createCallback*(self: JavaScriptBridge; callable: Callable): Ref[JavaScriptObject] =
+  (addr ret).decode(JavaScriptObject)
+proc createCallback*(self: JavaScriptBridge; callable: Callable): JavaScriptObject =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_callback"
     methodbind = interface_ClassDB_getMethodBind(addr className JavaScriptBridge, addr name, 422818440)
   var `?param` = [getPtr callable]
-  var ret: encoded Ref[JavaScriptObject]
+  var ret: encoded JavaScriptObject
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[JavaScriptObject])
+  (addr ret).decode(JavaScriptObject)
 proc createObject*(self: JavaScriptBridge; `object`: String): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

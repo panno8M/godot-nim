@@ -50,14 +50,14 @@ proc getHasTrackingData*(self: XRNode3D): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc getPose*(self: XRNode3D): Ref[XRPose] =
+proc getPose*(self: XRNode3D): XRPose =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_pose"
     methodbind = interface_ClassDB_getMethodBind(addr className XRNode3D, addr name, 2806551826)
-  var ret: encoded Ref[XRPose]
+  var ret: encoded XRPose
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[XRPose])
+  (addr ret).decode(XRPose)
 proc triggerHapticPulse*(self: XRNode3D; actionName: String; frequency: float64; amplitude: float64; durationSec: float64; delaySec: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

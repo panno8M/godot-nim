@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc getLineSyntaxHighlighting*(self: Ref[SyntaxHighlighter]; line: int32): Dictionary =
+proc getLineSyntaxHighlighting*(self: SyntaxHighlighter; line: int32): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_line_syntax_highlighting"
@@ -13,19 +13,19 @@ proc getLineSyntaxHighlighting*(self: Ref[SyntaxHighlighter]; line: int32): Dict
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Dictionary)
-proc updateCache*(self: Ref[SyntaxHighlighter]) =
+proc updateCache*(self: SyntaxHighlighter) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "update_cache"
     methodbind = interface_ClassDB_getMethodBind(addr className SyntaxHighlighter, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc clearHighlightingCache*(self: Ref[SyntaxHighlighter]) =
+proc clearHighlightingCache*(self: SyntaxHighlighter) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "clear_highlighting_cache"
     methodbind = interface_ClassDB_getMethodBind(addr className SyntaxHighlighter, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc getTextEdit*(self: Ref[SyntaxHighlighter]): TextEdit =
+proc getTextEdit*(self: SyntaxHighlighter): TextEdit =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_text_edit"

@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `degreesMode=`*(self: Ref[VisualShaderNodeParticleMultiplyByAxisAngle]; enabled: Bool) =
+proc `degreesMode=`*(self: VisualShaderNodeParticleMultiplyByAxisAngle; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_degrees_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeParticleMultiplyByAxisAngle, addr name, 2586408642)
   var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isDegreesMode*(self: Ref[VisualShaderNodeParticleMultiplyByAxisAngle]): Bool =
+proc isDegreesMode*(self: VisualShaderNodeParticleMultiplyByAxisAngle): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_degrees_mode"

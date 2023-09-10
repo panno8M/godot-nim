@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `aabb=`*(self: Ref[PlaceholderMesh]; aabb: AABB) =
+proc `aabb=`*(self: PlaceholderMesh; aabb: AABB) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_aabb"

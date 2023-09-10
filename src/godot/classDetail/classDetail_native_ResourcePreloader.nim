@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc addResource*(self: ResourcePreloader; name: StringName; resource: Ref[Resource]) =
+proc addResource*(self: ResourcePreloader; name: StringName; resource: Resource) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_resource"
@@ -34,15 +34,15 @@ proc hasResource*(self: ResourcePreloader; name: StringName): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc getResource*(self: ResourcePreloader; name: StringName): Ref[Resource] =
+proc getResource*(self: ResourcePreloader; name: StringName): Resource =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_resource"
     methodbind = interface_ClassDB_getMethodBind(addr className ResourcePreloader, addr name, 3742749261)
   var `?param` = [getPtr name]
-  var ret: encoded Ref[Resource]
+  var ret: encoded Resource
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[Resource])
+  (addr ret).decode(Resource)
 proc getResourceList*(self: ResourcePreloader): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

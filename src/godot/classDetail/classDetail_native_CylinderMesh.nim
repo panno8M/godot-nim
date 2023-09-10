@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `topRadius=`*(self: Ref[CylinderMesh]; radius: Float) =
+proc `topRadius=`*(self: CylinderMesh; radius: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_top_radius"
     methodbind = interface_ClassDB_getMethodBind(addr className CylinderMesh, addr name, 373806689)
   var `?param` = [getPtr radius]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc topRadius*(self: Ref[CylinderMesh]): Float =
+proc topRadius*(self: CylinderMesh): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_top_radius"
@@ -19,14 +19,14 @@ proc topRadius*(self: Ref[CylinderMesh]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `bottomRadius=`*(self: Ref[CylinderMesh]; radius: Float) =
+proc `bottomRadius=`*(self: CylinderMesh; radius: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_bottom_radius"
     methodbind = interface_ClassDB_getMethodBind(addr className CylinderMesh, addr name, 373806689)
   var `?param` = [getPtr radius]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc bottomRadius*(self: Ref[CylinderMesh]): Float =
+proc bottomRadius*(self: CylinderMesh): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_bottom_radius"
@@ -34,14 +34,14 @@ proc bottomRadius*(self: Ref[CylinderMesh]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `height=`*(self: Ref[CylinderMesh]; height: Float) =
+proc `height=`*(self: CylinderMesh; height: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_height"
     methodbind = interface_ClassDB_getMethodBind(addr className CylinderMesh, addr name, 373806689)
   var `?param` = [getPtr height]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc height*(self: Ref[CylinderMesh]): Float =
+proc height*(self: CylinderMesh): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_height"
@@ -49,14 +49,14 @@ proc height*(self: Ref[CylinderMesh]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `radialSegments=`*(self: Ref[CylinderMesh]; segments: int32) =
+proc `radialSegments=`*(self: CylinderMesh; segments: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_radial_segments"
     methodbind = interface_ClassDB_getMethodBind(addr className CylinderMesh, addr name, 1286410249)
   var `?param` = [getPtr segments]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc radialSegments*(self: Ref[CylinderMesh]): int32 =
+proc radialSegments*(self: CylinderMesh): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_radial_segments"
@@ -64,14 +64,14 @@ proc radialSegments*(self: Ref[CylinderMesh]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc `rings=`*(self: Ref[CylinderMesh]; rings: int32) =
+proc `rings=`*(self: CylinderMesh; rings: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_rings"
     methodbind = interface_ClassDB_getMethodBind(addr className CylinderMesh, addr name, 1286410249)
   var `?param` = [getPtr rings]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc rings*(self: Ref[CylinderMesh]): int32 =
+proc rings*(self: CylinderMesh): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_rings"
@@ -79,14 +79,14 @@ proc rings*(self: Ref[CylinderMesh]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc `capTop=`*(self: Ref[CylinderMesh]; capTop: Bool) =
+proc `capTop=`*(self: CylinderMesh; capTop: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_cap_top"
     methodbind = interface_ClassDB_getMethodBind(addr className CylinderMesh, addr name, 2586408642)
   var `?param` = [getPtr capTop]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isCapTop*(self: Ref[CylinderMesh]): Bool =
+proc isCapTop*(self: CylinderMesh): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_cap_top"
@@ -94,14 +94,14 @@ proc isCapTop*(self: Ref[CylinderMesh]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `capBottom=`*(self: Ref[CylinderMesh]; capBottom: Bool) =
+proc `capBottom=`*(self: CylinderMesh; capBottom: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_cap_bottom"
     methodbind = interface_ClassDB_getMethodBind(addr className CylinderMesh, addr name, 2586408642)
   var `?param` = [getPtr capBottom]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isCapBottom*(self: Ref[CylinderMesh]): Bool =
+proc isCapBottom*(self: CylinderMesh): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_cap_bottom"

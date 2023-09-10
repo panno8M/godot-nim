@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `file=`*(self: Ref[VideoStream]; file: String) =
+proc `file=`*(self: VideoStream; file: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_file"
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStream, addr name, 83702148)
   var `?param` = [getPtr file]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc file*(self: Ref[VideoStream]): String =
+proc file*(self: VideoStream): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_file"

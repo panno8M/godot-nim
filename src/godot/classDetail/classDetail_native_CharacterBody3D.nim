@@ -364,20 +364,20 @@ proc getSlideCollisionCount*(self: CharacterBody3D): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getSlideCollision*(self: CharacterBody3D; slideIdx: int32): Ref[KinematicCollision3D] =
+proc getSlideCollision*(self: CharacterBody3D; slideIdx: int32): KinematicCollision3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_slide_collision"
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody3D, addr name, 107003663)
   var `?param` = [getPtr slideIdx]
-  var ret: encoded Ref[KinematicCollision3D]
+  var ret: encoded KinematicCollision3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[KinematicCollision3D])
-proc getLastSlideCollision*(self: CharacterBody3D): Ref[KinematicCollision3D] =
+  (addr ret).decode(KinematicCollision3D)
+proc getLastSlideCollision*(self: CharacterBody3D): KinematicCollision3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_last_slide_collision"
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody3D, addr name, 186875014)
-  var ret: encoded Ref[KinematicCollision3D]
+  var ret: encoded KinematicCollision3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[KinematicCollision3D])
+  (addr ret).decode(KinematicCollision3D)

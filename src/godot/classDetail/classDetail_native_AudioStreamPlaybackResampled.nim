@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc beginResample*(self: Ref[AudioStreamPlaybackResampled]) =
+proc beginResample*(self: AudioStreamPlaybackResampled) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "begin_resample"

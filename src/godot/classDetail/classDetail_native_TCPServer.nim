@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc listen*(self: Ref[TCPServer]; port: uint16; bindAddress: String = "*"): Error =
+proc listen*(self: TCPServer; port: uint16; bindAddress: String = "*"): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "listen"
@@ -13,7 +13,7 @@ proc listen*(self: Ref[TCPServer]; port: uint16; bindAddress: String = "*"): Err
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc isConnectionAvailable*(self: Ref[TCPServer]): Bool =
+proc isConnectionAvailable*(self: TCPServer): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_connection_available"
@@ -21,7 +21,7 @@ proc isConnectionAvailable*(self: Ref[TCPServer]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc isListening*(self: Ref[TCPServer]): Bool =
+proc isListening*(self: TCPServer): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_listening"
@@ -29,7 +29,7 @@ proc isListening*(self: Ref[TCPServer]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc getLocalPort*(self: Ref[TCPServer]): int32 =
+proc getLocalPort*(self: TCPServer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_local_port"
@@ -37,15 +37,15 @@ proc getLocalPort*(self: Ref[TCPServer]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc takeConnection*(self: Ref[TCPServer]): Ref[StreamPeerTCP] =
+proc takeConnection*(self: TCPServer): StreamPeerTCP =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "take_connection"
     methodbind = interface_ClassDB_getMethodBind(addr className TCPServer, addr name, 30545006)
-  var ret: encoded Ref[StreamPeerTCP]
+  var ret: encoded StreamPeerTCP
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[StreamPeerTCP])
-proc stop*(self: Ref[TCPServer]) =
+  (addr ret).decode(StreamPeerTCP)
+proc stop*(self: TCPServer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "stop"

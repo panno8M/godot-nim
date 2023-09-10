@@ -117,23 +117,23 @@ proc getBoneGlobalRest*(self: Skeleton3D; boneIdx: int32): Transform3D =
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Transform3D)
-proc createSkinFromRestTransforms*(self: Skeleton3D): Ref[Skin] =
+proc createSkinFromRestTransforms*(self: Skeleton3D): Skin =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_skin_from_rest_transforms"
     methodbind = interface_ClassDB_getMethodBind(addr className Skeleton3D, addr name, 1032037385)
-  var ret: encoded Ref[Skin]
+  var ret: encoded Skin
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Skin])
-proc registerSkin*(self: Skeleton3D; skin: Ref[Skin]): Ref[SkinReference] =
+  (addr ret).decode(Skin)
+proc registerSkin*(self: Skeleton3D; skin: Skin): SkinReference =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "register_skin"
     methodbind = interface_ClassDB_getMethodBind(addr className Skeleton3D, addr name, 3405789568)
   var `?param` = [getPtr skin]
-  var ret: encoded Ref[SkinReference]
+  var ret: encoded SkinReference
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[SkinReference])
+  (addr ret).decode(SkinReference)
 proc localizeRests*(self: Skeleton3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

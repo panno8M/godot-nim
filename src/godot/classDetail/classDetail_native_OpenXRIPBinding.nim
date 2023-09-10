@@ -4,22 +4,22 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `action=`*(self: Ref[OpenXRIPBinding]; action: Ref[OpenXRAction]) =
+proc `action=`*(self: OpenXRIPBinding; action: OpenXRAction) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_action"
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRIPBinding, addr name, 349361333)
   var `?param` = [getPtr action]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc action*(self: Ref[OpenXRIPBinding]): Ref[OpenXRAction] =
+proc action*(self: OpenXRIPBinding): OpenXRAction =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_action"
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRIPBinding, addr name, 4072409085)
-  var ret: encoded Ref[OpenXRAction]
+  var ret: encoded OpenXRAction
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[OpenXRAction])
-proc getPathCount*(self: Ref[OpenXRIPBinding]): int32 =
+  (addr ret).decode(OpenXRAction)
+proc getPathCount*(self: OpenXRIPBinding): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_path_count"
@@ -27,14 +27,14 @@ proc getPathCount*(self: Ref[OpenXRIPBinding]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc `paths=`*(self: Ref[OpenXRIPBinding]; paths: PackedStringArray) =
+proc `paths=`*(self: OpenXRIPBinding; paths: PackedStringArray) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_paths"
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRIPBinding, addr name, 4015028928)
   var `?param` = [getPtr paths]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc paths*(self: Ref[OpenXRIPBinding]): PackedStringArray =
+proc paths*(self: OpenXRIPBinding): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_paths"
@@ -42,7 +42,7 @@ proc paths*(self: Ref[OpenXRIPBinding]): PackedStringArray =
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(PackedStringArray)
-proc hasPath*(self: Ref[OpenXRIPBinding]; path: String): Bool =
+proc hasPath*(self: OpenXRIPBinding; path: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "has_path"
@@ -51,14 +51,14 @@ proc hasPath*(self: Ref[OpenXRIPBinding]; path: String): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc addPath*(self: Ref[OpenXRIPBinding]; path: String) =
+proc addPath*(self: OpenXRIPBinding; path: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_path"
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRIPBinding, addr name, 83702148)
   var `?param` = [getPtr path]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removePath*(self: Ref[OpenXRIPBinding]; path: String) =
+proc removePath*(self: OpenXRIPBinding; path: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_path"

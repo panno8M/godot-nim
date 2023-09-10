@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `action=`*(self: Ref[InputEventAction]; action: StringName) =
+proc `action=`*(self: InputEventAction; action: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_action"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventAction, addr name, 3304788590)
   var `?param` = [getPtr action]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc action*(self: Ref[InputEventAction]): StringName =
+proc action*(self: InputEventAction): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_action"
@@ -19,21 +19,21 @@ proc action*(self: Ref[InputEventAction]): StringName =
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(StringName)
-proc `pressed=`*(self: Ref[InputEventAction]; pressed: Bool) =
+proc `pressed=`*(self: InputEventAction; pressed: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_pressed"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventAction, addr name, 2586408642)
   var `?param` = [getPtr pressed]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc `strength=`*(self: Ref[InputEventAction]; strength: Float) =
+proc `strength=`*(self: InputEventAction; strength: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_strength"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventAction, addr name, 373806689)
   var `?param` = [getPtr strength]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc strength*(self: Ref[InputEventAction]): Float =
+proc strength*(self: InputEventAction): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_strength"

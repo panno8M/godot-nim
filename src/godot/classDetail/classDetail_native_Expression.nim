@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc parse*(self: Ref[Expression]; expression: String; inputNames: PackedStringArray = PackedStringArray()): Error =
+proc parse*(self: Expression; expression: String; inputNames: PackedStringArray = PackedStringArray()): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "parse"
@@ -13,7 +13,7 @@ proc parse*(self: Ref[Expression]; expression: String; inputNames: PackedStringA
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc execute*(self: Ref[Expression]; inputs: Array = init_Array(); baseInstance: Object = nil; showError: Bool = true; constCallsOnly: Bool = false): Variant =
+proc execute*(self: Expression; inputs: Array = init_Array(); baseInstance: Object = nil; showError: Bool = true; constCallsOnly: Bool = false): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "execute"
@@ -22,7 +22,7 @@ proc execute*(self: Ref[Expression]; inputs: Array = init_Array(); baseInstance:
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
-proc hasExecuteFailed*(self: Ref[Expression]): Bool =
+proc hasExecuteFailed*(self: Expression): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "has_execute_failed"
@@ -30,7 +30,7 @@ proc hasExecuteFailed*(self: Ref[Expression]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc getErrorText*(self: Ref[Expression]): String =
+proc getErrorText*(self: Expression): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_error_text"

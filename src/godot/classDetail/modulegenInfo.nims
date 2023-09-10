@@ -167,7 +167,6 @@ let modules: seq[string] = @[
   "classDetail_native_HTTPRequest.nim",
   "classDetail_native_GLTFTextureSampler.nim",
   "classDetail_native_PlaceholderTexture2DArray.nim",
-  "classDetail_native_Object.nim",
   "classDetail_native_CodeEdit.nim",
   "classDetail_native_AnimationNodeStateMachine.nim",
   "classDetail_native_MeshConvexDecompositionSettings.nim",

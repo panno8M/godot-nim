@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `hint=`*(self: Ref[VisualShaderNodeFloatParameter]; hint: VisualShaderNodeFloatParameter_Hint) =
+proc `hint=`*(self: VisualShaderNodeFloatParameter; hint: VisualShaderNodeFloatParameter_Hint) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_hint"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeFloatParameter, addr name, 3712586466)
   var `?param` = [getPtr hint]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc hint*(self: Ref[VisualShaderNodeFloatParameter]): VisualShaderNodeFloatParameter_Hint =
+proc hint*(self: VisualShaderNodeFloatParameter): VisualShaderNodeFloatParameter_Hint =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_hint"
@@ -19,14 +19,14 @@ proc hint*(self: Ref[VisualShaderNodeFloatParameter]): VisualShaderNodeFloatPara
   var ret: encoded VisualShaderNodeFloatParameter_Hint
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(VisualShaderNodeFloatParameter_Hint)
-proc `min=`*(self: Ref[VisualShaderNodeFloatParameter]; value: Float) =
+proc `min=`*(self: VisualShaderNodeFloatParameter; value: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_min"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeFloatParameter, addr name, 373806689)
   var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc min*(self: Ref[VisualShaderNodeFloatParameter]): Float =
+proc min*(self: VisualShaderNodeFloatParameter): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_min"
@@ -34,14 +34,14 @@ proc min*(self: Ref[VisualShaderNodeFloatParameter]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `max=`*(self: Ref[VisualShaderNodeFloatParameter]; value: Float) =
+proc `max=`*(self: VisualShaderNodeFloatParameter; value: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_max"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeFloatParameter, addr name, 373806689)
   var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc max*(self: Ref[VisualShaderNodeFloatParameter]): Float =
+proc max*(self: VisualShaderNodeFloatParameter): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_max"
@@ -49,14 +49,14 @@ proc max*(self: Ref[VisualShaderNodeFloatParameter]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `step=`*(self: Ref[VisualShaderNodeFloatParameter]; value: Float) =
+proc `step=`*(self: VisualShaderNodeFloatParameter; value: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_step"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeFloatParameter, addr name, 373806689)
   var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc step*(self: Ref[VisualShaderNodeFloatParameter]): Float =
+proc step*(self: VisualShaderNodeFloatParameter): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_step"
@@ -64,14 +64,14 @@ proc step*(self: Ref[VisualShaderNodeFloatParameter]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `defaultValueEnabled=`*(self: Ref[VisualShaderNodeFloatParameter]; enabled: Bool) =
+proc `defaultValueEnabled=`*(self: VisualShaderNodeFloatParameter; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_default_value_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeFloatParameter, addr name, 2586408642)
   var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isDefaultValueEnabled*(self: Ref[VisualShaderNodeFloatParameter]): Bool =
+proc isDefaultValueEnabled*(self: VisualShaderNodeFloatParameter): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_default_value_enabled"
@@ -79,14 +79,14 @@ proc isDefaultValueEnabled*(self: Ref[VisualShaderNodeFloatParameter]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `defaultValue=`*(self: Ref[VisualShaderNodeFloatParameter]; value: Float) =
+proc `defaultValue=`*(self: VisualShaderNodeFloatParameter; value: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_default_value"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeFloatParameter, addr name, 373806689)
   var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc defaultValue*(self: Ref[VisualShaderNodeFloatParameter]): Float =
+proc defaultValue*(self: VisualShaderNodeFloatParameter): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_default_value"

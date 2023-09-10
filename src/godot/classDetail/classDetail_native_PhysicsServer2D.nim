@@ -758,7 +758,7 @@ proc bodySetForceIntegrationCallback*(self: PhysicsServer2D; body: RID; callable
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsServer2D, addr name, 3059434249)
   var `?param` = [getPtr body, getPtr callable, getPtr userdata]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc bodyTestMotion*(self: PhysicsServer2D; body: RID; parameters: Ref[PhysicsTestMotionParameters2D]; retval: Ref[PhysicsTestMotionResult2D] = default Ref[PhysicsTestMotionResult2D]): Bool =
+proc bodyTestMotion*(self: PhysicsServer2D; body: RID; parameters: PhysicsTestMotionParameters2D; retval: PhysicsTestMotionResult2D = default PhysicsTestMotionResult2D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "body_test_motion"

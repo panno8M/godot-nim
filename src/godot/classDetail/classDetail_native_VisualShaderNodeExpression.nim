@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `expression=`*(self: Ref[VisualShaderNodeExpression]; expression: String) =
+proc `expression=`*(self: VisualShaderNodeExpression; expression: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_expression"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeExpression, addr name, 83702148)
   var `?param` = [getPtr expression]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc expression*(self: Ref[VisualShaderNodeExpression]): String =
+proc expression*(self: VisualShaderNodeExpression): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_expression"

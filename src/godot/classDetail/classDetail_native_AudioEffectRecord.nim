@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc setRecordingActive*(self: Ref[AudioEffectRecord]; record: Bool) =
+proc setRecordingActive*(self: AudioEffectRecord; record: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_recording_active"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectRecord, addr name, 2586408642)
   var `?param` = [getPtr record]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isRecordingActive*(self: Ref[AudioEffectRecord]): Bool =
+proc isRecordingActive*(self: AudioEffectRecord): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_recording_active"
@@ -19,14 +19,14 @@ proc isRecordingActive*(self: Ref[AudioEffectRecord]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `format=`*(self: Ref[AudioEffectRecord]; format: AudioStreamWAV_Format) =
+proc `format=`*(self: AudioEffectRecord; format: AudioStreamWAV_Format) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_format"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectRecord, addr name, 60648488)
   var `?param` = [getPtr format]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc format*(self: Ref[AudioEffectRecord]): AudioStreamWAV_Format =
+proc format*(self: AudioEffectRecord): AudioStreamWAV_Format =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_format"
@@ -34,11 +34,11 @@ proc format*(self: Ref[AudioEffectRecord]): AudioStreamWAV_Format =
   var ret: encoded AudioStreamWAV_Format
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(AudioStreamWAV_Format)
-proc getRecording*(self: Ref[AudioEffectRecord]): Ref[AudioStreamWAV] =
+proc getRecording*(self: AudioEffectRecord): AudioStreamWAV =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_recording"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectRecord, addr name, 2964110865)
-  var ret: encoded Ref[AudioStreamWAV]
+  var ret: encoded AudioStreamWAV
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[AudioStreamWAV])
+  (addr ret).decode(AudioStreamWAV)

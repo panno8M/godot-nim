@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `pan=`*(self: Ref[AudioEffectPanner]; cpanume: Float) =
+proc `pan=`*(self: AudioEffectPanner; cpanume: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_pan"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectPanner, addr name, 373806689)
   var `?param` = [getPtr cpanume]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc pan*(self: Ref[AudioEffectPanner]): Float =
+proc pan*(self: AudioEffectPanner): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_pan"

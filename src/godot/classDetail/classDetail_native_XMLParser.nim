@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc read*(self: Ref[XMLParser]): Error =
+proc read*(self: XMLParser): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "read"
@@ -12,7 +12,7 @@ proc read*(self: Ref[XMLParser]): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Error)
-proc getNodeType*(self: Ref[XMLParser]): XMLParser_NodeType =
+proc getNodeType*(self: XMLParser): XMLParser_NodeType =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_node_type"
@@ -20,7 +20,7 @@ proc getNodeType*(self: Ref[XMLParser]): XMLParser_NodeType =
   var ret: encoded XMLParser_NodeType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(XMLParser_NodeType)
-proc getNodeName*(self: Ref[XMLParser]): String =
+proc getNodeName*(self: XMLParser): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_node_name"
@@ -28,7 +28,7 @@ proc getNodeName*(self: Ref[XMLParser]): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(String)
-proc getNodeData*(self: Ref[XMLParser]): String =
+proc getNodeData*(self: XMLParser): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_node_data"
@@ -36,7 +36,7 @@ proc getNodeData*(self: Ref[XMLParser]): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(String)
-proc getNodeOffset*(self: Ref[XMLParser]): uint64 =
+proc getNodeOffset*(self: XMLParser): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_node_offset"
@@ -44,7 +44,7 @@ proc getNodeOffset*(self: Ref[XMLParser]): uint64 =
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(uint64)
-proc getAttributeCount*(self: Ref[XMLParser]): int32 =
+proc getAttributeCount*(self: XMLParser): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_attribute_count"
@@ -52,7 +52,7 @@ proc getAttributeCount*(self: Ref[XMLParser]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getAttributeName*(self: Ref[XMLParser]; idx: int32): String =
+proc getAttributeName*(self: XMLParser; idx: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_attribute_name"
@@ -61,7 +61,7 @@ proc getAttributeName*(self: Ref[XMLParser]; idx: int32): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc getAttributeValue*(self: Ref[XMLParser]; idx: int32): String =
+proc getAttributeValue*(self: XMLParser; idx: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_attribute_value"
@@ -70,7 +70,7 @@ proc getAttributeValue*(self: Ref[XMLParser]; idx: int32): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc hasAttribute*(self: Ref[XMLParser]; name: String): Bool =
+proc hasAttribute*(self: XMLParser; name: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "has_attribute"
@@ -79,7 +79,7 @@ proc hasAttribute*(self: Ref[XMLParser]; name: String): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc getNamedAttributeValue*(self: Ref[XMLParser]; name: String): String =
+proc getNamedAttributeValue*(self: XMLParser; name: String): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_named_attribute_value"
@@ -88,7 +88,7 @@ proc getNamedAttributeValue*(self: Ref[XMLParser]; name: String): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc getNamedAttributeValueSafe*(self: Ref[XMLParser]; name: String): String =
+proc getNamedAttributeValueSafe*(self: XMLParser; name: String): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_named_attribute_value_safe"
@@ -97,7 +97,7 @@ proc getNamedAttributeValueSafe*(self: Ref[XMLParser]; name: String): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc isEmpty*(self: Ref[XMLParser]): Bool =
+proc isEmpty*(self: XMLParser): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_empty"
@@ -105,7 +105,7 @@ proc isEmpty*(self: Ref[XMLParser]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc getCurrentLine*(self: Ref[XMLParser]): int32 =
+proc getCurrentLine*(self: XMLParser): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_current_line"
@@ -113,13 +113,13 @@ proc getCurrentLine*(self: Ref[XMLParser]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc skipSection*(self: Ref[XMLParser]) =
+proc skipSection*(self: XMLParser) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "skip_section"
     methodbind = interface_ClassDB_getMethodBind(addr className XMLParser, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc seek*(self: Ref[XMLParser]; position: uint64): Error =
+proc seek*(self: XMLParser; position: uint64): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "seek"
@@ -128,7 +128,7 @@ proc seek*(self: Ref[XMLParser]; position: uint64): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc open*(self: Ref[XMLParser]; file: String): Error =
+proc open*(self: XMLParser; file: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "open"
@@ -137,7 +137,7 @@ proc open*(self: Ref[XMLParser]; file: String): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc openBuffer*(self: Ref[XMLParser]; buffer: PackedByteArray): Error =
+proc openBuffer*(self: XMLParser; buffer: PackedByteArray): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "open_buffer"

@@ -4,21 +4,21 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `navigationMesh=`*(self: NavigationRegion3D; navigationMesh: Ref[NavigationMesh]) =
+proc `navigationMesh=`*(self: NavigationRegion3D; navigationMesh: NavigationMesh) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_navigation_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationRegion3D, addr name, 2923361153)
   var `?param` = [getPtr navigationMesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc navigationMesh*(self: NavigationRegion3D): Ref[NavigationMesh] =
+proc navigationMesh*(self: NavigationRegion3D): NavigationMesh =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_navigation_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationRegion3D, addr name, 1468720886)
-  var ret: encoded Ref[NavigationMesh]
+  var ret: encoded NavigationMesh
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[NavigationMesh])
+  (addr ret).decode(NavigationMesh)
 proc `enabled=`*(self: NavigationRegion3D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

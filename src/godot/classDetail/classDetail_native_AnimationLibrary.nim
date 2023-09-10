@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc addAnimation*(self: Ref[AnimationLibrary]; name: StringName; animation: Ref[Animation]): Error =
+proc addAnimation*(self: AnimationLibrary; name: StringName; animation: Animation): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_animation"
@@ -13,21 +13,21 @@ proc addAnimation*(self: Ref[AnimationLibrary]; name: StringName; animation: Ref
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc removeAnimation*(self: Ref[AnimationLibrary]; name: StringName) =
+proc removeAnimation*(self: AnimationLibrary; name: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_animation"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationLibrary, addr name, 3304788590)
   var `?param` = [getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc renameAnimation*(self: Ref[AnimationLibrary]; name: StringName; newname: StringName) =
+proc renameAnimation*(self: AnimationLibrary; name: StringName; newname: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "rename_animation"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationLibrary, addr name, 3740211285)
   var `?param` = [getPtr name, getPtr newname]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc hasAnimation*(self: Ref[AnimationLibrary]; name: StringName): Bool =
+proc hasAnimation*(self: AnimationLibrary; name: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "has_animation"
@@ -36,16 +36,16 @@ proc hasAnimation*(self: Ref[AnimationLibrary]; name: StringName): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc getAnimation*(self: Ref[AnimationLibrary]; name: StringName): Ref[Animation] =
+proc getAnimation*(self: AnimationLibrary; name: StringName): Animation =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_animation"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationLibrary, addr name, 2933122410)
   var `?param` = [getPtr name]
-  var ret: encoded Ref[Animation]
+  var ret: encoded Animation
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[Animation])
-proc getAnimationList*(self: Ref[AnimationLibrary]): TypedArray[StringName] =
+  (addr ret).decode(Animation)
+proc getAnimationList*(self: AnimationLibrary): TypedArray[StringName] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_animation_list"

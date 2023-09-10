@@ -351,14 +351,14 @@ proc distanceToTarget*(self: NavigationAgent3D): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc getCurrentNavigationResult*(self: NavigationAgent3D): Ref[NavigationPathQueryResult3D] =
+proc getCurrentNavigationResult*(self: NavigationAgent3D): NavigationPathQueryResult3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_current_navigation_result"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent3D, addr name, 728825684)
-  var ret: encoded Ref[NavigationPathQueryResult3D]
+  var ret: encoded NavigationPathQueryResult3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[NavigationPathQueryResult3D])
+  (addr ret).decode(NavigationPathQueryResult3D)
 proc getCurrentNavigationPath*(self: NavigationAgent3D): PackedVector3Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

@@ -2,11 +2,8 @@
 # This module was generated automatically. #
 # Edits will be lost.                      #
 # ======================================== #
-import ./objectBase
+import ./../classes/class_Object
 
-type Object* = ref object of ObjectBase
-template Inherit*(_: typedesc[Object]): typedesc = ObjectBase
-template EngineClass*(_: typedesc[Object]): typedesc = Object
 type AudioServer* = ref object of Object
 template Inherit*(_: typedesc[AudioServer]): typedesc = Object
 template EngineClass*(_: typedesc[AudioServer]): typedesc = AudioServer

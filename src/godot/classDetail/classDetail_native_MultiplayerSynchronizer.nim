@@ -49,21 +49,21 @@ proc deltaInterval*(self: MultiplayerSynchronizer): float64 =
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(float64)
-proc `replicationConfig=`*(self: MultiplayerSynchronizer; config: Ref[SceneReplicationConfig]) =
+proc `replicationConfig=`*(self: MultiplayerSynchronizer; config: SceneReplicationConfig) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_replication_config"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerSynchronizer, addr name, 3889206742)
   var `?param` = [getPtr config]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc replicationConfig*(self: MultiplayerSynchronizer): Ref[SceneReplicationConfig] =
+proc replicationConfig*(self: MultiplayerSynchronizer): SceneReplicationConfig =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_replication_config"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerSynchronizer, addr name, 3200254614)
-  var ret: encoded Ref[SceneReplicationConfig]
+  var ret: encoded SceneReplicationConfig
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[SceneReplicationConfig])
+  (addr ret).decode(SceneReplicationConfig)
 proc `visibilityUpdateMode=`*(self: MultiplayerSynchronizer; mode: MultiplayerSynchronizer_VisibilityUpdateMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

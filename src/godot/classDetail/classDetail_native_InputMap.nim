@@ -51,14 +51,14 @@ proc actionGetDeadzone*(self: InputMap; action: StringName): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
-proc actionAddEvent*(self: InputMap; action: StringName; event: Ref[InputEvent]) =
+proc actionAddEvent*(self: InputMap; action: StringName; event: InputEvent) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "action_add_event"
     methodbind = interface_ClassDB_getMethodBind(addr className InputMap, addr name, 518302593)
   var `?param` = [getPtr action, getPtr event]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc actionHasEvent*(self: InputMap; action: StringName; event: Ref[InputEvent]): Bool =
+proc actionHasEvent*(self: InputMap; action: StringName; event: InputEvent): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "action_has_event"
@@ -67,7 +67,7 @@ proc actionHasEvent*(self: InputMap; action: StringName; event: Ref[InputEvent])
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc actionEraseEvent*(self: InputMap; action: StringName; event: Ref[InputEvent]) =
+proc actionEraseEvent*(self: InputMap; action: StringName; event: InputEvent) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "action_erase_event"
@@ -90,7 +90,7 @@ proc actionGetEvents*(self: InputMap; action: StringName): TypedArray[InputEvent
   var ret: encoded TypedArray[InputEvent]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TypedArray[InputEvent])
-proc eventIsAction*(self: InputMap; event: Ref[InputEvent]; action: StringName; exactMatch: Bool = false): Bool =
+proc eventIsAction*(self: InputMap; event: InputEvent; action: StringName; exactMatch: Bool = false): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "event_is_action"

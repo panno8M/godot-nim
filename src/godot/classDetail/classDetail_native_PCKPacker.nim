@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc pckStart*(self: Ref[PCKPacker]; pckName: String; alignment: int32 = 32; key: String = "0000000000000000000000000000000000000000000000000000000000000000"; encryptDirectory: Bool = false): Error =
+proc pckStart*(self: PCKPacker; pckName: String; alignment: int32 = 32; key: String = "0000000000000000000000000000000000000000000000000000000000000000"; encryptDirectory: Bool = false): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "pck_start"
@@ -13,7 +13,7 @@ proc pckStart*(self: Ref[PCKPacker]; pckName: String; alignment: int32 = 32; key
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc addFile*(self: Ref[PCKPacker]; pckPath: String; sourcePath: String; encrypt: Bool = false): Error =
+proc addFile*(self: PCKPacker; pckPath: String; sourcePath: String; encrypt: Bool = false): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_file"
@@ -22,7 +22,7 @@ proc addFile*(self: Ref[PCKPacker]; pckPath: String; sourcePath: String; encrypt
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc flush*(self: Ref[PCKPacker]; verbose: Bool = false): Error =
+proc flush*(self: PCKPacker; verbose: Bool = false): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "flush"

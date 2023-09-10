@@ -4,22 +4,22 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc createFromString*(pattern: String): Ref[RegEx] {.staticOf: RegEx.} =
+proc createFromString*(pattern: String): RegEx {.staticOf: RegEx.} =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_from_string"
     methodbind = interface_ClassDB_getMethodBind(addr className RegEx, addr name, 2150300909)
   var `?param` = [getPtr pattern]
-  var ret: encoded Ref[RegEx]
+  var ret: encoded RegEx
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[RegEx])
-proc clear*(self: Ref[RegEx]) =
+  (addr ret).decode(RegEx)
+proc clear*(self: RegEx) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "clear"
     methodbind = interface_ClassDB_getMethodBind(addr className RegEx, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc compile*(self: Ref[RegEx]; pattern: String): Error =
+proc compile*(self: RegEx; pattern: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "compile"
@@ -28,16 +28,16 @@ proc compile*(self: Ref[RegEx]; pattern: String): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc search*(self: Ref[RegEx]; subject: String; offset: int32 = 0; `end`: int32 = -1): Ref[RegExMatch] =
+proc search*(self: RegEx; subject: String; offset: int32 = 0; `end`: int32 = -1): RegExMatch =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "search"
     methodbind = interface_ClassDB_getMethodBind(addr className RegEx, addr name, 4087180739)
   var `?param` = [getPtr subject, getPtr offset, getPtr `end`]
-  var ret: encoded Ref[RegExMatch]
+  var ret: encoded RegExMatch
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[RegExMatch])
-proc searchAll*(self: Ref[RegEx]; subject: String; offset: int32 = 0; `end`: int32 = -1): TypedArray[RegExMatch] =
+  (addr ret).decode(RegExMatch)
+proc searchAll*(self: RegEx; subject: String; offset: int32 = 0; `end`: int32 = -1): TypedArray[RegExMatch] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "search_all"
@@ -46,7 +46,7 @@ proc searchAll*(self: Ref[RegEx]; subject: String; offset: int32 = 0; `end`: int
   var ret: encoded TypedArray[RegExMatch]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TypedArray[RegExMatch])
-proc sub*(self: Ref[RegEx]; subject: String; replacement: String; all: Bool = false; offset: int32 = 0; `end`: int32 = -1): String =
+proc sub*(self: RegEx; subject: String; replacement: String; all: Bool = false; offset: int32 = 0; `end`: int32 = -1): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "sub"
@@ -55,7 +55,7 @@ proc sub*(self: Ref[RegEx]; subject: String; replacement: String; all: Bool = fa
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc isValid*(self: Ref[RegEx]): Bool =
+proc isValid*(self: RegEx): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_valid"
@@ -63,7 +63,7 @@ proc isValid*(self: Ref[RegEx]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc getPattern*(self: Ref[RegEx]): String =
+proc getPattern*(self: RegEx): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_pattern"
@@ -71,7 +71,7 @@ proc getPattern*(self: Ref[RegEx]): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(String)
-proc getGroupCount*(self: Ref[RegEx]): int32 =
+proc getGroupCount*(self: RegEx): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_group_count"
@@ -79,7 +79,7 @@ proc getGroupCount*(self: Ref[RegEx]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getNames*(self: Ref[RegEx]): PackedStringArray =
+proc getNames*(self: RegEx): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_names"

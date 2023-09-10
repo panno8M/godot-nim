@@ -4,37 +4,37 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc setMode*(self: Ref[VisualShader]; mode: Shader_Mode) =
+proc setMode*(self: VisualShader; mode: Shader_Mode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShader, addr name, 3978014962)
   var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addNode*(self: Ref[VisualShader]; `type`: VisualShader_Type; node: Ref[VisualShaderNode]; position: Vector2; id: int32) =
+proc addNode*(self: VisualShader; `type`: VisualShader_Type; node: VisualShaderNode; position: Vector2; id: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_node"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShader, addr name, 1560769431)
   var `?param` = [getPtr `type`, getPtr node, getPtr position, getPtr id]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getNode*(self: Ref[VisualShader]; `type`: VisualShader_Type; id: int32): Ref[VisualShaderNode] =
+proc getNode*(self: VisualShader; `type`: VisualShader_Type; id: int32): VisualShaderNode =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_node"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShader, addr name, 3784670312)
   var `?param` = [getPtr `type`, getPtr id]
-  var ret: encoded Ref[VisualShaderNode]
+  var ret: encoded VisualShaderNode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[VisualShaderNode])
-proc setNodePosition*(self: Ref[VisualShader]; `type`: VisualShader_Type; id: int32; position: Vector2) =
+  (addr ret).decode(VisualShaderNode)
+proc setNodePosition*(self: VisualShader; `type`: VisualShader_Type; id: int32; position: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_node_position"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShader, addr name, 2726660721)
   var `?param` = [getPtr `type`, getPtr id, getPtr position]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getNodePosition*(self: Ref[VisualShader]; `type`: VisualShader_Type; id: int32): Vector2 =
+proc getNodePosition*(self: VisualShader; `type`: VisualShader_Type; id: int32): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_node_position"
@@ -43,7 +43,7 @@ proc getNodePosition*(self: Ref[VisualShader]; `type`: VisualShader_Type; id: in
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2)
-proc getNodeList*(self: Ref[VisualShader]; `type`: VisualShader_Type): PackedInt32Array =
+proc getNodeList*(self: VisualShader; `type`: VisualShader_Type): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_node_list"
@@ -52,7 +52,7 @@ proc getNodeList*(self: Ref[VisualShader]; `type`: VisualShader_Type): PackedInt
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedInt32Array)
-proc getValidNodeId*(self: Ref[VisualShader]; `type`: VisualShader_Type): int32 =
+proc getValidNodeId*(self: VisualShader; `type`: VisualShader_Type): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_valid_node_id"
@@ -61,21 +61,21 @@ proc getValidNodeId*(self: Ref[VisualShader]; `type`: VisualShader_Type): int32 
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc removeNode*(self: Ref[VisualShader]; `type`: VisualShader_Type; id: int32) =
+proc removeNode*(self: VisualShader; `type`: VisualShader_Type; id: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_node"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShader, addr name, 844050912)
   var `?param` = [getPtr `type`, getPtr id]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc replaceNode*(self: Ref[VisualShader]; `type`: VisualShader_Type; id: int32; newClass: StringName) =
+proc replaceNode*(self: VisualShader; `type`: VisualShader_Type; id: int32; newClass: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "replace_node"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShader, addr name, 3144735253)
   var `?param` = [getPtr `type`, getPtr id, getPtr newClass]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isNodeConnection*(self: Ref[VisualShader]; `type`: VisualShader_Type; fromNode: int32; fromPort: int32; toNode: int32; toPort: int32): Bool =
+proc isNodeConnection*(self: VisualShader; `type`: VisualShader_Type; fromNode: int32; fromPort: int32; toNode: int32; toPort: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_node_connection"
@@ -84,7 +84,7 @@ proc isNodeConnection*(self: Ref[VisualShader]; `type`: VisualShader_Type; fromN
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc canConnectNodes*(self: Ref[VisualShader]; `type`: VisualShader_Type; fromNode: int32; fromPort: int32; toNode: int32; toPort: int32): Bool =
+proc canConnectNodes*(self: VisualShader; `type`: VisualShader_Type; fromNode: int32; fromPort: int32; toNode: int32; toPort: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "can_connect_nodes"
@@ -93,7 +93,7 @@ proc canConnectNodes*(self: Ref[VisualShader]; `type`: VisualShader_Type; fromNo
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc connectNodes*(self: Ref[VisualShader]; `type`: VisualShader_Type; fromNode: int32; fromPort: int32; toNode: int32; toPort: int32): Error =
+proc connectNodes*(self: VisualShader; `type`: VisualShader_Type; fromNode: int32; fromPort: int32; toNode: int32; toPort: int32): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "connect_nodes"
@@ -102,21 +102,21 @@ proc connectNodes*(self: Ref[VisualShader]; `type`: VisualShader_Type; fromNode:
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc disconnectNodes*(self: Ref[VisualShader]; `type`: VisualShader_Type; fromNode: int32; fromPort: int32; toNode: int32; toPort: int32) =
+proc disconnectNodes*(self: VisualShader; `type`: VisualShader_Type; fromNode: int32; fromPort: int32; toNode: int32; toPort: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "disconnect_nodes"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShader, addr name, 2268060358)
   var `?param` = [getPtr `type`, getPtr fromNode, getPtr fromPort, getPtr toNode, getPtr toPort]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc connectNodesForced*(self: Ref[VisualShader]; `type`: VisualShader_Type; fromNode: int32; fromPort: int32; toNode: int32; toPort: int32) =
+proc connectNodesForced*(self: VisualShader; `type`: VisualShader_Type; fromNode: int32; fromPort: int32; toNode: int32; toPort: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "connect_nodes_forced"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShader, addr name, 2268060358)
   var `?param` = [getPtr `type`, getPtr fromNode, getPtr fromPort, getPtr toNode, getPtr toPort]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getNodeConnections*(self: Ref[VisualShader]; `type`: VisualShader_Type): TypedArray[Dictionary] =
+proc getNodeConnections*(self: VisualShader; `type`: VisualShader_Type): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_node_connections"
@@ -125,14 +125,14 @@ proc getNodeConnections*(self: Ref[VisualShader]; `type`: VisualShader_Type): Ty
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TypedArray[Dictionary])
-proc `graphOffset=`*(self: Ref[VisualShader]; offset: Vector2) =
+proc `graphOffset=`*(self: VisualShader; offset: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_graph_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShader, addr name, 743155724)
   var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc graphOffset*(self: Ref[VisualShader]): Vector2 =
+proc graphOffset*(self: VisualShader): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_graph_offset"
@@ -140,21 +140,21 @@ proc graphOffset*(self: Ref[VisualShader]): Vector2 =
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Vector2)
-proc addVarying*(self: Ref[VisualShader]; name: String; mode: VisualShader_VaryingMode; `type`: VisualShader_VaryingType) =
+proc addVarying*(self: VisualShader; name: String; mode: VisualShader_VaryingMode; `type`: VisualShader_VaryingType) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_varying"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShader, addr name, 2084110726)
   var `?param` = [getPtr name, getPtr mode, getPtr `type`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removeVarying*(self: Ref[VisualShader]; name: String) =
+proc removeVarying*(self: VisualShader; name: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_varying"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShader, addr name, 83702148)
   var `?param` = [getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc hasVarying*(self: Ref[VisualShader]; name: String): Bool =
+proc hasVarying*(self: VisualShader; name: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "has_varying"

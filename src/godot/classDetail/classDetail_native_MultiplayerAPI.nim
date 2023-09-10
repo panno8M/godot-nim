@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc hasMultiplayerPeer*(self: Ref[MultiplayerAPI]): Bool =
+proc hasMultiplayerPeer*(self: MultiplayerAPI): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "has_multiplayer_peer"
@@ -12,22 +12,22 @@ proc hasMultiplayerPeer*(self: Ref[MultiplayerAPI]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc multiplayerPeer*(self: Ref[MultiplayerAPI]): Ref[MultiplayerPeer] =
+proc multiplayerPeer*(self: MultiplayerAPI): MultiplayerPeer =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_multiplayer_peer"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerAPI, addr name, 3223692825)
-  var ret: encoded Ref[MultiplayerPeer]
+  var ret: encoded MultiplayerPeer
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[MultiplayerPeer])
-proc `multiplayerPeer=`*(self: Ref[MultiplayerAPI]; peer: Ref[MultiplayerPeer]) =
+  (addr ret).decode(MultiplayerPeer)
+proc `multiplayerPeer=`*(self: MultiplayerAPI; peer: MultiplayerPeer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_multiplayer_peer"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerAPI, addr name, 3694835298)
   var `?param` = [getPtr peer]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getUniqueId*(self: Ref[MultiplayerAPI]): int32 =
+proc getUniqueId*(self: MultiplayerAPI): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_unique_id"
@@ -35,7 +35,7 @@ proc getUniqueId*(self: Ref[MultiplayerAPI]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc isServer*(self: Ref[MultiplayerAPI]): Bool =
+proc isServer*(self: MultiplayerAPI): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_server"
@@ -43,7 +43,7 @@ proc isServer*(self: Ref[MultiplayerAPI]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc getRemoteSenderId*(self: Ref[MultiplayerAPI]): int32 =
+proc getRemoteSenderId*(self: MultiplayerAPI): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_remote_sender_id"
@@ -51,7 +51,7 @@ proc getRemoteSenderId*(self: Ref[MultiplayerAPI]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc poll*(self: Ref[MultiplayerAPI]): Error =
+proc poll*(self: MultiplayerAPI): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "poll"
@@ -59,7 +59,7 @@ proc poll*(self: Ref[MultiplayerAPI]): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Error)
-proc rpc*(self: Ref[MultiplayerAPI]; peer: int32; `object`: Object; `method`: StringName; arguments: Array = init_Array()): Error =
+proc rpc*(self: MultiplayerAPI; peer: int32; `object`: Object; `method`: StringName; arguments: Array = init_Array()): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "rpc"
@@ -68,7 +68,7 @@ proc rpc*(self: Ref[MultiplayerAPI]; peer: int32; `object`: Object; `method`: St
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc objectConfigurationAdd*(self: Ref[MultiplayerAPI]; `object`: Object; configuration: ptr Variant): Error =
+proc objectConfigurationAdd*(self: MultiplayerAPI; `object`: Object; configuration: ptr Variant): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "object_configuration_add"
@@ -77,7 +77,7 @@ proc objectConfigurationAdd*(self: Ref[MultiplayerAPI]; `object`: Object; config
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc objectConfigurationRemove*(self: Ref[MultiplayerAPI]; `object`: Object; configuration: ptr Variant): Error =
+proc objectConfigurationRemove*(self: MultiplayerAPI; `object`: Object; configuration: ptr Variant): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "object_configuration_remove"
@@ -86,7 +86,7 @@ proc objectConfigurationRemove*(self: Ref[MultiplayerAPI]; `object`: Object; con
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc getPeers*(self: Ref[MultiplayerAPI]): PackedInt32Array =
+proc getPeers*(self: MultiplayerAPI): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_peers"
@@ -109,11 +109,11 @@ proc getDefaultInterface*: StringName {.staticOf: MultiplayerAPI.} =
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, nil, nil, addr ret)
   (addr ret).decode(StringName)
-proc createDefaultInterface*: Ref[MultiplayerAPI] {.staticOf: MultiplayerAPI.} =
+proc createDefaultInterface*: MultiplayerAPI {.staticOf: MultiplayerAPI.} =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_default_interface"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerAPI, addr name, 3294156723)
-  var ret: encoded Ref[MultiplayerAPI]
+  var ret: encoded MultiplayerAPI
   interface_Object_methodBindPtrCall(methodbind, nil, nil, addr ret)
-  (addr ret).decode(Ref[MultiplayerAPI])
+  (addr ret).decode(MultiplayerAPI)

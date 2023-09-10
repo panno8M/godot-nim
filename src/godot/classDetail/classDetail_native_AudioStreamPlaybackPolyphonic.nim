@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc playStream*(self: Ref[AudioStreamPlaybackPolyphonic]; stream: Ref[AudioStream]; fromOffset: Float = 0; volumeDb: Float = 0; pitchScale: Float = 1.0): int64 =
+proc playStream*(self: AudioStreamPlaybackPolyphonic; stream: AudioStream; fromOffset: Float = 0; volumeDb: Float = 0; pitchScale: Float = 1.0): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "play_stream"
@@ -13,21 +13,21 @@ proc playStream*(self: Ref[AudioStreamPlaybackPolyphonic]; stream: Ref[AudioStre
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
-proc setStreamVolume*(self: Ref[AudioStreamPlaybackPolyphonic]; stream: int64; volumeDb: Float) =
+proc setStreamVolume*(self: AudioStreamPlaybackPolyphonic; stream: int64; volumeDb: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_stream_volume"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlaybackPolyphonic, addr name, 1602489585)
   var `?param` = [getPtr stream, getPtr volumeDb]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setStreamPitchScale*(self: Ref[AudioStreamPlaybackPolyphonic]; stream: int64; pitchScale: Float) =
+proc setStreamPitchScale*(self: AudioStreamPlaybackPolyphonic; stream: int64; pitchScale: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_stream_pitch_scale"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlaybackPolyphonic, addr name, 1602489585)
   var `?param` = [getPtr stream, getPtr pitchScale]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isStreamPlaying*(self: Ref[AudioStreamPlaybackPolyphonic]; stream: int64): Bool =
+proc isStreamPlaying*(self: AudioStreamPlaybackPolyphonic; stream: int64): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_stream_playing"
@@ -36,7 +36,7 @@ proc isStreamPlaying*(self: Ref[AudioStreamPlaybackPolyphonic]; stream: int64): 
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc stopStream*(self: Ref[AudioStreamPlaybackPolyphonic]; stream: int64) =
+proc stopStream*(self: AudioStreamPlaybackPolyphonic; stream: int64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "stop_stream"

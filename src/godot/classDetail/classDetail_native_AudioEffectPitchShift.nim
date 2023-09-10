@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `pitchScale=`*(self: Ref[AudioEffectPitchShift]; rate: Float) =
+proc `pitchScale=`*(self: AudioEffectPitchShift; rate: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_pitch_scale"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectPitchShift, addr name, 373806689)
   var `?param` = [getPtr rate]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc pitchScale*(self: Ref[AudioEffectPitchShift]): Float =
+proc pitchScale*(self: AudioEffectPitchShift): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_pitch_scale"
@@ -19,14 +19,14 @@ proc pitchScale*(self: Ref[AudioEffectPitchShift]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `oversampling=`*(self: Ref[AudioEffectPitchShift]; amount: int32) =
+proc `oversampling=`*(self: AudioEffectPitchShift; amount: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_oversampling"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectPitchShift, addr name, 1286410249)
   var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc oversampling*(self: Ref[AudioEffectPitchShift]): int32 =
+proc oversampling*(self: AudioEffectPitchShift): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_oversampling"
@@ -34,14 +34,14 @@ proc oversampling*(self: Ref[AudioEffectPitchShift]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc `fftSize=`*(self: Ref[AudioEffectPitchShift]; size: AudioEffectPitchShift_FFTSize) =
+proc `fftSize=`*(self: AudioEffectPitchShift; size: AudioEffectPitchShift_FFTSize) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fft_size"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectPitchShift, addr name, 2323518741)
   var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fftSize*(self: Ref[AudioEffectPitchShift]): AudioEffectPitchShift_FFTSize =
+proc fftSize*(self: AudioEffectPitchShift): AudioEffectPitchShift_FFTSize =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_fft_size"

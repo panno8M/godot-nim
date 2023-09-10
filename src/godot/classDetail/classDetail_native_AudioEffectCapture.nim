@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc canGetBuffer*(self: Ref[AudioEffectCapture]; frames: int32): Bool =
+proc canGetBuffer*(self: AudioEffectCapture; frames: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "can_get_buffer"
@@ -13,7 +13,7 @@ proc canGetBuffer*(self: Ref[AudioEffectCapture]; frames: int32): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc getBuffer*(self: Ref[AudioEffectCapture]; frames: int32): PackedVector2Array =
+proc getBuffer*(self: AudioEffectCapture; frames: int32): PackedVector2Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_buffer"
@@ -22,20 +22,20 @@ proc getBuffer*(self: Ref[AudioEffectCapture]; frames: int32): PackedVector2Arra
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedVector2Array)
-proc clearBuffer*(self: Ref[AudioEffectCapture]) =
+proc clearBuffer*(self: AudioEffectCapture) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "clear_buffer"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectCapture, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc `bufferLength=`*(self: Ref[AudioEffectCapture]; bufferLengthSeconds: Float) =
+proc `bufferLength=`*(self: AudioEffectCapture; bufferLengthSeconds: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_buffer_length"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectCapture, addr name, 373806689)
   var `?param` = [getPtr bufferLengthSeconds]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc bufferLength*(self: Ref[AudioEffectCapture]): Float =
+proc bufferLength*(self: AudioEffectCapture): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_buffer_length"
@@ -43,7 +43,7 @@ proc bufferLength*(self: Ref[AudioEffectCapture]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc getFramesAvailable*(self: Ref[AudioEffectCapture]): int32 =
+proc getFramesAvailable*(self: AudioEffectCapture): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_frames_available"
@@ -51,7 +51,7 @@ proc getFramesAvailable*(self: Ref[AudioEffectCapture]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getDiscardedFrames*(self: Ref[AudioEffectCapture]): int64 =
+proc getDiscardedFrames*(self: AudioEffectCapture): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_discarded_frames"
@@ -59,7 +59,7 @@ proc getDiscardedFrames*(self: Ref[AudioEffectCapture]): int64 =
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int64)
-proc getBufferLengthFrames*(self: Ref[AudioEffectCapture]): int32 =
+proc getBufferLengthFrames*(self: AudioEffectCapture): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_buffer_length_frames"
@@ -67,7 +67,7 @@ proc getBufferLengthFrames*(self: Ref[AudioEffectCapture]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getPushedFrames*(self: Ref[AudioEffectCapture]): int64 =
+proc getPushedFrames*(self: AudioEffectCapture): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_pushed_frames"

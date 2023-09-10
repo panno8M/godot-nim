@@ -4,21 +4,21 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `shape=`*(self: CollisionShape2D; shape: Ref[Shape2D]) =
+proc `shape=`*(self: CollisionShape2D; shape: Shape2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionShape2D, addr name, 771364740)
   var `?param` = [getPtr shape]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc shape*(self: CollisionShape2D): Ref[Shape2D] =
+proc shape*(self: CollisionShape2D): Shape2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionShape2D, addr name, 522005891)
-  var ret: encoded Ref[Shape2D]
+  var ret: encoded Shape2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Shape2D])
+  (addr ret).decode(Shape2D)
 proc `disabled=`*(self: CollisionShape2D; disabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

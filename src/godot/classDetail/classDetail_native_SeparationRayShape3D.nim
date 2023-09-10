@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `length=`*(self: Ref[SeparationRayShape3D]; length: Float) =
+proc `length=`*(self: SeparationRayShape3D; length: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_length"
     methodbind = interface_ClassDB_getMethodBind(addr className SeparationRayShape3D, addr name, 373806689)
   var `?param` = [getPtr length]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc length*(self: Ref[SeparationRayShape3D]): Float =
+proc length*(self: SeparationRayShape3D): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_length"
@@ -19,14 +19,14 @@ proc length*(self: Ref[SeparationRayShape3D]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `slideOnSlope=`*(self: Ref[SeparationRayShape3D]; active: Bool) =
+proc `slideOnSlope=`*(self: SeparationRayShape3D; active: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_slide_on_slope"
     methodbind = interface_ClassDB_getMethodBind(addr className SeparationRayShape3D, addr name, 2586408642)
   var `?param` = [getPtr active]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc slideOnSlope*(self: Ref[SeparationRayShape3D]): Bool =
+proc slideOnSlope*(self: SeparationRayShape3D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_slide_on_slope"

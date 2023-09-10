@@ -4,42 +4,42 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc open*(path: String; flags: FileAccess_ModeFlags): Ref[FileAccess] {.staticOf: FileAccess.} =
+proc open*(path: String; flags: FileAccess_ModeFlags): FileAccess {.staticOf: FileAccess.} =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "open"
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 1247358404)
   var `?param` = [getPtr path, getPtr flags]
-  var ret: encoded Ref[FileAccess]
+  var ret: encoded FileAccess
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[FileAccess])
-proc openEncrypted*(path: String; modeFlags: FileAccess_ModeFlags; key: PackedByteArray): Ref[FileAccess] {.staticOf: FileAccess.} =
+  (addr ret).decode(FileAccess)
+proc openEncrypted*(path: String; modeFlags: FileAccess_ModeFlags; key: PackedByteArray): FileAccess {.staticOf: FileAccess.} =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "open_encrypted"
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 1482131466)
   var `?param` = [getPtr path, getPtr modeFlags, getPtr key]
-  var ret: encoded Ref[FileAccess]
+  var ret: encoded FileAccess
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[FileAccess])
-proc openEncryptedWithPass*(path: String; modeFlags: FileAccess_ModeFlags; pass: String): Ref[FileAccess] {.staticOf: FileAccess.} =
+  (addr ret).decode(FileAccess)
+proc openEncryptedWithPass*(path: String; modeFlags: FileAccess_ModeFlags; pass: String): FileAccess {.staticOf: FileAccess.} =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "open_encrypted_with_pass"
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 790283377)
   var `?param` = [getPtr path, getPtr modeFlags, getPtr pass]
-  var ret: encoded Ref[FileAccess]
+  var ret: encoded FileAccess
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[FileAccess])
-proc openCompressed*(path: String; modeFlags: FileAccess_ModeFlags; compressionMode: FileAccess_CompressionMode = compressionFastlz): Ref[FileAccess] {.staticOf: FileAccess.} =
+  (addr ret).decode(FileAccess)
+proc openCompressed*(path: String; modeFlags: FileAccess_ModeFlags; compressionMode: FileAccess_CompressionMode = compressionFastlz): FileAccess {.staticOf: FileAccess.} =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "open_compressed"
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 2874458257)
   var `?param` = [getPtr path, getPtr modeFlags, getPtr compressionMode]
-  var ret: encoded Ref[FileAccess]
+  var ret: encoded FileAccess
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[FileAccess])
+  (addr ret).decode(FileAccess)
 proc getOpenError*: Error {.staticOf: FileAccess.} =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -66,13 +66,13 @@ proc getFileAsString*(path: String): String {.staticOf: FileAccess.} =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc flush*(self: Ref[FileAccess]) =
+proc flush*(self: FileAccess) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "flush"
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc getPath*(self: Ref[FileAccess]): String =
+proc getPath*(self: FileAccess): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_path"
@@ -80,7 +80,7 @@ proc getPath*(self: Ref[FileAccess]): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(String)
-proc getPathAbsolute*(self: Ref[FileAccess]): String =
+proc getPathAbsolute*(self: FileAccess): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_path_absolute"
@@ -88,7 +88,7 @@ proc getPathAbsolute*(self: Ref[FileAccess]): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(String)
-proc isOpen*(self: Ref[FileAccess]): Bool =
+proc isOpen*(self: FileAccess): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_open"
@@ -96,21 +96,21 @@ proc isOpen*(self: Ref[FileAccess]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc seek*(self: Ref[FileAccess]; position: uint64) =
+proc seek*(self: FileAccess; position: uint64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "seek"
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 1286410249)
   var `?param` = [getPtr position]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc seekEnd*(self: Ref[FileAccess]; position: int64 = 0) =
+proc seekEnd*(self: FileAccess; position: int64 = 0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "seek_end"
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 1995695955)
   var `?param` = [getPtr position]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getPosition*(self: Ref[FileAccess]): uint64 =
+proc getPosition*(self: FileAccess): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_position"
@@ -118,7 +118,7 @@ proc getPosition*(self: Ref[FileAccess]): uint64 =
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(uint64)
-proc getLength*(self: Ref[FileAccess]): uint64 =
+proc getLength*(self: FileAccess): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_length"
@@ -126,7 +126,7 @@ proc getLength*(self: Ref[FileAccess]): uint64 =
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(uint64)
-proc eofReached*(self: Ref[FileAccess]): Bool =
+proc eofReached*(self: FileAccess): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "eof_reached"
@@ -134,7 +134,7 @@ proc eofReached*(self: Ref[FileAccess]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc get8*(self: Ref[FileAccess]): uint8 =
+proc get8*(self: FileAccess): uint8 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_8"
@@ -142,7 +142,7 @@ proc get8*(self: Ref[FileAccess]): uint8 =
   var ret: encoded uint8
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(uint8)
-proc get16*(self: Ref[FileAccess]): uint16 =
+proc get16*(self: FileAccess): uint16 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_16"
@@ -150,7 +150,7 @@ proc get16*(self: Ref[FileAccess]): uint16 =
   var ret: encoded uint16
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(uint16)
-proc get32*(self: Ref[FileAccess]): uint32 =
+proc get32*(self: FileAccess): uint32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_32"
@@ -158,7 +158,7 @@ proc get32*(self: Ref[FileAccess]): uint32 =
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(uint32)
-proc get64*(self: Ref[FileAccess]): uint64 =
+proc get64*(self: FileAccess): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_64"
@@ -166,7 +166,7 @@ proc get64*(self: Ref[FileAccess]): uint64 =
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(uint64)
-proc getFloat*(self: Ref[FileAccess]): Float =
+proc getFloat*(self: FileAccess): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_float"
@@ -174,7 +174,7 @@ proc getFloat*(self: Ref[FileAccess]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc getDouble*(self: Ref[FileAccess]): float64 =
+proc getDouble*(self: FileAccess): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_double"
@@ -182,7 +182,7 @@ proc getDouble*(self: Ref[FileAccess]): float64 =
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(float64)
-proc getReal*(self: Ref[FileAccess]): Float =
+proc getReal*(self: FileAccess): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_real"
@@ -190,7 +190,7 @@ proc getReal*(self: Ref[FileAccess]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc getBuffer*(self: Ref[FileAccess]; length: int64): PackedByteArray =
+proc getBuffer*(self: FileAccess; length: int64): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_buffer"
@@ -199,7 +199,7 @@ proc getBuffer*(self: Ref[FileAccess]; length: int64): PackedByteArray =
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedByteArray)
-proc getLine*(self: Ref[FileAccess]): String =
+proc getLine*(self: FileAccess): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_line"
@@ -207,7 +207,7 @@ proc getLine*(self: Ref[FileAccess]): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(String)
-proc getCsvLine*(self: Ref[FileAccess]; delim: String = ","): PackedStringArray =
+proc getCsvLine*(self: FileAccess; delim: String = ","): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_csv_line"
@@ -216,7 +216,7 @@ proc getCsvLine*(self: Ref[FileAccess]; delim: String = ","): PackedStringArray 
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedStringArray)
-proc getAsText*(self: Ref[FileAccess]; skipCr: Bool = false): String =
+proc getAsText*(self: FileAccess; skipCr: Bool = false): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_as_text"
@@ -243,7 +243,7 @@ proc getSha256*(path: String): String {.staticOf: FileAccess.} =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc isBigEndian*(self: Ref[FileAccess]): Bool =
+proc isBigEndian*(self: FileAccess): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_big_endian"
@@ -251,14 +251,14 @@ proc isBigEndian*(self: Ref[FileAccess]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `bigEndian=`*(self: Ref[FileAccess]; bigEndian: Bool) =
+proc `bigEndian=`*(self: FileAccess; bigEndian: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_big_endian"
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 2586408642)
   var `?param` = [getPtr bigEndian]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getError*(self: Ref[FileAccess]): Error =
+proc getError*(self: FileAccess): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_error"
@@ -266,7 +266,7 @@ proc getError*(self: Ref[FileAccess]): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Error)
-proc getVar*(self: Ref[FileAccess]; allowObjects: Bool = false): Variant =
+proc getVar*(self: FileAccess; allowObjects: Bool = false): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_var"
@@ -275,98 +275,98 @@ proc getVar*(self: Ref[FileAccess]; allowObjects: Bool = false): Variant =
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
-proc store8*(self: Ref[FileAccess]; value: uint8) =
+proc store8*(self: FileAccess; value: uint8) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "store_8"
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 1286410249)
   var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc store16*(self: Ref[FileAccess]; value: uint16) =
+proc store16*(self: FileAccess; value: uint16) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "store_16"
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 1286410249)
   var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc store32*(self: Ref[FileAccess]; value: uint32) =
+proc store32*(self: FileAccess; value: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "store_32"
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 1286410249)
   var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc store64*(self: Ref[FileAccess]; value: uint64) =
+proc store64*(self: FileAccess; value: uint64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "store_64"
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 1286410249)
   var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc storeFloat*(self: Ref[FileAccess]; value: Float) =
+proc storeFloat*(self: FileAccess; value: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "store_float"
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 373806689)
   var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc storeDouble*(self: Ref[FileAccess]; value: float64) =
+proc storeDouble*(self: FileAccess; value: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "store_double"
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 373806689)
   var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc storeReal*(self: Ref[FileAccess]; value: Float) =
+proc storeReal*(self: FileAccess; value: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "store_real"
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 373806689)
   var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc storeBuffer*(self: Ref[FileAccess]; buffer: PackedByteArray) =
+proc storeBuffer*(self: FileAccess; buffer: PackedByteArray) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "store_buffer"
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 2971499966)
   var `?param` = [getPtr buffer]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc storeLine*(self: Ref[FileAccess]; line: String) =
+proc storeLine*(self: FileAccess; line: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "store_line"
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 83702148)
   var `?param` = [getPtr line]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc storeCsvLine*(self: Ref[FileAccess]; values: PackedStringArray; delim: String = ",") =
+proc storeCsvLine*(self: FileAccess; values: PackedStringArray; delim: String = ",") =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "store_csv_line"
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 2217842308)
   var `?param` = [getPtr values, getPtr delim]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc storeString*(self: Ref[FileAccess]; string: String) =
+proc storeString*(self: FileAccess; string: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "store_string"
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 83702148)
   var `?param` = [getPtr string]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc storeVar*(self: Ref[FileAccess]; value: ptr Variant; fullObjects: Bool = false) =
+proc storeVar*(self: FileAccess; value: ptr Variant; fullObjects: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "store_var"
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 738511890)
   var `?param` = [getPtr value, getPtr fullObjects]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc storePascalString*(self: Ref[FileAccess]; string: String) =
+proc storePascalString*(self: FileAccess; string: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "store_pascal_string"
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 83702148)
   var `?param` = [getPtr string]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getPascalString*(self: Ref[FileAccess]): String =
+proc getPascalString*(self: FileAccess): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_pascal_string"
@@ -374,7 +374,7 @@ proc getPascalString*(self: Ref[FileAccess]): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(String)
-proc close*(self: Ref[FileAccess]) =
+proc close*(self: FileAccess) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "close"

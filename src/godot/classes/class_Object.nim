@@ -2,8 +2,11 @@
 # This module was generated automatically. #
 # Edits will be lost.                      #
 # ======================================== #
-import ./../helper/engineClassDefiner
+import ./../helper/standAloneEngineClassDefiner
 
+type Object* = ref object of ObjectBase
+template Inherit*(_: typedesc[Object]): typedesc = ObjectBase
+template EngineClass*(_: typedesc[Object]): typedesc = Object
 proc getClass*(self: Object): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

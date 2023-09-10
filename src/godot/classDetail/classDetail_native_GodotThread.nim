@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc start*(self: Ref[GodotThread]; callable: Callable; priority: GodotThread_Priority = priorityNormal): Error =
+proc start*(self: GodotThread; callable: Callable; priority: GodotThread_Priority = priorityNormal): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "start"
@@ -13,7 +13,7 @@ proc start*(self: Ref[GodotThread]; callable: Callable; priority: GodotThread_Pr
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc getId*(self: Ref[GodotThread]): String =
+proc getId*(self: GodotThread): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_id"
@@ -21,7 +21,7 @@ proc getId*(self: Ref[GodotThread]): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(String)
-proc isStarted*(self: Ref[GodotThread]): Bool =
+proc isStarted*(self: GodotThread): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_started"
@@ -29,7 +29,7 @@ proc isStarted*(self: Ref[GodotThread]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc isAlive*(self: Ref[GodotThread]): Bool =
+proc isAlive*(self: GodotThread): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_alive"
@@ -37,7 +37,7 @@ proc isAlive*(self: Ref[GodotThread]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc waitToFinish*(self: Ref[GodotThread]): Variant =
+proc waitToFinish*(self: GodotThread): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "wait_to_finish"

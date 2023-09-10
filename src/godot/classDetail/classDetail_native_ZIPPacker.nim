@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc open*(self: Ref[ZIPPacker]; path: String; append: ZIPPacker_ZipAppend = appendCreate): Error =
+proc open*(self: ZIPPacker; path: String; append: ZIPPacker_ZipAppend = appendCreate): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "open"
@@ -13,7 +13,7 @@ proc open*(self: Ref[ZIPPacker]; path: String; append: ZIPPacker_ZipAppend = app
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc startFile*(self: Ref[ZIPPacker]; path: String): Error =
+proc startFile*(self: ZIPPacker; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "start_file"
@@ -22,7 +22,7 @@ proc startFile*(self: Ref[ZIPPacker]; path: String): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc writeFile*(self: Ref[ZIPPacker]; data: PackedByteArray): Error =
+proc writeFile*(self: ZIPPacker; data: PackedByteArray): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "write_file"
@@ -31,7 +31,7 @@ proc writeFile*(self: Ref[ZIPPacker]; data: PackedByteArray): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc closeFile*(self: Ref[ZIPPacker]): Error =
+proc closeFile*(self: ZIPPacker): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "close_file"
@@ -39,7 +39,7 @@ proc closeFile*(self: Ref[ZIPPacker]): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Error)
-proc close*(self: Ref[ZIPPacker]): Error =
+proc close*(self: ZIPPacker): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "close"

@@ -4,29 +4,29 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `lightTexture=`*(self: Ref[LightmapGIData]; lightTexture: Ref[TextureLayered]) =
+proc `lightTexture=`*(self: LightmapGIData; lightTexture: TextureLayered) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_light_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGIData, addr name, 1278366092)
   var `?param` = [getPtr lightTexture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc lightTexture*(self: Ref[LightmapGIData]): Ref[TextureLayered] =
+proc lightTexture*(self: LightmapGIData): TextureLayered =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_light_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGIData, addr name, 3984243839)
-  var ret: encoded Ref[TextureLayered]
+  var ret: encoded TextureLayered
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[TextureLayered])
-proc `usesSphericalHarmonics=`*(self: Ref[LightmapGIData]; usesSphericalHarmonics: Bool) =
+  (addr ret).decode(TextureLayered)
+proc `usesSphericalHarmonics=`*(self: LightmapGIData; usesSphericalHarmonics: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_uses_spherical_harmonics"
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGIData, addr name, 2586408642)
   var `?param` = [getPtr usesSphericalHarmonics]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isUsingSphericalHarmonics*(self: Ref[LightmapGIData]): Bool =
+proc isUsingSphericalHarmonics*(self: LightmapGIData): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_using_spherical_harmonics"
@@ -34,14 +34,14 @@ proc isUsingSphericalHarmonics*(self: Ref[LightmapGIData]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc addUser*(self: Ref[LightmapGIData]; path: NodePath; uvScale: Rect2; sliceIndex: int32; subInstance: int32) =
+proc addUser*(self: LightmapGIData; path: NodePath; uvScale: Rect2; sliceIndex: int32; subInstance: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_user"
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGIData, addr name, 4272570515)
   var `?param` = [getPtr path, getPtr uvScale, getPtr sliceIndex, getPtr subInstance]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getUserCount*(self: Ref[LightmapGIData]): int32 =
+proc getUserCount*(self: LightmapGIData): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_user_count"
@@ -49,7 +49,7 @@ proc getUserCount*(self: Ref[LightmapGIData]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getUserPath*(self: Ref[LightmapGIData]; userIdx: int32): NodePath =
+proc getUserPath*(self: LightmapGIData; userIdx: int32): NodePath =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_user_path"
@@ -58,7 +58,7 @@ proc getUserPath*(self: Ref[LightmapGIData]; userIdx: int32): NodePath =
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(NodePath)
-proc clearUsers*(self: Ref[LightmapGIData]) =
+proc clearUsers*(self: LightmapGIData) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "clear_users"

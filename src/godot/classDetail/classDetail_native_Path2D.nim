@@ -4,18 +4,18 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `curve=`*(self: Path2D; curve: Ref[Curve2D]) =
+proc `curve=`*(self: Path2D; curve: Curve2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_curve"
     methodbind = interface_ClassDB_getMethodBind(addr className Path2D, addr name, 659985499)
   var `?param` = [getPtr curve]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc curve*(self: Path2D): Ref[Curve2D] =
+proc curve*(self: Path2D): Curve2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_curve"
     methodbind = interface_ClassDB_getMethodBind(addr className Path2D, addr name, 660369445)
-  var ret: encoded Ref[Curve2D]
+  var ret: encoded Curve2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Curve2D])
+  (addr ret).decode(Curve2D)

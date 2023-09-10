@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `defaultValueEnabled=`*(self: Ref[VisualShaderNodeColorParameter]; enabled: Bool) =
+proc `defaultValueEnabled=`*(self: VisualShaderNodeColorParameter; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_default_value_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeColorParameter, addr name, 2586408642)
   var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isDefaultValueEnabled*(self: Ref[VisualShaderNodeColorParameter]): Bool =
+proc isDefaultValueEnabled*(self: VisualShaderNodeColorParameter): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_default_value_enabled"
@@ -19,14 +19,14 @@ proc isDefaultValueEnabled*(self: Ref[VisualShaderNodeColorParameter]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `defaultValue=`*(self: Ref[VisualShaderNodeColorParameter]; value: Color) =
+proc `defaultValue=`*(self: VisualShaderNodeColorParameter; value: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_default_value"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeColorParameter, addr name, 2920490490)
   var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc defaultValue*(self: Ref[VisualShaderNodeColorParameter]): Color =
+proc defaultValue*(self: VisualShaderNodeColorParameter): Color =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_default_value"

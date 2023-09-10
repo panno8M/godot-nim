@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc new*(self: Ref[GDScriptNativeClass]): Variant =
+proc new*(self: GDScriptNativeClass): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "new"

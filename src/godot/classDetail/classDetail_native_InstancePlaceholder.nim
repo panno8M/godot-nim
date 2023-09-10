@@ -13,7 +13,7 @@ proc getStoredValues*(self: InstancePlaceholder; withOrder: Bool = false): Dicti
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Dictionary)
-proc createInstance*(self: InstancePlaceholder; replace: Bool = false; customScene: Ref[PackedScene] = default Ref[PackedScene]): Node =
+proc createInstance*(self: InstancePlaceholder; replace: Bool = false; customScene: PackedScene = default PackedScene): Node =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_instance"

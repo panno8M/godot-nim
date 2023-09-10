@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `opType=`*(self: Ref[VisualShaderNodeMix]; opType: VisualShaderNodeMix_OpType) =
+proc `opType=`*(self: VisualShaderNodeMix; opType: VisualShaderNodeMix_OpType) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_op_type"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeMix, addr name, 3397501671)
   var `?param` = [getPtr opType]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc opType*(self: Ref[VisualShaderNodeMix]): VisualShaderNodeMix_OpType =
+proc opType*(self: VisualShaderNodeMix): VisualShaderNodeMix_OpType =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_op_type"

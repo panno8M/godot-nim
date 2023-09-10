@@ -214,21 +214,21 @@ proc isPathJoined*(self: CSGPolygon3D): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `material=`*(self: CSGPolygon3D; material: Ref[Material]) =
+proc `material=`*(self: CSGPolygon3D; material: Material) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_material"
     methodbind = interface_ClassDB_getMethodBind(addr className CSGPolygon3D, addr name, 2757459619)
   var `?param` = [getPtr material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc material*(self: CSGPolygon3D): Ref[Material] =
+proc material*(self: CSGPolygon3D): Material =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_material"
     methodbind = interface_ClassDB_getMethodBind(addr className CSGPolygon3D, addr name, 5934680)
-  var ret: encoded Ref[Material]
+  var ret: encoded Material
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Material])
+  (addr ret).decode(Material)
 proc `smoothFaces=`*(self: CSGPolygon3D; smoothFaces: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

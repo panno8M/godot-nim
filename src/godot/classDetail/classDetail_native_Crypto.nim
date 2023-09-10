@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc generateRandomBytes*(self: Ref[Crypto]; size: int32): PackedByteArray =
+proc generateRandomBytes*(self: Crypto; size: int32): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "generate_random_bytes"
@@ -13,25 +13,25 @@ proc generateRandomBytes*(self: Ref[Crypto]; size: int32): PackedByteArray =
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedByteArray)
-proc generateRsa*(self: Ref[Crypto]; size: int32): Ref[CryptoKey] =
+proc generateRsa*(self: Crypto; size: int32): CryptoKey =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "generate_rsa"
     methodbind = interface_ClassDB_getMethodBind(addr className Crypto, addr name, 1237515462)
   var `?param` = [getPtr size]
-  var ret: encoded Ref[CryptoKey]
+  var ret: encoded CryptoKey
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[CryptoKey])
-proc generateSelfSignedCertificate*(self: Ref[Crypto]; key: Ref[CryptoKey]; issuerName: String = "CN=myserver,O=myorganisation,C=IT"; notBefore: String = "20140101000000"; notAfter: String = "20340101000000"): Ref[X509Certificate] =
+  (addr ret).decode(CryptoKey)
+proc generateSelfSignedCertificate*(self: Crypto; key: CryptoKey; issuerName: String = "CN=myserver,O=myorganisation,C=IT"; notBefore: String = "20140101000000"; notAfter: String = "20340101000000"): X509Certificate =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "generate_self_signed_certificate"
     methodbind = interface_ClassDB_getMethodBind(addr className Crypto, addr name, 947314696)
   var `?param` = [getPtr key, getPtr issuerName, getPtr notBefore, getPtr notAfter]
-  var ret: encoded Ref[X509Certificate]
+  var ret: encoded X509Certificate
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[X509Certificate])
-proc sign*(self: Ref[Crypto]; hashType: HashingContext_HashType; hash: PackedByteArray; key: Ref[CryptoKey]): PackedByteArray =
+  (addr ret).decode(X509Certificate)
+proc sign*(self: Crypto; hashType: HashingContext_HashType; hash: PackedByteArray; key: CryptoKey): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "sign"
@@ -40,7 +40,7 @@ proc sign*(self: Ref[Crypto]; hashType: HashingContext_HashType; hash: PackedByt
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedByteArray)
-proc verify*(self: Ref[Crypto]; hashType: HashingContext_HashType; hash: PackedByteArray; signature: PackedByteArray; key: Ref[CryptoKey]): Bool =
+proc verify*(self: Crypto; hashType: HashingContext_HashType; hash: PackedByteArray; signature: PackedByteArray; key: CryptoKey): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "verify"
@@ -49,7 +49,7 @@ proc verify*(self: Ref[Crypto]; hashType: HashingContext_HashType; hash: PackedB
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc encrypt*(self: Ref[Crypto]; key: Ref[CryptoKey]; plaintext: PackedByteArray): PackedByteArray =
+proc encrypt*(self: Crypto; key: CryptoKey; plaintext: PackedByteArray): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "encrypt"
@@ -58,7 +58,7 @@ proc encrypt*(self: Ref[Crypto]; key: Ref[CryptoKey]; plaintext: PackedByteArray
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedByteArray)
-proc decrypt*(self: Ref[Crypto]; key: Ref[CryptoKey]; ciphertext: PackedByteArray): PackedByteArray =
+proc decrypt*(self: Crypto; key: CryptoKey; ciphertext: PackedByteArray): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "decrypt"
@@ -67,7 +67,7 @@ proc decrypt*(self: Ref[Crypto]; key: Ref[CryptoKey]; ciphertext: PackedByteArra
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedByteArray)
-proc hmacDigest*(self: Ref[Crypto]; hashType: HashingContext_HashType; key: PackedByteArray; msg: PackedByteArray): PackedByteArray =
+proc hmacDigest*(self: Crypto; hashType: HashingContext_HashType; key: PackedByteArray; msg: PackedByteArray): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "hmac_digest"
@@ -76,7 +76,7 @@ proc hmacDigest*(self: Ref[Crypto]; hashType: HashingContext_HashType; key: Pack
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedByteArray)
-proc constantTimeCompare*(self: Ref[Crypto]; trusted: PackedByteArray; received: PackedByteArray): Bool =
+proc constantTimeCompare*(self: Crypto; trusted: PackedByteArray; received: PackedByteArray): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "constant_time_compare"

@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `bind`*(self: Ref[StreamPeerTCP]; port: int32; host: String = "*"): Error =
+proc `bind`*(self: StreamPeerTCP; port: int32; host: String = "*"): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "bind"
@@ -13,7 +13,7 @@ proc `bind`*(self: Ref[StreamPeerTCP]; port: int32; host: String = "*"): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc connectToHost*(self: Ref[StreamPeerTCP]; host: String; port: int32): Error =
+proc connectToHost*(self: StreamPeerTCP; host: String; port: int32): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "connect_to_host"
@@ -22,7 +22,7 @@ proc connectToHost*(self: Ref[StreamPeerTCP]; host: String; port: int32): Error 
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc poll*(self: Ref[StreamPeerTCP]): Error =
+proc poll*(self: StreamPeerTCP): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "poll"
@@ -30,7 +30,7 @@ proc poll*(self: Ref[StreamPeerTCP]): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Error)
-proc getStatus*(self: Ref[StreamPeerTCP]): StreamPeerTCP_Status =
+proc getStatus*(self: StreamPeerTCP): StreamPeerTCP_Status =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_status"
@@ -38,7 +38,7 @@ proc getStatus*(self: Ref[StreamPeerTCP]): StreamPeerTCP_Status =
   var ret: encoded StreamPeerTCP_Status
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(StreamPeerTCP_Status)
-proc getConnectedHost*(self: Ref[StreamPeerTCP]): String =
+proc getConnectedHost*(self: StreamPeerTCP): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_connected_host"
@@ -46,7 +46,7 @@ proc getConnectedHost*(self: Ref[StreamPeerTCP]): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(String)
-proc getConnectedPort*(self: Ref[StreamPeerTCP]): int32 =
+proc getConnectedPort*(self: StreamPeerTCP): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_connected_port"
@@ -54,7 +54,7 @@ proc getConnectedPort*(self: Ref[StreamPeerTCP]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getLocalPort*(self: Ref[StreamPeerTCP]): int32 =
+proc getLocalPort*(self: StreamPeerTCP): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_local_port"
@@ -62,13 +62,13 @@ proc getLocalPort*(self: Ref[StreamPeerTCP]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc disconnectFromHost*(self: Ref[StreamPeerTCP]) =
+proc disconnectFromHost*(self: StreamPeerTCP) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "disconnect_from_host"
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeerTCP, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc setNoDelay*(self: Ref[StreamPeerTCP]; enabled: Bool) =
+proc setNoDelay*(self: StreamPeerTCP; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_no_delay"

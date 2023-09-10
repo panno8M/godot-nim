@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc setDisableClass*(self: Ref[EditorFeatureProfile]; className: StringName; disable: Bool) =
+proc setDisableClass*(self: EditorFeatureProfile; className: StringName; disable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_disable_class"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFeatureProfile, addr name, 2524380260)
   var `?param` = [getPtr className, getPtr disable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isClassDisabled*(self: Ref[EditorFeatureProfile]; className: StringName): Bool =
+proc isClassDisabled*(self: EditorFeatureProfile; className: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_class_disabled"
@@ -20,14 +20,14 @@ proc isClassDisabled*(self: Ref[EditorFeatureProfile]; className: StringName): B
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc setDisableClassEditor*(self: Ref[EditorFeatureProfile]; className: StringName; disable: Bool) =
+proc setDisableClassEditor*(self: EditorFeatureProfile; className: StringName; disable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_disable_class_editor"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFeatureProfile, addr name, 2524380260)
   var `?param` = [getPtr className, getPtr disable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isClassEditorDisabled*(self: Ref[EditorFeatureProfile]; className: StringName): Bool =
+proc isClassEditorDisabled*(self: EditorFeatureProfile; className: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_class_editor_disabled"
@@ -36,14 +36,14 @@ proc isClassEditorDisabled*(self: Ref[EditorFeatureProfile]; className: StringNa
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc setDisableClassProperty*(self: Ref[EditorFeatureProfile]; className: StringName; property: StringName; disable: Bool) =
+proc setDisableClassProperty*(self: EditorFeatureProfile; className: StringName; property: StringName; disable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_disable_class_property"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFeatureProfile, addr name, 865197084)
   var `?param` = [getPtr className, getPtr property, getPtr disable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isClassPropertyDisabled*(self: Ref[EditorFeatureProfile]; className: StringName; property: StringName): Bool =
+proc isClassPropertyDisabled*(self: EditorFeatureProfile; className: StringName; property: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_class_property_disabled"
@@ -52,14 +52,14 @@ proc isClassPropertyDisabled*(self: Ref[EditorFeatureProfile]; className: String
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc setDisableFeature*(self: Ref[EditorFeatureProfile]; feature: EditorFeatureProfile_Feature; disable: Bool) =
+proc setDisableFeature*(self: EditorFeatureProfile; feature: EditorFeatureProfile_Feature; disable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_disable_feature"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFeatureProfile, addr name, 1884871044)
   var `?param` = [getPtr feature, getPtr disable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isFeatureDisabled*(self: Ref[EditorFeatureProfile]; feature: EditorFeatureProfile_Feature): Bool =
+proc isFeatureDisabled*(self: EditorFeatureProfile; feature: EditorFeatureProfile_Feature): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_feature_disabled"
@@ -68,7 +68,7 @@ proc isFeatureDisabled*(self: Ref[EditorFeatureProfile]; feature: EditorFeatureP
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc getFeatureName*(self: Ref[EditorFeatureProfile]; feature: EditorFeatureProfile_Feature): String =
+proc getFeatureName*(self: EditorFeatureProfile; feature: EditorFeatureProfile_Feature): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_feature_name"
@@ -77,7 +77,7 @@ proc getFeatureName*(self: Ref[EditorFeatureProfile]; feature: EditorFeatureProf
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc saveToFile*(self: Ref[EditorFeatureProfile]; path: String): Error =
+proc saveToFile*(self: EditorFeatureProfile; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "save_to_file"
@@ -86,7 +86,7 @@ proc saveToFile*(self: Ref[EditorFeatureProfile]; path: String): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc loadFromFile*(self: Ref[EditorFeatureProfile]; path: String): Error =
+proc loadFromFile*(self: EditorFeatureProfile; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "load_from_file"

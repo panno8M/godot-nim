@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc createServer*(self: Ref[WebRTCMultiplayerPeer]; channelsConfig: Array = init_Array()): Error =
+proc createServer*(self: WebRTCMultiplayerPeer; channelsConfig: Array = init_Array()): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_server"
@@ -13,7 +13,7 @@ proc createServer*(self: Ref[WebRTCMultiplayerPeer]; channelsConfig: Array = ini
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc createClient*(self: Ref[WebRTCMultiplayerPeer]; peerId: int32; channelsConfig: Array = init_Array()): Error =
+proc createClient*(self: WebRTCMultiplayerPeer; peerId: int32; channelsConfig: Array = init_Array()): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_client"
@@ -22,7 +22,7 @@ proc createClient*(self: Ref[WebRTCMultiplayerPeer]; peerId: int32; channelsConf
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc createMesh*(self: Ref[WebRTCMultiplayerPeer]; peerId: int32; channelsConfig: Array = init_Array()): Error =
+proc createMesh*(self: WebRTCMultiplayerPeer; peerId: int32; channelsConfig: Array = init_Array()): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_mesh"
@@ -31,7 +31,7 @@ proc createMesh*(self: Ref[WebRTCMultiplayerPeer]; peerId: int32; channelsConfig
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc addPeer*(self: Ref[WebRTCMultiplayerPeer]; peer: Ref[WebRTCPeerConnection]; peerId: int32; unreliableLifetime: int32 = 1): Error =
+proc addPeer*(self: WebRTCMultiplayerPeer; peer: WebRTCPeerConnection; peerId: int32; unreliableLifetime: int32 = 1): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_peer"
@@ -40,14 +40,14 @@ proc addPeer*(self: Ref[WebRTCMultiplayerPeer]; peer: Ref[WebRTCPeerConnection];
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc removePeer*(self: Ref[WebRTCMultiplayerPeer]; peerId: int32) =
+proc removePeer*(self: WebRTCMultiplayerPeer; peerId: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_peer"
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCMultiplayerPeer, addr name, 1286410249)
   var `?param` = [getPtr peerId]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc hasPeer*(self: Ref[WebRTCMultiplayerPeer]; peerId: int32): Bool =
+proc hasPeer*(self: WebRTCMultiplayerPeer; peerId: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "has_peer"
@@ -56,7 +56,7 @@ proc hasPeer*(self: Ref[WebRTCMultiplayerPeer]; peerId: int32): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc getPeer*(self: Ref[WebRTCMultiplayerPeer]; peerId: int32): Dictionary =
+proc getPeer*(self: WebRTCMultiplayerPeer; peerId: int32): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_peer"
@@ -65,7 +65,7 @@ proc getPeer*(self: Ref[WebRTCMultiplayerPeer]; peerId: int32): Dictionary =
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Dictionary)
-proc getPeers*(self: Ref[WebRTCMultiplayerPeer]): Dictionary =
+proc getPeers*(self: WebRTCMultiplayerPeer): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_peers"

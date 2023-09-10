@@ -4,30 +4,30 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc setDelay*(self: Ref[MethodTweener]; delay: float64): Ref[MethodTweener] =
+proc setDelay*(self: MethodTweener; delay: float64): MethodTweener =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_delay"
     methodbind = interface_ClassDB_getMethodBind(addr className MethodTweener, addr name, 266477812)
   var `?param` = [getPtr delay]
-  var ret: encoded Ref[MethodTweener]
+  var ret: encoded MethodTweener
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[MethodTweener])
-proc setTrans*(self: Ref[MethodTweener]; trans: Tween_TransitionType): Ref[MethodTweener] =
+  (addr ret).decode(MethodTweener)
+proc setTrans*(self: MethodTweener; trans: Tween_TransitionType): MethodTweener =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_trans"
     methodbind = interface_ClassDB_getMethodBind(addr className MethodTweener, addr name, 3740975367)
   var `?param` = [getPtr trans]
-  var ret: encoded Ref[MethodTweener]
+  var ret: encoded MethodTweener
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[MethodTweener])
-proc setEase*(self: Ref[MethodTweener]; ease: Tween_EaseType): Ref[MethodTweener] =
+  (addr ret).decode(MethodTweener)
+proc setEase*(self: MethodTweener; ease: Tween_EaseType): MethodTweener =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_ease"
     methodbind = interface_ClassDB_getMethodBind(addr className MethodTweener, addr name, 315540545)
   var `?param` = [getPtr ease]
-  var ret: encoded Ref[MethodTweener]
+  var ret: encoded MethodTweener
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[MethodTweener])
+  (addr ret).decode(MethodTweener)

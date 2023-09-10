@@ -26,7 +26,7 @@ proc `text=`*(self: RichTextLabel; text: String) =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 83702148)
   var `?param` = [getPtr text]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addImage*(self: RichTextLabel; image: Ref[Texture2D]; width: int32 = 0; height: int32 = 0; color: Color = init_Color(1, 1, 1, 1); inlineAlign: InlineAlignment = inlineAlignmentCenter; region: Rect2 = init_Rect2(0, 0, 0, 0)) =
+proc addImage*(self: RichTextLabel; image: Texture2D; width: int32 = 0; height: int32 = 0; color: Color = init_Color(1, 1, 1, 1); inlineAlign: InlineAlignment = inlineAlignmentCenter; region: Rect2 = init_Rect2(0, 0, 0, 0)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_image"
@@ -48,7 +48,7 @@ proc removeParagraph*(self: RichTextLabel; paragraph: int32): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc pushFont*(self: RichTextLabel; font: Ref[Font]; fontSize: int32) =
+proc pushFont*(self: RichTextLabel; font: Font; fontSize: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "push_font"
@@ -167,7 +167,7 @@ proc pushTable*(self: RichTextLabel; columns: int32; inlineAlign: InlineAlignmen
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 1125058220)
   var `?param` = [getPtr columns, getPtr inlineAlign, getPtr alignToRow]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc pushDropcap*(self: RichTextLabel; string: String; font: Ref[Font]; size: int32; dropcapMargins: Rect2 = init_Rect2(0, 0, 0, 0); color: Color = init_Color(1, 1, 1, 1); outlineSize: int32 = 0; outlineColor: Color = init_Color(0, 0, 0, 0)) =
+proc pushDropcap*(self: RichTextLabel; string: String; font: Font; size: int32; dropcapMargins: Rect2 = init_Rect2(0, 0, 0, 0); color: Color = init_Color(1, 1, 1, 1); outlineSize: int32 = 0; outlineColor: Color = init_Color(0, 0, 0, 0)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "push_dropcap"
@@ -229,7 +229,7 @@ proc pushBgcolor*(self: RichTextLabel; bgcolor: Color) =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 2920490490)
   var `?param` = [getPtr bgcolor]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc pushCustomfx*(self: RichTextLabel; effect: Ref[RichTextEffect]; env: Dictionary) =
+proc pushCustomfx*(self: RichTextLabel; effect: RichTextEffect; env: Dictionary) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "push_customfx"

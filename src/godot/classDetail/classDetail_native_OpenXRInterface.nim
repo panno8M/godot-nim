@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc displayRefreshRate*(self: Ref[OpenXRInterface]): Float =
+proc displayRefreshRate*(self: OpenXRInterface): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_display_refresh_rate"
@@ -12,14 +12,14 @@ proc displayRefreshRate*(self: Ref[OpenXRInterface]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `displayRefreshRate=`*(self: Ref[OpenXRInterface]; refreshRate: Float) =
+proc `displayRefreshRate=`*(self: OpenXRInterface; refreshRate: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_display_refresh_rate"
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRInterface, addr name, 373806689)
   var `?param` = [getPtr refreshRate]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc renderTarsizeMultiplier*(self: Ref[OpenXRInterface]): float64 =
+proc renderTarsizeMultiplier*(self: OpenXRInterface): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_render_target_size_multiplier"
@@ -27,14 +27,14 @@ proc renderTarsizeMultiplier*(self: Ref[OpenXRInterface]): float64 =
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(float64)
-proc `renderTargetSizeMultiplier=`*(self: Ref[OpenXRInterface]; multiplier: float64) =
+proc `renderTargetSizeMultiplier=`*(self: OpenXRInterface; multiplier: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_render_target_size_multiplier"
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRInterface, addr name, 373806689)
   var `?param` = [getPtr multiplier]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isActionSetActive*(self: Ref[OpenXRInterface]; name: String): Bool =
+proc isActionSetActive*(self: OpenXRInterface; name: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_action_set_active"
@@ -43,14 +43,14 @@ proc isActionSetActive*(self: Ref[OpenXRInterface]; name: String): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc setActionSetActive*(self: Ref[OpenXRInterface]; name: String; active: Bool) =
+proc setActionSetActive*(self: OpenXRInterface; name: String; active: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_action_set_active"
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRInterface, addr name, 2678287736)
   var `?param` = [getPtr name, getPtr active]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getActionSets*(self: Ref[OpenXRInterface]): Array =
+proc getActionSets*(self: OpenXRInterface): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_action_sets"
@@ -58,7 +58,7 @@ proc getActionSets*(self: Ref[OpenXRInterface]): Array =
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Array)
-proc getAvailableDisplayRefreshRates*(self: Ref[OpenXRInterface]): Array =
+proc getAvailableDisplayRefreshRates*(self: OpenXRInterface): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_available_display_refresh_rates"

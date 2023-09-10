@@ -67,16 +67,34 @@ proc generate*(api: JsonNode) =
   moduleTree.localEnums.contents.children.add variants.renderLocalEnums
 
   let essencial_mdl = mdl("classEssencial")
-      .incl(moduleTree.engineClassDefiner)
+    .incl(moduleTree.engineClassDefiner)
+  let engineClassDefines_mdl = mdl("engineClassDefines")
+  d_godotInterface.take engineClassDefines_mdl
   moduleTree.d_godot.take essencial_mdl
   for rend in api.classes.toNim.parentalSorted.toSeq.concat.renderDetail:
-    moduleTree.engineClassDefines.contents.children.add rend.define
-    let detail_mdl = mdl("classDetail_native_" & $rend.class)
-      .incl(moduleTree.engineClassDefiner)
-    moduleTree.d_classDetail.take detail_mdl
-    detail_mdl.contents = rend.detail
-    essencial_mdl.contents.children.add rend.essencial
-    moduleTree.localEnums.contents.children.add rend.enums
-    essencial_mdl.contents.children.add rend.virtual
+    case rend.class.name
+    of "Object":
+      let class_mdl = mdl("class_" & rend.class.name)
+        .incl(standAloneEngineClassDefiner)
+      discard +$$..class_mdl.contents:
+        rend.define
+        rend.essencial
+        rend.detail
+        rend.virtual
+      moduleTree.localEnums.contents.children.add rend.enums
+      d_classes.take class_mdl
+
+    else:
+      engineClassDefines_mdl.contents.children.add rend.define
+      let detail_mdl = mdl("classDetail_native_" & $rend.class)
+        .incl(moduleTree.engineClassDefiner)
+      moduleTree.d_classDetail.take detail_mdl
+      detail_mdl.contents = rend.detail
+      essencial_mdl.contents.children.add rend.essencial
+      moduleTree.localEnums.contents.children.add rend.enums
+      essencial_mdl.contents.children.add rend.virtual
+
+  discard essencial_mdl.incl(d_classes//"class_Object")
+  discard engineClassDefines_mdl.incl(d_classes//"class_Object")
 
   moduleTree.nativeStructs.contents.children.add prerender api.native_structures

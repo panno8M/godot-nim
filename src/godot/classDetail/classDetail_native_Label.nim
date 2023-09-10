@@ -49,21 +49,21 @@ proc text*(self: Label): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(String)
-proc `labelSettings=`*(self: Label; settings: Ref[LabelSettings]) =
+proc `labelSettings=`*(self: Label; settings: LabelSettings) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_label_settings"
     methodbind = interface_ClassDB_getMethodBind(addr className Label, addr name, 1030653839)
   var `?param` = [getPtr settings]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc labelSettings*(self: Label): Ref[LabelSettings] =
+proc labelSettings*(self: Label): LabelSettings =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_label_settings"
     methodbind = interface_ClassDB_getMethodBind(addr className Label, addr name, 826676056)
-  var ret: encoded Ref[LabelSettings]
+  var ret: encoded LabelSettings
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[LabelSettings])
+  (addr ret).decode(LabelSettings)
 proc `textDirection=`*(self: Label; direction: Control_TextDirection) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

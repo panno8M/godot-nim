@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `load=`*(self: Ref[CompressedTexture2D]; path: String): Error =
+proc `load=`*(self: CompressedTexture2D; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "load"
@@ -13,7 +13,7 @@ proc `load=`*(self: Ref[CompressedTexture2D]; path: String): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc loadPath*(self: Ref[CompressedTexture2D]): String =
+proc loadPath*(self: CompressedTexture2D): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_load_path"

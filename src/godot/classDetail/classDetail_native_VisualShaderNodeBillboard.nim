@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `billboardType=`*(self: Ref[VisualShaderNodeBillboard]; billboardType: VisualShaderNodeBillboard_BillboardType) =
+proc `billboardType=`*(self: VisualShaderNodeBillboard; billboardType: VisualShaderNodeBillboard_BillboardType) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_billboard_type"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeBillboard, addr name, 1227463289)
   var `?param` = [getPtr billboardType]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc billboardType*(self: Ref[VisualShaderNodeBillboard]): VisualShaderNodeBillboard_BillboardType =
+proc billboardType*(self: VisualShaderNodeBillboard): VisualShaderNodeBillboard_BillboardType =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_billboard_type"
@@ -19,14 +19,14 @@ proc billboardType*(self: Ref[VisualShaderNodeBillboard]): VisualShaderNodeBillb
   var ret: encoded VisualShaderNodeBillboard_BillboardType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(VisualShaderNodeBillboard_BillboardType)
-proc `keepScaleEnabled=`*(self: Ref[VisualShaderNodeBillboard]; enabled: Bool) =
+proc `keepScaleEnabled=`*(self: VisualShaderNodeBillboard; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_keep_scale_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeBillboard, addr name, 2586408642)
   var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isKeepScaleEnabled*(self: Ref[VisualShaderNodeBillboard]): Bool =
+proc isKeepScaleEnabled*(self: VisualShaderNodeBillboard): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_keep_scale_enabled"

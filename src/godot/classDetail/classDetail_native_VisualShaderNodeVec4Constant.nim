@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `constant=`*(self: Ref[VisualShaderNodeVec4Constant]; constant: Quaternion) =
+proc `constant=`*(self: VisualShaderNodeVec4Constant; constant: Quaternion) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_constant"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeVec4Constant, addr name, 1727505552)
   var `?param` = [getPtr constant]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc constant*(self: Ref[VisualShaderNodeVec4Constant]): Quaternion =
+proc constant*(self: VisualShaderNodeVec4Constant): Quaternion =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_constant"

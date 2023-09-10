@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc getFormat*(self: Ref[Texture3D]): Image_Format =
+proc getFormat*(self: Texture3D): Image_Format =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_format"
@@ -12,7 +12,7 @@ proc getFormat*(self: Ref[Texture3D]): Image_Format =
   var ret: encoded Image_Format
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Image_Format)
-proc getWidth*(self: Ref[Texture3D]): int32 =
+proc getWidth*(self: Texture3D): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_width"
@@ -20,7 +20,7 @@ proc getWidth*(self: Ref[Texture3D]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getHeight*(self: Ref[Texture3D]): int32 =
+proc getHeight*(self: Texture3D): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_height"
@@ -28,7 +28,7 @@ proc getHeight*(self: Ref[Texture3D]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getDepth*(self: Ref[Texture3D]): int32 =
+proc getDepth*(self: Texture3D): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_depth"
@@ -36,7 +36,7 @@ proc getDepth*(self: Ref[Texture3D]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc hasMipmaps*(self: Ref[Texture3D]): Bool =
+proc hasMipmaps*(self: Texture3D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "has_mipmaps"
@@ -44,7 +44,7 @@ proc hasMipmaps*(self: Ref[Texture3D]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc getData*(self: Ref[Texture3D]): TypedArray[Image] =
+proc getData*(self: Texture3D): TypedArray[Image] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_data"
@@ -52,11 +52,11 @@ proc getData*(self: Ref[Texture3D]): TypedArray[Image] =
   var ret: encoded TypedArray[Image]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(TypedArray[Image])
-proc createPlaceholder*(self: Ref[Texture3D]): Ref[Resource] =
+proc createPlaceholder*(self: Texture3D): Resource =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_placeholder"
     methodbind = interface_ClassDB_getMethodBind(addr className Texture3D, addr name, 121922552)
-  var ret: encoded Ref[Resource]
+  var ret: encoded Resource
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Resource])
+  (addr ret).decode(Resource)

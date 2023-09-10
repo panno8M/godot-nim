@@ -126,23 +126,23 @@ proc isPaused*(self: SceneTree): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc createTimer*(self: SceneTree; timeSec: float64; processAlways: Bool = true; processInPhysics: Bool = false; ignoreTimeScale: Bool = false): Ref[SceneTreeTimer] =
+proc createTimer*(self: SceneTree; timeSec: float64; processAlways: Bool = true; processInPhysics: Bool = false; ignoreTimeScale: Bool = false): SceneTreeTimer =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_timer"
     methodbind = interface_ClassDB_getMethodBind(addr className SceneTree, addr name, 1780978058)
   var `?param` = [getPtr timeSec, getPtr processAlways, getPtr processInPhysics, getPtr ignoreTimeScale]
-  var ret: encoded Ref[SceneTreeTimer]
+  var ret: encoded SceneTreeTimer
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[SceneTreeTimer])
-proc createTween*(self: SceneTree): Ref[Tween] =
+  (addr ret).decode(SceneTreeTimer)
+proc createTween*(self: SceneTree): Tween =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_tween"
     methodbind = interface_ClassDB_getMethodBind(addr className SceneTree, addr name, 3426978995)
-  var ret: encoded Ref[Tween]
+  var ret: encoded Tween
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Tween])
+  (addr ret).decode(Tween)
 proc getProcessedTweens*(self: SceneTree): TypedArray[Tween] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -265,7 +265,7 @@ proc changeSceneToFile*(self: SceneTree; path: String): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc changeSceneToPacked*(self: SceneTree; packedScene: Ref[PackedScene]): Error =
+proc changeSceneToPacked*(self: SceneTree; packedScene: PackedScene): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "change_scene_to_packed"
@@ -288,22 +288,22 @@ proc unloadCurrentScene*(self: SceneTree) =
     let name: StringName = "unload_current_scene"
     methodbind = interface_ClassDB_getMethodBind(addr className SceneTree, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc setMultiplayer*(self: SceneTree; multiplayer: Ref[MultiplayerAPI]; rootPath: NodePath = init_NodePath()) =
+proc setMultiplayer*(self: SceneTree; multiplayer: MultiplayerAPI; rootPath: NodePath = init_NodePath()) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_multiplayer"
     methodbind = interface_ClassDB_getMethodBind(addr className SceneTree, addr name, 2385607013)
   var `?param` = [getPtr multiplayer, getPtr rootPath]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getMultiplayer*(self: SceneTree; forPath: NodePath = init_NodePath()): Ref[MultiplayerAPI] =
+proc getMultiplayer*(self: SceneTree; forPath: NodePath = init_NodePath()): MultiplayerAPI =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_multiplayer"
     methodbind = interface_ClassDB_getMethodBind(addr className SceneTree, addr name, 3453401404)
   var `?param` = [getPtr forPath]
-  var ret: encoded Ref[MultiplayerAPI]
+  var ret: encoded MultiplayerAPI
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[MultiplayerAPI])
+  (addr ret).decode(MultiplayerAPI)
 proc `multiplayerPollEnabled=`*(self: SceneTree; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

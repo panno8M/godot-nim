@@ -4,22 +4,22 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc getDefaultTheme*(self: ThemeDB): Ref[Theme] =
+proc getDefaultTheme*(self: ThemeDB): Theme =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_default_theme"
     methodbind = interface_ClassDB_getMethodBind(addr className ThemeDB, addr name, 754276358)
-  var ret: encoded Ref[Theme]
+  var ret: encoded Theme
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Theme])
-proc getProjectTheme*(self: ThemeDB): Ref[Theme] =
+  (addr ret).decode(Theme)
+proc getProjectTheme*(self: ThemeDB): Theme =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_project_theme"
     methodbind = interface_ClassDB_getMethodBind(addr className ThemeDB, addr name, 754276358)
-  var ret: encoded Ref[Theme]
+  var ret: encoded Theme
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Theme])
+  (addr ret).decode(Theme)
 proc `fallbackBaseScale=`*(self: ThemeDB; baseScale: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -35,21 +35,21 @@ proc fallbackBaseScale*(self: ThemeDB): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `fallbackFont=`*(self: ThemeDB; font: Ref[Font]) =
+proc `fallbackFont=`*(self: ThemeDB; font: Font) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fallback_font"
     methodbind = interface_ClassDB_getMethodBind(addr className ThemeDB, addr name, 1262170328)
   var `?param` = [getPtr font]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fallbackFont*(self: ThemeDB): Ref[Font] =
+proc fallbackFont*(self: ThemeDB): Font =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_fallback_font"
     methodbind = interface_ClassDB_getMethodBind(addr className ThemeDB, addr name, 3656929885)
-  var ret: encoded Ref[Font]
+  var ret: encoded Font
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Font])
+  (addr ret).decode(Font)
 proc `fallbackFontSize=`*(self: ThemeDB; fontSize: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -65,33 +65,33 @@ proc fallbackFontSize*(self: ThemeDB): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc `fallbackIcon=`*(self: ThemeDB; icon: Ref[Texture2D]) =
+proc `fallbackIcon=`*(self: ThemeDB; icon: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fallback_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className ThemeDB, addr name, 4051416890)
   var `?param` = [getPtr icon]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fallbackIcon*(self: ThemeDB): Ref[Texture2D] =
+proc fallbackIcon*(self: ThemeDB): Texture2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_fallback_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className ThemeDB, addr name, 255860311)
-  var ret: encoded Ref[Texture2D]
+  var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Texture2D])
-proc `fallbackStylebox=`*(self: ThemeDB; stylebox: Ref[StyleBox]) =
+  (addr ret).decode(Texture2D)
+proc `fallbackStylebox=`*(self: ThemeDB; stylebox: StyleBox) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fallback_stylebox"
     methodbind = interface_ClassDB_getMethodBind(addr className ThemeDB, addr name, 2797200388)
   var `?param` = [getPtr stylebox]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fallbackStylebox*(self: ThemeDB): Ref[StyleBox] =
+proc fallbackStylebox*(self: ThemeDB): StyleBox =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_fallback_stylebox"
     methodbind = interface_ClassDB_getMethodBind(addr className ThemeDB, addr name, 496040854)
-  var ret: encoded Ref[StyleBox]
+  var ret: encoded StyleBox
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[StyleBox])
+  (addr ret).decode(StyleBox)

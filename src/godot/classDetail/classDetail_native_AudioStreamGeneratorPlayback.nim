@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc pushFrame*(self: Ref[AudioStreamGeneratorPlayback]; frame: Vector2): Bool =
+proc pushFrame*(self: AudioStreamGeneratorPlayback; frame: Vector2): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "push_frame"
@@ -13,7 +13,7 @@ proc pushFrame*(self: Ref[AudioStreamGeneratorPlayback]; frame: Vector2): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc canPushBuffer*(self: Ref[AudioStreamGeneratorPlayback]; amount: int32): Bool =
+proc canPushBuffer*(self: AudioStreamGeneratorPlayback; amount: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "can_push_buffer"
@@ -22,7 +22,7 @@ proc canPushBuffer*(self: Ref[AudioStreamGeneratorPlayback]; amount: int32): Boo
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc pushBuffer*(self: Ref[AudioStreamGeneratorPlayback]; frames: PackedVector2Array): Bool =
+proc pushBuffer*(self: AudioStreamGeneratorPlayback; frames: PackedVector2Array): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "push_buffer"
@@ -31,7 +31,7 @@ proc pushBuffer*(self: Ref[AudioStreamGeneratorPlayback]; frames: PackedVector2A
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc getFramesAvailable*(self: Ref[AudioStreamGeneratorPlayback]): int32 =
+proc getFramesAvailable*(self: AudioStreamGeneratorPlayback): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_frames_available"
@@ -39,7 +39,7 @@ proc getFramesAvailable*(self: Ref[AudioStreamGeneratorPlayback]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getSkips*(self: Ref[AudioStreamGeneratorPlayback]): int32 =
+proc getSkips*(self: AudioStreamGeneratorPlayback): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_skips"
@@ -47,7 +47,7 @@ proc getSkips*(self: Ref[AudioStreamGeneratorPlayback]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc clearBuffer*(self: Ref[AudioStreamGeneratorPlayback]) =
+proc clearBuffer*(self: AudioStreamGeneratorPlayback) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "clear_buffer"

@@ -4,21 +4,21 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `lightData=`*(self: LightmapGI; data: Ref[LightmapGIData]) =
+proc `lightData=`*(self: LightmapGI; data: LightmapGIData) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_light_data"
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGI, addr name, 1790597277)
   var `?param` = [getPtr data]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc lightData*(self: LightmapGI): Ref[LightmapGIData] =
+proc lightData*(self: LightmapGI): LightmapGIData =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_light_data"
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGI, addr name, 290354153)
-  var ret: encoded Ref[LightmapGIData]
+  var ret: encoded LightmapGIData
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[LightmapGIData])
+  (addr ret).decode(LightmapGIData)
 proc `bakeQuality=`*(self: LightmapGI; bakeQuality: LightmapGI_BakeQuality) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,21 +94,21 @@ proc environmentMode*(self: LightmapGI): LightmapGI_EnvironmentMode =
   var ret: encoded LightmapGI_EnvironmentMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(LightmapGI_EnvironmentMode)
-proc `environmentCustomSky=`*(self: LightmapGI; sky: Ref[Sky]) =
+proc `environmentCustomSky=`*(self: LightmapGI; sky: Sky) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_environment_custom_sky"
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGI, addr name, 3336722921)
   var `?param` = [getPtr sky]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc environmentCustomSky*(self: LightmapGI): Ref[Sky] =
+proc environmentCustomSky*(self: LightmapGI): Sky =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_environment_custom_sky"
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGI, addr name, 1177136966)
-  var ret: encoded Ref[Sky]
+  var ret: encoded Sky
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Sky])
+  (addr ret).decode(Sky)
 proc `environmentCustomColor=`*(self: LightmapGI; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -199,18 +199,18 @@ proc isDirectional*(self: LightmapGI): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `cameraAttributes=`*(self: LightmapGI; cameraAttributes: Ref[CameraAttributes]) =
+proc `cameraAttributes=`*(self: LightmapGI; cameraAttributes: CameraAttributes) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_camera_attributes"
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGI, addr name, 2817810567)
   var `?param` = [getPtr cameraAttributes]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc cameraAttributes*(self: LightmapGI): Ref[CameraAttributes] =
+proc cameraAttributes*(self: LightmapGI): CameraAttributes =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_camera_attributes"
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGI, addr name, 3921283215)
-  var ret: encoded Ref[CameraAttributes]
+  var ret: encoded CameraAttributes
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[CameraAttributes])
+  (addr ret).decode(CameraAttributes)

@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc getWidth*(self: Ref[Image]): int32 =
+proc getWidth*(self: Image): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_width"
@@ -12,7 +12,7 @@ proc getWidth*(self: Ref[Image]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getHeight*(self: Ref[Image]): int32 =
+proc getHeight*(self: Image): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_height"
@@ -20,7 +20,7 @@ proc getHeight*(self: Ref[Image]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getSize*(self: Ref[Image]): Vector2i =
+proc getSize*(self: Image): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_size"
@@ -28,7 +28,7 @@ proc getSize*(self: Ref[Image]): Vector2i =
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Vector2i)
-proc hasMipmaps*(self: Ref[Image]): Bool =
+proc hasMipmaps*(self: Image): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "has_mipmaps"
@@ -36,7 +36,7 @@ proc hasMipmaps*(self: Ref[Image]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc getFormat*(self: Ref[Image]): Image_Format =
+proc getFormat*(self: Image): Image_Format =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_format"
@@ -44,7 +44,7 @@ proc getFormat*(self: Ref[Image]): Image_Format =
   var ret: encoded Image_Format
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Image_Format)
-proc getData*(self: Ref[Image]): PackedByteArray =
+proc getData*(self: Image): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_data"
@@ -52,14 +52,14 @@ proc getData*(self: Ref[Image]): PackedByteArray =
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(PackedByteArray)
-proc convert*(self: Ref[Image]; format: Image_Format) =
+proc convert*(self: Image; format: Image_Format) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "convert"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 2120693146)
   var `?param` = [getPtr format]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getMipmapOffset*(self: Ref[Image]; mipmap: int32): int32 =
+proc getMipmapOffset*(self: Image; mipmap: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_mipmap_offset"
@@ -68,46 +68,46 @@ proc getMipmapOffset*(self: Ref[Image]; mipmap: int32): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc resizeToPo2*(self: Ref[Image]; square: Bool = false; interpolation: Image_Interpolation = interpolateBilinear) =
+proc resizeToPo2*(self: Image; square: Bool = false; interpolation: Image_Interpolation = interpolateBilinear) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "resize_to_po2"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 4189212329)
   var `?param` = [getPtr square, getPtr interpolation]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc resize*(self: Ref[Image]; width: int32; height: int32; interpolation: Image_Interpolation = interpolateBilinear) =
+proc resize*(self: Image; width: int32; height: int32; interpolation: Image_Interpolation = interpolateBilinear) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "resize"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 2461393748)
   var `?param` = [getPtr width, getPtr height, getPtr interpolation]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc shrinkX2*(self: Ref[Image]) =
+proc shrinkX2*(self: Image) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shrink_x2"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc crop*(self: Ref[Image]; width: int32; height: int32) =
+proc crop*(self: Image; width: int32; height: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "crop"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 3937882851)
   var `?param` = [getPtr width, getPtr height]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc flipX*(self: Ref[Image]) =
+proc flipX*(self: Image) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "flip_x"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc flipY*(self: Ref[Image]) =
+proc flipY*(self: Image) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "flip_y"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc generateMipmaps*(self: Ref[Image]; renormalize: Bool = false): Error =
+proc generateMipmaps*(self: Image; renormalize: Bool = false): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "generate_mipmaps"
@@ -116,38 +116,38 @@ proc generateMipmaps*(self: Ref[Image]; renormalize: Bool = false): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc clearMipmaps*(self: Ref[Image]) =
+proc clearMipmaps*(self: Image) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "clear_mipmaps"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc create*(width: int32; height: int32; useMipmaps: Bool; format: Image_Format): Ref[Image] {.staticOf: Image.} =
+proc create*(width: int32; height: int32; useMipmaps: Bool; format: Image_Format): Image {.staticOf: Image.} =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 986942177)
   var `?param` = [getPtr width, getPtr height, getPtr useMipmaps, getPtr format]
-  var ret: encoded Ref[Image]
+  var ret: encoded Image
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[Image])
-proc createFromData*(width: int32; height: int32; useMipmaps: Bool; format: Image_Format; data: PackedByteArray): Ref[Image] {.staticOf: Image.} =
+  (addr ret).decode(Image)
+proc createFromData*(width: int32; height: int32; useMipmaps: Bool; format: Image_Format; data: PackedByteArray): Image {.staticOf: Image.} =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_from_data"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 299398494)
   var `?param` = [getPtr width, getPtr height, getPtr useMipmaps, getPtr format, getPtr data]
-  var ret: encoded Ref[Image]
+  var ret: encoded Image
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[Image])
-proc setData*(self: Ref[Image]; width: int32; height: int32; useMipmaps: Bool; format: Image_Format; data: PackedByteArray) =
+  (addr ret).decode(Image)
+proc setData*(self: Image; width: int32; height: int32; useMipmaps: Bool; format: Image_Format; data: PackedByteArray) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_data"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 2740482212)
   var `?param` = [getPtr width, getPtr height, getPtr useMipmaps, getPtr format, getPtr data]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isEmpty*(self: Ref[Image]): Bool =
+proc isEmpty*(self: Image): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_empty"
@@ -155,7 +155,7 @@ proc isEmpty*(self: Ref[Image]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc load*(self: Ref[Image]; path: String): Error =
+proc load*(self: Image; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "load"
@@ -164,16 +164,16 @@ proc load*(self: Ref[Image]; path: String): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc loadFromFile*(path: String): Ref[Image] {.staticOf: Image.} =
+proc loadFromFile*(path: String): Image {.staticOf: Image.} =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "load_from_file"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 736337515)
   var `?param` = [getPtr path]
-  var ret: encoded Ref[Image]
+  var ret: encoded Image
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[Image])
-proc savePng*(self: Ref[Image]; path: String): Error =
+  (addr ret).decode(Image)
+proc savePng*(self: Image; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "save_png"
@@ -182,7 +182,7 @@ proc savePng*(self: Ref[Image]; path: String): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc savePngToBuffer*(self: Ref[Image]): PackedByteArray =
+proc savePngToBuffer*(self: Image): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "save_png_to_buffer"
@@ -190,7 +190,7 @@ proc savePngToBuffer*(self: Ref[Image]): PackedByteArray =
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(PackedByteArray)
-proc saveJpg*(self: Ref[Image]; path: String; quality: Float = 0.75): Error =
+proc saveJpg*(self: Image; path: String; quality: Float = 0.75): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "save_jpg"
@@ -199,7 +199,7 @@ proc saveJpg*(self: Ref[Image]; path: String; quality: Float = 0.75): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc saveJpgToBuffer*(self: Ref[Image]; quality: Float = 0.75): PackedByteArray =
+proc saveJpgToBuffer*(self: Image; quality: Float = 0.75): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "save_jpg_to_buffer"
@@ -208,7 +208,7 @@ proc saveJpgToBuffer*(self: Ref[Image]; quality: Float = 0.75): PackedByteArray 
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedByteArray)
-proc saveExr*(self: Ref[Image]; path: String; grayscale: Bool = false): Error =
+proc saveExr*(self: Image; path: String; grayscale: Bool = false): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "save_exr"
@@ -217,7 +217,7 @@ proc saveExr*(self: Ref[Image]; path: String; grayscale: Bool = false): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc saveExrToBuffer*(self: Ref[Image]; grayscale: Bool = false): PackedByteArray =
+proc saveExrToBuffer*(self: Image; grayscale: Bool = false): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "save_exr_to_buffer"
@@ -226,7 +226,7 @@ proc saveExrToBuffer*(self: Ref[Image]; grayscale: Bool = false): PackedByteArra
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedByteArray)
-proc saveWebp*(self: Ref[Image]; path: String; lossy: Bool = false; quality: Float = 0.75): Error =
+proc saveWebp*(self: Image; path: String; lossy: Bool = false; quality: Float = 0.75): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "save_webp"
@@ -235,7 +235,7 @@ proc saveWebp*(self: Ref[Image]; path: String; lossy: Bool = false; quality: Flo
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc saveWebpToBuffer*(self: Ref[Image]; lossy: Bool = false; quality: Float = 0.75): PackedByteArray =
+proc saveWebpToBuffer*(self: Image; lossy: Bool = false; quality: Float = 0.75): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "save_webp_to_buffer"
@@ -244,7 +244,7 @@ proc saveWebpToBuffer*(self: Ref[Image]; lossy: Bool = false; quality: Float = 0
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedByteArray)
-proc detectAlpha*(self: Ref[Image]): Image_AlphaMode =
+proc detectAlpha*(self: Image): Image_AlphaMode =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "detect_alpha"
@@ -252,7 +252,7 @@ proc detectAlpha*(self: Ref[Image]): Image_AlphaMode =
   var ret: encoded Image_AlphaMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Image_AlphaMode)
-proc isInvisible*(self: Ref[Image]): Bool =
+proc isInvisible*(self: Image): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_invisible"
@@ -260,7 +260,7 @@ proc isInvisible*(self: Ref[Image]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc detectUsedChannels*(self: Ref[Image]; source: Image_CompressSource = compressSourceGeneric): Image_UsedChannels =
+proc detectUsedChannels*(self: Image; source: Image_CompressSource = compressSourceGeneric): Image_UsedChannels =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "detect_used_channels"
@@ -269,7 +269,7 @@ proc detectUsedChannels*(self: Ref[Image]; source: Image_CompressSource = compre
   var ret: encoded Image_UsedChannels
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Image_UsedChannels)
-proc compress*(self: Ref[Image]; mode: Image_CompressMode; source: Image_CompressSource = compressSourceGeneric; astcFormat: Image_ASTCFormat = astcFormat4x4): Error =
+proc compress*(self: Image; mode: Image_CompressMode; source: Image_CompressSource = compressSourceGeneric; astcFormat: Image_ASTCFormat = astcFormat4x4): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "compress"
@@ -278,7 +278,7 @@ proc compress*(self: Ref[Image]; mode: Image_CompressMode; source: Image_Compres
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc compressFromChannels*(self: Ref[Image]; mode: Image_CompressMode; channels: Image_UsedChannels; astcFormat: Image_ASTCFormat = astcFormat4x4): Error =
+proc compressFromChannels*(self: Image; mode: Image_CompressMode; channels: Image_UsedChannels; astcFormat: Image_ASTCFormat = astcFormat4x4): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "compress_from_channels"
@@ -287,7 +287,7 @@ proc compressFromChannels*(self: Ref[Image]; mode: Image_CompressMode; channels:
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc decompress*(self: Ref[Image]): Error =
+proc decompress*(self: Image): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "decompress"
@@ -295,7 +295,7 @@ proc decompress*(self: Ref[Image]): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Error)
-proc isCompressed*(self: Ref[Image]): Bool =
+proc isCompressed*(self: Image): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_compressed"
@@ -303,59 +303,59 @@ proc isCompressed*(self: Ref[Image]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc rotate90*(self: Ref[Image]; direction: ClockDirection) =
+proc rotate90*(self: Image; direction: ClockDirection) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "rotate_90"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 1901204267)
   var `?param` = [getPtr direction]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc rotate180*(self: Ref[Image]) =
+proc rotate180*(self: Image) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "rotate_180"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc fixAlphaEdges*(self: Ref[Image]) =
+proc fixAlphaEdges*(self: Image) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "fix_alpha_edges"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc premultiplyAlpha*(self: Ref[Image]) =
+proc premultiplyAlpha*(self: Image) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "premultiply_alpha"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc srgbToLinear*(self: Ref[Image]) =
+proc srgbToLinear*(self: Image) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "srgb_to_linear"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc normalMapToXy*(self: Ref[Image]) =
+proc normalMapToXy*(self: Image) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "normal_map_to_xy"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc rgbeToSrgb*(self: Ref[Image]): Ref[Image] =
+proc rgbeToSrgb*(self: Image): Image =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "rgbe_to_srgb"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 564927088)
-  var ret: encoded Ref[Image]
+  var ret: encoded Image
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Image])
-proc bumpMapToNormalMap*(self: Ref[Image]; bumpScale: Float = 1.0) =
+  (addr ret).decode(Image)
+proc bumpMapToNormalMap*(self: Image; bumpScale: Float = 1.0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "bump_map_to_normal_map"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 3423495036)
   var `?param` = [getPtr bumpScale]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc computeImageMetrics*(self: Ref[Image]; comparedImage: Ref[Image]; useLuma: Bool): Dictionary =
+proc computeImageMetrics*(self: Image; comparedImage: Image; useLuma: Bool): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "compute_image_metrics"
@@ -364,49 +364,49 @@ proc computeImageMetrics*(self: Ref[Image]; comparedImage: Ref[Image]; useLuma: 
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Dictionary)
-proc blitRect*(self: Ref[Image]; src: Ref[Image]; srcRect: Rect2i; dst: Vector2i) =
+proc blitRect*(self: Image; src: Image; srcRect: Rect2i; dst: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "blit_rect"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 2903928755)
   var `?param` = [getPtr src, getPtr srcRect, getPtr dst]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc blitRectMask*(self: Ref[Image]; src: Ref[Image]; mask: Ref[Image]; srcRect: Rect2i; dst: Vector2i) =
+proc blitRectMask*(self: Image; src: Image; mask: Image; srcRect: Rect2i; dst: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "blit_rect_mask"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 3383581145)
   var `?param` = [getPtr src, getPtr mask, getPtr srcRect, getPtr dst]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc blendRect*(self: Ref[Image]; src: Ref[Image]; srcRect: Rect2i; dst: Vector2i) =
+proc blendRect*(self: Image; src: Image; srcRect: Rect2i; dst: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "blend_rect"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 2903928755)
   var `?param` = [getPtr src, getPtr srcRect, getPtr dst]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc blendRectMask*(self: Ref[Image]; src: Ref[Image]; mask: Ref[Image]; srcRect: Rect2i; dst: Vector2i) =
+proc blendRectMask*(self: Image; src: Image; mask: Image; srcRect: Rect2i; dst: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "blend_rect_mask"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 3383581145)
   var `?param` = [getPtr src, getPtr mask, getPtr srcRect, getPtr dst]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fill*(self: Ref[Image]; color: Color) =
+proc fill*(self: Image; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "fill"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 2920490490)
   var `?param` = [getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fillRect*(self: Ref[Image]; rect: Rect2i; color: Color) =
+proc fillRect*(self: Image; rect: Rect2i; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "fill_rect"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 514693913)
   var `?param` = [getPtr rect, getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getUsedRect*(self: Ref[Image]): Rect2i =
+proc getUsedRect*(self: Image): Rect2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_used_rect"
@@ -414,23 +414,23 @@ proc getUsedRect*(self: Ref[Image]): Rect2i =
   var ret: encoded Rect2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Rect2i)
-proc getRegion*(self: Ref[Image]; region: Rect2i): Ref[Image] =
+proc getRegion*(self: Image; region: Rect2i): Image =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_region"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 2601441065)
   var `?param` = [getPtr region]
-  var ret: encoded Ref[Image]
+  var ret: encoded Image
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[Image])
-proc copyFrom*(self: Ref[Image]; src: Ref[Image]) =
+  (addr ret).decode(Image)
+proc copyFrom*(self: Image; src: Image) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "copy_from"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 532598488)
   var `?param` = [getPtr src]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getPixelv*(self: Ref[Image]; point: Vector2i): Color =
+proc getPixelv*(self: Image; point: Vector2i): Color =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_pixelv"
@@ -439,7 +439,7 @@ proc getPixelv*(self: Ref[Image]; point: Vector2i): Color =
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Color)
-proc getPixel*(self: Ref[Image]; x: int32; y: int32): Color =
+proc getPixel*(self: Image; x: int32; y: int32): Color =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_pixel"
@@ -448,28 +448,28 @@ proc getPixel*(self: Ref[Image]; x: int32; y: int32): Color =
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Color)
-proc setPixelv*(self: Ref[Image]; point: Vector2i; color: Color) =
+proc setPixelv*(self: Image; point: Vector2i; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_pixelv"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 287851464)
   var `?param` = [getPtr point, getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setPixel*(self: Ref[Image]; x: int32; y: int32; color: Color) =
+proc setPixel*(self: Image; x: int32; y: int32; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_pixel"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 3733378741)
   var `?param` = [getPtr x, getPtr y, getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc adjustBcs*(self: Ref[Image]; brightness: Float; contrast: Float; saturation: Float) =
+proc adjustBcs*(self: Image; brightness: Float; contrast: Float; saturation: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "adjust_bcs"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 2385087082)
   var `?param` = [getPtr brightness, getPtr contrast, getPtr saturation]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc loadPngFromBuffer*(self: Ref[Image]; buffer: PackedByteArray): Error =
+proc loadPngFromBuffer*(self: Image; buffer: PackedByteArray): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "load_png_from_buffer"
@@ -478,7 +478,7 @@ proc loadPngFromBuffer*(self: Ref[Image]; buffer: PackedByteArray): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc loadJpgFromBuffer*(self: Ref[Image]; buffer: PackedByteArray): Error =
+proc loadJpgFromBuffer*(self: Image; buffer: PackedByteArray): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "load_jpg_from_buffer"
@@ -487,7 +487,7 @@ proc loadJpgFromBuffer*(self: Ref[Image]; buffer: PackedByteArray): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc loadWebpFromBuffer*(self: Ref[Image]; buffer: PackedByteArray): Error =
+proc loadWebpFromBuffer*(self: Image; buffer: PackedByteArray): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "load_webp_from_buffer"
@@ -496,7 +496,7 @@ proc loadWebpFromBuffer*(self: Ref[Image]; buffer: PackedByteArray): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc loadTgaFromBuffer*(self: Ref[Image]; buffer: PackedByteArray): Error =
+proc loadTgaFromBuffer*(self: Image; buffer: PackedByteArray): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "load_tga_from_buffer"
@@ -505,7 +505,7 @@ proc loadTgaFromBuffer*(self: Ref[Image]; buffer: PackedByteArray): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc loadBmpFromBuffer*(self: Ref[Image]; buffer: PackedByteArray): Error =
+proc loadBmpFromBuffer*(self: Image; buffer: PackedByteArray): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "load_bmp_from_buffer"

@@ -4,16 +4,16 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc getSession*(self: Ref[EditorDebuggerPlugin]; id: int32): Ref[EditorDebuggerSession] =
+proc getSession*(self: EditorDebuggerPlugin; id: int32): EditorDebuggerSession =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_session"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorDebuggerPlugin, addr name, 3061968499)
   var `?param` = [getPtr id]
-  var ret: encoded Ref[EditorDebuggerSession]
+  var ret: encoded EditorDebuggerSession
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[EditorDebuggerSession])
-proc getSessions*(self: Ref[EditorDebuggerPlugin]): Array =
+  (addr ret).decode(EditorDebuggerSession)
+proc getSessions*(self: EditorDebuggerPlugin): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_sessions"

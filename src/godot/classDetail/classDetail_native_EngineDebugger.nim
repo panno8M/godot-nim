@@ -12,7 +12,7 @@ proc isActive*(self: EngineDebugger): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc registerProfiler*(self: EngineDebugger; name: StringName; profiler: Ref[EngineProfiler]) =
+proc registerProfiler*(self: EngineDebugger; name: StringName; profiler: EngineProfiler) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "register_profiler"

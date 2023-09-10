@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `enableLogicOp=`*(self: Ref[RDPipelineColorBlendState]; pMember: Bool) =
+proc `enableLogicOp=`*(self: RDPipelineColorBlendState; pMember: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_enable_logic_op"
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineColorBlendState, addr name, 2586408642)
   var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc enableLogicOp*(self: Ref[RDPipelineColorBlendState]): Bool =
+proc enableLogicOp*(self: RDPipelineColorBlendState): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_enable_logic_op"
@@ -19,14 +19,14 @@ proc enableLogicOp*(self: Ref[RDPipelineColorBlendState]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `logicOp=`*(self: Ref[RDPipelineColorBlendState]; pMember: RenderingDevice_LogicOperation) =
+proc `logicOp=`*(self: RDPipelineColorBlendState; pMember: RenderingDevice_LogicOperation) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_logic_op"
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineColorBlendState, addr name, 3610841058)
   var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc logicOp*(self: Ref[RDPipelineColorBlendState]): RenderingDevice_LogicOperation =
+proc logicOp*(self: RDPipelineColorBlendState): RenderingDevice_LogicOperation =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_logic_op"
@@ -34,14 +34,14 @@ proc logicOp*(self: Ref[RDPipelineColorBlendState]): RenderingDevice_LogicOperat
   var ret: encoded RenderingDevice_LogicOperation
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(RenderingDevice_LogicOperation)
-proc `blendConstant=`*(self: Ref[RDPipelineColorBlendState]; pMember: Color) =
+proc `blendConstant=`*(self: RDPipelineColorBlendState; pMember: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_blend_constant"
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineColorBlendState, addr name, 2920490490)
   var `?param` = [getPtr pMember]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc blendConstant*(self: Ref[RDPipelineColorBlendState]): Color =
+proc blendConstant*(self: RDPipelineColorBlendState): Color =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_blend_constant"
@@ -49,14 +49,14 @@ proc blendConstant*(self: Ref[RDPipelineColorBlendState]): Color =
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Color)
-proc `attachments=`*(self: Ref[RDPipelineColorBlendState]; attachments: TypedArray[RDPipelineColorBlendStateAttachment]) =
+proc `attachments=`*(self: RDPipelineColorBlendState; attachments: TypedArray[RDPipelineColorBlendStateAttachment]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_attachments"
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineColorBlendState, addr name, 381264803)
   var `?param` = [getPtr attachments]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc attachments*(self: Ref[RDPipelineColorBlendState]): TypedArray[RDPipelineColorBlendStateAttachment] =
+proc attachments*(self: RDPipelineColorBlendState): TypedArray[RDPipelineColorBlendStateAttachment] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_attachments"

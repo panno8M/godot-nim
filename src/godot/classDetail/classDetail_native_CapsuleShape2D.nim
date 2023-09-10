@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `radius=`*(self: Ref[CapsuleShape2D]; radius: Float) =
+proc `radius=`*(self: CapsuleShape2D; radius: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_radius"
     methodbind = interface_ClassDB_getMethodBind(addr className CapsuleShape2D, addr name, 373806689)
   var `?param` = [getPtr radius]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc radius*(self: Ref[CapsuleShape2D]): Float =
+proc radius*(self: CapsuleShape2D): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_radius"
@@ -19,14 +19,14 @@ proc radius*(self: Ref[CapsuleShape2D]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `height=`*(self: Ref[CapsuleShape2D]; height: Float) =
+proc `height=`*(self: CapsuleShape2D; height: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_height"
     methodbind = interface_ClassDB_getMethodBind(addr className CapsuleShape2D, addr name, 373806689)
   var `?param` = [getPtr height]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc height*(self: Ref[CapsuleShape2D]): Float =
+proc height*(self: CapsuleShape2D): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_height"

@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc save*(self: Ref[CryptoKey]; path: String; publicOnly: Bool = false): Error =
+proc save*(self: CryptoKey; path: String; publicOnly: Bool = false): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "save"
@@ -13,7 +13,7 @@ proc save*(self: Ref[CryptoKey]; path: String; publicOnly: Bool = false): Error 
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc load*(self: Ref[CryptoKey]; path: String; publicOnly: Bool = false): Error =
+proc load*(self: CryptoKey; path: String; publicOnly: Bool = false): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "load"
@@ -22,7 +22,7 @@ proc load*(self: Ref[CryptoKey]; path: String; publicOnly: Bool = false): Error 
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc isPublicOnly*(self: Ref[CryptoKey]): Bool =
+proc isPublicOnly*(self: CryptoKey): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_public_only"
@@ -30,7 +30,7 @@ proc isPublicOnly*(self: Ref[CryptoKey]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc saveToString*(self: Ref[CryptoKey]; publicOnly: Bool = false): String =
+proc saveToString*(self: CryptoKey; publicOnly: Bool = false): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "save_to_string"
@@ -39,7 +39,7 @@ proc saveToString*(self: Ref[CryptoKey]; publicOnly: Bool = false): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc loadFromString*(self: Ref[CryptoKey]; stringKey: String; publicOnly: Bool = false): Error =
+proc loadFromString*(self: CryptoKey; stringKey: String; publicOnly: Bool = false): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "load_from_string"

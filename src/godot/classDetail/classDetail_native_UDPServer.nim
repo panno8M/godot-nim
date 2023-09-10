@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc listen*(self: Ref[UDPServer]; port: uint16; bindAddress: String = "*"): Error =
+proc listen*(self: UDPServer; port: uint16; bindAddress: String = "*"): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "listen"
@@ -13,7 +13,7 @@ proc listen*(self: Ref[UDPServer]; port: uint16; bindAddress: String = "*"): Err
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc poll*(self: Ref[UDPServer]): Error =
+proc poll*(self: UDPServer): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "poll"
@@ -21,7 +21,7 @@ proc poll*(self: Ref[UDPServer]): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Error)
-proc isConnectionAvailable*(self: Ref[UDPServer]): Bool =
+proc isConnectionAvailable*(self: UDPServer): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_connection_available"
@@ -29,7 +29,7 @@ proc isConnectionAvailable*(self: Ref[UDPServer]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc getLocalPort*(self: Ref[UDPServer]): int32 =
+proc getLocalPort*(self: UDPServer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_local_port"
@@ -37,7 +37,7 @@ proc getLocalPort*(self: Ref[UDPServer]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc isListening*(self: Ref[UDPServer]): Bool =
+proc isListening*(self: UDPServer): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_listening"
@@ -45,28 +45,28 @@ proc isListening*(self: Ref[UDPServer]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc takeConnection*(self: Ref[UDPServer]): Ref[PacketPeerUDP] =
+proc takeConnection*(self: UDPServer): PacketPeerUDP =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "take_connection"
     methodbind = interface_ClassDB_getMethodBind(addr className UDPServer, addr name, 808734560)
-  var ret: encoded Ref[PacketPeerUDP]
+  var ret: encoded PacketPeerUDP
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[PacketPeerUDP])
-proc stop*(self: Ref[UDPServer]) =
+  (addr ret).decode(PacketPeerUDP)
+proc stop*(self: UDPServer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "stop"
     methodbind = interface_ClassDB_getMethodBind(addr className UDPServer, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc `maxPendingConnections=`*(self: Ref[UDPServer]; maxPendingConnections: int32) =
+proc `maxPendingConnections=`*(self: UDPServer; maxPendingConnections: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_max_pending_connections"
     methodbind = interface_ClassDB_getMethodBind(addr className UDPServer, addr name, 1286410249)
   var `?param` = [getPtr maxPendingConnections]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc maxPendingConnections*(self: Ref[UDPServer]): int32 =
+proc maxPendingConnections*(self: UDPServer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_max_pending_connections"

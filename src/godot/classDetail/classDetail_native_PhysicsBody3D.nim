@@ -4,16 +4,16 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc moveAndCollide*(self: PhysicsBody3D; motion: Vector3; testOnly: Bool = false; safeMargin: Float = 0.001; recoveryAsCollision: Bool = false; maxCollisions: int32 = 1): Ref[KinematicCollision3D] =
+proc moveAndCollide*(self: PhysicsBody3D; motion: Vector3; testOnly: Bool = false; safeMargin: Float = 0.001; recoveryAsCollision: Bool = false; maxCollisions: int32 = 1): KinematicCollision3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "move_and_collide"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsBody3D, addr name, 2825704414)
   var `?param` = [getPtr motion, getPtr testOnly, getPtr safeMargin, getPtr recoveryAsCollision, getPtr maxCollisions]
-  var ret: encoded Ref[KinematicCollision3D]
+  var ret: encoded KinematicCollision3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[KinematicCollision3D])
-proc testMove*(self: PhysicsBody3D; `from`: Transform3D; motion: Vector3; collision: Ref[KinematicCollision3D] = default Ref[KinematicCollision3D]; safeMargin: Float = 0.001; recoveryAsCollision: Bool = false; maxCollisions: int32 = 1): Bool =
+  (addr ret).decode(KinematicCollision3D)
+proc testMove*(self: PhysicsBody3D; `from`: Transform3D; motion: Vector3; collision: KinematicCollision3D = default KinematicCollision3D; safeMargin: Float = 0.001; recoveryAsCollision: Bool = false; maxCollisions: int32 = 1): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "test_move"

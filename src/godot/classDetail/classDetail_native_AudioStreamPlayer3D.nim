@@ -4,21 +4,21 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `stream=`*(self: AudioStreamPlayer3D; stream: Ref[AudioStream]) =
+proc `stream=`*(self: AudioStreamPlayer3D; stream: AudioStream) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_stream"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer3D, addr name, 2210767741)
   var `?param` = [getPtr stream]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc stream*(self: AudioStreamPlayer3D): Ref[AudioStream] =
+proc stream*(self: AudioStreamPlayer3D): AudioStream =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_stream"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer3D, addr name, 160907539)
-  var ret: encoded Ref[AudioStream]
+  var ret: encoded AudioStream
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[AudioStream])
+  (addr ret).decode(AudioStream)
 proc `volumeDb=`*(self: AudioStreamPlayer3D; volumeDb: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -333,11 +333,11 @@ proc hasStreamPlayback*(self: AudioStreamPlayer3D): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc getStreamPlayback*(self: AudioStreamPlayer3D): Ref[AudioStreamPlayback] =
+proc getStreamPlayback*(self: AudioStreamPlayer3D): AudioStreamPlayback =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_stream_playback"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer3D, addr name, 210135309)
-  var ret: encoded Ref[AudioStreamPlayback]
+  var ret: encoded AudioStreamPlayback
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[AudioStreamPlayback])
+  (addr ret).decode(AudioStreamPlayback)

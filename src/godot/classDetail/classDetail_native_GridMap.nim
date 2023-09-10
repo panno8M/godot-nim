@@ -81,21 +81,21 @@ proc collisionPriority*(self: GridMap): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `physicsMaterial=`*(self: GridMap; material: Ref[PhysicsMaterial]) =
+proc `physicsMaterial=`*(self: GridMap; material: PhysicsMaterial) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_physics_material"
     methodbind = interface_ClassDB_getMethodBind(addr className GridMap, addr name, 1784508650)
   var `?param` = [getPtr material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc physicsMaterial*(self: GridMap): Ref[PhysicsMaterial] =
+proc physicsMaterial*(self: GridMap): PhysicsMaterial =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_physics_material"
     methodbind = interface_ClassDB_getMethodBind(addr className GridMap, addr name, 2521850424)
-  var ret: encoded Ref[PhysicsMaterial]
+  var ret: encoded PhysicsMaterial
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[PhysicsMaterial])
+  (addr ret).decode(PhysicsMaterial)
 proc `bakeNavigation=`*(self: GridMap; bakeNavigation: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -126,21 +126,21 @@ proc getNavigationMap*(self: GridMap): RID =
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(RID)
-proc `meshLibrary=`*(self: GridMap; meshLibrary: Ref[MeshLibrary]) =
+proc `meshLibrary=`*(self: GridMap; meshLibrary: MeshLibrary) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_mesh_library"
     methodbind = interface_ClassDB_getMethodBind(addr className GridMap, addr name, 1488083439)
   var `?param` = [getPtr meshLibrary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc meshLibrary*(self: GridMap): Ref[MeshLibrary] =
+proc meshLibrary*(self: GridMap): MeshLibrary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_mesh_library"
     methodbind = interface_ClassDB_getMethodBind(addr className GridMap, addr name, 3350993772)
-  var ret: encoded Ref[MeshLibrary]
+  var ret: encoded MeshLibrary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[MeshLibrary])
+  (addr ret).decode(MeshLibrary)
 proc `cellSize=`*(self: GridMap; size: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -256,7 +256,7 @@ proc mapToLocal*(self: GridMap; mapPosition: Vector3i): Vector3 =
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector3)
-proc resourceChanged*(self: GridMap; resource: Ref[Resource]) =
+proc resourceChanged*(self: GridMap; resource: Resource) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "resource_changed"

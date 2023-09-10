@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc addBlendShape*(self: Ref[ArrayMesh]; name: StringName) =
+proc addBlendShape*(self: ArrayMesh; name: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_blend_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className ArrayMesh, addr name, 3304788590)
   var `?param` = [getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getBlendShapeCount*(self: Ref[ArrayMesh]): int32 =
+proc getBlendShapeCount*(self: ArrayMesh): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_blend_shape_count"
@@ -19,7 +19,7 @@ proc getBlendShapeCount*(self: Ref[ArrayMesh]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getBlendShapeName*(self: Ref[ArrayMesh]; index: int32): StringName =
+proc getBlendShapeName*(self: ArrayMesh; index: int32): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_blend_shape_name"
@@ -28,27 +28,27 @@ proc getBlendShapeName*(self: Ref[ArrayMesh]; index: int32): StringName =
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(StringName)
-proc setBlendShapeName*(self: Ref[ArrayMesh]; index: int32; name: StringName) =
+proc setBlendShapeName*(self: ArrayMesh; index: int32; name: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_blend_shape_name"
     methodbind = interface_ClassDB_getMethodBind(addr className ArrayMesh, addr name, 3780747571)
   var `?param` = [getPtr index, getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc clearBlendShapes*(self: Ref[ArrayMesh]) =
+proc clearBlendShapes*(self: ArrayMesh) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "clear_blend_shapes"
     methodbind = interface_ClassDB_getMethodBind(addr className ArrayMesh, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc `blendShapeMode=`*(self: Ref[ArrayMesh]; mode: Mesh_BlendShapeMode) =
+proc `blendShapeMode=`*(self: ArrayMesh; mode: Mesh_BlendShapeMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_blend_shape_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className ArrayMesh, addr name, 227983991)
   var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc blendShapeMode*(self: Ref[ArrayMesh]): Mesh_BlendShapeMode =
+proc blendShapeMode*(self: ArrayMesh): Mesh_BlendShapeMode =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_blend_shape_mode"
@@ -56,41 +56,41 @@ proc blendShapeMode*(self: Ref[ArrayMesh]): Mesh_BlendShapeMode =
   var ret: encoded Mesh_BlendShapeMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Mesh_BlendShapeMode)
-proc addSurfaceFromArrays*(self: Ref[ArrayMesh]; primitive: Mesh_PrimitiveType; arrays: Array; blendShapes: TypedArray[Array] = init_TypedArray[Array](); lods: Dictionary = init_Dictionary(); flags: set[Mesh_ArrayFormat] = {}) =
+proc addSurfaceFromArrays*(self: ArrayMesh; primitive: Mesh_PrimitiveType; arrays: Array; blendShapes: TypedArray[Array] = init_TypedArray[Array](); lods: Dictionary = init_Dictionary(); flags: set[Mesh_ArrayFormat] = {}) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_surface_from_arrays"
     methodbind = interface_ClassDB_getMethodBind(addr className ArrayMesh, addr name, 172284304)
   var `?param` = [getPtr primitive, getPtr arrays, getPtr blendShapes, getPtr lods, getPtr flags]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc clearSurfaces*(self: Ref[ArrayMesh]) =
+proc clearSurfaces*(self: ArrayMesh) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "clear_surfaces"
     methodbind = interface_ClassDB_getMethodBind(addr className ArrayMesh, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc surfaceUpdateVertexRegion*(self: Ref[ArrayMesh]; surfIdx: int32; offset: int32; data: PackedByteArray) =
+proc surfaceUpdateVertexRegion*(self: ArrayMesh; surfIdx: int32; offset: int32; data: PackedByteArray) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "surface_update_vertex_region"
     methodbind = interface_ClassDB_getMethodBind(addr className ArrayMesh, addr name, 3837166854)
   var `?param` = [getPtr surfIdx, getPtr offset, getPtr data]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc surfaceUpdateAttributeRegion*(self: Ref[ArrayMesh]; surfIdx: int32; offset: int32; data: PackedByteArray) =
+proc surfaceUpdateAttributeRegion*(self: ArrayMesh; surfIdx: int32; offset: int32; data: PackedByteArray) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "surface_update_attribute_region"
     methodbind = interface_ClassDB_getMethodBind(addr className ArrayMesh, addr name, 3837166854)
   var `?param` = [getPtr surfIdx, getPtr offset, getPtr data]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc surfaceUpdateSkinRegion*(self: Ref[ArrayMesh]; surfIdx: int32; offset: int32; data: PackedByteArray) =
+proc surfaceUpdateSkinRegion*(self: ArrayMesh; surfIdx: int32; offset: int32; data: PackedByteArray) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "surface_update_skin_region"
     methodbind = interface_ClassDB_getMethodBind(addr className ArrayMesh, addr name, 3837166854)
   var `?param` = [getPtr surfIdx, getPtr offset, getPtr data]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc surfaceGetArrayLen*(self: Ref[ArrayMesh]; surfIdx: int32): int32 =
+proc surfaceGetArrayLen*(self: ArrayMesh; surfIdx: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "surface_get_array_len"
@@ -99,7 +99,7 @@ proc surfaceGetArrayLen*(self: Ref[ArrayMesh]; surfIdx: int32): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc surfaceGetArrayIndexLen*(self: Ref[ArrayMesh]; surfIdx: int32): int32 =
+proc surfaceGetArrayIndexLen*(self: ArrayMesh; surfIdx: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "surface_get_array_index_len"
@@ -108,7 +108,7 @@ proc surfaceGetArrayIndexLen*(self: Ref[ArrayMesh]; surfIdx: int32): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc surfaceGetFormat*(self: Ref[ArrayMesh]; surfIdx: int32): set[Mesh_ArrayFormat] =
+proc surfaceGetFormat*(self: ArrayMesh; surfIdx: int32): set[Mesh_ArrayFormat] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "surface_get_format"
@@ -117,7 +117,7 @@ proc surfaceGetFormat*(self: Ref[ArrayMesh]; surfIdx: int32): set[Mesh_ArrayForm
   var ret: encoded set[Mesh_ArrayFormat]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(set[Mesh_ArrayFormat])
-proc surfaceGetPrimitiveType*(self: Ref[ArrayMesh]; surfIdx: int32): Mesh_PrimitiveType =
+proc surfaceGetPrimitiveType*(self: ArrayMesh; surfIdx: int32): Mesh_PrimitiveType =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "surface_get_primitive_type"
@@ -126,7 +126,7 @@ proc surfaceGetPrimitiveType*(self: Ref[ArrayMesh]; surfIdx: int32): Mesh_Primit
   var ret: encoded Mesh_PrimitiveType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Mesh_PrimitiveType)
-proc surfaceFindByName*(self: Ref[ArrayMesh]; name: String): int32 =
+proc surfaceFindByName*(self: ArrayMesh; name: String): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "surface_find_by_name"
@@ -135,14 +135,14 @@ proc surfaceFindByName*(self: Ref[ArrayMesh]; name: String): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc surfaceSetName*(self: Ref[ArrayMesh]; surfIdx: int32; name: String) =
+proc surfaceSetName*(self: ArrayMesh; surfIdx: int32; name: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "surface_set_name"
     methodbind = interface_ClassDB_getMethodBind(addr className ArrayMesh, addr name, 501894301)
   var `?param` = [getPtr surfIdx, getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc surfaceGetName*(self: Ref[ArrayMesh]; surfIdx: int32): String =
+proc surfaceGetName*(self: ArrayMesh; surfIdx: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "surface_get_name"
@@ -151,13 +151,13 @@ proc surfaceGetName*(self: Ref[ArrayMesh]; surfIdx: int32): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc regenNormalMaps*(self: Ref[ArrayMesh]) =
+proc regenNormalMaps*(self: ArrayMesh) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "regen_normal_maps"
     methodbind = interface_ClassDB_getMethodBind(addr className ArrayMesh, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc lightmapUnwrap*(self: Ref[ArrayMesh]; transform: Transform3D; texelSize: Float): Error =
+proc lightmapUnwrap*(self: ArrayMesh; transform: Transform3D; texelSize: Float): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "lightmap_unwrap"
@@ -166,14 +166,14 @@ proc lightmapUnwrap*(self: Ref[ArrayMesh]; transform: Transform3D; texelSize: Fl
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc `customAabb=`*(self: Ref[ArrayMesh]; aabb: AABB) =
+proc `customAabb=`*(self: ArrayMesh; aabb: AABB) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_custom_aabb"
     methodbind = interface_ClassDB_getMethodBind(addr className ArrayMesh, addr name, 259215842)
   var `?param` = [getPtr aabb]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc customAabb*(self: Ref[ArrayMesh]): AABB =
+proc customAabb*(self: ArrayMesh): AABB =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_custom_aabb"
@@ -181,18 +181,18 @@ proc customAabb*(self: Ref[ArrayMesh]): AABB =
   var ret: encoded AABB
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(AABB)
-proc `shadowMesh=`*(self: Ref[ArrayMesh]; mesh: Ref[ArrayMesh]) =
+proc `shadowMesh=`*(self: ArrayMesh; mesh: ArrayMesh) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_shadow_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className ArrayMesh, addr name, 3377897901)
   var `?param` = [getPtr mesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc shadowMesh*(self: Ref[ArrayMesh]): Ref[ArrayMesh] =
+proc shadowMesh*(self: ArrayMesh): ArrayMesh =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_shadow_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className ArrayMesh, addr name, 3206942465)
-  var ret: encoded Ref[ArrayMesh]
+  var ret: encoded ArrayMesh
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[ArrayMesh])
+  (addr ret).decode(ArrayMesh)

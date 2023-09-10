@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc joints*(self: Ref[GLTFSkeleton]): PackedInt32Array =
+proc joints*(self: GLTFSkeleton): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_joints"
@@ -12,14 +12,14 @@ proc joints*(self: Ref[GLTFSkeleton]): PackedInt32Array =
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(PackedInt32Array)
-proc `joints=`*(self: Ref[GLTFSkeleton]; joints: PackedInt32Array) =
+proc `joints=`*(self: GLTFSkeleton; joints: PackedInt32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_joints"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkeleton, addr name, 3614634198)
   var `?param` = [getPtr joints]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc roots*(self: Ref[GLTFSkeleton]): PackedInt32Array =
+proc roots*(self: GLTFSkeleton): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_roots"
@@ -27,14 +27,14 @@ proc roots*(self: Ref[GLTFSkeleton]): PackedInt32Array =
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(PackedInt32Array)
-proc `roots=`*(self: Ref[GLTFSkeleton]; roots: PackedInt32Array) =
+proc `roots=`*(self: GLTFSkeleton; roots: PackedInt32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_roots"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkeleton, addr name, 3614634198)
   var `?param` = [getPtr roots]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getGodotSkeleton*(self: Ref[GLTFSkeleton]): Skeleton3D =
+proc getGodotSkeleton*(self: GLTFSkeleton): Skeleton3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_godot_skeleton"
@@ -42,7 +42,7 @@ proc getGodotSkeleton*(self: Ref[GLTFSkeleton]): Skeleton3D =
   var ret: encoded Skeleton3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Skeleton3D)
-proc uniqueNames*(self: Ref[GLTFSkeleton]): TypedArray[String] =
+proc uniqueNames*(self: GLTFSkeleton): TypedArray[String] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_unique_names"
@@ -50,14 +50,14 @@ proc uniqueNames*(self: Ref[GLTFSkeleton]): TypedArray[String] =
   var ret: encoded TypedArray[String]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(TypedArray[String])
-proc `uniqueNames=`*(self: Ref[GLTFSkeleton]; uniqueNames: TypedArray[String]) =
+proc `uniqueNames=`*(self: GLTFSkeleton; uniqueNames: TypedArray[String]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_unique_names"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkeleton, addr name, 381264803)
   var `?param` = [getPtr uniqueNames]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc godotBoneNode*(self: Ref[GLTFSkeleton]): Dictionary =
+proc godotBoneNode*(self: GLTFSkeleton): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_godot_bone_node"
@@ -65,14 +65,14 @@ proc godotBoneNode*(self: Ref[GLTFSkeleton]): Dictionary =
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Dictionary)
-proc `godotBoneNode=`*(self: Ref[GLTFSkeleton]; godotBoneNode: Dictionary) =
+proc `godotBoneNode=`*(self: GLTFSkeleton; godotBoneNode: Dictionary) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_godot_bone_node"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkeleton, addr name, 4155329257)
   var `?param` = [getPtr godotBoneNode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getBoneAttachmentCount*(self: Ref[GLTFSkeleton]): int32 =
+proc getBoneAttachmentCount*(self: GLTFSkeleton): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_bone_attachment_count"
@@ -80,7 +80,7 @@ proc getBoneAttachmentCount*(self: Ref[GLTFSkeleton]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getBoneAttachment*(self: Ref[GLTFSkeleton]; idx: int32): BoneAttachment3D =
+proc getBoneAttachment*(self: GLTFSkeleton; idx: int32): BoneAttachment3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_bone_attachment"

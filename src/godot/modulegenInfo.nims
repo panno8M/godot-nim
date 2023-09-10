@@ -1,6 +1,7 @@
 let modules: seq[string] = @[
   "helper/",
   "pure/",
+  "classes/",
   "classDetail/",
   "godotInterface/",
   "variants/",

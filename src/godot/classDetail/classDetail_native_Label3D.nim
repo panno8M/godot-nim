@@ -184,21 +184,21 @@ proc outlineRenderPriority*(self: Label3D): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc `font=`*(self: Label3D; font: Ref[Font]) =
+proc `font=`*(self: Label3D; font: Font) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_font"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 1262170328)
   var `?param` = [getPtr font]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc font*(self: Label3D): Ref[Font] =
+proc font*(self: Label3D): Font =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_font"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 3229501585)
-  var ret: encoded Ref[Font]
+  var ret: encoded Font
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Font])
+  (addr ret).decode(Font)
 proc `fontSize=`*(self: Label3D; size: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -440,11 +440,11 @@ proc textureFilter*(self: Label3D): BaseMaterial3D_TextureFilter =
   var ret: encoded BaseMaterial3D_TextureFilter
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(BaseMaterial3D_TextureFilter)
-proc generateTriangleMesh*(self: Label3D): Ref[TriangleMesh] =
+proc generateTriangleMesh*(self: Label3D): TriangleMesh =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "generate_triangle_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 3476533166)
-  var ret: encoded Ref[TriangleMesh]
+  var ret: encoded TriangleMesh
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[TriangleMesh])
+  (addr ret).decode(TriangleMesh)

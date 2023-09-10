@@ -170,7 +170,7 @@ proc mapForceUpdate*(self: NavigationServer2D; map: RID) =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationServer2D, addr name, 2722037293)
   var `?param` = [getPtr map]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc queryPath*(self: NavigationServer2D; parameters: Ref[NavigationPathQueryParameters2D]; retval: Ref[NavigationPathQueryResult2D]) =
+proc queryPath*(self: NavigationServer2D; parameters: NavigationPathQueryParameters2D; retval: NavigationPathQueryResult2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "query_path"
@@ -297,7 +297,7 @@ proc regionSetTransform*(self: NavigationServer2D; region: RID; transform: Trans
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationServer2D, addr name, 1246044741)
   var `?param` = [getPtr region, getPtr transform]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc regionSetNavigationPolygon*(self: NavigationServer2D; region: RID; navigationPolygon: Ref[NavigationPolygon]) =
+proc regionSetNavigationPolygon*(self: NavigationServer2D; region: RID; navigationPolygon: NavigationPolygon) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "region_set_navigation_polygon"

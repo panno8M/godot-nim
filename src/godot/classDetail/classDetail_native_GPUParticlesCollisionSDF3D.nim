@@ -34,21 +34,21 @@ proc resolution*(self: GPUParticlesCollisionSDF3D): GPUParticlesCollisionSDF3D_R
   var ret: encoded GPUParticlesCollisionSDF3D_Resolution
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(GPUParticlesCollisionSDF3D_Resolution)
-proc `texture=`*(self: GPUParticlesCollisionSDF3D; texture: Ref[Texture3D]) =
+proc `texture=`*(self: GPUParticlesCollisionSDF3D; texture: Texture3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesCollisionSDF3D, addr name, 1188404210)
   var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc texture*(self: GPUParticlesCollisionSDF3D): Ref[Texture3D] =
+proc texture*(self: GPUParticlesCollisionSDF3D): Texture3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesCollisionSDF3D, addr name, 373985333)
-  var ret: encoded Ref[Texture3D]
+  var ret: encoded Texture3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Texture3D])
+  (addr ret).decode(Texture3D)
 proc `thickness=`*(self: GPUParticlesCollisionSDF3D; thickness: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

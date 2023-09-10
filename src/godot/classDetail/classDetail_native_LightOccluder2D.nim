@@ -4,21 +4,21 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `occluderPolygon=`*(self: LightOccluder2D; polygon: Ref[OccluderPolygon2D]) =
+proc `occluderPolygon=`*(self: LightOccluder2D; polygon: OccluderPolygon2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_occluder_polygon"
     methodbind = interface_ClassDB_getMethodBind(addr className LightOccluder2D, addr name, 3258315893)
   var `?param` = [getPtr polygon]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc occluderPolygon*(self: LightOccluder2D): Ref[OccluderPolygon2D] =
+proc occluderPolygon*(self: LightOccluder2D): OccluderPolygon2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_occluder_polygon"
     methodbind = interface_ClassDB_getMethodBind(addr className LightOccluder2D, addr name, 3962317075)
-  var ret: encoded Ref[OccluderPolygon2D]
+  var ret: encoded OccluderPolygon2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[OccluderPolygon2D])
+  (addr ret).decode(OccluderPolygon2D)
 proc `occluderLightMask=`*(self: LightOccluder2D; mask: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

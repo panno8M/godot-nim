@@ -185,21 +185,21 @@ proc bakeMode*(self: Light3D): Light3D_BakeMode =
   var ret: encoded Light3D_BakeMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Light3D_BakeMode)
-proc `projector=`*(self: Light3D; projector: Ref[Texture2D]) =
+proc `projector=`*(self: Light3D; projector: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_projector"
     methodbind = interface_ClassDB_getMethodBind(addr className Light3D, addr name, 4051416890)
   var `?param` = [getPtr projector]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc projector*(self: Light3D): Ref[Texture2D] =
+proc projector*(self: Light3D): Texture2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_projector"
     methodbind = interface_ClassDB_getMethodBind(addr className Light3D, addr name, 3635182373)
-  var ret: encoded Ref[Texture2D]
+  var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Texture2D])
+  (addr ret).decode(Texture2D)
 proc `temperature=`*(self: Light3D; temperature: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

@@ -51,14 +51,14 @@ proc getSelection*(self: EditorInterface): EditorSelection =
   var ret: encoded EditorSelection
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(EditorSelection)
-proc getEditorSettings*(self: EditorInterface): Ref[EditorSettings] =
+proc getEditorSettings*(self: EditorInterface): EditorSettings =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_editor_settings"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 4086932459)
-  var ret: encoded Ref[EditorSettings]
+  var ret: encoded EditorSettings
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[EditorSettings])
+  (addr ret).decode(EditorSettings)
 proc makeMeshPreviews*(self: EditorInterface; meshes: TypedArray[Mesh]; previewSize: int32): TypedArray[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -220,7 +220,7 @@ proc inspectObject*(self: EditorInterface; `object`: Object; forProperty: String
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 2564140749)
   var `?param` = [getPtr `object`, getPtr forProperty, getPtr inspectorOnly]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc editResource*(self: EditorInterface; resource: Ref[Resource]) =
+proc editResource*(self: EditorInterface; resource: Resource) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "edit_resource"
@@ -234,7 +234,7 @@ proc editNode*(self: EditorInterface; node: Node) =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 1078189570)
   var `?param` = [getPtr node]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc editScript*(self: EditorInterface; script: Ref[Script]; line: int32 = -1; column: int32 = 0; grabFocus: Bool = true) =
+proc editScript*(self: EditorInterface; script: Script; line: int32 = -1; column: int32 = 0; grabFocus: Bool = true) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "edit_script"

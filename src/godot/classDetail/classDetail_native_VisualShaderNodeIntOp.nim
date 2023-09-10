@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `operator=`*(self: Ref[VisualShaderNodeIntOp]; op: VisualShaderNodeIntOp_Operator) =
+proc `operator=`*(self: VisualShaderNodeIntOp; op: VisualShaderNodeIntOp_Operator) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_operator"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeIntOp, addr name, 1677909323)
   var `?param` = [getPtr op]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc operator*(self: Ref[VisualShaderNodeIntOp]): VisualShaderNodeIntOp_Operator =
+proc operator*(self: VisualShaderNodeIntOp): VisualShaderNodeIntOp_Operator =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_operator"

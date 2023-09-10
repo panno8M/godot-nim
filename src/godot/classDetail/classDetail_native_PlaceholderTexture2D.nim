@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `size=`*(self: Ref[PlaceholderTexture2D]; size: Vector2) =
+proc `size=`*(self: PlaceholderTexture2D; size: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_size"

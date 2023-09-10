@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `customSolverBias=`*(self: Ref[Shape2D]; bias: Float) =
+proc `customSolverBias=`*(self: Shape2D; bias: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_custom_solver_bias"
     methodbind = interface_ClassDB_getMethodBind(addr className Shape2D, addr name, 373806689)
   var `?param` = [getPtr bias]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc customSolverBias*(self: Ref[Shape2D]): Float =
+proc customSolverBias*(self: Shape2D): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_custom_solver_bias"
@@ -19,7 +19,7 @@ proc customSolverBias*(self: Ref[Shape2D]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc collide*(self: Ref[Shape2D]; localXform: Transform2D; withShape: Ref[Shape2D]; shapeXform: Transform2D): Bool =
+proc collide*(self: Shape2D; localXform: Transform2D; withShape: Shape2D; shapeXform: Transform2D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "collide"
@@ -28,7 +28,7 @@ proc collide*(self: Ref[Shape2D]; localXform: Transform2D; withShape: Ref[Shape2
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc collideWithMotion*(self: Ref[Shape2D]; localXform: Transform2D; localMotion: Vector2; withShape: Ref[Shape2D]; shapeXform: Transform2D; shapeMotion: Vector2): Bool =
+proc collideWithMotion*(self: Shape2D; localXform: Transform2D; localMotion: Vector2; withShape: Shape2D; shapeXform: Transform2D; shapeMotion: Vector2): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "collide_with_motion"
@@ -37,7 +37,7 @@ proc collideWithMotion*(self: Ref[Shape2D]; localXform: Transform2D; localMotion
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc collideAndGetContacts*(self: Ref[Shape2D]; localXform: Transform2D; withShape: Ref[Shape2D]; shapeXform: Transform2D): PackedVector2Array =
+proc collideAndGetContacts*(self: Shape2D; localXform: Transform2D; withShape: Shape2D; shapeXform: Transform2D): PackedVector2Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "collide_and_get_contacts"
@@ -46,7 +46,7 @@ proc collideAndGetContacts*(self: Ref[Shape2D]; localXform: Transform2D; withSha
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedVector2Array)
-proc collideWithMotionAndGetContacts*(self: Ref[Shape2D]; localXform: Transform2D; localMotion: Vector2; withShape: Ref[Shape2D]; shapeXform: Transform2D; shapeMotion: Vector2): PackedVector2Array =
+proc collideWithMotionAndGetContacts*(self: Shape2D; localXform: Transform2D; localMotion: Vector2; withShape: Shape2D; shapeXform: Transform2D; shapeMotion: Vector2): PackedVector2Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "collide_with_motion_and_get_contacts"
@@ -55,14 +55,14 @@ proc collideWithMotionAndGetContacts*(self: Ref[Shape2D]; localXform: Transform2
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedVector2Array)
-proc draw*(self: Ref[Shape2D]; canvasItem: RID; color: Color) =
+proc draw*(self: Shape2D; canvasItem: RID; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "draw"
     methodbind = interface_ClassDB_getMethodBind(addr className Shape2D, addr name, 2948539648)
   var `?param` = [getPtr canvasItem, getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getRect*(self: Ref[Shape2D]): Rect2 =
+proc getRect*(self: Shape2D): Rect2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_rect"

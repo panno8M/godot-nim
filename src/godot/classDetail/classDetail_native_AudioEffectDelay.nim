@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `dry=`*(self: Ref[AudioEffectDelay]; amount: Float) =
+proc `dry=`*(self: AudioEffectDelay; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_dry"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDelay, addr name, 373806689)
   var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc dry*(self: Ref[AudioEffectDelay]): Float =
+proc dry*(self: AudioEffectDelay): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_dry"
@@ -19,14 +19,14 @@ proc dry*(self: Ref[AudioEffectDelay]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `tap1Active=`*(self: Ref[AudioEffectDelay]; amount: Bool) =
+proc `tap1Active=`*(self: AudioEffectDelay; amount: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tap1_active"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDelay, addr name, 2586408642)
   var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isTap1Active*(self: Ref[AudioEffectDelay]): Bool =
+proc isTap1Active*(self: AudioEffectDelay): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_tap1_active"
@@ -34,14 +34,14 @@ proc isTap1Active*(self: Ref[AudioEffectDelay]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `tap1DelayMs=`*(self: Ref[AudioEffectDelay]; amount: Float) =
+proc `tap1DelayMs=`*(self: AudioEffectDelay; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tap1_delay_ms"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDelay, addr name, 373806689)
   var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc tap1DelayMs*(self: Ref[AudioEffectDelay]): Float =
+proc tap1DelayMs*(self: AudioEffectDelay): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_tap1_delay_ms"
@@ -49,14 +49,14 @@ proc tap1DelayMs*(self: Ref[AudioEffectDelay]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `tap1LevelDb=`*(self: Ref[AudioEffectDelay]; amount: Float) =
+proc `tap1LevelDb=`*(self: AudioEffectDelay; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tap1_level_db"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDelay, addr name, 373806689)
   var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc tap1LevelDb*(self: Ref[AudioEffectDelay]): Float =
+proc tap1LevelDb*(self: AudioEffectDelay): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_tap1_level_db"
@@ -64,14 +64,14 @@ proc tap1LevelDb*(self: Ref[AudioEffectDelay]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `tap1Pan=`*(self: Ref[AudioEffectDelay]; amount: Float) =
+proc `tap1Pan=`*(self: AudioEffectDelay; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tap1_pan"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDelay, addr name, 373806689)
   var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc tap1Pan*(self: Ref[AudioEffectDelay]): Float =
+proc tap1Pan*(self: AudioEffectDelay): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_tap1_pan"
@@ -79,14 +79,14 @@ proc tap1Pan*(self: Ref[AudioEffectDelay]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `tap2Active=`*(self: Ref[AudioEffectDelay]; amount: Bool) =
+proc `tap2Active=`*(self: AudioEffectDelay; amount: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tap2_active"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDelay, addr name, 2586408642)
   var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isTap2Active*(self: Ref[AudioEffectDelay]): Bool =
+proc isTap2Active*(self: AudioEffectDelay): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_tap2_active"
@@ -94,14 +94,14 @@ proc isTap2Active*(self: Ref[AudioEffectDelay]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `tap2DelayMs=`*(self: Ref[AudioEffectDelay]; amount: Float) =
+proc `tap2DelayMs=`*(self: AudioEffectDelay; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tap2_delay_ms"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDelay, addr name, 373806689)
   var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc tap2DelayMs*(self: Ref[AudioEffectDelay]): Float =
+proc tap2DelayMs*(self: AudioEffectDelay): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_tap2_delay_ms"
@@ -109,14 +109,14 @@ proc tap2DelayMs*(self: Ref[AudioEffectDelay]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `tap2LevelDb=`*(self: Ref[AudioEffectDelay]; amount: Float) =
+proc `tap2LevelDb=`*(self: AudioEffectDelay; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tap2_level_db"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDelay, addr name, 373806689)
   var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc tap2LevelDb*(self: Ref[AudioEffectDelay]): Float =
+proc tap2LevelDb*(self: AudioEffectDelay): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_tap2_level_db"
@@ -124,14 +124,14 @@ proc tap2LevelDb*(self: Ref[AudioEffectDelay]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `tap2Pan=`*(self: Ref[AudioEffectDelay]; amount: Float) =
+proc `tap2Pan=`*(self: AudioEffectDelay; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tap2_pan"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDelay, addr name, 373806689)
   var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc tap2Pan*(self: Ref[AudioEffectDelay]): Float =
+proc tap2Pan*(self: AudioEffectDelay): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_tap2_pan"
@@ -139,14 +139,14 @@ proc tap2Pan*(self: Ref[AudioEffectDelay]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `feedbackActive=`*(self: Ref[AudioEffectDelay]; amount: Bool) =
+proc `feedbackActive=`*(self: AudioEffectDelay; amount: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_feedback_active"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDelay, addr name, 2586408642)
   var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isFeedbackActive*(self: Ref[AudioEffectDelay]): Bool =
+proc isFeedbackActive*(self: AudioEffectDelay): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_feedback_active"
@@ -154,14 +154,14 @@ proc isFeedbackActive*(self: Ref[AudioEffectDelay]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `feedbackDelayMs=`*(self: Ref[AudioEffectDelay]; amount: Float) =
+proc `feedbackDelayMs=`*(self: AudioEffectDelay; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_feedback_delay_ms"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDelay, addr name, 373806689)
   var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc feedbackDelayMs*(self: Ref[AudioEffectDelay]): Float =
+proc feedbackDelayMs*(self: AudioEffectDelay): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_feedback_delay_ms"
@@ -169,14 +169,14 @@ proc feedbackDelayMs*(self: Ref[AudioEffectDelay]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `feedbackLevelDb=`*(self: Ref[AudioEffectDelay]; amount: Float) =
+proc `feedbackLevelDb=`*(self: AudioEffectDelay; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_feedback_level_db"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDelay, addr name, 373806689)
   var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc feedbackLevelDb*(self: Ref[AudioEffectDelay]): Float =
+proc feedbackLevelDb*(self: AudioEffectDelay): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_feedback_level_db"
@@ -184,14 +184,14 @@ proc feedbackLevelDb*(self: Ref[AudioEffectDelay]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `feedbackLowpass=`*(self: Ref[AudioEffectDelay]; amount: Float) =
+proc `feedbackLowpass=`*(self: AudioEffectDelay; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_feedback_lowpass"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDelay, addr name, 373806689)
   var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc feedbackLowpass*(self: Ref[AudioEffectDelay]): Float =
+proc feedbackLowpass*(self: AudioEffectDelay): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_feedback_lowpass"

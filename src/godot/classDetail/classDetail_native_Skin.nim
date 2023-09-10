@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc setBindCount*(self: Ref[Skin]; bindCount: int32) =
+proc setBindCount*(self: Skin; bindCount: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_bind_count"
     methodbind = interface_ClassDB_getMethodBind(addr className Skin, addr name, 1286410249)
   var `?param` = [getPtr bindCount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getBindCount*(self: Ref[Skin]): int32 =
+proc getBindCount*(self: Skin): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_bind_count"
@@ -19,28 +19,28 @@ proc getBindCount*(self: Ref[Skin]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc addBind*(self: Ref[Skin]; bone: int32; pose: Transform3D) =
+proc addBind*(self: Skin; bone: int32; pose: Transform3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_bind"
     methodbind = interface_ClassDB_getMethodBind(addr className Skin, addr name, 3616898986)
   var `?param` = [getPtr bone, getPtr pose]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addNamedBind*(self: Ref[Skin]; name: String; pose: Transform3D) =
+proc addNamedBind*(self: Skin; name: String; pose: Transform3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_named_bind"
     methodbind = interface_ClassDB_getMethodBind(addr className Skin, addr name, 3154712474)
   var `?param` = [getPtr name, getPtr pose]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setBindPose*(self: Ref[Skin]; bindIndex: int32; pose: Transform3D) =
+proc setBindPose*(self: Skin; bindIndex: int32; pose: Transform3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_bind_pose"
     methodbind = interface_ClassDB_getMethodBind(addr className Skin, addr name, 3616898986)
   var `?param` = [getPtr bindIndex, getPtr pose]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getBindPose*(self: Ref[Skin]; bindIndex: int32): Transform3D =
+proc getBindPose*(self: Skin; bindIndex: int32): Transform3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_bind_pose"
@@ -49,14 +49,14 @@ proc getBindPose*(self: Ref[Skin]; bindIndex: int32): Transform3D =
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Transform3D)
-proc setBindName*(self: Ref[Skin]; bindIndex: int32; name: StringName) =
+proc setBindName*(self: Skin; bindIndex: int32; name: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_bind_name"
     methodbind = interface_ClassDB_getMethodBind(addr className Skin, addr name, 3780747571)
   var `?param` = [getPtr bindIndex, getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getBindName*(self: Ref[Skin]; bindIndex: int32): StringName =
+proc getBindName*(self: Skin; bindIndex: int32): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_bind_name"
@@ -65,14 +65,14 @@ proc getBindName*(self: Ref[Skin]; bindIndex: int32): StringName =
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(StringName)
-proc setBindBone*(self: Ref[Skin]; bindIndex: int32; bone: int32) =
+proc setBindBone*(self: Skin; bindIndex: int32; bone: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_bind_bone"
     methodbind = interface_ClassDB_getMethodBind(addr className Skin, addr name, 3937882851)
   var `?param` = [getPtr bindIndex, getPtr bone]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getBindBone*(self: Ref[Skin]; bindIndex: int32): int32 =
+proc getBindBone*(self: Skin; bindIndex: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_bind_bone"
@@ -81,7 +81,7 @@ proc getBindBone*(self: Ref[Skin]; bindIndex: int32): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc clearBinds*(self: Ref[Skin]) =
+proc clearBinds*(self: Skin) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "clear_binds"

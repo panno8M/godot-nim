@@ -108,18 +108,6 @@ iterator renderDetail*(classes: NimClasses): RenderedNimClass =
 
       yield res
 
-
-method stringify*(info: NimClass; param: ParamType): string =
-  case param.attribute
-  of ptaNake:
-    if info.json.is_refcounted:
-      if $info.name != "RefCounted":
-        return &"Ref[{param.name}]"
-    return "ptr ".repeat(param.ptrdepth) & $param.name
-  of ptaTypedArray:
-    return &"TypedArray[{param.name}]"
-  else: discard
-
 method defaultValue*(info: NimClass; value: string; argType: ArgType): string =
   if value == "null":
     if info.json.is_refcounted:

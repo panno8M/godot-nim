@@ -88,7 +88,7 @@ proc `interpolate=`*(self: GPUParticles3D; enable: Bool) =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 2586408642)
   var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc `processMaterial=`*(self: GPUParticles3D; material: Ref[Material]) =
+proc `processMaterial=`*(self: GPUParticles3D; material: Material) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_process_material"
@@ -205,14 +205,14 @@ proc interpolate*(self: GPUParticles3D): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc processMaterial*(self: GPUParticles3D): Ref[Material] =
+proc processMaterial*(self: GPUParticles3D): Material =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_process_material"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 5934680)
-  var ret: encoded Ref[Material]
+  var ret: encoded Material
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Material])
+  (addr ret).decode(Material)
 proc speedScale*(self: GPUParticles3D): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -251,7 +251,7 @@ proc `drawPasses=`*(self: GPUParticles3D; passes: int32) =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 1286410249)
   var `?param` = [getPtr passes]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc `drawPassMesh=`*(self: GPUParticles3D; pass: int32; mesh: Ref[Mesh]) =
+proc `drawPassMesh=`*(self: GPUParticles3D; pass: int32; mesh: Mesh) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_draw_pass_mesh"
@@ -266,30 +266,30 @@ proc drawPasses*(self: GPUParticles3D): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc drawPassMesh*(self: GPUParticles3D; pass: int32): Ref[Mesh] =
+proc drawPassMesh*(self: GPUParticles3D; pass: int32): Mesh =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_draw_pass_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 1576363275)
   var `?param` = [getPtr pass]
-  var ret: encoded Ref[Mesh]
+  var ret: encoded Mesh
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[Mesh])
-proc `skin=`*(self: GPUParticles3D; skin: Ref[Skin]) =
+  (addr ret).decode(Mesh)
+proc `skin=`*(self: GPUParticles3D; skin: Skin) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_skin"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 3971435618)
   var `?param` = [getPtr skin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc skin*(self: GPUParticles3D): Ref[Skin] =
+proc skin*(self: GPUParticles3D): Skin =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_skin"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 2074563878)
-  var ret: encoded Ref[Skin]
+  var ret: encoded Skin
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Skin])
+  (addr ret).decode(Skin)
 proc restart*(self: GPUParticles3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

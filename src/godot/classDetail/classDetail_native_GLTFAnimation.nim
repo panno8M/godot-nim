@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc loop*(self: Ref[GLTFAnimation]): Bool =
+proc loop*(self: GLTFAnimation): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_loop"
@@ -12,7 +12,7 @@ proc loop*(self: Ref[GLTFAnimation]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `loop=`*(self: Ref[GLTFAnimation]; loop: Bool) =
+proc `loop=`*(self: GLTFAnimation; loop: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_loop"

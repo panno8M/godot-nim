@@ -4,33 +4,33 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc travel*(self: Ref[AnimationNodeStateMachinePlayback]; toNode: StringName; resetOnTeleport: Bool = true) =
+proc travel*(self: AnimationNodeStateMachinePlayback; toNode: StringName; resetOnTeleport: Bool = true) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "travel"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachinePlayback, addr name, 3683006648)
   var `?param` = [getPtr toNode, getPtr resetOnTeleport]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc start*(self: Ref[AnimationNodeStateMachinePlayback]; node: StringName; reset: Bool = true) =
+proc start*(self: AnimationNodeStateMachinePlayback; node: StringName; reset: Bool = true) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "start"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachinePlayback, addr name, 3683006648)
   var `?param` = [getPtr node, getPtr reset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc next*(self: Ref[AnimationNodeStateMachinePlayback]) =
+proc next*(self: AnimationNodeStateMachinePlayback) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "next"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachinePlayback, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc stop*(self: Ref[AnimationNodeStateMachinePlayback]) =
+proc stop*(self: AnimationNodeStateMachinePlayback) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "stop"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachinePlayback, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc isPlaying*(self: Ref[AnimationNodeStateMachinePlayback]): Bool =
+proc isPlaying*(self: AnimationNodeStateMachinePlayback): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_playing"
@@ -38,7 +38,7 @@ proc isPlaying*(self: Ref[AnimationNodeStateMachinePlayback]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc getCurrentNode*(self: Ref[AnimationNodeStateMachinePlayback]): StringName =
+proc getCurrentNode*(self: AnimationNodeStateMachinePlayback): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_current_node"
@@ -46,7 +46,7 @@ proc getCurrentNode*(self: Ref[AnimationNodeStateMachinePlayback]): StringName =
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(StringName)
-proc getCurrentPlayPosition*(self: Ref[AnimationNodeStateMachinePlayback]): Float =
+proc getCurrentPlayPosition*(self: AnimationNodeStateMachinePlayback): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_current_play_position"
@@ -54,7 +54,7 @@ proc getCurrentPlayPosition*(self: Ref[AnimationNodeStateMachinePlayback]): Floa
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc getCurrentLength*(self: Ref[AnimationNodeStateMachinePlayback]): Float =
+proc getCurrentLength*(self: AnimationNodeStateMachinePlayback): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_current_length"
@@ -62,7 +62,7 @@ proc getCurrentLength*(self: Ref[AnimationNodeStateMachinePlayback]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc getFadingFromNode*(self: Ref[AnimationNodeStateMachinePlayback]): StringName =
+proc getFadingFromNode*(self: AnimationNodeStateMachinePlayback): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_fading_from_node"
@@ -70,7 +70,7 @@ proc getFadingFromNode*(self: Ref[AnimationNodeStateMachinePlayback]): StringNam
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(StringName)
-proc getTravelPath*(self: Ref[AnimationNodeStateMachinePlayback]): TypedArray[StringName] =
+proc getTravelPath*(self: AnimationNodeStateMachinePlayback): TypedArray[StringName] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_travel_path"

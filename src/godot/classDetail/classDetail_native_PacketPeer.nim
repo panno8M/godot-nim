@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc getVar*(self: Ref[PacketPeer]; allowObjects: Bool = false): Variant =
+proc getVar*(self: PacketPeer; allowObjects: Bool = false): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_var"
@@ -13,7 +13,7 @@ proc getVar*(self: Ref[PacketPeer]; allowObjects: Bool = false): Variant =
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
-proc putVar*(self: Ref[PacketPeer]; `var`: ptr Variant; fullObjects: Bool = false): Error =
+proc putVar*(self: PacketPeer; `var`: ptr Variant; fullObjects: Bool = false): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "put_var"
@@ -22,7 +22,7 @@ proc putVar*(self: Ref[PacketPeer]; `var`: ptr Variant; fullObjects: Bool = fals
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc getPacket*(self: Ref[PacketPeer]): PackedByteArray =
+proc getPacket*(self: PacketPeer): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_packet"
@@ -30,7 +30,7 @@ proc getPacket*(self: Ref[PacketPeer]): PackedByteArray =
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(PackedByteArray)
-proc putPacket*(self: Ref[PacketPeer]; buffer: PackedByteArray): Error =
+proc putPacket*(self: PacketPeer; buffer: PackedByteArray): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "put_packet"
@@ -39,7 +39,7 @@ proc putPacket*(self: Ref[PacketPeer]; buffer: PackedByteArray): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc getPacketError*(self: Ref[PacketPeer]): Error =
+proc getPacketError*(self: PacketPeer): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_packet_error"
@@ -47,7 +47,7 @@ proc getPacketError*(self: Ref[PacketPeer]): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Error)
-proc getAvailablePacketCount*(self: Ref[PacketPeer]): int32 =
+proc getAvailablePacketCount*(self: PacketPeer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_available_packet_count"
@@ -55,7 +55,7 @@ proc getAvailablePacketCount*(self: Ref[PacketPeer]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc encodeBufferMaxSize*(self: Ref[PacketPeer]): int32 =
+proc encodeBufferMaxSize*(self: PacketPeer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_encode_buffer_max_size"
@@ -63,7 +63,7 @@ proc encodeBufferMaxSize*(self: Ref[PacketPeer]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc `encodeBufferMaxSize=`*(self: Ref[PacketPeer]; maxSize: int32) =
+proc `encodeBufferMaxSize=`*(self: PacketPeer; maxSize: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_encode_buffer_max_size"

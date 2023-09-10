@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc getNodeCount*(self: Ref[SceneState]): int32 =
+proc getNodeCount*(self: SceneState): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_node_count"
@@ -12,7 +12,7 @@ proc getNodeCount*(self: Ref[SceneState]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getNodeType*(self: Ref[SceneState]; idx: int32): StringName =
+proc getNodeType*(self: SceneState; idx: int32): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_node_type"
@@ -21,7 +21,7 @@ proc getNodeType*(self: Ref[SceneState]; idx: int32): StringName =
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(StringName)
-proc getNodeName*(self: Ref[SceneState]; idx: int32): StringName =
+proc getNodeName*(self: SceneState; idx: int32): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_node_name"
@@ -30,7 +30,7 @@ proc getNodeName*(self: Ref[SceneState]; idx: int32): StringName =
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(StringName)
-proc getNodePath*(self: Ref[SceneState]; idx: int32; forParent: Bool = false): NodePath =
+proc getNodePath*(self: SceneState; idx: int32; forParent: Bool = false): NodePath =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_node_path"
@@ -39,7 +39,7 @@ proc getNodePath*(self: Ref[SceneState]; idx: int32; forParent: Bool = false): N
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(NodePath)
-proc getNodeOwnerPath*(self: Ref[SceneState]; idx: int32): NodePath =
+proc getNodeOwnerPath*(self: SceneState; idx: int32): NodePath =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_node_owner_path"
@@ -48,7 +48,7 @@ proc getNodeOwnerPath*(self: Ref[SceneState]; idx: int32): NodePath =
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(NodePath)
-proc isNodeInstancePlaceholder*(self: Ref[SceneState]; idx: int32): Bool =
+proc isNodeInstancePlaceholder*(self: SceneState; idx: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_node_instance_placeholder"
@@ -57,7 +57,7 @@ proc isNodeInstancePlaceholder*(self: Ref[SceneState]; idx: int32): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc getNodeInstancePlaceholder*(self: Ref[SceneState]; idx: int32): String =
+proc getNodeInstancePlaceholder*(self: SceneState; idx: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_node_instance_placeholder"
@@ -66,16 +66,16 @@ proc getNodeInstancePlaceholder*(self: Ref[SceneState]; idx: int32): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc getNodeInstance*(self: Ref[SceneState]; idx: int32): Ref[PackedScene] =
+proc getNodeInstance*(self: SceneState; idx: int32): PackedScene =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_node_instance"
     methodbind = interface_ClassDB_getMethodBind(addr className SceneState, addr name, 511017218)
   var `?param` = [getPtr idx]
-  var ret: encoded Ref[PackedScene]
+  var ret: encoded PackedScene
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[PackedScene])
-proc getNodeGroups*(self: Ref[SceneState]; idx: int32): PackedStringArray =
+  (addr ret).decode(PackedScene)
+proc getNodeGroups*(self: SceneState; idx: int32): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_node_groups"
@@ -84,7 +84,7 @@ proc getNodeGroups*(self: Ref[SceneState]; idx: int32): PackedStringArray =
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedStringArray)
-proc getNodeIndex*(self: Ref[SceneState]; idx: int32): int32 =
+proc getNodeIndex*(self: SceneState; idx: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_node_index"
@@ -93,7 +93,7 @@ proc getNodeIndex*(self: Ref[SceneState]; idx: int32): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc getNodePropertyCount*(self: Ref[SceneState]; idx: int32): int32 =
+proc getNodePropertyCount*(self: SceneState; idx: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_node_property_count"
@@ -102,7 +102,7 @@ proc getNodePropertyCount*(self: Ref[SceneState]; idx: int32): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc getNodePropertyName*(self: Ref[SceneState]; idx: int32; propIdx: int32): StringName =
+proc getNodePropertyName*(self: SceneState; idx: int32; propIdx: int32): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_node_property_name"
@@ -111,7 +111,7 @@ proc getNodePropertyName*(self: Ref[SceneState]; idx: int32; propIdx: int32): St
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(StringName)
-proc getNodePropertyValue*(self: Ref[SceneState]; idx: int32; propIdx: int32): Variant =
+proc getNodePropertyValue*(self: SceneState; idx: int32; propIdx: int32): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_node_property_value"
@@ -120,7 +120,7 @@ proc getNodePropertyValue*(self: Ref[SceneState]; idx: int32; propIdx: int32): V
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
-proc getConnectionCount*(self: Ref[SceneState]): int32 =
+proc getConnectionCount*(self: SceneState): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_connection_count"
@@ -128,7 +128,7 @@ proc getConnectionCount*(self: Ref[SceneState]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getConnectionSource*(self: Ref[SceneState]; idx: int32): NodePath =
+proc getConnectionSource*(self: SceneState; idx: int32): NodePath =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_connection_source"
@@ -137,7 +137,7 @@ proc getConnectionSource*(self: Ref[SceneState]; idx: int32): NodePath =
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(NodePath)
-proc getConnectionSignal*(self: Ref[SceneState]; idx: int32): StringName =
+proc getConnectionSignal*(self: SceneState; idx: int32): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_connection_signal"
@@ -146,7 +146,7 @@ proc getConnectionSignal*(self: Ref[SceneState]; idx: int32): StringName =
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(StringName)
-proc getConnectionTarget*(self: Ref[SceneState]; idx: int32): NodePath =
+proc getConnectionTarget*(self: SceneState; idx: int32): NodePath =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_connection_target"
@@ -155,7 +155,7 @@ proc getConnectionTarget*(self: Ref[SceneState]; idx: int32): NodePath =
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(NodePath)
-proc getConnectionMethod*(self: Ref[SceneState]; idx: int32): StringName =
+proc getConnectionMethod*(self: SceneState; idx: int32): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_connection_method"
@@ -164,7 +164,7 @@ proc getConnectionMethod*(self: Ref[SceneState]; idx: int32): StringName =
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(StringName)
-proc getConnectionFlags*(self: Ref[SceneState]; idx: int32): int32 =
+proc getConnectionFlags*(self: SceneState; idx: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_connection_flags"
@@ -173,7 +173,7 @@ proc getConnectionFlags*(self: Ref[SceneState]; idx: int32): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc getConnectionBinds*(self: Ref[SceneState]; idx: int32): Array =
+proc getConnectionBinds*(self: SceneState; idx: int32): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_connection_binds"
@@ -182,7 +182,7 @@ proc getConnectionBinds*(self: Ref[SceneState]; idx: int32): Array =
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Array)
-proc getConnectionUnbinds*(self: Ref[SceneState]; idx: int32): int32 =
+proc getConnectionUnbinds*(self: SceneState; idx: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_connection_unbinds"

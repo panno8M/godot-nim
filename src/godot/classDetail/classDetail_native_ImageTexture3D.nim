@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc create*(self: Ref[ImageTexture3D]; format: Image_Format; width: int32; height: int32; depth: int32; useMipmaps: Bool; data: TypedArray[Image]): Error =
+proc create*(self: ImageTexture3D; format: Image_Format; width: int32; height: int32; depth: int32; useMipmaps: Bool; data: TypedArray[Image]): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create"
@@ -13,7 +13,7 @@ proc create*(self: Ref[ImageTexture3D]; format: Image_Format; width: int32; heig
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc update*(self: Ref[ImageTexture3D]; data: TypedArray[Image]) =
+proc update*(self: ImageTexture3D; data: TypedArray[Image]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "update"

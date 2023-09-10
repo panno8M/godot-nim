@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `seed=`*(self: Ref[RandomNumberGenerator]; seed: uint64) =
+proc `seed=`*(self: RandomNumberGenerator; seed: uint64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_seed"
     methodbind = interface_ClassDB_getMethodBind(addr className RandomNumberGenerator, addr name, 1286410249)
   var `?param` = [getPtr seed]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc seed*(self: Ref[RandomNumberGenerator]): uint64 =
+proc seed*(self: RandomNumberGenerator): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_seed"
@@ -19,14 +19,14 @@ proc seed*(self: Ref[RandomNumberGenerator]): uint64 =
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(uint64)
-proc `state=`*(self: Ref[RandomNumberGenerator]; state: uint64) =
+proc `state=`*(self: RandomNumberGenerator; state: uint64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_state"
     methodbind = interface_ClassDB_getMethodBind(addr className RandomNumberGenerator, addr name, 1286410249)
   var `?param` = [getPtr state]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc state*(self: Ref[RandomNumberGenerator]): uint64 =
+proc state*(self: RandomNumberGenerator): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_state"
@@ -34,7 +34,7 @@ proc state*(self: Ref[RandomNumberGenerator]): uint64 =
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(uint64)
-proc randi*(self: Ref[RandomNumberGenerator]): uint32 =
+proc randi*(self: RandomNumberGenerator): uint32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "randi"
@@ -42,7 +42,7 @@ proc randi*(self: Ref[RandomNumberGenerator]): uint32 =
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(uint32)
-proc randf*(self: Ref[RandomNumberGenerator]): Float =
+proc randf*(self: RandomNumberGenerator): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "randf"
@@ -50,7 +50,7 @@ proc randf*(self: Ref[RandomNumberGenerator]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc randfn*(self: Ref[RandomNumberGenerator]; mean: Float = 0.0; deviation: Float = 1.0): Float =
+proc randfn*(self: RandomNumberGenerator; mean: Float = 0.0; deviation: Float = 1.0): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "randfn"
@@ -59,7 +59,7 @@ proc randfn*(self: Ref[RandomNumberGenerator]; mean: Float = 0.0; deviation: Flo
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
-proc randfRange*(self: Ref[RandomNumberGenerator]; `from`: Float; to: Float): Float =
+proc randfRange*(self: RandomNumberGenerator; `from`: Float; to: Float): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "randf_range"
@@ -68,7 +68,7 @@ proc randfRange*(self: Ref[RandomNumberGenerator]; `from`: Float; to: Float): Fl
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
-proc randiRange*(self: Ref[RandomNumberGenerator]; `from`: int32; to: int32): int32 =
+proc randiRange*(self: RandomNumberGenerator; `from`: int32; to: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "randi_range"
@@ -77,7 +77,7 @@ proc randiRange*(self: Ref[RandomNumberGenerator]; `from`: int32; to: int32): in
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc randomize*(self: Ref[RandomNumberGenerator]) =
+proc randomize*(self: RandomNumberGenerator) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "randomize"

@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `axis=`*(self: Ref[InputEventJoypadMotion]; axis: JoyAxis) =
+proc `axis=`*(self: InputEventJoypadMotion; axis: JoyAxis) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_axis"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventJoypadMotion, addr name, 1332685170)
   var `?param` = [getPtr axis]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc axis*(self: Ref[InputEventJoypadMotion]): JoyAxis =
+proc axis*(self: InputEventJoypadMotion): JoyAxis =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_axis"
@@ -19,14 +19,14 @@ proc axis*(self: Ref[InputEventJoypadMotion]): JoyAxis =
   var ret: encoded JoyAxis
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(JoyAxis)
-proc `axisValue=`*(self: Ref[InputEventJoypadMotion]; axisValue: Float) =
+proc `axisValue=`*(self: InputEventJoypadMotion; axisValue: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_axis_value"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventJoypadMotion, addr name, 373806689)
   var `?param` = [getPtr axisValue]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc axisValue*(self: Ref[InputEventJoypadMotion]): Float =
+proc axisValue*(self: InputEventJoypadMotion): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_axis_value"

@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc loadBitmapFont*(self: Ref[FontFile]; path: String): Error =
+proc loadBitmapFont*(self: FontFile; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "load_bitmap_font"
@@ -13,7 +13,7 @@ proc loadBitmapFont*(self: Ref[FontFile]; path: String): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc loadDynamicFont*(self: Ref[FontFile]; path: String): Error =
+proc loadDynamicFont*(self: FontFile; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "load_dynamic_font"
@@ -22,14 +22,14 @@ proc loadDynamicFont*(self: Ref[FontFile]; path: String): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc `data=`*(self: Ref[FontFile]; data: PackedByteArray) =
+proc `data=`*(self: FontFile; data: PackedByteArray) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_data"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 2971499966)
   var `?param` = [getPtr data]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc data*(self: Ref[FontFile]): PackedByteArray =
+proc data*(self: FontFile): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_data"
@@ -37,49 +37,49 @@ proc data*(self: Ref[FontFile]): PackedByteArray =
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(PackedByteArray)
-proc `fontName=`*(self: Ref[FontFile]; name: String) =
+proc `fontName=`*(self: FontFile; name: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_font_name"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 83702148)
   var `?param` = [getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc `fontStyleName=`*(self: Ref[FontFile]; name: String) =
+proc `fontStyleName=`*(self: FontFile; name: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_font_style_name"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 83702148)
   var `?param` = [getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc `fontStyle=`*(self: Ref[FontFile]; style: set[TextServer_FontStyle]) =
+proc `fontStyle=`*(self: FontFile; style: set[TextServer_FontStyle]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_font_style"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 918070724)
   var `?param` = [getPtr style]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc `fontWeight=`*(self: Ref[FontFile]; weight: int32) =
+proc `fontWeight=`*(self: FontFile; weight: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_font_weight"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 1286410249)
   var `?param` = [getPtr weight]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc `fontStretch=`*(self: Ref[FontFile]; stretch: int32) =
+proc `fontStretch=`*(self: FontFile; stretch: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_font_stretch"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 1286410249)
   var `?param` = [getPtr stretch]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc `antialiasing=`*(self: Ref[FontFile]; antialiasing: TextServer_FontAntialiasing) =
+proc `antialiasing=`*(self: FontFile; antialiasing: TextServer_FontAntialiasing) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_antialiasing"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 1669900)
   var `?param` = [getPtr antialiasing]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc antialiasing*(self: Ref[FontFile]): TextServer_FontAntialiasing =
+proc antialiasing*(self: FontFile): TextServer_FontAntialiasing =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_antialiasing"
@@ -87,14 +87,14 @@ proc antialiasing*(self: Ref[FontFile]): TextServer_FontAntialiasing =
   var ret: encoded TextServer_FontAntialiasing
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(TextServer_FontAntialiasing)
-proc `generateMipmaps=`*(self: Ref[FontFile]; generateMipmaps: Bool) =
+proc `generateMipmaps=`*(self: FontFile; generateMipmaps: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_generate_mipmaps"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 2586408642)
   var `?param` = [getPtr generateMipmaps]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc generateMipmaps*(self: Ref[FontFile]): Bool =
+proc generateMipmaps*(self: FontFile): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_generate_mipmaps"
@@ -102,14 +102,14 @@ proc generateMipmaps*(self: Ref[FontFile]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `multichannelSignedDistanceField=`*(self: Ref[FontFile]; msdf: Bool) =
+proc `multichannelSignedDistanceField=`*(self: FontFile; msdf: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_multichannel_signed_distance_field"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 2586408642)
   var `?param` = [getPtr msdf]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isMultichannelSignedDistanceField*(self: Ref[FontFile]): Bool =
+proc isMultichannelSignedDistanceField*(self: FontFile): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_multichannel_signed_distance_field"
@@ -117,14 +117,14 @@ proc isMultichannelSignedDistanceField*(self: Ref[FontFile]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `msdfPixelRange=`*(self: Ref[FontFile]; msdfPixelRange: int32) =
+proc `msdfPixelRange=`*(self: FontFile; msdfPixelRange: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_msdf_pixel_range"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 1286410249)
   var `?param` = [getPtr msdfPixelRange]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc msdfPixelRange*(self: Ref[FontFile]): int32 =
+proc msdfPixelRange*(self: FontFile): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_msdf_pixel_range"
@@ -132,14 +132,14 @@ proc msdfPixelRange*(self: Ref[FontFile]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc `msdfSize=`*(self: Ref[FontFile]; msdfSize: int32) =
+proc `msdfSize=`*(self: FontFile; msdfSize: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_msdf_size"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 1286410249)
   var `?param` = [getPtr msdfSize]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc msdfSize*(self: Ref[FontFile]): int32 =
+proc msdfSize*(self: FontFile): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_msdf_size"
@@ -147,14 +147,14 @@ proc msdfSize*(self: Ref[FontFile]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc `fixedSize=`*(self: Ref[FontFile]; fixedSize: int32) =
+proc `fixedSize=`*(self: FontFile; fixedSize: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_fixed_size"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 1286410249)
   var `?param` = [getPtr fixedSize]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fixedSize*(self: Ref[FontFile]): int32 =
+proc fixedSize*(self: FontFile): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_fixed_size"
@@ -162,14 +162,14 @@ proc fixedSize*(self: Ref[FontFile]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc `allowSystemFallback=`*(self: Ref[FontFile]; allowSystemFallback: Bool) =
+proc `allowSystemFallback=`*(self: FontFile; allowSystemFallback: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_allow_system_fallback"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 2586408642)
   var `?param` = [getPtr allowSystemFallback]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isAllowSystemFallback*(self: Ref[FontFile]): Bool =
+proc isAllowSystemFallback*(self: FontFile): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_allow_system_fallback"
@@ -177,14 +177,14 @@ proc isAllowSystemFallback*(self: Ref[FontFile]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `forceAutohinter=`*(self: Ref[FontFile]; forceAutohinter: Bool) =
+proc `forceAutohinter=`*(self: FontFile; forceAutohinter: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_force_autohinter"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 2586408642)
   var `?param` = [getPtr forceAutohinter]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isForceAutohinter*(self: Ref[FontFile]): Bool =
+proc isForceAutohinter*(self: FontFile): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_force_autohinter"
@@ -192,14 +192,14 @@ proc isForceAutohinter*(self: Ref[FontFile]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `hinting=`*(self: Ref[FontFile]; hinting: TextServer_Hinting) =
+proc `hinting=`*(self: FontFile; hinting: TextServer_Hinting) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_hinting"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 1827459492)
   var `?param` = [getPtr hinting]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc hinting*(self: Ref[FontFile]): TextServer_Hinting =
+proc hinting*(self: FontFile): TextServer_Hinting =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_hinting"
@@ -207,14 +207,14 @@ proc hinting*(self: Ref[FontFile]): TextServer_Hinting =
   var ret: encoded TextServer_Hinting
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(TextServer_Hinting)
-proc `subpixelPositioning=`*(self: Ref[FontFile]; subpixelPositioning: TextServer_SubpixelPositioning) =
+proc `subpixelPositioning=`*(self: FontFile; subpixelPositioning: TextServer_SubpixelPositioning) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_subpixel_positioning"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 4225742182)
   var `?param` = [getPtr subpixelPositioning]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc subpixelPositioning*(self: Ref[FontFile]): TextServer_SubpixelPositioning =
+proc subpixelPositioning*(self: FontFile): TextServer_SubpixelPositioning =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_subpixel_positioning"
@@ -222,14 +222,14 @@ proc subpixelPositioning*(self: Ref[FontFile]): TextServer_SubpixelPositioning =
   var ret: encoded TextServer_SubpixelPositioning
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(TextServer_SubpixelPositioning)
-proc `oversampling=`*(self: Ref[FontFile]; oversampling: Float) =
+proc `oversampling=`*(self: FontFile; oversampling: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_oversampling"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 373806689)
   var `?param` = [getPtr oversampling]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc oversampling*(self: Ref[FontFile]): Float =
+proc oversampling*(self: FontFile): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_oversampling"
@@ -237,7 +237,7 @@ proc oversampling*(self: Ref[FontFile]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc getCacheCount*(self: Ref[FontFile]): int32 =
+proc getCacheCount*(self: FontFile): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_cache_count"
@@ -245,20 +245,20 @@ proc getCacheCount*(self: Ref[FontFile]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc clearCache*(self: Ref[FontFile]) =
+proc clearCache*(self: FontFile) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "clear_cache"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc removeCache*(self: Ref[FontFile]; cacheIndex: int32) =
+proc removeCache*(self: FontFile; cacheIndex: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_cache"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 1286410249)
   var `?param` = [getPtr cacheIndex]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getSizeCacheList*(self: Ref[FontFile]; cacheIndex: int32): TypedArray[Vector2i] =
+proc getSizeCacheList*(self: FontFile; cacheIndex: int32): TypedArray[Vector2i] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_size_cache_list"
@@ -267,28 +267,28 @@ proc getSizeCacheList*(self: Ref[FontFile]; cacheIndex: int32): TypedArray[Vecto
   var ret: encoded TypedArray[Vector2i]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TypedArray[Vector2i])
-proc clearSizeCache*(self: Ref[FontFile]; cacheIndex: int32) =
+proc clearSizeCache*(self: FontFile; cacheIndex: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "clear_size_cache"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 1286410249)
   var `?param` = [getPtr cacheIndex]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removeSizeCache*(self: Ref[FontFile]; cacheIndex: int32; size: Vector2i) =
+proc removeSizeCache*(self: FontFile; cacheIndex: int32; size: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_size_cache"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 2311374912)
   var `?param` = [getPtr cacheIndex, getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setVariationCoordinates*(self: Ref[FontFile]; cacheIndex: int32; variationCoordinates: Dictionary) =
+proc setVariationCoordinates*(self: FontFile; cacheIndex: int32; variationCoordinates: Dictionary) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_variation_coordinates"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 64545446)
   var `?param` = [getPtr cacheIndex, getPtr variationCoordinates]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getVariationCoordinates*(self: Ref[FontFile]; cacheIndex: int32): Dictionary =
+proc getVariationCoordinates*(self: FontFile; cacheIndex: int32): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_variation_coordinates"
@@ -297,14 +297,14 @@ proc getVariationCoordinates*(self: Ref[FontFile]; cacheIndex: int32): Dictionar
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Dictionary)
-proc setEmbolden*(self: Ref[FontFile]; cacheIndex: int32; strength: Float) =
+proc setEmbolden*(self: FontFile; cacheIndex: int32; strength: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_embolden"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 1602489585)
   var `?param` = [getPtr cacheIndex, getPtr strength]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getEmbolden*(self: Ref[FontFile]; cacheIndex: int32): Float =
+proc getEmbolden*(self: FontFile; cacheIndex: int32): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_embolden"
@@ -313,14 +313,14 @@ proc getEmbolden*(self: Ref[FontFile]; cacheIndex: int32): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
-proc setTransform*(self: Ref[FontFile]; cacheIndex: int32; transform: Transform2D) =
+proc setTransform*(self: FontFile; cacheIndex: int32; transform: Transform2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_transform"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 30160968)
   var `?param` = [getPtr cacheIndex, getPtr transform]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getTransform*(self: Ref[FontFile]; cacheIndex: int32): Transform2D =
+proc getTransform*(self: FontFile; cacheIndex: int32): Transform2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_transform"
@@ -329,14 +329,14 @@ proc getTransform*(self: Ref[FontFile]; cacheIndex: int32): Transform2D =
   var ret: encoded Transform2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Transform2D)
-proc setFaceIndex*(self: Ref[FontFile]; cacheIndex: int32; faceIndex: int64) =
+proc setFaceIndex*(self: FontFile; cacheIndex: int32; faceIndex: int64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_face_index"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 3937882851)
   var `?param` = [getPtr cacheIndex, getPtr faceIndex]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getFaceIndex*(self: Ref[FontFile]; cacheIndex: int32): int64 =
+proc getFaceIndex*(self: FontFile; cacheIndex: int32): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_face_index"
@@ -345,14 +345,14 @@ proc getFaceIndex*(self: Ref[FontFile]; cacheIndex: int32): int64 =
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
-proc setCacheAscent*(self: Ref[FontFile]; cacheIndex: int32; size: int32; ascent: Float) =
+proc setCacheAscent*(self: FontFile; cacheIndex: int32; size: int32; ascent: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_cache_ascent"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 3506521499)
   var `?param` = [getPtr cacheIndex, getPtr size, getPtr ascent]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getCacheAscent*(self: Ref[FontFile]; cacheIndex: int32; size: int32): Float =
+proc getCacheAscent*(self: FontFile; cacheIndex: int32; size: int32): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_cache_ascent"
@@ -361,14 +361,14 @@ proc getCacheAscent*(self: Ref[FontFile]; cacheIndex: int32; size: int32): Float
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
-proc setCacheDescent*(self: Ref[FontFile]; cacheIndex: int32; size: int32; descent: Float) =
+proc setCacheDescent*(self: FontFile; cacheIndex: int32; size: int32; descent: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_cache_descent"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 3506521499)
   var `?param` = [getPtr cacheIndex, getPtr size, getPtr descent]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getCacheDescent*(self: Ref[FontFile]; cacheIndex: int32; size: int32): Float =
+proc getCacheDescent*(self: FontFile; cacheIndex: int32; size: int32): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_cache_descent"
@@ -377,14 +377,14 @@ proc getCacheDescent*(self: Ref[FontFile]; cacheIndex: int32; size: int32): Floa
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
-proc setCacheUnderlinePosition*(self: Ref[FontFile]; cacheIndex: int32; size: int32; underlinePosition: Float) =
+proc setCacheUnderlinePosition*(self: FontFile; cacheIndex: int32; size: int32; underlinePosition: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_cache_underline_position"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 3506521499)
   var `?param` = [getPtr cacheIndex, getPtr size, getPtr underlinePosition]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getCacheUnderlinePosition*(self: Ref[FontFile]; cacheIndex: int32; size: int32): Float =
+proc getCacheUnderlinePosition*(self: FontFile; cacheIndex: int32; size: int32): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_cache_underline_position"
@@ -393,14 +393,14 @@ proc getCacheUnderlinePosition*(self: Ref[FontFile]; cacheIndex: int32; size: in
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
-proc setCacheUnderlineThickness*(self: Ref[FontFile]; cacheIndex: int32; size: int32; underlineThickness: Float) =
+proc setCacheUnderlineThickness*(self: FontFile; cacheIndex: int32; size: int32; underlineThickness: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_cache_underline_thickness"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 3506521499)
   var `?param` = [getPtr cacheIndex, getPtr size, getPtr underlineThickness]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getCacheUnderlineThickness*(self: Ref[FontFile]; cacheIndex: int32; size: int32): Float =
+proc getCacheUnderlineThickness*(self: FontFile; cacheIndex: int32; size: int32): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_cache_underline_thickness"
@@ -409,14 +409,14 @@ proc getCacheUnderlineThickness*(self: Ref[FontFile]; cacheIndex: int32; size: i
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
-proc setCacheScale*(self: Ref[FontFile]; cacheIndex: int32; size: int32; scale: Float) =
+proc setCacheScale*(self: FontFile; cacheIndex: int32; size: int32; scale: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_cache_scale"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 3506521499)
   var `?param` = [getPtr cacheIndex, getPtr size, getPtr scale]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getCacheScale*(self: Ref[FontFile]; cacheIndex: int32; size: int32): Float =
+proc getCacheScale*(self: FontFile; cacheIndex: int32; size: int32): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_cache_scale"
@@ -425,7 +425,7 @@ proc getCacheScale*(self: Ref[FontFile]; cacheIndex: int32; size: int32): Float 
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
-proc getTextureCount*(self: Ref[FontFile]; cacheIndex: int32; size: Vector2i): int32 =
+proc getTextureCount*(self: FontFile; cacheIndex: int32; size: Vector2i): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_texture_count"
@@ -434,44 +434,44 @@ proc getTextureCount*(self: Ref[FontFile]; cacheIndex: int32; size: Vector2i): i
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc clearTextures*(self: Ref[FontFile]; cacheIndex: int32; size: Vector2i) =
+proc clearTextures*(self: FontFile; cacheIndex: int32; size: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "clear_textures"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 2311374912)
   var `?param` = [getPtr cacheIndex, getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removeTexture*(self: Ref[FontFile]; cacheIndex: int32; size: Vector2i; textureIndex: int32) =
+proc removeTexture*(self: FontFile; cacheIndex: int32; size: Vector2i; textureIndex: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 2328951467)
   var `?param` = [getPtr cacheIndex, getPtr size, getPtr textureIndex]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setTextureImage*(self: Ref[FontFile]; cacheIndex: int32; size: Vector2i; textureIndex: int32; image: Ref[Image]) =
+proc setTextureImage*(self: FontFile; cacheIndex: int32; size: Vector2i; textureIndex: int32; image: Image) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_texture_image"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 4157974066)
   var `?param` = [getPtr cacheIndex, getPtr size, getPtr textureIndex, getPtr image]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getTextureImage*(self: Ref[FontFile]; cacheIndex: int32; size: Vector2i; textureIndex: int32): Ref[Image] =
+proc getTextureImage*(self: FontFile; cacheIndex: int32; size: Vector2i; textureIndex: int32): Image =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_texture_image"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 3878418953)
   var `?param` = [getPtr cacheIndex, getPtr size, getPtr textureIndex]
-  var ret: encoded Ref[Image]
+  var ret: encoded Image
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[Image])
-proc setTextureOffsets*(self: Ref[FontFile]; cacheIndex: int32; size: Vector2i; textureIndex: int32; offset: PackedInt32Array) =
+  (addr ret).decode(Image)
+proc setTextureOffsets*(self: FontFile; cacheIndex: int32; size: Vector2i; textureIndex: int32; offset: PackedInt32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_texture_offsets"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 2849993437)
   var `?param` = [getPtr cacheIndex, getPtr size, getPtr textureIndex, getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getTextureOffsets*(self: Ref[FontFile]; cacheIndex: int32; size: Vector2i; textureIndex: int32): PackedInt32Array =
+proc getTextureOffsets*(self: FontFile; cacheIndex: int32; size: Vector2i; textureIndex: int32): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_texture_offsets"
@@ -480,7 +480,7 @@ proc getTextureOffsets*(self: Ref[FontFile]; cacheIndex: int32; size: Vector2i; 
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedInt32Array)
-proc getGlyphList*(self: Ref[FontFile]; cacheIndex: int32; size: Vector2i): PackedInt32Array =
+proc getGlyphList*(self: FontFile; cacheIndex: int32; size: Vector2i): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_glyph_list"
@@ -489,28 +489,28 @@ proc getGlyphList*(self: Ref[FontFile]; cacheIndex: int32; size: Vector2i): Pack
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedInt32Array)
-proc clearGlyphs*(self: Ref[FontFile]; cacheIndex: int32; size: Vector2i) =
+proc clearGlyphs*(self: FontFile; cacheIndex: int32; size: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "clear_glyphs"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 2311374912)
   var `?param` = [getPtr cacheIndex, getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removeGlyph*(self: Ref[FontFile]; cacheIndex: int32; size: Vector2i; glyph: int32) =
+proc removeGlyph*(self: FontFile; cacheIndex: int32; size: Vector2i; glyph: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_glyph"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 2328951467)
   var `?param` = [getPtr cacheIndex, getPtr size, getPtr glyph]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setGlyphAdvance*(self: Ref[FontFile]; cacheIndex: int32; size: int32; glyph: int32; advance: Vector2) =
+proc setGlyphAdvance*(self: FontFile; cacheIndex: int32; size: int32; glyph: int32; advance: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_glyph_advance"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 947991729)
   var `?param` = [getPtr cacheIndex, getPtr size, getPtr glyph, getPtr advance]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getGlyphAdvance*(self: Ref[FontFile]; cacheIndex: int32; size: int32; glyph: int32): Vector2 =
+proc getGlyphAdvance*(self: FontFile; cacheIndex: int32; size: int32; glyph: int32): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_glyph_advance"
@@ -519,14 +519,14 @@ proc getGlyphAdvance*(self: Ref[FontFile]; cacheIndex: int32; size: int32; glyph
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2)
-proc setGlyphOffset*(self: Ref[FontFile]; cacheIndex: int32; size: Vector2i; glyph: int32; offset: Vector2) =
+proc setGlyphOffset*(self: FontFile; cacheIndex: int32; size: Vector2i; glyph: int32; offset: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_glyph_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 921719850)
   var `?param` = [getPtr cacheIndex, getPtr size, getPtr glyph, getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getGlyphOffset*(self: Ref[FontFile]; cacheIndex: int32; size: Vector2i; glyph: int32): Vector2 =
+proc getGlyphOffset*(self: FontFile; cacheIndex: int32; size: Vector2i; glyph: int32): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_glyph_offset"
@@ -535,14 +535,14 @@ proc getGlyphOffset*(self: Ref[FontFile]; cacheIndex: int32; size: Vector2i; gly
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2)
-proc setGlyphSize*(self: Ref[FontFile]; cacheIndex: int32; size: Vector2i; glyph: int32; glSize: Vector2) =
+proc setGlyphSize*(self: FontFile; cacheIndex: int32; size: Vector2i; glyph: int32; glSize: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_glyph_size"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 921719850)
   var `?param` = [getPtr cacheIndex, getPtr size, getPtr glyph, getPtr glSize]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getGlyphSize*(self: Ref[FontFile]; cacheIndex: int32; size: Vector2i; glyph: int32): Vector2 =
+proc getGlyphSize*(self: FontFile; cacheIndex: int32; size: Vector2i; glyph: int32): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_glyph_size"
@@ -551,14 +551,14 @@ proc getGlyphSize*(self: Ref[FontFile]; cacheIndex: int32; size: Vector2i; glyph
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2)
-proc setGlyphUvRect*(self: Ref[FontFile]; cacheIndex: int32; size: Vector2i; glyph: int32; uvRect: Rect2) =
+proc setGlyphUvRect*(self: FontFile; cacheIndex: int32; size: Vector2i; glyph: int32; uvRect: Rect2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_glyph_uv_rect"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 3821620992)
   var `?param` = [getPtr cacheIndex, getPtr size, getPtr glyph, getPtr uvRect]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getGlyphUvRect*(self: Ref[FontFile]; cacheIndex: int32; size: Vector2i; glyph: int32): Rect2 =
+proc getGlyphUvRect*(self: FontFile; cacheIndex: int32; size: Vector2i; glyph: int32): Rect2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_glyph_uv_rect"
@@ -567,14 +567,14 @@ proc getGlyphUvRect*(self: Ref[FontFile]; cacheIndex: int32; size: Vector2i; gly
   var ret: encoded Rect2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Rect2)
-proc setGlyphTextureIdx*(self: Ref[FontFile]; cacheIndex: int32; size: Vector2i; glyph: int32; textureIdx: int32) =
+proc setGlyphTextureIdx*(self: FontFile; cacheIndex: int32; size: Vector2i; glyph: int32; textureIdx: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_glyph_texture_idx"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 355564111)
   var `?param` = [getPtr cacheIndex, getPtr size, getPtr glyph, getPtr textureIdx]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getGlyphTextureIdx*(self: Ref[FontFile]; cacheIndex: int32; size: Vector2i; glyph: int32): int32 =
+proc getGlyphTextureIdx*(self: FontFile; cacheIndex: int32; size: Vector2i; glyph: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_glyph_texture_idx"
@@ -583,7 +583,7 @@ proc getGlyphTextureIdx*(self: Ref[FontFile]; cacheIndex: int32; size: Vector2i;
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc getKerningList*(self: Ref[FontFile]; cacheIndex: int32; size: int32): TypedArray[Vector2i] =
+proc getKerningList*(self: FontFile; cacheIndex: int32; size: int32): TypedArray[Vector2i] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_kerning_list"
@@ -592,28 +592,28 @@ proc getKerningList*(self: Ref[FontFile]; cacheIndex: int32; size: int32): Typed
   var ret: encoded TypedArray[Vector2i]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TypedArray[Vector2i])
-proc clearKerningMap*(self: Ref[FontFile]; cacheIndex: int32; size: int32) =
+proc clearKerningMap*(self: FontFile; cacheIndex: int32; size: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "clear_kerning_map"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 3937882851)
   var `?param` = [getPtr cacheIndex, getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removeKerning*(self: Ref[FontFile]; cacheIndex: int32; size: int32; glyphPair: Vector2i) =
+proc removeKerning*(self: FontFile; cacheIndex: int32; size: int32; glyphPair: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_kerning"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 3930204747)
   var `?param` = [getPtr cacheIndex, getPtr size, getPtr glyphPair]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setKerning*(self: Ref[FontFile]; cacheIndex: int32; size: int32; glyphPair: Vector2i; kerning: Vector2) =
+proc setKerning*(self: FontFile; cacheIndex: int32; size: int32; glyphPair: Vector2i; kerning: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_kerning"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 3182200918)
   var `?param` = [getPtr cacheIndex, getPtr size, getPtr glyphPair, getPtr kerning]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getKerning*(self: Ref[FontFile]; cacheIndex: int32; size: int32; glyphPair: Vector2i): Vector2 =
+proc getKerning*(self: FontFile; cacheIndex: int32; size: int32; glyphPair: Vector2i): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_kerning"
@@ -622,28 +622,28 @@ proc getKerning*(self: Ref[FontFile]; cacheIndex: int32; size: int32; glyphPair:
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2)
-proc renderRange*(self: Ref[FontFile]; cacheIndex: int32; size: Vector2i; start: Int; `end`: Int) =
+proc renderRange*(self: FontFile; cacheIndex: int32; size: Vector2i; start: Int; `end`: Int) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "render_range"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 355564111)
   var `?param` = [getPtr cacheIndex, getPtr size, getPtr start, getPtr `end`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc renderGlyph*(self: Ref[FontFile]; cacheIndex: int32; size: Vector2i; index: int32) =
+proc renderGlyph*(self: FontFile; cacheIndex: int32; size: Vector2i; index: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "render_glyph"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 2328951467)
   var `?param` = [getPtr cacheIndex, getPtr size, getPtr index]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setLanguageSupportOverride*(self: Ref[FontFile]; language: String; supported: Bool) =
+proc setLanguageSupportOverride*(self: FontFile; language: String; supported: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_language_support_override"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 2678287736)
   var `?param` = [getPtr language, getPtr supported]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getLanguageSupportOverride*(self: Ref[FontFile]; language: String): Bool =
+proc getLanguageSupportOverride*(self: FontFile; language: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_language_support_override"
@@ -652,14 +652,14 @@ proc getLanguageSupportOverride*(self: Ref[FontFile]; language: String): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc removeLanguageSupportOverride*(self: Ref[FontFile]; language: String) =
+proc removeLanguageSupportOverride*(self: FontFile; language: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_language_support_override"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 83702148)
   var `?param` = [getPtr language]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getLanguageSupportOverrides*(self: Ref[FontFile]): PackedStringArray =
+proc getLanguageSupportOverrides*(self: FontFile): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_language_support_overrides"
@@ -667,14 +667,14 @@ proc getLanguageSupportOverrides*(self: Ref[FontFile]): PackedStringArray =
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(PackedStringArray)
-proc setScriptSupportOverride*(self: Ref[FontFile]; script: String; supported: Bool) =
+proc setScriptSupportOverride*(self: FontFile; script: String; supported: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_script_support_override"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 2678287736)
   var `?param` = [getPtr script, getPtr supported]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getScriptSupportOverride*(self: Ref[FontFile]; script: String): Bool =
+proc getScriptSupportOverride*(self: FontFile; script: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_script_support_override"
@@ -683,14 +683,14 @@ proc getScriptSupportOverride*(self: Ref[FontFile]; script: String): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc removeScriptSupportOverride*(self: Ref[FontFile]; script: String) =
+proc removeScriptSupportOverride*(self: FontFile; script: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_script_support_override"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 83702148)
   var `?param` = [getPtr script]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getScriptSupportOverrides*(self: Ref[FontFile]): PackedStringArray =
+proc getScriptSupportOverrides*(self: FontFile): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_script_support_overrides"
@@ -698,14 +698,14 @@ proc getScriptSupportOverrides*(self: Ref[FontFile]): PackedStringArray =
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(PackedStringArray)
-proc `opentypeFeatureOverrides=`*(self: Ref[FontFile]; overrides: Dictionary) =
+proc `opentypeFeatureOverrides=`*(self: FontFile; overrides: Dictionary) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_opentype_feature_overrides"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 4155329257)
   var `?param` = [getPtr overrides]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc opentypeFeatureOverrides*(self: Ref[FontFile]): Dictionary =
+proc opentypeFeatureOverrides*(self: FontFile): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_opentype_feature_overrides"
@@ -713,7 +713,7 @@ proc opentypeFeatureOverrides*(self: Ref[FontFile]): Dictionary =
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Dictionary)
-proc getGlyphIndex*(self: Ref[FontFile]; size: int32; char: Int; variationSelector: Int): int32 =
+proc getGlyphIndex*(self: FontFile; size: int32; char: Int; variationSelector: Int): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_glyph_index"
@@ -722,7 +722,7 @@ proc getGlyphIndex*(self: Ref[FontFile]; size: int32; char: Int; variationSelect
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc getCharFromGlyphIndex*(self: Ref[FontFile]; size: int32; glyphIndex: int32): Int =
+proc getCharFromGlyphIndex*(self: FontFile; size: int32; glyphIndex: int32): Int =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_char_from_glyph_index"

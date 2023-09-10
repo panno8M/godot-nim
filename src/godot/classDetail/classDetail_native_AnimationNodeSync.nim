@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `useSync=`*(self: Ref[AnimationNodeSync]; enable: Bool) =
+proc `useSync=`*(self: AnimationNodeSync; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_use_sync"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeSync, addr name, 2586408642)
   var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isUsingSync*(self: Ref[AnimationNodeSync]): Bool =
+proc isUsingSync*(self: AnimationNodeSync): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_using_sync"

@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc open*(self: Ref[ZIPReader]; path: String): Error =
+proc open*(self: ZIPReader; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "open"
@@ -13,7 +13,7 @@ proc open*(self: Ref[ZIPReader]; path: String): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc close*(self: Ref[ZIPReader]): Error =
+proc close*(self: ZIPReader): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "close"
@@ -21,7 +21,7 @@ proc close*(self: Ref[ZIPReader]): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Error)
-proc getFiles*(self: Ref[ZIPReader]): PackedStringArray =
+proc getFiles*(self: ZIPReader): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_files"
@@ -29,7 +29,7 @@ proc getFiles*(self: Ref[ZIPReader]): PackedStringArray =
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(PackedStringArray)
-proc readFile*(self: Ref[ZIPReader]; path: String; caseSensitive: Bool = true): PackedByteArray =
+proc readFile*(self: ZIPReader; path: String; caseSensitive: Bool = true): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "read_file"

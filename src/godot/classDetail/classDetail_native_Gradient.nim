@@ -4,28 +4,28 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc addPoint*(self: Ref[Gradient]; offset: Float; color: Color) =
+proc addPoint*(self: Gradient; offset: Float; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_point"
     methodbind = interface_ClassDB_getMethodBind(addr className Gradient, addr name, 3629403827)
   var `?param` = [getPtr offset, getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removePoint*(self: Ref[Gradient]; point: int32) =
+proc removePoint*(self: Gradient; point: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_point"
     methodbind = interface_ClassDB_getMethodBind(addr className Gradient, addr name, 1286410249)
   var `?param` = [getPtr point]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setOffset*(self: Ref[Gradient]; point: int32; offset: Float) =
+proc setOffset*(self: Gradient; point: int32; offset: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className Gradient, addr name, 1602489585)
   var `?param` = [getPtr point, getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getOffset*(self: Ref[Gradient]; point: int32): Float =
+proc getOffset*(self: Gradient; point: int32): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_offset"
@@ -34,20 +34,20 @@ proc getOffset*(self: Ref[Gradient]; point: int32): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
-proc reverse*(self: Ref[Gradient]) =
+proc reverse*(self: Gradient) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "reverse"
     methodbind = interface_ClassDB_getMethodBind(addr className Gradient, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc setColor*(self: Ref[Gradient]; point: int32; color: Color) =
+proc setColor*(self: Gradient; point: int32; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_color"
     methodbind = interface_ClassDB_getMethodBind(addr className Gradient, addr name, 2878471219)
   var `?param` = [getPtr point, getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getColor*(self: Ref[Gradient]; point: int32): Color =
+proc getColor*(self: Gradient; point: int32): Color =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_color"
@@ -56,7 +56,7 @@ proc getColor*(self: Ref[Gradient]; point: int32): Color =
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Color)
-proc sample*(self: Ref[Gradient]; offset: Float): Color =
+proc sample*(self: Gradient; offset: Float): Color =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "sample"
@@ -65,7 +65,7 @@ proc sample*(self: Ref[Gradient]; offset: Float): Color =
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Color)
-proc getPointCount*(self: Ref[Gradient]): int32 =
+proc getPointCount*(self: Gradient): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_point_count"
@@ -73,14 +73,14 @@ proc getPointCount*(self: Ref[Gradient]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc `offsets=`*(self: Ref[Gradient]; offsets: PackedFloat32Array) =
+proc `offsets=`*(self: Gradient; offsets: PackedFloat32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_offsets"
     methodbind = interface_ClassDB_getMethodBind(addr className Gradient, addr name, 2899603908)
   var `?param` = [getPtr offsets]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc offsets*(self: Ref[Gradient]): PackedFloat32Array =
+proc offsets*(self: Gradient): PackedFloat32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_offsets"
@@ -88,14 +88,14 @@ proc offsets*(self: Ref[Gradient]): PackedFloat32Array =
   var ret: encoded PackedFloat32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(PackedFloat32Array)
-proc `colors=`*(self: Ref[Gradient]; colors: PackedColorArray) =
+proc `colors=`*(self: Gradient; colors: PackedColorArray) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_colors"
     methodbind = interface_ClassDB_getMethodBind(addr className Gradient, addr name, 3546319833)
   var `?param` = [getPtr colors]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc colors*(self: Ref[Gradient]): PackedColorArray =
+proc colors*(self: Gradient): PackedColorArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_colors"
@@ -103,14 +103,14 @@ proc colors*(self: Ref[Gradient]): PackedColorArray =
   var ret: encoded PackedColorArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(PackedColorArray)
-proc `interpolationMode=`*(self: Ref[Gradient]; interpolationMode: Gradient_InterpolationMode) =
+proc `interpolationMode=`*(self: Gradient; interpolationMode: Gradient_InterpolationMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_interpolation_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className Gradient, addr name, 1971444490)
   var `?param` = [getPtr interpolationMode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc interpolationMode*(self: Ref[Gradient]): Gradient_InterpolationMode =
+proc interpolationMode*(self: Gradient): Gradient_InterpolationMode =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_interpolation_mode"
@@ -118,14 +118,14 @@ proc interpolationMode*(self: Ref[Gradient]): Gradient_InterpolationMode =
   var ret: encoded Gradient_InterpolationMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Gradient_InterpolationMode)
-proc `interpolationColorSpace=`*(self: Ref[Gradient]; interpolationColorSpace: Gradient_ColorSpace) =
+proc `interpolationColorSpace=`*(self: Gradient; interpolationColorSpace: Gradient_ColorSpace) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_interpolation_color_space"
     methodbind = interface_ClassDB_getMethodBind(addr className Gradient, addr name, 3685995981)
   var `?param` = [getPtr interpolationColorSpace]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc interpolationColorSpace*(self: Ref[Gradient]): Gradient_ColorSpace =
+proc interpolationColorSpace*(self: Gradient): Gradient_ColorSpace =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_interpolation_color_space"

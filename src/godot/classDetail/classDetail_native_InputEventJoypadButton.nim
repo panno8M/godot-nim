@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `buttonIndex=`*(self: Ref[InputEventJoypadButton]; buttonIndex: JoyButton) =
+proc `buttonIndex=`*(self: InputEventJoypadButton; buttonIndex: JoyButton) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_button_index"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventJoypadButton, addr name, 1466368136)
   var `?param` = [getPtr buttonIndex]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc buttonIndex*(self: Ref[InputEventJoypadButton]): JoyButton =
+proc buttonIndex*(self: InputEventJoypadButton): JoyButton =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_button_index"
@@ -19,14 +19,14 @@ proc buttonIndex*(self: Ref[InputEventJoypadButton]): JoyButton =
   var ret: encoded JoyButton
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(JoyButton)
-proc `pressure=`*(self: Ref[InputEventJoypadButton]; pressure: Float) =
+proc `pressure=`*(self: InputEventJoypadButton; pressure: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_pressure"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventJoypadButton, addr name, 373806689)
   var `?param` = [getPtr pressure]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc pressure*(self: Ref[InputEventJoypadButton]): Float =
+proc pressure*(self: InputEventJoypadButton): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_pressure"
@@ -34,7 +34,7 @@ proc pressure*(self: Ref[InputEventJoypadButton]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `pressed=`*(self: Ref[InputEventJoypadButton]; pressed: Bool) =
+proc `pressed=`*(self: InputEventJoypadButton; pressed: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_pressed"

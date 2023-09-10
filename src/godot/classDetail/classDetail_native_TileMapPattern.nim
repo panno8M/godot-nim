@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc setCell*(self: Ref[TileMapPattern]; coords: Vector2i; sourceId: int32 = -1; atlasCoords: Vector2i = gdveci(-1, -1); alternativeTile: int32 = -1) =
+proc setCell*(self: TileMapPattern; coords: Vector2i; sourceId: int32 = -1; atlasCoords: Vector2i = gdveci(-1, -1); alternativeTile: int32 = -1) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_cell"
     methodbind = interface_ClassDB_getMethodBind(addr className TileMapPattern, addr name, 634000503)
   var `?param` = [getPtr coords, getPtr sourceId, getPtr atlasCoords, getPtr alternativeTile]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc hasCell*(self: Ref[TileMapPattern]; coords: Vector2i): Bool =
+proc hasCell*(self: TileMapPattern; coords: Vector2i): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "has_cell"
@@ -20,14 +20,14 @@ proc hasCell*(self: Ref[TileMapPattern]; coords: Vector2i): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc removeCell*(self: Ref[TileMapPattern]; coords: Vector2i; updateSize: Bool) =
+proc removeCell*(self: TileMapPattern; coords: Vector2i; updateSize: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_cell"
     methodbind = interface_ClassDB_getMethodBind(addr className TileMapPattern, addr name, 4153096796)
   var `?param` = [getPtr coords, getPtr updateSize]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getCellSourceId*(self: Ref[TileMapPattern]; coords: Vector2i): int32 =
+proc getCellSourceId*(self: TileMapPattern; coords: Vector2i): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_cell_source_id"
@@ -36,7 +36,7 @@ proc getCellSourceId*(self: Ref[TileMapPattern]; coords: Vector2i): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc getCellAtlasCoords*(self: Ref[TileMapPattern]; coords: Vector2i): Vector2i =
+proc getCellAtlasCoords*(self: TileMapPattern; coords: Vector2i): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_cell_atlas_coords"
@@ -45,7 +45,7 @@ proc getCellAtlasCoords*(self: Ref[TileMapPattern]; coords: Vector2i): Vector2i 
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2i)
-proc getCellAlternativeTile*(self: Ref[TileMapPattern]; coords: Vector2i): int32 =
+proc getCellAlternativeTile*(self: TileMapPattern; coords: Vector2i): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_cell_alternative_tile"
@@ -54,7 +54,7 @@ proc getCellAlternativeTile*(self: Ref[TileMapPattern]; coords: Vector2i): int32
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc getUsedCells*(self: Ref[TileMapPattern]): TypedArray[Vector2i] =
+proc getUsedCells*(self: TileMapPattern): TypedArray[Vector2i] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_used_cells"
@@ -62,7 +62,7 @@ proc getUsedCells*(self: Ref[TileMapPattern]): TypedArray[Vector2i] =
   var ret: encoded TypedArray[Vector2i]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(TypedArray[Vector2i])
-proc getSize*(self: Ref[TileMapPattern]): Vector2i =
+proc getSize*(self: TileMapPattern): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_size"
@@ -70,14 +70,14 @@ proc getSize*(self: Ref[TileMapPattern]): Vector2i =
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Vector2i)
-proc setSize*(self: Ref[TileMapPattern]; size: Vector2i) =
+proc setSize*(self: TileMapPattern; size: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_size"
     methodbind = interface_ClassDB_getMethodBind(addr className TileMapPattern, addr name, 1130785943)
   var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isEmpty*(self: Ref[TileMapPattern]): Bool =
+proc isEmpty*(self: TileMapPattern): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_empty"

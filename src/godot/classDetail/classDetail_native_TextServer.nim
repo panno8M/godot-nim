@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc hasFeature*(self: Ref[TextServer]; feature: TextServer_Feature): Bool =
+proc hasFeature*(self: TextServer; feature: TextServer_Feature): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "has_feature"
@@ -13,7 +13,7 @@ proc hasFeature*(self: Ref[TextServer]; feature: TextServer_Feature): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc getName*(self: Ref[TextServer]): String =
+proc getName*(self: TextServer): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_name"
@@ -21,7 +21,7 @@ proc getName*(self: Ref[TextServer]): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(String)
-proc getFeatures*(self: Ref[TextServer]): int64 =
+proc getFeatures*(self: TextServer): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_features"
@@ -29,7 +29,7 @@ proc getFeatures*(self: Ref[TextServer]): int64 =
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int64)
-proc loadSupportData*(self: Ref[TextServer]; filename: String): Bool =
+proc loadSupportData*(self: TextServer; filename: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "load_support_data"
@@ -38,7 +38,7 @@ proc loadSupportData*(self: Ref[TextServer]; filename: String): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc getSupportDataFilename*(self: Ref[TextServer]): String =
+proc getSupportDataFilename*(self: TextServer): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_support_data_filename"
@@ -46,7 +46,7 @@ proc getSupportDataFilename*(self: Ref[TextServer]): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(String)
-proc getSupportDataInfo*(self: Ref[TextServer]): String =
+proc getSupportDataInfo*(self: TextServer): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_support_data_info"
@@ -54,7 +54,7 @@ proc getSupportDataInfo*(self: Ref[TextServer]): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(String)
-proc saveSupportData*(self: Ref[TextServer]; filename: String): Bool =
+proc saveSupportData*(self: TextServer; filename: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "save_support_data"
@@ -63,7 +63,7 @@ proc saveSupportData*(self: Ref[TextServer]; filename: String): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc isLocaleRightToLeft*(self: Ref[TextServer]; locale: String): Bool =
+proc isLocaleRightToLeft*(self: TextServer; locale: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_locale_right_to_left"
@@ -72,7 +72,7 @@ proc isLocaleRightToLeft*(self: Ref[TextServer]; locale: String): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc nameToTag*(self: Ref[TextServer]; name: String): int64 =
+proc nameToTag*(self: TextServer; name: String): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "name_to_tag"
@@ -81,7 +81,7 @@ proc nameToTag*(self: Ref[TextServer]; name: String): int64 =
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
-proc tagToName*(self: Ref[TextServer]; tag: int64): String =
+proc tagToName*(self: TextServer; tag: int64): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "tag_to_name"
@@ -90,7 +90,7 @@ proc tagToName*(self: Ref[TextServer]; tag: int64): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc has*(self: Ref[TextServer]; rid: RID): Bool =
+proc has*(self: TextServer; rid: RID): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "has"
@@ -99,14 +99,14 @@ proc has*(self: Ref[TextServer]; rid: RID): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc freeRid*(self: Ref[TextServer]; rid: RID) =
+proc freeRid*(self: TextServer; rid: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "free_rid"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 2722037293)
   var `?param` = [getPtr rid]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc createFont*(self: Ref[TextServer]): RID =
+proc createFont*(self: TextServer): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_font"
@@ -114,21 +114,21 @@ proc createFont*(self: Ref[TextServer]): RID =
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(RID)
-proc fontSetData*(self: Ref[TextServer]; fontRid: RID; data: PackedByteArray) =
+proc fontSetData*(self: TextServer; fontRid: RID; data: PackedByteArray) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_data"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 1355495400)
   var `?param` = [getPtr fontRid, getPtr data]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontSetFaceIndex*(self: Ref[TextServer]; fontRid: RID; faceIndex: int64) =
+proc fontSetFaceIndex*(self: TextServer; fontRid: RID; faceIndex: int64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_face_index"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 3411492887)
   var `?param` = [getPtr fontRid, getPtr faceIndex]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetFaceIndex*(self: Ref[TextServer]; fontRid: RID): int64 =
+proc fontGetFaceIndex*(self: TextServer; fontRid: RID): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_face_index"
@@ -137,7 +137,7 @@ proc fontGetFaceIndex*(self: Ref[TextServer]; fontRid: RID): int64 =
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
-proc fontGetFaceCount*(self: Ref[TextServer]; fontRid: RID): int64 =
+proc fontGetFaceCount*(self: TextServer; fontRid: RID): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_face_count"
@@ -146,14 +146,14 @@ proc fontGetFaceCount*(self: Ref[TextServer]; fontRid: RID): int64 =
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
-proc fontSetStyle*(self: Ref[TextServer]; fontRid: RID; style: set[TextServer_FontStyle]) =
+proc fontSetStyle*(self: TextServer; fontRid: RID; style: set[TextServer_FontStyle]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_style"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 898466325)
   var `?param` = [getPtr fontRid, getPtr style]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetStyle*(self: Ref[TextServer]; fontRid: RID): set[TextServer_FontStyle] =
+proc fontGetStyle*(self: TextServer; fontRid: RID): set[TextServer_FontStyle] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_style"
@@ -162,14 +162,14 @@ proc fontGetStyle*(self: Ref[TextServer]; fontRid: RID): set[TextServer_FontStyl
   var ret: encoded set[TextServer_FontStyle]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(set[TextServer_FontStyle])
-proc fontSetName*(self: Ref[TextServer]; fontRid: RID; name: String) =
+proc fontSetName*(self: TextServer; fontRid: RID; name: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_name"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 2726140452)
   var `?param` = [getPtr fontRid, getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetName*(self: Ref[TextServer]; fontRid: RID): String =
+proc fontGetName*(self: TextServer; fontRid: RID): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_name"
@@ -178,7 +178,7 @@ proc fontGetName*(self: Ref[TextServer]; fontRid: RID): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc fontGetOtNameStrings*(self: Ref[TextServer]; fontRid: RID): Dictionary =
+proc fontGetOtNameStrings*(self: TextServer; fontRid: RID): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_ot_name_strings"
@@ -187,14 +187,14 @@ proc fontGetOtNameStrings*(self: Ref[TextServer]; fontRid: RID): Dictionary =
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Dictionary)
-proc fontSetStyleName*(self: Ref[TextServer]; fontRid: RID; name: String) =
+proc fontSetStyleName*(self: TextServer; fontRid: RID; name: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_style_name"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 2726140452)
   var `?param` = [getPtr fontRid, getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetStyleName*(self: Ref[TextServer]; fontRid: RID): String =
+proc fontGetStyleName*(self: TextServer; fontRid: RID): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_style_name"
@@ -203,14 +203,14 @@ proc fontGetStyleName*(self: Ref[TextServer]; fontRid: RID): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc fontSetWeight*(self: Ref[TextServer]; fontRid: RID; weight: int64) =
+proc fontSetWeight*(self: TextServer; fontRid: RID; weight: int64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_weight"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 3411492887)
   var `?param` = [getPtr fontRid, getPtr weight]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetWeight*(self: Ref[TextServer]; fontRid: RID): int64 =
+proc fontGetWeight*(self: TextServer; fontRid: RID): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_weight"
@@ -219,14 +219,14 @@ proc fontGetWeight*(self: Ref[TextServer]; fontRid: RID): int64 =
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
-proc fontSetStretch*(self: Ref[TextServer]; fontRid: RID; weight: int64) =
+proc fontSetStretch*(self: TextServer; fontRid: RID; weight: int64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_stretch"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 3411492887)
   var `?param` = [getPtr fontRid, getPtr weight]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetStretch*(self: Ref[TextServer]; fontRid: RID): int64 =
+proc fontGetStretch*(self: TextServer; fontRid: RID): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_stretch"
@@ -235,14 +235,14 @@ proc fontGetStretch*(self: Ref[TextServer]; fontRid: RID): int64 =
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
-proc fontSetAntialiasing*(self: Ref[TextServer]; fontRid: RID; antialiasing: TextServer_FontAntialiasing) =
+proc fontSetAntialiasing*(self: TextServer; fontRid: RID; antialiasing: TextServer_FontAntialiasing) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_antialiasing"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 958337235)
   var `?param` = [getPtr fontRid, getPtr antialiasing]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetAntialiasing*(self: Ref[TextServer]; fontRid: RID): TextServer_FontAntialiasing =
+proc fontGetAntialiasing*(self: TextServer; fontRid: RID): TextServer_FontAntialiasing =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_antialiasing"
@@ -251,14 +251,14 @@ proc fontGetAntialiasing*(self: Ref[TextServer]; fontRid: RID): TextServer_FontA
   var ret: encoded TextServer_FontAntialiasing
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TextServer_FontAntialiasing)
-proc fontSetGenerateMipmaps*(self: Ref[TextServer]; fontRid: RID; generateMipmaps: Bool) =
+proc fontSetGenerateMipmaps*(self: TextServer; fontRid: RID; generateMipmaps: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_generate_mipmaps"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 1265174801)
   var `?param` = [getPtr fontRid, getPtr generateMipmaps]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetGenerateMipmaps*(self: Ref[TextServer]; fontRid: RID): Bool =
+proc fontGetGenerateMipmaps*(self: TextServer; fontRid: RID): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_generate_mipmaps"
@@ -267,14 +267,14 @@ proc fontGetGenerateMipmaps*(self: Ref[TextServer]; fontRid: RID): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc fontSetMultichannelSignedDistanceField*(self: Ref[TextServer]; fontRid: RID; msdf: Bool) =
+proc fontSetMultichannelSignedDistanceField*(self: TextServer; fontRid: RID; msdf: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_multichannel_signed_distance_field"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 1265174801)
   var `?param` = [getPtr fontRid, getPtr msdf]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontIsMultichannelSignedDistanceField*(self: Ref[TextServer]; fontRid: RID): Bool =
+proc fontIsMultichannelSignedDistanceField*(self: TextServer; fontRid: RID): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_is_multichannel_signed_distance_field"
@@ -283,14 +283,14 @@ proc fontIsMultichannelSignedDistanceField*(self: Ref[TextServer]; fontRid: RID)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc fontSetMsdfPixelRange*(self: Ref[TextServer]; fontRid: RID; msdfPixelRange: int64) =
+proc fontSetMsdfPixelRange*(self: TextServer; fontRid: RID; msdfPixelRange: int64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_msdf_pixel_range"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 3411492887)
   var `?param` = [getPtr fontRid, getPtr msdfPixelRange]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetMsdfPixelRange*(self: Ref[TextServer]; fontRid: RID): int64 =
+proc fontGetMsdfPixelRange*(self: TextServer; fontRid: RID): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_msdf_pixel_range"
@@ -299,14 +299,14 @@ proc fontGetMsdfPixelRange*(self: Ref[TextServer]; fontRid: RID): int64 =
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
-proc fontSetMsdfSize*(self: Ref[TextServer]; fontRid: RID; msdfSize: int64) =
+proc fontSetMsdfSize*(self: TextServer; fontRid: RID; msdfSize: int64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_msdf_size"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 3411492887)
   var `?param` = [getPtr fontRid, getPtr msdfSize]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetMsdfSize*(self: Ref[TextServer]; fontRid: RID): int64 =
+proc fontGetMsdfSize*(self: TextServer; fontRid: RID): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_msdf_size"
@@ -315,14 +315,14 @@ proc fontGetMsdfSize*(self: Ref[TextServer]; fontRid: RID): int64 =
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
-proc fontSetFixedSize*(self: Ref[TextServer]; fontRid: RID; fixedSize: int64) =
+proc fontSetFixedSize*(self: TextServer; fontRid: RID; fixedSize: int64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_fixed_size"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 3411492887)
   var `?param` = [getPtr fontRid, getPtr fixedSize]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetFixedSize*(self: Ref[TextServer]; fontRid: RID): int64 =
+proc fontGetFixedSize*(self: TextServer; fontRid: RID): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_fixed_size"
@@ -331,14 +331,14 @@ proc fontGetFixedSize*(self: Ref[TextServer]; fontRid: RID): int64 =
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
-proc fontSetAllowSystemFallback*(self: Ref[TextServer]; fontRid: RID; allowSystemFallback: Bool) =
+proc fontSetAllowSystemFallback*(self: TextServer; fontRid: RID; allowSystemFallback: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_allow_system_fallback"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 1265174801)
   var `?param` = [getPtr fontRid, getPtr allowSystemFallback]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontIsAllowSystemFallback*(self: Ref[TextServer]; fontRid: RID): Bool =
+proc fontIsAllowSystemFallback*(self: TextServer; fontRid: RID): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_is_allow_system_fallback"
@@ -347,14 +347,14 @@ proc fontIsAllowSystemFallback*(self: Ref[TextServer]; fontRid: RID): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc fontSetForceAutohinter*(self: Ref[TextServer]; fontRid: RID; forceAutohinter: Bool) =
+proc fontSetForceAutohinter*(self: TextServer; fontRid: RID; forceAutohinter: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_force_autohinter"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 1265174801)
   var `?param` = [getPtr fontRid, getPtr forceAutohinter]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontIsForceAutohinter*(self: Ref[TextServer]; fontRid: RID): Bool =
+proc fontIsForceAutohinter*(self: TextServer; fontRid: RID): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_is_force_autohinter"
@@ -363,14 +363,14 @@ proc fontIsForceAutohinter*(self: Ref[TextServer]; fontRid: RID): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc fontSetHinting*(self: Ref[TextServer]; fontRid: RID; hinting: TextServer_Hinting) =
+proc fontSetHinting*(self: TextServer; fontRid: RID; hinting: TextServer_Hinting) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_hinting"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 1520010864)
   var `?param` = [getPtr fontRid, getPtr hinting]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetHinting*(self: Ref[TextServer]; fontRid: RID): TextServer_Hinting =
+proc fontGetHinting*(self: TextServer; fontRid: RID): TextServer_Hinting =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_hinting"
@@ -379,14 +379,14 @@ proc fontGetHinting*(self: Ref[TextServer]; fontRid: RID): TextServer_Hinting =
   var ret: encoded TextServer_Hinting
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TextServer_Hinting)
-proc fontSetSubpixelPositioning*(self: Ref[TextServer]; fontRid: RID; subpixelPositioning: TextServer_SubpixelPositioning) =
+proc fontSetSubpixelPositioning*(self: TextServer; fontRid: RID; subpixelPositioning: TextServer_SubpixelPositioning) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_subpixel_positioning"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 3830459669)
   var `?param` = [getPtr fontRid, getPtr subpixelPositioning]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetSubpixelPositioning*(self: Ref[TextServer]; fontRid: RID): TextServer_SubpixelPositioning =
+proc fontGetSubpixelPositioning*(self: TextServer; fontRid: RID): TextServer_SubpixelPositioning =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_subpixel_positioning"
@@ -395,14 +395,14 @@ proc fontGetSubpixelPositioning*(self: Ref[TextServer]; fontRid: RID): TextServe
   var ret: encoded TextServer_SubpixelPositioning
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TextServer_SubpixelPositioning)
-proc fontSetEmbolden*(self: Ref[TextServer]; fontRid: RID; strength: float64) =
+proc fontSetEmbolden*(self: TextServer; fontRid: RID; strength: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_embolden"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 1794382983)
   var `?param` = [getPtr fontRid, getPtr strength]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetEmbolden*(self: Ref[TextServer]; fontRid: RID): float64 =
+proc fontGetEmbolden*(self: TextServer; fontRid: RID): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_embolden"
@@ -411,14 +411,14 @@ proc fontGetEmbolden*(self: Ref[TextServer]; fontRid: RID): float64 =
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(float64)
-proc fontSetTransform*(self: Ref[TextServer]; fontRid: RID; transform: Transform2D) =
+proc fontSetTransform*(self: TextServer; fontRid: RID; transform: Transform2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_transform"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 1246044741)
   var `?param` = [getPtr fontRid, getPtr transform]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetTransform*(self: Ref[TextServer]; fontRid: RID): Transform2D =
+proc fontGetTransform*(self: TextServer; fontRid: RID): Transform2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_transform"
@@ -427,14 +427,14 @@ proc fontGetTransform*(self: Ref[TextServer]; fontRid: RID): Transform2D =
   var ret: encoded Transform2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Transform2D)
-proc fontSetVariationCoordinates*(self: Ref[TextServer]; fontRid: RID; variationCoordinates: Dictionary) =
+proc fontSetVariationCoordinates*(self: TextServer; fontRid: RID; variationCoordinates: Dictionary) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_variation_coordinates"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 1217542888)
   var `?param` = [getPtr fontRid, getPtr variationCoordinates]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetVariationCoordinates*(self: Ref[TextServer]; fontRid: RID): Dictionary =
+proc fontGetVariationCoordinates*(self: TextServer; fontRid: RID): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_variation_coordinates"
@@ -443,14 +443,14 @@ proc fontGetVariationCoordinates*(self: Ref[TextServer]; fontRid: RID): Dictiona
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Dictionary)
-proc fontSetOversampling*(self: Ref[TextServer]; fontRid: RID; oversampling: float64) =
+proc fontSetOversampling*(self: TextServer; fontRid: RID; oversampling: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_oversampling"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 1794382983)
   var `?param` = [getPtr fontRid, getPtr oversampling]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetOversampling*(self: Ref[TextServer]; fontRid: RID): float64 =
+proc fontGetOversampling*(self: TextServer; fontRid: RID): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_oversampling"
@@ -459,7 +459,7 @@ proc fontGetOversampling*(self: Ref[TextServer]; fontRid: RID): float64 =
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(float64)
-proc fontGetSizeCacheList*(self: Ref[TextServer]; fontRid: RID): TypedArray[Vector2i] =
+proc fontGetSizeCacheList*(self: TextServer; fontRid: RID): TypedArray[Vector2i] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_size_cache_list"
@@ -468,28 +468,28 @@ proc fontGetSizeCacheList*(self: Ref[TextServer]; fontRid: RID): TypedArray[Vect
   var ret: encoded TypedArray[Vector2i]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TypedArray[Vector2i])
-proc fontClearSizeCache*(self: Ref[TextServer]; fontRid: RID) =
+proc fontClearSizeCache*(self: TextServer; fontRid: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_clear_size_cache"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 2722037293)
   var `?param` = [getPtr fontRid]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontRemoveSizeCache*(self: Ref[TextServer]; fontRid: RID; size: Vector2i) =
+proc fontRemoveSizeCache*(self: TextServer; fontRid: RID; size: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_remove_size_cache"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 2450610377)
   var `?param` = [getPtr fontRid, getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontSetAscent*(self: Ref[TextServer]; fontRid: RID; size: int64; ascent: float64) =
+proc fontSetAscent*(self: TextServer; fontRid: RID; size: int64; ascent: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_ascent"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 1892459533)
   var `?param` = [getPtr fontRid, getPtr size, getPtr ascent]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetAscent*(self: Ref[TextServer]; fontRid: RID; size: int64): float64 =
+proc fontGetAscent*(self: TextServer; fontRid: RID; size: int64): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_ascent"
@@ -498,14 +498,14 @@ proc fontGetAscent*(self: Ref[TextServer]; fontRid: RID; size: int64): float64 =
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(float64)
-proc fontSetDescent*(self: Ref[TextServer]; fontRid: RID; size: int64; descent: float64) =
+proc fontSetDescent*(self: TextServer; fontRid: RID; size: int64; descent: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_descent"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 1892459533)
   var `?param` = [getPtr fontRid, getPtr size, getPtr descent]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetDescent*(self: Ref[TextServer]; fontRid: RID; size: int64): float64 =
+proc fontGetDescent*(self: TextServer; fontRid: RID; size: int64): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_descent"
@@ -514,14 +514,14 @@ proc fontGetDescent*(self: Ref[TextServer]; fontRid: RID; size: int64): float64 
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(float64)
-proc fontSetUnderlinePosition*(self: Ref[TextServer]; fontRid: RID; size: int64; underlinePosition: float64) =
+proc fontSetUnderlinePosition*(self: TextServer; fontRid: RID; size: int64; underlinePosition: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_underline_position"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 1892459533)
   var `?param` = [getPtr fontRid, getPtr size, getPtr underlinePosition]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetUnderlinePosition*(self: Ref[TextServer]; fontRid: RID; size: int64): float64 =
+proc fontGetUnderlinePosition*(self: TextServer; fontRid: RID; size: int64): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_underline_position"
@@ -530,14 +530,14 @@ proc fontGetUnderlinePosition*(self: Ref[TextServer]; fontRid: RID; size: int64)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(float64)
-proc fontSetUnderlineThickness*(self: Ref[TextServer]; fontRid: RID; size: int64; underlineThickness: float64) =
+proc fontSetUnderlineThickness*(self: TextServer; fontRid: RID; size: int64; underlineThickness: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_underline_thickness"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 1892459533)
   var `?param` = [getPtr fontRid, getPtr size, getPtr underlineThickness]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetUnderlineThickness*(self: Ref[TextServer]; fontRid: RID; size: int64): float64 =
+proc fontGetUnderlineThickness*(self: TextServer; fontRid: RID; size: int64): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_underline_thickness"
@@ -546,14 +546,14 @@ proc fontGetUnderlineThickness*(self: Ref[TextServer]; fontRid: RID; size: int64
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(float64)
-proc fontSetScale*(self: Ref[TextServer]; fontRid: RID; size: int64; scale: float64) =
+proc fontSetScale*(self: TextServer; fontRid: RID; size: int64; scale: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_scale"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 1892459533)
   var `?param` = [getPtr fontRid, getPtr size, getPtr scale]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetScale*(self: Ref[TextServer]; fontRid: RID; size: int64): float64 =
+proc fontGetScale*(self: TextServer; fontRid: RID; size: int64): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_scale"
@@ -562,7 +562,7 @@ proc fontGetScale*(self: Ref[TextServer]; fontRid: RID; size: int64): float64 =
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(float64)
-proc fontGetTextureCount*(self: Ref[TextServer]; fontRid: RID; size: Vector2i): int64 =
+proc fontGetTextureCount*(self: TextServer; fontRid: RID; size: Vector2i): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_texture_count"
@@ -571,44 +571,44 @@ proc fontGetTextureCount*(self: Ref[TextServer]; fontRid: RID; size: Vector2i): 
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
-proc fontClearTextures*(self: Ref[TextServer]; fontRid: RID; size: Vector2i) =
+proc fontClearTextures*(self: TextServer; fontRid: RID; size: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_clear_textures"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 2450610377)
   var `?param` = [getPtr fontRid, getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontRemoveTexture*(self: Ref[TextServer]; fontRid: RID; size: Vector2i; textureIndex: int64) =
+proc fontRemoveTexture*(self: TextServer; fontRid: RID; size: Vector2i; textureIndex: int64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_remove_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 3810512262)
   var `?param` = [getPtr fontRid, getPtr size, getPtr textureIndex]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontSetTextureImage*(self: Ref[TextServer]; fontRid: RID; size: Vector2i; textureIndex: int64; image: Ref[Image]) =
+proc fontSetTextureImage*(self: TextServer; fontRid: RID; size: Vector2i; textureIndex: int64; image: Image) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_texture_image"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 2354485091)
   var `?param` = [getPtr fontRid, getPtr size, getPtr textureIndex, getPtr image]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetTextureImage*(self: Ref[TextServer]; fontRid: RID; size: Vector2i; textureIndex: int64): Ref[Image] =
+proc fontGetTextureImage*(self: TextServer; fontRid: RID; size: Vector2i; textureIndex: int64): Image =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_texture_image"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 2451761155)
   var `?param` = [getPtr fontRid, getPtr size, getPtr textureIndex]
-  var ret: encoded Ref[Image]
+  var ret: encoded Image
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[Image])
-proc fontSetTextureOffsets*(self: Ref[TextServer]; fontRid: RID; size: Vector2i; textureIndex: int64; offset: PackedInt32Array) =
+  (addr ret).decode(Image)
+proc fontSetTextureOffsets*(self: TextServer; fontRid: RID; size: Vector2i; textureIndex: int64; offset: PackedInt32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_texture_offsets"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 3005398047)
   var `?param` = [getPtr fontRid, getPtr size, getPtr textureIndex, getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetTextureOffsets*(self: Ref[TextServer]; fontRid: RID; size: Vector2i; textureIndex: int64): PackedInt32Array =
+proc fontGetTextureOffsets*(self: TextServer; fontRid: RID; size: Vector2i; textureIndex: int64): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_texture_offsets"
@@ -617,7 +617,7 @@ proc fontGetTextureOffsets*(self: Ref[TextServer]; fontRid: RID; size: Vector2i;
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedInt32Array)
-proc fontGetGlyphList*(self: Ref[TextServer]; fontRid: RID; size: Vector2i): PackedInt32Array =
+proc fontGetGlyphList*(self: TextServer; fontRid: RID; size: Vector2i): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_glyph_list"
@@ -626,21 +626,21 @@ proc fontGetGlyphList*(self: Ref[TextServer]; fontRid: RID; size: Vector2i): Pac
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedInt32Array)
-proc fontClearGlyphs*(self: Ref[TextServer]; fontRid: RID; size: Vector2i) =
+proc fontClearGlyphs*(self: TextServer; fontRid: RID; size: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_clear_glyphs"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 2450610377)
   var `?param` = [getPtr fontRid, getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontRemoveGlyph*(self: Ref[TextServer]; fontRid: RID; size: Vector2i; glyph: int64) =
+proc fontRemoveGlyph*(self: TextServer; fontRid: RID; size: Vector2i; glyph: int64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_remove_glyph"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 3810512262)
   var `?param` = [getPtr fontRid, getPtr size, getPtr glyph]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetGlyphAdvance*(self: Ref[TextServer]; fontRid: RID; size: int64; glyph: int64): Vector2 =
+proc fontGetGlyphAdvance*(self: TextServer; fontRid: RID; size: int64; glyph: int64): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_glyph_advance"
@@ -649,14 +649,14 @@ proc fontGetGlyphAdvance*(self: Ref[TextServer]; fontRid: RID; size: int64; glyp
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2)
-proc fontSetGlyphAdvance*(self: Ref[TextServer]; fontRid: RID; size: int64; glyph: int64; advance: Vector2) =
+proc fontSetGlyphAdvance*(self: TextServer; fontRid: RID; size: int64; glyph: int64; advance: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_glyph_advance"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 3219397315)
   var `?param` = [getPtr fontRid, getPtr size, getPtr glyph, getPtr advance]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetGlyphOffset*(self: Ref[TextServer]; fontRid: RID; size: Vector2i; glyph: int64): Vector2 =
+proc fontGetGlyphOffset*(self: TextServer; fontRid: RID; size: Vector2i; glyph: int64): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_glyph_offset"
@@ -665,14 +665,14 @@ proc fontGetGlyphOffset*(self: Ref[TextServer]; fontRid: RID; size: Vector2i; gl
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2)
-proc fontSetGlyphOffset*(self: Ref[TextServer]; fontRid: RID; size: Vector2i; glyph: int64; offset: Vector2) =
+proc fontSetGlyphOffset*(self: TextServer; fontRid: RID; size: Vector2i; glyph: int64; offset: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_glyph_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 1812632090)
   var `?param` = [getPtr fontRid, getPtr size, getPtr glyph, getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetGlyphSize*(self: Ref[TextServer]; fontRid: RID; size: Vector2i; glyph: int64): Vector2 =
+proc fontGetGlyphSize*(self: TextServer; fontRid: RID; size: Vector2i; glyph: int64): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_glyph_size"
@@ -681,14 +681,14 @@ proc fontGetGlyphSize*(self: Ref[TextServer]; fontRid: RID; size: Vector2i; glyp
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2)
-proc fontSetGlyphSize*(self: Ref[TextServer]; fontRid: RID; size: Vector2i; glyph: int64; glSize: Vector2) =
+proc fontSetGlyphSize*(self: TextServer; fontRid: RID; size: Vector2i; glyph: int64; glSize: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_glyph_size"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 1812632090)
   var `?param` = [getPtr fontRid, getPtr size, getPtr glyph, getPtr glSize]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetGlyphUvRect*(self: Ref[TextServer]; fontRid: RID; size: Vector2i; glyph: int64): Rect2 =
+proc fontGetGlyphUvRect*(self: TextServer; fontRid: RID; size: Vector2i; glyph: int64): Rect2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_glyph_uv_rect"
@@ -697,14 +697,14 @@ proc fontGetGlyphUvRect*(self: Ref[TextServer]; fontRid: RID; size: Vector2i; gl
   var ret: encoded Rect2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Rect2)
-proc fontSetGlyphUvRect*(self: Ref[TextServer]; fontRid: RID; size: Vector2i; glyph: int64; uvRect: Rect2) =
+proc fontSetGlyphUvRect*(self: TextServer; fontRid: RID; size: Vector2i; glyph: int64; uvRect: Rect2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_glyph_uv_rect"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 1973324081)
   var `?param` = [getPtr fontRid, getPtr size, getPtr glyph, getPtr uvRect]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetGlyphTextureIdx*(self: Ref[TextServer]; fontRid: RID; size: Vector2i; glyph: int64): int64 =
+proc fontGetGlyphTextureIdx*(self: TextServer; fontRid: RID; size: Vector2i; glyph: int64): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_glyph_texture_idx"
@@ -713,14 +713,14 @@ proc fontGetGlyphTextureIdx*(self: Ref[TextServer]; fontRid: RID; size: Vector2i
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
-proc fontSetGlyphTextureIdx*(self: Ref[TextServer]; fontRid: RID; size: Vector2i; glyph: int64; textureIdx: int64) =
+proc fontSetGlyphTextureIdx*(self: TextServer; fontRid: RID; size: Vector2i; glyph: int64; textureIdx: int64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_glyph_texture_idx"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 4254580980)
   var `?param` = [getPtr fontRid, getPtr size, getPtr glyph, getPtr textureIdx]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetGlyphTextureRid*(self: Ref[TextServer]; fontRid: RID; size: Vector2i; glyph: int64): RID =
+proc fontGetGlyphTextureRid*(self: TextServer; fontRid: RID; size: Vector2i; glyph: int64): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_glyph_texture_rid"
@@ -729,7 +729,7 @@ proc fontGetGlyphTextureRid*(self: Ref[TextServer]; fontRid: RID; size: Vector2i
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(RID)
-proc fontGetGlyphTextureSize*(self: Ref[TextServer]; fontRid: RID; size: Vector2i; glyph: int64): Vector2 =
+proc fontGetGlyphTextureSize*(self: TextServer; fontRid: RID; size: Vector2i; glyph: int64): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_glyph_texture_size"
@@ -738,7 +738,7 @@ proc fontGetGlyphTextureSize*(self: Ref[TextServer]; fontRid: RID; size: Vector2
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2)
-proc fontGetGlyphContours*(self: Ref[TextServer]; font: RID; size: int64; index: int64): Dictionary =
+proc fontGetGlyphContours*(self: TextServer; font: RID; size: int64; index: int64): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_glyph_contours"
@@ -747,7 +747,7 @@ proc fontGetGlyphContours*(self: Ref[TextServer]; font: RID; size: int64; index:
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Dictionary)
-proc fontGetKerningList*(self: Ref[TextServer]; fontRid: RID; size: int64): TypedArray[Vector2i] =
+proc fontGetKerningList*(self: TextServer; fontRid: RID; size: int64): TypedArray[Vector2i] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_kerning_list"
@@ -756,28 +756,28 @@ proc fontGetKerningList*(self: Ref[TextServer]; fontRid: RID; size: int64): Type
   var ret: encoded TypedArray[Vector2i]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TypedArray[Vector2i])
-proc fontClearKerningMap*(self: Ref[TextServer]; fontRid: RID; size: int64) =
+proc fontClearKerningMap*(self: TextServer; fontRid: RID; size: int64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_clear_kerning_map"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 3411492887)
   var `?param` = [getPtr fontRid, getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontRemoveKerning*(self: Ref[TextServer]; fontRid: RID; size: int64; glyphPair: Vector2i) =
+proc fontRemoveKerning*(self: TextServer; fontRid: RID; size: int64; glyphPair: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_remove_kerning"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 2141860016)
   var `?param` = [getPtr fontRid, getPtr size, getPtr glyphPair]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontSetKerning*(self: Ref[TextServer]; fontRid: RID; size: int64; glyphPair: Vector2i; kerning: Vector2) =
+proc fontSetKerning*(self: TextServer; fontRid: RID; size: int64; glyphPair: Vector2i; kerning: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_kerning"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 3630965883)
   var `?param` = [getPtr fontRid, getPtr size, getPtr glyphPair, getPtr kerning]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetKerning*(self: Ref[TextServer]; fontRid: RID; size: int64; glyphPair: Vector2i): Vector2 =
+proc fontGetKerning*(self: TextServer; fontRid: RID; size: int64; glyphPair: Vector2i): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_kerning"
@@ -786,7 +786,7 @@ proc fontGetKerning*(self: Ref[TextServer]; fontRid: RID; size: int64; glyphPair
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2)
-proc fontGetGlyphIndex*(self: Ref[TextServer]; fontRid: RID; size: int64; char: int64; variationSelector: int64): int64 =
+proc fontGetGlyphIndex*(self: TextServer; fontRid: RID; size: int64; char: int64; variationSelector: int64): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_glyph_index"
@@ -795,7 +795,7 @@ proc fontGetGlyphIndex*(self: Ref[TextServer]; fontRid: RID; size: int64; char: 
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
-proc fontGetCharFromGlyphIndex*(self: Ref[TextServer]; fontRid: RID; size: int64; glyphIndex: int64): int64 =
+proc fontGetCharFromGlyphIndex*(self: TextServer; fontRid: RID; size: int64; glyphIndex: int64): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_char_from_glyph_index"
@@ -804,7 +804,7 @@ proc fontGetCharFromGlyphIndex*(self: Ref[TextServer]; fontRid: RID; size: int64
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
-proc fontHasChar*(self: Ref[TextServer]; fontRid: RID; char: int64): Bool =
+proc fontHasChar*(self: TextServer; fontRid: RID; char: int64): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_has_char"
@@ -813,7 +813,7 @@ proc fontHasChar*(self: Ref[TextServer]; fontRid: RID; char: int64): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc fontGetSupportedChars*(self: Ref[TextServer]; fontRid: RID): String =
+proc fontGetSupportedChars*(self: TextServer; fontRid: RID): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_supported_chars"
@@ -822,35 +822,35 @@ proc fontGetSupportedChars*(self: Ref[TextServer]; fontRid: RID): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc fontRenderRange*(self: Ref[TextServer]; fontRid: RID; size: Vector2i; start: int64; `end`: int64) =
+proc fontRenderRange*(self: TextServer; fontRid: RID; size: Vector2i; start: int64; `end`: int64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_render_range"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 4254580980)
   var `?param` = [getPtr fontRid, getPtr size, getPtr start, getPtr `end`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontRenderGlyph*(self: Ref[TextServer]; fontRid: RID; size: Vector2i; index: int64) =
+proc fontRenderGlyph*(self: TextServer; fontRid: RID; size: Vector2i; index: int64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_render_glyph"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 3810512262)
   var `?param` = [getPtr fontRid, getPtr size, getPtr index]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontDrawGlyph*(self: Ref[TextServer]; fontRid: RID; canvas: RID; size: int64; pos: Vector2; index: int64; color: Color = init_Color(1, 1, 1, 1)) =
+proc fontDrawGlyph*(self: TextServer; fontRid: RID; canvas: RID; size: int64; pos: Vector2; index: int64; color: Color = init_Color(1, 1, 1, 1)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_draw_glyph"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 1821196351)
   var `?param` = [getPtr fontRid, getPtr canvas, getPtr size, getPtr pos, getPtr index, getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontDrawGlyphOutline*(self: Ref[TextServer]; fontRid: RID; canvas: RID; size: int64; outlineSize: int64; pos: Vector2; index: int64; color: Color = init_Color(1, 1, 1, 1)) =
+proc fontDrawGlyphOutline*(self: TextServer; fontRid: RID; canvas: RID; size: int64; outlineSize: int64; pos: Vector2; index: int64; color: Color = init_Color(1, 1, 1, 1)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_draw_glyph_outline"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 1124898203)
   var `?param` = [getPtr fontRid, getPtr canvas, getPtr size, getPtr outlineSize, getPtr pos, getPtr index, getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontIsLanguageSupported*(self: Ref[TextServer]; fontRid: RID; language: String): Bool =
+proc fontIsLanguageSupported*(self: TextServer; fontRid: RID; language: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_is_language_supported"
@@ -859,14 +859,14 @@ proc fontIsLanguageSupported*(self: Ref[TextServer]; fontRid: RID; language: Str
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc fontSetLanguageSupportOverride*(self: Ref[TextServer]; fontRid: RID; language: String; supported: Bool) =
+proc fontSetLanguageSupportOverride*(self: TextServer; fontRid: RID; language: String; supported: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_language_support_override"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 2313957094)
   var `?param` = [getPtr fontRid, getPtr language, getPtr supported]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetLanguageSupportOverride*(self: Ref[TextServer]; fontRid: RID; language: String): Bool =
+proc fontGetLanguageSupportOverride*(self: TextServer; fontRid: RID; language: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_language_support_override"
@@ -875,14 +875,14 @@ proc fontGetLanguageSupportOverride*(self: Ref[TextServer]; fontRid: RID; langua
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc fontRemoveLanguageSupportOverride*(self: Ref[TextServer]; fontRid: RID; language: String) =
+proc fontRemoveLanguageSupportOverride*(self: TextServer; fontRid: RID; language: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_remove_language_support_override"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 2726140452)
   var `?param` = [getPtr fontRid, getPtr language]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetLanguageSupportOverrides*(self: Ref[TextServer]; fontRid: RID): PackedStringArray =
+proc fontGetLanguageSupportOverrides*(self: TextServer; fontRid: RID): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_language_support_overrides"
@@ -891,7 +891,7 @@ proc fontGetLanguageSupportOverrides*(self: Ref[TextServer]; fontRid: RID): Pack
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedStringArray)
-proc fontIsScriptSupported*(self: Ref[TextServer]; fontRid: RID; script: String): Bool =
+proc fontIsScriptSupported*(self: TextServer; fontRid: RID; script: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_is_script_supported"
@@ -900,14 +900,14 @@ proc fontIsScriptSupported*(self: Ref[TextServer]; fontRid: RID; script: String)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc fontSetScriptSupportOverride*(self: Ref[TextServer]; fontRid: RID; script: String; supported: Bool) =
+proc fontSetScriptSupportOverride*(self: TextServer; fontRid: RID; script: String; supported: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_script_support_override"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 2313957094)
   var `?param` = [getPtr fontRid, getPtr script, getPtr supported]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetScriptSupportOverride*(self: Ref[TextServer]; fontRid: RID; script: String): Bool =
+proc fontGetScriptSupportOverride*(self: TextServer; fontRid: RID; script: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_script_support_override"
@@ -916,14 +916,14 @@ proc fontGetScriptSupportOverride*(self: Ref[TextServer]; fontRid: RID; script: 
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc fontRemoveScriptSupportOverride*(self: Ref[TextServer]; fontRid: RID; script: String) =
+proc fontRemoveScriptSupportOverride*(self: TextServer; fontRid: RID; script: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_remove_script_support_override"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 2726140452)
   var `?param` = [getPtr fontRid, getPtr script]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetScriptSupportOverrides*(self: Ref[TextServer]; fontRid: RID): PackedStringArray =
+proc fontGetScriptSupportOverrides*(self: TextServer; fontRid: RID): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_script_support_overrides"
@@ -932,14 +932,14 @@ proc fontGetScriptSupportOverrides*(self: Ref[TextServer]; fontRid: RID): Packed
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedStringArray)
-proc fontSetOpentypeFeatureOverrides*(self: Ref[TextServer]; fontRid: RID; overrides: Dictionary) =
+proc fontSetOpentypeFeatureOverrides*(self: TextServer; fontRid: RID; overrides: Dictionary) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_opentype_feature_overrides"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 1217542888)
   var `?param` = [getPtr fontRid, getPtr overrides]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetOpentypeFeatureOverrides*(self: Ref[TextServer]; fontRid: RID): Dictionary =
+proc fontGetOpentypeFeatureOverrides*(self: TextServer; fontRid: RID): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_opentype_feature_overrides"
@@ -948,7 +948,7 @@ proc fontGetOpentypeFeatureOverrides*(self: Ref[TextServer]; fontRid: RID): Dict
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Dictionary)
-proc fontSupportedFeatureList*(self: Ref[TextServer]; fontRid: RID): Dictionary =
+proc fontSupportedFeatureList*(self: TextServer; fontRid: RID): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_supported_feature_list"
@@ -957,7 +957,7 @@ proc fontSupportedFeatureList*(self: Ref[TextServer]; fontRid: RID): Dictionary 
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Dictionary)
-proc fontSupportedVariationList*(self: Ref[TextServer]; fontRid: RID): Dictionary =
+proc fontSupportedVariationList*(self: TextServer; fontRid: RID): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_supported_variation_list"
@@ -966,7 +966,7 @@ proc fontSupportedVariationList*(self: Ref[TextServer]; fontRid: RID): Dictionar
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Dictionary)
-proc fontGetGlobalOversampling*(self: Ref[TextServer]): float64 =
+proc fontGetGlobalOversampling*(self: TextServer): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_get_global_oversampling"
@@ -974,14 +974,14 @@ proc fontGetGlobalOversampling*(self: Ref[TextServer]): float64 =
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(float64)
-proc fontSetGlobalOversampling*(self: Ref[TextServer]; oversampling: float64) =
+proc fontSetGlobalOversampling*(self: TextServer; oversampling: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "font_set_global_oversampling"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 373806689)
   var `?param` = [getPtr oversampling]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getHexCodeBoxSize*(self: Ref[TextServer]; size: int64; index: int64): Vector2 =
+proc getHexCodeBoxSize*(self: TextServer; size: int64; index: int64): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_hex_code_box_size"
@@ -990,14 +990,14 @@ proc getHexCodeBoxSize*(self: Ref[TextServer]; size: int64; index: int64): Vecto
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2)
-proc drawHexCodeBox*(self: Ref[TextServer]; canvas: RID; size: int64; pos: Vector2; index: int64; color: Color) =
+proc drawHexCodeBox*(self: TextServer; canvas: RID; size: int64; pos: Vector2; index: int64; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "draw_hex_code_box"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 1602046441)
   var `?param` = [getPtr canvas, getPtr size, getPtr pos, getPtr index, getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc createShapedText*(self: Ref[TextServer]; direction: TextServer_Direction = directionAuto; orientation: TextServer_Orientation = orientationHorizontal): RID =
+proc createShapedText*(self: TextServer; direction: TextServer_Direction = directionAuto; orientation: TextServer_Orientation = orientationHorizontal): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_shaped_text"
@@ -1006,21 +1006,21 @@ proc createShapedText*(self: Ref[TextServer]; direction: TextServer_Direction = 
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(RID)
-proc shapedTextClear*(self: Ref[TextServer]; rid: RID) =
+proc shapedTextClear*(self: TextServer; rid: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_clear"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 2722037293)
   var `?param` = [getPtr rid]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc shapedTextSetDirection*(self: Ref[TextServer]; shaped: RID; direction: TextServer_Direction = directionAuto) =
+proc shapedTextSetDirection*(self: TextServer; shaped: RID; direction: TextServer_Direction = directionAuto) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_set_direction"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 2616949700)
   var `?param` = [getPtr shaped, getPtr direction]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc shapedTextGetDirection*(self: Ref[TextServer]; shaped: RID): TextServer_Direction =
+proc shapedTextGetDirection*(self: TextServer; shaped: RID): TextServer_Direction =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_direction"
@@ -1029,7 +1029,7 @@ proc shapedTextGetDirection*(self: Ref[TextServer]; shaped: RID): TextServer_Dir
   var ret: encoded TextServer_Direction
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TextServer_Direction)
-proc shapedTextGetInferredDirection*(self: Ref[TextServer]; shaped: RID): TextServer_Direction =
+proc shapedTextGetInferredDirection*(self: TextServer; shaped: RID): TextServer_Direction =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_inferred_direction"
@@ -1038,21 +1038,21 @@ proc shapedTextGetInferredDirection*(self: Ref[TextServer]; shaped: RID): TextSe
   var ret: encoded TextServer_Direction
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TextServer_Direction)
-proc shapedTextSetBidiOverride*(self: Ref[TextServer]; shaped: RID; override: Array) =
+proc shapedTextSetBidiOverride*(self: TextServer; shaped: RID; override: Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_set_bidi_override"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 684822712)
   var `?param` = [getPtr shaped, getPtr override]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc shapedTextSetCustomPunctuation*(self: Ref[TextServer]; shaped: RID; punct: String) =
+proc shapedTextSetCustomPunctuation*(self: TextServer; shaped: RID; punct: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_set_custom_punctuation"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 2726140452)
   var `?param` = [getPtr shaped, getPtr punct]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc shapedTextGetCustomPunctuation*(self: Ref[TextServer]; shaped: RID): String =
+proc shapedTextGetCustomPunctuation*(self: TextServer; shaped: RID): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_custom_punctuation"
@@ -1061,14 +1061,14 @@ proc shapedTextGetCustomPunctuation*(self: Ref[TextServer]; shaped: RID): String
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc shapedTextSetOrientation*(self: Ref[TextServer]; shaped: RID; orientation: TextServer_Orientation = orientationHorizontal) =
+proc shapedTextSetOrientation*(self: TextServer; shaped: RID; orientation: TextServer_Orientation = orientationHorizontal) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_set_orientation"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 104095128)
   var `?param` = [getPtr shaped, getPtr orientation]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc shapedTextGetOrientation*(self: Ref[TextServer]; shaped: RID): TextServer_Orientation =
+proc shapedTextGetOrientation*(self: TextServer; shaped: RID): TextServer_Orientation =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_orientation"
@@ -1077,14 +1077,14 @@ proc shapedTextGetOrientation*(self: Ref[TextServer]; shaped: RID): TextServer_O
   var ret: encoded TextServer_Orientation
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TextServer_Orientation)
-proc shapedTextSetPreserveInvalid*(self: Ref[TextServer]; shaped: RID; enabled: Bool) =
+proc shapedTextSetPreserveInvalid*(self: TextServer; shaped: RID; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_set_preserve_invalid"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 1265174801)
   var `?param` = [getPtr shaped, getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc shapedTextGetPreserveInvalid*(self: Ref[TextServer]; shaped: RID): Bool =
+proc shapedTextGetPreserveInvalid*(self: TextServer; shaped: RID): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_preserve_invalid"
@@ -1093,14 +1093,14 @@ proc shapedTextGetPreserveInvalid*(self: Ref[TextServer]; shaped: RID): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc shapedTextSetPreserveControl*(self: Ref[TextServer]; shaped: RID; enabled: Bool) =
+proc shapedTextSetPreserveControl*(self: TextServer; shaped: RID; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_set_preserve_control"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 1265174801)
   var `?param` = [getPtr shaped, getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc shapedTextGetPreserveControl*(self: Ref[TextServer]; shaped: RID): Bool =
+proc shapedTextGetPreserveControl*(self: TextServer; shaped: RID): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_preserve_control"
@@ -1109,14 +1109,14 @@ proc shapedTextGetPreserveControl*(self: Ref[TextServer]; shaped: RID): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc shapedTextSetSpacing*(self: Ref[TextServer]; shaped: RID; spacing: TextServer_SpacingType; value: int64) =
+proc shapedTextSetSpacing*(self: TextServer; shaped: RID; spacing: TextServer_SpacingType; value: int64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_set_spacing"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 1307259930)
   var `?param` = [getPtr shaped, getPtr spacing, getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc shapedTextGetSpacing*(self: Ref[TextServer]; shaped: RID; spacing: TextServer_SpacingType): int64 =
+proc shapedTextGetSpacing*(self: TextServer; shaped: RID; spacing: TextServer_SpacingType): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_spacing"
@@ -1125,7 +1125,7 @@ proc shapedTextGetSpacing*(self: Ref[TextServer]; shaped: RID; spacing: TextServ
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
-proc shapedTextAddString*(self: Ref[TextServer]; shaped: RID; text: String; fonts: TypedArray[RID]; size: int64; opentypeFeatures: Dictionary = init_Dictionary(); language: String = ""; meta: ptr Variant = nil): Bool =
+proc shapedTextAddString*(self: TextServer; shaped: RID; text: String; fonts: TypedArray[RID]; size: int64; opentypeFeatures: Dictionary = init_Dictionary(); language: String = ""; meta: ptr Variant = nil): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_add_string"
@@ -1134,7 +1134,7 @@ proc shapedTextAddString*(self: Ref[TextServer]; shaped: RID; text: String; font
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc shapedTextAddObject*(self: Ref[TextServer]; shaped: RID; key: ptr Variant; size: Vector2; inlineAlign: InlineAlignment = inlineAlignmentCenter; length: int64 = 1; baseline: float64 = 0.0): Bool =
+proc shapedTextAddObject*(self: TextServer; shaped: RID; key: ptr Variant; size: Vector2; inlineAlign: InlineAlignment = inlineAlignmentCenter; length: int64 = 1; baseline: float64 = 0.0): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_add_object"
@@ -1143,7 +1143,7 @@ proc shapedTextAddObject*(self: Ref[TextServer]; shaped: RID; key: ptr Variant; 
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc shapedTextResizeObject*(self: Ref[TextServer]; shaped: RID; key: ptr Variant; size: Vector2; inlineAlign: InlineAlignment = inlineAlignmentCenter; baseline: float64 = 0.0): Bool =
+proc shapedTextResizeObject*(self: TextServer; shaped: RID; key: ptr Variant; size: Vector2; inlineAlign: InlineAlignment = inlineAlignmentCenter; baseline: float64 = 0.0): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_resize_object"
@@ -1152,7 +1152,7 @@ proc shapedTextResizeObject*(self: Ref[TextServer]; shaped: RID; key: ptr Varian
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc shapedGetSpanCount*(self: Ref[TextServer]; shaped: RID): int64 =
+proc shapedGetSpanCount*(self: TextServer; shaped: RID): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_get_span_count"
@@ -1161,7 +1161,7 @@ proc shapedGetSpanCount*(self: Ref[TextServer]; shaped: RID): int64 =
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
-proc shapedGetSpanMeta*(self: Ref[TextServer]; shaped: RID; index: int64): Variant =
+proc shapedGetSpanMeta*(self: TextServer; shaped: RID; index: int64): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_get_span_meta"
@@ -1170,14 +1170,14 @@ proc shapedGetSpanMeta*(self: Ref[TextServer]; shaped: RID; index: int64): Varia
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
-proc shapedSetSpanUpdateFont*(self: Ref[TextServer]; shaped: RID; index: int64; fonts: TypedArray[RID]; size: int64; opentypeFeatures: Dictionary = init_Dictionary()) =
+proc shapedSetSpanUpdateFont*(self: TextServer; shaped: RID; index: int64; fonts: TypedArray[RID]; size: int64; opentypeFeatures: Dictionary = init_Dictionary()) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_set_span_update_font"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 1578983057)
   var `?param` = [getPtr shaped, getPtr index, getPtr fonts, getPtr size, getPtr opentypeFeatures]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc shapedTextSubstr*(self: Ref[TextServer]; shaped: RID; start: int64; length: int64): RID =
+proc shapedTextSubstr*(self: TextServer; shaped: RID; start: int64; length: int64): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_substr"
@@ -1186,7 +1186,7 @@ proc shapedTextSubstr*(self: Ref[TextServer]; shaped: RID; start: int64; length:
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(RID)
-proc shapedTextGetParent*(self: Ref[TextServer]; shaped: RID): RID =
+proc shapedTextGetParent*(self: TextServer; shaped: RID): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_parent"
@@ -1195,7 +1195,7 @@ proc shapedTextGetParent*(self: Ref[TextServer]; shaped: RID): RID =
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(RID)
-proc shapedTextFitToWidth*(self: Ref[TextServer]; shaped: RID; width: float64; justificationFlags: set[TextServer_JustificationFlag] = {}): float64 =
+proc shapedTextFitToWidth*(self: TextServer; shaped: RID; width: float64; justificationFlags: set[TextServer_JustificationFlag] = {}): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_fit_to_width"
@@ -1204,7 +1204,7 @@ proc shapedTextFitToWidth*(self: Ref[TextServer]; shaped: RID; width: float64; j
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(float64)
-proc shapedTextTabAlign*(self: Ref[TextServer]; shaped: RID; tabStops: PackedFloat32Array): float64 =
+proc shapedTextTabAlign*(self: TextServer; shaped: RID; tabStops: PackedFloat32Array): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_tab_align"
@@ -1213,7 +1213,7 @@ proc shapedTextTabAlign*(self: Ref[TextServer]; shaped: RID; tabStops: PackedFlo
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(float64)
-proc shapedTextShape*(self: Ref[TextServer]; shaped: RID): Bool =
+proc shapedTextShape*(self: TextServer; shaped: RID): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_shape"
@@ -1222,7 +1222,7 @@ proc shapedTextShape*(self: Ref[TextServer]; shaped: RID): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc shapedTextIsReady*(self: Ref[TextServer]; shaped: RID): Bool =
+proc shapedTextIsReady*(self: TextServer; shaped: RID): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_is_ready"
@@ -1231,7 +1231,7 @@ proc shapedTextIsReady*(self: Ref[TextServer]; shaped: RID): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc shapedTextHasVisibleChars*(self: Ref[TextServer]; shaped: RID): Bool =
+proc shapedTextHasVisibleChars*(self: TextServer; shaped: RID): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_has_visible_chars"
@@ -1240,7 +1240,7 @@ proc shapedTextHasVisibleChars*(self: Ref[TextServer]; shaped: RID): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc shapedTextGetGlyphs*(self: Ref[TextServer]; shaped: RID): TypedArray[Dictionary] =
+proc shapedTextGetGlyphs*(self: TextServer; shaped: RID): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_glyphs"
@@ -1249,7 +1249,7 @@ proc shapedTextGetGlyphs*(self: Ref[TextServer]; shaped: RID): TypedArray[Dictio
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TypedArray[Dictionary])
-proc shapedTextSortLogical*(self: Ref[TextServer]; shaped: RID): TypedArray[Dictionary] =
+proc shapedTextSortLogical*(self: TextServer; shaped: RID): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_sort_logical"
@@ -1258,7 +1258,7 @@ proc shapedTextSortLogical*(self: Ref[TextServer]; shaped: RID): TypedArray[Dict
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TypedArray[Dictionary])
-proc shapedTextGetGlyphCount*(self: Ref[TextServer]; shaped: RID): int64 =
+proc shapedTextGetGlyphCount*(self: TextServer; shaped: RID): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_glyph_count"
@@ -1267,7 +1267,7 @@ proc shapedTextGetGlyphCount*(self: Ref[TextServer]; shaped: RID): int64 =
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
-proc shapedTextGetRange*(self: Ref[TextServer]; shaped: RID): Vector2i =
+proc shapedTextGetRange*(self: TextServer; shaped: RID): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_range"
@@ -1276,7 +1276,7 @@ proc shapedTextGetRange*(self: Ref[TextServer]; shaped: RID): Vector2i =
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2i)
-proc shapedTextGetLineBreaksAdv*(self: Ref[TextServer]; shaped: RID; width: PackedFloat32Array; start: int64 = 0; once: Bool = true; breakFlags: set[TextServer_LineBreakFlag] = {}): PackedInt32Array =
+proc shapedTextGetLineBreaksAdv*(self: TextServer; shaped: RID; width: PackedFloat32Array; start: int64 = 0; once: Bool = true; breakFlags: set[TextServer_LineBreakFlag] = {}): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_line_breaks_adv"
@@ -1285,7 +1285,7 @@ proc shapedTextGetLineBreaksAdv*(self: Ref[TextServer]; shaped: RID; width: Pack
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedInt32Array)
-proc shapedTextGetLineBreaks*(self: Ref[TextServer]; shaped: RID; width: float64; start: int64 = 0; breakFlags: set[TextServer_LineBreakFlag] = {}): PackedInt32Array =
+proc shapedTextGetLineBreaks*(self: TextServer; shaped: RID; width: float64; start: int64 = 0; breakFlags: set[TextServer_LineBreakFlag] = {}): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_line_breaks"
@@ -1294,7 +1294,7 @@ proc shapedTextGetLineBreaks*(self: Ref[TextServer]; shaped: RID; width: float64
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedInt32Array)
-proc shapedTextGetWordBreaks*(self: Ref[TextServer]; shaped: RID; graphemeFlags: set[TextServer_GraphemeFlag] = {}): PackedInt32Array =
+proc shapedTextGetWordBreaks*(self: TextServer; shaped: RID; graphemeFlags: set[TextServer_GraphemeFlag] = {}): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_word_breaks"
@@ -1303,7 +1303,7 @@ proc shapedTextGetWordBreaks*(self: Ref[TextServer]; shaped: RID; graphemeFlags:
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedInt32Array)
-proc shapedTextGetTrimPos*(self: Ref[TextServer]; shaped: RID): int64 =
+proc shapedTextGetTrimPos*(self: TextServer; shaped: RID): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_trim_pos"
@@ -1312,7 +1312,7 @@ proc shapedTextGetTrimPos*(self: Ref[TextServer]; shaped: RID): int64 =
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
-proc shapedTextGetEllipsisPos*(self: Ref[TextServer]; shaped: RID): int64 =
+proc shapedTextGetEllipsisPos*(self: TextServer; shaped: RID): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_ellipsis_pos"
@@ -1321,7 +1321,7 @@ proc shapedTextGetEllipsisPos*(self: Ref[TextServer]; shaped: RID): int64 =
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
-proc shapedTextGetEllipsisGlyphs*(self: Ref[TextServer]; shaped: RID): TypedArray[Dictionary] =
+proc shapedTextGetEllipsisGlyphs*(self: TextServer; shaped: RID): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_ellipsis_glyphs"
@@ -1330,7 +1330,7 @@ proc shapedTextGetEllipsisGlyphs*(self: Ref[TextServer]; shaped: RID): TypedArra
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TypedArray[Dictionary])
-proc shapedTextGetEllipsisGlyphCount*(self: Ref[TextServer]; shaped: RID): int64 =
+proc shapedTextGetEllipsisGlyphCount*(self: TextServer; shaped: RID): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_ellipsis_glyph_count"
@@ -1339,14 +1339,14 @@ proc shapedTextGetEllipsisGlyphCount*(self: Ref[TextServer]; shaped: RID): int64
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
-proc shapedTextOverrunTrimToWidth*(self: Ref[TextServer]; shaped: RID; width: float64 = 0; overrunTrimFlags: set[TextServer_TextOverrunFlag] = {}) =
+proc shapedTextOverrunTrimToWidth*(self: TextServer; shaped: RID; width: float64 = 0; overrunTrimFlags: set[TextServer_TextOverrunFlag] = {}) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_overrun_trim_to_width"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 1572579718)
   var `?param` = [getPtr shaped, getPtr width, getPtr overrunTrimFlags]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc shapedTextGetObjects*(self: Ref[TextServer]; shaped: RID): Array =
+proc shapedTextGetObjects*(self: TextServer; shaped: RID): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_objects"
@@ -1355,7 +1355,7 @@ proc shapedTextGetObjects*(self: Ref[TextServer]; shaped: RID): Array =
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Array)
-proc shapedTextGetObjectRect*(self: Ref[TextServer]; shaped: RID; key: ptr Variant): Rect2 =
+proc shapedTextGetObjectRect*(self: TextServer; shaped: RID; key: ptr Variant): Rect2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_object_rect"
@@ -1364,7 +1364,7 @@ proc shapedTextGetObjectRect*(self: Ref[TextServer]; shaped: RID; key: ptr Varia
   var ret: encoded Rect2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Rect2)
-proc shapedTextGetSize*(self: Ref[TextServer]; shaped: RID): Vector2 =
+proc shapedTextGetSize*(self: TextServer; shaped: RID): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_size"
@@ -1373,7 +1373,7 @@ proc shapedTextGetSize*(self: Ref[TextServer]; shaped: RID): Vector2 =
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2)
-proc shapedTextGetAscent*(self: Ref[TextServer]; shaped: RID): float64 =
+proc shapedTextGetAscent*(self: TextServer; shaped: RID): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_ascent"
@@ -1382,7 +1382,7 @@ proc shapedTextGetAscent*(self: Ref[TextServer]; shaped: RID): float64 =
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(float64)
-proc shapedTextGetDescent*(self: Ref[TextServer]; shaped: RID): float64 =
+proc shapedTextGetDescent*(self: TextServer; shaped: RID): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_descent"
@@ -1391,7 +1391,7 @@ proc shapedTextGetDescent*(self: Ref[TextServer]; shaped: RID): float64 =
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(float64)
-proc shapedTextGetWidth*(self: Ref[TextServer]; shaped: RID): float64 =
+proc shapedTextGetWidth*(self: TextServer; shaped: RID): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_width"
@@ -1400,7 +1400,7 @@ proc shapedTextGetWidth*(self: Ref[TextServer]; shaped: RID): float64 =
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(float64)
-proc shapedTextGetUnderlinePosition*(self: Ref[TextServer]; shaped: RID): float64 =
+proc shapedTextGetUnderlinePosition*(self: TextServer; shaped: RID): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_underline_position"
@@ -1409,7 +1409,7 @@ proc shapedTextGetUnderlinePosition*(self: Ref[TextServer]; shaped: RID): float6
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(float64)
-proc shapedTextGetUnderlineThickness*(self: Ref[TextServer]; shaped: RID): float64 =
+proc shapedTextGetUnderlineThickness*(self: TextServer; shaped: RID): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_underline_thickness"
@@ -1418,7 +1418,7 @@ proc shapedTextGetUnderlineThickness*(self: Ref[TextServer]; shaped: RID): float
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(float64)
-proc shapedTextGetCarets*(self: Ref[TextServer]; shaped: RID; position: int64): Dictionary =
+proc shapedTextGetCarets*(self: TextServer; shaped: RID; position: int64): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_carets"
@@ -1427,7 +1427,7 @@ proc shapedTextGetCarets*(self: Ref[TextServer]; shaped: RID; position: int64): 
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Dictionary)
-proc shapedTextGetSelection*(self: Ref[TextServer]; shaped: RID; start: int64; `end`: int64): PackedVector2Array =
+proc shapedTextGetSelection*(self: TextServer; shaped: RID; start: int64; `end`: int64): PackedVector2Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_selection"
@@ -1436,7 +1436,7 @@ proc shapedTextGetSelection*(self: Ref[TextServer]; shaped: RID; start: int64; `
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedVector2Array)
-proc shapedTextHitTestGrapheme*(self: Ref[TextServer]; shaped: RID; coords: float64): int64 =
+proc shapedTextHitTestGrapheme*(self: TextServer; shaped: RID; coords: float64): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_hit_test_grapheme"
@@ -1445,7 +1445,7 @@ proc shapedTextHitTestGrapheme*(self: Ref[TextServer]; shaped: RID; coords: floa
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
-proc shapedTextHitTestPosition*(self: Ref[TextServer]; shaped: RID; coords: float64): int64 =
+proc shapedTextHitTestPosition*(self: TextServer; shaped: RID; coords: float64): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_hit_test_position"
@@ -1454,7 +1454,7 @@ proc shapedTextHitTestPosition*(self: Ref[TextServer]; shaped: RID; coords: floa
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
-proc shapedTextGetGraphemeBounds*(self: Ref[TextServer]; shaped: RID; pos: int64): Vector2 =
+proc shapedTextGetGraphemeBounds*(self: TextServer; shaped: RID; pos: int64): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_grapheme_bounds"
@@ -1463,7 +1463,7 @@ proc shapedTextGetGraphemeBounds*(self: Ref[TextServer]; shaped: RID; pos: int64
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2)
-proc shapedTextNextGraphemePos*(self: Ref[TextServer]; shaped: RID; pos: int64): int64 =
+proc shapedTextNextGraphemePos*(self: TextServer; shaped: RID; pos: int64): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_next_grapheme_pos"
@@ -1472,7 +1472,7 @@ proc shapedTextNextGraphemePos*(self: Ref[TextServer]; shaped: RID; pos: int64):
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
-proc shapedTextPrevGraphemePos*(self: Ref[TextServer]; shaped: RID; pos: int64): int64 =
+proc shapedTextPrevGraphemePos*(self: TextServer; shaped: RID; pos: int64): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_prev_grapheme_pos"
@@ -1481,21 +1481,21 @@ proc shapedTextPrevGraphemePos*(self: Ref[TextServer]; shaped: RID; pos: int64):
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
-proc shapedTextDraw*(self: Ref[TextServer]; shaped: RID; canvas: RID; pos: Vector2; clipL: float64 = -1; clipR: float64 = -1; color: Color = init_Color(1, 1, 1, 1)) =
+proc shapedTextDraw*(self: TextServer; shaped: RID; canvas: RID; pos: Vector2; clipL: float64 = -1; clipR: float64 = -1; color: Color = init_Color(1, 1, 1, 1)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_draw"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 70679950)
   var `?param` = [getPtr shaped, getPtr canvas, getPtr pos, getPtr clipL, getPtr clipR, getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc shapedTextDrawOutline*(self: Ref[TextServer]; shaped: RID; canvas: RID; pos: Vector2; clipL: float64 = -1; clipR: float64 = -1; outlineSize: int64 = 1; color: Color = init_Color(1, 1, 1, 1)) =
+proc shapedTextDrawOutline*(self: TextServer; shaped: RID; canvas: RID; pos: Vector2; clipL: float64 = -1; clipR: float64 = -1; outlineSize: int64 = 1; color: Color = init_Color(1, 1, 1, 1)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_draw_outline"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 2673671346)
   var `?param` = [getPtr shaped, getPtr canvas, getPtr pos, getPtr clipL, getPtr clipR, getPtr outlineSize, getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc shapedTextGetDominantDirectionInRange*(self: Ref[TextServer]; shaped: RID; start: int64; `end`: int64): TextServer_Direction =
+proc shapedTextGetDominantDirectionInRange*(self: TextServer; shaped: RID; start: int64; `end`: int64): TextServer_Direction =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_dominant_direction_in_range"
@@ -1504,7 +1504,7 @@ proc shapedTextGetDominantDirectionInRange*(self: Ref[TextServer]; shaped: RID; 
   var ret: encoded TextServer_Direction
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(TextServer_Direction)
-proc formatNumber*(self: Ref[TextServer]; number: String; language: String = ""): String =
+proc formatNumber*(self: TextServer; number: String; language: String = ""): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "format_number"
@@ -1513,7 +1513,7 @@ proc formatNumber*(self: Ref[TextServer]; number: String; language: String = "")
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc parseNumber*(self: Ref[TextServer]; number: String; language: String = ""): String =
+proc parseNumber*(self: TextServer; number: String; language: String = ""): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "parse_number"
@@ -1522,7 +1522,7 @@ proc parseNumber*(self: Ref[TextServer]; number: String; language: String = ""):
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc percentSign*(self: Ref[TextServer]; language: String = ""): String =
+proc percentSign*(self: TextServer; language: String = ""): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "percent_sign"
@@ -1531,7 +1531,7 @@ proc percentSign*(self: Ref[TextServer]; language: String = ""): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc stringGetWordBreaks*(self: Ref[TextServer]; string: String; language: String = ""; charsPerLine: int64 = 0): PackedInt32Array =
+proc stringGetWordBreaks*(self: TextServer; string: String; language: String = ""; charsPerLine: int64 = 0): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "string_get_word_breaks"
@@ -1540,7 +1540,7 @@ proc stringGetWordBreaks*(self: Ref[TextServer]; string: String; language: Strin
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedInt32Array)
-proc isConfusable*(self: Ref[TextServer]; string: String; dict: PackedStringArray): int64 =
+proc isConfusable*(self: TextServer; string: String; dict: PackedStringArray): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_confusable"
@@ -1549,7 +1549,7 @@ proc isConfusable*(self: Ref[TextServer]; string: String; dict: PackedStringArra
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
-proc spoofCheck*(self: Ref[TextServer]; string: String): Bool =
+proc spoofCheck*(self: TextServer; string: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "spoof_check"
@@ -1558,7 +1558,7 @@ proc spoofCheck*(self: Ref[TextServer]; string: String): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc stripDiacritics*(self: Ref[TextServer]; string: String): String =
+proc stripDiacritics*(self: TextServer; string: String): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "strip_diacritics"
@@ -1567,7 +1567,7 @@ proc stripDiacritics*(self: Ref[TextServer]; string: String): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc isValidIdentifier*(self: Ref[TextServer]; string: String): Bool =
+proc isValidIdentifier*(self: TextServer; string: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_valid_identifier"
@@ -1576,7 +1576,7 @@ proc isValidIdentifier*(self: Ref[TextServer]; string: String): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc stringToUpper*(self: Ref[TextServer]; string: String; language: String = ""): String =
+proc stringToUpper*(self: TextServer; string: String; language: String = ""): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "string_to_upper"
@@ -1585,7 +1585,7 @@ proc stringToUpper*(self: Ref[TextServer]; string: String; language: String = ""
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc stringToLower*(self: Ref[TextServer]; string: String; language: String = ""): String =
+proc stringToLower*(self: TextServer; string: String; language: String = ""): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "string_to_lower"
@@ -1594,7 +1594,7 @@ proc stringToLower*(self: Ref[TextServer]; string: String; language: String = ""
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc parseStructuredText*(self: Ref[TextServer]; parserType: TextServer_StructuredTextParser; args: Array; text: String): TypedArray[Vector3i] =
+proc parseStructuredText*(self: TextServer; parserType: TextServer_StructuredTextParser; args: Array; text: String): TypedArray[Vector3i] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "parse_structured_text"

@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `blendMode=`*(self: Ref[CanvasItemMaterial]; blendMode: CanvasItemMaterial_BlendMode) =
+proc `blendMode=`*(self: CanvasItemMaterial; blendMode: CanvasItemMaterial_BlendMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_blend_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItemMaterial, addr name, 1786054936)
   var `?param` = [getPtr blendMode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc blendMode*(self: Ref[CanvasItemMaterial]): CanvasItemMaterial_BlendMode =
+proc blendMode*(self: CanvasItemMaterial): CanvasItemMaterial_BlendMode =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_blend_mode"
@@ -19,14 +19,14 @@ proc blendMode*(self: Ref[CanvasItemMaterial]): CanvasItemMaterial_BlendMode =
   var ret: encoded CanvasItemMaterial_BlendMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(CanvasItemMaterial_BlendMode)
-proc `lightMode=`*(self: Ref[CanvasItemMaterial]; lightMode: CanvasItemMaterial_LightMode) =
+proc `lightMode=`*(self: CanvasItemMaterial; lightMode: CanvasItemMaterial_LightMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_light_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItemMaterial, addr name, 628074070)
   var `?param` = [getPtr lightMode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc lightMode*(self: Ref[CanvasItemMaterial]): CanvasItemMaterial_LightMode =
+proc lightMode*(self: CanvasItemMaterial): CanvasItemMaterial_LightMode =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_light_mode"
@@ -34,14 +34,14 @@ proc lightMode*(self: Ref[CanvasItemMaterial]): CanvasItemMaterial_LightMode =
   var ret: encoded CanvasItemMaterial_LightMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(CanvasItemMaterial_LightMode)
-proc `particlesAnimation=`*(self: Ref[CanvasItemMaterial]; particlesAnim: Bool) =
+proc `particlesAnimation=`*(self: CanvasItemMaterial; particlesAnim: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_particles_animation"
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItemMaterial, addr name, 2586408642)
   var `?param` = [getPtr particlesAnim]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc particlesAnimation*(self: Ref[CanvasItemMaterial]): Bool =
+proc particlesAnimation*(self: CanvasItemMaterial): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_particles_animation"
@@ -49,14 +49,14 @@ proc particlesAnimation*(self: Ref[CanvasItemMaterial]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `particlesAnimHFrames=`*(self: Ref[CanvasItemMaterial]; frames: int32) =
+proc `particlesAnimHFrames=`*(self: CanvasItemMaterial; frames: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_particles_anim_h_frames"
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItemMaterial, addr name, 1286410249)
   var `?param` = [getPtr frames]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc particlesAnimHFrames*(self: Ref[CanvasItemMaterial]): int32 =
+proc particlesAnimHFrames*(self: CanvasItemMaterial): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_particles_anim_h_frames"
@@ -64,14 +64,14 @@ proc particlesAnimHFrames*(self: Ref[CanvasItemMaterial]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc `particlesAnimVFrames=`*(self: Ref[CanvasItemMaterial]; frames: int32) =
+proc `particlesAnimVFrames=`*(self: CanvasItemMaterial; frames: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_particles_anim_v_frames"
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItemMaterial, addr name, 1286410249)
   var `?param` = [getPtr frames]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc particlesAnimVFrames*(self: Ref[CanvasItemMaterial]): int32 =
+proc particlesAnimVFrames*(self: CanvasItemMaterial): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_particles_anim_v_frames"
@@ -79,14 +79,14 @@ proc particlesAnimVFrames*(self: Ref[CanvasItemMaterial]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc `particlesAnimLoop=`*(self: Ref[CanvasItemMaterial]; loop: Bool) =
+proc `particlesAnimLoop=`*(self: CanvasItemMaterial; loop: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_particles_anim_loop"
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItemMaterial, addr name, 2586408642)
   var `?param` = [getPtr loop]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc particlesAnimLoop*(self: Ref[CanvasItemMaterial]): Bool =
+proc particlesAnimLoop*(self: CanvasItemMaterial): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_particles_anim_loop"

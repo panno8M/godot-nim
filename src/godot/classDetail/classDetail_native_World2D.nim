@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc canvas*(self: Ref[World2D]): RID =
+proc canvas*(self: World2D): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_canvas"
@@ -12,7 +12,7 @@ proc canvas*(self: Ref[World2D]): RID =
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(RID)
-proc space*(self: Ref[World2D]): RID =
+proc space*(self: World2D): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_space"
@@ -20,7 +20,7 @@ proc space*(self: Ref[World2D]): RID =
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(RID)
-proc navigationMap*(self: Ref[World2D]): RID =
+proc navigationMap*(self: World2D): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_navigation_map"
@@ -28,7 +28,7 @@ proc navigationMap*(self: Ref[World2D]): RID =
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(RID)
-proc directSpaceState*(self: Ref[World2D]): PhysicsDirectSpaceState2D =
+proc directSpaceState*(self: World2D): PhysicsDirectSpaceState2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_direct_space_state"

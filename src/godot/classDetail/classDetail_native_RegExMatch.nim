@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc subject*(self: Ref[RegExMatch]): String =
+proc subject*(self: RegExMatch): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_subject"
@@ -12,7 +12,7 @@ proc subject*(self: Ref[RegExMatch]): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(String)
-proc getGroupCount*(self: Ref[RegExMatch]): int32 =
+proc getGroupCount*(self: RegExMatch): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_group_count"
@@ -20,7 +20,7 @@ proc getGroupCount*(self: Ref[RegExMatch]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc names*(self: Ref[RegExMatch]): Dictionary =
+proc names*(self: RegExMatch): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_names"
@@ -28,7 +28,7 @@ proc names*(self: Ref[RegExMatch]): Dictionary =
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Dictionary)
-proc strings*(self: Ref[RegExMatch]): PackedStringArray =
+proc strings*(self: RegExMatch): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_strings"
@@ -36,7 +36,7 @@ proc strings*(self: Ref[RegExMatch]): PackedStringArray =
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(PackedStringArray)
-proc getString*(self: Ref[RegExMatch]; name: ptr Variant = nil): String =
+proc getString*(self: RegExMatch; name: ptr Variant = nil): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_string"
@@ -45,7 +45,7 @@ proc getString*(self: Ref[RegExMatch]; name: ptr Variant = nil): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc getStart*(self: Ref[RegExMatch]; name: ptr Variant = nil): int32 =
+proc getStart*(self: RegExMatch; name: ptr Variant = nil): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_start"
@@ -54,7 +54,7 @@ proc getStart*(self: Ref[RegExMatch]; name: ptr Variant = nil): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc getEnd*(self: Ref[RegExMatch]; name: ptr Variant = nil): int32 =
+proc getEnd*(self: RegExMatch; name: ptr Variant = nil): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_end"

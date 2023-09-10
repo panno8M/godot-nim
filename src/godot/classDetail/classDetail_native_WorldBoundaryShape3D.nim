@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `plane=`*(self: Ref[WorldBoundaryShape3D]; plane: Plane) =
+proc `plane=`*(self: WorldBoundaryShape3D; plane: Plane) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_plane"
     methodbind = interface_ClassDB_getMethodBind(addr className WorldBoundaryShape3D, addr name, 3505987427)
   var `?param` = [getPtr plane]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc plane*(self: Ref[WorldBoundaryShape3D]): Plane =
+proc plane*(self: WorldBoundaryShape3D): Plane =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_plane"

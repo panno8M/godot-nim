@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc getWidth*(self: Ref[Texture2D]): int32 =
+proc getWidth*(self: Texture2D): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_width"
@@ -12,7 +12,7 @@ proc getWidth*(self: Ref[Texture2D]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getHeight*(self: Ref[Texture2D]): int32 =
+proc getHeight*(self: Texture2D): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_height"
@@ -20,7 +20,7 @@ proc getHeight*(self: Ref[Texture2D]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getSize*(self: Ref[Texture2D]): Vector2 =
+proc getSize*(self: Texture2D): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_size"
@@ -28,7 +28,7 @@ proc getSize*(self: Ref[Texture2D]): Vector2 =
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Vector2)
-proc hasAlpha*(self: Ref[Texture2D]): Bool =
+proc hasAlpha*(self: Texture2D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "has_alpha"
@@ -36,40 +36,40 @@ proc hasAlpha*(self: Ref[Texture2D]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc draw*(self: Ref[Texture2D]; canvasItem: RID; position: Vector2; modulate: Color = init_Color(1, 1, 1, 1); transpose: Bool = false) =
+proc draw*(self: Texture2D; canvasItem: RID; position: Vector2; modulate: Color = init_Color(1, 1, 1, 1); transpose: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "draw"
     methodbind = interface_ClassDB_getMethodBind(addr className Texture2D, addr name, 1115460088)
   var `?param` = [getPtr canvasItem, getPtr position, getPtr modulate, getPtr transpose]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc drawRect*(self: Ref[Texture2D]; canvasItem: RID; rect: Rect2; tile: Bool; modulate: Color = init_Color(1, 1, 1, 1); transpose: Bool = false) =
+proc drawRect*(self: Texture2D; canvasItem: RID; rect: Rect2; tile: Bool; modulate: Color = init_Color(1, 1, 1, 1); transpose: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "draw_rect"
     methodbind = interface_ClassDB_getMethodBind(addr className Texture2D, addr name, 575156982)
   var `?param` = [getPtr canvasItem, getPtr rect, getPtr tile, getPtr modulate, getPtr transpose]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc drawRectRegion*(self: Ref[Texture2D]; canvasItem: RID; rect: Rect2; srcRect: Rect2; modulate: Color = init_Color(1, 1, 1, 1); transpose: Bool = false; clipUv: Bool = true) =
+proc drawRectRegion*(self: Texture2D; canvasItem: RID; rect: Rect2; srcRect: Rect2; modulate: Color = init_Color(1, 1, 1, 1); transpose: Bool = false; clipUv: Bool = true) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "draw_rect_region"
     methodbind = interface_ClassDB_getMethodBind(addr className Texture2D, addr name, 1066564656)
   var `?param` = [getPtr canvasItem, getPtr rect, getPtr srcRect, getPtr modulate, getPtr transpose, getPtr clipUv]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getImage*(self: Ref[Texture2D]): Ref[Image] =
+proc getImage*(self: Texture2D): Image =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_image"
     methodbind = interface_ClassDB_getMethodBind(addr className Texture2D, addr name, 4190603485)
-  var ret: encoded Ref[Image]
+  var ret: encoded Image
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Image])
-proc createPlaceholder*(self: Ref[Texture2D]): Ref[Resource] =
+  (addr ret).decode(Image)
+proc createPlaceholder*(self: Texture2D): Resource =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_placeholder"
     methodbind = interface_ClassDB_getMethodBind(addr className Texture2D, addr name, 121922552)
-  var ret: encoded Ref[Resource]
+  var ret: encoded Resource
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Resource])
+  (addr ret).decode(Resource)

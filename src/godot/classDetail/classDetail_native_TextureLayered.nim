@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc getFormat*(self: Ref[TextureLayered]): Image_Format =
+proc getFormat*(self: TextureLayered): Image_Format =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_format"
@@ -12,7 +12,7 @@ proc getFormat*(self: Ref[TextureLayered]): Image_Format =
   var ret: encoded Image_Format
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Image_Format)
-proc getLayeredType*(self: Ref[TextureLayered]): TextureLayered_LayeredType =
+proc getLayeredType*(self: TextureLayered): TextureLayered_LayeredType =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_layered_type"
@@ -20,7 +20,7 @@ proc getLayeredType*(self: Ref[TextureLayered]): TextureLayered_LayeredType =
   var ret: encoded TextureLayered_LayeredType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(TextureLayered_LayeredType)
-proc getWidth*(self: Ref[TextureLayered]): int32 =
+proc getWidth*(self: TextureLayered): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_width"
@@ -28,7 +28,7 @@ proc getWidth*(self: Ref[TextureLayered]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getHeight*(self: Ref[TextureLayered]): int32 =
+proc getHeight*(self: TextureLayered): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_height"
@@ -36,7 +36,7 @@ proc getHeight*(self: Ref[TextureLayered]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getLayers*(self: Ref[TextureLayered]): int32 =
+proc getLayers*(self: TextureLayered): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_layers"
@@ -44,7 +44,7 @@ proc getLayers*(self: Ref[TextureLayered]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc hasMipmaps*(self: Ref[TextureLayered]): Bool =
+proc hasMipmaps*(self: TextureLayered): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "has_mipmaps"
@@ -52,12 +52,12 @@ proc hasMipmaps*(self: Ref[TextureLayered]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc getLayerData*(self: Ref[TextureLayered]; layer: int32): Ref[Image] =
+proc getLayerData*(self: TextureLayered; layer: int32): Image =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_layer_data"
     methodbind = interface_ClassDB_getMethodBind(addr className TextureLayered, addr name, 3655284255)
   var `?param` = [getPtr layer]
-  var ret: encoded Ref[Image]
+  var ret: encoded Image
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[Image])
+  (addr ret).decode(Image)

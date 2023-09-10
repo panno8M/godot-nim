@@ -432,7 +432,6 @@ import ./classDetail/classDetail_native_NoiseTexture2D; export classDetail_nativ
 import ./classDetail/classDetail_native_NoiseTexture3D; export classDetail_native_NoiseTexture3D
 import ./classDetail/classDetail_native_ORMMaterial3D; export classDetail_native_ORMMaterial3D
 import ./classDetail/classDetail_native_OS; export classDetail_native_OS
-import ./classDetail/classDetail_native_Object; export classDetail_native_Object
 import ./classDetail/classDetail_native_Occluder3D; export classDetail_native_Occluder3D
 import ./classDetail/classDetail_native_OccluderInstance3D; export classDetail_native_OccluderInstance3D
 import ./classDetail/classDetail_native_OccluderPolygon2D; export classDetail_native_OccluderPolygon2D

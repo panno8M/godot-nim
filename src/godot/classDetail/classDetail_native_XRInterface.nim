@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc getName*(self: Ref[XRInterface]): StringName =
+proc getName*(self: XRInterface): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_name"
@@ -12,7 +12,7 @@ proc getName*(self: Ref[XRInterface]): StringName =
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(StringName)
-proc getCapabilities*(self: Ref[XRInterface]): uint32 =
+proc getCapabilities*(self: XRInterface): uint32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_capabilities"
@@ -20,7 +20,7 @@ proc getCapabilities*(self: Ref[XRInterface]): uint32 =
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(uint32)
-proc isPrimary*(self: Ref[XRInterface]): Bool =
+proc isPrimary*(self: XRInterface): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_primary"
@@ -28,14 +28,14 @@ proc isPrimary*(self: Ref[XRInterface]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `primary=`*(self: Ref[XRInterface]; primary: Bool) =
+proc `primary=`*(self: XRInterface; primary: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_primary"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 2586408642)
   var `?param` = [getPtr primary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isInitialized*(self: Ref[XRInterface]): Bool =
+proc isInitialized*(self: XRInterface): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_initialized"
@@ -43,7 +43,7 @@ proc isInitialized*(self: Ref[XRInterface]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc initialize*(self: Ref[XRInterface]): Bool =
+proc initialize*(self: XRInterface): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "initialize"
@@ -51,13 +51,13 @@ proc initialize*(self: Ref[XRInterface]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc uninitialize*(self: Ref[XRInterface]) =
+proc uninitialize*(self: XRInterface) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "uninitialize"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc getSystemInfo*(self: Ref[XRInterface]): Dictionary =
+proc getSystemInfo*(self: XRInterface): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_system_info"
@@ -65,7 +65,7 @@ proc getSystemInfo*(self: Ref[XRInterface]): Dictionary =
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Dictionary)
-proc getTrackingStatus*(self: Ref[XRInterface]): XRInterface_TrackingStatus =
+proc getTrackingStatus*(self: XRInterface): XRInterface_TrackingStatus =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_tracking_status"
@@ -73,7 +73,7 @@ proc getTrackingStatus*(self: Ref[XRInterface]): XRInterface_TrackingStatus =
   var ret: encoded XRInterface_TrackingStatus
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(XRInterface_TrackingStatus)
-proc getRenderTargetSize*(self: Ref[XRInterface]): Vector2 =
+proc getRenderTargetSize*(self: XRInterface): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_render_target_size"
@@ -81,7 +81,7 @@ proc getRenderTargetSize*(self: Ref[XRInterface]): Vector2 =
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Vector2)
-proc getViewCount*(self: Ref[XRInterface]): uint32 =
+proc getViewCount*(self: XRInterface): uint32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_view_count"
@@ -89,14 +89,14 @@ proc getViewCount*(self: Ref[XRInterface]): uint32 =
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(uint32)
-proc triggerHapticPulse*(self: Ref[XRInterface]; actionName: String; trackerName: StringName; frequency: float64; amplitude: float64; durationSec: float64; delaySec: float64) =
+proc triggerHapticPulse*(self: XRInterface; actionName: String; trackerName: StringName; frequency: float64; amplitude: float64; durationSec: float64; delaySec: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "trigger_haptic_pulse"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 3752640163)
   var `?param` = [getPtr actionName, getPtr trackerName, getPtr frequency, getPtr amplitude, getPtr durationSec, getPtr delaySec]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc supportsPlayAreaMode*(self: Ref[XRInterface]; mode: XRInterface_PlayAreaMode): Bool =
+proc supportsPlayAreaMode*(self: XRInterface; mode: XRInterface_PlayAreaMode): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "supports_play_area_mode"
@@ -105,7 +105,7 @@ proc supportsPlayAreaMode*(self: Ref[XRInterface]; mode: XRInterface_PlayAreaMod
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc playAreaMode*(self: Ref[XRInterface]): XRInterface_PlayAreaMode =
+proc playAreaMode*(self: XRInterface): XRInterface_PlayAreaMode =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_play_area_mode"
@@ -113,7 +113,7 @@ proc playAreaMode*(self: Ref[XRInterface]): XRInterface_PlayAreaMode =
   var ret: encoded XRInterface_PlayAreaMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(XRInterface_PlayAreaMode)
-proc `playAreaMode=`*(self: Ref[XRInterface]; mode: XRInterface_PlayAreaMode): Bool =
+proc `playAreaMode=`*(self: XRInterface; mode: XRInterface_PlayAreaMode): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_play_area_mode"
@@ -122,7 +122,7 @@ proc `playAreaMode=`*(self: Ref[XRInterface]; mode: XRInterface_PlayAreaMode): B
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc getPlayArea*(self: Ref[XRInterface]): PackedVector3Array =
+proc getPlayArea*(self: XRInterface): PackedVector3Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_play_area"
@@ -130,7 +130,7 @@ proc getPlayArea*(self: Ref[XRInterface]): PackedVector3Array =
   var ret: encoded PackedVector3Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(PackedVector3Array)
-proc anchorDetectionIsEnabled*(self: Ref[XRInterface]): Bool =
+proc anchorDetectionIsEnabled*(self: XRInterface): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_anchor_detection_is_enabled"
@@ -138,14 +138,14 @@ proc anchorDetectionIsEnabled*(self: Ref[XRInterface]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `anchorDetectionIsEnabled=`*(self: Ref[XRInterface]; enable: Bool) =
+proc `anchorDetectionIsEnabled=`*(self: XRInterface; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_anchor_detection_is_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 2586408642)
   var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getCameraFeedId*(self: Ref[XRInterface]): int32 =
+proc getCameraFeedId*(self: XRInterface): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_camera_feed_id"
@@ -153,7 +153,7 @@ proc getCameraFeedId*(self: Ref[XRInterface]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc isPassthroughSupported*(self: Ref[XRInterface]): Bool =
+proc isPassthroughSupported*(self: XRInterface): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_passthrough_supported"
@@ -161,7 +161,7 @@ proc isPassthroughSupported*(self: Ref[XRInterface]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc isPassthroughEnabled*(self: Ref[XRInterface]): Bool =
+proc isPassthroughEnabled*(self: XRInterface): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_passthrough_enabled"
@@ -169,7 +169,7 @@ proc isPassthroughEnabled*(self: Ref[XRInterface]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc startPassthrough*(self: Ref[XRInterface]): Bool =
+proc startPassthrough*(self: XRInterface): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "start_passthrough"
@@ -177,13 +177,13 @@ proc startPassthrough*(self: Ref[XRInterface]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc stopPassthrough*(self: Ref[XRInterface]) =
+proc stopPassthrough*(self: XRInterface) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "stop_passthrough"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc getTransformForView*(self: Ref[XRInterface]; view: uint32; camTransform: Transform3D): Transform3D =
+proc getTransformForView*(self: XRInterface; view: uint32; camTransform: Transform3D): Transform3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_transform_for_view"
@@ -192,7 +192,7 @@ proc getTransformForView*(self: Ref[XRInterface]; view: uint32; camTransform: Tr
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Transform3D)
-proc getProjectionForView*(self: Ref[XRInterface]; view: uint32; aspect: float64; near: float64; far: float64): Projection =
+proc getProjectionForView*(self: XRInterface; view: uint32; aspect: float64; near: float64; far: float64): Projection =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_projection_for_view"
@@ -201,7 +201,7 @@ proc getProjectionForView*(self: Ref[XRInterface]; view: uint32; aspect: float64
   var ret: encoded Projection
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Projection)
-proc getSupportedEnvironmentBlendModes*(self: Ref[XRInterface]): Array =
+proc getSupportedEnvironmentBlendModes*(self: XRInterface): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_supported_environment_blend_modes"
@@ -209,7 +209,7 @@ proc getSupportedEnvironmentBlendModes*(self: Ref[XRInterface]): Array =
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Array)
-proc setEnvironmentBlendMode*(self: Ref[XRInterface]; mode: XRInterface_EnvironmentBlendMode): Bool =
+proc setEnvironmentBlendMode*(self: XRInterface; mode: XRInterface_EnvironmentBlendMode): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_environment_blend_mode"

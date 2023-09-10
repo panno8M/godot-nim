@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc setValue*(self: Ref[ConfigFile]; section: String; key: String; value: ptr Variant) =
+proc setValue*(self: ConfigFile; section: String; key: String; value: ptr Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_value"
     methodbind = interface_ClassDB_getMethodBind(addr className ConfigFile, addr name, 2504492430)
   var `?param` = [getPtr section, getPtr key, getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getValue*(self: Ref[ConfigFile]; section: String; key: String; default: ptr Variant = nil): Variant =
+proc getValue*(self: ConfigFile; section: String; key: String; default: ptr Variant = nil): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_value"
@@ -20,7 +20,7 @@ proc getValue*(self: Ref[ConfigFile]; section: String; key: String; default: ptr
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
-proc hasSection*(self: Ref[ConfigFile]; section: String): Bool =
+proc hasSection*(self: ConfigFile; section: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "has_section"
@@ -29,7 +29,7 @@ proc hasSection*(self: Ref[ConfigFile]; section: String): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc hasSectionKey*(self: Ref[ConfigFile]; section: String; key: String): Bool =
+proc hasSectionKey*(self: ConfigFile; section: String; key: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "has_section_key"
@@ -38,7 +38,7 @@ proc hasSectionKey*(self: Ref[ConfigFile]; section: String; key: String): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc getSections*(self: Ref[ConfigFile]): PackedStringArray =
+proc getSections*(self: ConfigFile): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_sections"
@@ -46,7 +46,7 @@ proc getSections*(self: Ref[ConfigFile]): PackedStringArray =
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(PackedStringArray)
-proc getSectionKeys*(self: Ref[ConfigFile]; section: String): PackedStringArray =
+proc getSectionKeys*(self: ConfigFile; section: String): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_section_keys"
@@ -55,21 +55,21 @@ proc getSectionKeys*(self: Ref[ConfigFile]; section: String): PackedStringArray 
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedStringArray)
-proc eraseSection*(self: Ref[ConfigFile]; section: String) =
+proc eraseSection*(self: ConfigFile; section: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "erase_section"
     methodbind = interface_ClassDB_getMethodBind(addr className ConfigFile, addr name, 83702148)
   var `?param` = [getPtr section]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc eraseSectionKey*(self: Ref[ConfigFile]; section: String; key: String) =
+proc eraseSectionKey*(self: ConfigFile; section: String; key: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "erase_section_key"
     methodbind = interface_ClassDB_getMethodBind(addr className ConfigFile, addr name, 3186203200)
   var `?param` = [getPtr section, getPtr key]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc load*(self: Ref[ConfigFile]; path: String): Error =
+proc load*(self: ConfigFile; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "load"
@@ -78,7 +78,7 @@ proc load*(self: Ref[ConfigFile]; path: String): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc parse*(self: Ref[ConfigFile]; data: String): Error =
+proc parse*(self: ConfigFile; data: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "parse"
@@ -87,7 +87,7 @@ proc parse*(self: Ref[ConfigFile]; data: String): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc save*(self: Ref[ConfigFile]; path: String): Error =
+proc save*(self: ConfigFile; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "save"
@@ -96,7 +96,7 @@ proc save*(self: Ref[ConfigFile]; path: String): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc encodeToText*(self: Ref[ConfigFile]): String =
+proc encodeToText*(self: ConfigFile): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "encode_to_text"
@@ -104,7 +104,7 @@ proc encodeToText*(self: Ref[ConfigFile]): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(String)
-proc loadEncrypted*(self: Ref[ConfigFile]; path: String; key: PackedByteArray): Error =
+proc loadEncrypted*(self: ConfigFile; path: String; key: PackedByteArray): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "load_encrypted"
@@ -113,7 +113,7 @@ proc loadEncrypted*(self: Ref[ConfigFile]; path: String; key: PackedByteArray): 
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc loadEncryptedPass*(self: Ref[ConfigFile]; path: String; password: String): Error =
+proc loadEncryptedPass*(self: ConfigFile; path: String; password: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "load_encrypted_pass"
@@ -122,7 +122,7 @@ proc loadEncryptedPass*(self: Ref[ConfigFile]; path: String; password: String): 
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc saveEncrypted*(self: Ref[ConfigFile]; path: String; key: PackedByteArray): Error =
+proc saveEncrypted*(self: ConfigFile; path: String; key: PackedByteArray): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "save_encrypted"
@@ -131,7 +131,7 @@ proc saveEncrypted*(self: Ref[ConfigFile]; path: String; key: PackedByteArray): 
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc saveEncryptedPass*(self: Ref[ConfigFile]; path: String; password: String): Error =
+proc saveEncryptedPass*(self: ConfigFile; path: String; password: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "save_encrypted_pass"
@@ -140,7 +140,7 @@ proc saveEncryptedPass*(self: Ref[ConfigFile]; path: String; password: String): 
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc clear*(self: Ref[ConfigFile]) =
+proc clear*(self: ConfigFile) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "clear"

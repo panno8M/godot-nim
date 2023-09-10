@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `bgColor=`*(self: Ref[StyleBoxFlat]; color: Color) =
+proc `bgColor=`*(self: StyleBoxFlat; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_bg_color"
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxFlat, addr name, 2920490490)
   var `?param` = [getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc bgColor*(self: Ref[StyleBoxFlat]): Color =
+proc bgColor*(self: StyleBoxFlat): Color =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_bg_color"
@@ -19,14 +19,14 @@ proc bgColor*(self: Ref[StyleBoxFlat]): Color =
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Color)
-proc `borderColor=`*(self: Ref[StyleBoxFlat]; color: Color) =
+proc `borderColor=`*(self: StyleBoxFlat; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_border_color"
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxFlat, addr name, 2920490490)
   var `?param` = [getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc borderColor*(self: Ref[StyleBoxFlat]): Color =
+proc borderColor*(self: StyleBoxFlat): Color =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_border_color"
@@ -34,14 +34,14 @@ proc borderColor*(self: Ref[StyleBoxFlat]): Color =
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Color)
-proc setBorderWidthAll*(self: Ref[StyleBoxFlat]; width: int32) =
+proc setBorderWidthAll*(self: StyleBoxFlat; width: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_border_width_all"
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxFlat, addr name, 1286410249)
   var `?param` = [getPtr width]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getBorderWidthMin*(self: Ref[StyleBoxFlat]): int32 =
+proc getBorderWidthMin*(self: StyleBoxFlat): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_border_width_min"
@@ -49,14 +49,14 @@ proc getBorderWidthMin*(self: Ref[StyleBoxFlat]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc `borderWidth=`*(self: Ref[StyleBoxFlat]; margin: Side; width: int32) =
+proc `borderWidth=`*(self: StyleBoxFlat; margin: Side; width: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_border_width"
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxFlat, addr name, 437707142)
   var `?param` = [getPtr margin, getPtr width]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc borderWidth*(self: Ref[StyleBoxFlat]; margin: Side): int32 =
+proc borderWidth*(self: StyleBoxFlat; margin: Side): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_border_width"
@@ -65,14 +65,14 @@ proc borderWidth*(self: Ref[StyleBoxFlat]; margin: Side): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc `borderBlend=`*(self: Ref[StyleBoxFlat]; blend: Bool) =
+proc `borderBlend=`*(self: StyleBoxFlat; blend: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_border_blend"
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxFlat, addr name, 2586408642)
   var `?param` = [getPtr blend]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc borderBlend*(self: Ref[StyleBoxFlat]): Bool =
+proc borderBlend*(self: StyleBoxFlat): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_border_blend"
@@ -80,21 +80,21 @@ proc borderBlend*(self: Ref[StyleBoxFlat]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc setCornerRadiusAll*(self: Ref[StyleBoxFlat]; radius: int32) =
+proc setCornerRadiusAll*(self: StyleBoxFlat; radius: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_corner_radius_all"
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxFlat, addr name, 1286410249)
   var `?param` = [getPtr radius]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc `cornerRadius=`*(self: Ref[StyleBoxFlat]; corner: Corner; radius: int32) =
+proc `cornerRadius=`*(self: StyleBoxFlat; corner: Corner; radius: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_corner_radius"
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxFlat, addr name, 2696158768)
   var `?param` = [getPtr corner, getPtr radius]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc cornerRadius*(self: Ref[StyleBoxFlat]; corner: Corner): int32 =
+proc cornerRadius*(self: StyleBoxFlat; corner: Corner): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_corner_radius"
@@ -103,21 +103,21 @@ proc cornerRadius*(self: Ref[StyleBoxFlat]; corner: Corner): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc `expandMargin=`*(self: Ref[StyleBoxFlat]; margin: Side; size: Float) =
+proc `expandMargin=`*(self: StyleBoxFlat; margin: Side; size: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_expand_margin"
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxFlat, addr name, 4290182280)
   var `?param` = [getPtr margin, getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setExpandMarginAll*(self: Ref[StyleBoxFlat]; size: Float) =
+proc setExpandMarginAll*(self: StyleBoxFlat; size: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_expand_margin_all"
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxFlat, addr name, 373806689)
   var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc expandMargin*(self: Ref[StyleBoxFlat]; margin: Side): Float =
+proc expandMargin*(self: StyleBoxFlat; margin: Side): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_expand_margin"
@@ -126,14 +126,14 @@ proc expandMargin*(self: Ref[StyleBoxFlat]; margin: Side): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
-proc `drawCenter=`*(self: Ref[StyleBoxFlat]; drawCenter: Bool) =
+proc `drawCenter=`*(self: StyleBoxFlat; drawCenter: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_draw_center"
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxFlat, addr name, 2586408642)
   var `?param` = [getPtr drawCenter]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isDrawCenterEnabled*(self: Ref[StyleBoxFlat]): Bool =
+proc isDrawCenterEnabled*(self: StyleBoxFlat): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_draw_center_enabled"
@@ -141,14 +141,14 @@ proc isDrawCenterEnabled*(self: Ref[StyleBoxFlat]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `skew=`*(self: Ref[StyleBoxFlat]; skew: Vector2) =
+proc `skew=`*(self: StyleBoxFlat; skew: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_skew"
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxFlat, addr name, 743155724)
   var `?param` = [getPtr skew]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc skew*(self: Ref[StyleBoxFlat]): Vector2 =
+proc skew*(self: StyleBoxFlat): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_skew"
@@ -156,14 +156,14 @@ proc skew*(self: Ref[StyleBoxFlat]): Vector2 =
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Vector2)
-proc `shadowColor=`*(self: Ref[StyleBoxFlat]; color: Color) =
+proc `shadowColor=`*(self: StyleBoxFlat; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_shadow_color"
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxFlat, addr name, 2920490490)
   var `?param` = [getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc shadowColor*(self: Ref[StyleBoxFlat]): Color =
+proc shadowColor*(self: StyleBoxFlat): Color =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_shadow_color"
@@ -171,14 +171,14 @@ proc shadowColor*(self: Ref[StyleBoxFlat]): Color =
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Color)
-proc `shadowSize=`*(self: Ref[StyleBoxFlat]; size: int32) =
+proc `shadowSize=`*(self: StyleBoxFlat; size: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_shadow_size"
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxFlat, addr name, 1286410249)
   var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc shadowSize*(self: Ref[StyleBoxFlat]): int32 =
+proc shadowSize*(self: StyleBoxFlat): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_shadow_size"
@@ -186,14 +186,14 @@ proc shadowSize*(self: Ref[StyleBoxFlat]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc `shadowOffset=`*(self: Ref[StyleBoxFlat]; offset: Vector2) =
+proc `shadowOffset=`*(self: StyleBoxFlat; offset: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_shadow_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxFlat, addr name, 743155724)
   var `?param` = [getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc shadowOffset*(self: Ref[StyleBoxFlat]): Vector2 =
+proc shadowOffset*(self: StyleBoxFlat): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_shadow_offset"
@@ -201,14 +201,14 @@ proc shadowOffset*(self: Ref[StyleBoxFlat]): Vector2 =
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Vector2)
-proc `antiAliased=`*(self: Ref[StyleBoxFlat]; antiAliased: Bool) =
+proc `antiAliased=`*(self: StyleBoxFlat; antiAliased: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_anti_aliased"
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxFlat, addr name, 2586408642)
   var `?param` = [getPtr antiAliased]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc isAntiAliased*(self: Ref[StyleBoxFlat]): Bool =
+proc isAntiAliased*(self: StyleBoxFlat): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_anti_aliased"
@@ -216,14 +216,14 @@ proc isAntiAliased*(self: Ref[StyleBoxFlat]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `aaSize=`*(self: Ref[StyleBoxFlat]; size: Float) =
+proc `aaSize=`*(self: StyleBoxFlat; size: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_aa_size"
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxFlat, addr name, 373806689)
   var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc aaSize*(self: Ref[StyleBoxFlat]): Float =
+proc aaSize*(self: StyleBoxFlat): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_aa_size"
@@ -231,14 +231,14 @@ proc aaSize*(self: Ref[StyleBoxFlat]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `cornerDetail=`*(self: Ref[StyleBoxFlat]; detail: int32) =
+proc `cornerDetail=`*(self: StyleBoxFlat; detail: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_corner_detail"
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxFlat, addr name, 1286410249)
   var `?param` = [getPtr detail]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc cornerDetail*(self: Ref[StyleBoxFlat]): int32 =
+proc cornerDetail*(self: StyleBoxFlat): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_corner_detail"

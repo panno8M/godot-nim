@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `code=`*(self: Ref[ShaderInclude]; code: String) =
+proc `code=`*(self: ShaderInclude; code: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_code"
     methodbind = interface_ClassDB_getMethodBind(addr className ShaderInclude, addr name, 83702148)
   var `?param` = [getPtr code]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc code*(self: Ref[ShaderInclude]): String =
+proc code*(self: ShaderInclude): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_code"

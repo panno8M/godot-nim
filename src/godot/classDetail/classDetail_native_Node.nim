@@ -579,14 +579,14 @@ proc getTree*(self: Node): SceneTree =
   var ret: encoded SceneTree
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(SceneTree)
-proc createTween*(self: Node): Ref[Tween] =
+proc createTween*(self: Node): Tween =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_tween"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 3426978995)
-  var ret: encoded Ref[Tween]
+  var ret: encoded Tween
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Tween])
+  (addr ret).decode(Tween)
 proc duplicate*(self: Node; flags: int32 = 15): Node =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -685,14 +685,14 @@ proc isMultiplayerAuthority*(self: Node): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc multiplayer*(self: Node): Ref[MultiplayerAPI] =
+proc multiplayer*(self: Node): MultiplayerAPI =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_multiplayer"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 406750475)
-  var ret: encoded Ref[MultiplayerAPI]
+  var ret: encoded MultiplayerAPI
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[MultiplayerAPI])
+  (addr ret).decode(MultiplayerAPI)
 proc rpcConfig*(self: Node; `method`: StringName; config: ptr Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

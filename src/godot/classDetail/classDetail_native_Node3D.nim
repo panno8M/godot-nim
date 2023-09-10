@@ -244,14 +244,14 @@ proc isScaleDisabled*(self: Node3D): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc getWorld3d*(self: Node3D): Ref[World3D] =
+proc getWorld3d*(self: Node3D): World3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_world_3d"
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 317588385)
-  var ret: encoded Ref[World3D]
+  var ret: encoded World3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[World3D])
+  (addr ret).decode(World3D)
 proc forceUpdateTransform*(self: Node3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -279,7 +279,7 @@ proc updateGizmos*(self: Node3D) =
     let name: StringName = "update_gizmos"
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc addGizmo*(self: Node3D; gizmo: Ref[Node3DGizmo]) =
+proc addGizmo*(self: Node3D; gizmo: Node3DGizmo) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_gizmo"
@@ -300,7 +300,7 @@ proc clearGizmos*(self: Node3D) =
     let name: StringName = "clear_gizmos"
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc setSubgizmoSelection*(self: Node3D; gizmo: Ref[Node3DGizmo]; id: int32; transform: Transform3D) =
+proc setSubgizmoSelection*(self: Node3D; gizmo: Node3DGizmo; id: int32; transform: Transform3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_subgizmo_selection"

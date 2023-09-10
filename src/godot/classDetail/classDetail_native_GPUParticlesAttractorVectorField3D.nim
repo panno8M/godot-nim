@@ -19,18 +19,18 @@ proc size*(self: GPUParticlesAttractorVectorField3D): Vector3 =
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Vector3)
-proc `texture=`*(self: GPUParticlesAttractorVectorField3D; texture: Ref[Texture3D]) =
+proc `texture=`*(self: GPUParticlesAttractorVectorField3D; texture: Texture3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesAttractorVectorField3D, addr name, 1188404210)
   var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc texture*(self: GPUParticlesAttractorVectorField3D): Ref[Texture3D] =
+proc texture*(self: GPUParticlesAttractorVectorField3D): Texture3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesAttractorVectorField3D, addr name, 373985333)
-  var ret: encoded Ref[Texture3D]
+  var ret: encoded Texture3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Texture3D])
+  (addr ret).decode(Texture3D)

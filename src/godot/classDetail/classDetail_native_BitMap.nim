@@ -4,35 +4,35 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc create*(self: Ref[BitMap]; size: Vector2i) =
+proc create*(self: BitMap; size: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create"
     methodbind = interface_ClassDB_getMethodBind(addr className BitMap, addr name, 1130785943)
   var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc createFromImageAlpha*(self: Ref[BitMap]; image: Ref[Image]; threshold: Float = 0.1) =
+proc createFromImageAlpha*(self: BitMap; image: Image; threshold: Float = 0.1) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_from_image_alpha"
     methodbind = interface_ClassDB_getMethodBind(addr className BitMap, addr name, 505265891)
   var `?param` = [getPtr image, getPtr threshold]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setBitv*(self: Ref[BitMap]; position: Vector2i; bit: Bool) =
+proc setBitv*(self: BitMap; position: Vector2i; bit: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_bitv"
     methodbind = interface_ClassDB_getMethodBind(addr className BitMap, addr name, 4153096796)
   var `?param` = [getPtr position, getPtr bit]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setBit*(self: Ref[BitMap]; x: int32; y: int32; bit: Bool) =
+proc setBit*(self: BitMap; x: int32; y: int32; bit: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_bit"
     methodbind = interface_ClassDB_getMethodBind(addr className BitMap, addr name, 1383440665)
   var `?param` = [getPtr x, getPtr y, getPtr bit]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getBitv*(self: Ref[BitMap]; position: Vector2i): Bool =
+proc getBitv*(self: BitMap; position: Vector2i): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_bitv"
@@ -41,7 +41,7 @@ proc getBitv*(self: Ref[BitMap]; position: Vector2i): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc getBit*(self: Ref[BitMap]; x: int32; y: int32): Bool =
+proc getBit*(self: BitMap; x: int32; y: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_bit"
@@ -50,14 +50,14 @@ proc getBit*(self: Ref[BitMap]; x: int32; y: int32): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc setBitRect*(self: Ref[BitMap]; rect: Rect2i; bit: Bool) =
+proc setBitRect*(self: BitMap; rect: Rect2i; bit: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_bit_rect"
     methodbind = interface_ClassDB_getMethodBind(addr className BitMap, addr name, 472162941)
   var `?param` = [getPtr rect, getPtr bit]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getTrueBitCount*(self: Ref[BitMap]): int32 =
+proc getTrueBitCount*(self: BitMap): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_true_bit_count"
@@ -65,7 +65,7 @@ proc getTrueBitCount*(self: Ref[BitMap]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getSize*(self: Ref[BitMap]): Vector2i =
+proc getSize*(self: BitMap): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_size"
@@ -73,29 +73,29 @@ proc getSize*(self: Ref[BitMap]): Vector2i =
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Vector2i)
-proc resize*(self: Ref[BitMap]; newSize: Vector2i) =
+proc resize*(self: BitMap; newSize: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "resize"
     methodbind = interface_ClassDB_getMethodBind(addr className BitMap, addr name, 1130785943)
   var `?param` = [getPtr newSize]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc growMask*(self: Ref[BitMap]; pixels: int32; rect: Rect2i) =
+proc growMask*(self: BitMap; pixels: int32; rect: Rect2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "grow_mask"
     methodbind = interface_ClassDB_getMethodBind(addr className BitMap, addr name, 3317281434)
   var `?param` = [getPtr pixels, getPtr rect]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc convertToImage*(self: Ref[BitMap]): Ref[Image] =
+proc convertToImage*(self: BitMap): Image =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "convert_to_image"
     methodbind = interface_ClassDB_getMethodBind(addr className BitMap, addr name, 4190603485)
-  var ret: encoded Ref[Image]
+  var ret: encoded Image
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Image])
-proc opaqueToPolygons*(self: Ref[BitMap]; rect: Rect2i; epsilon: Float = 2.0): TypedArray[PackedVector2Array] =
+  (addr ret).decode(Image)
+proc opaqueToPolygons*(self: BitMap; rect: Rect2i; epsilon: Float = 2.0): TypedArray[PackedVector2Array] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "opaque_to_polygons"

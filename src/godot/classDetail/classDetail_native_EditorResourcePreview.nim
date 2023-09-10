@@ -11,21 +11,21 @@ proc queueResourcePreview*(self: EditorResourcePreview; path: String; receiver: 
     methodbind = interface_ClassDB_getMethodBind(addr className EditorResourcePreview, addr name, 233177534)
   var `?param` = [getPtr path, getPtr receiver, getPtr receiverFunc, getPtr userdata]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc queueEditedResourcePreview*(self: EditorResourcePreview; resource: Ref[Resource]; receiver: Object; receiverFunc: StringName; userdata: ptr Variant) =
+proc queueEditedResourcePreview*(self: EditorResourcePreview; resource: Resource; receiver: Object; receiverFunc: StringName; userdata: ptr Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "queue_edited_resource_preview"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorResourcePreview, addr name, 1608376650)
   var `?param` = [getPtr resource, getPtr receiver, getPtr receiverFunc, getPtr userdata]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addPreviewGenerator*(self: EditorResourcePreview; generator: Ref[EditorResourcePreviewGenerator]) =
+proc addPreviewGenerator*(self: EditorResourcePreview; generator: EditorResourcePreviewGenerator) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_preview_generator"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorResourcePreview, addr name, 332288124)
   var `?param` = [getPtr generator]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removePreviewGenerator*(self: EditorResourcePreview; generator: Ref[EditorResourcePreviewGenerator]) =
+proc removePreviewGenerator*(self: EditorResourcePreview; generator: EditorResourcePreviewGenerator) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_preview_generator"

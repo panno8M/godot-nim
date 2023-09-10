@@ -4,21 +4,21 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `tileset=`*(self: TileMap; tileset: Ref[TileSet]) =
+proc `tileset=`*(self: TileMap; tileset: TileSet) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tileset"
     methodbind = interface_ClassDB_getMethodBind(addr className TileMap, addr name, 774531446)
   var `?param` = [getPtr tileset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc tileset*(self: TileMap): Ref[TileSet] =
+proc tileset*(self: TileMap): TileSet =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_tileset"
     methodbind = interface_ClassDB_getMethodBind(addr className TileMap, addr name, 2678226422)
-  var ret: encoded Ref[TileSet]
+  var ret: encoded TileSet
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[TileSet])
+  (addr ret).decode(TileSet)
 proc `quadrantSize=`*(self: TileMap; size: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -288,16 +288,16 @@ proc getLayerForBodyRid*(self: TileMap; body: RID): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc getPattern*(self: TileMap; layer: int32; coordsArray: TypedArray[Vector2i]): Ref[TileMapPattern] =
+proc getPattern*(self: TileMap; layer: int32; coordsArray: TypedArray[Vector2i]): TileMapPattern =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_pattern"
     methodbind = interface_ClassDB_getMethodBind(addr className TileMap, addr name, 2833570986)
   var `?param` = [getPtr layer, getPtr coordsArray]
-  var ret: encoded Ref[TileMapPattern]
+  var ret: encoded TileMapPattern
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Ref[TileMapPattern])
-proc mapPattern*(self: TileMap; positionInTilemap: Vector2i; coordsInPattern: Vector2i; pattern: Ref[TileMapPattern]): Vector2i =
+  (addr ret).decode(TileMapPattern)
+proc mapPattern*(self: TileMap; positionInTilemap: Vector2i; coordsInPattern: Vector2i; pattern: TileMapPattern): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "map_pattern"
@@ -306,7 +306,7 @@ proc mapPattern*(self: TileMap; positionInTilemap: Vector2i; coordsInPattern: Ve
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Vector2i)
-proc setPattern*(self: TileMap; layer: int32; position: Vector2i; pattern: Ref[TileMapPattern]) =
+proc setPattern*(self: TileMap; layer: int32; position: Vector2i; pattern: TileMapPattern) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_pattern"

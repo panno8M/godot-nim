@@ -502,21 +502,21 @@ proc isDeselectOnFocusLossEnabled*(self: LineEdit): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `rightIcon=`*(self: LineEdit; icon: Ref[Texture2D]) =
+proc `rightIcon=`*(self: LineEdit; icon: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_right_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className LineEdit, addr name, 4051416890)
   var `?param` = [getPtr icon]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc rightIcon*(self: LineEdit): Ref[Texture2D] =
+proc rightIcon*(self: LineEdit): Texture2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_right_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className LineEdit, addr name, 255860311)
-  var ret: encoded Ref[Texture2D]
+  var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Ref[Texture2D])
+  (addr ret).decode(Texture2D)
 proc `flat=`*(self: LineEdit; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

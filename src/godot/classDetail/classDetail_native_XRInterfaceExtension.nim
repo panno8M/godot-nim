@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc getColorTexture*(self: Ref[XRInterfaceExtension]): RID =
+proc getColorTexture*(self: XRInterfaceExtension): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_color_texture"
@@ -12,7 +12,7 @@ proc getColorTexture*(self: Ref[XRInterfaceExtension]): RID =
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(RID)
-proc getDepthTexture*(self: Ref[XRInterfaceExtension]): RID =
+proc getDepthTexture*(self: XRInterfaceExtension): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_depth_texture"
@@ -20,7 +20,7 @@ proc getDepthTexture*(self: Ref[XRInterfaceExtension]): RID =
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(RID)
-proc getVelocityTexture*(self: Ref[XRInterfaceExtension]): RID =
+proc getVelocityTexture*(self: XRInterfaceExtension): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_velocity_texture"
@@ -28,14 +28,14 @@ proc getVelocityTexture*(self: Ref[XRInterfaceExtension]): RID =
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(RID)
-proc addBlit*(self: Ref[XRInterfaceExtension]; renderTarget: RID; srcRect: Rect2; dstRect: Rect2i; useLayer: Bool; layer: uint32; applyLensDistortion: Bool; eyeCenter: Vector2; k1: float64; k2: float64; upscale: float64; aspectRatio: float64) =
+proc addBlit*(self: XRInterfaceExtension; renderTarget: RID; srcRect: Rect2; dstRect: Rect2i; useLayer: Bool; layer: uint32; applyLensDistortion: Bool; eyeCenter: Vector2; k1: float64; k2: float64; upscale: float64; aspectRatio: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_blit"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterfaceExtension, addr name, 258596971)
   var `?param` = [getPtr renderTarget, getPtr srcRect, getPtr dstRect, getPtr useLayer, getPtr layer, getPtr applyLensDistortion, getPtr eyeCenter, getPtr k1, getPtr k2, getPtr upscale, getPtr aspectRatio]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getRenderTargetTexture*(self: Ref[XRInterfaceExtension]; renderTarget: RID): RID =
+proc getRenderTargetTexture*(self: XRInterfaceExtension; renderTarget: RID): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_render_target_texture"

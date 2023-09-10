@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `localizedName=`*(self: Ref[OpenXRActionSet]; localizedName: String) =
+proc `localizedName=`*(self: OpenXRActionSet; localizedName: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_localized_name"
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRActionSet, addr name, 83702148)
   var `?param` = [getPtr localizedName]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc localizedName*(self: Ref[OpenXRActionSet]): String =
+proc localizedName*(self: OpenXRActionSet): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_localized_name"
@@ -19,14 +19,14 @@ proc localizedName*(self: Ref[OpenXRActionSet]): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(String)
-proc `priority=`*(self: Ref[OpenXRActionSet]; priority: int32) =
+proc `priority=`*(self: OpenXRActionSet; priority: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_priority"
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRActionSet, addr name, 1286410249)
   var `?param` = [getPtr priority]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc priority*(self: Ref[OpenXRActionSet]): int32 =
+proc priority*(self: OpenXRActionSet): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_priority"
@@ -34,7 +34,7 @@ proc priority*(self: Ref[OpenXRActionSet]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getActionCount*(self: Ref[OpenXRActionSet]): int32 =
+proc getActionCount*(self: OpenXRActionSet): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_action_count"
@@ -42,14 +42,14 @@ proc getActionCount*(self: Ref[OpenXRActionSet]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc `actions=`*(self: Ref[OpenXRActionSet]; actions: Array) =
+proc `actions=`*(self: OpenXRActionSet; actions: Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_actions"
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRActionSet, addr name, 381264803)
   var `?param` = [getPtr actions]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc actions*(self: Ref[OpenXRActionSet]): Array =
+proc actions*(self: OpenXRActionSet): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_actions"
@@ -57,14 +57,14 @@ proc actions*(self: Ref[OpenXRActionSet]): Array =
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Array)
-proc addAction*(self: Ref[OpenXRActionSet]; action: Ref[OpenXRAction]) =
+proc addAction*(self: OpenXRActionSet; action: OpenXRAction) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_action"
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRActionSet, addr name, 349361333)
   var `?param` = [getPtr action]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removeAction*(self: Ref[OpenXRActionSet]; action: Ref[OpenXRAction]) =
+proc removeAction*(self: OpenXRActionSet; action: OpenXRAction) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "remove_action"

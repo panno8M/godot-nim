@@ -4,47 +4,47 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc peerDisconnect*(self: Ref[ENetPacketPeer]; data: int32 = 0) =
+proc peerDisconnect*(self: ENetPacketPeer; data: int32 = 0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "peer_disconnect"
     methodbind = interface_ClassDB_getMethodBind(addr className ENetPacketPeer, addr name, 1995695955)
   var `?param` = [getPtr data]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc peerDisconnectLater*(self: Ref[ENetPacketPeer]; data: int32 = 0) =
+proc peerDisconnectLater*(self: ENetPacketPeer; data: int32 = 0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "peer_disconnect_later"
     methodbind = interface_ClassDB_getMethodBind(addr className ENetPacketPeer, addr name, 1995695955)
   var `?param` = [getPtr data]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc peerDisconnectNow*(self: Ref[ENetPacketPeer]; data: int32 = 0) =
+proc peerDisconnectNow*(self: ENetPacketPeer; data: int32 = 0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "peer_disconnect_now"
     methodbind = interface_ClassDB_getMethodBind(addr className ENetPacketPeer, addr name, 1995695955)
   var `?param` = [getPtr data]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc ping*(self: Ref[ENetPacketPeer]) =
+proc ping*(self: ENetPacketPeer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "ping"
     methodbind = interface_ClassDB_getMethodBind(addr className ENetPacketPeer, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc pingInterval*(self: Ref[ENetPacketPeer]; pingInterval: int32) =
+proc pingInterval*(self: ENetPacketPeer; pingInterval: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "ping_interval"
     methodbind = interface_ClassDB_getMethodBind(addr className ENetPacketPeer, addr name, 1286410249)
   var `?param` = [getPtr pingInterval]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc reset*(self: Ref[ENetPacketPeer]) =
+proc reset*(self: ENetPacketPeer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "reset"
     methodbind = interface_ClassDB_getMethodBind(addr className ENetPacketPeer, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc send*(self: Ref[ENetPacketPeer]; channel: int32; packet: PackedByteArray; flags: int32): Error =
+proc send*(self: ENetPacketPeer; channel: int32; packet: PackedByteArray; flags: int32): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "send"
@@ -53,21 +53,21 @@ proc send*(self: Ref[ENetPacketPeer]; channel: int32; packet: PackedByteArray; f
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc throttleConfigure*(self: Ref[ENetPacketPeer]; interval: int32; acceleration: int32; deceleration: int32) =
+proc throttleConfigure*(self: ENetPacketPeer; interval: int32; acceleration: int32; deceleration: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "throttle_configure"
     methodbind = interface_ClassDB_getMethodBind(addr className ENetPacketPeer, addr name, 1649997291)
   var `?param` = [getPtr interval, getPtr acceleration, getPtr deceleration]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setTimeout*(self: Ref[ENetPacketPeer]; timeout: int32; timeoutMin: int32; timeoutMax: int32) =
+proc setTimeout*(self: ENetPacketPeer; timeout: int32; timeoutMin: int32; timeoutMax: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_timeout"
     methodbind = interface_ClassDB_getMethodBind(addr className ENetPacketPeer, addr name, 1649997291)
   var `?param` = [getPtr timeout, getPtr timeoutMin, getPtr timeoutMax]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getRemoteAddress*(self: Ref[ENetPacketPeer]): String =
+proc getRemoteAddress*(self: ENetPacketPeer): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_remote_address"
@@ -75,7 +75,7 @@ proc getRemoteAddress*(self: Ref[ENetPacketPeer]): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(String)
-proc getRemotePort*(self: Ref[ENetPacketPeer]): int32 =
+proc getRemotePort*(self: ENetPacketPeer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_remote_port"
@@ -83,7 +83,7 @@ proc getRemotePort*(self: Ref[ENetPacketPeer]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getStatistic*(self: Ref[ENetPacketPeer]; statistic: ENetPacketPeer_PeerStatistic): float64 =
+proc getStatistic*(self: ENetPacketPeer; statistic: ENetPacketPeer_PeerStatistic): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_statistic"
@@ -92,7 +92,7 @@ proc getStatistic*(self: Ref[ENetPacketPeer]; statistic: ENetPacketPeer_PeerStat
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(float64)
-proc getState*(self: Ref[ENetPacketPeer]): ENetPacketPeer_PeerState =
+proc getState*(self: ENetPacketPeer): ENetPacketPeer_PeerState =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_state"
@@ -100,7 +100,7 @@ proc getState*(self: Ref[ENetPacketPeer]): ENetPacketPeer_PeerState =
   var ret: encoded ENetPacketPeer_PeerState
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(ENetPacketPeer_PeerState)
-proc getChannels*(self: Ref[ENetPacketPeer]): int32 =
+proc getChannels*(self: ENetPacketPeer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_channels"
@@ -108,7 +108,7 @@ proc getChannels*(self: Ref[ENetPacketPeer]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc isActive*(self: Ref[ENetPacketPeer]): Bool =
+proc isActive*(self: ENetPacketPeer): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_active"

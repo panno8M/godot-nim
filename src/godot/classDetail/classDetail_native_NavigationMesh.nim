@@ -4,14 +4,14 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc `samplePartitionType=`*(self: Ref[NavigationMesh]; samplePartitionType: NavigationMesh_SamplePartitionType) =
+proc `samplePartitionType=`*(self: NavigationMesh; samplePartitionType: NavigationMesh_SamplePartitionType) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_sample_partition_type"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMesh, addr name, 2472437533)
   var `?param` = [getPtr samplePartitionType]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc samplePartitionType*(self: Ref[NavigationMesh]): NavigationMesh_SamplePartitionType =
+proc samplePartitionType*(self: NavigationMesh): NavigationMesh_SamplePartitionType =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_sample_partition_type"
@@ -19,14 +19,14 @@ proc samplePartitionType*(self: Ref[NavigationMesh]): NavigationMesh_SampleParti
   var ret: encoded NavigationMesh_SamplePartitionType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(NavigationMesh_SamplePartitionType)
-proc `parsedGeometryType=`*(self: Ref[NavigationMesh]; geometryType: NavigationMesh_ParsedGeometryType) =
+proc `parsedGeometryType=`*(self: NavigationMesh; geometryType: NavigationMesh_ParsedGeometryType) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_parsed_geometry_type"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMesh, addr name, 3064713163)
   var `?param` = [getPtr geometryType]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc parsedGeometryType*(self: Ref[NavigationMesh]): NavigationMesh_ParsedGeometryType =
+proc parsedGeometryType*(self: NavigationMesh): NavigationMesh_ParsedGeometryType =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_parsed_geometry_type"
@@ -34,14 +34,14 @@ proc parsedGeometryType*(self: Ref[NavigationMesh]): NavigationMesh_ParsedGeomet
   var ret: encoded NavigationMesh_ParsedGeometryType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(NavigationMesh_ParsedGeometryType)
-proc `collisionMask=`*(self: Ref[NavigationMesh]; mask: uint32) =
+proc `collisionMask=`*(self: NavigationMesh; mask: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_collision_mask"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMesh, addr name, 1286410249)
   var `?param` = [getPtr mask]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc collisionMask*(self: Ref[NavigationMesh]): uint32 =
+proc collisionMask*(self: NavigationMesh): uint32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_collision_mask"
@@ -49,14 +49,14 @@ proc collisionMask*(self: Ref[NavigationMesh]): uint32 =
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(uint32)
-proc setCollisionMaskValue*(self: Ref[NavigationMesh]; layerNumber: int32; value: Bool) =
+proc setCollisionMaskValue*(self: NavigationMesh; layerNumber: int32; value: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_collision_mask_value"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMesh, addr name, 300928843)
   var `?param` = [getPtr layerNumber, getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getCollisionMaskValue*(self: Ref[NavigationMesh]; layerNumber: int32): Bool =
+proc getCollisionMaskValue*(self: NavigationMesh; layerNumber: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_collision_mask_value"
@@ -65,14 +65,14 @@ proc getCollisionMaskValue*(self: Ref[NavigationMesh]; layerNumber: int32): Bool
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc `sourceGeometryMode=`*(self: Ref[NavigationMesh]; mask: NavigationMesh_SourceGeometryMode) =
+proc `sourceGeometryMode=`*(self: NavigationMesh; mask: NavigationMesh_SourceGeometryMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_source_geometry_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMesh, addr name, 2700825194)
   var `?param` = [getPtr mask]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc sourceGeometryMode*(self: Ref[NavigationMesh]): NavigationMesh_SourceGeometryMode =
+proc sourceGeometryMode*(self: NavigationMesh): NavigationMesh_SourceGeometryMode =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_source_geometry_mode"
@@ -80,14 +80,14 @@ proc sourceGeometryMode*(self: Ref[NavigationMesh]): NavigationMesh_SourceGeomet
   var ret: encoded NavigationMesh_SourceGeometryMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(NavigationMesh_SourceGeometryMode)
-proc `sourceGroupName=`*(self: Ref[NavigationMesh]; mask: StringName) =
+proc `sourceGroupName=`*(self: NavigationMesh; mask: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_source_group_name"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMesh, addr name, 3304788590)
   var `?param` = [getPtr mask]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc sourceGroupName*(self: Ref[NavigationMesh]): StringName =
+proc sourceGroupName*(self: NavigationMesh): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_source_group_name"
@@ -95,14 +95,14 @@ proc sourceGroupName*(self: Ref[NavigationMesh]): StringName =
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(StringName)
-proc `cellSize=`*(self: Ref[NavigationMesh]; cellSize: Float) =
+proc `cellSize=`*(self: NavigationMesh; cellSize: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_cell_size"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMesh, addr name, 373806689)
   var `?param` = [getPtr cellSize]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc cellSize*(self: Ref[NavigationMesh]): Float =
+proc cellSize*(self: NavigationMesh): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_cell_size"
@@ -110,14 +110,14 @@ proc cellSize*(self: Ref[NavigationMesh]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `cellHeight=`*(self: Ref[NavigationMesh]; cellHeight: Float) =
+proc `cellHeight=`*(self: NavigationMesh; cellHeight: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_cell_height"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMesh, addr name, 373806689)
   var `?param` = [getPtr cellHeight]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc cellHeight*(self: Ref[NavigationMesh]): Float =
+proc cellHeight*(self: NavigationMesh): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_cell_height"
@@ -125,14 +125,14 @@ proc cellHeight*(self: Ref[NavigationMesh]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `agentHeight=`*(self: Ref[NavigationMesh]; agentHeight: Float) =
+proc `agentHeight=`*(self: NavigationMesh; agentHeight: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_agent_height"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMesh, addr name, 373806689)
   var `?param` = [getPtr agentHeight]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc agentHeight*(self: Ref[NavigationMesh]): Float =
+proc agentHeight*(self: NavigationMesh): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_agent_height"
@@ -140,14 +140,14 @@ proc agentHeight*(self: Ref[NavigationMesh]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `agentRadius=`*(self: Ref[NavigationMesh]; agentRadius: Float) =
+proc `agentRadius=`*(self: NavigationMesh; agentRadius: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_agent_radius"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMesh, addr name, 373806689)
   var `?param` = [getPtr agentRadius]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc agentRadius*(self: Ref[NavigationMesh]): Float =
+proc agentRadius*(self: NavigationMesh): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_agent_radius"
@@ -155,14 +155,14 @@ proc agentRadius*(self: Ref[NavigationMesh]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `agentMaxClimb=`*(self: Ref[NavigationMesh]; agentMaxClimb: Float) =
+proc `agentMaxClimb=`*(self: NavigationMesh; agentMaxClimb: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_agent_max_climb"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMesh, addr name, 373806689)
   var `?param` = [getPtr agentMaxClimb]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc agentMaxClimb*(self: Ref[NavigationMesh]): Float =
+proc agentMaxClimb*(self: NavigationMesh): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_agent_max_climb"
@@ -170,14 +170,14 @@ proc agentMaxClimb*(self: Ref[NavigationMesh]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `agentMaxSlope=`*(self: Ref[NavigationMesh]; agentMaxSlope: Float) =
+proc `agentMaxSlope=`*(self: NavigationMesh; agentMaxSlope: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_agent_max_slope"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMesh, addr name, 373806689)
   var `?param` = [getPtr agentMaxSlope]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc agentMaxSlope*(self: Ref[NavigationMesh]): Float =
+proc agentMaxSlope*(self: NavigationMesh): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_agent_max_slope"
@@ -185,14 +185,14 @@ proc agentMaxSlope*(self: Ref[NavigationMesh]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `regionMinSize=`*(self: Ref[NavigationMesh]; regionMinSize: Float) =
+proc `regionMinSize=`*(self: NavigationMesh; regionMinSize: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_region_min_size"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMesh, addr name, 373806689)
   var `?param` = [getPtr regionMinSize]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc regionMinSize*(self: Ref[NavigationMesh]): Float =
+proc regionMinSize*(self: NavigationMesh): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_region_min_size"
@@ -200,14 +200,14 @@ proc regionMinSize*(self: Ref[NavigationMesh]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `regionMergeSize=`*(self: Ref[NavigationMesh]; regionMergeSize: Float) =
+proc `regionMergeSize=`*(self: NavigationMesh; regionMergeSize: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_region_merge_size"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMesh, addr name, 373806689)
   var `?param` = [getPtr regionMergeSize]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc regionMergeSize*(self: Ref[NavigationMesh]): Float =
+proc regionMergeSize*(self: NavigationMesh): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_region_merge_size"
@@ -215,14 +215,14 @@ proc regionMergeSize*(self: Ref[NavigationMesh]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `edgeMaxLength=`*(self: Ref[NavigationMesh]; edgeMaxLength: Float) =
+proc `edgeMaxLength=`*(self: NavigationMesh; edgeMaxLength: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_edge_max_length"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMesh, addr name, 373806689)
   var `?param` = [getPtr edgeMaxLength]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc edgeMaxLength*(self: Ref[NavigationMesh]): Float =
+proc edgeMaxLength*(self: NavigationMesh): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_edge_max_length"
@@ -230,14 +230,14 @@ proc edgeMaxLength*(self: Ref[NavigationMesh]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `edgeMaxError=`*(self: Ref[NavigationMesh]; edgeMaxError: Float) =
+proc `edgeMaxError=`*(self: NavigationMesh; edgeMaxError: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_edge_max_error"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMesh, addr name, 373806689)
   var `?param` = [getPtr edgeMaxError]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc edgeMaxError*(self: Ref[NavigationMesh]): Float =
+proc edgeMaxError*(self: NavigationMesh): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_edge_max_error"
@@ -245,14 +245,14 @@ proc edgeMaxError*(self: Ref[NavigationMesh]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `verticesPerPolygon=`*(self: Ref[NavigationMesh]; verticesPerPolygon: Float) =
+proc `verticesPerPolygon=`*(self: NavigationMesh; verticesPerPolygon: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_vertices_per_polygon"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMesh, addr name, 373806689)
   var `?param` = [getPtr verticesPerPolygon]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc verticesPerPolygon*(self: Ref[NavigationMesh]): Float =
+proc verticesPerPolygon*(self: NavigationMesh): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_vertices_per_polygon"
@@ -260,14 +260,14 @@ proc verticesPerPolygon*(self: Ref[NavigationMesh]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `detailSampleDistance=`*(self: Ref[NavigationMesh]; detailSampleDist: Float) =
+proc `detailSampleDistance=`*(self: NavigationMesh; detailSampleDist: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_detail_sample_distance"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMesh, addr name, 373806689)
   var `?param` = [getPtr detailSampleDist]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc detailSampleDistance*(self: Ref[NavigationMesh]): Float =
+proc detailSampleDistance*(self: NavigationMesh): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_detail_sample_distance"
@@ -275,14 +275,14 @@ proc detailSampleDistance*(self: Ref[NavigationMesh]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `detailSampleMaxError=`*(self: Ref[NavigationMesh]; detailSampleMaxError: Float) =
+proc `detailSampleMaxError=`*(self: NavigationMesh; detailSampleMaxError: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_detail_sample_max_error"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMesh, addr name, 373806689)
   var `?param` = [getPtr detailSampleMaxError]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc detailSampleMaxError*(self: Ref[NavigationMesh]): Float =
+proc detailSampleMaxError*(self: NavigationMesh): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_detail_sample_max_error"
@@ -290,14 +290,14 @@ proc detailSampleMaxError*(self: Ref[NavigationMesh]): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc `filterLowHangingObstacles=`*(self: Ref[NavigationMesh]; filterLowHangingObstacles: Bool) =
+proc `filterLowHangingObstacles=`*(self: NavigationMesh; filterLowHangingObstacles: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_filter_low_hanging_obstacles"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMesh, addr name, 2586408642)
   var `?param` = [getPtr filterLowHangingObstacles]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc filterLowHangingObstacles*(self: Ref[NavigationMesh]): Bool =
+proc filterLowHangingObstacles*(self: NavigationMesh): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_filter_low_hanging_obstacles"
@@ -305,14 +305,14 @@ proc filterLowHangingObstacles*(self: Ref[NavigationMesh]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `filterLedgeSpans=`*(self: Ref[NavigationMesh]; filterLedgeSpans: Bool) =
+proc `filterLedgeSpans=`*(self: NavigationMesh; filterLedgeSpans: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_filter_ledge_spans"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMesh, addr name, 2586408642)
   var `?param` = [getPtr filterLedgeSpans]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc filterLedgeSpans*(self: Ref[NavigationMesh]): Bool =
+proc filterLedgeSpans*(self: NavigationMesh): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_filter_ledge_spans"
@@ -320,14 +320,14 @@ proc filterLedgeSpans*(self: Ref[NavigationMesh]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `filterWalkableLowHeightSpans=`*(self: Ref[NavigationMesh]; filterWalkableLowHeightSpans: Bool) =
+proc `filterWalkableLowHeightSpans=`*(self: NavigationMesh; filterWalkableLowHeightSpans: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_filter_walkable_low_height_spans"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMesh, addr name, 2586408642)
   var `?param` = [getPtr filterWalkableLowHeightSpans]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc filterWalkableLowHeightSpans*(self: Ref[NavigationMesh]): Bool =
+proc filterWalkableLowHeightSpans*(self: NavigationMesh): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_filter_walkable_low_height_spans"
@@ -335,14 +335,14 @@ proc filterWalkableLowHeightSpans*(self: Ref[NavigationMesh]): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc `filterBakingAabb=`*(self: Ref[NavigationMesh]; bakingAabb: AABB) =
+proc `filterBakingAabb=`*(self: NavigationMesh; bakingAabb: AABB) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_filter_baking_aabb"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMesh, addr name, 259215842)
   var `?param` = [getPtr bakingAabb]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc filterBakingAabb*(self: Ref[NavigationMesh]): AABB =
+proc filterBakingAabb*(self: NavigationMesh): AABB =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_filter_baking_aabb"
@@ -350,14 +350,14 @@ proc filterBakingAabb*(self: Ref[NavigationMesh]): AABB =
   var ret: encoded AABB
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(AABB)
-proc `filterBakingAabbOffset=`*(self: Ref[NavigationMesh]; bakingAabbOffset: Vector3) =
+proc `filterBakingAabbOffset=`*(self: NavigationMesh; bakingAabbOffset: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_filter_baking_aabb_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMesh, addr name, 3460891852)
   var `?param` = [getPtr bakingAabbOffset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc filterBakingAabbOffset*(self: Ref[NavigationMesh]): Vector3 =
+proc filterBakingAabbOffset*(self: NavigationMesh): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_filter_baking_aabb_offset"
@@ -365,14 +365,14 @@ proc filterBakingAabbOffset*(self: Ref[NavigationMesh]): Vector3 =
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Vector3)
-proc `vertices=`*(self: Ref[NavigationMesh]; vertices: PackedVector3Array) =
+proc `vertices=`*(self: NavigationMesh; vertices: PackedVector3Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_vertices"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMesh, addr name, 334873810)
   var `?param` = [getPtr vertices]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc vertices*(self: Ref[NavigationMesh]): PackedVector3Array =
+proc vertices*(self: NavigationMesh): PackedVector3Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_vertices"
@@ -380,14 +380,14 @@ proc vertices*(self: Ref[NavigationMesh]): PackedVector3Array =
   var ret: encoded PackedVector3Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(PackedVector3Array)
-proc addPolygon*(self: Ref[NavigationMesh]; polygon: PackedInt32Array) =
+proc addPolygon*(self: NavigationMesh; polygon: PackedInt32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_polygon"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMesh, addr name, 3614634198)
   var `?param` = [getPtr polygon]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getPolygonCount*(self: Ref[NavigationMesh]): int32 =
+proc getPolygonCount*(self: NavigationMesh): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_polygon_count"
@@ -395,7 +395,7 @@ proc getPolygonCount*(self: Ref[NavigationMesh]): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc getPolygon*(self: Ref[NavigationMesh]; idx: int32): PackedInt32Array =
+proc getPolygon*(self: NavigationMesh; idx: int32): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_polygon"
@@ -404,13 +404,13 @@ proc getPolygon*(self: Ref[NavigationMesh]; idx: int32): PackedInt32Array =
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedInt32Array)
-proc clearPolygons*(self: Ref[NavigationMesh]) =
+proc clearPolygons*(self: NavigationMesh) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "clear_polygons"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMesh, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc createFromMesh*(self: Ref[NavigationMesh]; mesh: Ref[Mesh]) =
+proc createFromMesh*(self: NavigationMesh; mesh: Mesh) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_from_mesh"
