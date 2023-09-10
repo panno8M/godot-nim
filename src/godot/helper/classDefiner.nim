@@ -7,6 +7,11 @@ import objectConverter
 
 import ../godotInterface
 import ../godotInterface/objectBase
+import ../variants
+
+when TraceEngineAllocationCallback:
+  import ../logging
+  template me: GDLogData = iam("allocation-hook", stgLibrary)
 
 type
   ClassRegistrationInfo* = object
@@ -35,14 +40,15 @@ proc add_property*(T: typedesc[SomeUserClass]; P: typedesc; prop, setter, getter
   T.add_property(info[], setter, getter)
 
 proc free_bind(p_userdata: pointer; p_instance: ClassInstancePtr) {.gdcall.} =
-  discard
+  when TraceEngineAllocationCallback:
+    me.debug "[Extent] free ", cast[ptr ClassUserData](p_userdata).className
 
 template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
   template Inherit*(_: typedesc[Class]): typedesc[Inherits] = Inherits
 
   proc create {.implement: ClassCreateInstance, gensym.} =
-    when TraceEngineCallback == on:
-      echo "   [Extent] create ", Class
+    when TraceEngineAllocationCallback:
+      me.debug "[Extent] create ", Class
     bind instantiate
     let new_object = instantiate Class
     GC_ref new_object

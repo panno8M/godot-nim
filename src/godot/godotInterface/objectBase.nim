@@ -3,6 +3,14 @@ import std/tables
 import ../godotInterface
 import ../pure/compileTimeSwitch
 
+when TraceEngineAllocationCallback or TraceEngineReferenceCallback:
+  import ../logging
+
+when TraceEngineAllocationCallback:
+  template me_alloc: GDLogData = iam("allocation-callback", stgLibrary)
+when TraceEngineReferenceCallback:
+  template me_refer: GDLogData = iam("reference-callback", stgLibrary)
+
 type ClassUserData* = object
   virtualMethods*: TableRef[StringName, ClassCallVirtual]
   className*: StringName
@@ -37,8 +45,8 @@ proc instantiate*(T: typedesc[SomeClass]): T =
 
 proc initialize(T: typedesc[SomeEngineClass]; userdata: ptr ClassUserData) =
   userdata.callbacks.create_callback = proc (p_token: pointer; p_instance: pointer): pointer {.gdcall.} =
-    when TraceEngineCallback == on:
-      echo "<- [Engine] create ", T
+    when TraceEngineAllocationCallback:
+      me_alloc.debug "[Engine] create ", T
     let class = new T
     class.owner = cast[ObjectPtr](p_instance)
     GC_ref class
@@ -46,8 +54,8 @@ proc initialize(T: typedesc[SomeEngineClass]; userdata: ptr ClassUserData) =
 
 proc initialize(T: typedesc[SomeUserClass]; userdata: ptr ClassUserData) =
   userdata.callbacks.create_callback = proc (p_token: pointer; p_instance: pointer): pointer {.gdcall.} =
-    when TraceEngineCallback == on:
-      echo "<- [Engine] create ", T
+    when TraceEngineAllocationCallback:
+      me_alloc.debug "[Engine] create ", T
 
 
 proc get_userdata*(T: typedesc[SomeClass]): ptr ClassUserData =
@@ -61,11 +69,11 @@ proc get_userdata*(T: typedesc[SomeClass]): ptr ClassUserData =
       userdata.inheritName = ""
 
     userdata.callbacks.free_callback = proc (p_token: pointer; p_instance: pointer; p_binding: pointer) {.gdcall.} =
-      when TraceEngineCallback == on:
-        echo "<- [Engine] free ", T
+      when TraceEngineAllocationCallback:
+        me_alloc.debug "[Engine] free ", T
     userdata.callbacks.reference_callback = proc (p_token: pointer; p_binding: pointer; p_reference: Bool): Bool {.gdcall.} =
-      when TraceEngineCallback == on:
-        echo "<- [Engine] reference ", T, " <reference= ", p_reference, ">"
+      when TraceEngineReferenceCallback:
+        me_refer.debug "reference ", T, " <reference= ", p_reference, ">"
       true
 
     initialize(T, addr userdata)

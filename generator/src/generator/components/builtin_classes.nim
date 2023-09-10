@@ -140,23 +140,18 @@ func renderLoader*(self: NimBuiltinClass): Statement =
       +$$..OptionSt(eval: self.operators.len != 0):
         fmt"{opLoader $self.name}()"
 func renderLoader*(classes: seq[NimBuiltinClass]): Statement =
-  let loaderBody = +$$..ParagraphSt():
-    "let me = iam(\"load-Variants\", stgLibrary)"
+  let loaderBody = ParagraphSt()
 
-  loaderBody.children.add "me.debug \"load destructors of all variants...\""
   loaderBody.children.add destrLoader("Variants") & "()"
 
-  loaderBody.children.add "me.debug \"load constructors of all variants...\""
   for class in classes.filter(x => $x.name notin variantDetailIgnores):
     if $class.name notin constructorIgnores:
       discard loaderBody.add:
         &"{constrLoader $class.name}()"
 
-  loaderBody.children.add "me.debug \"load functions of all variants...\""
   for class in classes.filter(x => $x.name notin variantDetailIgnores):
     discard loaderBody.add &"{allMethodLoader $class.name}()"
 
-  loaderBody.children.add "me.debug \"load tuned functions of all variants...\""
   for loader in moduleTree.variantAdditionalLoaders:
     loaderBody.children.add loader
 

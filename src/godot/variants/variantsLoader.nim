@@ -3,17 +3,12 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../godotInterface
-import ./../logging
-import ./variantsConstr_custom
 import ./variantsConstr_native
 import ./variantsDetail_custom
 import ./variantsDetail_native
 
 proc load_Variants* =
-  let me = iam("load-Variants", stgLibrary)
-  me.debug "load destructors of all variants..."
   load_Variants_destr()
-  me.debug "load constructors of all variants..."
   load_String_constr()
   load_Rect2_constr()
   load_Rect2i_constr()
@@ -41,7 +36,6 @@ proc load_Variants* =
   load_PackedVector2Array_constr()
   load_PackedVector3Array_constr()
   load_PackedColorArray_constr()
-  me.debug "load functions of all variants..."
   load_String_allmethod()
   load_Rect2_allmethod()
   load_Rect2i_allmethod()
@@ -69,6 +63,5 @@ proc load_Variants* =
   load_PackedVector2Array_allmethod()
   load_PackedVector3Array_allmethod()
   load_PackedColorArray_allmethod()
-  me.debug "load tuned functions of all variants..."
   load_vectors()
   load_primitives()

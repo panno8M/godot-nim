@@ -50,12 +50,6 @@ let # externals
   d_beyond* = dir"beyond"
   beyond_oop* = dummy mdl"oop"
 
-let # clouds
-  variantsConstr* = cloud"variantsConstr".incl(
-    variantsConstr_custom,
-    variantsConstr_native,
-  )
-
 # Dependencies
 # ============
 
@@ -74,10 +68,9 @@ discard classDetail_all
   .exportModules_allowed
   .incl(d_classDetail)
 discard variantLoader
-  .incl(variantsConstr)
   .incl(
     godotInterface,
-    logging,
+    variantsConstr_native,
     variantsDetail_native,
     variantsDetail_custom,
   )

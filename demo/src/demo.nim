@@ -5,21 +5,22 @@ import std/[
   strformat,
 ]
 import godot
-import godot/logging
 
 import ./nimSideTester
 import ./godotSideTester
 
-proc format {.implement: LogFormat.} =
-  let data = GDLogData data
-  fmt "{levelname}-{stage} @{handler} >>> {summary}\n{args.join().splitLines().mapIt(\"  :: \"&it).join()}"
+when TraceAny:
+  import godot/logging
+  proc format {.implement: LogFormat.} =
+    let data = GDLogData data
+    fmt "{levelname}-{stage} @{handler} >>> {summary}\n{args.join().splitLines().mapIt(\"  :: \"&it).join()}"
 
-proc newDemoLogger: FileLogger =
-  createDir("log")
-  newFileLogger("log/demo.log", fmWrite, format= format)
+  proc newDemoLogger: FileLogger =
+    createDir("log")
+    newFileLogger("log/demo.log", fmWrite, format= format)
 
-defaultGroup.loggers.add newDemoLogger()
-defaultGroup.loggers.add newConsoleLogger(format= format)
+  defaultGroup.loggers.add newDemoLogger()
+  defaultGroup.loggers.add newConsoleLogger(format= format)
 
 
 proc initialize(lvl: InitializationLevel): void =
