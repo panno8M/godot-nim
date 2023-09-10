@@ -21,6 +21,10 @@ type
     enums*: seq[NimEnum]
     json*: JsonClass
   NimClasses* = seq[NimClass]
+  RenderedNimClass* = tuple
+    class, inherits: TypeName
+    define, essencial, detail, enums: Statement
+    virtual: GodotVirtualmethods
 
 const classBaseName* = "ObjectBase"
 proc toNim*(class: JsonClass): NimClass =
@@ -32,10 +36,6 @@ proc toNim*(class: JsonClass): NimClass =
   result.enums = class.enums.get(@[]).mapIt it.toNim(result.name)
 
 proc toNim*(classes: JsonClasses): NimClasses = classes.mapIt it.toNim
-proc renderClassDefine*(class: NimClass): Statement =
-  var classdef = ParagraphSt()
-  return +$$..BlockSt(head: fmt"type {class.name}* = ref object of {class.inherits}"):
-    classdef
 
 iterator parentalSorted*(classes: NimClasses): NimClasses =
   var targetParent = toDeque([typeName classBaseName])
@@ -53,30 +53,31 @@ iterator parentalSorted*(classes: NimClasses): NimClasses =
     if s.len != 0:
       yield s
 
-proc renderClassDefine*(classes: NimClasses): Statement =
+proc renderClassDefine(class: NimClass): Statement =
+  let (name, inherits) = (class.name, class.inherits)
+  return +$$..ParagraphSt():
+    &"type {name}* = ref object of {inherits}"
+    &"template Inherit*(_: typedesc[{name}]): typedesc = {inherits}"
+    &"template EngineClass*(_: typedesc[{name}]): typedesc = {name}"
+proc renderLocalEnums(class: NimClass): Statement =
   result = ParagraphSt()
-  for group in classes.parentalSorted:
-    let inherits = group[0].inherits
-    for class in group:
-      let name = class.name
-      discard +$$..result:
-        renderClassDefine class
-        &"template Inherit*(_: typedesc[{name}]): typedesc = {inherits}"
-        &"template EngineClass*(_: typedesc[{name}]): typedesc = {name}"
+  for e in class.enums:
+    result.children.add render e
+  if class.enums.len != 0:
+    result.children.add ""
 
-proc renderLocalEnums*(classes: NimClasses): Statement =
-  result = ParagraphSt()
-  for class in classes:
-    for e in class.enums:
-      result.children.add render e
-    if class.enums.len != 0:
-      result.children.add ""
-
-iterator renderDetail*(classes: NimClasses): tuple[class, inherits: TypeName; essencial, detail, virtual: Statement] =
+iterator renderDetail*(classes: NimClasses): RenderedNimClass =
   for classes in classes.parentalSorted:
     for class in classes:
-      var essencial = ParagraphSt()
-      var detail = ParagraphSt()
+      var res = (
+        class: class.name,
+        inherits: class.inherits,
+        define: renderClassDefine class,
+        essencial: ParagraphSt(),
+        detail: ParagraphSt(),
+        enums: renderLocalEnums class,
+        virtual: GodotVirtualmethods(),
+      )
 
       var getters: HashSet[string]
       var setters: HashSet[string]
@@ -87,10 +88,9 @@ iterator renderDetail*(classes: NimClasses): tuple[class, inherits: TypeName; es
           setters.incl prop.setter.get
 
       let localProcs = ParagraphSt()
-      var virtuals = GodotVirtualmethods()
       for mhd in class.json.methods.get(@[]):
         if mhd.is_virtual.get(false):
-          virtuals.methods.add mhd.prerender_virtual(argType class.name)
+          res.virtual.methods.add mhd.prerender_virtual(argType class.name)
         else:
           var gpkind: GodotProcKind
           if mhd.is_static:
@@ -104,9 +104,9 @@ iterator renderDetail*(classes: NimClasses): tuple[class, inherits: TypeName; es
           localProcs.children.add mhd.prerender_classMethod(argType class.name, gpkind)
 
       if localProcs.children.len != 0:
-        detail.children.add localProcs
+        res.detail.children.add localProcs
 
-      yield (class.name, class.inherits, essencial, detail, virtuals)
+      yield res
 
 
 method stringify*(info: NimClass; param: ParamType): string =

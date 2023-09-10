@@ -66,19 +66,17 @@ proc generate*(api: JsonNode) =
   moduleTree.variantLoader.contents = variants.renderLoader
   moduleTree.localEnums.contents.children.add variants.renderLocalEnums
 
-  let classes = api.classes.toNim.parentalSorted.toSeq.concat
-  moduleTree.engineClassDefines.contents = classes.renderClassDefine
-  moduleTree.localEnums.contents.children.add classes.renderLocalEnums
-
   let essencial_mdl = mdl("classEssencial")
       .incl(moduleTree.engineClassDefiner)
   moduleTree.d_godot.take essencial_mdl
-  for (class, inherits, essencial, detail, virtual) in classes.renderDetail:
-    let detail_mdl = mdl("classDetail_native_" & $class)
+  for rend in api.classes.toNim.parentalSorted.toSeq.concat.renderDetail:
+    moduleTree.engineClassDefines.contents.children.add rend.define
+    let detail_mdl = mdl("classDetail_native_" & $rend.class)
       .incl(moduleTree.engineClassDefiner)
     moduleTree.d_classDetail.take detail_mdl
-    detail_mdl.contents = detail
-    essencial_mdl.contents.children.add essencial
-    essencial_mdl.contents.children.add virtual
+    detail_mdl.contents = rend.detail
+    essencial_mdl.contents.children.add rend.essencial
+    moduleTree.localEnums.contents.children.add rend.enums
+    essencial_mdl.contents.children.add rend.virtual
 
   moduleTree.nativeStructs.contents.children.add prerender api.native_structures
