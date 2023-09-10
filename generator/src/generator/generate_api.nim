@@ -73,7 +73,7 @@ proc generate*(api: JsonNode) =
   moduleTree.d_godot.take essencial_mdl
   for rend in api.classes.toNim.parentalSorted.toSeq.concat.renderDetail:
     case rend.class.name
-    of "Object":
+    of "Object", "RefCounted":
       let class_mdl = mdl("class_" & rend.class.name)
         .incl(standAloneEngineClassDefiner)
       discard +$$..class_mdl.contents:
@@ -83,6 +83,8 @@ proc generate*(api: JsonNode) =
         rend.virtual
       moduleTree.localEnums.contents.children.add rend.enums
       d_classes.take class_mdl
+      if rend.class.name == "RefCounted":
+        discard class_mdl.incl(d_classes//"class_Object")
 
     else:
       engineClassDefines_mdl.contents.children.add rend.define
@@ -94,7 +96,8 @@ proc generate*(api: JsonNode) =
       moduleTree.localEnums.contents.children.add rend.enums
       essencial_mdl.contents.children.add rend.virtual
 
-  discard essencial_mdl.incl(d_classes//"class_Object")
-  discard engineClassDefines_mdl.incl(d_classes//"class_Object")
+  for name in ["class_Object", "class_RefCounted"]:
+    discard essencial_mdl.incl(d_classes//name)
+    discard engineClassDefines_mdl.incl(d_classes//name)
 
   moduleTree.nativeStructs.contents.children.add prerender api.native_structures

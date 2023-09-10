@@ -1,5 +1,6 @@
 let modules: seq[string] = @[
   "class_Object.nim",
+  "class_RefCounted.nim",
 ]
 import strformat, os
 const cYELLOW = "\x1b[33m"

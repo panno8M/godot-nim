@@ -2,7 +2,6 @@ import beyond/meta/[statements]
 import std/options
 import std/strformat
 import std/sequtils
-import std/strutils
 import std/deques
 import std/lists
 import std/sets

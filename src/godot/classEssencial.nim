@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./classes/class_Object
+import ./classes/class_RefCounted
 import ./helper/engineClassDefiner
 
 method initialize*(self: EditorVCSInterface; projectPath: String): Bool {.base.} = (discard)

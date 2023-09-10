@@ -778,7 +778,6 @@ let modules: seq[string] = @[
   "classDetail_native_InputEventAction.nim",
   "classDetail_native_VisualShaderNodeTransformParameter.nim",
   "classDetail_native_MultiplayerAPI.nim",
-  "classDetail_native_RefCounted.nim",
   "classDetail_native_UndoRedo.nim",
   "classDetail_native_AudioEffectPitchShift.nim",
   "classDetail_native_VisualShaderNodeCubemapParameter.nim",

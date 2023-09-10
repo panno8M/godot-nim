@@ -2,8 +2,12 @@
 # This module was generated automatically. #
 # Edits will be lost.                      #
 # ======================================== #
-import ./../helper/engineClassDefiner
+import ./../helper/standAloneEngineClassDefiner
+import ./class_Object
 
+type RefCounted* = ref object of Object
+template Inherit*(_: typedesc[RefCounted]): typedesc = Object
+template EngineClass*(_: typedesc[RefCounted]): typedesc = RefCounted
 proc initRef*(self: RefCounted): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

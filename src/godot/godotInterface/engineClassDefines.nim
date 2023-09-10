@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../classes/class_Object
+import ./../classes/class_RefCounted
 
 type AudioServer* = ref object of Object
 template Inherit*(_: typedesc[AudioServer]): typedesc = Object
@@ -130,9 +131,6 @@ template EngineClass*(_: typedesc[PhysicsServer3DRenderingServerHandler]): typed
 type ProjectSettings* = ref object of Object
 template Inherit*(_: typedesc[ProjectSettings]): typedesc = Object
 template EngineClass*(_: typedesc[ProjectSettings]): typedesc = ProjectSettings
-type RefCounted* = ref object of Object
-template Inherit*(_: typedesc[RefCounted]): typedesc = Object
-template EngineClass*(_: typedesc[RefCounted]): typedesc = RefCounted
 type RenderingDevice* = ref object of Object
 template Inherit*(_: typedesc[RenderingDevice]): typedesc = Object
 template EngineClass*(_: typedesc[RenderingDevice]): typedesc = RenderingDevice
