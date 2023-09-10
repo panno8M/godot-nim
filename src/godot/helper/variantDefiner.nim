@@ -3,13 +3,15 @@ import std/[
 ]
 import beyond/macros
 
-import ../godotInterface; export godotInterface
+import ../godotInterface_core; export godotInterface_core
+import ../godotInterface/objectBase
+type Object* = objectBase.ObjectBase
+
 import ../logging; export logging
 import ../pure/compileTimeSwitch; export compileTimeSwitch
 import ../variants/variantsConstr_custom; export variantsConstr_custom
 import ../variants/variantsConstr_native; export variantsConstr_native
 import ./variantTypeSolver; export variantTypeSolver
-import beyond/defects; export defects
 import beyond/oop; export oop
 
 type MethodDefinition = tuple
