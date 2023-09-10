@@ -28,18 +28,41 @@ proc set_int_value*(self: Tester; value: int) =
 proc get_int_value*(self: Tester): int =
   self.value
 
+proc test_RefCounted
 method ready*(self: Tester) =
   test "Override engine-virtuals":
     check true
 
   echo repr self.getNodeOrNull(init_NodePath"Node")
 
-  # FIXME cause memory leak...
   let obj = instantiate Object
   echo repr obj
 
-  self.addChild instantiate Node
-  self.addChild instantiate Node
+  test_RefCounted()
+
+proc test_RefCounted =
+  suite "RefCounted":
+    test "reference counting":
+      let refc = instantiate RefCounted
+
+      check get_reference_count(refc) == 1
+
+      let refc_shallow = refc
+
+      check get_reference_count(refc) == 1
+      check get_reference_count(refc_shallow) == 1
+
+      block Scope:
+        let refc_deep = new RefCounted
+        refc_deep[] = refc[]
+
+        check get_reference_count(refc) == 2
+        check get_reference_count(refc_deep) == 2
+
+      check get_reference_count(refc) == 1
+
+
+
 
 proc test_pure* =
   suite "variants":

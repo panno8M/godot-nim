@@ -4,3 +4,4 @@ const
 
 const # Logging
   TraceEngineCallback* {.booldefine.} = off
+  TraceRefCountedHook* {.booldefine.} = off

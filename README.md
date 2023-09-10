@@ -32,7 +32,6 @@ This project is in the early stages of development and some features are not yet
 
 ### 🟡Never tested yet
 
-* Safe destruction of Ref[object] by GC
 * Async Dispatch
 
 ### ⚫In progress
@@ -52,13 +51,17 @@ This project is in the early stages of development and some features are not yet
 
 ### 🔴Still can't
 
-* Integration of Nim's ref with Godot's RefCounted
 * Getting items of Godot's container (E.g. Array, Dictionary...)
-* Using RefCounted (sub)Class
 * Using Parallelism
 * Library hot reloading
 
 ...And so on.
+
+## Note
+
+`RefCounted` of Godot and Nim's ref are integrated.
+Every Godot's classes is defined as `ref object` in this library.
+RefCounted has =copy, =dup, and =destroy custom hooks defined, which automatically call RefCounted::reference(), RefCounted::unreference(), etc. inside the hooks.
 
 ## Development
 

@@ -87,8 +87,7 @@ proc generate*(api: JsonNode) =
       d_classes.take class_mdl
       if rend.class.name == "RefCounted":
         discard class_mdl.incl(d_classes//"class_Object")
-        class_mdl.contents.children.add "include \"include/hook_RefCounted\""
-        prototype.children.add "include \"include/hook_prototype_RefCounted\""
+        prototype.children.add "include \"include/hook_RefCounted\""
 
     else:
       engineClassDefines_mdl.contents.children.add rend.define
