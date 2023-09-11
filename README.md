@@ -48,9 +48,12 @@ This project is in the early stages of development and some features are not yet
 * [ ] Prepare PropertyInfo template
 * [ ] Auto-react to typical notifications
 * [ ] Define constants
+  * [x] Define Variant constants
+  * [ ] Define Class constants
 
 ### 🔴Still can't
 
+* Using utility functions (E.g. `print`)
 * Getting items of Godot's container (E.g. Array, Dictionary...)
 * Using Parallelism
 * Library hot reloading
