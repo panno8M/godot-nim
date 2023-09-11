@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc fromNode*(bodyNode: CollisionObject3D): GLTFPhysicsBody {.staticOf: GLTFPhysicsBody.} =
+proc fromNode*(_: typedesc[GLTFPhysicsBody]; bodyNode: CollisionObject3D): GLTFPhysicsBody =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "from_node"
@@ -21,7 +21,7 @@ proc toNode*(self: GLTFPhysicsBody): CollisionObject3D =
   var ret: encoded CollisionObject3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(CollisionObject3D)
-proc fromDictionary*(dictionary: Dictionary): GLTFPhysicsBody {.staticOf: GLTFPhysicsBody.} =
+proc fromDictionary*(_: typedesc[GLTFPhysicsBody]; dictionary: Dictionary): GLTFPhysicsBody =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "from_dictionary"

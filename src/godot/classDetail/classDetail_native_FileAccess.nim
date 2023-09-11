@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc open*(path: String; flags: FileAccess_ModeFlags): FileAccess {.staticOf: FileAccess.} =
+proc open*(_: typedesc[FileAccess]; path: String; flags: FileAccess_ModeFlags): FileAccess =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "open"
@@ -13,7 +13,7 @@ proc open*(path: String; flags: FileAccess_ModeFlags): FileAccess {.staticOf: Fi
   var ret: encoded FileAccess
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(FileAccess)
-proc openEncrypted*(path: String; modeFlags: FileAccess_ModeFlags; key: PackedByteArray): FileAccess {.staticOf: FileAccess.} =
+proc openEncrypted*(_: typedesc[FileAccess]; path: String; modeFlags: FileAccess_ModeFlags; key: PackedByteArray): FileAccess =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "open_encrypted"
@@ -22,7 +22,7 @@ proc openEncrypted*(path: String; modeFlags: FileAccess_ModeFlags; key: PackedBy
   var ret: encoded FileAccess
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(FileAccess)
-proc openEncryptedWithPass*(path: String; modeFlags: FileAccess_ModeFlags; pass: String): FileAccess {.staticOf: FileAccess.} =
+proc openEncryptedWithPass*(_: typedesc[FileAccess]; path: String; modeFlags: FileAccess_ModeFlags; pass: String): FileAccess =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "open_encrypted_with_pass"
@@ -31,7 +31,7 @@ proc openEncryptedWithPass*(path: String; modeFlags: FileAccess_ModeFlags; pass:
   var ret: encoded FileAccess
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(FileAccess)
-proc openCompressed*(path: String; modeFlags: FileAccess_ModeFlags; compressionMode: FileAccess_CompressionMode = compressionFastlz): FileAccess {.staticOf: FileAccess.} =
+proc openCompressed*(_: typedesc[FileAccess]; path: String; modeFlags: FileAccess_ModeFlags; compressionMode: FileAccess_CompressionMode = compressionFastlz): FileAccess =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "open_compressed"
@@ -40,7 +40,7 @@ proc openCompressed*(path: String; modeFlags: FileAccess_ModeFlags; compressionM
   var ret: encoded FileAccess
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(FileAccess)
-proc getOpenError*: Error {.staticOf: FileAccess.} =
+proc getOpenError*(_: typedesc[FileAccess]): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_open_error"
@@ -48,7 +48,7 @@ proc getOpenError*: Error {.staticOf: FileAccess.} =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, nil, nil, addr ret)
   (addr ret).decode(Error)
-proc getFileAsBytes*(path: String): PackedByteArray {.staticOf: FileAccess.} =
+proc getFileAsBytes*(_: typedesc[FileAccess]; path: String): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_file_as_bytes"
@@ -57,7 +57,7 @@ proc getFileAsBytes*(path: String): PackedByteArray {.staticOf: FileAccess.} =
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(PackedByteArray)
-proc getFileAsString*(path: String): String {.staticOf: FileAccess.} =
+proc getFileAsString*(_: typedesc[FileAccess]; path: String): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_file_as_string"
@@ -225,7 +225,7 @@ proc getAsText*(self: FileAccess; skipCr: Bool = false): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc getMd5*(path: String): String {.staticOf: FileAccess.} =
+proc getMd5*(_: typedesc[FileAccess]; path: String): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_md5"
@@ -234,7 +234,7 @@ proc getMd5*(path: String): String {.staticOf: FileAccess.} =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc getSha256*(path: String): String {.staticOf: FileAccess.} =
+proc getSha256*(_: typedesc[FileAccess]; path: String): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_sha256"
@@ -380,7 +380,7 @@ proc close*(self: FileAccess) =
     let name: StringName = "close"
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc fileExists*(path: String): Bool {.staticOf: FileAccess.} =
+proc fileExists*(_: typedesc[FileAccess]; path: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "file_exists"
@@ -389,7 +389,7 @@ proc fileExists*(path: String): Bool {.staticOf: FileAccess.} =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc getModifiedTime*(file: String): uint64 {.staticOf: FileAccess.} =
+proc getModifiedTime*(_: typedesc[FileAccess]; file: String): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_modified_time"

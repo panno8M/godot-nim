@@ -34,17 +34,17 @@ Projection.procedures(loader= load_Projection_proc):
   proc getLodMultiplier*(self: Projection): Float {.loadfrom("get_lod_multiplier", 466405837).}
 
 Projection.staticProcedures(loader= load_Projection_sproc):
-  proc createDepthCorrection*(flipY: Bool): Projection {.staticOf: Projection, loadfrom("create_depth_correction", 1228516048).}
-  proc createLightAtlasRect*(rect: Rect2): Projection {.staticOf: Projection, loadfrom("create_light_atlas_rect", 2654950662).}
-  proc createPerspective*(fovy: Float; aspect: Float; zNear: Float; zFar: Float; flipFov: Bool = false): Projection {.staticOf: Projection, loadfrom("create_perspective", 390915442).}
-  proc createPerspectiveHmd*(fovy: Float; aspect: Float; zNear: Float; zFar: Float; flipFov: Bool; eye: Int; intraocularDist: Float; convergenceDist: Float): Projection {.staticOf: Projection, loadfrom("create_perspective_hmd", 2857674800).}
-  proc createForHmd*(eye: Int; aspect: Float; intraocularDist: Float; displayWidth: Float; displayToLens: Float; oversample: Float; zNear: Float; zFar: Float): Projection {.staticOf: Projection, loadfrom("create_for_hmd", 4184144994).}
-  proc createOrthogonal*(left: Float; right: Float; bottom: Float; top: Float; zNear: Float; zFar: Float): Projection {.staticOf: Projection, loadfrom("create_orthogonal", 3707929169).}
-  proc createOrthogonalAspect*(size: Float; aspect: Float; zNear: Float; zFar: Float; flipFov: Bool = false): Projection {.staticOf: Projection, loadfrom("create_orthogonal_aspect", 390915442).}
-  proc createFrustum*(left: Float; right: Float; bottom: Float; top: Float; zNear: Float; zFar: Float): Projection {.staticOf: Projection, loadfrom("create_frustum", 3707929169).}
-  proc createFrustumAspect*(size: Float; aspect: Float; offset: Vector2; zNear: Float; zFar: Float; flipFov: Bool = false): Projection {.staticOf: Projection, loadfrom("create_frustum_aspect", 1535076251).}
-  proc createFitAabb*(aabb: AABB): Projection {.staticOf: Projection, loadfrom("create_fit_aabb", 2264694907).}
-  proc getFovy*(fovx: Float; aspect: Float): Float {.staticOf: Projection, loadfrom("get_fovy", 3514207532).}
+  proc createDepthCorrection*(_: typedesc[Projection]; flipY: Bool): Projection {.loadfrom("create_depth_correction", 1228516048).}
+  proc createLightAtlasRect*(_: typedesc[Projection]; rect: Rect2): Projection {.loadfrom("create_light_atlas_rect", 2654950662).}
+  proc createPerspective*(_: typedesc[Projection]; fovy: Float; aspect: Float; zNear: Float; zFar: Float; flipFov: Bool = false): Projection {.loadfrom("create_perspective", 390915442).}
+  proc createPerspectiveHmd*(_: typedesc[Projection]; fovy: Float; aspect: Float; zNear: Float; zFar: Float; flipFov: Bool; eye: Int; intraocularDist: Float; convergenceDist: Float): Projection {.loadfrom("create_perspective_hmd", 2857674800).}
+  proc createForHmd*(_: typedesc[Projection]; eye: Int; aspect: Float; intraocularDist: Float; displayWidth: Float; displayToLens: Float; oversample: Float; zNear: Float; zFar: Float): Projection {.loadfrom("create_for_hmd", 4184144994).}
+  proc createOrthogonal*(_: typedesc[Projection]; left: Float; right: Float; bottom: Float; top: Float; zNear: Float; zFar: Float): Projection {.loadfrom("create_orthogonal", 3707929169).}
+  proc createOrthogonalAspect*(_: typedesc[Projection]; size: Float; aspect: Float; zNear: Float; zFar: Float; flipFov: Bool = false): Projection {.loadfrom("create_orthogonal_aspect", 390915442).}
+  proc createFrustum*(_: typedesc[Projection]; left: Float; right: Float; bottom: Float; top: Float; zNear: Float; zFar: Float): Projection {.loadfrom("create_frustum", 3707929169).}
+  proc createFrustumAspect*(_: typedesc[Projection]; size: Float; aspect: Float; offset: Vector2; zNear: Float; zFar: Float; flipFov: Bool = false): Projection {.loadfrom("create_frustum_aspect", 1535076251).}
+  proc createFitAabb*(_: typedesc[Projection]; aabb: AABB): Projection {.loadfrom("create_fit_aabb", 2264694907).}
+  proc getFovy*(_: typedesc[Projection]; fovx: Float; aspect: Float): Float {.loadfrom("get_fovy", 3514207532).}
 var Equal_Projection_Variant: PtrOperatorEvaluator
 var NotEqual_Projection_Variant: PtrOperatorEvaluator
 var Not_Projection: PtrOperatorEvaluator

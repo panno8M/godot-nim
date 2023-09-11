@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc addWriter*(writer: MovieWriter) {.staticOf: MovieWriter.} =
+proc addWriter*(_: typedesc[MovieWriter]; writer: MovieWriter) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_writer"

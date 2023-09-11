@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc create*(`from`: Vector2; to: Vector2; collisionMask: uint32 = 4294967295'u32; exclude: TypedArray[RID] = init_TypedArray[RID]()): PhysicsRayQueryParameters2D {.staticOf: PhysicsRayQueryParameters2D.} =
+proc create*(_: typedesc[PhysicsRayQueryParameters2D]; `from`: Vector2; to: Vector2; collisionMask: uint32 = 4294967295'u32; exclude: TypedArray[RID] = init_TypedArray[RID]()): PhysicsRayQueryParameters2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create"

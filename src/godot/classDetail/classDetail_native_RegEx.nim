@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc createFromString*(pattern: String): RegEx {.staticOf: RegEx.} =
+proc createFromString*(_: typedesc[RegEx]; pattern: String): RegEx =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_from_string"

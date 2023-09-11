@@ -11,7 +11,7 @@ when TraceAny:
     strformat,
   ]
   import godot/logging
-  proc format {.implement: LogFormat.} =
+  proc format(data: LogData; args: seq[string]): string {.gcsafe.} =
     let data = GDLogData data
     fmt "{levelname}-{stage} @{handler} >>> {summary}\n{args.join().splitLines().mapIt(\"  :: \"&it).join()}"
 

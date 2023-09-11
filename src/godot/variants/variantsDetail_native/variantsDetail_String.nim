@@ -108,12 +108,12 @@ String.procedures(loader= load_String_proc):
   proc toWcharBuffer*(self: String): PackedByteArray {.loadfrom("to_wchar_buffer", 247621236).}
 
 String.staticProcedures(loader= load_String_sproc):
-  proc numScientific*(number: Float): String {.staticOf: String, loadfrom("num_scientific", 2710373411).}
-  proc num*(number: Float; decimals: Int = -1): String {.staticOf: String, loadfrom("num", 1555901022).}
-  proc numInt64*(number: Int; base: Int = 10; capitalizeHex: Bool = false): String {.staticOf: String, loadfrom("num_int64", 2111271071).}
-  proc numUint64*(number: Int; base: Int = 10; capitalizeHex: Bool = false): String {.staticOf: String, loadfrom("num_uint64", 2111271071).}
-  proc chr*(char: Int): String {.staticOf: String, loadfrom("chr", 897497541).}
-  proc humanizeSize*(size: Int): String {.staticOf: String, loadfrom("humanize_size", 897497541).}
+  proc numScientific*(_: typedesc[String]; number: Float): String {.loadfrom("num_scientific", 2710373411).}
+  proc num*(_: typedesc[String]; number: Float; decimals: Int = -1): String {.loadfrom("num", 1555901022).}
+  proc numInt64*(_: typedesc[String]; number: Int; base: Int = 10; capitalizeHex: Bool = false): String {.loadfrom("num_int64", 2111271071).}
+  proc numUint64*(_: typedesc[String]; number: Int; base: Int = 10; capitalizeHex: Bool = false): String {.loadfrom("num_uint64", 2111271071).}
+  proc chr*(_: typedesc[String]; char: Int): String {.loadfrom("chr", 897497541).}
+  proc humanizeSize*(_: typedesc[String]; size: Int): String {.loadfrom("humanize_size", 897497541).}
 var Equal_String_Variant: PtrOperatorEvaluator
 var NotEqual_String_Variant: PtrOperatorEvaluator
 var Module_String_Variant: PtrOperatorEvaluator

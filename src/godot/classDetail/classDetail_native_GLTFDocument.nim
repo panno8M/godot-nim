@@ -58,14 +58,14 @@ proc writeToFilesystem*(self: GLTFDocument; state: GLTFState; path: String): Err
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc registerGltfDocumentExtension*(extension: GLTFDocumentExtension; firstPriority: Bool = false) {.staticOf: GLTFDocument.} =
+proc registerGltfDocumentExtension*(_: typedesc[GLTFDocument]; extension: GLTFDocumentExtension; firstPriority: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "register_gltf_document_extension"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFDocument, addr name, 3752678331)
   var `?param` = [getPtr extension, getPtr firstPriority]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], nil)
-proc unregisterGltfDocumentExtension*(extension: GLTFDocumentExtension) {.staticOf: GLTFDocument.} =
+proc unregisterGltfDocumentExtension*(_: typedesc[GLTFDocument]; extension: GLTFDocumentExtension) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "unregister_gltf_document_extension"

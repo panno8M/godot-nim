@@ -1,4 +1,3 @@
-import beyond/oop
 import std/tables
 import ../godotInterface
 import ../pure/compileTimeSwitch
@@ -93,7 +92,7 @@ proc vmethods*(T: typedesc[SomeClass]): TableRef[StringName, ClassCallVirtual] =
 
 {.pop.}
 
-proc getVirtual* {.implement: ClassGetVirtual.} =
+proc getVirtual*(p_userdata: pointer; p_name: ConstStringNamePtr): ClassCallVirtual {.gdcall.} =
   cast[ptr ClassUserData](p_userdata).virtualMethods.getOrDefault(p_name[], nil)
 
 

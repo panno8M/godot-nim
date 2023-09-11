@@ -46,18 +46,12 @@ let # modules
   compileTimeSwitch* = dummy mdl"compileTimeSwitch"
   logging* = dummy mdl"logging"
 
-
-let # externals
-  d_beyond* = dir"beyond"
-  beyond_oop* = dummy mdl"oop"
-
 # Dependencies
 # ============
 
 discard godot
   .importExportModules_allowedExports
   .incl(d_godot)
-  .incl(beyond_oop)
 discard variants
   .exportModules_allowed
   .incl(d_variants)
@@ -84,9 +78,6 @@ discard variantsConstr_native
 
 # Tree-Diagram
 # ============
-
-discard +/%..d_beyond:
-  beyond_oop
 
 discard +/%..d_root:
   godot

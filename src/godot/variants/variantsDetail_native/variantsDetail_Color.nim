@@ -174,14 +174,14 @@ Color.procedures(loader= load_Color_proc):
   proc isEqualApprox*(self: Color; to: Color): Bool {.loadfrom("is_equal_approx", 3167426256).}
 
 Color.staticProcedures(loader= load_Color_sproc):
-  proc hex*(hex: Int): Color {.staticOf: Color, loadfrom("hex", 351421375).}
-  proc hex64*(hex: Int): Color {.staticOf: Color, loadfrom("hex64", 351421375).}
-  proc html*(rgba: String): Color {.staticOf: Color, loadfrom("html", 2500054655).}
-  proc htmlIsValid*(color: String): Bool {.staticOf: Color, loadfrom("html_is_valid", 2942997125).}
-  proc fromString*(str: String; default: Color): Color {.staticOf: Color, loadfrom("from_string", 3755044230).}
-  proc fromHsv*(h: Float; s: Float; v: Float; alpha: Float = 1.0): Color {.staticOf: Color, loadfrom("from_hsv", 1573799446).}
-  proc fromOkHsl*(h: Float; s: Float; l: Float; alpha: Float = 1.0): Color {.staticOf: Color, loadfrom("from_ok_hsl", 1573799446).}
-  proc fromRgbe9995*(rgbe: Int): Color {.staticOf: Color, loadfrom("from_rgbe9995", 351421375).}
+  proc hex*(_: typedesc[Color]; hex: Int): Color {.loadfrom("hex", 351421375).}
+  proc hex64*(_: typedesc[Color]; hex: Int): Color {.loadfrom("hex64", 351421375).}
+  proc html*(_: typedesc[Color]; rgba: String): Color {.loadfrom("html", 2500054655).}
+  proc htmlIsValid*(_: typedesc[Color]; color: String): Bool {.loadfrom("html_is_valid", 2942997125).}
+  proc fromString*(_: typedesc[Color]; str: String; default: Color): Color {.loadfrom("from_string", 3755044230).}
+  proc fromHsv*(_: typedesc[Color]; h: Float; s: Float; v: Float; alpha: Float = 1.0): Color {.loadfrom("from_hsv", 1573799446).}
+  proc fromOkHsl*(_: typedesc[Color]; h: Float; s: Float; l: Float; alpha: Float = 1.0): Color {.loadfrom("from_ok_hsl", 1573799446).}
+  proc fromRgbe9995*(_: typedesc[Color]; rgbe: Int): Color {.loadfrom("from_rgbe9995", 351421375).}
 var Equal_Color_Variant: PtrOperatorEvaluator
 var NotEqual_Color_Variant: PtrOperatorEvaluator
 var Negate_Color: PtrOperatorEvaluator

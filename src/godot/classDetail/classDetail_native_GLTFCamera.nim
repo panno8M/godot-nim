@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc fromNode*(cameraNode: Camera3D): GLTFCamera {.staticOf: GLTFCamera.} =
+proc fromNode*(_: typedesc[GLTFCamera]; cameraNode: Camera3D): GLTFCamera =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "from_node"
@@ -21,7 +21,7 @@ proc toNode*(self: GLTFCamera): Camera3D =
   var ret: encoded Camera3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Camera3D)
-proc fromDictionary*(dictionary: Dictionary): GLTFCamera {.staticOf: GLTFCamera.} =
+proc fromDictionary*(_: typedesc[GLTFCamera]; dictionary: Dictionary): GLTFCamera =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "from_dictionary"

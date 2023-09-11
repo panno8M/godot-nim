@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc fromNode*(lightNode: Light3D): GLTFLight {.staticOf: GLTFLight.} =
+proc fromNode*(_: typedesc[GLTFLight]; lightNode: Light3D): GLTFLight =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "from_node"
@@ -21,7 +21,7 @@ proc toNode*(self: GLTFLight): Light3D =
   var ret: encoded Light3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Light3D)
-proc fromDictionary*(dictionary: Dictionary): GLTFLight {.staticOf: GLTFLight.} =
+proc fromDictionary*(_: typedesc[GLTFLight]; dictionary: Dictionary): GLTFLight =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "from_dictionary"

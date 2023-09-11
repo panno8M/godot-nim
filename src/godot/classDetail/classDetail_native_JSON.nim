@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc stringify*(data: ptr Variant; indent: String = ""; sortKeys: Bool = true; fullPrecision: Bool = false): String {.staticOf: JSON.} =
+proc stringify*(_: typedesc[JSON]; data: ptr Variant; indent: String = ""; sortKeys: Bool = true; fullPrecision: Bool = false): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "stringify"
@@ -13,7 +13,7 @@ proc stringify*(data: ptr Variant; indent: String = ""; sortKeys: Bool = true; f
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc parseString*(jsonString: String): Variant {.staticOf: JSON.} =
+proc parseString*(_: typedesc[JSON]; jsonString: String): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "parse_string"

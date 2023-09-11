@@ -46,7 +46,7 @@ proc free_bind(p_userdata: pointer; p_instance: ClassInstancePtr) {.gdcall.} =
 template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
   template Inherit*(_: typedesc[Class]): typedesc[Inherits] = Inherits
 
-  proc create {.implement: ClassCreateInstance, gensym.} =
+  proc create(p_userdata: pointer): ObjectPtr {.gdcall, gensym.} =
     when TraceEngineAllocationCallback:
       me.debug "[Extent] create ", Class
     bind instantiate
@@ -121,34 +121,40 @@ macro build_methodInfo*(Proc: proc): ClassMethodInfo =
 
   var call_func_body = newStmtList()
   var ptrcall_func_body = newStmtList()
+  let r_return = genSym(nskParam, "r_return")
+  let r_ret = genSym(nskParam, "r_ret")
+  let p_instance_call = genSym(nskParam, "p_instance")
+  let p_instance_ptrcall = genSym(nskParam, "p_instance")
+  let p_args_call = genSym(nskParam, "p_args")
+  let p_args_ptrcall = genSym(nskParam, "p_args")
   block:
     var call = Proc.newCall()
     var ptrcall = Proc.newCall()
-    call.add quote do: cast[`self_t`](p_instance)
-    ptrcall.add quote do: cast[`self_t`](p_instance)
+    call.add quote do: cast[`self_t`](`p_instance_call`)
+    ptrcall.add quote do: cast[`self_t`](`p_instance_ptrcall`)
 
     for i, (name, Type, default) in params.breakArgs:
       if i == 0: continue
       let i_lit = newlit i - 1
-      call.add quote do: p_args[`i_lit`].get(typedesc `Type`)
-      ptrcall.add quote do: p_args[`i_lit`].decode(typedesc `Type`)
+      call.add quote do: `p_args_call`[`i_lit`].get(typedesc `Type`)
+      ptrcall.add quote do: `p_args_ptrcall`[`i_lit`].decode(typedesc `Type`)
     if has_return:
       call_func_body = quote do:
-        r_return[] = variant `call`
+        `r_return`[] = variant `call`
       ptrcall_func_body = quote do:
-        `ptrcall`.encode(r_ret)
+        `ptrcall`.encode(`r_ret`)
     else:
       call_func_body = quote do:
         `call`
-        r_return[] = variant()
+        `r_return`[] = variant()
       ptrcall_func_body = ptrcall
 
   let argcount_lit = newlit argcount
   let hasReturn_lit = newlit hasReturn
   result = quote do:
-    proc call_func {.implement: ClassmethodCall, gensym.} =
+    proc call_func(method_userdata: pointer; `p_instance_call`: ClassInstancePtr; `p_args_call`: UncheckedArray[ConstVariantPtr]; p_argument_count: Int; `r_return`: VariantPtr; r_error: ptr CallError) {.gdcall, gensym.} =
       `call_func_body`
-    proc ptrcall_func {.implement: ClassmethodPtrCall, gensym.} =
+    proc ptrcall_func(method_userdata: pointer; `p_instance_ptrcall`: ClassInstancePtr; `p_args_ptrcall`: UncheckedArray[ConstTypePtr]; `r_ret`: TypePtr) {.gdcall, gensym.} =
       `ptrcall_func_body`
 
     let proc_name: StringName = `proc_name`

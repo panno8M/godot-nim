@@ -11,7 +11,6 @@ import ../logging; export logging
 import ../variants/variantsConstr_custom; export variantsConstr_custom
 import ../variants/variantsConstr_native; export variantsConstr_native
 import ./variantTypeSolver; export variantTypeSolver
-import beyond/oop; export oop
 
 type MethodDefinition = tuple
   container_define, proc_define, init_sentence: NimNode
@@ -19,11 +18,7 @@ type MethodDefinition = tuple
 proc procedure(Type, node: NimNode; isStatic: bool; namesym: NimNode): MethodDefinition =
   node.expectKind {nnkProcDef, nnkConverterDef}
   let
-    args =
-      if is_static:
-        node.params[1..^1] # [0: result, 1..: args]
-      else:
-        node.params[2..^1] # [0: result, 1: self, 2..: args]
+    args = node.params[2..^1] # [0: result, 1: self, 2..: args]
 
     loadfrom = node.popPragma("loadfrom")
     nativeName = loadfrom[1]

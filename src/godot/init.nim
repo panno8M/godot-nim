@@ -1,6 +1,3 @@
-import beyond/[
-  oop,
-]
 import
   logging,
   godotInterface,
@@ -19,21 +16,21 @@ type
 var extcfg: GDExtensionConfig
 var currentLevel*: InitializationLevel
 
-proc initialize_module {.implement: Initialization.initialize.} =
+proc initialize_module(userdata: pointer; p_level: InitializationLevel) {.gdcall.} =
   currentLevel = p_level
   # expand_register_stack(preserved):
   #   register_class preserved.make_ClassRegistrationInfo(false, false)
   if extcfg.initializer != nil:
     extcfg.initializer(p_level)
 
-proc deinitialize_module {.implement: Initialization.deinitialize.} =
+proc deinitialize_module(userdata: pointer; p_level: InitializationLevel) {.gdcall.} =
   currentLevel = p_level
   if extcfg.terminator != nil:
     extcfg.terminator(p_level)
   # TODO Support edtior plugin development
   # EditorPlugins|>deinitialize(p_level)
 
-proc init* {.implement: InitializationFunction.} =
+proc init*(p_get_proc_address: InterfaceGetProcAddress; p_library: ClassLibraryPtr; r_initialization: ptr Initialization): Bool {.gdcall.} =
   try:
     godotInterface.getProcAddress = p_getProcAddress
     godotInterface.library = p_library
@@ -55,7 +52,7 @@ proc init* {.implement: InitializationFunction.} =
   return true
 
 template GDExtension_EntryPoint*(name; config: GDExtensionConfig): untyped =
-  proc name* {.implement: InitializationFunction, exportc, dynlib, gdcall.} =
+  proc name*(p_get_proc_address: InterfaceGetProcAddress; p_library: ClassLibraryPtr; r_initialization: ptr Initialization): Bool {.exportc, dynlib, gdcall.} =
     extcfg = config
     init(p_getProcAddress, p_library, r_initialization)
 

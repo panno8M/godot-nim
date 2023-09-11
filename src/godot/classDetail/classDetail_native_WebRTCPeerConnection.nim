@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc setDefaultExtension*(extensionClass: StringName) {.staticOf: WebRTCPeerConnection.} =
+proc setDefaultExtension*(_: typedesc[WebRTCPeerConnection]; extensionClass: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_default_extension"

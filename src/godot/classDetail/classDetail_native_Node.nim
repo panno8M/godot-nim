@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc printOrphanNodes* {.staticOf: Node.} =
+proc printOrphanNodes*(_: typedesc[Node]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "print_orphan_nodes"

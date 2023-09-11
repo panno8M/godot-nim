@@ -139,7 +139,7 @@ proc isTiltEnabled*(self: PathFollow3D): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc correctPosture*(transform: Transform3D; rotationMode: PathFollow3D_RotationMode): Transform3D {.staticOf: PathFollow3D.} =
+proc correctPosture*(_: typedesc[PathFollow3D]; transform: Transform3D; rotationMode: PathFollow3D_RotationMode): Transform3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "correct_posture"

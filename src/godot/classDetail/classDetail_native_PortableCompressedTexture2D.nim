@@ -57,14 +57,14 @@ proc isKeepingCompressedBuffer*(self: PortableCompressedTexture2D): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc setKeepAllCompressedBuffers*(keep: Bool) {.staticOf: PortableCompressedTexture2D.} =
+proc setKeepAllCompressedBuffers*(_: typedesc[PortableCompressedTexture2D]; keep: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_keep_all_compressed_buffers"
     methodbind = interface_ClassDB_getMethodBind(addr className PortableCompressedTexture2D, addr name, 2586408642)
   var `?param` = [getPtr keep]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], nil)
-proc isKeepingAllCompressedBuffers*: Bool {.staticOf: PortableCompressedTexture2D.} =
+proc isKeepingAllCompressedBuffers*(_: typedesc[PortableCompressedTexture2D]): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "is_keeping_all_compressed_buffers"

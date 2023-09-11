@@ -29,7 +29,6 @@ type
     gpKind*: GodotProcKind
     args*: seq[GodotParam]
     result*: Option[RetType]
-    owner*: Option[TypeName]
     pragmas*: seq[string]
     native_name*: string
   GodotVirtualmethods* = ref object of ParagraphSt
@@ -65,9 +64,12 @@ proc prerender_common*(self: JsonMethod; self_type: ArgType; gpkind: GodotProcKi
   result.gpkind = gpkind
   result.kind = npkProc
   result.native_name = self.name
-  result.owner = some self_type.name
   if gpkind != gpkStaticMethod:
     result.args.add (NimVar.imitate"self", self_type, none string)
+  else:
+    var self_desc = self_type
+    self_desc.flags.incl pfTypedesc
+    result.args.add (NimVar.imitate"_", self_desc, none string)
 
   if self.arguments.isSome:
     result.args.add self.arguments.get.mapIt it.toNim
@@ -100,8 +102,9 @@ proc prerender_classMethod*(self: JsonMethod; self_type: ArgType; gpkind: GodotP
   var paramcount: int
 
   for i, arg in result.args:
-    if gpkind != gpkStaticMethod and i == 0:
-      selfptr = &"getOwner {arg.name}"
+    if i == 0:
+      if gpkind != gpkStaticMethod:
+        selfptr = &"getOwner {arg.name}"
     else:
       injection.add &"getPtr {arg.name}"
       inc paramcount
@@ -173,14 +176,10 @@ method render*(self: GodotProcSt; cfg: RenderingConfig): seq[string] =
 
   var pragmas: seq[string]
 
-  if self.owner.isSome:
-    let owner = get self.owner
-    case self.gpkind
-    of gpkStaticMethod:
-      pragmas.add "staticOf: " & $owner
-    of gpkVirtualMethod:
-      pragmas.add "base"
-    else: discard
+  case self.gpkind
+  of gpkVirtualMethod:
+    pragmas.add "base"
+  else: discard
 
   pragmas.add self.pragmas
 

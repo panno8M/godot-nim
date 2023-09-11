@@ -122,7 +122,7 @@ proc clearMipmaps*(self: Image) =
     let name: StringName = "clear_mipmaps"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc create*(width: int32; height: int32; useMipmaps: Bool; format: Image_Format): Image {.staticOf: Image.} =
+proc create*(_: typedesc[Image]; width: int32; height: int32; useMipmaps: Bool; format: Image_Format): Image =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create"
@@ -131,7 +131,7 @@ proc create*(width: int32; height: int32; useMipmaps: Bool; format: Image_Format
   var ret: encoded Image
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(Image)
-proc createFromData*(width: int32; height: int32; useMipmaps: Bool; format: Image_Format; data: PackedByteArray): Image {.staticOf: Image.} =
+proc createFromData*(_: typedesc[Image]; width: int32; height: int32; useMipmaps: Bool; format: Image_Format; data: PackedByteArray): Image =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_from_data"
@@ -164,7 +164,7 @@ proc load*(self: Image; path: String): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc loadFromFile*(path: String): Image {.staticOf: Image.} =
+proc loadFromFile*(_: typedesc[Image]; path: String): Image =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "load_from_file"

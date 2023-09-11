@@ -193,7 +193,7 @@ proc chain*(self: Tween): Tween =
   var ret: encoded Tween
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Tween)
-proc interpolateValue*(initialValue: ptr Variant; deltaValue: ptr Variant; elapsedTime: float64; duration: float64; transType: Tween_TransitionType; easeType: Tween_EaseType): Variant {.staticOf: Tween.} =
+proc interpolateValue*(_: typedesc[Tween]; initialValue: ptr Variant; deltaValue: ptr Variant; elapsedTime: float64; duration: float64; transType: Tween_TransitionType; easeType: Tween_EaseType): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "interpolate_value"

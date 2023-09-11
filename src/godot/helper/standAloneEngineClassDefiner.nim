@@ -1,5 +1,3 @@
-import beyond/oop/typestatics; export typestatics
-
 import objectConverter; export objectConverter
 import ../godotInterface; export godotInterface
 import ../godotInterface/objectBase; export objectBase

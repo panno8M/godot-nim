@@ -45,7 +45,7 @@ proc waitToFinish*(self: GodotThread): Variant =
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Variant)
-proc setThreadSafetyChecksEnabled*(enabled: Bool) {.staticOf: GodotThread.} =
+proc setThreadSafetyChecksEnabled*(_: typedesc[GodotThread]; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_thread_safety_checks_enabled"

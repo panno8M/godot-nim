@@ -22,7 +22,10 @@ type
     ptaNake
     ptaSet
     ptaTypedArray
+  ParamFlag* = enum
+    pfTypedesc
   ParamType* = object of RootObj
+    flags*: set[ParamFlag]
     attribute*: ParamTypeAttr
     ptrdepth*: Natural
     name*: TypeName
@@ -48,13 +51,15 @@ func `$`*(self: TypeName): string =
 
 method stringify*(info: ObjectInfo; param: ParamType): string {.base.} =
   let name = "ptr ".repeat(param.ptrdepth) & ($param.name)
-  case param.attribute
+  result = case param.attribute
   of ptaNake:
     name
   of ptaSet:
     &"set[{name}]"
   of ptaTypedArray:
     &"TypedArray[{name}]"
+  if pfTypedesc in param.flags:
+    return &"typedesc[{result}]"
 func `$`*(self: ParamType): string =
   self.name.info.get(ObjectInfo()).stringify(self)
 func `$`*(self: ArgType): string =

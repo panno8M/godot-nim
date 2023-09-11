@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc client*(trustedChain: X509Certificate = default X509Certificate; commonNameOverride: String = ""): TLSOptions {.staticOf: TLSOptions.} =
+proc client*(_: typedesc[TLSOptions]; trustedChain: X509Certificate = default X509Certificate; commonNameOverride: String = ""): TLSOptions =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "client"
@@ -13,7 +13,7 @@ proc client*(trustedChain: X509Certificate = default X509Certificate; commonName
   var ret: encoded TLSOptions
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(TLSOptions)
-proc clientUnsafe*(trustedChain: X509Certificate = default X509Certificate): TLSOptions {.staticOf: TLSOptions.} =
+proc clientUnsafe*(_: typedesc[TLSOptions]; trustedChain: X509Certificate = default X509Certificate): TLSOptions =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "client_unsafe"
@@ -22,7 +22,7 @@ proc clientUnsafe*(trustedChain: X509Certificate = default X509Certificate): TLS
   var ret: encoded TLSOptions
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
   (addr ret).decode(TLSOptions)
-proc server*(key: CryptoKey; certificate: X509Certificate): TLSOptions {.staticOf: TLSOptions.} =
+proc server*(_: typedesc[TLSOptions]; key: CryptoKey; certificate: X509Certificate): TLSOptions =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "server"

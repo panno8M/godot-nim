@@ -4,7 +4,7 @@
 # ======================================== #
 import ./../helper/engineClassDefiner
 
-proc createFromImage*(image: Image): ImageTexture {.staticOf: ImageTexture.} =
+proc createFromImage*(_: typedesc[ImageTexture]; image: Image): ImageTexture =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_from_image"

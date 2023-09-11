@@ -94,14 +94,14 @@ proc getPeers*(self: MultiplayerAPI): PackedInt32Array =
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(PackedInt32Array)
-proc setDefaultInterface*(interfaceName: StringName) {.staticOf: MultiplayerAPI.} =
+proc setDefaultInterface*(_: typedesc[MultiplayerAPI]; interfaceName: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_default_interface"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerAPI, addr name, 3304788590)
   var `?param` = [getPtr interfaceName]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], nil)
-proc getDefaultInterface*: StringName {.staticOf: MultiplayerAPI.} =
+proc getDefaultInterface*(_: typedesc[MultiplayerAPI]): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_default_interface"
@@ -109,7 +109,7 @@ proc getDefaultInterface*: StringName {.staticOf: MultiplayerAPI.} =
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, nil, nil, addr ret)
   (addr ret).decode(StringName)
-proc createDefaultInterface*: MultiplayerAPI {.staticOf: MultiplayerAPI.} =
+proc createDefaultInterface*(_: typedesc[MultiplayerAPI]): MultiplayerAPI =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "create_default_interface"
