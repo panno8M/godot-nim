@@ -1,6 +1,5 @@
 import std/unittest
 import godot
-import godot/logging
 
 importClass Node
 
