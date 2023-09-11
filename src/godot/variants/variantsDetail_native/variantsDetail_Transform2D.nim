@@ -31,21 +31,46 @@ Transform2D.procedures(loader= load_Transform2D_proc):
   proc isEqualApprox*(self: Transform2D; xform: Transform2D): Bool {.loadfrom("is_equal_approx", 3837431929).}
   proc isFinite*(self: Transform2D): Bool {.loadfrom("is_finite", 3918633141).}
   proc lookingAt*(self: Transform2D; target: Vector2 = gdvec(0, 0)): Transform2D {.loadfrom("looking_at", 1446323263).}
-
-operators(loader= load_Transform2D_op):
-  proc `==`*(left: Transform2D; right: ptr Variant): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: Transform2D; right: ptr Variant): Bool {.operator: VariantOP_NotEqual.}
-  proc `not`*(left: Transform2D): Bool {.operator: VariantOP_Not.}
-  proc `*`*(left: Transform2D; right: Int): Transform2D {.operator: VariantOP_Multiply.}
-  proc `*`*(left: Transform2D; right: Float): Transform2D {.operator: VariantOP_Multiply.}
-  proc `*`*(left: Transform2D; right: Vector2): Vector2 {.operator: VariantOP_Multiply.}
-  proc `*`*(left: Transform2D; right: Rect2): Rect2 {.operator: VariantOP_Multiply.}
-  proc `==`*(left: Transform2D; right: Transform2D): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: Transform2D; right: Transform2D): Bool {.operator: VariantOP_NotEqual.}
-  proc `*`*(left: Transform2D; right: Transform2D): Transform2D {.operator: VariantOP_Multiply.}
-  proc `contains`*(left: Dictionary; right: Transform2D): Bool {.operator: VariantOP_In.}
-  proc `contains`*(left: Array; right: Transform2D): Bool {.operator: VariantOP_In.}
-  proc `*`*(left: Transform2D; right: PackedVector2Array): PackedVector2Array {.operator: VariantOP_Multiply.}
+var Equal_Transform2D_Variant: PtrOperatorEvaluator
+var NotEqual_Transform2D_Variant: PtrOperatorEvaluator
+var Not_Transform2D: PtrOperatorEvaluator
+var Multiply_Transform2D_Int: PtrOperatorEvaluator
+var Multiply_Transform2D_Float: PtrOperatorEvaluator
+var Multiply_Transform2D_Vector2: PtrOperatorEvaluator
+var Multiply_Transform2D_Rect2: PtrOperatorEvaluator
+var Equal_Transform2D_Transform2D: PtrOperatorEvaluator
+var NotEqual_Transform2D_Transform2D: PtrOperatorEvaluator
+var Multiply_Transform2D_Transform2D: PtrOperatorEvaluator
+var In_Transform2D_Dictionary: PtrOperatorEvaluator
+var In_Transform2D_Array: PtrOperatorEvaluator
+var Multiply_Transform2D_PackedVector2Array: PtrOperatorEvaluator
+proc `==`*(left: Transform2D; right: ptr Variant): Bool = Equal_Transform2D_Variant(addr left, addr right, addr result)
+proc `!=`*(left: Transform2D; right: ptr Variant): Bool = NotEqual_Transform2D_Variant(addr left, addr right, addr result)
+proc `not`*(left: Transform2D): Bool = Not_Transform2D(addr left, nil, addr result)
+proc `*`*(left: Transform2D; right: Int): Transform2D = Multiply_Transform2D_Int(addr left, addr right, addr result)
+proc `*`*(left: Transform2D; right: Float): Transform2D = Multiply_Transform2D_Float(addr left, addr right, addr result)
+proc `*`*(left: Transform2D; right: Vector2): Vector2 = Multiply_Transform2D_Vector2(addr left, addr right, addr result)
+proc `*`*(left: Transform2D; right: Rect2): Rect2 = Multiply_Transform2D_Rect2(addr left, addr right, addr result)
+proc `==`*(left: Transform2D; right: Transform2D): Bool = Equal_Transform2D_Transform2D(addr left, addr right, addr result)
+proc `!=`*(left: Transform2D; right: Transform2D): Bool = NotEqual_Transform2D_Transform2D(addr left, addr right, addr result)
+proc `*`*(left: Transform2D; right: Transform2D): Transform2D = Multiply_Transform2D_Transform2D(addr left, addr right, addr result)
+proc contains*(left: Dictionary; right: Transform2D): Bool = In_Transform2D_Dictionary(addr right, addr left, addr result)
+proc contains*(left: Array; right: Transform2D): Bool = In_Transform2D_Array(addr right, addr left, addr result)
+proc `*`*(left: Transform2D; right: PackedVector2Array): PackedVector2Array = Multiply_Transform2D_PackedVector2Array(addr left, addr right, addr result)
+proc load_Transform2D_op =
+  Equal_Transform2D_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Transform2D, VariantType_Nil)
+  NotEqual_Transform2D_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Transform2D, VariantType_Nil)
+  Not_Transform2D = interface_variantGetPtrOperatorEvaluator(VariantOP_Not, VariantType_Transform2D, VariantType_Nil)
+  Multiply_Transform2D_Int = interface_variantGetPtrOperatorEvaluator(VariantOP_Multiply, VariantType_Transform2D, VariantType_Int)
+  Multiply_Transform2D_Float = interface_variantGetPtrOperatorEvaluator(VariantOP_Multiply, VariantType_Transform2D, VariantType_Float)
+  Multiply_Transform2D_Vector2 = interface_variantGetPtrOperatorEvaluator(VariantOP_Multiply, VariantType_Transform2D, VariantType_Vector2)
+  Multiply_Transform2D_Rect2 = interface_variantGetPtrOperatorEvaluator(VariantOP_Multiply, VariantType_Transform2D, VariantType_Rect2)
+  Equal_Transform2D_Transform2D = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Transform2D, VariantType_Transform2D)
+  NotEqual_Transform2D_Transform2D = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Transform2D, VariantType_Transform2D)
+  Multiply_Transform2D_Transform2D = interface_variantGetPtrOperatorEvaluator(VariantOP_Multiply, VariantType_Transform2D, VariantType_Transform2D)
+  In_Transform2D_Dictionary = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_Transform2D, VariantType_Dictionary)
+  In_Transform2D_Array = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_Transform2D, VariantType_Array)
+  Multiply_Transform2D_PackedVector2Array = interface_variantGetPtrOperatorEvaluator(VariantOP_Multiply, VariantType_Transform2D, VariantType_PackedVector2Array)
 proc load_Transform2D_allmethod* =
-  load_Transform2D_proc()
   load_Transform2D_op()
+  load_Transform2D_proc()

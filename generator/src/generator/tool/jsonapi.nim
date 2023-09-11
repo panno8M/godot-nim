@@ -94,4 +94,11 @@ type
     classes*: JsonClasses
     native_structures*: JsonStructures
 
+  IgnoreConf* = object
+    module*: bool
+    constructor*: bool
+    operator*: bool
+    procedure*: bool
+    operator_white*: seq[string]
+
 proc `$`*(x: JsonConstant): string = $x[]

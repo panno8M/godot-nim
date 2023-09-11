@@ -32,16 +32,31 @@ PackedFloat32Array.procedures(loader= load_PackedFloat32Array_proc):
   proc find*(self: PackedFloat32Array; value: Float; `from`: Int = 0): Int {.loadfrom("find", 1343150241).}
   proc rfind*(self: PackedFloat32Array; value: Float; `from`: Int = -1): Int {.loadfrom("rfind", 1343150241).}
   proc count*(self: PackedFloat32Array; value: Float): Int {.loadfrom("count", 2859915090).}
-
-operators(loader= load_PackedFloat32Array_op):
-  proc `==`*(left: PackedFloat32Array; right: ptr Variant): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: PackedFloat32Array; right: ptr Variant): Bool {.operator: VariantOP_NotEqual.}
-  proc `not`*(left: PackedFloat32Array): Bool {.operator: VariantOP_Not.}
-  proc `contains`*(left: Dictionary; right: PackedFloat32Array): Bool {.operator: VariantOP_In.}
-  proc `contains`*(left: Array; right: PackedFloat32Array): Bool {.operator: VariantOP_In.}
-  proc `==`*(left: PackedFloat32Array; right: PackedFloat32Array): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: PackedFloat32Array; right: PackedFloat32Array): Bool {.operator: VariantOP_NotEqual.}
-  proc `+`*(left: PackedFloat32Array; right: PackedFloat32Array): PackedFloat32Array {.operator: VariantOP_Add.}
+var Equal_PackedFloat32Array_Variant: PtrOperatorEvaluator
+var NotEqual_PackedFloat32Array_Variant: PtrOperatorEvaluator
+var Not_PackedFloat32Array: PtrOperatorEvaluator
+var In_PackedFloat32Array_Dictionary: PtrOperatorEvaluator
+var In_PackedFloat32Array_Array: PtrOperatorEvaluator
+var Equal_PackedFloat32Array_PackedFloat32Array: PtrOperatorEvaluator
+var NotEqual_PackedFloat32Array_PackedFloat32Array: PtrOperatorEvaluator
+var Add_PackedFloat32Array_PackedFloat32Array: PtrOperatorEvaluator
+proc `==`*(left: PackedFloat32Array; right: ptr Variant): Bool = Equal_PackedFloat32Array_Variant(addr left, addr right, addr result)
+proc `!=`*(left: PackedFloat32Array; right: ptr Variant): Bool = NotEqual_PackedFloat32Array_Variant(addr left, addr right, addr result)
+proc `not`*(left: PackedFloat32Array): Bool = Not_PackedFloat32Array(addr left, nil, addr result)
+proc contains*(left: Dictionary; right: PackedFloat32Array): Bool = In_PackedFloat32Array_Dictionary(addr right, addr left, addr result)
+proc contains*(left: Array; right: PackedFloat32Array): Bool = In_PackedFloat32Array_Array(addr right, addr left, addr result)
+proc `==`*(left: PackedFloat32Array; right: PackedFloat32Array): Bool = Equal_PackedFloat32Array_PackedFloat32Array(addr left, addr right, addr result)
+proc `!=`*(left: PackedFloat32Array; right: PackedFloat32Array): Bool = NotEqual_PackedFloat32Array_PackedFloat32Array(addr left, addr right, addr result)
+proc `+`*(left: PackedFloat32Array; right: PackedFloat32Array): PackedFloat32Array = Add_PackedFloat32Array_PackedFloat32Array(addr left, addr right, addr result)
+proc load_PackedFloat32Array_op =
+  Equal_PackedFloat32Array_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_PackedFloat32Array, VariantType_Nil)
+  NotEqual_PackedFloat32Array_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_PackedFloat32Array, VariantType_Nil)
+  Not_PackedFloat32Array = interface_variantGetPtrOperatorEvaluator(VariantOP_Not, VariantType_PackedFloat32Array, VariantType_Nil)
+  In_PackedFloat32Array_Dictionary = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_PackedFloat32Array, VariantType_Dictionary)
+  In_PackedFloat32Array_Array = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_PackedFloat32Array, VariantType_Array)
+  Equal_PackedFloat32Array_PackedFloat32Array = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_PackedFloat32Array, VariantType_PackedFloat32Array)
+  NotEqual_PackedFloat32Array_PackedFloat32Array = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_PackedFloat32Array, VariantType_PackedFloat32Array)
+  Add_PackedFloat32Array_PackedFloat32Array = interface_variantGetPtrOperatorEvaluator(VariantOP_Add, VariantType_PackedFloat32Array, VariantType_PackedFloat32Array)
 proc load_PackedFloat32Array_allmethod* =
-  load_PackedFloat32Array_proc()
   load_PackedFloat32Array_op()
+  load_PackedFloat32Array_proc()

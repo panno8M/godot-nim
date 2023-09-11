@@ -22,18 +22,37 @@ Plane.procedures(loader= load_Plane_proc):
   proc intersect3*(self: Plane; b: Plane; c: Plane): Variant {.loadfrom("intersect_3", 2012052692).}
   proc intersectsRay*(self: Plane; `from`: Vector3; dir: Vector3): Variant {.loadfrom("intersects_ray", 2048133369).}
   proc intersectsSegment*(self: Plane; `from`: Vector3; to: Vector3): Variant {.loadfrom("intersects_segment", 2048133369).}
-
-operators(loader= load_Plane_op):
-  proc `==`*(left: Plane; right: ptr Variant): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: Plane; right: ptr Variant): Bool {.operator: VariantOP_NotEqual.}
-  proc `-`*(left: Plane): Plane {.operator: VariantOP_Negate.}
-  proc `+`*(left: Plane): Plane {.operator: VariantOP_Positive.}
-  proc `not`*(left: Plane): Bool {.operator: VariantOP_Not.}
-  proc `==`*(left: Plane; right: Plane): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: Plane; right: Plane): Bool {.operator: VariantOP_NotEqual.}
-  proc `*`*(left: Plane; right: Transform3D): Plane {.operator: VariantOP_Multiply.}
-  proc `contains`*(left: Dictionary; right: Plane): Bool {.operator: VariantOP_In.}
-  proc `contains`*(left: Array; right: Plane): Bool {.operator: VariantOP_In.}
+var Equal_Plane_Variant: PtrOperatorEvaluator
+var NotEqual_Plane_Variant: PtrOperatorEvaluator
+var Negate_Plane: PtrOperatorEvaluator
+var Positive_Plane: PtrOperatorEvaluator
+var Not_Plane: PtrOperatorEvaluator
+var Equal_Plane_Plane: PtrOperatorEvaluator
+var NotEqual_Plane_Plane: PtrOperatorEvaluator
+var Multiply_Plane_Transform3D: PtrOperatorEvaluator
+var In_Plane_Dictionary: PtrOperatorEvaluator
+var In_Plane_Array: PtrOperatorEvaluator
+proc `==`*(left: Plane; right: ptr Variant): Bool = Equal_Plane_Variant(addr left, addr right, addr result)
+proc `!=`*(left: Plane; right: ptr Variant): Bool = NotEqual_Plane_Variant(addr left, addr right, addr result)
+proc `-`*(left: Plane): Plane = Negate_Plane(addr left, nil, addr result)
+proc `+`*(left: Plane): Plane = Positive_Plane(addr left, nil, addr result)
+proc `not`*(left: Plane): Bool = Not_Plane(addr left, nil, addr result)
+proc `==`*(left: Plane; right: Plane): Bool = Equal_Plane_Plane(addr left, addr right, addr result)
+proc `!=`*(left: Plane; right: Plane): Bool = NotEqual_Plane_Plane(addr left, addr right, addr result)
+proc `*`*(left: Plane; right: Transform3D): Plane = Multiply_Plane_Transform3D(addr left, addr right, addr result)
+proc contains*(left: Dictionary; right: Plane): Bool = In_Plane_Dictionary(addr right, addr left, addr result)
+proc contains*(left: Array; right: Plane): Bool = In_Plane_Array(addr right, addr left, addr result)
+proc load_Plane_op =
+  Equal_Plane_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Plane, VariantType_Nil)
+  NotEqual_Plane_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Plane, VariantType_Nil)
+  Negate_Plane = interface_variantGetPtrOperatorEvaluator(VariantOP_Negate, VariantType_Plane, VariantType_Nil)
+  Positive_Plane = interface_variantGetPtrOperatorEvaluator(VariantOP_Positive, VariantType_Plane, VariantType_Nil)
+  Not_Plane = interface_variantGetPtrOperatorEvaluator(VariantOP_Not, VariantType_Plane, VariantType_Nil)
+  Equal_Plane_Plane = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Plane, VariantType_Plane)
+  NotEqual_Plane_Plane = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Plane, VariantType_Plane)
+  Multiply_Plane_Transform3D = interface_variantGetPtrOperatorEvaluator(VariantOP_Multiply, VariantType_Plane, VariantType_Transform3D)
+  In_Plane_Dictionary = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_Plane, VariantType_Dictionary)
+  In_Plane_Array = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_Plane, VariantType_Array)
 proc load_Plane_allmethod* =
-  load_Plane_proc()
   load_Plane_op()
+  load_Plane_proc()

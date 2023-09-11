@@ -32,26 +32,59 @@ Quaternion.procedures(loader= load_Quaternion_proc):
 
 Quaternion.staticProcedures(loader= load_Quaternion_sproc):
   proc fromEuler*(euler: Vector3): Quaternion {.staticOf: Quaternion, loadfrom("from_euler", 4053467903).}
-
-operators(loader= load_Quaternion_op):
-  proc `==`*(left: Quaternion; right: ptr Variant): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: Quaternion; right: ptr Variant): Bool {.operator: VariantOP_NotEqual.}
-  proc `-`*(left: Quaternion): Quaternion {.operator: VariantOP_Negate.}
-  proc `+`*(left: Quaternion): Quaternion {.operator: VariantOP_Positive.}
-  proc `not`*(left: Quaternion): Bool {.operator: VariantOP_Not.}
-  proc `*`*(left: Quaternion; right: Int): Quaternion {.operator: VariantOP_Multiply.}
-  proc `/`*(left: Quaternion; right: Int): Quaternion {.operator: VariantOP_Divide.}
-  proc `*`*(left: Quaternion; right: Float): Quaternion {.operator: VariantOP_Multiply.}
-  proc `/`*(left: Quaternion; right: Float): Quaternion {.operator: VariantOP_Divide.}
-  proc `*`*(left: Quaternion; right: Vector3): Vector3 {.operator: VariantOP_Multiply.}
-  proc `==`*(left: Quaternion; right: Quaternion): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: Quaternion; right: Quaternion): Bool {.operator: VariantOP_NotEqual.}
-  proc `+`*(left: Quaternion; right: Quaternion): Quaternion {.operator: VariantOP_Add.}
-  proc `-`*(left: Quaternion; right: Quaternion): Quaternion {.operator: VariantOP_Subtract.}
-  proc `*`*(left: Quaternion; right: Quaternion): Quaternion {.operator: VariantOP_Multiply.}
-  proc `contains`*(left: Dictionary; right: Quaternion): Bool {.operator: VariantOP_In.}
-  proc `contains`*(left: Array; right: Quaternion): Bool {.operator: VariantOP_In.}
+var Equal_Quaternion_Variant: PtrOperatorEvaluator
+var NotEqual_Quaternion_Variant: PtrOperatorEvaluator
+var Negate_Quaternion: PtrOperatorEvaluator
+var Positive_Quaternion: PtrOperatorEvaluator
+var Not_Quaternion: PtrOperatorEvaluator
+var Multiply_Quaternion_Int: PtrOperatorEvaluator
+var Divide_Quaternion_Int: PtrOperatorEvaluator
+var Multiply_Quaternion_Float: PtrOperatorEvaluator
+var Divide_Quaternion_Float: PtrOperatorEvaluator
+var Multiply_Quaternion_Vector3: PtrOperatorEvaluator
+var Equal_Quaternion_Quaternion: PtrOperatorEvaluator
+var NotEqual_Quaternion_Quaternion: PtrOperatorEvaluator
+var Add_Quaternion_Quaternion: PtrOperatorEvaluator
+var Subtract_Quaternion_Quaternion: PtrOperatorEvaluator
+var Multiply_Quaternion_Quaternion: PtrOperatorEvaluator
+var In_Quaternion_Dictionary: PtrOperatorEvaluator
+var In_Quaternion_Array: PtrOperatorEvaluator
+proc `==`*(left: Quaternion; right: ptr Variant): Bool = Equal_Quaternion_Variant(addr left, addr right, addr result)
+proc `!=`*(left: Quaternion; right: ptr Variant): Bool = NotEqual_Quaternion_Variant(addr left, addr right, addr result)
+proc `-`*(left: Quaternion): Quaternion = Negate_Quaternion(addr left, nil, addr result)
+proc `+`*(left: Quaternion): Quaternion = Positive_Quaternion(addr left, nil, addr result)
+proc `not`*(left: Quaternion): Bool = Not_Quaternion(addr left, nil, addr result)
+proc `*`*(left: Quaternion; right: Int): Quaternion = Multiply_Quaternion_Int(addr left, addr right, addr result)
+proc `/`*(left: Quaternion; right: Int): Quaternion = Divide_Quaternion_Int(addr left, addr right, addr result)
+proc `*`*(left: Quaternion; right: Float): Quaternion = Multiply_Quaternion_Float(addr left, addr right, addr result)
+proc `/`*(left: Quaternion; right: Float): Quaternion = Divide_Quaternion_Float(addr left, addr right, addr result)
+proc `*`*(left: Quaternion; right: Vector3): Vector3 = Multiply_Quaternion_Vector3(addr left, addr right, addr result)
+proc `==`*(left: Quaternion; right: Quaternion): Bool = Equal_Quaternion_Quaternion(addr left, addr right, addr result)
+proc `!=`*(left: Quaternion; right: Quaternion): Bool = NotEqual_Quaternion_Quaternion(addr left, addr right, addr result)
+proc `+`*(left: Quaternion; right: Quaternion): Quaternion = Add_Quaternion_Quaternion(addr left, addr right, addr result)
+proc `-`*(left: Quaternion; right: Quaternion): Quaternion = Subtract_Quaternion_Quaternion(addr left, addr right, addr result)
+proc `*`*(left: Quaternion; right: Quaternion): Quaternion = Multiply_Quaternion_Quaternion(addr left, addr right, addr result)
+proc contains*(left: Dictionary; right: Quaternion): Bool = In_Quaternion_Dictionary(addr right, addr left, addr result)
+proc contains*(left: Array; right: Quaternion): Bool = In_Quaternion_Array(addr right, addr left, addr result)
+proc load_Quaternion_op =
+  Equal_Quaternion_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Quaternion, VariantType_Nil)
+  NotEqual_Quaternion_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Quaternion, VariantType_Nil)
+  Negate_Quaternion = interface_variantGetPtrOperatorEvaluator(VariantOP_Negate, VariantType_Quaternion, VariantType_Nil)
+  Positive_Quaternion = interface_variantGetPtrOperatorEvaluator(VariantOP_Positive, VariantType_Quaternion, VariantType_Nil)
+  Not_Quaternion = interface_variantGetPtrOperatorEvaluator(VariantOP_Not, VariantType_Quaternion, VariantType_Nil)
+  Multiply_Quaternion_Int = interface_variantGetPtrOperatorEvaluator(VariantOP_Multiply, VariantType_Quaternion, VariantType_Int)
+  Divide_Quaternion_Int = interface_variantGetPtrOperatorEvaluator(VariantOP_Divide, VariantType_Quaternion, VariantType_Int)
+  Multiply_Quaternion_Float = interface_variantGetPtrOperatorEvaluator(VariantOP_Multiply, VariantType_Quaternion, VariantType_Float)
+  Divide_Quaternion_Float = interface_variantGetPtrOperatorEvaluator(VariantOP_Divide, VariantType_Quaternion, VariantType_Float)
+  Multiply_Quaternion_Vector3 = interface_variantGetPtrOperatorEvaluator(VariantOP_Multiply, VariantType_Quaternion, VariantType_Vector3)
+  Equal_Quaternion_Quaternion = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Quaternion, VariantType_Quaternion)
+  NotEqual_Quaternion_Quaternion = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Quaternion, VariantType_Quaternion)
+  Add_Quaternion_Quaternion = interface_variantGetPtrOperatorEvaluator(VariantOP_Add, VariantType_Quaternion, VariantType_Quaternion)
+  Subtract_Quaternion_Quaternion = interface_variantGetPtrOperatorEvaluator(VariantOP_Subtract, VariantType_Quaternion, VariantType_Quaternion)
+  Multiply_Quaternion_Quaternion = interface_variantGetPtrOperatorEvaluator(VariantOP_Multiply, VariantType_Quaternion, VariantType_Quaternion)
+  In_Quaternion_Dictionary = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_Quaternion, VariantType_Dictionary)
+  In_Quaternion_Array = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_Quaternion, VariantType_Array)
 proc load_Quaternion_allmethod* =
+  load_Quaternion_op()
   load_Quaternion_proc()
   load_Quaternion_sproc()
-  load_Quaternion_op()

@@ -32,16 +32,31 @@ PackedStringArray.procedures(loader= load_PackedStringArray_proc):
   proc find*(self: PackedStringArray; value: String; `from`: Int = 0): Int {.loadfrom("find", 1760645412).}
   proc rfind*(self: PackedStringArray; value: String; `from`: Int = -1): Int {.loadfrom("rfind", 1760645412).}
   proc count*(self: PackedStringArray; value: String): Int {.loadfrom("count", 2920860731).}
-
-operators(loader= load_PackedStringArray_op):
-  proc `==`*(left: PackedStringArray; right: ptr Variant): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: PackedStringArray; right: ptr Variant): Bool {.operator: VariantOP_NotEqual.}
-  proc `not`*(left: PackedStringArray): Bool {.operator: VariantOP_Not.}
-  proc `contains`*(left: Dictionary; right: PackedStringArray): Bool {.operator: VariantOP_In.}
-  proc `contains`*(left: Array; right: PackedStringArray): Bool {.operator: VariantOP_In.}
-  proc `==`*(left: PackedStringArray; right: PackedStringArray): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: PackedStringArray; right: PackedStringArray): Bool {.operator: VariantOP_NotEqual.}
-  proc `+`*(left: PackedStringArray; right: PackedStringArray): PackedStringArray {.operator: VariantOP_Add.}
+var Equal_PackedStringArray_Variant: PtrOperatorEvaluator
+var NotEqual_PackedStringArray_Variant: PtrOperatorEvaluator
+var Not_PackedStringArray: PtrOperatorEvaluator
+var In_PackedStringArray_Dictionary: PtrOperatorEvaluator
+var In_PackedStringArray_Array: PtrOperatorEvaluator
+var Equal_PackedStringArray_PackedStringArray: PtrOperatorEvaluator
+var NotEqual_PackedStringArray_PackedStringArray: PtrOperatorEvaluator
+var Add_PackedStringArray_PackedStringArray: PtrOperatorEvaluator
+proc `==`*(left: PackedStringArray; right: ptr Variant): Bool = Equal_PackedStringArray_Variant(addr left, addr right, addr result)
+proc `!=`*(left: PackedStringArray; right: ptr Variant): Bool = NotEqual_PackedStringArray_Variant(addr left, addr right, addr result)
+proc `not`*(left: PackedStringArray): Bool = Not_PackedStringArray(addr left, nil, addr result)
+proc contains*(left: Dictionary; right: PackedStringArray): Bool = In_PackedStringArray_Dictionary(addr right, addr left, addr result)
+proc contains*(left: Array; right: PackedStringArray): Bool = In_PackedStringArray_Array(addr right, addr left, addr result)
+proc `==`*(left: PackedStringArray; right: PackedStringArray): Bool = Equal_PackedStringArray_PackedStringArray(addr left, addr right, addr result)
+proc `!=`*(left: PackedStringArray; right: PackedStringArray): Bool = NotEqual_PackedStringArray_PackedStringArray(addr left, addr right, addr result)
+proc `+`*(left: PackedStringArray; right: PackedStringArray): PackedStringArray = Add_PackedStringArray_PackedStringArray(addr left, addr right, addr result)
+proc load_PackedStringArray_op =
+  Equal_PackedStringArray_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_PackedStringArray, VariantType_Nil)
+  NotEqual_PackedStringArray_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_PackedStringArray, VariantType_Nil)
+  Not_PackedStringArray = interface_variantGetPtrOperatorEvaluator(VariantOP_Not, VariantType_PackedStringArray, VariantType_Nil)
+  In_PackedStringArray_Dictionary = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_PackedStringArray, VariantType_Dictionary)
+  In_PackedStringArray_Array = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_PackedStringArray, VariantType_Array)
+  Equal_PackedStringArray_PackedStringArray = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_PackedStringArray, VariantType_PackedStringArray)
+  NotEqual_PackedStringArray_PackedStringArray = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_PackedStringArray, VariantType_PackedStringArray)
+  Add_PackedStringArray_PackedStringArray = interface_variantGetPtrOperatorEvaluator(VariantOP_Add, VariantType_PackedStringArray, VariantType_PackedStringArray)
 proc load_PackedStringArray_allmethod* =
-  load_PackedStringArray_proc()
   load_PackedStringArray_op()
+  load_PackedStringArray_proc()

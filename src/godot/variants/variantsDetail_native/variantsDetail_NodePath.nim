@@ -21,15 +21,28 @@ NodePath.procedures(loader= load_NodePath_proc):
   proc getConcatenatedSubnames*(self: NodePath): StringName {.loadfrom("get_concatenated_subnames", 1825232092).}
   proc getAsPropertyPath*(self: NodePath): NodePath {.loadfrom("get_as_property_path", 1598598043).}
   proc isEmpty*(self: NodePath): Bool {.loadfrom("is_empty", 3918633141).}
-
-operators(loader= load_NodePath_op):
-  proc `==`*(left: NodePath; right: ptr Variant): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: NodePath; right: ptr Variant): Bool {.operator: VariantOP_NotEqual.}
-  proc `not`*(left: NodePath): Bool {.operator: VariantOP_Not.}
-  proc `==`*(left: NodePath; right: NodePath): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: NodePath; right: NodePath): Bool {.operator: VariantOP_NotEqual.}
-  proc `contains`*(left: Dictionary; right: NodePath): Bool {.operator: VariantOP_In.}
-  proc `contains`*(left: Array; right: NodePath): Bool {.operator: VariantOP_In.}
+var Equal_NodePath_Variant: PtrOperatorEvaluator
+var NotEqual_NodePath_Variant: PtrOperatorEvaluator
+var Not_NodePath: PtrOperatorEvaluator
+var Equal_NodePath_NodePath: PtrOperatorEvaluator
+var NotEqual_NodePath_NodePath: PtrOperatorEvaluator
+var In_NodePath_Dictionary: PtrOperatorEvaluator
+var In_NodePath_Array: PtrOperatorEvaluator
+proc `==`*(left: NodePath; right: ptr Variant): Bool = Equal_NodePath_Variant(addr left, addr right, addr result)
+proc `!=`*(left: NodePath; right: ptr Variant): Bool = NotEqual_NodePath_Variant(addr left, addr right, addr result)
+proc `not`*(left: NodePath): Bool = Not_NodePath(addr left, nil, addr result)
+proc `==`*(left: NodePath; right: NodePath): Bool = Equal_NodePath_NodePath(addr left, addr right, addr result)
+proc `!=`*(left: NodePath; right: NodePath): Bool = NotEqual_NodePath_NodePath(addr left, addr right, addr result)
+proc contains*(left: Dictionary; right: NodePath): Bool = In_NodePath_Dictionary(addr right, addr left, addr result)
+proc contains*(left: Array; right: NodePath): Bool = In_NodePath_Array(addr right, addr left, addr result)
+proc load_NodePath_op =
+  Equal_NodePath_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_NodePath, VariantType_Nil)
+  NotEqual_NodePath_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_NodePath, VariantType_Nil)
+  Not_NodePath = interface_variantGetPtrOperatorEvaluator(VariantOP_Not, VariantType_NodePath, VariantType_Nil)
+  Equal_NodePath_NodePath = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_NodePath, VariantType_NodePath)
+  NotEqual_NodePath_NodePath = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_NodePath, VariantType_NodePath)
+  In_NodePath_Dictionary = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_NodePath, VariantType_Dictionary)
+  In_NodePath_Array = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_NodePath, VariantType_Array)
 proc load_NodePath_allmethod* =
-  load_NodePath_proc()
   load_NodePath_op()
+  load_NodePath_proc()

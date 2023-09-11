@@ -54,38 +54,6 @@ proc procedure(Type, node: NimNode; isStatic: bool; namesym: NimNode): MethodDef
       let call_args = `argptrarr`
       `container`(`p_self`, addr call_args[0], `p_result`, cint call_args.len)
 
-proc elements_from_identdef(identdef: NimNode): tuple[address, variantType: NimNode] =
-  if identdef.isNil or identdef.kind == nnkEmpty:
-    result.address = newNilLit()
-    result.variantType = bindsym"VariantType_Nil"
-  else:
-    result.address = newAddr identdef[0]
-    result.variantType = "variantType".newCall(identdef[1])
-
-
-proc operator(node: NimNode): MethodDefinition =
-  let op = node.popPragma("operator")[1]
-
-  let has_right = node.params.len == 3
-  let left = node.params[1]
-  let right = if has_right: node.params[2] else: nil
-
-  let (leftAddress, leftVariantType) = elements_from_identdef(left)
-  let (rightAddress, rightVariantType) = elements_from_identdef(right)
-
-  let container = genSym(nskVar, "container")
-
-  result.containerDefine = quote do:
-    var `container`: PtrOperatorEvaluator
-  let callget = quote do:
-    interface_variantGetPtrOperatorEvaluator(`op`, `leftVariantType`, `rightVariantType`)
-  result.initSentence = newStmtList(
-    nnkAsgn.newTree(container, callget)
-  )
-  result.procDefine = node
-  result.procDefine.body = quote do:
-    `container`(`leftAddress`, `rightAddress`, addr result)
-
 proc procedures_impl(Type, loader, body: NimNode; is_static: bool): NimNode =
   result = newStmtList()
   let namesym = genSym(nskVar, "name")
@@ -106,15 +74,3 @@ macro procedures*[T](Type: typedesc[T]; loader, body): untyped =
 
 macro staticProcedures*[T](Type: typedesc[T]; loader, body): untyped =
   procedures_impl(Type, loader, body, is_static= true)
-
-macro operators*(loader, body): untyped =
-  result = newStmtList()
-  var initProcStmt = newStmtList()
-  for statement in body:
-    let (containerDefine, procDefine, initSentence) = operator(statement)
-    result.add containerDefine
-    result.add procDefine
-    initProcStmt.add initSentence[0..^1]
-  result.add newProc(
-    name = loader.postfix("*"),
-    body = initProcStmt)

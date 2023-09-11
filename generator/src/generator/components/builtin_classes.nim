@@ -5,11 +5,12 @@ import std/[
   strutils,
   strformat,
   algorithm,
-  sugar,
+  tables,
 ]
 import ./[
   gd_enum,
   gd_functions,
+  variantOperator,
 ]
 import ../tool/[
   moduleTree,
@@ -22,16 +23,127 @@ type
     name*: TypeName
     enums*: seq[NimEnum]
     constructors*: seq[GodotProcSt]
-    operators*: seq[GodotProcSt]
     methods*: seq[GodotProcSt]
     staticMethods*: seq[GodotProcSt]
     json*: JsonBuiltinClass
 
-const constructorIgnores = [
-  "GdVector2", "GdVector2i",
-  "GdVector3", "GdVector3i",
-  "GdVector4", "GdVector4i",
-  "GdColor",
+const ignoreConf: Table[string, IgnoreConf] = toTable {
+  "Vector2": IgnoreConf(
+    constructor: true,
+    procedure: true,
+    operator: true,
+    operator_white: @[
+      "Equal_Vector2_Variant",
+      "NotEqual_Vector2_Variant",
+      "Multiply_Vector2_Transform2D",
+      "In_Vector2_Dictionary",
+      "In_Vector2_Array",
+      "In_Vector2_PackedVector2Array",
+    ],
+  ),
+  "Vector2i": IgnoreConf(
+    constructor: true,
+    procedure: true,
+    operator: true,
+    operator_white: @[
+      "Equal_Vector2i_Variant",
+      "NotEqual_Vector2i_Variant",
+      "In_Vector2i_Dictionary",
+      "In_Vector2i_Array",
+    ],
+  ),
+  "Vector3": IgnoreConf(
+    constructor: true,
+    procedure: true,
+    operator: true,
+    operator_white: @[
+      "Equal_Vector3_Variant",
+      "NotEqual_Vector3_Variant",
+      "Multiply_Vector3_Quaternion",
+      "Multiply_Vector3_Basis",
+      "Multiply_Vector3_Transform3D",
+      "In_Vector3_Dictionary",
+      "In_Vector3_Array",
+      "In_Vector3_PackedVector3Array",
+    ],
+  ),
+  "Vector3i": IgnoreConf(
+    constructor: true,
+    procedure: true,
+    operator: true,
+    operator_white: @[
+      "Equal_Vector3i_Variant",
+      "NotEqual_Vector3i_Variant",
+      "In_Vector3i_Dictionary",
+      "In_Vector3i_Array",
+    ],
+  ),
+  "Vector4": IgnoreConf(
+    constructor: true,
+    procedure: true,
+    operator: true,
+    operator_white: @[
+      "Equal_Vector4_Variant",
+      "NotEqual_Vector4_Variant",
+      "Multiply_Vector4_Projection",
+      "In_Vector4_Dictionary",
+      "In_Vector4_Array",
+    ],
+  ),
+  "Vector4i": IgnoreConf(
+    constructor: true,
+    procedure: true,
+    operator: true,
+    operator_white: @[
+      "Equal_Vector4i_Variant",
+      "NotEqual_Vector4i_Variant",
+      "In_Vector4i_Dictionary",
+      "In_Vector4i_Array",
+    ],
+  ),
+  "Bool": IgnoreConf(
+    constructor: true,
+    operator: true,
+    operator_white: @[
+      "Equal_Bool_Variant",
+      "NotEqual_Bool_Variant",
+      "In_Bool_Dictionary",
+      "In_Bool_Array",
+    ],
+  ),
+  "Int": IgnoreConf(
+    constructor: true,
+    operator: true,
+    operator_white: @[
+      "Equal_Int_Variant",
+      "NotEqual_Int_Variant",
+    ],
+  ),
+  "Float": IgnoreConf(
+    constructor: true,
+    operator: true,
+    operator_white: @[
+      "Equal_Float_Variant",
+      "NotEqual_Float_Variant",
+      "In_Float_Dictionary",
+      "In_Float_Array",
+      "In_Float_PackedByteArray",
+      "In_Float_PackedInt32Array",
+      "In_Float_PackedInt64Array",
+      "In_Float_PackedFloat32Array",
+      "In_Float_PackedFloat64Array",
+    ],
+  ),
+  "Nil": IgnoreConf(
+    module: true,
+    constructor: true,
+    operator: true,
+  ),
+}
+
+const
+  variantAdditionalLoaders* : seq[string] = @[
+    "load_vectors()",
   ]
 
 func cmp*(x,y: Option[string]): int =
@@ -43,24 +155,20 @@ func cmp*(x,y: Option[string]): int =
     else: return cmp(get x, get y)
 
 proc toNim*(self: JsonBuiltinClass): NimBuiltinClass =
-
   result = NimBuiltinClass()
   result.name = typeName self.name
   let argTypeName = argType result.name
   if self.enums.isSome:
     result.enums = self.enums.get.mapIt it.toNim(result.name)
-  if $result.name notin constructorIgnores:
+  if not ignoreConf.getOrDefault($result.name).constructor:
     result.constructors = sorted self.constructors.mapIt it.prerender retType result.name
   for m in self.methods.get(@[]):
     if m.is_static:
       result.staticMethods.add prerender(m, argTypeName, gpkStaticMethod)
     else:
       result.methods.add prerender(m, argTypeName, gpkMethod)
-  for o in self.operators.get(@[]):
-    result.operators.add o.prerender(argTypeName)
   result.methods = sorted result.methods
   result.staticMethods = sorted result.staticMethods
-  result.operators = sorted result.operators
 
   result.json = self
 
@@ -92,7 +200,10 @@ func renderConstructor*(self: NimBuiltinClass): Statement =
     ParagraphSt()
 
 func renderConstructor*(self: seq[NimBuiltinClass]): Statement =
-  ParagraphSt(children: self.filterIt($it.name notin variantDetailIgnores).mapit(it.renderConstructor))
+  result = new ParagraphSt
+  for variant in self:
+    if ignoreConf.getOrDefault($variant.name).constructor: continue
+    result.children.add variant.renderConstructor
 
 proc renderLocalEnums*(self: seq[NimBuiltinClass]): Statement =
   result = new ParagraphSt
@@ -101,8 +212,10 @@ proc renderLocalEnums*(self: seq[NimBuiltinClass]): Statement =
     discard +$$..result:
       variant.enums.mapit it.render
 
-func renderClassDefine*(self: NimBuiltinClass): Statement =
-  +$$..ParagraphSt():
+type RenderedVariant = tuple
+  define, operators, loader: Statement
+proc prerender*(self: NimBuiltinClass): RenderedVariant =
+  result.define = +$$..ParagraphSt():
     +$$..CommentSt.nim(execute= true):
       fmt"type {self.name}* = object"
       +$$..IndentSt(level: 2):
@@ -111,46 +224,47 @@ func renderClassDefine*(self: NimBuiltinClass): Statement =
         fmt"{self.json.indexing_return_type=}"
         fmt"{self.json.constants=}"
 
-    +$$..OptionSt(eval: self.methods.len != 0):
-      ""
-      +$$..BlockSt(head: fmt"{self.name}.procedures(loader= {procLoader $self.name}):"):
-        self.methods
+  let (opdefine, oploader) = prerender(self.json.operators, argType self.name, ignoreConf.getOrDefault($self.name))
+  result.operators = opdefine
+  result.loader = BlockSt(head: &"proc {allMethodLoader $self.name}* =")
+  if oploader != nil:
+    result.operators.children.add oploader
+    result.loader.children.add fmt"{opLoader $self.name}()"
 
-    +$$..OptionSt(eval: self.staticmethods.len != 0):
-      ""
-      +$$..BlockSt(head: fmt"{self.name}.staticProcedures(loader= {sprocLoader $self.name}):"):
-        self.staticMethods
-
-    +$$..OptionSt(eval: self.operators.len != 0):
-      ""
-      +$$..BlockSt(head: fmt"operators(loader= {opLoader $self.name}):"):
-        self.operators
-
-
-func renderLoader*(self: NimBuiltinClass): Statement =
-  +$$..OptionSt(eval: (self.methods.len+self.staticmethods.len+self.operators.len) != 0):
-    +$$..NimProcSt(
-          kind: npkProc,
-          flags: {npfExport},
-          name: some allMethodLoader $self.name):
+  if not ignoreConf.getOrDefault($self.name).procedure:
+    discard +$$..result.define:
       +$$..OptionSt(eval: self.methods.len != 0):
-        fmt"{procLoader $self.name}()"
+        ""
+        +$$..BlockSt(head: fmt"{self.name}.procedures(loader= {procLoader $self.name}):"):
+          self.methods
+
       +$$..OptionSt(eval: self.staticmethods.len != 0):
-        fmt"{sprocLoader $self.name}()"
-      +$$..OptionSt(eval: self.operators.len != 0):
-        fmt"{opLoader $self.name}()"
+        ""
+        +$$..BlockSt(head: fmt"{self.name}.staticProcedures(loader= {sprocLoader $self.name}):"):
+          self.staticMethods
+
+    if self.methods.len != 0:
+      result.loader.children.add fmt"{procLoader $self.name}()"
+    if self.staticmethods.len != 0:
+      result.loader.children.add fmt"{sprocLoader $self.name}()"
+
+  if result.loader.children.len == 0:
+    result.loader.children.add "discard"
+
+
 func renderLoader*(classes: seq[NimBuiltinClass]): Statement =
   let loaderBody = ParagraphSt()
 
-  for class in classes.filter(x => $x.name notin variantDetailIgnores):
-    if $class.name notin constructorIgnores:
-      discard loaderBody.add:
-        &"{constrLoader $class.name}()"
+  for class in classes:
+    if ignoreConf.getOrDefault($class.name).constructor: continue
+    discard loaderBody.add:
+      &"{constrLoader $class.name}()"
 
-  for class in classes.filter(x => $x.name notin variantDetailIgnores):
+  for class in classes:
+    if ignoreConf.getOrDefault($class.name).module: continue
     discard loaderBody.add &"{allMethodLoader $class.name}()"
 
-  for loader in moduleTree.variantAdditionalLoaders:
+  for loader in variantAdditionalLoaders:
     loaderBody.children.add loader
 
   +$$..NimProcSt(
@@ -159,17 +273,21 @@ func renderLoader*(classes: seq[NimBuiltinClass]): Statement =
       name: some "load_Variants"):
     loaderBody
 
-
 proc modulateDetail*(self: NimBuiltinClass): Module =
+  if ignoreConf.getOrDefault($self.name).module: return
   result = mdl(self.moduleName)
     .incl(moduleTree.variantDefiner)
-  result.contents = self.renderClassDefine
-  discard result.contents.add self.renderLoader
+  let (define, operators, loader) = self.prerender
+  discard +$$..result.contents:
+    define
+    operators
+    loader
+
 proc modulateDetails*(self: seq[NimBuiltinClass]): seq[Module] =
   result = newSeqOfCap[Module](self.len)
   for variant in self:
-    if $variant.name in moduleTree.variantDetailIgnores: continue
-    result.add modulateDetail variant
+    let m = modulateDetail variant
+    if m != nil: result.add m
 
 proc toNim*(self: JsonBuiltinClasses): seq[NimBuiltinClass] {.inline.} =
   warn """We could not convert these json-tags yet:

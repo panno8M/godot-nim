@@ -20,15 +20,28 @@ Signal.procedures(loader= load_Signal_proc):
   proc isConnected*(self: Signal; callable: Callable): Bool {.loadfrom("is_connected", 4129521963).}
   proc getConnections*(self: Signal): Array {.loadfrom("get_connections", 4144163970).}
   proc emit*(self: Signal) {.loadfrom("emit", 3286317445).}
-
-operators(loader= load_Signal_op):
-  proc `==`*(left: Signal; right: ptr Variant): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: Signal; right: ptr Variant): Bool {.operator: VariantOP_NotEqual.}
-  proc `not`*(left: Signal): Bool {.operator: VariantOP_Not.}
-  proc `==`*(left: Signal; right: Signal): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: Signal; right: Signal): Bool {.operator: VariantOP_NotEqual.}
-  proc `contains`*(left: Dictionary; right: Signal): Bool {.operator: VariantOP_In.}
-  proc `contains`*(left: Array; right: Signal): Bool {.operator: VariantOP_In.}
+var Equal_Signal_Variant: PtrOperatorEvaluator
+var NotEqual_Signal_Variant: PtrOperatorEvaluator
+var Not_Signal: PtrOperatorEvaluator
+var Equal_Signal_Signal: PtrOperatorEvaluator
+var NotEqual_Signal_Signal: PtrOperatorEvaluator
+var In_Signal_Dictionary: PtrOperatorEvaluator
+var In_Signal_Array: PtrOperatorEvaluator
+proc `==`*(left: Signal; right: ptr Variant): Bool = Equal_Signal_Variant(addr left, addr right, addr result)
+proc `!=`*(left: Signal; right: ptr Variant): Bool = NotEqual_Signal_Variant(addr left, addr right, addr result)
+proc `not`*(left: Signal): Bool = Not_Signal(addr left, nil, addr result)
+proc `==`*(left: Signal; right: Signal): Bool = Equal_Signal_Signal(addr left, addr right, addr result)
+proc `!=`*(left: Signal; right: Signal): Bool = NotEqual_Signal_Signal(addr left, addr right, addr result)
+proc contains*(left: Dictionary; right: Signal): Bool = In_Signal_Dictionary(addr right, addr left, addr result)
+proc contains*(left: Array; right: Signal): Bool = In_Signal_Array(addr right, addr left, addr result)
+proc load_Signal_op =
+  Equal_Signal_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Signal, VariantType_Nil)
+  NotEqual_Signal_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Signal, VariantType_Nil)
+  Not_Signal = interface_variantGetPtrOperatorEvaluator(VariantOP_Not, VariantType_Signal, VariantType_Nil)
+  Equal_Signal_Signal = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Signal, VariantType_Signal)
+  NotEqual_Signal_Signal = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Signal, VariantType_Signal)
+  In_Signal_Dictionary = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_Signal, VariantType_Dictionary)
+  In_Signal_Array = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_Signal, VariantType_Array)
 proc load_Signal_allmethod* =
-  load_Signal_proc()
   load_Signal_op()
+  load_Signal_proc()

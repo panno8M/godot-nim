@@ -128,17 +128,3 @@ discard +/%..d_root:
     internal logging
     dummy mdl"init"
     typedArray
-
-
-const
-  variantDetailIgnores* : seq[string] = @[
-    "Nil",
-    "Bool", "Int", "Float",
-    "Vector2", "Vector2i",
-    "Vector3", "Vector3i",
-    "Vector4", "Vector4i",
-  ]
-  variantAdditionalLoaders* : seq[string] = @[
-    "load_vectors()",
-    "load_primitives()",
-  ]

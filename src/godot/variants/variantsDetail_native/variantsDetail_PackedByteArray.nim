@@ -70,16 +70,31 @@ PackedByteArray.procedures(loader= load_PackedByteArray_proc):
   proc encodeFloat*(self: PackedByteArray; byteOffset: Int; value: Float) {.loadfrom("encode_float", 1113000516).}
   proc encodeDouble*(self: PackedByteArray; byteOffset: Int; value: Float) {.loadfrom("encode_double", 1113000516).}
   proc encodeVar*(self: PackedByteArray; byteOffset: Int; value: ptr Variant; allowObjects: Bool = false): Int {.loadfrom("encode_var", 2604460497).}
-
-operators(loader= load_PackedByteArray_op):
-  proc `==`*(left: PackedByteArray; right: ptr Variant): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: PackedByteArray; right: ptr Variant): Bool {.operator: VariantOP_NotEqual.}
-  proc `not`*(left: PackedByteArray): Bool {.operator: VariantOP_Not.}
-  proc `contains`*(left: Dictionary; right: PackedByteArray): Bool {.operator: VariantOP_In.}
-  proc `contains`*(left: Array; right: PackedByteArray): Bool {.operator: VariantOP_In.}
-  proc `==`*(left: PackedByteArray; right: PackedByteArray): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: PackedByteArray; right: PackedByteArray): Bool {.operator: VariantOP_NotEqual.}
-  proc `+`*(left: PackedByteArray; right: PackedByteArray): PackedByteArray {.operator: VariantOP_Add.}
+var Equal_PackedByteArray_Variant: PtrOperatorEvaluator
+var NotEqual_PackedByteArray_Variant: PtrOperatorEvaluator
+var Not_PackedByteArray: PtrOperatorEvaluator
+var In_PackedByteArray_Dictionary: PtrOperatorEvaluator
+var In_PackedByteArray_Array: PtrOperatorEvaluator
+var Equal_PackedByteArray_PackedByteArray: PtrOperatorEvaluator
+var NotEqual_PackedByteArray_PackedByteArray: PtrOperatorEvaluator
+var Add_PackedByteArray_PackedByteArray: PtrOperatorEvaluator
+proc `==`*(left: PackedByteArray; right: ptr Variant): Bool = Equal_PackedByteArray_Variant(addr left, addr right, addr result)
+proc `!=`*(left: PackedByteArray; right: ptr Variant): Bool = NotEqual_PackedByteArray_Variant(addr left, addr right, addr result)
+proc `not`*(left: PackedByteArray): Bool = Not_PackedByteArray(addr left, nil, addr result)
+proc contains*(left: Dictionary; right: PackedByteArray): Bool = In_PackedByteArray_Dictionary(addr right, addr left, addr result)
+proc contains*(left: Array; right: PackedByteArray): Bool = In_PackedByteArray_Array(addr right, addr left, addr result)
+proc `==`*(left: PackedByteArray; right: PackedByteArray): Bool = Equal_PackedByteArray_PackedByteArray(addr left, addr right, addr result)
+proc `!=`*(left: PackedByteArray; right: PackedByteArray): Bool = NotEqual_PackedByteArray_PackedByteArray(addr left, addr right, addr result)
+proc `+`*(left: PackedByteArray; right: PackedByteArray): PackedByteArray = Add_PackedByteArray_PackedByteArray(addr left, addr right, addr result)
+proc load_PackedByteArray_op =
+  Equal_PackedByteArray_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_PackedByteArray, VariantType_Nil)
+  NotEqual_PackedByteArray_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_PackedByteArray, VariantType_Nil)
+  Not_PackedByteArray = interface_variantGetPtrOperatorEvaluator(VariantOP_Not, VariantType_PackedByteArray, VariantType_Nil)
+  In_PackedByteArray_Dictionary = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_PackedByteArray, VariantType_Dictionary)
+  In_PackedByteArray_Array = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_PackedByteArray, VariantType_Array)
+  Equal_PackedByteArray_PackedByteArray = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_PackedByteArray, VariantType_PackedByteArray)
+  NotEqual_PackedByteArray_PackedByteArray = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_PackedByteArray, VariantType_PackedByteArray)
+  Add_PackedByteArray_PackedByteArray = interface_variantGetPtrOperatorEvaluator(VariantOP_Add, VariantType_PackedByteArray, VariantType_PackedByteArray)
 proc load_PackedByteArray_allmethod* =
-  load_PackedByteArray_proc()
   load_PackedByteArray_op()
+  load_PackedByteArray_proc()

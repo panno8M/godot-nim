@@ -39,18 +39,35 @@ Projection.staticProcedures(loader= load_Projection_sproc):
   proc createFrustumAspect*(size: Float; aspect: Float; offset: Vector2; zNear: Float; zFar: Float; flipFov: Bool = false): Projection {.staticOf: Projection, loadfrom("create_frustum_aspect", 1535076251).}
   proc createFitAabb*(aabb: AABB): Projection {.staticOf: Projection, loadfrom("create_fit_aabb", 2264694907).}
   proc getFovy*(fovx: Float; aspect: Float): Float {.staticOf: Projection, loadfrom("get_fovy", 3514207532).}
-
-operators(loader= load_Projection_op):
-  proc `==`*(left: Projection; right: ptr Variant): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: Projection; right: ptr Variant): Bool {.operator: VariantOP_NotEqual.}
-  proc `not`*(left: Projection): Bool {.operator: VariantOP_Not.}
-  proc `*`*(left: Projection; right: Vector4): Vector4 {.operator: VariantOP_Multiply.}
-  proc `==`*(left: Projection; right: Projection): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: Projection; right: Projection): Bool {.operator: VariantOP_NotEqual.}
-  proc `*`*(left: Projection; right: Projection): Projection {.operator: VariantOP_Multiply.}
-  proc `contains`*(left: Dictionary; right: Projection): Bool {.operator: VariantOP_In.}
-  proc `contains`*(left: Array; right: Projection): Bool {.operator: VariantOP_In.}
+var Equal_Projection_Variant: PtrOperatorEvaluator
+var NotEqual_Projection_Variant: PtrOperatorEvaluator
+var Not_Projection: PtrOperatorEvaluator
+var Multiply_Projection_Vector4: PtrOperatorEvaluator
+var Equal_Projection_Projection: PtrOperatorEvaluator
+var NotEqual_Projection_Projection: PtrOperatorEvaluator
+var Multiply_Projection_Projection: PtrOperatorEvaluator
+var In_Projection_Dictionary: PtrOperatorEvaluator
+var In_Projection_Array: PtrOperatorEvaluator
+proc `==`*(left: Projection; right: ptr Variant): Bool = Equal_Projection_Variant(addr left, addr right, addr result)
+proc `!=`*(left: Projection; right: ptr Variant): Bool = NotEqual_Projection_Variant(addr left, addr right, addr result)
+proc `not`*(left: Projection): Bool = Not_Projection(addr left, nil, addr result)
+proc `*`*(left: Projection; right: Vector4): Vector4 = Multiply_Projection_Vector4(addr left, addr right, addr result)
+proc `==`*(left: Projection; right: Projection): Bool = Equal_Projection_Projection(addr left, addr right, addr result)
+proc `!=`*(left: Projection; right: Projection): Bool = NotEqual_Projection_Projection(addr left, addr right, addr result)
+proc `*`*(left: Projection; right: Projection): Projection = Multiply_Projection_Projection(addr left, addr right, addr result)
+proc contains*(left: Dictionary; right: Projection): Bool = In_Projection_Dictionary(addr right, addr left, addr result)
+proc contains*(left: Array; right: Projection): Bool = In_Projection_Array(addr right, addr left, addr result)
+proc load_Projection_op =
+  Equal_Projection_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Projection, VariantType_Nil)
+  NotEqual_Projection_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Projection, VariantType_Nil)
+  Not_Projection = interface_variantGetPtrOperatorEvaluator(VariantOP_Not, VariantType_Projection, VariantType_Nil)
+  Multiply_Projection_Vector4 = interface_variantGetPtrOperatorEvaluator(VariantOP_Multiply, VariantType_Projection, VariantType_Vector4)
+  Equal_Projection_Projection = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Projection, VariantType_Projection)
+  NotEqual_Projection_Projection = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Projection, VariantType_Projection)
+  Multiply_Projection_Projection = interface_variantGetPtrOperatorEvaluator(VariantOP_Multiply, VariantType_Projection, VariantType_Projection)
+  In_Projection_Dictionary = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_Projection, VariantType_Dictionary)
+  In_Projection_Array = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_Projection, VariantType_Array)
 proc load_Projection_allmethod* =
+  load_Projection_op()
   load_Projection_proc()
   load_Projection_sproc()
-  load_Projection_op()

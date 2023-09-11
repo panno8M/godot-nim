@@ -32,16 +32,31 @@ PackedInt32Array.procedures(loader= load_PackedInt32Array_proc):
   proc find*(self: PackedInt32Array; value: Int; `from`: Int = 0): Int {.loadfrom("find", 2984303840).}
   proc rfind*(self: PackedInt32Array; value: Int; `from`: Int = -1): Int {.loadfrom("rfind", 2984303840).}
   proc count*(self: PackedInt32Array; value: Int): Int {.loadfrom("count", 4103005248).}
-
-operators(loader= load_PackedInt32Array_op):
-  proc `==`*(left: PackedInt32Array; right: ptr Variant): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: PackedInt32Array; right: ptr Variant): Bool {.operator: VariantOP_NotEqual.}
-  proc `not`*(left: PackedInt32Array): Bool {.operator: VariantOP_Not.}
-  proc `contains`*(left: Dictionary; right: PackedInt32Array): Bool {.operator: VariantOP_In.}
-  proc `contains`*(left: Array; right: PackedInt32Array): Bool {.operator: VariantOP_In.}
-  proc `==`*(left: PackedInt32Array; right: PackedInt32Array): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: PackedInt32Array; right: PackedInt32Array): Bool {.operator: VariantOP_NotEqual.}
-  proc `+`*(left: PackedInt32Array; right: PackedInt32Array): PackedInt32Array {.operator: VariantOP_Add.}
+var Equal_PackedInt32Array_Variant: PtrOperatorEvaluator
+var NotEqual_PackedInt32Array_Variant: PtrOperatorEvaluator
+var Not_PackedInt32Array: PtrOperatorEvaluator
+var In_PackedInt32Array_Dictionary: PtrOperatorEvaluator
+var In_PackedInt32Array_Array: PtrOperatorEvaluator
+var Equal_PackedInt32Array_PackedInt32Array: PtrOperatorEvaluator
+var NotEqual_PackedInt32Array_PackedInt32Array: PtrOperatorEvaluator
+var Add_PackedInt32Array_PackedInt32Array: PtrOperatorEvaluator
+proc `==`*(left: PackedInt32Array; right: ptr Variant): Bool = Equal_PackedInt32Array_Variant(addr left, addr right, addr result)
+proc `!=`*(left: PackedInt32Array; right: ptr Variant): Bool = NotEqual_PackedInt32Array_Variant(addr left, addr right, addr result)
+proc `not`*(left: PackedInt32Array): Bool = Not_PackedInt32Array(addr left, nil, addr result)
+proc contains*(left: Dictionary; right: PackedInt32Array): Bool = In_PackedInt32Array_Dictionary(addr right, addr left, addr result)
+proc contains*(left: Array; right: PackedInt32Array): Bool = In_PackedInt32Array_Array(addr right, addr left, addr result)
+proc `==`*(left: PackedInt32Array; right: PackedInt32Array): Bool = Equal_PackedInt32Array_PackedInt32Array(addr left, addr right, addr result)
+proc `!=`*(left: PackedInt32Array; right: PackedInt32Array): Bool = NotEqual_PackedInt32Array_PackedInt32Array(addr left, addr right, addr result)
+proc `+`*(left: PackedInt32Array; right: PackedInt32Array): PackedInt32Array = Add_PackedInt32Array_PackedInt32Array(addr left, addr right, addr result)
+proc load_PackedInt32Array_op =
+  Equal_PackedInt32Array_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_PackedInt32Array, VariantType_Nil)
+  NotEqual_PackedInt32Array_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_PackedInt32Array, VariantType_Nil)
+  Not_PackedInt32Array = interface_variantGetPtrOperatorEvaluator(VariantOP_Not, VariantType_PackedInt32Array, VariantType_Nil)
+  In_PackedInt32Array_Dictionary = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_PackedInt32Array, VariantType_Dictionary)
+  In_PackedInt32Array_Array = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_PackedInt32Array, VariantType_Array)
+  Equal_PackedInt32Array_PackedInt32Array = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_PackedInt32Array, VariantType_PackedInt32Array)
+  NotEqual_PackedInt32Array_PackedInt32Array = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_PackedInt32Array, VariantType_PackedInt32Array)
+  Add_PackedInt32Array_PackedInt32Array = interface_variantGetPtrOperatorEvaluator(VariantOP_Add, VariantType_PackedInt32Array, VariantType_PackedInt32Array)
 proc load_PackedInt32Array_allmethod* =
-  load_PackedInt32Array_proc()
   load_PackedInt32Array_op()
+  load_PackedInt32Array_proc()

@@ -29,15 +29,28 @@ Callable.procedures(loader= load_Callable_proc):
   proc rpc*(self: Callable) {.loadfrom("rpc", 3286317445).}
   proc rpcId*(self: Callable; peerId: Int) {.loadfrom("rpc_id", 2270047679).}
   proc `bind`*(self: Callable): Callable {.loadfrom("bind", 3224143119).}
-
-operators(loader= load_Callable_op):
-  proc `==`*(left: Callable; right: ptr Variant): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: Callable; right: ptr Variant): Bool {.operator: VariantOP_NotEqual.}
-  proc `not`*(left: Callable): Bool {.operator: VariantOP_Not.}
-  proc `==`*(left: Callable; right: Callable): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: Callable; right: Callable): Bool {.operator: VariantOP_NotEqual.}
-  proc `contains`*(left: Dictionary; right: Callable): Bool {.operator: VariantOP_In.}
-  proc `contains`*(left: Array; right: Callable): Bool {.operator: VariantOP_In.}
+var Equal_Callable_Variant: PtrOperatorEvaluator
+var NotEqual_Callable_Variant: PtrOperatorEvaluator
+var Not_Callable: PtrOperatorEvaluator
+var Equal_Callable_Callable: PtrOperatorEvaluator
+var NotEqual_Callable_Callable: PtrOperatorEvaluator
+var In_Callable_Dictionary: PtrOperatorEvaluator
+var In_Callable_Array: PtrOperatorEvaluator
+proc `==`*(left: Callable; right: ptr Variant): Bool = Equal_Callable_Variant(addr left, addr right, addr result)
+proc `!=`*(left: Callable; right: ptr Variant): Bool = NotEqual_Callable_Variant(addr left, addr right, addr result)
+proc `not`*(left: Callable): Bool = Not_Callable(addr left, nil, addr result)
+proc `==`*(left: Callable; right: Callable): Bool = Equal_Callable_Callable(addr left, addr right, addr result)
+proc `!=`*(left: Callable; right: Callable): Bool = NotEqual_Callable_Callable(addr left, addr right, addr result)
+proc contains*(left: Dictionary; right: Callable): Bool = In_Callable_Dictionary(addr right, addr left, addr result)
+proc contains*(left: Array; right: Callable): Bool = In_Callable_Array(addr right, addr left, addr result)
+proc load_Callable_op =
+  Equal_Callable_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Callable, VariantType_Nil)
+  NotEqual_Callable_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Callable, VariantType_Nil)
+  Not_Callable = interface_variantGetPtrOperatorEvaluator(VariantOP_Not, VariantType_Callable, VariantType_Nil)
+  Equal_Callable_Callable = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Callable, VariantType_Callable)
+  NotEqual_Callable_Callable = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Callable, VariantType_Callable)
+  In_Callable_Dictionary = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_Callable, VariantType_Dictionary)
+  In_Callable_Array = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_Callable, VariantType_Array)
 proc load_Callable_allmethod* =
-  load_Callable_proc()
   load_Callable_op()
+  load_Callable_proc()

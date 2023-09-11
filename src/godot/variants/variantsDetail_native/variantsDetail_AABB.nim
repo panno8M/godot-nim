@@ -36,16 +36,31 @@ AABB.procedures(loader= load_AABB_proc):
   proc getEndpoint*(self: AABB; idx: Int): Vector3 {.loadfrom("get_endpoint", 1394941017).}
   proc intersectsSegment*(self: AABB; `from`: Vector3; to: Vector3): Variant {.loadfrom("intersects_segment", 2048133369).}
   proc intersectsRay*(self: AABB; `from`: Vector3; dir: Vector3): Variant {.loadfrom("intersects_ray", 2048133369).}
-
-operators(loader= load_AABB_op):
-  proc `==`*(left: AABB; right: ptr Variant): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: AABB; right: ptr Variant): Bool {.operator: VariantOP_NotEqual.}
-  proc `not`*(left: AABB): Bool {.operator: VariantOP_Not.}
-  proc `==`*(left: AABB; right: AABB): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: AABB; right: AABB): Bool {.operator: VariantOP_NotEqual.}
-  proc `*`*(left: AABB; right: Transform3D): AABB {.operator: VariantOP_Multiply.}
-  proc `contains`*(left: Dictionary; right: AABB): Bool {.operator: VariantOP_In.}
-  proc `contains`*(left: Array; right: AABB): Bool {.operator: VariantOP_In.}
+var Equal_AABB_Variant: PtrOperatorEvaluator
+var NotEqual_AABB_Variant: PtrOperatorEvaluator
+var Not_AABB: PtrOperatorEvaluator
+var Equal_AABB_AABB: PtrOperatorEvaluator
+var NotEqual_AABB_AABB: PtrOperatorEvaluator
+var Multiply_AABB_Transform3D: PtrOperatorEvaluator
+var In_AABB_Dictionary: PtrOperatorEvaluator
+var In_AABB_Array: PtrOperatorEvaluator
+proc `==`*(left: AABB; right: ptr Variant): Bool = Equal_AABB_Variant(addr left, addr right, addr result)
+proc `!=`*(left: AABB; right: ptr Variant): Bool = NotEqual_AABB_Variant(addr left, addr right, addr result)
+proc `not`*(left: AABB): Bool = Not_AABB(addr left, nil, addr result)
+proc `==`*(left: AABB; right: AABB): Bool = Equal_AABB_AABB(addr left, addr right, addr result)
+proc `!=`*(left: AABB; right: AABB): Bool = NotEqual_AABB_AABB(addr left, addr right, addr result)
+proc `*`*(left: AABB; right: Transform3D): AABB = Multiply_AABB_Transform3D(addr left, addr right, addr result)
+proc contains*(left: Dictionary; right: AABB): Bool = In_AABB_Dictionary(addr right, addr left, addr result)
+proc contains*(left: Array; right: AABB): Bool = In_AABB_Array(addr right, addr left, addr result)
+proc load_AABB_op =
+  Equal_AABB_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_AABB, VariantType_Nil)
+  NotEqual_AABB_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_AABB, VariantType_Nil)
+  Not_AABB = interface_variantGetPtrOperatorEvaluator(VariantOP_Not, VariantType_AABB, VariantType_Nil)
+  Equal_AABB_AABB = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_AABB, VariantType_AABB)
+  NotEqual_AABB_AABB = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_AABB, VariantType_AABB)
+  Multiply_AABB_Transform3D = interface_variantGetPtrOperatorEvaluator(VariantOP_Multiply, VariantType_AABB, VariantType_Transform3D)
+  In_AABB_Dictionary = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_AABB, VariantType_Dictionary)
+  In_AABB_Array = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_AABB, VariantType_Array)
 proc load_AABB_allmethod* =
-  load_AABB_proc()
   load_AABB_op()
+  load_AABB_proc()

@@ -57,20 +57,43 @@ Array.procedures(loader= load_Array_proc):
   proc getTypedScript*(self: Array): Variant {.loadfrom("get_typed_script", 1460142086).}
   proc makeReadOnly*(self: Array) {.loadfrom("make_read_only", 3218959716).}
   proc isReadOnly*(self: Array): Bool {.loadfrom("is_read_only", 3918633141).}
-
-operators(loader= load_Array_op):
-  proc `==`*(left: Array; right: ptr Variant): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: Array; right: ptr Variant): Bool {.operator: VariantOP_NotEqual.}
-  proc `not`*(left: Array): Bool {.operator: VariantOP_Not.}
-  proc `contains`*(left: Dictionary; right: Array): Bool {.operator: VariantOP_In.}
-  proc `==`*(left: Array; right: Array): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: Array; right: Array): Bool {.operator: VariantOP_NotEqual.}
-  proc `<`*(left: Array; right: Array): Bool {.operator: VariantOP_Less.}
-  proc `<=`*(left: Array; right: Array): Bool {.operator: VariantOP_LessEqual.}
-  proc `>`*(left: Array; right: Array): Bool {.operator: VariantOP_Greater.}
-  proc `>=`*(left: Array; right: Array): Bool {.operator: VariantOP_GreaterEqual.}
-  proc `+`*(left: Array; right: Array): Array {.operator: VariantOP_Add.}
-  proc `contains`*(left: Array; right: Array): Bool {.operator: VariantOP_In.}
+var Equal_Array_Variant: PtrOperatorEvaluator
+var NotEqual_Array_Variant: PtrOperatorEvaluator
+var Not_Array: PtrOperatorEvaluator
+var In_Array_Dictionary: PtrOperatorEvaluator
+var Equal_Array_Array: PtrOperatorEvaluator
+var NotEqual_Array_Array: PtrOperatorEvaluator
+var Less_Array_Array: PtrOperatorEvaluator
+var LessEqual_Array_Array: PtrOperatorEvaluator
+var Greater_Array_Array: PtrOperatorEvaluator
+var GreaterEqual_Array_Array: PtrOperatorEvaluator
+var Add_Array_Array: PtrOperatorEvaluator
+var In_Array_Array: PtrOperatorEvaluator
+proc `==`*(left: Array; right: ptr Variant): Bool = Equal_Array_Variant(addr left, addr right, addr result)
+proc `!=`*(left: Array; right: ptr Variant): Bool = NotEqual_Array_Variant(addr left, addr right, addr result)
+proc `not`*(left: Array): Bool = Not_Array(addr left, nil, addr result)
+proc contains*(left: Dictionary; right: Array): Bool = In_Array_Dictionary(addr right, addr left, addr result)
+proc `==`*(left: Array; right: Array): Bool = Equal_Array_Array(addr left, addr right, addr result)
+proc `!=`*(left: Array; right: Array): Bool = NotEqual_Array_Array(addr left, addr right, addr result)
+proc `<`*(left: Array; right: Array): Bool = Less_Array_Array(addr left, addr right, addr result)
+proc `<=`*(left: Array; right: Array): Bool = LessEqual_Array_Array(addr left, addr right, addr result)
+proc `>`*(left: Array; right: Array): Bool = Greater_Array_Array(addr left, addr right, addr result)
+proc `>=`*(left: Array; right: Array): Bool = GreaterEqual_Array_Array(addr left, addr right, addr result)
+proc `+`*(left: Array; right: Array): Array = Add_Array_Array(addr left, addr right, addr result)
+proc contains*(left: Array; right: Array): Bool = In_Array_Array(addr right, addr left, addr result)
+proc load_Array_op =
+  Equal_Array_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Array, VariantType_Nil)
+  NotEqual_Array_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Array, VariantType_Nil)
+  Not_Array = interface_variantGetPtrOperatorEvaluator(VariantOP_Not, VariantType_Array, VariantType_Nil)
+  In_Array_Dictionary = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_Array, VariantType_Dictionary)
+  Equal_Array_Array = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Array, VariantType_Array)
+  NotEqual_Array_Array = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Array, VariantType_Array)
+  Less_Array_Array = interface_variantGetPtrOperatorEvaluator(VariantOP_Less, VariantType_Array, VariantType_Array)
+  LessEqual_Array_Array = interface_variantGetPtrOperatorEvaluator(VariantOP_LessEqual, VariantType_Array, VariantType_Array)
+  Greater_Array_Array = interface_variantGetPtrOperatorEvaluator(VariantOP_Greater, VariantType_Array, VariantType_Array)
+  GreaterEqual_Array_Array = interface_variantGetPtrOperatorEvaluator(VariantOP_GreaterEqual, VariantType_Array, VariantType_Array)
+  Add_Array_Array = interface_variantGetPtrOperatorEvaluator(VariantOP_Add, VariantType_Array, VariantType_Array)
+  In_Array_Array = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_Array, VariantType_Array)
 proc load_Array_allmethod* =
-  load_Array_proc()
   load_Array_op()
+  load_Array_proc()

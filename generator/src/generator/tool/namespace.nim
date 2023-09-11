@@ -1,4 +1,4 @@
-import beyond/meta/[statements {.all.}, styledString]
+import beyond/meta/[statements {.all.}]
 import std/[
   strutils,
   strformat,
@@ -192,16 +192,7 @@ proc defaultValue*(value: string; argType: ArgType): string =
 func constrLoader*(classname: string): string = &"load_{classname}_constr"
 func procLoader*(classname: string): string = &"load_{classname}_proc"
 func sprocLoader*(classname: string): string = &"load_{classname}_sproc"
-func opLoader*(classname: string): string = &"load_{classname}_op"
 func allMethodLoader*(classname: string): string = &"load_{classname}_allmethod"
-
-func operator*(basename: string): NimVar =
-  let str = case basename
-  of "in": "contains"
-  of "unary+": "+"
-  of "unary-": "-"
-  else: basename
-  quoted NimVar.imitate(str)
 
 func variantModuleName*(basename: string): string =
   result = case basename
@@ -214,32 +205,4 @@ func classModuleName*(basename: string): string =
   "classDetail_" & basename
 
 
-func variantOperator*(sign: string): string =
-  const VariantOpSignToEnum = toTable {
-    "==": "Equal",
-    "!=": "NotEqual",
-    "<": "Less",
-    "<=": "LessEqual",
-    ">": "Greater",
-    ">=": "GreaterEqual",
-    "+": "Add",
-    "-": "Subtract",
-    "*": "Multiply",
-    "/": "Divide",
-    "**": "Power",
-    "unary-": "Negate",
-    "unary+": "Positive",
-    "%": "Module",
-    "<<": "ShiftLeft",
-    ">>": "ShiftRight",
-    "&": "BitAnd",
-    "|": "BitOr",
-    "^": "BitXor",
-    "~": "BitNegate",
-    "and": "And",
-    "or": "Or",
-    "xor": "Xor",
-    "not": "Not",
-    "and": "And",
-    "in": "In" }
-  "VariantOP_" & VariantOpSignToEnum[sign]
+func opLoader*(classname: string): string = &"load_{classname}_op"

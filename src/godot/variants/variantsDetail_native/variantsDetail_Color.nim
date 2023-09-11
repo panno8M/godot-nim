@@ -38,27 +38,62 @@ Color.staticProcedures(loader= load_Color_sproc):
   proc fromHsv*(h: Float; s: Float; v: Float; alpha: Float = 1.0): Color {.staticOf: Color, loadfrom("from_hsv", 1573799446).}
   proc fromOkHsl*(h: Float; s: Float; l: Float; alpha: Float = 1.0): Color {.staticOf: Color, loadfrom("from_ok_hsl", 1573799446).}
   proc fromRgbe9995*(rgbe: Int): Color {.staticOf: Color, loadfrom("from_rgbe9995", 351421375).}
-
-operators(loader= load_Color_op):
-  proc `==`*(left: Color; right: ptr Variant): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: Color; right: ptr Variant): Bool {.operator: VariantOP_NotEqual.}
-  proc `-`*(left: Color): Color {.operator: VariantOP_Negate.}
-  proc `+`*(left: Color): Color {.operator: VariantOP_Positive.}
-  proc `not`*(left: Color): Bool {.operator: VariantOP_Not.}
-  proc `*`*(left: Color; right: Int): Color {.operator: VariantOP_Multiply.}
-  proc `/`*(left: Color; right: Int): Color {.operator: VariantOP_Divide.}
-  proc `*`*(left: Color; right: Float): Color {.operator: VariantOP_Multiply.}
-  proc `/`*(left: Color; right: Float): Color {.operator: VariantOP_Divide.}
-  proc `==`*(left: Color; right: Color): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: Color; right: Color): Bool {.operator: VariantOP_NotEqual.}
-  proc `+`*(left: Color; right: Color): Color {.operator: VariantOP_Add.}
-  proc `-`*(left: Color; right: Color): Color {.operator: VariantOP_Subtract.}
-  proc `*`*(left: Color; right: Color): Color {.operator: VariantOP_Multiply.}
-  proc `/`*(left: Color; right: Color): Color {.operator: VariantOP_Divide.}
-  proc `contains`*(left: Dictionary; right: Color): Bool {.operator: VariantOP_In.}
-  proc `contains`*(left: Array; right: Color): Bool {.operator: VariantOP_In.}
-  proc `contains`*(left: PackedColorArray; right: Color): Bool {.operator: VariantOP_In.}
+var Equal_Color_Variant: PtrOperatorEvaluator
+var NotEqual_Color_Variant: PtrOperatorEvaluator
+var Negate_Color: PtrOperatorEvaluator
+var Positive_Color: PtrOperatorEvaluator
+var Not_Color: PtrOperatorEvaluator
+var Multiply_Color_Int: PtrOperatorEvaluator
+var Divide_Color_Int: PtrOperatorEvaluator
+var Multiply_Color_Float: PtrOperatorEvaluator
+var Divide_Color_Float: PtrOperatorEvaluator
+var Equal_Color_Color: PtrOperatorEvaluator
+var NotEqual_Color_Color: PtrOperatorEvaluator
+var Add_Color_Color: PtrOperatorEvaluator
+var Subtract_Color_Color: PtrOperatorEvaluator
+var Multiply_Color_Color: PtrOperatorEvaluator
+var Divide_Color_Color: PtrOperatorEvaluator
+var In_Color_Dictionary: PtrOperatorEvaluator
+var In_Color_Array: PtrOperatorEvaluator
+var In_Color_PackedColorArray: PtrOperatorEvaluator
+proc `==`*(left: Color; right: ptr Variant): Bool = Equal_Color_Variant(addr left, addr right, addr result)
+proc `!=`*(left: Color; right: ptr Variant): Bool = NotEqual_Color_Variant(addr left, addr right, addr result)
+proc `-`*(left: Color): Color = Negate_Color(addr left, nil, addr result)
+proc `+`*(left: Color): Color = Positive_Color(addr left, nil, addr result)
+proc `not`*(left: Color): Bool = Not_Color(addr left, nil, addr result)
+proc `*`*(left: Color; right: Int): Color = Multiply_Color_Int(addr left, addr right, addr result)
+proc `/`*(left: Color; right: Int): Color = Divide_Color_Int(addr left, addr right, addr result)
+proc `*`*(left: Color; right: Float): Color = Multiply_Color_Float(addr left, addr right, addr result)
+proc `/`*(left: Color; right: Float): Color = Divide_Color_Float(addr left, addr right, addr result)
+proc `==`*(left: Color; right: Color): Bool = Equal_Color_Color(addr left, addr right, addr result)
+proc `!=`*(left: Color; right: Color): Bool = NotEqual_Color_Color(addr left, addr right, addr result)
+proc `+`*(left: Color; right: Color): Color = Add_Color_Color(addr left, addr right, addr result)
+proc `-`*(left: Color; right: Color): Color = Subtract_Color_Color(addr left, addr right, addr result)
+proc `*`*(left: Color; right: Color): Color = Multiply_Color_Color(addr left, addr right, addr result)
+proc `/`*(left: Color; right: Color): Color = Divide_Color_Color(addr left, addr right, addr result)
+proc contains*(left: Dictionary; right: Color): Bool = In_Color_Dictionary(addr right, addr left, addr result)
+proc contains*(left: Array; right: Color): Bool = In_Color_Array(addr right, addr left, addr result)
+proc contains*(left: PackedColorArray; right: Color): Bool = In_Color_PackedColorArray(addr right, addr left, addr result)
+proc load_Color_op =
+  Equal_Color_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Color, VariantType_Nil)
+  NotEqual_Color_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Color, VariantType_Nil)
+  Negate_Color = interface_variantGetPtrOperatorEvaluator(VariantOP_Negate, VariantType_Color, VariantType_Nil)
+  Positive_Color = interface_variantGetPtrOperatorEvaluator(VariantOP_Positive, VariantType_Color, VariantType_Nil)
+  Not_Color = interface_variantGetPtrOperatorEvaluator(VariantOP_Not, VariantType_Color, VariantType_Nil)
+  Multiply_Color_Int = interface_variantGetPtrOperatorEvaluator(VariantOP_Multiply, VariantType_Color, VariantType_Int)
+  Divide_Color_Int = interface_variantGetPtrOperatorEvaluator(VariantOP_Divide, VariantType_Color, VariantType_Int)
+  Multiply_Color_Float = interface_variantGetPtrOperatorEvaluator(VariantOP_Multiply, VariantType_Color, VariantType_Float)
+  Divide_Color_Float = interface_variantGetPtrOperatorEvaluator(VariantOP_Divide, VariantType_Color, VariantType_Float)
+  Equal_Color_Color = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Color, VariantType_Color)
+  NotEqual_Color_Color = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Color, VariantType_Color)
+  Add_Color_Color = interface_variantGetPtrOperatorEvaluator(VariantOP_Add, VariantType_Color, VariantType_Color)
+  Subtract_Color_Color = interface_variantGetPtrOperatorEvaluator(VariantOP_Subtract, VariantType_Color, VariantType_Color)
+  Multiply_Color_Color = interface_variantGetPtrOperatorEvaluator(VariantOP_Multiply, VariantType_Color, VariantType_Color)
+  Divide_Color_Color = interface_variantGetPtrOperatorEvaluator(VariantOP_Divide, VariantType_Color, VariantType_Color)
+  In_Color_Dictionary = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_Color, VariantType_Dictionary)
+  In_Color_Array = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_Color, VariantType_Array)
+  In_Color_PackedColorArray = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_Color, VariantType_PackedColorArray)
 proc load_Color_allmethod* =
+  load_Color_op()
   load_Color_proc()
   load_Color_sproc()
-  load_Color_op()

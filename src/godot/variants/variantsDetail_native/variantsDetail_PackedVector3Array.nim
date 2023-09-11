@@ -32,17 +32,34 @@ PackedVector3Array.procedures(loader= load_PackedVector3Array_proc):
   proc find*(self: PackedVector3Array; value: Vector3; `from`: Int = 0): Int {.loadfrom("find", 3718155780).}
   proc rfind*(self: PackedVector3Array; value: Vector3; `from`: Int = -1): Int {.loadfrom("rfind", 3718155780).}
   proc count*(self: PackedVector3Array; value: Vector3): Int {.loadfrom("count", 194580386).}
-
-operators(loader= load_PackedVector3Array_op):
-  proc `==`*(left: PackedVector3Array; right: ptr Variant): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: PackedVector3Array; right: ptr Variant): Bool {.operator: VariantOP_NotEqual.}
-  proc `not`*(left: PackedVector3Array): Bool {.operator: VariantOP_Not.}
-  proc `*`*(left: PackedVector3Array; right: Transform3D): PackedVector3Array {.operator: VariantOP_Multiply.}
-  proc `contains`*(left: Dictionary; right: PackedVector3Array): Bool {.operator: VariantOP_In.}
-  proc `contains`*(left: Array; right: PackedVector3Array): Bool {.operator: VariantOP_In.}
-  proc `==`*(left: PackedVector3Array; right: PackedVector3Array): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: PackedVector3Array; right: PackedVector3Array): Bool {.operator: VariantOP_NotEqual.}
-  proc `+`*(left: PackedVector3Array; right: PackedVector3Array): PackedVector3Array {.operator: VariantOP_Add.}
+var Equal_PackedVector3Array_Variant: PtrOperatorEvaluator
+var NotEqual_PackedVector3Array_Variant: PtrOperatorEvaluator
+var Not_PackedVector3Array: PtrOperatorEvaluator
+var Multiply_PackedVector3Array_Transform3D: PtrOperatorEvaluator
+var In_PackedVector3Array_Dictionary: PtrOperatorEvaluator
+var In_PackedVector3Array_Array: PtrOperatorEvaluator
+var Equal_PackedVector3Array_PackedVector3Array: PtrOperatorEvaluator
+var NotEqual_PackedVector3Array_PackedVector3Array: PtrOperatorEvaluator
+var Add_PackedVector3Array_PackedVector3Array: PtrOperatorEvaluator
+proc `==`*(left: PackedVector3Array; right: ptr Variant): Bool = Equal_PackedVector3Array_Variant(addr left, addr right, addr result)
+proc `!=`*(left: PackedVector3Array; right: ptr Variant): Bool = NotEqual_PackedVector3Array_Variant(addr left, addr right, addr result)
+proc `not`*(left: PackedVector3Array): Bool = Not_PackedVector3Array(addr left, nil, addr result)
+proc `*`*(left: PackedVector3Array; right: Transform3D): PackedVector3Array = Multiply_PackedVector3Array_Transform3D(addr left, addr right, addr result)
+proc contains*(left: Dictionary; right: PackedVector3Array): Bool = In_PackedVector3Array_Dictionary(addr right, addr left, addr result)
+proc contains*(left: Array; right: PackedVector3Array): Bool = In_PackedVector3Array_Array(addr right, addr left, addr result)
+proc `==`*(left: PackedVector3Array; right: PackedVector3Array): Bool = Equal_PackedVector3Array_PackedVector3Array(addr left, addr right, addr result)
+proc `!=`*(left: PackedVector3Array; right: PackedVector3Array): Bool = NotEqual_PackedVector3Array_PackedVector3Array(addr left, addr right, addr result)
+proc `+`*(left: PackedVector3Array; right: PackedVector3Array): PackedVector3Array = Add_PackedVector3Array_PackedVector3Array(addr left, addr right, addr result)
+proc load_PackedVector3Array_op =
+  Equal_PackedVector3Array_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_PackedVector3Array, VariantType_Nil)
+  NotEqual_PackedVector3Array_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_PackedVector3Array, VariantType_Nil)
+  Not_PackedVector3Array = interface_variantGetPtrOperatorEvaluator(VariantOP_Not, VariantType_PackedVector3Array, VariantType_Nil)
+  Multiply_PackedVector3Array_Transform3D = interface_variantGetPtrOperatorEvaluator(VariantOP_Multiply, VariantType_PackedVector3Array, VariantType_Transform3D)
+  In_PackedVector3Array_Dictionary = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_PackedVector3Array, VariantType_Dictionary)
+  In_PackedVector3Array_Array = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_PackedVector3Array, VariantType_Array)
+  Equal_PackedVector3Array_PackedVector3Array = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_PackedVector3Array, VariantType_PackedVector3Array)
+  NotEqual_PackedVector3Array_PackedVector3Array = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_PackedVector3Array, VariantType_PackedVector3Array)
+  Add_PackedVector3Array_PackedVector3Array = interface_variantGetPtrOperatorEvaluator(VariantOP_Add, VariantType_PackedVector3Array, VariantType_PackedVector3Array)
 proc load_PackedVector3Array_allmethod* =
-  load_PackedVector3Array_proc()
   load_PackedVector3Array_op()
+  load_PackedVector3Array_proc()

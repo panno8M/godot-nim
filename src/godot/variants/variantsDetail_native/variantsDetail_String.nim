@@ -116,65 +116,176 @@ String.staticProcedures(loader= load_String_sproc):
   proc numUint64*(number: Int; base: Int = 10; capitalizeHex: Bool = false): String {.staticOf: String, loadfrom("num_uint64", 2111271071).}
   proc chr*(char: Int): String {.staticOf: String, loadfrom("chr", 897497541).}
   proc humanizeSize*(size: Int): String {.staticOf: String, loadfrom("humanize_size", 897497541).}
-
-operators(loader= load_String_op):
-  proc `==`*(left: String; right: ptr Variant): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: String; right: ptr Variant): Bool {.operator: VariantOP_NotEqual.}
-  proc `%`*(left: String; right: ptr Variant): String {.operator: VariantOP_Module.}
-  proc `not`*(left: String): Bool {.operator: VariantOP_Not.}
-  proc `%`*(left: String; right: Bool): String {.operator: VariantOP_Module.}
-  proc `%`*(left: String; right: Int): String {.operator: VariantOP_Module.}
-  proc `%`*(left: String; right: Float): String {.operator: VariantOP_Module.}
-  proc `==`*(left: String; right: String): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: String; right: String): Bool {.operator: VariantOP_NotEqual.}
-  proc `<`*(left: String; right: String): Bool {.operator: VariantOP_Less.}
-  proc `<=`*(left: String; right: String): Bool {.operator: VariantOP_LessEqual.}
-  proc `>`*(left: String; right: String): Bool {.operator: VariantOP_Greater.}
-  proc `>=`*(left: String; right: String): Bool {.operator: VariantOP_GreaterEqual.}
-  proc `+`*(left: String; right: String): String {.operator: VariantOP_Add.}
-  proc `%`*(left: String; right: String): String {.operator: VariantOP_Module.}
-  proc `contains`*(left: String; right: String): Bool {.operator: VariantOP_In.}
-  proc `%`*(left: String; right: Vector2): String {.operator: VariantOP_Module.}
-  proc `%`*(left: String; right: Vector2i): String {.operator: VariantOP_Module.}
-  proc `%`*(left: String; right: Rect2): String {.operator: VariantOP_Module.}
-  proc `%`*(left: String; right: Rect2i): String {.operator: VariantOP_Module.}
-  proc `%`*(left: String; right: Vector3): String {.operator: VariantOP_Module.}
-  proc `%`*(left: String; right: Vector3i): String {.operator: VariantOP_Module.}
-  proc `%`*(left: String; right: Transform2D): String {.operator: VariantOP_Module.}
-  proc `%`*(left: String; right: Vector4): String {.operator: VariantOP_Module.}
-  proc `%`*(left: String; right: Vector4i): String {.operator: VariantOP_Module.}
-  proc `%`*(left: String; right: Plane): String {.operator: VariantOP_Module.}
-  proc `%`*(left: String; right: Quaternion): String {.operator: VariantOP_Module.}
-  proc `%`*(left: String; right: AABB): String {.operator: VariantOP_Module.}
-  proc `%`*(left: String; right: Basis): String {.operator: VariantOP_Module.}
-  proc `%`*(left: String; right: Transform3D): String {.operator: VariantOP_Module.}
-  proc `%`*(left: String; right: Projection): String {.operator: VariantOP_Module.}
-  proc `%`*(left: String; right: Color): String {.operator: VariantOP_Module.}
-  proc `==`*(left: String; right: StringName): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: String; right: StringName): Bool {.operator: VariantOP_NotEqual.}
-  proc `+`*(left: String; right: StringName): String {.operator: VariantOP_Add.}
-  proc `%`*(left: String; right: StringName): String {.operator: VariantOP_Module.}
-  proc `contains`*(left: StringName; right: String): Bool {.operator: VariantOP_In.}
-  proc `%`*(left: String; right: NodePath): String {.operator: VariantOP_Module.}
-  proc `%`*(left: String; right: Object): String {.operator: VariantOP_Module.}
-  proc `contains`*(left: Object; right: String): Bool {.operator: VariantOP_In.}
-  proc `%`*(left: String; right: Callable): String {.operator: VariantOP_Module.}
-  proc `%`*(left: String; right: Signal): String {.operator: VariantOP_Module.}
-  proc `%`*(left: String; right: Dictionary): String {.operator: VariantOP_Module.}
-  proc `contains`*(left: Dictionary; right: String): Bool {.operator: VariantOP_In.}
-  proc `%`*(left: String; right: Array): String {.operator: VariantOP_Module.}
-  proc `contains`*(left: Array; right: String): Bool {.operator: VariantOP_In.}
-  proc `%`*(left: String; right: PackedByteArray): String {.operator: VariantOP_Module.}
-  proc `%`*(left: String; right: PackedInt32Array): String {.operator: VariantOP_Module.}
-  proc `%`*(left: String; right: PackedInt64Array): String {.operator: VariantOP_Module.}
-  proc `%`*(left: String; right: PackedFloat32Array): String {.operator: VariantOP_Module.}
-  proc `%`*(left: String; right: PackedFloat64Array): String {.operator: VariantOP_Module.}
-  proc `%`*(left: String; right: PackedStringArray): String {.operator: VariantOP_Module.}
-  proc `contains`*(left: PackedStringArray; right: String): Bool {.operator: VariantOP_In.}
-  proc `%`*(left: String; right: PackedVector2Array): String {.operator: VariantOP_Module.}
-  proc `%`*(left: String; right: PackedVector3Array): String {.operator: VariantOP_Module.}
-  proc `%`*(left: String; right: PackedColorArray): String {.operator: VariantOP_Module.}
+var Equal_String_Variant: PtrOperatorEvaluator
+var NotEqual_String_Variant: PtrOperatorEvaluator
+var Module_String_Variant: PtrOperatorEvaluator
+var Not_String: PtrOperatorEvaluator
+var Module_String_Bool: PtrOperatorEvaluator
+var Module_String_Int: PtrOperatorEvaluator
+var Module_String_Float: PtrOperatorEvaluator
+var Equal_String_String: PtrOperatorEvaluator
+var NotEqual_String_String: PtrOperatorEvaluator
+var Less_String_String: PtrOperatorEvaluator
+var LessEqual_String_String: PtrOperatorEvaluator
+var Greater_String_String: PtrOperatorEvaluator
+var GreaterEqual_String_String: PtrOperatorEvaluator
+var Add_String_String: PtrOperatorEvaluator
+var Module_String_String: PtrOperatorEvaluator
+var In_String_String: PtrOperatorEvaluator
+var Module_String_Vector2: PtrOperatorEvaluator
+var Module_String_Vector2i: PtrOperatorEvaluator
+var Module_String_Rect2: PtrOperatorEvaluator
+var Module_String_Rect2i: PtrOperatorEvaluator
+var Module_String_Vector3: PtrOperatorEvaluator
+var Module_String_Vector3i: PtrOperatorEvaluator
+var Module_String_Transform2D: PtrOperatorEvaluator
+var Module_String_Vector4: PtrOperatorEvaluator
+var Module_String_Vector4i: PtrOperatorEvaluator
+var Module_String_Plane: PtrOperatorEvaluator
+var Module_String_Quaternion: PtrOperatorEvaluator
+var Module_String_AABB: PtrOperatorEvaluator
+var Module_String_Basis: PtrOperatorEvaluator
+var Module_String_Transform3D: PtrOperatorEvaluator
+var Module_String_Projection: PtrOperatorEvaluator
+var Module_String_Color: PtrOperatorEvaluator
+var Equal_String_StringName: PtrOperatorEvaluator
+var NotEqual_String_StringName: PtrOperatorEvaluator
+var Add_String_StringName: PtrOperatorEvaluator
+var Module_String_StringName: PtrOperatorEvaluator
+var In_String_StringName: PtrOperatorEvaluator
+var Module_String_NodePath: PtrOperatorEvaluator
+var Module_String_Object: PtrOperatorEvaluator
+var In_String_Object: PtrOperatorEvaluator
+var Module_String_Callable: PtrOperatorEvaluator
+var Module_String_Signal: PtrOperatorEvaluator
+var Module_String_Dictionary: PtrOperatorEvaluator
+var In_String_Dictionary: PtrOperatorEvaluator
+var Module_String_Array: PtrOperatorEvaluator
+var In_String_Array: PtrOperatorEvaluator
+var Module_String_PackedByteArray: PtrOperatorEvaluator
+var Module_String_PackedInt32Array: PtrOperatorEvaluator
+var Module_String_PackedInt64Array: PtrOperatorEvaluator
+var Module_String_PackedFloat32Array: PtrOperatorEvaluator
+var Module_String_PackedFloat64Array: PtrOperatorEvaluator
+var Module_String_PackedStringArray: PtrOperatorEvaluator
+var In_String_PackedStringArray: PtrOperatorEvaluator
+var Module_String_PackedVector2Array: PtrOperatorEvaluator
+var Module_String_PackedVector3Array: PtrOperatorEvaluator
+var Module_String_PackedColorArray: PtrOperatorEvaluator
+proc `==`*(left: String; right: ptr Variant): Bool = Equal_String_Variant(addr left, addr right, addr result)
+proc `!=`*(left: String; right: ptr Variant): Bool = NotEqual_String_Variant(addr left, addr right, addr result)
+proc `%`*(left: String; right: ptr Variant): String = Module_String_Variant(addr left, addr right, addr result)
+proc `not`*(left: String): Bool = Not_String(addr left, nil, addr result)
+proc `%`*(left: String; right: Bool): String = Module_String_Bool(addr left, addr right, addr result)
+proc `%`*(left: String; right: Int): String = Module_String_Int(addr left, addr right, addr result)
+proc `%`*(left: String; right: Float): String = Module_String_Float(addr left, addr right, addr result)
+proc `==`*(left: String; right: String): Bool = Equal_String_String(addr left, addr right, addr result)
+proc `!=`*(left: String; right: String): Bool = NotEqual_String_String(addr left, addr right, addr result)
+proc `<`*(left: String; right: String): Bool = Less_String_String(addr left, addr right, addr result)
+proc `<=`*(left: String; right: String): Bool = LessEqual_String_String(addr left, addr right, addr result)
+proc `>`*(left: String; right: String): Bool = Greater_String_String(addr left, addr right, addr result)
+proc `>=`*(left: String; right: String): Bool = GreaterEqual_String_String(addr left, addr right, addr result)
+proc `+`*(left: String; right: String): String = Add_String_String(addr left, addr right, addr result)
+proc `%`*(left: String; right: String): String = Module_String_String(addr left, addr right, addr result)
+proc contains*(left: String; right: String): Bool = In_String_String(addr right, addr left, addr result)
+proc `%`*(left: String; right: Vector2): String = Module_String_Vector2(addr left, addr right, addr result)
+proc `%`*(left: String; right: Vector2i): String = Module_String_Vector2i(addr left, addr right, addr result)
+proc `%`*(left: String; right: Rect2): String = Module_String_Rect2(addr left, addr right, addr result)
+proc `%`*(left: String; right: Rect2i): String = Module_String_Rect2i(addr left, addr right, addr result)
+proc `%`*(left: String; right: Vector3): String = Module_String_Vector3(addr left, addr right, addr result)
+proc `%`*(left: String; right: Vector3i): String = Module_String_Vector3i(addr left, addr right, addr result)
+proc `%`*(left: String; right: Transform2D): String = Module_String_Transform2D(addr left, addr right, addr result)
+proc `%`*(left: String; right: Vector4): String = Module_String_Vector4(addr left, addr right, addr result)
+proc `%`*(left: String; right: Vector4i): String = Module_String_Vector4i(addr left, addr right, addr result)
+proc `%`*(left: String; right: Plane): String = Module_String_Plane(addr left, addr right, addr result)
+proc `%`*(left: String; right: Quaternion): String = Module_String_Quaternion(addr left, addr right, addr result)
+proc `%`*(left: String; right: AABB): String = Module_String_AABB(addr left, addr right, addr result)
+proc `%`*(left: String; right: Basis): String = Module_String_Basis(addr left, addr right, addr result)
+proc `%`*(left: String; right: Transform3D): String = Module_String_Transform3D(addr left, addr right, addr result)
+proc `%`*(left: String; right: Projection): String = Module_String_Projection(addr left, addr right, addr result)
+proc `%`*(left: String; right: Color): String = Module_String_Color(addr left, addr right, addr result)
+proc `==`*(left: String; right: StringName): Bool = Equal_String_StringName(addr left, addr right, addr result)
+proc `!=`*(left: String; right: StringName): Bool = NotEqual_String_StringName(addr left, addr right, addr result)
+proc `+`*(left: String; right: StringName): String = Add_String_StringName(addr left, addr right, addr result)
+proc `%`*(left: String; right: StringName): String = Module_String_StringName(addr left, addr right, addr result)
+proc contains*(left: StringName; right: String): Bool = In_String_StringName(addr right, addr left, addr result)
+proc `%`*(left: String; right: NodePath): String = Module_String_NodePath(addr left, addr right, addr result)
+proc `%`*(left: String; right: Object): String = Module_String_Object(addr left, (if right.isNil or right.owner.isNil: nil else: addr right.owner), addr result)
+proc contains*(left: Object; right: String): Bool = In_String_Object(addr right, (if left.isNil or left.owner.isNil: nil else: addr left.owner), addr result)
+proc `%`*(left: String; right: Callable): String = Module_String_Callable(addr left, addr right, addr result)
+proc `%`*(left: String; right: Signal): String = Module_String_Signal(addr left, addr right, addr result)
+proc `%`*(left: String; right: Dictionary): String = Module_String_Dictionary(addr left, addr right, addr result)
+proc contains*(left: Dictionary; right: String): Bool = In_String_Dictionary(addr right, addr left, addr result)
+proc `%`*(left: String; right: Array): String = Module_String_Array(addr left, addr right, addr result)
+proc contains*(left: Array; right: String): Bool = In_String_Array(addr right, addr left, addr result)
+proc `%`*(left: String; right: PackedByteArray): String = Module_String_PackedByteArray(addr left, addr right, addr result)
+proc `%`*(left: String; right: PackedInt32Array): String = Module_String_PackedInt32Array(addr left, addr right, addr result)
+proc `%`*(left: String; right: PackedInt64Array): String = Module_String_PackedInt64Array(addr left, addr right, addr result)
+proc `%`*(left: String; right: PackedFloat32Array): String = Module_String_PackedFloat32Array(addr left, addr right, addr result)
+proc `%`*(left: String; right: PackedFloat64Array): String = Module_String_PackedFloat64Array(addr left, addr right, addr result)
+proc `%`*(left: String; right: PackedStringArray): String = Module_String_PackedStringArray(addr left, addr right, addr result)
+proc contains*(left: PackedStringArray; right: String): Bool = In_String_PackedStringArray(addr right, addr left, addr result)
+proc `%`*(left: String; right: PackedVector2Array): String = Module_String_PackedVector2Array(addr left, addr right, addr result)
+proc `%`*(left: String; right: PackedVector3Array): String = Module_String_PackedVector3Array(addr left, addr right, addr result)
+proc `%`*(left: String; right: PackedColorArray): String = Module_String_PackedColorArray(addr left, addr right, addr result)
+proc load_String_op =
+  Equal_String_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_String, VariantType_Nil)
+  NotEqual_String_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_String, VariantType_Nil)
+  Module_String_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_Nil)
+  Not_String = interface_variantGetPtrOperatorEvaluator(VariantOP_Not, VariantType_String, VariantType_Nil)
+  Module_String_Bool = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_Bool)
+  Module_String_Int = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_Int)
+  Module_String_Float = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_Float)
+  Equal_String_String = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_String, VariantType_String)
+  NotEqual_String_String = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_String, VariantType_String)
+  Less_String_String = interface_variantGetPtrOperatorEvaluator(VariantOP_Less, VariantType_String, VariantType_String)
+  LessEqual_String_String = interface_variantGetPtrOperatorEvaluator(VariantOP_LessEqual, VariantType_String, VariantType_String)
+  Greater_String_String = interface_variantGetPtrOperatorEvaluator(VariantOP_Greater, VariantType_String, VariantType_String)
+  GreaterEqual_String_String = interface_variantGetPtrOperatorEvaluator(VariantOP_GreaterEqual, VariantType_String, VariantType_String)
+  Add_String_String = interface_variantGetPtrOperatorEvaluator(VariantOP_Add, VariantType_String, VariantType_String)
+  Module_String_String = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_String)
+  In_String_String = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_String, VariantType_String)
+  Module_String_Vector2 = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_Vector2)
+  Module_String_Vector2i = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_Vector2i)
+  Module_String_Rect2 = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_Rect2)
+  Module_String_Rect2i = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_Rect2i)
+  Module_String_Vector3 = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_Vector3)
+  Module_String_Vector3i = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_Vector3i)
+  Module_String_Transform2D = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_Transform2D)
+  Module_String_Vector4 = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_Vector4)
+  Module_String_Vector4i = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_Vector4i)
+  Module_String_Plane = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_Plane)
+  Module_String_Quaternion = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_Quaternion)
+  Module_String_AABB = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_AABB)
+  Module_String_Basis = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_Basis)
+  Module_String_Transform3D = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_Transform3D)
+  Module_String_Projection = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_Projection)
+  Module_String_Color = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_Color)
+  Equal_String_StringName = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_String, VariantType_StringName)
+  NotEqual_String_StringName = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_String, VariantType_StringName)
+  Add_String_StringName = interface_variantGetPtrOperatorEvaluator(VariantOP_Add, VariantType_String, VariantType_StringName)
+  Module_String_StringName = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_StringName)
+  In_String_StringName = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_String, VariantType_StringName)
+  Module_String_NodePath = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_NodePath)
+  Module_String_Object = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_Object)
+  In_String_Object = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_String, VariantType_Object)
+  Module_String_Callable = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_Callable)
+  Module_String_Signal = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_Signal)
+  Module_String_Dictionary = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_Dictionary)
+  In_String_Dictionary = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_String, VariantType_Dictionary)
+  Module_String_Array = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_Array)
+  In_String_Array = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_String, VariantType_Array)
+  Module_String_PackedByteArray = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_PackedByteArray)
+  Module_String_PackedInt32Array = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_PackedInt32Array)
+  Module_String_PackedInt64Array = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_PackedInt64Array)
+  Module_String_PackedFloat32Array = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_PackedFloat32Array)
+  Module_String_PackedFloat64Array = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_PackedFloat64Array)
+  Module_String_PackedStringArray = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_PackedStringArray)
+  In_String_PackedStringArray = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_String, VariantType_PackedStringArray)
+  Module_String_PackedVector2Array = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_PackedVector2Array)
+  Module_String_PackedVector3Array = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_PackedVector3Array)
+  Module_String_PackedColorArray = interface_variantGetPtrOperatorEvaluator(VariantOP_Module, VariantType_String, VariantType_PackedColorArray)
 proc load_String_allmethod* =
+  load_String_op()
   load_String_proc()
   load_String_sproc()
-  load_String_op()

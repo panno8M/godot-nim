@@ -82,47 +82,6 @@ Vector4.procedures(loader= loadProcs_Vector4):
   proc `cubicInterpolate`*(self:Vector4; `b`:Vector4; `preA`:Vector4; `postB`:Vector4; `weight`:Float): Vector4 {.loadfrom("cubic_interpolate", 726768410).}
   proc `inverse`*(self:Vector4): Vector4 {.loadfrom("inverse", 80860099).}
 
-# Native Operators
-# ================
-
-operators(loader= loadOp_vectors):
-  proc `!=`*(left:Vector2; right:Variant): Bool {.operator: VariantOp_NotEqual.}
-  proc `*`*(left:Vector2; right:Transform2D): Vector2 {.operator: VariantOp_Multiply.}
-  proc `==`*(left:Vector2; right:Variant): Bool {.operator: VariantOp_Equal.}
-  proc contains*(left:Dictionary; right:Vector2): Bool {.operator: VariantOp_In.}
-  proc contains*(left:Array; right:Vector2): Bool {.operator: VariantOp_In.}
-  proc contains*(left:PackedVector2Array; right:Vector2): Bool {.operator: VariantOp_In.}
-
-  proc `!=`*(left:Vector3; right:Variant): Bool {.operator: VariantOp_NotEqual.}
-  proc `*`*(left:Vector3; right:Quaternion): Vector3 {.operator: VariantOp_Multiply.}
-  proc `*`*(left:Vector3; right:Basis): Vector3 {.operator: VariantOp_Multiply.}
-  proc `*`*(left:Vector3; right:Transform3D): Vector3 {.operator: VariantOp_Multiply.}
-  proc `==`*(left:Vector3; right:Variant): Bool {.operator: VariantOp_Equal.}
-  proc contains*(left:Dictionary; right:Vector3): Bool {.operator: VariantOp_In.}
-  proc contains*(left:Array; right:Vector3): Bool {.operator: VariantOp_In.}
-  proc contains*(left:PackedVector3Array; right:Vector3): Bool {.operator: VariantOp_In.}
-
-  proc `!=`*(left:Vector4; right:Variant): Bool {.operator: VariantOp_NotEqual.}
-  proc `*`*(left:Vector4; right:Projection): Vector4 {.operator: VariantOp_Multiply.}
-  proc `==`*(left:Vector4; right:Variant): Bool {.operator: VariantOp_Equal.}
-  proc contains*(left:Dictionary; right:Vector4): Bool {.operator: VariantOp_In.}
-  proc contains*(left:Array; right:Vector4): Bool {.operator: VariantOp_In.}
-
-  proc `!=`*(left:Vector2i; right:Variant): Bool {.operator: VariantOp_NotEqual.}
-  proc `==`*(left:Vector2i; right:Variant): Bool {.operator: VariantOp_Equal.}
-  proc contains*(left:Dictionary; right:Vector2i): Bool {.operator: VariantOp_In.}
-  proc contains*(left:Array; right:Vector2i): Bool {.operator: VariantOp_In.}
-
-  proc `!=`*(left:Vector3i; right:Variant): Bool {.operator: VariantOp_NotEqual.}
-  proc `==`*(left:Vector3i; right:Variant): Bool {.operator: VariantOp_Equal.}
-  proc contains*(left:Dictionary; right:Vector3i): Bool {.operator: VariantOp_In.}
-  proc contains*(left:Array; right:Vector3i): Bool {.operator: VariantOp_In.}
-
-  proc `!=`*(left:Vector4i; right:Variant): Bool {.operator: VariantOp_NotEqual.}
-  proc `==`*(left:Vector4i; right:Variant): Bool {.operator: VariantOp_Equal.}
-  proc contains*(left:Dictionary; right:Vector4i): Bool {.operator: VariantOp_In.}
-  proc contains*(left:Array; right:Vector4i): Bool {.operator: VariantOp_In.}
-
 # Loaders
 # =======
 proc load_vectors*() =
@@ -130,4 +89,3 @@ proc load_vectors*() =
   loadProcs_Vector3()
   loadStaticProcs_Vector3()
   loadProcs_Vector4()
-  loadOp_vectors()

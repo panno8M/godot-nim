@@ -26,15 +26,28 @@ Dictionary.procedures(loader= load_Dictionary_proc):
   proc get*(self: Dictionary; key: ptr Variant; default: ptr Variant = nil): Variant {.loadfrom("get", 2205440559).}
   proc makeReadOnly*(self: Dictionary) {.loadfrom("make_read_only", 3218959716).}
   proc isReadOnly*(self: Dictionary): Bool {.loadfrom("is_read_only", 3918633141).}
-
-operators(loader= load_Dictionary_op):
-  proc `==`*(left: Dictionary; right: ptr Variant): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: Dictionary; right: ptr Variant): Bool {.operator: VariantOP_NotEqual.}
-  proc `not`*(left: Dictionary): Bool {.operator: VariantOP_Not.}
-  proc `==`*(left: Dictionary; right: Dictionary): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: Dictionary; right: Dictionary): Bool {.operator: VariantOP_NotEqual.}
-  proc `contains`*(left: Dictionary; right: Dictionary): Bool {.operator: VariantOP_In.}
-  proc `contains`*(left: Array; right: Dictionary): Bool {.operator: VariantOP_In.}
+var Equal_Dictionary_Variant: PtrOperatorEvaluator
+var NotEqual_Dictionary_Variant: PtrOperatorEvaluator
+var Not_Dictionary: PtrOperatorEvaluator
+var Equal_Dictionary_Dictionary: PtrOperatorEvaluator
+var NotEqual_Dictionary_Dictionary: PtrOperatorEvaluator
+var In_Dictionary_Dictionary: PtrOperatorEvaluator
+var In_Dictionary_Array: PtrOperatorEvaluator
+proc `==`*(left: Dictionary; right: ptr Variant): Bool = Equal_Dictionary_Variant(addr left, addr right, addr result)
+proc `!=`*(left: Dictionary; right: ptr Variant): Bool = NotEqual_Dictionary_Variant(addr left, addr right, addr result)
+proc `not`*(left: Dictionary): Bool = Not_Dictionary(addr left, nil, addr result)
+proc `==`*(left: Dictionary; right: Dictionary): Bool = Equal_Dictionary_Dictionary(addr left, addr right, addr result)
+proc `!=`*(left: Dictionary; right: Dictionary): Bool = NotEqual_Dictionary_Dictionary(addr left, addr right, addr result)
+proc contains*(left: Dictionary; right: Dictionary): Bool = In_Dictionary_Dictionary(addr right, addr left, addr result)
+proc contains*(left: Array; right: Dictionary): Bool = In_Dictionary_Array(addr right, addr left, addr result)
+proc load_Dictionary_op =
+  Equal_Dictionary_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Dictionary, VariantType_Nil)
+  NotEqual_Dictionary_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Dictionary, VariantType_Nil)
+  Not_Dictionary = interface_variantGetPtrOperatorEvaluator(VariantOP_Not, VariantType_Dictionary, VariantType_Nil)
+  Equal_Dictionary_Dictionary = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Dictionary, VariantType_Dictionary)
+  NotEqual_Dictionary_Dictionary = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Dictionary, VariantType_Dictionary)
+  In_Dictionary_Dictionary = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_Dictionary, VariantType_Dictionary)
+  In_Dictionary_Array = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_Dictionary, VariantType_Array)
 proc load_Dictionary_allmethod* =
-  load_Dictionary_proc()
   load_Dictionary_op()
+  load_Dictionary_proc()

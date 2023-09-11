@@ -26,16 +26,31 @@ Rect2.procedures(loader= load_Rect2_proc):
   proc growSide*(self: Rect2; side: Int; amount: Float): Rect2 {.loadfrom("grow_side", 4177736158).}
   proc growIndividual*(self: Rect2; left: Float; top: Float; right: Float; bottom: Float): Rect2 {.loadfrom("grow_individual", 3203390369).}
   proc abs*(self: Rect2): Rect2 {.loadfrom("abs", 3107653634).}
-
-operators(loader= load_Rect2_op):
-  proc `==`*(left: Rect2; right: ptr Variant): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: Rect2; right: ptr Variant): Bool {.operator: VariantOP_NotEqual.}
-  proc `not`*(left: Rect2): Bool {.operator: VariantOP_Not.}
-  proc `==`*(left: Rect2; right: Rect2): Bool {.operator: VariantOP_Equal.}
-  proc `!=`*(left: Rect2; right: Rect2): Bool {.operator: VariantOP_NotEqual.}
-  proc `*`*(left: Rect2; right: Transform2D): Rect2 {.operator: VariantOP_Multiply.}
-  proc `contains`*(left: Dictionary; right: Rect2): Bool {.operator: VariantOP_In.}
-  proc `contains`*(left: Array; right: Rect2): Bool {.operator: VariantOP_In.}
+var Equal_Rect2_Variant: PtrOperatorEvaluator
+var NotEqual_Rect2_Variant: PtrOperatorEvaluator
+var Not_Rect2: PtrOperatorEvaluator
+var Equal_Rect2_Rect2: PtrOperatorEvaluator
+var NotEqual_Rect2_Rect2: PtrOperatorEvaluator
+var Multiply_Rect2_Transform2D: PtrOperatorEvaluator
+var In_Rect2_Dictionary: PtrOperatorEvaluator
+var In_Rect2_Array: PtrOperatorEvaluator
+proc `==`*(left: Rect2; right: ptr Variant): Bool = Equal_Rect2_Variant(addr left, addr right, addr result)
+proc `!=`*(left: Rect2; right: ptr Variant): Bool = NotEqual_Rect2_Variant(addr left, addr right, addr result)
+proc `not`*(left: Rect2): Bool = Not_Rect2(addr left, nil, addr result)
+proc `==`*(left: Rect2; right: Rect2): Bool = Equal_Rect2_Rect2(addr left, addr right, addr result)
+proc `!=`*(left: Rect2; right: Rect2): Bool = NotEqual_Rect2_Rect2(addr left, addr right, addr result)
+proc `*`*(left: Rect2; right: Transform2D): Rect2 = Multiply_Rect2_Transform2D(addr left, addr right, addr result)
+proc contains*(left: Dictionary; right: Rect2): Bool = In_Rect2_Dictionary(addr right, addr left, addr result)
+proc contains*(left: Array; right: Rect2): Bool = In_Rect2_Array(addr right, addr left, addr result)
+proc load_Rect2_op =
+  Equal_Rect2_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Rect2, VariantType_Nil)
+  NotEqual_Rect2_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Rect2, VariantType_Nil)
+  Not_Rect2 = interface_variantGetPtrOperatorEvaluator(VariantOP_Not, VariantType_Rect2, VariantType_Nil)
+  Equal_Rect2_Rect2 = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Rect2, VariantType_Rect2)
+  NotEqual_Rect2_Rect2 = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Rect2, VariantType_Rect2)
+  Multiply_Rect2_Transform2D = interface_variantGetPtrOperatorEvaluator(VariantOP_Multiply, VariantType_Rect2, VariantType_Transform2D)
+  In_Rect2_Dictionary = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_Rect2, VariantType_Dictionary)
+  In_Rect2_Array = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_Rect2, VariantType_Array)
 proc load_Rect2_allmethod* =
-  load_Rect2_proc()
   load_Rect2_op()
+  load_Rect2_proc()

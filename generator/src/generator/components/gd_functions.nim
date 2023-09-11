@@ -157,21 +157,6 @@ proc prerender*(self: JsonMethod; self_type: ArgType; gpkind: GodotProcKind): Go
   if result.kind == npkProc:
     result.pragmas.add &"loadfrom(\"{self.name}\", {get self.hash})"
 
-proc prerender*(self: JsonOperator; argType: ArgType): GodotProcSt =
-  var args: seq[GodotParam] = @[(NimVar.imitate"left", argType, none string)]
-  if self.right_type.isSome:
-    args.add (NimVar.imitate"right", argType get self.right_type, none string)
-  if self.name == "in":
-    swap args[0].`type`, args[1].`type`
-  GodotProcSt(
-    kind: npkProc,
-    gpkind: gpkOperator,
-    name: self.name.operator,
-    result: some retType self.return_type,
-    args: args,
-    pragmas: @["operator: " & self.name.variantOperator]
-  )
-
 proc prerender*(self: JsonConstructor; retType: RetType): GodotProcSt =
   result = GodotProcSt(
     kind: npkProc,
