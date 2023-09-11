@@ -1,15 +1,15 @@
-import std/[
-  os,
-  sequtils,
-  strutils,
-  strformat,
-]
 import godot
 
 import ./nimSideTester
 import ./godotSideTester
 
 when TraceAny:
+  import std/[
+    os,
+    sequtils,
+    strutils,
+    strformat,
+  ]
   import godot/logging
   proc format {.implement: LogFormat.} =
     let data = GDLogData data

@@ -13,6 +13,7 @@ import components/[
   classes,
   builtin_classes,
   nativeStructs,
+  variantHook,
 ]
 import tool/[
   moduleTree,
@@ -65,6 +66,7 @@ proc generate*(api: JsonNode) =
   moduleTree.variantsConstr_native.contents = variants.renderConstructor
   moduleTree.variantLoader.contents = variants.renderLoader
   moduleTree.localEnums.contents.children.add variants.renderLocalEnums
+  genVariantHook(api.builtin_classes)
 
   let essencial_mdl = mdl("classEssencial")
     .incl(moduleTree.engineClassDefiner)

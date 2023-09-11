@@ -1,9 +1,6 @@
 let modules: seq[string] = @[
-  "include/",
-  "globalEnums.nim",
-  "engineClassDefines.nim",
-  "(objectBase.nim)",
-  "localEnums.nim",
+  "hook_prototype_Variants.nim",
+  "hook_define_Variants.nim",
 ]
 import strformat, os
 const cYELLOW = "\x1b[33m"

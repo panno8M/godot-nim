@@ -42,7 +42,7 @@ proc define_container(identdefs: seq[NimNode]): NimNode =
 
 proc define_loader(loadSentences: seq[NimNode]): NimNode =
   newProc(
-    name= ident"init_interface".postfix("*"),
+    name= ident"load_interface_api",
     params= @[newEmptyNode(), newIdentDefs(getProcAddress, ident"InterfaceGetProcAddress")],
     body= newStmtList().add(loadSentences)
   )

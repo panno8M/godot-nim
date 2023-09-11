@@ -142,8 +142,6 @@ func renderLoader*(self: NimBuiltinClass): Statement =
 func renderLoader*(classes: seq[NimBuiltinClass]): Statement =
   let loaderBody = ParagraphSt()
 
-  loaderBody.children.add destrLoader("Variants") & "()"
-
   for class in classes.filter(x => $x.name notin variantDetailIgnores):
     if $class.name notin constructorIgnores:
       discard loaderBody.add:

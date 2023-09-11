@@ -190,7 +190,6 @@ proc defaultValue*(value: string; argType: ArgType): string =
   argType.name.info.get(defaultObjectInfo).defaultValue(value, argType)
 
 func constrLoader*(classname: string): string = &"load_{classname}_constr"
-func destrLoader*(classname: string): string = &"load_{classname}_destr"
 func procLoader*(classname: string): string = &"load_{classname}_proc"
 func sprocLoader*(classname: string): string = &"load_{classname}_sproc"
 func opLoader*(classname: string): string = &"load_{classname}_op"

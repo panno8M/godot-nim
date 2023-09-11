@@ -72,14 +72,14 @@ type
     g*: float_elem
     b*: float_elem
     a*: float_elem
+  RID* {.bycopy.} = object
+    opaque: Opaque[2]
   String* {.bycopy.} = object
     opaque: Opaque[1]
   StringName* {.bycopy.} = object
     opaque: Opaque[1]
   NodePath* {.bycopy.} = object
     opaque: Opaque[1]
-  RID* {.bycopy.} = object
-    opaque: Opaque[2]
   Callable* {.bycopy.} = object
     opaque: Opaque[4]
   Signal* {.bycopy.} = object
@@ -159,6 +159,10 @@ type SomeGodotUniques* =
   SomePackedArray
 type SomeVariants* = SomePrimitives|SomeGodotUniques
 
+include "godotInterface/include/hook_prototype_Variants"
+proc `=copy`(dest: var Variant; source: Variant)
+proc `=destroy`(x: Variant)
+
 macro gdcall*(someProc: untyped): untyped =
   someProc.addPragma ident do:
     when (defined windows): "stdcall"
@@ -173,61 +177,18 @@ var
   token*: pointer
   godotVersion*: GodotVersion
 
-# proc `=destroy`(x: Variant) =
-#   TODO Variants_destruction.comment"inject here to call `=destroy` of an having"
-#   try:
-#     if x != Variant_empty:
-#       interface_variantDestroy(addr x)
-#   except: discard
-# proc `=copy`(dest: var Variant; source: Variant) =
-#   `=destroy` dest
-#   wasMoved(dest)
-#   interface_variantNewCopy(addr dest, addr source)
+proc `=destroy`(x: Variant) =
+  try:
+    if x != Variant():
+      interface_variantDestroy(addr x)
+  except: discard
+proc `=copy`(dest: var Variant; source: Variant) =
+  `=destroy` dest
+  wasMoved(dest)
+  interface_variantNewCopy(addr dest, addr source)
 
+include "godotInterface/include/hook_define_Variants"
 
-template variantType(Type: typedesc[SomeVariants]): Variant_Type =
-  `VariantType Type`
-
-template define_destructor(Type: typedesc): untyped =
-  var `Type destr` {.inject.} : PtrDestructor
-  # proc `=destroy`(self: Type) {.raises: [].} =
-  #   try:
-  #     `Type destr`(addr self)
-  #   except: discard
-template load_destructor(Type: typedesc): untyped =
-  `Type destr` = interface_variantGetPtrDestructor Type.variantType
-
-define_destructor String
-define_destructor StringName
-define_destructor NodePath
-define_destructor Callable
-define_destructor Signal
-define_destructor Dictionary
-define_destructor Array
-define_destructor PackedByteArray
-define_destructor PackedInt32Array
-define_destructor PackedInt64Array
-define_destructor PackedFloat32Array
-define_destructor PackedFloat64Array
-define_destructor PackedStringArray
-define_destructor PackedVector2Array
-define_destructor PackedVector3Array
-define_destructor PackedColorArray
-
-proc load_Variants_destr* =
-  load_destructor String
-  load_destructor StringName
-  load_destructor NodePath
-  load_destructor Callable
-  load_destructor Signal
-  load_destructor Dictionary
-  load_destructor Array
-  load_destructor PackedByteArray
-  load_destructor PackedInt32Array
-  load_destructor PackedInt64Array
-  load_destructor PackedFloat32Array
-  load_destructor PackedFloat64Array
-  load_destructor PackedStringArray
-  load_destructor PackedVector2Array
-  load_destructor PackedVector3Array
-  load_destructor PackedColorArray
+proc init_interface*(getProcAddress: InterfaceGetProcAddress) =
+  load_interface_api(getProcAddress)
+  load_interface_VariantHook()

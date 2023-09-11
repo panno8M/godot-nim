@@ -12,6 +12,7 @@ let # directories
   d_helper* = dir"helper"
   d_pure* = dir"pure"
   d_godotInterface* = dir"godotInterface"
+  d_godotInterface_include* = dir"include"
 
 
 let # modules
@@ -69,7 +70,6 @@ discard classDetail_all
   .incl(d_classDetail)
 discard variantLoader
   .incl(
-    godotInterface,
     variantsConstr_native,
     variantsDetail_native,
     variantsDetail_custom,
@@ -93,6 +93,7 @@ discard +/%..d_root:
   +/%..d_godot:
     godotInterface
     +/%..d_godotInterface:
+      internal d_godotInterface_include
       globalEnums
       localEnums
       objectBase

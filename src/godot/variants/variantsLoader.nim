@@ -2,13 +2,11 @@
 # This module was generated automatically. #
 # Edits will be lost.                      #
 # ======================================== #
-import ./../godotInterface
 import ./variantsConstr_native
 import ./variantsDetail_custom
 import ./variantsDetail_native
 
 proc load_Variants* =
-  load_Variants_destr()
   load_String_constr()
   load_Rect2_constr()
   load_Rect2i_constr()
