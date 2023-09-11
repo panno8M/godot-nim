@@ -4,11 +4,20 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
+const int_AxisX*: int = 0
+const int_AxisY*: int = 1
+const int_AxisZ*: int = 2
+const Vector3i_Zero*: Vector3i = gdveci(0, 0, 0)
+const Vector3i_One*: Vector3i = gdveci(1, 1, 1)
+const Vector3i_Left*: Vector3i = gdveci(-1, 0, 0)
+const Vector3i_Right*: Vector3i = gdveci(1, 0, 0)
+const Vector3i_Up*: Vector3i = gdveci(0, 1, 0)
+const Vector3i_Down*: Vector3i = gdveci(0, -1, 0)
+const Vector3i_Forward*: Vector3i = gdveci(0, 0, -1)
+const Vector3i_Back*: Vector3i = gdveci(0, 0, 1)
 # type Vector3i* = object
 #   self.json.is_keyed=false
-#   self.json.has_destructor=false
 #   self.json.indexing_return_type=some("int")
-#   self.json.constants=some(@[(name: "AXIS_X", type: "int", value: "0"), (name: "AXIS_Y", type: "int", value: "1"), (name: "AXIS_Z", type: "int", value: "2"), (name: "ZERO", type: "Vector3i", value: "Vector3i(0, 0, 0)"), (name: "ONE", type: "Vector3i", value: "Vector3i(1, 1, 1)"), (name: "LEFT", type: "Vector3i", value: "Vector3i(-1, 0, 0)"), (name: "RIGHT", type: "Vector3i", value: "Vector3i(1, 0, 0)"), (name: "UP", type: "Vector3i", value: "Vector3i(0, 1, 0)"), (name: "DOWN", type: "Vector3i", value: "Vector3i(0, -1, 0)"), (name: "FORWARD", type: "Vector3i", value: "Vector3i(0, 0, -1)"), (name: "BACK", type: "Vector3i", value: "Vector3i(0, 0, 1)")])
 var Equal_Vector3i_Variant: PtrOperatorEvaluator
 var NotEqual_Vector3i_Variant: PtrOperatorEvaluator
 var In_Vector3i_Dictionary: PtrOperatorEvaluator

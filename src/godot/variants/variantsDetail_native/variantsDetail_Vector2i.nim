@@ -4,11 +4,17 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
+const int_AxisX*: int = 0
+const int_AxisY*: int = 1
+const Vector2i_Zero*: Vector2i = gdveci(0, 0)
+const Vector2i_One*: Vector2i = gdveci(1, 1)
+const Vector2i_Left*: Vector2i = gdveci(-1, 0)
+const Vector2i_Right*: Vector2i = gdveci(1, 0)
+const Vector2i_Up*: Vector2i = gdveci(0, -1)
+const Vector2i_Down*: Vector2i = gdveci(0, 1)
 # type Vector2i* = object
 #   self.json.is_keyed=false
-#   self.json.has_destructor=false
 #   self.json.indexing_return_type=some("int")
-#   self.json.constants=some(@[(name: "AXIS_X", type: "int", value: "0"), (name: "AXIS_Y", type: "int", value: "1"), (name: "ZERO", type: "Vector2i", value: "Vector2i(0, 0)"), (name: "ONE", type: "Vector2i", value: "Vector2i(1, 1)"), (name: "LEFT", type: "Vector2i", value: "Vector2i(-1, 0)"), (name: "RIGHT", type: "Vector2i", value: "Vector2i(1, 0)"), (name: "UP", type: "Vector2i", value: "Vector2i(0, -1)"), (name: "DOWN", type: "Vector2i", value: "Vector2i(0, 1)")])
 var Equal_Vector2i_Variant: PtrOperatorEvaluator
 var NotEqual_Vector2i_Variant: PtrOperatorEvaluator
 var In_Vector2i_Dictionary: PtrOperatorEvaluator

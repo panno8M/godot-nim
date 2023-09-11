@@ -4,11 +4,18 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
+const int_AxisX*: int = 0
+const int_AxisY*: int = 1
+const Vector2_Zero*: Vector2 = gdvec(0, 0)
+const Vector2_One*: Vector2 = gdvec(1, 1)
+const Vector2_Inf*: Vector2 = gdvec(Inf, Inf)
+const Vector2_Left*: Vector2 = gdvec(-1, 0)
+const Vector2_Right*: Vector2 = gdvec(1, 0)
+const Vector2_Up*: Vector2 = gdvec(0, -1)
+const Vector2_Down*: Vector2 = gdvec(0, 1)
 # type Vector2* = object
 #   self.json.is_keyed=false
-#   self.json.has_destructor=false
 #   self.json.indexing_return_type=some("float")
-#   self.json.constants=some(@[(name: "AXIS_X", type: "int", value: "0"), (name: "AXIS_Y", type: "int", value: "1"), (name: "ZERO", type: "Vector2", value: "Vector2(0, 0)"), (name: "ONE", type: "Vector2", value: "Vector2(1, 1)"), (name: "INF", type: "Vector2", value: "Vector2(inf, inf)"), (name: "LEFT", type: "Vector2", value: "Vector2(-1, 0)"), (name: "RIGHT", type: "Vector2", value: "Vector2(1, 0)"), (name: "UP", type: "Vector2", value: "Vector2(0, -1)"), (name: "DOWN", type: "Vector2", value: "Vector2(0, 1)")])
 var Equal_Vector2_Variant: PtrOperatorEvaluator
 var NotEqual_Vector2_Variant: PtrOperatorEvaluator
 var Multiply_Vector2_Transform2D: PtrOperatorEvaluator

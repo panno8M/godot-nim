@@ -4,11 +4,10 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
+const Quaternion_Identity*: Quaternion = init_Quaternion(0, 0, 0, 1)
 # type Quaternion* = object
 #   self.json.is_keyed=false
-#   self.json.has_destructor=false
 #   self.json.indexing_return_type=some("float")
-#   self.json.constants=some(@[(name: "IDENTITY", type: "Quaternion", value: "Quaternion(0, 0, 0, 1)")])
 
 Quaternion.procedures(loader= load_Quaternion_proc):
   proc length*(self: Quaternion): Float {.loadfrom("length", 466405837).}

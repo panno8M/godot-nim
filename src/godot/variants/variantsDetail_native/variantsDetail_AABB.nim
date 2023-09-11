@@ -6,9 +6,7 @@ import ./../../helper/variantDefiner
 
 # type AABB* = object
 #   self.json.is_keyed=false
-#   self.json.has_destructor=false
 #   self.json.indexing_return_type=none(string)
-#   self.json.constants=none(seq[JsonConstant])
 
 AABB.procedures(loader= load_AABB_proc):
   proc abs*(self: AABB): AABB {.loadfrom("abs", 1576868580).}

@@ -4,11 +4,12 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
+const Transform2D_Identity*: Transform2D = init_Transform2D(1, 0, 0, 1, 0, 0)
+const Transform2D_FlipX*: Transform2D = init_Transform2D(-1, 0, 0, 1, 0, 0)
+const Transform2D_FlipY*: Transform2D = init_Transform2D(1, 0, 0, -1, 0, 0)
 # type Transform2D* = object
 #   self.json.is_keyed=false
-#   self.json.has_destructor=false
 #   self.json.indexing_return_type=some("Vector2")
-#   self.json.constants=some(@[(name: "IDENTITY", type: "Transform2D", value: "Transform2D(1, 0, 0, 1, 0, 0)"), (name: "FLIP_X", type: "Transform2D", value: "Transform2D(-1, 0, 0, 1, 0, 0)"), (name: "FLIP_Y", type: "Transform2D", value: "Transform2D(1, 0, 0, -1, 0, 0)")])
 
 Transform2D.procedures(loader= load_Transform2D_proc):
   proc inverse*(self: Transform2D): Transform2D {.loadfrom("inverse", 1420440541).}

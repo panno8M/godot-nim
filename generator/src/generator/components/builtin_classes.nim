@@ -11,6 +11,7 @@ import ./[
   gd_enum,
   gd_functions,
   variantOperator,
+  constants,
 ]
 import ../tool/[
   moduleTree,
@@ -22,7 +23,6 @@ type
   NimBuiltinClass* = ref object
     name*: TypeName
     enums*: seq[NimEnum]
-    constructors*: seq[GodotProcSt]
     methods*: seq[GodotProcSt]
     staticMethods*: seq[GodotProcSt]
     json*: JsonBuiltinClass
@@ -101,6 +101,18 @@ const ignoreConf: Table[string, IgnoreConf] = toTable {
       "In_Vector4i_Array",
     ],
   ),
+  "Quaternion": IgnoreConf(
+    constructor: true,
+    constructor_white: @[1, 2, 3, 4],
+  ),
+  "Color": IgnoreConf(
+    constructor: true,
+    constructor_white: @[5, 6],
+  ),
+  "Plane": IgnoreConf(
+    constructor: true,
+    constructor_white: @[1, 2, 3, 4, 5],
+  ),
   "Bool": IgnoreConf(
     constructor: true,
     operator: true,
@@ -160,8 +172,6 @@ proc toNim*(self: JsonBuiltinClass): NimBuiltinClass =
   let argTypeName = argType result.name
   if self.enums.isSome:
     result.enums = self.enums.get.mapIt it.toNim(result.name)
-  if not ignoreConf.getOrDefault($result.name).constructor:
-    result.constructors = sorted self.constructors.mapIt it.prerender retType result.name
   for m in self.methods.get(@[]):
     if m.is_static:
       result.staticMethods.add prerender(m, argTypeName, gpkStaticMethod)
@@ -175,34 +185,54 @@ proc toNim*(self: JsonBuiltinClass): NimBuiltinClass =
 func moduleName*(self: NimBuiltinClass): string =
   self.json.name.variantModuleName
 
-func renderConstructor*(self: NimBuiltinClass): Statement =
-  if self.constructors.len != 0:
-    let constr = $self.name&"_constr"
-    for i, c in self.constructors:
-      var argptr = "nil"
-      var argArr = ParagraphSt()
-      if c.args.len != 0:
-        argArr.children.add &"let argArr = [" & c.args.mapIt(&"cast[pointer](addr {it.name})").join(", ") & "]"
-        argptr = "addr argArr[0]"
-      discard +$$..c:
-        argArr
-        &"{constr}[{i}](addr result, {argptr})"
-    +$$..ParagraphSt():
-      &"var {constr}: array[{self.constructors.len}, PtrConstructor]"
-      &"proc load_{constr}* ="
-      &"  for i in 0..<{self.constructors.len}:"
-      &"    {constr}[i] = interface_Variant_getPtrConstructor(variantType {self.name}, uint32 i)"
-      ""
-      self.constructors
-      ""
-      ""
-  else:
-    ParagraphSt()
+proc prerender*(self: JsonConstructor; self_type: TypeName; index: int): Statement =
+  let constr = $self_type & "_constr"
+  let args = self.arguments.get(@[]).mapIt(it.toNim)
+  let prock = if args.len == 1: "converter" else: "proc"
+  var argptr = "nil"
+  var argArr = ParagraphSt()
+  if self.arguments.get(@[]).len != 0:
+    argArr.children.add &"let argArr = [" & args.mapIt(&"cast[pointer](addr {it.name})").join(", ") & "]"
+    argptr = "addr argArr[0]"
 
-func renderConstructor*(self: seq[NimBuiltinClass]): Statement =
+  +$$..BlockSt(head: &"{prock} init_{self_type}*({args}): {retType self_type} ="):
+    argArr
+    &"{constr}[{index}](addr result, {argptr})"
+
+proc renderConstructor*(self: NimBuiltinClass): Statement =
+  if self.json.constructors.len == 0: return
+
+  let ignore = ignoreConf.getOrDefault($self.name)
+
+  var idxrange = (0..self.json.constructors.high).toSeq
+
+  if ignore.constructor:
+    idxrange = ignore.constructor_white
+
+  if idxrange.len == 0: return
+
+  let idxrange_str = ($idxRange).replace("@", "")
+
+  var constrs = new ParagraphSt
+
+  let constr = $self.name&"_constr"
+  for i in idxrange:
+    let jc = self.json.constructors[i]
+    constrs.children.add prerender(jc, self.name, i)
+
+  +$$..ParagraphSt():
+    &"var {constr}: array[{self.json.constructors.len}, PtrConstructor]"
+    &"proc load_{constr}* ="
+    &"  for i in {idxRange_str}:"
+    &"    {constr}[i] = interface_Variant_getPtrConstructor(variantType {self.name}, uint32 i)"
+    ""
+    constrs
+    ""
+    ""
+
+proc renderConstructor*(self: seq[NimBuiltinClass]): Statement =
   result = new ParagraphSt
   for variant in self:
-    if ignoreConf.getOrDefault($variant.name).constructor: continue
     result.children.add variant.renderConstructor
 
 proc renderLocalEnums*(self: seq[NimBuiltinClass]): Statement =
@@ -213,16 +243,13 @@ proc renderLocalEnums*(self: seq[NimBuiltinClass]): Statement =
       variant.enums.mapit it.render
 
 type RenderedVariant = tuple
-  define, operators, loader: Statement
+  define, operators, constants, loader: Statement
 proc prerender*(self: NimBuiltinClass): RenderedVariant =
   result.define = +$$..ParagraphSt():
     +$$..CommentSt.nim(execute= true):
-      fmt"type {self.name}* = object"
-      +$$..IndentSt(level: 2):
+      +$$..BlockSt(head: fmt"type {self.name}* = object"):
         fmt"{self.json.is_keyed=}"
-        fmt"{self.json.has_destructor=}"
         fmt"{self.json.indexing_return_type=}"
-        fmt"{self.json.constants=}"
 
   let (opdefine, oploader) = prerender(self.json.operators, argType self.name, ignoreConf.getOrDefault($self.name))
   result.operators = opdefine
@@ -251,6 +278,8 @@ proc prerender*(self: NimBuiltinClass): RenderedVariant =
   if result.loader.children.len == 0:
     result.loader.children.add "discard"
 
+  result.constants = prerender self.json.constants.get(@[])
+
 
 func renderLoader*(classes: seq[NimBuiltinClass]): Statement =
   let loaderBody = ParagraphSt()
@@ -277,8 +306,9 @@ proc modulateDetail*(self: NimBuiltinClass): Module =
   if ignoreConf.getOrDefault($self.name).module: return
   result = mdl(self.moduleName)
     .incl(moduleTree.variantDefiner)
-  let (define, operators, loader) = self.prerender
+  let (define, operators, constants, loader) = self.prerender
   discard +$$..result.contents:
+    constants
     define
     operators
     loader

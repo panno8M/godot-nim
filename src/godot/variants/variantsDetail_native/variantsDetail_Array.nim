@@ -6,9 +6,7 @@ import ./../../helper/variantDefiner
 
 # type Array* = object
 #   self.json.is_keyed=false
-#   self.json.has_destructor=true
 #   self.json.indexing_return_type=some("Variant")
-#   self.json.constants=none(seq[JsonConstant])
 
 Array.procedures(loader= load_Array_proc):
   proc size*(self: Array): Int {.loadfrom("size", 3173160232).}

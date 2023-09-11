@@ -23,8 +23,6 @@ type
     gpkVirtualMethod
     gpkGetter
     gpkSetter
-    gpkConstructor
-    gpkOperator
   GodotProcSt* = ref object of ParagraphSt
     name*: NimVar
     kind*: NimProcKind
@@ -45,13 +43,22 @@ proc concat[T](s: seq[T]; o: Option[T]): seq[T] =
   if o.isSome: concat(s, @[o.get])
   else: s
 
-proc toNim(self: JsonArgument): GodotParam =
+proc toNim*(self: JsonArgument): GodotParam =
   result.name = self.name.replace("result", "retval") >!> Snake
   if self.meta.isSome:
     result.`type` = argType get self.meta
   else:
     result.`type` = argType self.`type`
   result.default_raw = self.default_value
+
+proc `$`*(self: GodotParam): string =
+  result = &"{self.name}: {self.`type`}"
+  if self.default_raw.isSome:
+    result.add " = "
+    result.add defaultValue(get self.default_raw, self.`type`)
+proc `$`*(self: seq[GodotParam]): string =
+  result = self.mapIt($it).join("; ")
+
 
 proc prerender_common*(self: JsonMethod; self_type: ArgType; gpkind: GodotProcKind): GodotProcSt =
   new result
@@ -157,30 +164,10 @@ proc prerender*(self: JsonMethod; self_type: ArgType; gpkind: GodotProcKind): Go
   if result.kind == npkProc:
     result.pragmas.add &"loadfrom(\"{self.name}\", {get self.hash})"
 
-proc prerender*(self: JsonConstructor; retType: RetType): GodotProcSt =
-  result = GodotProcSt(
-    kind: npkProc,
-    gpkind: gpkConstructor,
-    name: NimVar.imitate "init_"&($retType.name),
-    args: self.arguments.get(@[]).mapIt it.toNim,
-    result: some retType,
-    owner: some retType.name,
-  )
-  if result.args.len == 1:
-    result.kind = npkConverter
-
 method render*(self: GodotProcSt; cfg: RenderingConfig): seq[string] =
   var head = &"{self.kind} {self.name}*"
   if self.args.len != 0:
-    head &= "("
-    for i, arg in self.args:
-      head &= &"{arg.name}: {arg.`type`}"
-      if arg.default_raw.isSome:
-        head.add " = "
-        head.add defaultValue(get arg.default_raw, arg.`type`)
-      if i != self.args.high:
-        head &= "; "
-    head &= ")"
+    head &= &"({self.args})"
   if self.result.isSome:
     head &= ": " & $(get self.result)
 

@@ -6,9 +6,7 @@ import ./../../helper/variantDefiner
 
 # type PackedInt64Array* = object
 #   self.json.is_keyed=false
-#   self.json.has_destructor=true
 #   self.json.indexing_return_type=some("int")
-#   self.json.constants=none(seq[JsonConstant])
 
 PackedInt64Array.procedures(loader= load_PackedInt64Array_proc):
   proc size*(self: PackedInt64Array): Int {.loadfrom("size", 3173160232).}

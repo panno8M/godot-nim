@@ -6,9 +6,7 @@ import ./../../helper/variantDefiner
 
 # type Dictionary* = object
 #   self.json.is_keyed=true
-#   self.json.has_destructor=true
 #   self.json.indexing_return_type=some("Variant")
-#   self.json.constants=none(seq[JsonConstant])
 
 Dictionary.procedures(loader= load_Dictionary_proc):
   proc size*(self: Dictionary): Int {.loadfrom("size", 3173160232).}

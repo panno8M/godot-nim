@@ -4,11 +4,17 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
+const int_PlaneNear*: int = 0
+const int_PlaneFar*: int = 1
+const int_PlaneLeft*: int = 2
+const int_PlaneTop*: int = 3
+const int_PlaneRight*: int = 4
+const int_PlaneBottom*: int = 5
+const Projection_Identity*: Projection = init_Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+const Projection_Zero*: Projection = init_Projection(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 # type Projection* = object
 #   self.json.is_keyed=false
-#   self.json.has_destructor=false
 #   self.json.indexing_return_type=some("Vector4")
-#   self.json.constants=some(@[(name: "PLANE_NEAR", type: "int", value: "0"), (name: "PLANE_FAR", type: "int", value: "1"), (name: "PLANE_LEFT", type: "int", value: "2"), (name: "PLANE_TOP", type: "int", value: "3"), (name: "PLANE_RIGHT", type: "int", value: "4"), (name: "PLANE_BOTTOM", type: "int", value: "5"), (name: "IDENTITY", type: "Projection", value: "Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)"), (name: "ZERO", type: "Projection", value: "Projection(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)")])
 
 Projection.procedures(loader= load_Projection_proc):
   proc determinant*(self: Projection): Float {.loadfrom("determinant", 466405837).}

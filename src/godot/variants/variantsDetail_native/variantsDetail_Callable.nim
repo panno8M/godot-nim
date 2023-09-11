@@ -6,9 +6,7 @@ import ./../../helper/variantDefiner
 
 # type Callable* = object
 #   self.json.is_keyed=false
-#   self.json.has_destructor=true
 #   self.json.indexing_return_type=none(string)
-#   self.json.constants=none(seq[JsonConstant])
 
 Callable.procedures(loader= load_Callable_proc):
   proc callv*(self: Callable; arguments: Array): Variant {.loadfrom("callv", 413578926).}

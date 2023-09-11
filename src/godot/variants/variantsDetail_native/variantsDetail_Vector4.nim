@@ -4,11 +4,16 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
+const int_AxisX*: int = 0
+const int_AxisY*: int = 1
+const int_AxisZ*: int = 2
+const int_AxisW*: int = 3
+const Vector4_Zero*: Vector4 = gdvec(0, 0, 0, 0)
+const Vector4_One*: Vector4 = gdvec(1, 1, 1, 1)
+const Vector4_Inf*: Vector4 = gdvec(Inf, Inf, Inf, Inf)
 # type Vector4* = object
 #   self.json.is_keyed=false
-#   self.json.has_destructor=false
 #   self.json.indexing_return_type=some("float")
-#   self.json.constants=some(@[(name: "AXIS_X", type: "int", value: "0"), (name: "AXIS_Y", type: "int", value: "1"), (name: "AXIS_Z", type: "int", value: "2"), (name: "AXIS_W", type: "int", value: "3"), (name: "ZERO", type: "Vector4", value: "Vector4(0, 0, 0, 0)"), (name: "ONE", type: "Vector4", value: "Vector4(1, 1, 1, 1)"), (name: "INF", type: "Vector4", value: "Vector4(inf, inf, inf, inf)")])
 var Equal_Vector4_Variant: PtrOperatorEvaluator
 var NotEqual_Vector4_Variant: PtrOperatorEvaluator
 var Multiply_Vector4_Projection: PtrOperatorEvaluator

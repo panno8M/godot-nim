@@ -6,9 +6,7 @@ import ./../../helper/variantDefiner
 
 # type PackedFloat64Array* = object
 #   self.json.is_keyed=false
-#   self.json.has_destructor=true
 #   self.json.indexing_return_type=some("float")
-#   self.json.constants=none(seq[JsonConstant])
 
 PackedFloat64Array.procedures(loader= load_PackedFloat64Array_proc):
   proc size*(self: PackedFloat64Array): Int {.loadfrom("size", 3173160232).}

@@ -6,9 +6,7 @@ import ./../../helper/variantDefiner
 
 # type StringName* = object
 #   self.json.is_keyed=false
-#   self.json.has_destructor=true
 #   self.json.indexing_return_type=none(string)
-#   self.json.constants=none(seq[JsonConstant])
 
 StringName.procedures(loader= load_StringName_proc):
   proc casecmpTo*(self: StringName; to: String): Int {.loadfrom("casecmp_to", 2920860731).}

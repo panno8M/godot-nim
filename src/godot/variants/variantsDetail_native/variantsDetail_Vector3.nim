@@ -4,11 +4,27 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
+const int_AxisX*: int = 0
+const int_AxisY*: int = 1
+const int_AxisZ*: int = 2
+const Vector3_Zero*: Vector3 = gdvec(0, 0, 0)
+const Vector3_One*: Vector3 = gdvec(1, 1, 1)
+const Vector3_Inf*: Vector3 = gdvec(Inf, Inf, Inf)
+const Vector3_Left*: Vector3 = gdvec(-1, 0, 0)
+const Vector3_Right*: Vector3 = gdvec(1, 0, 0)
+const Vector3_Up*: Vector3 = gdvec(0, 1, 0)
+const Vector3_Down*: Vector3 = gdvec(0, -1, 0)
+const Vector3_Forward*: Vector3 = gdvec(0, 0, -1)
+const Vector3_Back*: Vector3 = gdvec(0, 0, 1)
+const Vector3_ModelLeft*: Vector3 = gdvec(1, 0, 0)
+const Vector3_ModelRight*: Vector3 = gdvec(-1, 0, 0)
+const Vector3_ModelTop*: Vector3 = gdvec(0, 1, 0)
+const Vector3_ModelBottom*: Vector3 = gdvec(0, -1, 0)
+const Vector3_ModelFront*: Vector3 = gdvec(0, 0, 1)
+const Vector3_ModelRear*: Vector3 = gdvec(0, 0, -1)
 # type Vector3* = object
 #   self.json.is_keyed=false
-#   self.json.has_destructor=false
 #   self.json.indexing_return_type=some("float")
-#   self.json.constants=some(@[(name: "AXIS_X", type: "int", value: "0"), (name: "AXIS_Y", type: "int", value: "1"), (name: "AXIS_Z", type: "int", value: "2"), (name: "ZERO", type: "Vector3", value: "Vector3(0, 0, 0)"), (name: "ONE", type: "Vector3", value: "Vector3(1, 1, 1)"), (name: "INF", type: "Vector3", value: "Vector3(inf, inf, inf)"), (name: "LEFT", type: "Vector3", value: "Vector3(-1, 0, 0)"), (name: "RIGHT", type: "Vector3", value: "Vector3(1, 0, 0)"), (name: "UP", type: "Vector3", value: "Vector3(0, 1, 0)"), (name: "DOWN", type: "Vector3", value: "Vector3(0, -1, 0)"), (name: "FORWARD", type: "Vector3", value: "Vector3(0, 0, -1)"), (name: "BACK", type: "Vector3", value: "Vector3(0, 0, 1)"), (name: "MODEL_LEFT", type: "Vector3", value: "Vector3(1, 0, 0)"), (name: "MODEL_RIGHT", type: "Vector3", value: "Vector3(-1, 0, 0)"), (name: "MODEL_TOP", type: "Vector3", value: "Vector3(0, 1, 0)"), (name: "MODEL_BOTTOM", type: "Vector3", value: "Vector3(0, -1, 0)"), (name: "MODEL_FRONT", type: "Vector3", value: "Vector3(0, 0, 1)"), (name: "MODEL_REAR", type: "Vector3", value: "Vector3(0, 0, -1)")])
 var Equal_Vector3_Variant: PtrOperatorEvaluator
 var NotEqual_Vector3_Variant: PtrOperatorEvaluator
 var Multiply_Vector3_Quaternion: PtrOperatorEvaluator

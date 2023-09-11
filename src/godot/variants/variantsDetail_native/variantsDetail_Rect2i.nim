@@ -6,9 +6,7 @@ import ./../../helper/variantDefiner
 
 # type Rect2i* = object
 #   self.json.is_keyed=false
-#   self.json.has_destructor=false
 #   self.json.indexing_return_type=none(string)
-#   self.json.constants=none(seq[JsonConstant])
 
 Rect2i.procedures(loader= load_Rect2i_proc):
   proc getCenter*(self: Rect2i): Vector2i {.loadfrom("get_center", 3444277866).}

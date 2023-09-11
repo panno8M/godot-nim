@@ -6,9 +6,7 @@ import ./../../helper/variantDefiner
 
 # type NodePath* = object
 #   self.json.is_keyed=false
-#   self.json.has_destructor=true
 #   self.json.indexing_return_type=none(string)
-#   self.json.constants=none(seq[JsonConstant])
 
 NodePath.procedures(loader= load_NodePath_proc):
   proc isAbsolute*(self: NodePath): Bool {.loadfrom("is_absolute", 3918633141).}

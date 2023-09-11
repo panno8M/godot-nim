@@ -4,11 +4,13 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
+const Basis_Identity*: Basis = init_Basis(1, 0, 0, 0, 1, 0, 0, 0, 1)
+const Basis_FlipX*: Basis = init_Basis(-1, 0, 0, 0, 1, 0, 0, 0, 1)
+const Basis_FlipY*: Basis = init_Basis(1, 0, 0, 0, -1, 0, 0, 0, 1)
+const Basis_FlipZ*: Basis = init_Basis(1, 0, 0, 0, 1, 0, 0, 0, -1)
 # type Basis* = object
 #   self.json.is_keyed=false
-#   self.json.has_destructor=false
 #   self.json.indexing_return_type=some("Vector3")
-#   self.json.constants=some(@[(name: "IDENTITY", type: "Basis", value: "Basis(1, 0, 0, 0, 1, 0, 0, 0, 1)"), (name: "FLIP_X", type: "Basis", value: "Basis(-1, 0, 0, 0, 1, 0, 0, 0, 1)"), (name: "FLIP_Y", type: "Basis", value: "Basis(1, 0, 0, 0, -1, 0, 0, 0, 1)"), (name: "FLIP_Z", type: "Basis", value: "Basis(1, 0, 0, 0, 1, 0, 0, 0, -1)")])
 
 Basis.procedures(loader= load_Basis_proc):
   proc inverse*(self: Basis): Basis {.loadfrom("inverse", 594669093).}

@@ -4,11 +4,13 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
+const Transform3D_Identity*: Transform3D = init_Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+const Transform3D_FlipX*: Transform3D = init_Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+const Transform3D_FlipY*: Transform3D = init_Transform3D(1, 0, 0, 0, -1, 0, 0, 0, 1, 0, 0, 0)
+const Transform3D_FlipZ*: Transform3D = init_Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
 # type Transform3D* = object
 #   self.json.is_keyed=false
-#   self.json.has_destructor=false
 #   self.json.indexing_return_type=none(string)
-#   self.json.constants=some(@[(name: "IDENTITY", type: "Transform3D", value: "Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)"), (name: "FLIP_X", type: "Transform3D", value: "Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)"), (name: "FLIP_Y", type: "Transform3D", value: "Transform3D(1, 0, 0, 0, -1, 0, 0, 0, 1, 0, 0, 0)"), (name: "FLIP_Z", type: "Transform3D", value: "Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)")])
 
 Transform3D.procedures(loader= load_Transform3D_proc):
   proc inverse*(self: Transform3D): Transform3D {.loadfrom("inverse", 3816817146).}

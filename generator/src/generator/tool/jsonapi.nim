@@ -99,6 +99,7 @@ type
     constructor*: bool
     operator*: bool
     procedure*: bool
+    constructor_white*: seq[int]
     operator_white*: seq[string]
 
 proc `$`*(x: JsonConstant): string = $x[]

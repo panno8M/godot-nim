@@ -4,11 +4,12 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
+const Plane_PlaneYz*: Plane = init_Plane(1, 0, 0, 0)
+const Plane_PlaneXz*: Plane = init_Plane(0, 1, 0, 0)
+const Plane_PlaneXy*: Plane = init_Plane(0, 0, 1, 0)
 # type Plane* = object
 #   self.json.is_keyed=false
-#   self.json.has_destructor=false
 #   self.json.indexing_return_type=none(string)
-#   self.json.constants=some(@[(name: "PLANE_YZ", type: "Plane", value: "Plane(1, 0, 0, 0)"), (name: "PLANE_XZ", type: "Plane", value: "Plane(0, 1, 0, 0)"), (name: "PLANE_XY", type: "Plane", value: "Plane(0, 0, 1, 0)")])
 
 Plane.procedures(loader= load_Plane_proc):
   proc normalized*(self: Plane): Plane {.loadfrom("normalized", 1051796340).}

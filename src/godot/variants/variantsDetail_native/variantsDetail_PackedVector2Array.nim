@@ -6,9 +6,7 @@ import ./../../helper/variantDefiner
 
 # type PackedVector2Array* = object
 #   self.json.is_keyed=false
-#   self.json.has_destructor=true
 #   self.json.indexing_return_type=some("Vector2")
-#   self.json.constants=none(seq[JsonConstant])
 
 PackedVector2Array.procedures(loader= load_PackedVector2Array_proc):
   proc size*(self: PackedVector2Array): Int {.loadfrom("size", 3173160232).}

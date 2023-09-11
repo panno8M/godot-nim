@@ -6,9 +6,7 @@ import ./../../helper/variantDefiner
 
 # type Signal* = object
 #   self.json.is_keyed=false
-#   self.json.has_destructor=true
 #   self.json.indexing_return_type=none(string)
-#   self.json.constants=none(seq[JsonConstant])
 
 Signal.procedures(loader= load_Signal_proc):
   proc isNull*(self: Signal): Bool {.loadfrom("is_null", 3918633141).}

@@ -6,9 +6,7 @@ import ./../../helper/variantDefiner
 
 # type RID* = object
 #   self.json.is_keyed=false
-#   self.json.has_destructor=false
 #   self.json.indexing_return_type=none(string)
-#   self.json.constants=none(seq[JsonConstant])
 
 RID.procedures(loader= load_RID_proc):
   proc isValid*(self: RID): Bool {.loadfrom("is_valid", 3918633141).}
