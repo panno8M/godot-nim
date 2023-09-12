@@ -9,13 +9,6 @@ import ./../../helper/variantDefiner
 #   self.json.indexing_return_type=some("String")
 
 String.procedures(loader= load_String_proc):
-  proc casecmpTo*(self: String; to: String): Int {.loadfrom("casecmp_to", 2920860731).}
-  proc nocasecmpTo*(self: String; to: String): Int {.loadfrom("nocasecmp_to", 2920860731).}
-  proc naturalcasecmpTo*(self: String; to: String): Int {.loadfrom("naturalcasecmp_to", 2920860731).}
-  proc naturalnocasecmpTo*(self: String; to: String): Int {.loadfrom("naturalnocasecmp_to", 2920860731).}
-  proc length*(self: String): Int {.loadfrom("length", 3173160232).}
-  proc substr*(self: String; `from`: Int; len: Int = -1): String {.loadfrom("substr", 787537301).}
-  proc getSlice*(self: String; delimiter: String; slice: Int): String {.loadfrom("get_slice", 3535100402).}
   proc getSlicec*(self: String; delimiter: Int; slice: Int): String {.loadfrom("get_slicec", 787537301).}
   proc getSliceCount*(self: String; delimiter: String): Int {.loadfrom("get_slice_count", 2920860731).}
   proc find*(self: String; what: String; `from`: Int = 0): Int {.loadfrom("find", 1760645412).}
@@ -106,8 +99,15 @@ String.procedures(loader= load_String_proc):
   proc toUtf32Buffer*(self: String): PackedByteArray {.loadfrom("to_utf32_buffer", 247621236).}
   proc hexDecode*(self: String): PackedByteArray {.loadfrom("hex_decode", 247621236).}
   proc toWcharBuffer*(self: String): PackedByteArray {.loadfrom("to_wchar_buffer", 247621236).}
+  proc casecmpTo*(self: String; to: String): Int {.loadfrom("casecmp_to", 2920860731).}
+  proc nocasecmpTo*(self: String; to: String): Int {.loadfrom("nocasecmp_to", 2920860731).}
+  proc naturalcasecmpTo*(self: String; to: String): Int {.loadfrom("naturalcasecmp_to", 2920860731).}
+  proc naturalnocasecmpTo*(self: String; to: String): Int {.loadfrom("naturalnocasecmp_to", 2920860731).}
+  proc length*(self: String): Int {.loadfrom("length", 3173160232).}
+  proc substr*(self: String; `from`: Int; len: Int = -1): String {.loadfrom("substr", 787537301).}
+  proc getSlice*(self: String; delimiter: String; slice: Int): String {.loadfrom("get_slice", 3535100402).}
 
-String.staticProcedures(loader= load_String_sproc):
+String.procedures(loader= load_String_sproc):
   proc numScientific*(_: typedesc[String]; number: Float): String {.loadfrom("num_scientific", 2710373411).}
   proc num*(_: typedesc[String]; number: Float; decimals: Int = -1): String {.loadfrom("num", 1555901022).}
   proc numInt64*(_: typedesc[String]; number: Int; base: Int = 10; capitalizeHex: Bool = false): String {.loadfrom("num_int64", 2111271071).}

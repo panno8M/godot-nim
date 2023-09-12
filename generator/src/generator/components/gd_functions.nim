@@ -17,16 +17,10 @@ type
     name: NimVar
     `type`: ArgType
     default_raw: Option[string]
-  GodotProcKind* = enum
-    gpkMethod
-    gpkStaticMethod
-    gpkVirtualMethod
-    gpkGetter
-    gpkSetter
   GodotProcSt* = ref object of ParagraphSt
     name*: NimVar
     kind*: NimProcKind
-    gpKind*: GodotProcKind
+    self*: SelfType
     args*: seq[GodotParam]
     result*: Option[RetType]
     pragmas*: seq[string]
@@ -35,7 +29,7 @@ type
     methods*: seq[GodotProcSt]
 
 proc cmp*(x, y: GodotProcSt): int =
-  result = cmp(x.name, y.name)
+  result = cmp($x.name, $y.name)
 
 
 proc concat[T](s: seq[T]; o: Option[T]): seq[T] =
@@ -58,42 +52,42 @@ proc `$`*(self: GodotParam): string =
 proc `$`*(self: seq[GodotParam]): string =
   result = self.mapIt($it).join("; ")
 
+# proc make_self(self_type: ArgType): GodotParam = (NimVar.imitate"self", self_type, none string)
 
-proc prerender_common*(self: JsonMethod; self_type: ArgType; gpkind: GodotProcKind): GodotProcSt =
-  new result
-  result.gpkind = gpkind
-  result.kind = npkProc
-  result.native_name = self.name
-  if gpkind != gpkStaticMethod:
-    result.args.add (NimVar.imitate"self", self_type, none string)
-  else:
-    var self_desc = self_type
-    self_desc.flags.incl pfTypedesc
-    result.args.add (NimVar.imitate"_", self_desc, none string)
+proc get_args(self: JsonMethod): seq[GodotParam] =
+  result.add self.arguments.get(@[]).mapIt it.toNim
 
-  if self.arguments.isSome:
-    result.args.add self.arguments.get.mapIt it.toNim
-
+proc get_return(self: JsonMethod): Option[RetType] =
   if self.return_type.isSome:
-    result.result = some retType (get self.return_type)
+    return some retType (get self.return_type)
   if self.return_value.isSome:
     let rv = get self.return_value
     if rv.meta.isSome:
-      result.result = some retType (get rv.meta)
+      return some retType (get rv.meta)
     else:
-      result.result= some retType rv.`type`
+      return some retType rv.`type`
 
-  case gpkind
-  of gpkSetter:
-    result.name = quoted (self.name.replace("set_", "") & "=" >!> Snake >=> NimVar)
-  of gpkGetter:
-    result.name = Snake.scan(self.name.replace("get_", "")) >=> NimVar
-  else:
-    result.name = self.name >!> Snake
+type ClassMethodAttribute* = enum
+  None, Getter, Setter
+proc get_name(self: JsonMethod; attr: ClassMethodAttribute): NimVar =
+  case attr
+  of None:
+    return self.name >!> Snake
+  of Setter:
+    return quoted (self.name.replace("set_", "") & "=") >!> Snake
+  of Getter:
+    return Snake.scan(self.name.replace("get_", ""))
 
-proc prerender_classMethod*(self: JsonMethod; self_type: ArgType; gpkind: GodotProcKind): GodotProcSt =
-  result = prerender_common(self, self_type, gpkind)
-  var selfptr = "nil"
+proc prerender_classMethod*(self: JsonMethod; self_type: SelfType; attr: ClassMethodAttribute): GodotProcSt =
+  result = GodotProcSt(
+    kind: npkProc,
+    name: self.get_name(attr),
+    native_name: self.name,
+    self: self_type,
+    args: self.get_args(),
+    result: self.get_return(),
+  )
+
   var paramptr = "nil"
   var retptr = "nil"
   var paramArrayDef = ParagraphSt()
@@ -101,13 +95,13 @@ proc prerender_classMethod*(self: JsonMethod; self_type: ArgType; gpkind: GodotP
   var injection: seq[string]
   var paramcount: int
 
+  let selfptr =
+    if result.self.isStatic: "nil"
+    else: &"getOwner {result.self.argname}"
+
   for i, arg in result.args:
-    if i == 0:
-      if gpkind != gpkStaticMethod:
-        selfptr = &"getOwner {arg.name}"
-    else:
-      injection.add &"getPtr {arg.name}"
-      inc paramcount
+    injection.add &"getPtr {arg.name}"
+    inc paramcount
 
   if paramcount != 0:
     discard +$$..paramArrayDef:
@@ -129,14 +123,33 @@ proc prerender_classMethod*(self: JsonMethod; self_type: ArgType; gpkind: GodotP
   if result.result.isSome:
       result.children.add &"(addr ret).decode({get result.result})"
 
-proc prerender_virtual*(self: JsonMethod; self_type: ArgType): GodotProcSt =
-  result = prerender_common(self, self_type, gpkVirtualMethod)
-  result.kind = npkMethod
+proc prerender_virtual*(self: JsonMethod; self_type: SelfType): GodotProcSt =
+  result = GodotProcSt(
+    kind: npkMethod,
+    name: self.name >!> Snake,
+    native_name: self.name,
+    self: self_type,
+    args: self.get_args(),
+    result: self.get_return(),
+    pragmas: @["base"]
+  )
   result.children.add "(discard)"
+
+proc prerender*(self: JsonMethod; self_type: SelfType): GodotProcSt =
+  result = GodotProcSt(
+    kind: npkProc,
+    name: self.name >!> Snake,
+    native_name: self.name,
+    self: self_type,
+    args: self.get_args(),
+    result: self.get_return(),
+    pragmas: @[&"loadfrom(\"{self.name}\", {get self.hash})"],
+  )
+
 
 method render*(self: GodotVirtualmethods; cfg: RenderingConfig): seq[string] =
   if self.methods.len == 0: return
-  let self_type = self.methods[0].args[0].`type`
+  let self_type = self.methods[0].self
 
   let binder = +$$..BlockSt(head: &"proc bind_virtuals*(S: typedesc[{self_type.name}]; T: typedesc) ="):
     &"S.Inherit.bind_virtuals(T)"
@@ -145,8 +158,6 @@ method render*(self: GodotVirtualmethods; cfg: RenderingConfig): seq[string] =
     var args_str: seq[string]
     let args_delim = ", "
     for i, arg in virtual.args:
-      if i == 0: continue
-      let i = i-1
       args_str.add &"p_args[{i}].decode({arg.`type`})"
     var callbody =
       &"cast[{self_type}](p_instance).{virtual.name}({args_str.join(args_delim)})"
@@ -162,24 +173,13 @@ method render*(self: GodotVirtualmethods; cfg: RenderingConfig): seq[string] =
     ""
   st.render(cfg)
 
-proc prerender*(self: JsonMethod; self_type: ArgType; gpkind: GodotProcKind): GodotProcSt =
-  result = prerender_common(self, self_type, gpkind)
-  if result.kind == npkProc:
-    result.pragmas.add &"loadfrom(\"{self.name}\", {get self.hash})"
-
 method render*(self: GodotProcSt; cfg: RenderingConfig): seq[string] =
   var head = &"{self.kind} {self.name}*"
-  if self.args.len != 0:
-    head &= &"({self.args})"
+  head &= "(" & concat(@[&"{self.self.argname}: {self.self}"], self.args.mapIt($it)).join("; ") & ")"
   if self.result.isSome:
     head &= ": " & $(get self.result)
 
   var pragmas: seq[string]
-
-  case self.gpkind
-  of gpkVirtualMethod:
-    pragmas.add "base"
-  else: discard
 
   pragmas.add self.pragmas
 

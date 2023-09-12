@@ -33,7 +33,7 @@ Projection.procedures(loader= load_Projection_proc):
   proc getPixelsPerMeter*(self: Projection; forPixelWidth: Int): Int {.loadfrom("get_pixels_per_meter", 4103005248).}
   proc getLodMultiplier*(self: Projection): Float {.loadfrom("get_lod_multiplier", 466405837).}
 
-Projection.staticProcedures(loader= load_Projection_sproc):
+Projection.procedures(loader= load_Projection_sproc):
   proc createDepthCorrection*(_: typedesc[Projection]; flipY: Bool): Projection {.loadfrom("create_depth_correction", 1228516048).}
   proc createLightAtlasRect*(_: typedesc[Projection]; rect: Rect2): Projection {.loadfrom("create_light_atlas_rect", 2654950662).}
   proc createPerspective*(_: typedesc[Projection]; fovy: Float; aspect: Float; zNear: Float; zFar: Float; flipFov: Bool = false): Projection {.loadfrom("create_perspective", 390915442).}

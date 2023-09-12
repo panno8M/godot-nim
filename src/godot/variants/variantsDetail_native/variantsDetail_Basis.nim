@@ -29,7 +29,7 @@ Basis.procedures(loader= load_Basis_proc):
   proc isFinite*(self: Basis): Bool {.loadfrom("is_finite", 3918633141).}
   proc getRotationQuaternion*(self: Basis): Quaternion {.loadfrom("get_rotation_quaternion", 4274879941).}
 
-Basis.staticProcedures(loader= load_Basis_sproc):
+Basis.procedures(loader= load_Basis_sproc):
   proc lookingAt*(_: typedesc[Basis]; target: Vector3; up: Vector3 = gdvec(0, 1, 0); useModelFront: Bool = false): Basis {.loadfrom("looking_at", 3728732505).}
   proc fromScale*(_: typedesc[Basis]; scale: Vector3): Basis {.loadfrom("from_scale", 3703240166).}
   proc fromEuler*(_: typedesc[Basis]; euler: Vector3; order: Int = 2): Basis {.loadfrom("from_euler", 2802321791).}

@@ -88,20 +88,20 @@ iterator renderDetail*(classes: NimClasses): RenderedNimClass =
           setters.incl prop.setter.get
 
       let localProcs = ParagraphSt()
+      let self_type = selfType class.name
       for mhd in class.json.methods.get(@[]):
         if mhd.is_virtual.get(false):
-          res.virtual.methods.add mhd.prerender_virtual(argType class.name)
+          res.virtual.methods.add mhd.prerender_virtual(self_type)
         else:
-          var gpkind: GodotProcKind
           if mhd.is_static:
-            gpkind = gpkStaticMethod
+            let self_type = selfType(class.name, true)
+            localProcs.children.add mhd.prerender_classMethod(self_type, None)
           elif mhd.name in getters:
-            gpkind = gpkGetter
+            localProcs.children.add mhd.prerender_classMethod(self_type, Getter)
           elif mhd.name in setters:
-            gpkind = gpkSetter
+            localProcs.children.add mhd.prerender_classMethod(self_type, Setter)
           else:
-            gpkind = gpkMethod
-          localProcs.children.add mhd.prerender_classMethod(argType class.name, gpkind)
+            localProcs.children.add mhd.prerender_classMethod(self_type, None)
 
       if localProcs.children.len != 0:
         res.detail.children.add localProcs

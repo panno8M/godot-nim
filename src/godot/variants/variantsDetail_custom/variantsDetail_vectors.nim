@@ -71,7 +71,7 @@ Vector3.procedures(loader= loadProcs_Vector3):
   proc `signedAngleTo`*(self:Vector3; `to`:Vector3; `axis`:Vector3): Float {.loadfrom("signed_angle_to", 2781412522).}
   proc `slerp`*(self:Vector3; `to`:Vector3; `weight`:Float): Vector3 {.loadfrom("slerp", 1682608829).}
 
-Vector3.staticProcedures(loader= loadStaticProcs_Vector3):
+Vector3.procedures(loader= loadStaticProcs_Vector3):
   proc `octahedronDecode`*(_: typedesc[Vector3]; `uv`:Vector2): Vector3 {.loadfrom("octahedron_decode", 3991820552).}
 
 # Vector4 Specifics

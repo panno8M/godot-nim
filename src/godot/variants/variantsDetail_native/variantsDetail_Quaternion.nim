@@ -29,7 +29,7 @@ Quaternion.procedures(loader= load_Quaternion_proc):
   proc getAxis*(self: Quaternion): Vector3 {.loadfrom("get_axis", 1776574132).}
   proc getAngle*(self: Quaternion): Float {.loadfrom("get_angle", 466405837).}
 
-Quaternion.staticProcedures(loader= load_Quaternion_sproc):
+Quaternion.procedures(loader= load_Quaternion_sproc):
   proc fromEuler*(_: typedesc[Quaternion]; euler: Vector3): Quaternion {.loadfrom("from_euler", 4053467903).}
 var Equal_Quaternion_Variant: PtrOperatorEvaluator
 var NotEqual_Quaternion_Variant: PtrOperatorEvaluator

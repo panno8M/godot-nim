@@ -15,7 +15,12 @@ import ./variantTypeSolver; export variantTypeSolver
 type MethodDefinition = tuple
   container_define, proc_define, init_sentence: NimNode
 
-proc procedure(Type, node: NimNode; isStatic: bool; namesym: NimNode): MethodDefinition =
+proc isTypedesc(n: NimNode): bool =
+  n.expectKind {nnkIdent, nnkSym, nnkBracketExpr}
+  if n.kind != nnkBracketExpr: return
+  if n[0].eqIdent"typedesc": return true
+
+proc procedure(Type, node: NimNode; namesym: NimNode): MethodDefinition =
   node.expectKind {nnkProcDef, nnkConverterDef}
   let
     args = node.params[2..^1] # [0: result, 1: self, 2..: args]
@@ -28,7 +33,7 @@ proc procedure(Type, node: NimNode; isStatic: bool; namesym: NimNode): MethodDef
     if node.hasNoReturn: newNilLit()
     else:                newAddr(ident"result")
   let p_self =
-    if is_static: newNilLit()
+    if node.params[1][1].isTypedesc: newNilLit()
     else: newAddr(node.params[1][0])
 
   let container = genSym(nskVar, "methodBind")
@@ -49,23 +54,15 @@ proc procedure(Type, node: NimNode; isStatic: bool; namesym: NimNode): MethodDef
       let call_args = `argptrarr`
       `container`(`p_self`, addr call_args[0], `p_result`, cint call_args.len)
 
-proc procedures_impl(Type, loader, body: NimNode; is_static: bool): NimNode =
+macro procedures*[T](Type: typedesc[T]; loader, body): untyped =
   result = newStmtList()
   let namesym = genSym(nskVar, "name")
   result.add nnkVarSection.newTree(newIdentDefs(namesym, bindSym"StringName"))
-  var initProcStmt = newStmtList()
+  let loader = newProc(name = loader.postfix("*"))
   for statement in body:
-    let (containerDefine, procDefine, initSentence) = procedure(Type, statement, is_static, namesym)
+    let (containerDefine, procDefine, initSentence) = procedure(Type, statement, namesym)
     result.add containerdefine
     result.add procdefine
-    initProcStmt.add initSentence[0..^1]
+    loader.body.add initSentence
 
-  result.add newProc(
-    name = loader.postfix("*"),
-    body = initProcStmt)
-
-macro procedures*[T](Type: typedesc[T]; loader, body): untyped =
-  procedures_impl(Type, loader, body, is_static= false)
-
-macro staticProcedures*[T](Type: typedesc[T]; loader, body): untyped =
-  procedures_impl(Type, loader, body, is_static= true)
+  result.add loader

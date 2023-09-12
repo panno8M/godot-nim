@@ -169,14 +169,14 @@ func cmp*(x,y: Option[string]): int =
 proc toNim*(self: JsonBuiltinClass): NimBuiltinClass =
   result = NimBuiltinClass()
   result.name = typeName self.name
-  let argTypeName = argType result.name
   if self.enums.isSome:
     result.enums = self.enums.get.mapIt it.toNim(result.name)
   for m in self.methods.get(@[]):
+    let self_type = selfType(result.name, m.isStatic)
     if m.is_static:
-      result.staticMethods.add prerender(m, argTypeName, gpkStaticMethod)
+      result.staticMethods.add prerender(m, self_type)
     else:
-      result.methods.add prerender(m, argTypeName, gpkMethod)
+      result.methods.add prerender(m, self_type)
   result.methods = sorted result.methods
   result.staticMethods = sorted result.staticMethods
 
@@ -267,7 +267,7 @@ proc prerender*(self: NimBuiltinClass): RenderedVariant =
 
       +$$..OptionSt(eval: self.staticmethods.len != 0):
         ""
-        +$$..BlockSt(head: fmt"{self.name}.staticProcedures(loader= {sprocLoader $self.name}):"):
+        +$$..BlockSt(head: fmt"{self.name}.procedures(loader= {sprocLoader $self.name}):"):
           self.staticMethods
 
     if self.methods.len != 0:

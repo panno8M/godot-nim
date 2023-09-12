@@ -173,7 +173,7 @@ Color.procedures(loader= load_Color_proc):
   proc linearToSrgb*(self: Color): Color {.loadfrom("linear_to_srgb", 3334027602).}
   proc isEqualApprox*(self: Color; to: Color): Bool {.loadfrom("is_equal_approx", 3167426256).}
 
-Color.staticProcedures(loader= load_Color_sproc):
+Color.procedures(loader= load_Color_sproc):
   proc hex*(_: typedesc[Color]; hex: Int): Color {.loadfrom("hex", 351421375).}
   proc hex64*(_: typedesc[Color]; hex: Int): Color {.loadfrom("hex64", 351421375).}
   proc html*(_: typedesc[Color]; rgba: String): Color {.loadfrom("html", 2500054655).}

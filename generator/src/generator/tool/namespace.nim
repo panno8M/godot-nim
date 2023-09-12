@@ -22,15 +22,14 @@ type
     ptaNake
     ptaSet
     ptaTypedArray
-  ParamFlag* = enum
-    pfTypedesc
   ParamType* = object of RootObj
-    flags*: set[ParamFlag]
     attribute*: ParamTypeAttr
     ptrdepth*: Natural
     name*: TypeName
   ArgType* = object of ParamType
   RetType* = object of ParamType
+  SelfType* = object of ParamType
+    isStatic*: bool
 
   ObjectInfo* = ref object of RootObj
     name*: TypeName
@@ -58,14 +57,19 @@ method stringify*(info: ObjectInfo; param: ParamType): string {.base.} =
     &"set[{name}]"
   of ptaTypedArray:
     &"TypedArray[{name}]"
-  if pfTypedesc in param.flags:
-    return &"typedesc[{result}]"
 func `$`*(self: ParamType): string =
   self.name.info.get(ObjectInfo()).stringify(self)
 func `$`*(self: ArgType): string =
   $(ParamType self)
 func `$`*(self: RetType): string =
   $(ParamType self)
+func `$`*(self: SelfType): string =
+  result = $(ParamType self)
+  if self.isStatic:
+    return &"typedesc[{result}]"
+func argname*(self: SelfType): string =
+  if self.isStatic: "_"
+  else: "self"
 
 proc addget*(owner: TypeName; self: string): TypeName =
   if owner.children.hasKey(self):
@@ -106,6 +110,9 @@ proc argType*(typeName: TypeName): ArgType =
   paramType typeName, result
 proc retType*(typeName: TypeName): RetType =
   paramType typeName, result
+proc selfType*(typeName: TypeName; isStatic = false): SelfType =
+  paramType typeName, result
+  result.isStatic = isStatic
 
 
 proc paramType*(basename: string; result: var ParamType) =
@@ -141,6 +148,10 @@ proc argType*(basename: string): ArgType =
     inc result.ptrdepth
 proc retType*(basename: string): RetType =
   paramType basename, result
+proc selfType*(basename: string): SelfType =
+  paramType basename, result
+  if $result.name in ["Variant"]:
+    inc result.ptrdepth
 
 method defaultValue*(info: ObjectInfo; value: string; argType: ArgType): string {.base.} =
   let argTypeStr = $argType
