@@ -5,4 +5,7 @@ compatibility_minimum = 4.1
 
 [libraries]
 
-linux.64.debug = "lib/libdemo.so"
+linux.debug.x86_64 = "res://lib/libdemo.debug.so"
+linux.release.x86_64 = "res://lib/libdemo.release.so"
+windows.debug.x86_64 = "res://lib/libdemo.debug.dll"
+windows.release.x86_64 = "res://lib/libdemo.release.dll"
