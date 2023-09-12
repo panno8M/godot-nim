@@ -25,6 +25,106 @@ const Vector3_ModelRear*: Vector3 = gdvec(0, 0, -1)
 # type Vector3* = object
 #   self.json.is_keyed=false
 #   self.json.indexing_return_type=some("float")
+var Vector3_angleTo: PtrBuiltinMethod
+var Vector3_signedAngleTo: PtrBuiltinMethod
+var Vector3_limitLength: PtrBuiltinMethod
+var Vector3_inverse: PtrBuiltinMethod
+var Vector3_rotated: PtrBuiltinMethod
+var Vector3_slerp: PtrBuiltinMethod
+var Vector3_cubicInterpolate: PtrBuiltinMethod
+var Vector3_cubicInterpolateInTime: PtrBuiltinMethod
+var Vector3_bezierInterpolate: PtrBuiltinMethod
+var Vector3_bezierDerivative: PtrBuiltinMethod
+var Vector3_cross: PtrBuiltinMethod
+var Vector3_outer: PtrBuiltinMethod
+var Vector3_project: PtrBuiltinMethod
+var Vector3_bounce: PtrBuiltinMethod
+var Vector3_reflect: PtrBuiltinMethod
+var Vector3_octahedronEncode: PtrBuiltinMethod
+var Vector3_octahedronDecode: PtrBuiltinMethod
+proc angleTo*(self: Vector3; to: Vector3): Float =
+  let argArr = [cast[pointer](addr to)]
+  Vector3_angleTo(addr self, addr argArr[0], addr result, 1)
+proc signedAngleTo*(self: Vector3; to: Vector3; axis: Vector3): Float =
+  let argArr = [cast[pointer](addr to), cast[pointer](addr axis)]
+  Vector3_signedAngleTo(addr self, addr argArr[0], addr result, 2)
+proc limitLength*(self: Vector3; length: Float = 1.0): Vector3 =
+  let argArr = [cast[pointer](addr length)]
+  Vector3_limitLength(addr self, addr argArr[0], addr result, 1)
+proc inverse*(self: Vector3): Vector3 = Vector3_inverse(addr self, nil, addr result, 0)
+proc rotated*(self: Vector3; axis: Vector3; angle: Float): Vector3 =
+  let argArr = [cast[pointer](addr axis), cast[pointer](addr angle)]
+  Vector3_rotated(addr self, addr argArr[0], addr result, 2)
+proc slerp*(self: Vector3; to: Vector3; weight: Float): Vector3 =
+  let argArr = [cast[pointer](addr to), cast[pointer](addr weight)]
+  Vector3_slerp(addr self, addr argArr[0], addr result, 2)
+proc cubicInterpolate*(self: Vector3; b: Vector3; preA: Vector3; postB: Vector3; weight: Float): Vector3 =
+  let argArr = [cast[pointer](addr b), cast[pointer](addr preA), cast[pointer](addr postB), cast[pointer](addr weight)]
+  Vector3_cubicInterpolate(addr self, addr argArr[0], addr result, 4)
+proc cubicInterpolateInTime*(self: Vector3; b: Vector3; preA: Vector3; postB: Vector3; weight: Float; bT: Float; preAT: Float; postBT: Float): Vector3 =
+  let argArr = [cast[pointer](addr b), cast[pointer](addr preA), cast[pointer](addr postB), cast[pointer](addr weight), cast[pointer](addr bT), cast[pointer](addr preAT), cast[pointer](addr postBT)]
+  Vector3_cubicInterpolateInTime(addr self, addr argArr[0], addr result, 7)
+proc bezierInterpolate*(self: Vector3; control1: Vector3; control2: Vector3; `end`: Vector3; t: Float): Vector3 =
+  let argArr = [cast[pointer](addr control1), cast[pointer](addr control2), cast[pointer](addr `end`), cast[pointer](addr t)]
+  Vector3_bezierInterpolate(addr self, addr argArr[0], addr result, 4)
+proc bezierDerivative*(self: Vector3; control1: Vector3; control2: Vector3; `end`: Vector3; t: Float): Vector3 =
+  let argArr = [cast[pointer](addr control1), cast[pointer](addr control2), cast[pointer](addr `end`), cast[pointer](addr t)]
+  Vector3_bezierDerivative(addr self, addr argArr[0], addr result, 4)
+proc cross*(self: Vector3; with: Vector3): Vector3 =
+  let argArr = [cast[pointer](addr with)]
+  Vector3_cross(addr self, addr argArr[0], addr result, 1)
+proc outer*(self: Vector3; with: Vector3): Basis =
+  let argArr = [cast[pointer](addr with)]
+  Vector3_outer(addr self, addr argArr[0], addr result, 1)
+proc project*(self: Vector3; b: Vector3): Vector3 =
+  let argArr = [cast[pointer](addr b)]
+  Vector3_project(addr self, addr argArr[0], addr result, 1)
+proc bounce*(self: Vector3; n: Vector3): Vector3 =
+  let argArr = [cast[pointer](addr n)]
+  Vector3_bounce(addr self, addr argArr[0], addr result, 1)
+proc reflect*(self: Vector3; n: Vector3): Vector3 =
+  let argArr = [cast[pointer](addr n)]
+  Vector3_reflect(addr self, addr argArr[0], addr result, 1)
+proc octahedronEncode*(self: Vector3): Vector2 = Vector3_octahedronEncode(addr self, nil, addr result, 0)
+proc octahedronDecode*(_: typedesc[Vector3]; uv: Vector2): Vector3 =
+  let argArr = [cast[pointer](addr uv)]
+  Vector3_octahedronDecode(nil, addr argArr[0], addr result, 1)
+proc load_Vector3_proc =
+  var proc_name: StringName
+  proc_name = init_StringName("angle_to")
+  Vector3_angleTo = interface_Variant_getPtrBuiltinMethod(variantType Vector3, addr proc_name, 1047977935)
+  proc_name = init_StringName("signed_angle_to")
+  Vector3_signedAngleTo = interface_Variant_getPtrBuiltinMethod(variantType Vector3, addr proc_name, 2781412522)
+  proc_name = init_StringName("limit_length")
+  Vector3_limitLength = interface_Variant_getPtrBuiltinMethod(variantType Vector3, addr proc_name, 514930144)
+  proc_name = init_StringName("inverse")
+  Vector3_inverse = interface_Variant_getPtrBuiltinMethod(variantType Vector3, addr proc_name, 1776574132)
+  proc_name = init_StringName("rotated")
+  Vector3_rotated = interface_Variant_getPtrBuiltinMethod(variantType Vector3, addr proc_name, 1682608829)
+  proc_name = init_StringName("slerp")
+  Vector3_slerp = interface_Variant_getPtrBuiltinMethod(variantType Vector3, addr proc_name, 1682608829)
+  proc_name = init_StringName("cubic_interpolate")
+  Vector3_cubicInterpolate = interface_Variant_getPtrBuiltinMethod(variantType Vector3, addr proc_name, 2597922253)
+  proc_name = init_StringName("cubic_interpolate_in_time")
+  Vector3_cubicInterpolateInTime = interface_Variant_getPtrBuiltinMethod(variantType Vector3, addr proc_name, 3256682901)
+  proc_name = init_StringName("bezier_interpolate")
+  Vector3_bezierInterpolate = interface_Variant_getPtrBuiltinMethod(variantType Vector3, addr proc_name, 2597922253)
+  proc_name = init_StringName("bezier_derivative")
+  Vector3_bezierDerivative = interface_Variant_getPtrBuiltinMethod(variantType Vector3, addr proc_name, 2597922253)
+  proc_name = init_StringName("cross")
+  Vector3_cross = interface_Variant_getPtrBuiltinMethod(variantType Vector3, addr proc_name, 2923479887)
+  proc_name = init_StringName("outer")
+  Vector3_outer = interface_Variant_getPtrBuiltinMethod(variantType Vector3, addr proc_name, 3934786792)
+  proc_name = init_StringName("project")
+  Vector3_project = interface_Variant_getPtrBuiltinMethod(variantType Vector3, addr proc_name, 2923479887)
+  proc_name = init_StringName("bounce")
+  Vector3_bounce = interface_Variant_getPtrBuiltinMethod(variantType Vector3, addr proc_name, 2923479887)
+  proc_name = init_StringName("reflect")
+  Vector3_reflect = interface_Variant_getPtrBuiltinMethod(variantType Vector3, addr proc_name, 2923479887)
+  proc_name = init_StringName("octahedron_encode")
+  Vector3_octahedronEncode = interface_Variant_getPtrBuiltinMethod(variantType Vector3, addr proc_name, 2428350749)
+  proc_name = init_StringName("octahedron_decode")
+  Vector3_octahedronDecode = interface_Variant_getPtrBuiltinMethod(variantType Vector3, addr proc_name, 3991820552)
 var Equal_Vector3_Variant: PtrOperatorEvaluator
 var NotEqual_Vector3_Variant: PtrOperatorEvaluator
 var Multiply_Vector3_Quaternion: PtrOperatorEvaluator
@@ -52,3 +152,4 @@ proc load_Vector3_op =
   In_Vector3_PackedVector3Array = interface_variantGetPtrOperatorEvaluator(VariantOP_In, VariantType_Vector3, VariantType_PackedVector3Array)
 proc load_Vector3_allmethod* =
   load_Vector3_op()
+  load_Vector3_proc()

@@ -11,21 +11,78 @@ const Transform3D_FlipZ*: Transform3D = init_Transform3D(1, 0, 0, 0, 1, 0, 0, 0,
 # type Transform3D* = object
 #   self.json.is_keyed=false
 #   self.json.indexing_return_type=none(string)
-
-Transform3D.procedures(loader= load_Transform3D_proc):
-  proc inverse*(self: Transform3D): Transform3D {.loadfrom("inverse", 3816817146).}
-  proc affineInverse*(self: Transform3D): Transform3D {.loadfrom("affine_inverse", 3816817146).}
-  proc orthonormalized*(self: Transform3D): Transform3D {.loadfrom("orthonormalized", 3816817146).}
-  proc rotated*(self: Transform3D; axis: Vector3; angle: Float): Transform3D {.loadfrom("rotated", 1563203923).}
-  proc rotatedLocal*(self: Transform3D; axis: Vector3; angle: Float): Transform3D {.loadfrom("rotated_local", 1563203923).}
-  proc scaled*(self: Transform3D; scale: Vector3): Transform3D {.loadfrom("scaled", 1405596198).}
-  proc scaledLocal*(self: Transform3D; scale: Vector3): Transform3D {.loadfrom("scaled_local", 1405596198).}
-  proc translated*(self: Transform3D; offset: Vector3): Transform3D {.loadfrom("translated", 1405596198).}
-  proc translatedLocal*(self: Transform3D; offset: Vector3): Transform3D {.loadfrom("translated_local", 1405596198).}
-  proc lookingAt*(self: Transform3D; target: Vector3; up: Vector3 = gdvec(0, 1, 0); useModelFront: Bool = false): Transform3D {.loadfrom("looking_at", 90889270).}
-  proc interpolateWith*(self: Transform3D; xform: Transform3D; weight: Float): Transform3D {.loadfrom("interpolate_with", 1786453358).}
-  proc isEqualApprox*(self: Transform3D; xform: Transform3D): Bool {.loadfrom("is_equal_approx", 696001652).}
-  proc isFinite*(self: Transform3D): Bool {.loadfrom("is_finite", 3918633141).}
+var Transform3D_inverse: PtrBuiltinMethod
+var Transform3D_affineInverse: PtrBuiltinMethod
+var Transform3D_orthonormalized: PtrBuiltinMethod
+var Transform3D_rotated: PtrBuiltinMethod
+var Transform3D_rotatedLocal: PtrBuiltinMethod
+var Transform3D_scaled: PtrBuiltinMethod
+var Transform3D_scaledLocal: PtrBuiltinMethod
+var Transform3D_translated: PtrBuiltinMethod
+var Transform3D_translatedLocal: PtrBuiltinMethod
+var Transform3D_lookingAt: PtrBuiltinMethod
+var Transform3D_interpolateWith: PtrBuiltinMethod
+var Transform3D_isEqualApprox: PtrBuiltinMethod
+var Transform3D_isFinite: PtrBuiltinMethod
+proc inverse*(self: Transform3D): Transform3D = Transform3D_inverse(addr self, nil, addr result, 0)
+proc affineInverse*(self: Transform3D): Transform3D = Transform3D_affineInverse(addr self, nil, addr result, 0)
+proc orthonormalized*(self: Transform3D): Transform3D = Transform3D_orthonormalized(addr self, nil, addr result, 0)
+proc rotated*(self: Transform3D; axis: Vector3; angle: Float): Transform3D =
+  let argArr = [cast[pointer](addr axis), cast[pointer](addr angle)]
+  Transform3D_rotated(addr self, addr argArr[0], addr result, 2)
+proc rotatedLocal*(self: Transform3D; axis: Vector3; angle: Float): Transform3D =
+  let argArr = [cast[pointer](addr axis), cast[pointer](addr angle)]
+  Transform3D_rotatedLocal(addr self, addr argArr[0], addr result, 2)
+proc scaled*(self: Transform3D; scale: Vector3): Transform3D =
+  let argArr = [cast[pointer](addr scale)]
+  Transform3D_scaled(addr self, addr argArr[0], addr result, 1)
+proc scaledLocal*(self: Transform3D; scale: Vector3): Transform3D =
+  let argArr = [cast[pointer](addr scale)]
+  Transform3D_scaledLocal(addr self, addr argArr[0], addr result, 1)
+proc translated*(self: Transform3D; offset: Vector3): Transform3D =
+  let argArr = [cast[pointer](addr offset)]
+  Transform3D_translated(addr self, addr argArr[0], addr result, 1)
+proc translatedLocal*(self: Transform3D; offset: Vector3): Transform3D =
+  let argArr = [cast[pointer](addr offset)]
+  Transform3D_translatedLocal(addr self, addr argArr[0], addr result, 1)
+proc lookingAt*(self: Transform3D; target: Vector3; up: Vector3 = gdvec(0, 1, 0); useModelFront: Bool = false): Transform3D =
+  let argArr = [cast[pointer](addr target), cast[pointer](addr up), cast[pointer](addr useModelFront)]
+  Transform3D_lookingAt(addr self, addr argArr[0], addr result, 3)
+proc interpolateWith*(self: Transform3D; xform: Transform3D; weight: Float): Transform3D =
+  let argArr = [cast[pointer](addr xform), cast[pointer](addr weight)]
+  Transform3D_interpolateWith(addr self, addr argArr[0], addr result, 2)
+proc isEqualApprox*(self: Transform3D; xform: Transform3D): Bool =
+  let argArr = [cast[pointer](addr xform)]
+  Transform3D_isEqualApprox(addr self, addr argArr[0], addr result, 1)
+proc isFinite*(self: Transform3D): Bool = Transform3D_isFinite(addr self, nil, addr result, 0)
+proc load_Transform3D_proc =
+  var proc_name: StringName
+  proc_name = init_StringName("inverse")
+  Transform3D_inverse = interface_Variant_getPtrBuiltinMethod(variantType Transform3D, addr proc_name, 3816817146)
+  proc_name = init_StringName("affine_inverse")
+  Transform3D_affineInverse = interface_Variant_getPtrBuiltinMethod(variantType Transform3D, addr proc_name, 3816817146)
+  proc_name = init_StringName("orthonormalized")
+  Transform3D_orthonormalized = interface_Variant_getPtrBuiltinMethod(variantType Transform3D, addr proc_name, 3816817146)
+  proc_name = init_StringName("rotated")
+  Transform3D_rotated = interface_Variant_getPtrBuiltinMethod(variantType Transform3D, addr proc_name, 1563203923)
+  proc_name = init_StringName("rotated_local")
+  Transform3D_rotatedLocal = interface_Variant_getPtrBuiltinMethod(variantType Transform3D, addr proc_name, 1563203923)
+  proc_name = init_StringName("scaled")
+  Transform3D_scaled = interface_Variant_getPtrBuiltinMethod(variantType Transform3D, addr proc_name, 1405596198)
+  proc_name = init_StringName("scaled_local")
+  Transform3D_scaledLocal = interface_Variant_getPtrBuiltinMethod(variantType Transform3D, addr proc_name, 1405596198)
+  proc_name = init_StringName("translated")
+  Transform3D_translated = interface_Variant_getPtrBuiltinMethod(variantType Transform3D, addr proc_name, 1405596198)
+  proc_name = init_StringName("translated_local")
+  Transform3D_translatedLocal = interface_Variant_getPtrBuiltinMethod(variantType Transform3D, addr proc_name, 1405596198)
+  proc_name = init_StringName("looking_at")
+  Transform3D_lookingAt = interface_Variant_getPtrBuiltinMethod(variantType Transform3D, addr proc_name, 90889270)
+  proc_name = init_StringName("interpolate_with")
+  Transform3D_interpolateWith = interface_Variant_getPtrBuiltinMethod(variantType Transform3D, addr proc_name, 1786453358)
+  proc_name = init_StringName("is_equal_approx")
+  Transform3D_isEqualApprox = interface_Variant_getPtrBuiltinMethod(variantType Transform3D, addr proc_name, 696001652)
+  proc_name = init_StringName("is_finite")
+  Transform3D_isFinite = interface_Variant_getPtrBuiltinMethod(variantType Transform3D, addr proc_name, 3918633141)
 var Equal_Transform3D_Variant: PtrOperatorEvaluator
 var NotEqual_Transform3D_Variant: PtrOperatorEvaluator
 var Not_Transform3D: PtrOperatorEvaluator

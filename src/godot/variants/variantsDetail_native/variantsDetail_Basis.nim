@@ -11,28 +11,102 @@ const Basis_FlipZ*: Basis = init_Basis(1, 0, 0, 0, 1, 0, 0, 0, -1)
 # type Basis* = object
 #   self.json.is_keyed=false
 #   self.json.indexing_return_type=some("Vector3")
-
-Basis.procedures(loader= load_Basis_proc):
-  proc inverse*(self: Basis): Basis {.loadfrom("inverse", 594669093).}
-  proc transposed*(self: Basis): Basis {.loadfrom("transposed", 594669093).}
-  proc orthonormalized*(self: Basis): Basis {.loadfrom("orthonormalized", 594669093).}
-  proc determinant*(self: Basis): Float {.loadfrom("determinant", 466405837).}
-  proc rotated*(self: Basis; axis: Vector3; angle: Float): Basis {.loadfrom("rotated", 1998708965).}
-  proc scaled*(self: Basis; scale: Vector3): Basis {.loadfrom("scaled", 3934786792).}
-  proc getScale*(self: Basis): Vector3 {.loadfrom("get_scale", 1776574132).}
-  proc getEuler*(self: Basis; order: Int = 2): Vector3 {.loadfrom("get_euler", 1394941017).}
-  proc tdotx*(self: Basis; with: Vector3): Float {.loadfrom("tdotx", 1047977935).}
-  proc tdoty*(self: Basis; with: Vector3): Float {.loadfrom("tdoty", 1047977935).}
-  proc tdotz*(self: Basis; with: Vector3): Float {.loadfrom("tdotz", 1047977935).}
-  proc slerp*(self: Basis; to: Basis; weight: Float): Basis {.loadfrom("slerp", 3118673011).}
-  proc isEqualApprox*(self: Basis; b: Basis): Bool {.loadfrom("is_equal_approx", 3165333982).}
-  proc isFinite*(self: Basis): Bool {.loadfrom("is_finite", 3918633141).}
-  proc getRotationQuaternion*(self: Basis): Quaternion {.loadfrom("get_rotation_quaternion", 4274879941).}
-
-Basis.procedures(loader= load_Basis_sproc):
-  proc lookingAt*(_: typedesc[Basis]; target: Vector3; up: Vector3 = gdvec(0, 1, 0); useModelFront: Bool = false): Basis {.loadfrom("looking_at", 3728732505).}
-  proc fromScale*(_: typedesc[Basis]; scale: Vector3): Basis {.loadfrom("from_scale", 3703240166).}
-  proc fromEuler*(_: typedesc[Basis]; euler: Vector3; order: Int = 2): Basis {.loadfrom("from_euler", 2802321791).}
+var Basis_inverse: PtrBuiltinMethod
+var Basis_transposed: PtrBuiltinMethod
+var Basis_orthonormalized: PtrBuiltinMethod
+var Basis_determinant: PtrBuiltinMethod
+var Basis_rotated: PtrBuiltinMethod
+var Basis_scaled: PtrBuiltinMethod
+var Basis_getScale: PtrBuiltinMethod
+var Basis_getEuler: PtrBuiltinMethod
+var Basis_tdotx: PtrBuiltinMethod
+var Basis_tdoty: PtrBuiltinMethod
+var Basis_tdotz: PtrBuiltinMethod
+var Basis_slerp: PtrBuiltinMethod
+var Basis_isEqualApprox: PtrBuiltinMethod
+var Basis_isFinite: PtrBuiltinMethod
+var Basis_getRotationQuaternion: PtrBuiltinMethod
+var Basis_lookingAt: PtrBuiltinMethod
+var Basis_fromScale: PtrBuiltinMethod
+var Basis_fromEuler: PtrBuiltinMethod
+proc inverse*(self: Basis): Basis = Basis_inverse(addr self, nil, addr result, 0)
+proc transposed*(self: Basis): Basis = Basis_transposed(addr self, nil, addr result, 0)
+proc orthonormalized*(self: Basis): Basis = Basis_orthonormalized(addr self, nil, addr result, 0)
+proc determinant*(self: Basis): Float = Basis_determinant(addr self, nil, addr result, 0)
+proc rotated*(self: Basis; axis: Vector3; angle: Float): Basis =
+  let argArr = [cast[pointer](addr axis), cast[pointer](addr angle)]
+  Basis_rotated(addr self, addr argArr[0], addr result, 2)
+proc scaled*(self: Basis; scale: Vector3): Basis =
+  let argArr = [cast[pointer](addr scale)]
+  Basis_scaled(addr self, addr argArr[0], addr result, 1)
+proc getScale*(self: Basis): Vector3 = Basis_getScale(addr self, nil, addr result, 0)
+proc getEuler*(self: Basis; order: Int = 2): Vector3 =
+  let argArr = [cast[pointer](addr order)]
+  Basis_getEuler(addr self, addr argArr[0], addr result, 1)
+proc tdotx*(self: Basis; with: Vector3): Float =
+  let argArr = [cast[pointer](addr with)]
+  Basis_tdotx(addr self, addr argArr[0], addr result, 1)
+proc tdoty*(self: Basis; with: Vector3): Float =
+  let argArr = [cast[pointer](addr with)]
+  Basis_tdoty(addr self, addr argArr[0], addr result, 1)
+proc tdotz*(self: Basis; with: Vector3): Float =
+  let argArr = [cast[pointer](addr with)]
+  Basis_tdotz(addr self, addr argArr[0], addr result, 1)
+proc slerp*(self: Basis; to: Basis; weight: Float): Basis =
+  let argArr = [cast[pointer](addr to), cast[pointer](addr weight)]
+  Basis_slerp(addr self, addr argArr[0], addr result, 2)
+proc isEqualApprox*(self: Basis; b: Basis): Bool =
+  let argArr = [cast[pointer](addr b)]
+  Basis_isEqualApprox(addr self, addr argArr[0], addr result, 1)
+proc isFinite*(self: Basis): Bool = Basis_isFinite(addr self, nil, addr result, 0)
+proc getRotationQuaternion*(self: Basis): Quaternion = Basis_getRotationQuaternion(addr self, nil, addr result, 0)
+proc lookingAt*(_: typedesc[Basis]; target: Vector3; up: Vector3 = gdvec(0, 1, 0); useModelFront: Bool = false): Basis =
+  let argArr = [cast[pointer](addr target), cast[pointer](addr up), cast[pointer](addr useModelFront)]
+  Basis_lookingAt(nil, addr argArr[0], addr result, 3)
+proc fromScale*(_: typedesc[Basis]; scale: Vector3): Basis =
+  let argArr = [cast[pointer](addr scale)]
+  Basis_fromScale(nil, addr argArr[0], addr result, 1)
+proc fromEuler*(_: typedesc[Basis]; euler: Vector3; order: Int = 2): Basis =
+  let argArr = [cast[pointer](addr euler), cast[pointer](addr order)]
+  Basis_fromEuler(nil, addr argArr[0], addr result, 2)
+proc load_Basis_proc =
+  var proc_name: StringName
+  proc_name = init_StringName("inverse")
+  Basis_inverse = interface_Variant_getPtrBuiltinMethod(variantType Basis, addr proc_name, 594669093)
+  proc_name = init_StringName("transposed")
+  Basis_transposed = interface_Variant_getPtrBuiltinMethod(variantType Basis, addr proc_name, 594669093)
+  proc_name = init_StringName("orthonormalized")
+  Basis_orthonormalized = interface_Variant_getPtrBuiltinMethod(variantType Basis, addr proc_name, 594669093)
+  proc_name = init_StringName("determinant")
+  Basis_determinant = interface_Variant_getPtrBuiltinMethod(variantType Basis, addr proc_name, 466405837)
+  proc_name = init_StringName("rotated")
+  Basis_rotated = interface_Variant_getPtrBuiltinMethod(variantType Basis, addr proc_name, 1998708965)
+  proc_name = init_StringName("scaled")
+  Basis_scaled = interface_Variant_getPtrBuiltinMethod(variantType Basis, addr proc_name, 3934786792)
+  proc_name = init_StringName("get_scale")
+  Basis_getScale = interface_Variant_getPtrBuiltinMethod(variantType Basis, addr proc_name, 1776574132)
+  proc_name = init_StringName("get_euler")
+  Basis_getEuler = interface_Variant_getPtrBuiltinMethod(variantType Basis, addr proc_name, 1394941017)
+  proc_name = init_StringName("tdotx")
+  Basis_tdotx = interface_Variant_getPtrBuiltinMethod(variantType Basis, addr proc_name, 1047977935)
+  proc_name = init_StringName("tdoty")
+  Basis_tdoty = interface_Variant_getPtrBuiltinMethod(variantType Basis, addr proc_name, 1047977935)
+  proc_name = init_StringName("tdotz")
+  Basis_tdotz = interface_Variant_getPtrBuiltinMethod(variantType Basis, addr proc_name, 1047977935)
+  proc_name = init_StringName("slerp")
+  Basis_slerp = interface_Variant_getPtrBuiltinMethod(variantType Basis, addr proc_name, 3118673011)
+  proc_name = init_StringName("is_equal_approx")
+  Basis_isEqualApprox = interface_Variant_getPtrBuiltinMethod(variantType Basis, addr proc_name, 3165333982)
+  proc_name = init_StringName("is_finite")
+  Basis_isFinite = interface_Variant_getPtrBuiltinMethod(variantType Basis, addr proc_name, 3918633141)
+  proc_name = init_StringName("get_rotation_quaternion")
+  Basis_getRotationQuaternion = interface_Variant_getPtrBuiltinMethod(variantType Basis, addr proc_name, 4274879941)
+  proc_name = init_StringName("looking_at")
+  Basis_lookingAt = interface_Variant_getPtrBuiltinMethod(variantType Basis, addr proc_name, 3728732505)
+  proc_name = init_StringName("from_scale")
+  Basis_fromScale = interface_Variant_getPtrBuiltinMethod(variantType Basis, addr proc_name, 3703240166)
+  proc_name = init_StringName("from_euler")
+  Basis_fromEuler = interface_Variant_getPtrBuiltinMethod(variantType Basis, addr proc_name, 2802321791)
 var Equal_Basis_Variant: PtrOperatorEvaluator
 var NotEqual_Basis_Variant: PtrOperatorEvaluator
 var Not_Basis: PtrOperatorEvaluator
@@ -70,4 +144,3 @@ proc load_Basis_op =
 proc load_Basis_allmethod* =
   load_Basis_op()
   load_Basis_proc()
-  load_Basis_sproc()

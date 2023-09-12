@@ -153,35 +153,138 @@ const Color_YellowGreen*: Color = init_Color(0.603922, 0.803922, 0.196078, 1)
 # type Color* = object
 #   self.json.is_keyed=false
 #   self.json.indexing_return_type=some("float")
-
-Color.procedures(loader= load_Color_proc):
-  proc toArgb32*(self: Color): Int {.loadfrom("to_argb32", 3173160232).}
-  proc toAbgr32*(self: Color): Int {.loadfrom("to_abgr32", 3173160232).}
-  proc toRgba32*(self: Color): Int {.loadfrom("to_rgba32", 3173160232).}
-  proc toArgb64*(self: Color): Int {.loadfrom("to_argb64", 3173160232).}
-  proc toAbgr64*(self: Color): Int {.loadfrom("to_abgr64", 3173160232).}
-  proc toRgba64*(self: Color): Int {.loadfrom("to_rgba64", 3173160232).}
-  proc toHtml*(self: Color; withAlpha: Bool = true): String {.loadfrom("to_html", 3429816538).}
-  proc clamp*(self: Color; min: Color = init_Color(0, 0, 0, 0); max: Color = init_Color(1, 1, 1, 1)): Color {.loadfrom("clamp", 105651410).}
-  proc inverted*(self: Color): Color {.loadfrom("inverted", 3334027602).}
-  proc lerp*(self: Color; to: Color; weight: Float): Color {.loadfrom("lerp", 402949615).}
-  proc lightened*(self: Color; amount: Float): Color {.loadfrom("lightened", 1466039168).}
-  proc darkened*(self: Color; amount: Float): Color {.loadfrom("darkened", 1466039168).}
-  proc blend*(self: Color; over: Color): Color {.loadfrom("blend", 3803690977).}
-  proc getLuminance*(self: Color): Float {.loadfrom("get_luminance", 466405837).}
-  proc srgbToLinear*(self: Color): Color {.loadfrom("srgb_to_linear", 3334027602).}
-  proc linearToSrgb*(self: Color): Color {.loadfrom("linear_to_srgb", 3334027602).}
-  proc isEqualApprox*(self: Color; to: Color): Bool {.loadfrom("is_equal_approx", 3167426256).}
-
-Color.procedures(loader= load_Color_sproc):
-  proc hex*(_: typedesc[Color]; hex: Int): Color {.loadfrom("hex", 351421375).}
-  proc hex64*(_: typedesc[Color]; hex: Int): Color {.loadfrom("hex64", 351421375).}
-  proc html*(_: typedesc[Color]; rgba: String): Color {.loadfrom("html", 2500054655).}
-  proc htmlIsValid*(_: typedesc[Color]; color: String): Bool {.loadfrom("html_is_valid", 2942997125).}
-  proc fromString*(_: typedesc[Color]; str: String; default: Color): Color {.loadfrom("from_string", 3755044230).}
-  proc fromHsv*(_: typedesc[Color]; h: Float; s: Float; v: Float; alpha: Float = 1.0): Color {.loadfrom("from_hsv", 1573799446).}
-  proc fromOkHsl*(_: typedesc[Color]; h: Float; s: Float; l: Float; alpha: Float = 1.0): Color {.loadfrom("from_ok_hsl", 1573799446).}
-  proc fromRgbe9995*(_: typedesc[Color]; rgbe: Int): Color {.loadfrom("from_rgbe9995", 351421375).}
+var Color_toArgb32: PtrBuiltinMethod
+var Color_toAbgr32: PtrBuiltinMethod
+var Color_toRgba32: PtrBuiltinMethod
+var Color_toArgb64: PtrBuiltinMethod
+var Color_toAbgr64: PtrBuiltinMethod
+var Color_toRgba64: PtrBuiltinMethod
+var Color_toHtml: PtrBuiltinMethod
+var Color_clamp: PtrBuiltinMethod
+var Color_inverted: PtrBuiltinMethod
+var Color_lerp: PtrBuiltinMethod
+var Color_lightened: PtrBuiltinMethod
+var Color_darkened: PtrBuiltinMethod
+var Color_blend: PtrBuiltinMethod
+var Color_getLuminance: PtrBuiltinMethod
+var Color_srgbToLinear: PtrBuiltinMethod
+var Color_linearToSrgb: PtrBuiltinMethod
+var Color_isEqualApprox: PtrBuiltinMethod
+var Color_hex: PtrBuiltinMethod
+var Color_hex64: PtrBuiltinMethod
+var Color_html: PtrBuiltinMethod
+var Color_htmlIsValid: PtrBuiltinMethod
+var Color_fromString: PtrBuiltinMethod
+var Color_fromHsv: PtrBuiltinMethod
+var Color_fromOkHsl: PtrBuiltinMethod
+var Color_fromRgbe9995: PtrBuiltinMethod
+proc toArgb32*(self: Color): Int = Color_toArgb32(addr self, nil, addr result, 0)
+proc toAbgr32*(self: Color): Int = Color_toAbgr32(addr self, nil, addr result, 0)
+proc toRgba32*(self: Color): Int = Color_toRgba32(addr self, nil, addr result, 0)
+proc toArgb64*(self: Color): Int = Color_toArgb64(addr self, nil, addr result, 0)
+proc toAbgr64*(self: Color): Int = Color_toAbgr64(addr self, nil, addr result, 0)
+proc toRgba64*(self: Color): Int = Color_toRgba64(addr self, nil, addr result, 0)
+proc toHtml*(self: Color; withAlpha: Bool = true): String =
+  let argArr = [cast[pointer](addr withAlpha)]
+  Color_toHtml(addr self, addr argArr[0], addr result, 1)
+proc clamp*(self: Color; min: Color = init_Color(0, 0, 0, 0); max: Color = init_Color(1, 1, 1, 1)): Color =
+  let argArr = [cast[pointer](addr min), cast[pointer](addr max)]
+  Color_clamp(addr self, addr argArr[0], addr result, 2)
+proc inverted*(self: Color): Color = Color_inverted(addr self, nil, addr result, 0)
+proc lerp*(self: Color; to: Color; weight: Float): Color =
+  let argArr = [cast[pointer](addr to), cast[pointer](addr weight)]
+  Color_lerp(addr self, addr argArr[0], addr result, 2)
+proc lightened*(self: Color; amount: Float): Color =
+  let argArr = [cast[pointer](addr amount)]
+  Color_lightened(addr self, addr argArr[0], addr result, 1)
+proc darkened*(self: Color; amount: Float): Color =
+  let argArr = [cast[pointer](addr amount)]
+  Color_darkened(addr self, addr argArr[0], addr result, 1)
+proc blend*(self: Color; over: Color): Color =
+  let argArr = [cast[pointer](addr over)]
+  Color_blend(addr self, addr argArr[0], addr result, 1)
+proc getLuminance*(self: Color): Float = Color_getLuminance(addr self, nil, addr result, 0)
+proc srgbToLinear*(self: Color): Color = Color_srgbToLinear(addr self, nil, addr result, 0)
+proc linearToSrgb*(self: Color): Color = Color_linearToSrgb(addr self, nil, addr result, 0)
+proc isEqualApprox*(self: Color; to: Color): Bool =
+  let argArr = [cast[pointer](addr to)]
+  Color_isEqualApprox(addr self, addr argArr[0], addr result, 1)
+proc hex*(_: typedesc[Color]; hex: Int): Color =
+  let argArr = [cast[pointer](addr hex)]
+  Color_hex(nil, addr argArr[0], addr result, 1)
+proc hex64*(_: typedesc[Color]; hex: Int): Color =
+  let argArr = [cast[pointer](addr hex)]
+  Color_hex64(nil, addr argArr[0], addr result, 1)
+proc html*(_: typedesc[Color]; rgba: String): Color =
+  let argArr = [cast[pointer](addr rgba)]
+  Color_html(nil, addr argArr[0], addr result, 1)
+proc htmlIsValid*(_: typedesc[Color]; color: String): Bool =
+  let argArr = [cast[pointer](addr color)]
+  Color_htmlIsValid(nil, addr argArr[0], addr result, 1)
+proc fromString*(_: typedesc[Color]; str: String; default: Color): Color =
+  let argArr = [cast[pointer](addr str), cast[pointer](addr default)]
+  Color_fromString(nil, addr argArr[0], addr result, 2)
+proc fromHsv*(_: typedesc[Color]; h: Float; s: Float; v: Float; alpha: Float = 1.0): Color =
+  let argArr = [cast[pointer](addr h), cast[pointer](addr s), cast[pointer](addr v), cast[pointer](addr alpha)]
+  Color_fromHsv(nil, addr argArr[0], addr result, 4)
+proc fromOkHsl*(_: typedesc[Color]; h: Float; s: Float; l: Float; alpha: Float = 1.0): Color =
+  let argArr = [cast[pointer](addr h), cast[pointer](addr s), cast[pointer](addr l), cast[pointer](addr alpha)]
+  Color_fromOkHsl(nil, addr argArr[0], addr result, 4)
+proc fromRgbe9995*(_: typedesc[Color]; rgbe: Int): Color =
+  let argArr = [cast[pointer](addr rgbe)]
+  Color_fromRgbe9995(nil, addr argArr[0], addr result, 1)
+proc load_Color_proc =
+  var proc_name: StringName
+  proc_name = init_StringName("to_argb32")
+  Color_toArgb32 = interface_Variant_getPtrBuiltinMethod(variantType Color, addr proc_name, 3173160232)
+  proc_name = init_StringName("to_abgr32")
+  Color_toAbgr32 = interface_Variant_getPtrBuiltinMethod(variantType Color, addr proc_name, 3173160232)
+  proc_name = init_StringName("to_rgba32")
+  Color_toRgba32 = interface_Variant_getPtrBuiltinMethod(variantType Color, addr proc_name, 3173160232)
+  proc_name = init_StringName("to_argb64")
+  Color_toArgb64 = interface_Variant_getPtrBuiltinMethod(variantType Color, addr proc_name, 3173160232)
+  proc_name = init_StringName("to_abgr64")
+  Color_toAbgr64 = interface_Variant_getPtrBuiltinMethod(variantType Color, addr proc_name, 3173160232)
+  proc_name = init_StringName("to_rgba64")
+  Color_toRgba64 = interface_Variant_getPtrBuiltinMethod(variantType Color, addr proc_name, 3173160232)
+  proc_name = init_StringName("to_html")
+  Color_toHtml = interface_Variant_getPtrBuiltinMethod(variantType Color, addr proc_name, 3429816538)
+  proc_name = init_StringName("clamp")
+  Color_clamp = interface_Variant_getPtrBuiltinMethod(variantType Color, addr proc_name, 105651410)
+  proc_name = init_StringName("inverted")
+  Color_inverted = interface_Variant_getPtrBuiltinMethod(variantType Color, addr proc_name, 3334027602)
+  proc_name = init_StringName("lerp")
+  Color_lerp = interface_Variant_getPtrBuiltinMethod(variantType Color, addr proc_name, 402949615)
+  proc_name = init_StringName("lightened")
+  Color_lightened = interface_Variant_getPtrBuiltinMethod(variantType Color, addr proc_name, 1466039168)
+  proc_name = init_StringName("darkened")
+  Color_darkened = interface_Variant_getPtrBuiltinMethod(variantType Color, addr proc_name, 1466039168)
+  proc_name = init_StringName("blend")
+  Color_blend = interface_Variant_getPtrBuiltinMethod(variantType Color, addr proc_name, 3803690977)
+  proc_name = init_StringName("get_luminance")
+  Color_getLuminance = interface_Variant_getPtrBuiltinMethod(variantType Color, addr proc_name, 466405837)
+  proc_name = init_StringName("srgb_to_linear")
+  Color_srgbToLinear = interface_Variant_getPtrBuiltinMethod(variantType Color, addr proc_name, 3334027602)
+  proc_name = init_StringName("linear_to_srgb")
+  Color_linearToSrgb = interface_Variant_getPtrBuiltinMethod(variantType Color, addr proc_name, 3334027602)
+  proc_name = init_StringName("is_equal_approx")
+  Color_isEqualApprox = interface_Variant_getPtrBuiltinMethod(variantType Color, addr proc_name, 3167426256)
+  proc_name = init_StringName("hex")
+  Color_hex = interface_Variant_getPtrBuiltinMethod(variantType Color, addr proc_name, 351421375)
+  proc_name = init_StringName("hex64")
+  Color_hex64 = interface_Variant_getPtrBuiltinMethod(variantType Color, addr proc_name, 351421375)
+  proc_name = init_StringName("html")
+  Color_html = interface_Variant_getPtrBuiltinMethod(variantType Color, addr proc_name, 2500054655)
+  proc_name = init_StringName("html_is_valid")
+  Color_htmlIsValid = interface_Variant_getPtrBuiltinMethod(variantType Color, addr proc_name, 2942997125)
+  proc_name = init_StringName("from_string")
+  Color_fromString = interface_Variant_getPtrBuiltinMethod(variantType Color, addr proc_name, 3755044230)
+  proc_name = init_StringName("from_hsv")
+  Color_fromHsv = interface_Variant_getPtrBuiltinMethod(variantType Color, addr proc_name, 1573799446)
+  proc_name = init_StringName("from_ok_hsl")
+  Color_fromOkHsl = interface_Variant_getPtrBuiltinMethod(variantType Color, addr proc_name, 1573799446)
+  proc_name = init_StringName("from_rgbe9995")
+  Color_fromRgbe9995 = interface_Variant_getPtrBuiltinMethod(variantType Color, addr proc_name, 351421375)
 var Equal_Color_Variant: PtrOperatorEvaluator
 var NotEqual_Color_Variant: PtrOperatorEvaluator
 var Negate_Color: PtrOperatorEvaluator
@@ -240,4 +343,3 @@ proc load_Color_op =
 proc load_Color_allmethod* =
   load_Color_op()
   load_Color_proc()
-  load_Color_sproc()

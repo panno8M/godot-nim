@@ -4,7 +4,6 @@ import std/[
   sequtils,
   strutils,
   strformat,
-  algorithm,
   tables,
 ]
 import ./[
@@ -23,14 +22,25 @@ type
   NimBuiltinClass* = ref object
     name*: TypeName
     enums*: seq[NimEnum]
-    methods*: seq[GodotProcSt]
-    staticMethods*: seq[GodotProcSt]
     json*: JsonBuiltinClass
 
 const ignoreConf: Table[string, IgnoreConf] = toTable {
   "Vector2": IgnoreConf(
     constructor: true,
     procedure: true,
+    procedure_white: @[
+      "Vector2_limitLength",
+      "Vector2_project",
+      "Vector2_slerp",
+      "Vector2_cubicInterpolate",
+      "Vector2_cubicInterpolateInTime",
+      "Vector2_bezierInterpolate",
+      "Vector2_bezierDerivative",
+      "Vector2_rotated",
+      "Vector2_orthogonal",
+      "Vector2_bounce",
+      "Vector2_reflect",
+    ],
     operator: true,
     operator_white: @[
       "Equal_Vector2_Variant",
@@ -55,6 +65,25 @@ const ignoreConf: Table[string, IgnoreConf] = toTable {
   "Vector3": IgnoreConf(
     constructor: true,
     procedure: true,
+    procedure_white: @[
+      "Vector3_angleTo",
+      "Vector3_signedAngleTo",
+      "Vector3_limitLength",
+      "Vector3_inverse",
+      "Vector3_rotated",
+      "Vector3_slerp",
+      "Vector3_cubicInterpolate",
+      "Vector3_cubicInterpolateInTime",
+      "Vector3_bezierInterpolate",
+      "Vector3_bezierDerivative",
+      "Vector3_cross",
+      "Vector3_outer",
+      "Vector3_project",
+      "Vector3_bounce",
+      "Vector3_reflect",
+      "Vector3_octahedronEncode",
+      "Vector3_octahedronDecode",
+    ],
     operator: true,
     operator_white: @[
       "Equal_Vector3_Variant",
@@ -81,6 +110,11 @@ const ignoreConf: Table[string, IgnoreConf] = toTable {
   "Vector4": IgnoreConf(
     constructor: true,
     procedure: true,
+    procedure_white: @[
+      "Vector4_cubicInterpolate",
+      "Vector4_cubicInterpolateInTime",
+      "Vector4_inverse",
+    ],
     operator: true,
     operator_white: @[
       "Equal_Vector4_Variant",
@@ -153,11 +187,6 @@ const ignoreConf: Table[string, IgnoreConf] = toTable {
   ),
 }
 
-const
-  variantAdditionalLoaders* : seq[string] = @[
-    "load_vectors()",
-  ]
-
 func cmp*(x,y: Option[string]): int =
   if x.isNone:
     if y.isNone: return 0
@@ -171,14 +200,6 @@ proc toNim*(self: JsonBuiltinClass): NimBuiltinClass =
   result.name = typeName self.name
   if self.enums.isSome:
     result.enums = self.enums.get.mapIt it.toNim(result.name)
-  for m in self.methods.get(@[]):
-    let self_type = selfType(result.name, m.isStatic)
-    if m.is_static:
-      result.staticMethods.add prerender(m, self_type)
-    else:
-      result.methods.add prerender(m, self_type)
-  result.methods = sorted result.methods
-  result.staticMethods = sorted result.staticMethods
 
   result.json = self
 
@@ -258,22 +279,24 @@ proc prerender*(self: NimBuiltinClass): RenderedVariant =
     result.operators.children.add oploader
     result.loader.children.add fmt"{opLoader $self.name}()"
 
-  if not ignoreConf.getOrDefault($self.name).procedure:
+  var containers = ParagraphSt()
+  var procdefs = ParagraphSt()
+  var procloader = BlockSt(head: &"proc {procLoader $self.name} =")
+  procloader.children.add "var proc_name: StringName"
+  for m in self.json.methods.get(@[]):
+    let self_type = selfType(self.name, m.isStatic)
+    let (procdef, container, load) = m.prerender_variantMethod(self_type, ignoreConf.getOrDefault($self.name))
+    if container.isNil: continue
+    containers.children.add container
+    procdefs.children.add procdef
+    procloader.children.add load
+
+  if containers.children.len != 0:
     discard +$$..result.define:
-      +$$..OptionSt(eval: self.methods.len != 0):
-        ""
-        +$$..BlockSt(head: fmt"{self.name}.procedures(loader= {procLoader $self.name}):"):
-          self.methods
-
-      +$$..OptionSt(eval: self.staticmethods.len != 0):
-        ""
-        +$$..BlockSt(head: fmt"{self.name}.procedures(loader= {sprocLoader $self.name}):"):
-          self.staticMethods
-
-    if self.methods.len != 0:
-      result.loader.children.add fmt"{procLoader $self.name}()"
-    if self.staticmethods.len != 0:
-      result.loader.children.add fmt"{sprocLoader $self.name}()"
+      containers
+      procdefs
+      procLoader
+    result.loader.children.add fmt"{procLoader $self.name}()"
 
   if result.loader.children.len == 0:
     result.loader.children.add "discard"
@@ -292,9 +315,6 @@ func renderLoader*(classes: seq[NimBuiltinClass]): Statement =
   for class in classes:
     if ignoreConf.getOrDefault($class.name).module: continue
     discard loaderBody.add &"{allMethodLoader $class.name}()"
-
-  for loader in variantAdditionalLoaders:
-    loaderBody.children.add loader
 
   +$$..NimProcSt(
       kind: npkProc,

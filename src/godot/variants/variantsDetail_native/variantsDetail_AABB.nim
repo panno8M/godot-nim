@@ -7,33 +7,134 @@ import ./../../helper/variantDefiner
 # type AABB* = object
 #   self.json.is_keyed=false
 #   self.json.indexing_return_type=none(string)
-
-AABB.procedures(loader= load_AABB_proc):
-  proc abs*(self: AABB): AABB {.loadfrom("abs", 1576868580).}
-  proc getCenter*(self: AABB): Vector3 {.loadfrom("get_center", 1776574132).}
-  proc getVolume*(self: AABB): Float {.loadfrom("get_volume", 466405837).}
-  proc hasVolume*(self: AABB): Bool {.loadfrom("has_volume", 3918633141).}
-  proc hasSurface*(self: AABB): Bool {.loadfrom("has_surface", 3918633141).}
-  proc hasPoint*(self: AABB; point: Vector3): Bool {.loadfrom("has_point", 1749054343).}
-  proc isEqualApprox*(self: AABB; aabb: AABB): Bool {.loadfrom("is_equal_approx", 299946684).}
-  proc isFinite*(self: AABB): Bool {.loadfrom("is_finite", 3918633141).}
-  proc intersects*(self: AABB; with: AABB): Bool {.loadfrom("intersects", 299946684).}
-  proc encloses*(self: AABB; with: AABB): Bool {.loadfrom("encloses", 299946684).}
-  proc intersectsPlane*(self: AABB; plane: Plane): Bool {.loadfrom("intersects_plane", 1150170233).}
-  proc intersection*(self: AABB; with: AABB): AABB {.loadfrom("intersection", 1271470306).}
-  proc merge*(self: AABB; with: AABB): AABB {.loadfrom("merge", 1271470306).}
-  proc expand*(self: AABB; toPoint: Vector3): AABB {.loadfrom("expand", 2851643018).}
-  proc grow*(self: AABB; by: Float): AABB {.loadfrom("grow", 239217291).}
-  proc getSupport*(self: AABB; dir: Vector3): Vector3 {.loadfrom("get_support", 2923479887).}
-  proc getLongestAxis*(self: AABB): Vector3 {.loadfrom("get_longest_axis", 1776574132).}
-  proc getLongestAxisIndex*(self: AABB): Int {.loadfrom("get_longest_axis_index", 3173160232).}
-  proc getLongestAxisSize*(self: AABB): Float {.loadfrom("get_longest_axis_size", 466405837).}
-  proc getShortestAxis*(self: AABB): Vector3 {.loadfrom("get_shortest_axis", 1776574132).}
-  proc getShortestAxisIndex*(self: AABB): Int {.loadfrom("get_shortest_axis_index", 3173160232).}
-  proc getShortestAxisSize*(self: AABB): Float {.loadfrom("get_shortest_axis_size", 466405837).}
-  proc getEndpoint*(self: AABB; idx: Int): Vector3 {.loadfrom("get_endpoint", 1394941017).}
-  proc intersectsSegment*(self: AABB; `from`: Vector3; to: Vector3): Variant {.loadfrom("intersects_segment", 2048133369).}
-  proc intersectsRay*(self: AABB; `from`: Vector3; dir: Vector3): Variant {.loadfrom("intersects_ray", 2048133369).}
+var AABB_abs: PtrBuiltinMethod
+var AABB_getCenter: PtrBuiltinMethod
+var AABB_getVolume: PtrBuiltinMethod
+var AABB_hasVolume: PtrBuiltinMethod
+var AABB_hasSurface: PtrBuiltinMethod
+var AABB_hasPoint: PtrBuiltinMethod
+var AABB_isEqualApprox: PtrBuiltinMethod
+var AABB_isFinite: PtrBuiltinMethod
+var AABB_intersects: PtrBuiltinMethod
+var AABB_encloses: PtrBuiltinMethod
+var AABB_intersectsPlane: PtrBuiltinMethod
+var AABB_intersection: PtrBuiltinMethod
+var AABB_merge: PtrBuiltinMethod
+var AABB_expand: PtrBuiltinMethod
+var AABB_grow: PtrBuiltinMethod
+var AABB_getSupport: PtrBuiltinMethod
+var AABB_getLongestAxis: PtrBuiltinMethod
+var AABB_getLongestAxisIndex: PtrBuiltinMethod
+var AABB_getLongestAxisSize: PtrBuiltinMethod
+var AABB_getShortestAxis: PtrBuiltinMethod
+var AABB_getShortestAxisIndex: PtrBuiltinMethod
+var AABB_getShortestAxisSize: PtrBuiltinMethod
+var AABB_getEndpoint: PtrBuiltinMethod
+var AABB_intersectsSegment: PtrBuiltinMethod
+var AABB_intersectsRay: PtrBuiltinMethod
+proc abs*(self: AABB): AABB = AABB_abs(addr self, nil, addr result, 0)
+proc getCenter*(self: AABB): Vector3 = AABB_getCenter(addr self, nil, addr result, 0)
+proc getVolume*(self: AABB): Float = AABB_getVolume(addr self, nil, addr result, 0)
+proc hasVolume*(self: AABB): Bool = AABB_hasVolume(addr self, nil, addr result, 0)
+proc hasSurface*(self: AABB): Bool = AABB_hasSurface(addr self, nil, addr result, 0)
+proc hasPoint*(self: AABB; point: Vector3): Bool =
+  let argArr = [cast[pointer](addr point)]
+  AABB_hasPoint(addr self, addr argArr[0], addr result, 1)
+proc isEqualApprox*(self: AABB; aabb: AABB): Bool =
+  let argArr = [cast[pointer](addr aabb)]
+  AABB_isEqualApprox(addr self, addr argArr[0], addr result, 1)
+proc isFinite*(self: AABB): Bool = AABB_isFinite(addr self, nil, addr result, 0)
+proc intersects*(self: AABB; with: AABB): Bool =
+  let argArr = [cast[pointer](addr with)]
+  AABB_intersects(addr self, addr argArr[0], addr result, 1)
+proc encloses*(self: AABB; with: AABB): Bool =
+  let argArr = [cast[pointer](addr with)]
+  AABB_encloses(addr self, addr argArr[0], addr result, 1)
+proc intersectsPlane*(self: AABB; plane: Plane): Bool =
+  let argArr = [cast[pointer](addr plane)]
+  AABB_intersectsPlane(addr self, addr argArr[0], addr result, 1)
+proc intersection*(self: AABB; with: AABB): AABB =
+  let argArr = [cast[pointer](addr with)]
+  AABB_intersection(addr self, addr argArr[0], addr result, 1)
+proc merge*(self: AABB; with: AABB): AABB =
+  let argArr = [cast[pointer](addr with)]
+  AABB_merge(addr self, addr argArr[0], addr result, 1)
+proc expand*(self: AABB; toPoint: Vector3): AABB =
+  let argArr = [cast[pointer](addr toPoint)]
+  AABB_expand(addr self, addr argArr[0], addr result, 1)
+proc grow*(self: AABB; by: Float): AABB =
+  let argArr = [cast[pointer](addr by)]
+  AABB_grow(addr self, addr argArr[0], addr result, 1)
+proc getSupport*(self: AABB; dir: Vector3): Vector3 =
+  let argArr = [cast[pointer](addr dir)]
+  AABB_getSupport(addr self, addr argArr[0], addr result, 1)
+proc getLongestAxis*(self: AABB): Vector3 = AABB_getLongestAxis(addr self, nil, addr result, 0)
+proc getLongestAxisIndex*(self: AABB): Int = AABB_getLongestAxisIndex(addr self, nil, addr result, 0)
+proc getLongestAxisSize*(self: AABB): Float = AABB_getLongestAxisSize(addr self, nil, addr result, 0)
+proc getShortestAxis*(self: AABB): Vector3 = AABB_getShortestAxis(addr self, nil, addr result, 0)
+proc getShortestAxisIndex*(self: AABB): Int = AABB_getShortestAxisIndex(addr self, nil, addr result, 0)
+proc getShortestAxisSize*(self: AABB): Float = AABB_getShortestAxisSize(addr self, nil, addr result, 0)
+proc getEndpoint*(self: AABB; idx: Int): Vector3 =
+  let argArr = [cast[pointer](addr idx)]
+  AABB_getEndpoint(addr self, addr argArr[0], addr result, 1)
+proc intersectsSegment*(self: AABB; `from`: Vector3; to: Vector3): Variant =
+  let argArr = [cast[pointer](addr `from`), cast[pointer](addr to)]
+  AABB_intersectsSegment(addr self, addr argArr[0], addr result, 2)
+proc intersectsRay*(self: AABB; `from`: Vector3; dir: Vector3): Variant =
+  let argArr = [cast[pointer](addr `from`), cast[pointer](addr dir)]
+  AABB_intersectsRay(addr self, addr argArr[0], addr result, 2)
+proc load_AABB_proc =
+  var proc_name: StringName
+  proc_name = init_StringName("abs")
+  AABB_abs = interface_Variant_getPtrBuiltinMethod(variantType AABB, addr proc_name, 1576868580)
+  proc_name = init_StringName("get_center")
+  AABB_getCenter = interface_Variant_getPtrBuiltinMethod(variantType AABB, addr proc_name, 1776574132)
+  proc_name = init_StringName("get_volume")
+  AABB_getVolume = interface_Variant_getPtrBuiltinMethod(variantType AABB, addr proc_name, 466405837)
+  proc_name = init_StringName("has_volume")
+  AABB_hasVolume = interface_Variant_getPtrBuiltinMethod(variantType AABB, addr proc_name, 3918633141)
+  proc_name = init_StringName("has_surface")
+  AABB_hasSurface = interface_Variant_getPtrBuiltinMethod(variantType AABB, addr proc_name, 3918633141)
+  proc_name = init_StringName("has_point")
+  AABB_hasPoint = interface_Variant_getPtrBuiltinMethod(variantType AABB, addr proc_name, 1749054343)
+  proc_name = init_StringName("is_equal_approx")
+  AABB_isEqualApprox = interface_Variant_getPtrBuiltinMethod(variantType AABB, addr proc_name, 299946684)
+  proc_name = init_StringName("is_finite")
+  AABB_isFinite = interface_Variant_getPtrBuiltinMethod(variantType AABB, addr proc_name, 3918633141)
+  proc_name = init_StringName("intersects")
+  AABB_intersects = interface_Variant_getPtrBuiltinMethod(variantType AABB, addr proc_name, 299946684)
+  proc_name = init_StringName("encloses")
+  AABB_encloses = interface_Variant_getPtrBuiltinMethod(variantType AABB, addr proc_name, 299946684)
+  proc_name = init_StringName("intersects_plane")
+  AABB_intersectsPlane = interface_Variant_getPtrBuiltinMethod(variantType AABB, addr proc_name, 1150170233)
+  proc_name = init_StringName("intersection")
+  AABB_intersection = interface_Variant_getPtrBuiltinMethod(variantType AABB, addr proc_name, 1271470306)
+  proc_name = init_StringName("merge")
+  AABB_merge = interface_Variant_getPtrBuiltinMethod(variantType AABB, addr proc_name, 1271470306)
+  proc_name = init_StringName("expand")
+  AABB_expand = interface_Variant_getPtrBuiltinMethod(variantType AABB, addr proc_name, 2851643018)
+  proc_name = init_StringName("grow")
+  AABB_grow = interface_Variant_getPtrBuiltinMethod(variantType AABB, addr proc_name, 239217291)
+  proc_name = init_StringName("get_support")
+  AABB_getSupport = interface_Variant_getPtrBuiltinMethod(variantType AABB, addr proc_name, 2923479887)
+  proc_name = init_StringName("get_longest_axis")
+  AABB_getLongestAxis = interface_Variant_getPtrBuiltinMethod(variantType AABB, addr proc_name, 1776574132)
+  proc_name = init_StringName("get_longest_axis_index")
+  AABB_getLongestAxisIndex = interface_Variant_getPtrBuiltinMethod(variantType AABB, addr proc_name, 3173160232)
+  proc_name = init_StringName("get_longest_axis_size")
+  AABB_getLongestAxisSize = interface_Variant_getPtrBuiltinMethod(variantType AABB, addr proc_name, 466405837)
+  proc_name = init_StringName("get_shortest_axis")
+  AABB_getShortestAxis = interface_Variant_getPtrBuiltinMethod(variantType AABB, addr proc_name, 1776574132)
+  proc_name = init_StringName("get_shortest_axis_index")
+  AABB_getShortestAxisIndex = interface_Variant_getPtrBuiltinMethod(variantType AABB, addr proc_name, 3173160232)
+  proc_name = init_StringName("get_shortest_axis_size")
+  AABB_getShortestAxisSize = interface_Variant_getPtrBuiltinMethod(variantType AABB, addr proc_name, 466405837)
+  proc_name = init_StringName("get_endpoint")
+  AABB_getEndpoint = interface_Variant_getPtrBuiltinMethod(variantType AABB, addr proc_name, 1394941017)
+  proc_name = init_StringName("intersects_segment")
+  AABB_intersectsSegment = interface_Variant_getPtrBuiltinMethod(variantType AABB, addr proc_name, 2048133369)
+  proc_name = init_StringName("intersects_ray")
+  AABB_intersectsRay = interface_Variant_getPtrBuiltinMethod(variantType AABB, addr proc_name, 2048133369)
 var Equal_AABB_Variant: PtrOperatorEvaluator
 var NotEqual_AABB_Variant: PtrOperatorEvaluator
 var Not_AABB: PtrOperatorEvaluator

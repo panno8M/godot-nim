@@ -7,21 +7,78 @@ import ./../../helper/variantDefiner
 # type Rect2i* = object
 #   self.json.is_keyed=false
 #   self.json.indexing_return_type=none(string)
-
-Rect2i.procedures(loader= load_Rect2i_proc):
-  proc getCenter*(self: Rect2i): Vector2i {.loadfrom("get_center", 3444277866).}
-  proc getArea*(self: Rect2i): Int {.loadfrom("get_area", 3173160232).}
-  proc hasArea*(self: Rect2i): Bool {.loadfrom("has_area", 3918633141).}
-  proc hasPoint*(self: Rect2i; point: Vector2i): Bool {.loadfrom("has_point", 328189994).}
-  proc intersects*(self: Rect2i; b: Rect2i): Bool {.loadfrom("intersects", 3434691493).}
-  proc encloses*(self: Rect2i; b: Rect2i): Bool {.loadfrom("encloses", 3434691493).}
-  proc intersection*(self: Rect2i; b: Rect2i): Rect2i {.loadfrom("intersection", 717431873).}
-  proc merge*(self: Rect2i; b: Rect2i): Rect2i {.loadfrom("merge", 717431873).}
-  proc expand*(self: Rect2i; to: Vector2i): Rect2i {.loadfrom("expand", 1355196872).}
-  proc grow*(self: Rect2i; amount: Int): Rect2i {.loadfrom("grow", 1578070074).}
-  proc growSide*(self: Rect2i; side: Int; amount: Int): Rect2i {.loadfrom("grow_side", 3191154199).}
-  proc growIndividual*(self: Rect2i; left: Int; top: Int; right: Int; bottom: Int): Rect2i {.loadfrom("grow_individual", 1893743416).}
-  proc abs*(self: Rect2i): Rect2i {.loadfrom("abs", 1469025700).}
+var Rect2i_getCenter: PtrBuiltinMethod
+var Rect2i_getArea: PtrBuiltinMethod
+var Rect2i_hasArea: PtrBuiltinMethod
+var Rect2i_hasPoint: PtrBuiltinMethod
+var Rect2i_intersects: PtrBuiltinMethod
+var Rect2i_encloses: PtrBuiltinMethod
+var Rect2i_intersection: PtrBuiltinMethod
+var Rect2i_merge: PtrBuiltinMethod
+var Rect2i_expand: PtrBuiltinMethod
+var Rect2i_grow: PtrBuiltinMethod
+var Rect2i_growSide: PtrBuiltinMethod
+var Rect2i_growIndividual: PtrBuiltinMethod
+var Rect2i_abs: PtrBuiltinMethod
+proc getCenter*(self: Rect2i): Vector2i = Rect2i_getCenter(addr self, nil, addr result, 0)
+proc getArea*(self: Rect2i): Int = Rect2i_getArea(addr self, nil, addr result, 0)
+proc hasArea*(self: Rect2i): Bool = Rect2i_hasArea(addr self, nil, addr result, 0)
+proc hasPoint*(self: Rect2i; point: Vector2i): Bool =
+  let argArr = [cast[pointer](addr point)]
+  Rect2i_hasPoint(addr self, addr argArr[0], addr result, 1)
+proc intersects*(self: Rect2i; b: Rect2i): Bool =
+  let argArr = [cast[pointer](addr b)]
+  Rect2i_intersects(addr self, addr argArr[0], addr result, 1)
+proc encloses*(self: Rect2i; b: Rect2i): Bool =
+  let argArr = [cast[pointer](addr b)]
+  Rect2i_encloses(addr self, addr argArr[0], addr result, 1)
+proc intersection*(self: Rect2i; b: Rect2i): Rect2i =
+  let argArr = [cast[pointer](addr b)]
+  Rect2i_intersection(addr self, addr argArr[0], addr result, 1)
+proc merge*(self: Rect2i; b: Rect2i): Rect2i =
+  let argArr = [cast[pointer](addr b)]
+  Rect2i_merge(addr self, addr argArr[0], addr result, 1)
+proc expand*(self: Rect2i; to: Vector2i): Rect2i =
+  let argArr = [cast[pointer](addr to)]
+  Rect2i_expand(addr self, addr argArr[0], addr result, 1)
+proc grow*(self: Rect2i; amount: Int): Rect2i =
+  let argArr = [cast[pointer](addr amount)]
+  Rect2i_grow(addr self, addr argArr[0], addr result, 1)
+proc growSide*(self: Rect2i; side: Int; amount: Int): Rect2i =
+  let argArr = [cast[pointer](addr side), cast[pointer](addr amount)]
+  Rect2i_growSide(addr self, addr argArr[0], addr result, 2)
+proc growIndividual*(self: Rect2i; left: Int; top: Int; right: Int; bottom: Int): Rect2i =
+  let argArr = [cast[pointer](addr left), cast[pointer](addr top), cast[pointer](addr right), cast[pointer](addr bottom)]
+  Rect2i_growIndividual(addr self, addr argArr[0], addr result, 4)
+proc abs*(self: Rect2i): Rect2i = Rect2i_abs(addr self, nil, addr result, 0)
+proc load_Rect2i_proc =
+  var proc_name: StringName
+  proc_name = init_StringName("get_center")
+  Rect2i_getCenter = interface_Variant_getPtrBuiltinMethod(variantType Rect2i, addr proc_name, 3444277866)
+  proc_name = init_StringName("get_area")
+  Rect2i_getArea = interface_Variant_getPtrBuiltinMethod(variantType Rect2i, addr proc_name, 3173160232)
+  proc_name = init_StringName("has_area")
+  Rect2i_hasArea = interface_Variant_getPtrBuiltinMethod(variantType Rect2i, addr proc_name, 3918633141)
+  proc_name = init_StringName("has_point")
+  Rect2i_hasPoint = interface_Variant_getPtrBuiltinMethod(variantType Rect2i, addr proc_name, 328189994)
+  proc_name = init_StringName("intersects")
+  Rect2i_intersects = interface_Variant_getPtrBuiltinMethod(variantType Rect2i, addr proc_name, 3434691493)
+  proc_name = init_StringName("encloses")
+  Rect2i_encloses = interface_Variant_getPtrBuiltinMethod(variantType Rect2i, addr proc_name, 3434691493)
+  proc_name = init_StringName("intersection")
+  Rect2i_intersection = interface_Variant_getPtrBuiltinMethod(variantType Rect2i, addr proc_name, 717431873)
+  proc_name = init_StringName("merge")
+  Rect2i_merge = interface_Variant_getPtrBuiltinMethod(variantType Rect2i, addr proc_name, 717431873)
+  proc_name = init_StringName("expand")
+  Rect2i_expand = interface_Variant_getPtrBuiltinMethod(variantType Rect2i, addr proc_name, 1355196872)
+  proc_name = init_StringName("grow")
+  Rect2i_grow = interface_Variant_getPtrBuiltinMethod(variantType Rect2i, addr proc_name, 1578070074)
+  proc_name = init_StringName("grow_side")
+  Rect2i_growSide = interface_Variant_getPtrBuiltinMethod(variantType Rect2i, addr proc_name, 3191154199)
+  proc_name = init_StringName("grow_individual")
+  Rect2i_growIndividual = interface_Variant_getPtrBuiltinMethod(variantType Rect2i, addr proc_name, 1893743416)
+  proc_name = init_StringName("abs")
+  Rect2i_abs = interface_Variant_getPtrBuiltinMethod(variantType Rect2i, addr proc_name, 1469025700)
 var Equal_Rect2i_Variant: PtrOperatorEvaluator
 var NotEqual_Rect2i_Variant: PtrOperatorEvaluator
 var Not_Rect2i: PtrOperatorEvaluator

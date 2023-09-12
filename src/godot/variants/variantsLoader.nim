@@ -3,7 +3,6 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./variantsConstr_native
-import ./variantsDetail_custom
 import ./variantsDetail_native
 
 proc load_Variants* =
@@ -67,4 +66,3 @@ proc load_Variants* =
   load_PackedVector2Array_allmethod()
   load_PackedVector3Array_allmethod()
   load_PackedColorArray_allmethod()
-  load_vectors()

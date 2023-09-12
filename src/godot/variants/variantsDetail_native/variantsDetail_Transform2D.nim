@@ -10,28 +10,110 @@ const Transform2D_FlipY*: Transform2D = init_Transform2D(1, 0, 0, -1, 0, 0)
 # type Transform2D* = object
 #   self.json.is_keyed=false
 #   self.json.indexing_return_type=some("Vector2")
-
-Transform2D.procedures(loader= load_Transform2D_proc):
-  proc inverse*(self: Transform2D): Transform2D {.loadfrom("inverse", 1420440541).}
-  proc affineInverse*(self: Transform2D): Transform2D {.loadfrom("affine_inverse", 1420440541).}
-  proc getRotation*(self: Transform2D): Float {.loadfrom("get_rotation", 466405837).}
-  proc getOrigin*(self: Transform2D): Vector2 {.loadfrom("get_origin", 2428350749).}
-  proc getScale*(self: Transform2D): Vector2 {.loadfrom("get_scale", 2428350749).}
-  proc getSkew*(self: Transform2D): Float {.loadfrom("get_skew", 466405837).}
-  proc orthonormalized*(self: Transform2D): Transform2D {.loadfrom("orthonormalized", 1420440541).}
-  proc rotated*(self: Transform2D; angle: Float): Transform2D {.loadfrom("rotated", 729597514).}
-  proc rotatedLocal*(self: Transform2D; angle: Float): Transform2D {.loadfrom("rotated_local", 729597514).}
-  proc scaled*(self: Transform2D; scale: Vector2): Transform2D {.loadfrom("scaled", 1446323263).}
-  proc scaledLocal*(self: Transform2D; scale: Vector2): Transform2D {.loadfrom("scaled_local", 1446323263).}
-  proc translated*(self: Transform2D; offset: Vector2): Transform2D {.loadfrom("translated", 1446323263).}
-  proc translatedLocal*(self: Transform2D; offset: Vector2): Transform2D {.loadfrom("translated_local", 1446323263).}
-  proc determinant*(self: Transform2D): Float {.loadfrom("determinant", 466405837).}
-  proc basisXform*(self: Transform2D; v: Vector2): Vector2 {.loadfrom("basis_xform", 2026743667).}
-  proc basisXformInv*(self: Transform2D; v: Vector2): Vector2 {.loadfrom("basis_xform_inv", 2026743667).}
-  proc interpolateWith*(self: Transform2D; xform: Transform2D; weight: Float): Transform2D {.loadfrom("interpolate_with", 359399686).}
-  proc isEqualApprox*(self: Transform2D; xform: Transform2D): Bool {.loadfrom("is_equal_approx", 3837431929).}
-  proc isFinite*(self: Transform2D): Bool {.loadfrom("is_finite", 3918633141).}
-  proc lookingAt*(self: Transform2D; target: Vector2 = gdvec(0, 0)): Transform2D {.loadfrom("looking_at", 1446323263).}
+var Transform2D_inverse: PtrBuiltinMethod
+var Transform2D_affineInverse: PtrBuiltinMethod
+var Transform2D_getRotation: PtrBuiltinMethod
+var Transform2D_getOrigin: PtrBuiltinMethod
+var Transform2D_getScale: PtrBuiltinMethod
+var Transform2D_getSkew: PtrBuiltinMethod
+var Transform2D_orthonormalized: PtrBuiltinMethod
+var Transform2D_rotated: PtrBuiltinMethod
+var Transform2D_rotatedLocal: PtrBuiltinMethod
+var Transform2D_scaled: PtrBuiltinMethod
+var Transform2D_scaledLocal: PtrBuiltinMethod
+var Transform2D_translated: PtrBuiltinMethod
+var Transform2D_translatedLocal: PtrBuiltinMethod
+var Transform2D_determinant: PtrBuiltinMethod
+var Transform2D_basisXform: PtrBuiltinMethod
+var Transform2D_basisXformInv: PtrBuiltinMethod
+var Transform2D_interpolateWith: PtrBuiltinMethod
+var Transform2D_isEqualApprox: PtrBuiltinMethod
+var Transform2D_isFinite: PtrBuiltinMethod
+var Transform2D_lookingAt: PtrBuiltinMethod
+proc inverse*(self: Transform2D): Transform2D = Transform2D_inverse(addr self, nil, addr result, 0)
+proc affineInverse*(self: Transform2D): Transform2D = Transform2D_affineInverse(addr self, nil, addr result, 0)
+proc getRotation*(self: Transform2D): Float = Transform2D_getRotation(addr self, nil, addr result, 0)
+proc getOrigin*(self: Transform2D): Vector2 = Transform2D_getOrigin(addr self, nil, addr result, 0)
+proc getScale*(self: Transform2D): Vector2 = Transform2D_getScale(addr self, nil, addr result, 0)
+proc getSkew*(self: Transform2D): Float = Transform2D_getSkew(addr self, nil, addr result, 0)
+proc orthonormalized*(self: Transform2D): Transform2D = Transform2D_orthonormalized(addr self, nil, addr result, 0)
+proc rotated*(self: Transform2D; angle: Float): Transform2D =
+  let argArr = [cast[pointer](addr angle)]
+  Transform2D_rotated(addr self, addr argArr[0], addr result, 1)
+proc rotatedLocal*(self: Transform2D; angle: Float): Transform2D =
+  let argArr = [cast[pointer](addr angle)]
+  Transform2D_rotatedLocal(addr self, addr argArr[0], addr result, 1)
+proc scaled*(self: Transform2D; scale: Vector2): Transform2D =
+  let argArr = [cast[pointer](addr scale)]
+  Transform2D_scaled(addr self, addr argArr[0], addr result, 1)
+proc scaledLocal*(self: Transform2D; scale: Vector2): Transform2D =
+  let argArr = [cast[pointer](addr scale)]
+  Transform2D_scaledLocal(addr self, addr argArr[0], addr result, 1)
+proc translated*(self: Transform2D; offset: Vector2): Transform2D =
+  let argArr = [cast[pointer](addr offset)]
+  Transform2D_translated(addr self, addr argArr[0], addr result, 1)
+proc translatedLocal*(self: Transform2D; offset: Vector2): Transform2D =
+  let argArr = [cast[pointer](addr offset)]
+  Transform2D_translatedLocal(addr self, addr argArr[0], addr result, 1)
+proc determinant*(self: Transform2D): Float = Transform2D_determinant(addr self, nil, addr result, 0)
+proc basisXform*(self: Transform2D; v: Vector2): Vector2 =
+  let argArr = [cast[pointer](addr v)]
+  Transform2D_basisXform(addr self, addr argArr[0], addr result, 1)
+proc basisXformInv*(self: Transform2D; v: Vector2): Vector2 =
+  let argArr = [cast[pointer](addr v)]
+  Transform2D_basisXformInv(addr self, addr argArr[0], addr result, 1)
+proc interpolateWith*(self: Transform2D; xform: Transform2D; weight: Float): Transform2D =
+  let argArr = [cast[pointer](addr xform), cast[pointer](addr weight)]
+  Transform2D_interpolateWith(addr self, addr argArr[0], addr result, 2)
+proc isEqualApprox*(self: Transform2D; xform: Transform2D): Bool =
+  let argArr = [cast[pointer](addr xform)]
+  Transform2D_isEqualApprox(addr self, addr argArr[0], addr result, 1)
+proc isFinite*(self: Transform2D): Bool = Transform2D_isFinite(addr self, nil, addr result, 0)
+proc lookingAt*(self: Transform2D; target: Vector2 = gdvec(0, 0)): Transform2D =
+  let argArr = [cast[pointer](addr target)]
+  Transform2D_lookingAt(addr self, addr argArr[0], addr result, 1)
+proc load_Transform2D_proc =
+  var proc_name: StringName
+  proc_name = init_StringName("inverse")
+  Transform2D_inverse = interface_Variant_getPtrBuiltinMethod(variantType Transform2D, addr proc_name, 1420440541)
+  proc_name = init_StringName("affine_inverse")
+  Transform2D_affineInverse = interface_Variant_getPtrBuiltinMethod(variantType Transform2D, addr proc_name, 1420440541)
+  proc_name = init_StringName("get_rotation")
+  Transform2D_getRotation = interface_Variant_getPtrBuiltinMethod(variantType Transform2D, addr proc_name, 466405837)
+  proc_name = init_StringName("get_origin")
+  Transform2D_getOrigin = interface_Variant_getPtrBuiltinMethod(variantType Transform2D, addr proc_name, 2428350749)
+  proc_name = init_StringName("get_scale")
+  Transform2D_getScale = interface_Variant_getPtrBuiltinMethod(variantType Transform2D, addr proc_name, 2428350749)
+  proc_name = init_StringName("get_skew")
+  Transform2D_getSkew = interface_Variant_getPtrBuiltinMethod(variantType Transform2D, addr proc_name, 466405837)
+  proc_name = init_StringName("orthonormalized")
+  Transform2D_orthonormalized = interface_Variant_getPtrBuiltinMethod(variantType Transform2D, addr proc_name, 1420440541)
+  proc_name = init_StringName("rotated")
+  Transform2D_rotated = interface_Variant_getPtrBuiltinMethod(variantType Transform2D, addr proc_name, 729597514)
+  proc_name = init_StringName("rotated_local")
+  Transform2D_rotatedLocal = interface_Variant_getPtrBuiltinMethod(variantType Transform2D, addr proc_name, 729597514)
+  proc_name = init_StringName("scaled")
+  Transform2D_scaled = interface_Variant_getPtrBuiltinMethod(variantType Transform2D, addr proc_name, 1446323263)
+  proc_name = init_StringName("scaled_local")
+  Transform2D_scaledLocal = interface_Variant_getPtrBuiltinMethod(variantType Transform2D, addr proc_name, 1446323263)
+  proc_name = init_StringName("translated")
+  Transform2D_translated = interface_Variant_getPtrBuiltinMethod(variantType Transform2D, addr proc_name, 1446323263)
+  proc_name = init_StringName("translated_local")
+  Transform2D_translatedLocal = interface_Variant_getPtrBuiltinMethod(variantType Transform2D, addr proc_name, 1446323263)
+  proc_name = init_StringName("determinant")
+  Transform2D_determinant = interface_Variant_getPtrBuiltinMethod(variantType Transform2D, addr proc_name, 466405837)
+  proc_name = init_StringName("basis_xform")
+  Transform2D_basisXform = interface_Variant_getPtrBuiltinMethod(variantType Transform2D, addr proc_name, 2026743667)
+  proc_name = init_StringName("basis_xform_inv")
+  Transform2D_basisXformInv = interface_Variant_getPtrBuiltinMethod(variantType Transform2D, addr proc_name, 2026743667)
+  proc_name = init_StringName("interpolate_with")
+  Transform2D_interpolateWith = interface_Variant_getPtrBuiltinMethod(variantType Transform2D, addr proc_name, 359399686)
+  proc_name = init_StringName("is_equal_approx")
+  Transform2D_isEqualApprox = interface_Variant_getPtrBuiltinMethod(variantType Transform2D, addr proc_name, 3837431929)
+  proc_name = init_StringName("is_finite")
+  Transform2D_isFinite = interface_Variant_getPtrBuiltinMethod(variantType Transform2D, addr proc_name, 3918633141)
+  proc_name = init_StringName("looking_at")
+  Transform2D_lookingAt = interface_Variant_getPtrBuiltinMethod(variantType Transform2D, addr proc_name, 1446323263)
 var Equal_Transform2D_Variant: PtrOperatorEvaluator
 var NotEqual_Transform2D_Variant: PtrOperatorEvaluator
 var Not_Transform2D: PtrOperatorEvaluator

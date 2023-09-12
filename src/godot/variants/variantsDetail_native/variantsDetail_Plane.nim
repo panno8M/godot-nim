@@ -10,19 +10,68 @@ const Plane_PlaneXy*: Plane = init_Plane(0, 0, 1, 0)
 # type Plane* = object
 #   self.json.is_keyed=false
 #   self.json.indexing_return_type=none(string)
-
-Plane.procedures(loader= load_Plane_proc):
-  proc normalized*(self: Plane): Plane {.loadfrom("normalized", 1051796340).}
-  proc getCenter*(self: Plane): Vector3 {.loadfrom("get_center", 1776574132).}
-  proc isEqualApprox*(self: Plane; toPlane: Plane): Bool {.loadfrom("is_equal_approx", 1150170233).}
-  proc isFinite*(self: Plane): Bool {.loadfrom("is_finite", 3918633141).}
-  proc isPointOver*(self: Plane; point: Vector3): Bool {.loadfrom("is_point_over", 1749054343).}
-  proc distanceTo*(self: Plane; point: Vector3): Float {.loadfrom("distance_to", 1047977935).}
-  proc hasPoint*(self: Plane; point: Vector3; tolerance: Float = 1e-05): Bool {.loadfrom("has_point", 1258189072).}
-  proc project*(self: Plane; point: Vector3): Vector3 {.loadfrom("project", 2923479887).}
-  proc intersect3*(self: Plane; b: Plane; c: Plane): Variant {.loadfrom("intersect_3", 2012052692).}
-  proc intersectsRay*(self: Plane; `from`: Vector3; dir: Vector3): Variant {.loadfrom("intersects_ray", 2048133369).}
-  proc intersectsSegment*(self: Plane; `from`: Vector3; to: Vector3): Variant {.loadfrom("intersects_segment", 2048133369).}
+var Plane_normalized: PtrBuiltinMethod
+var Plane_getCenter: PtrBuiltinMethod
+var Plane_isEqualApprox: PtrBuiltinMethod
+var Plane_isFinite: PtrBuiltinMethod
+var Plane_isPointOver: PtrBuiltinMethod
+var Plane_distanceTo: PtrBuiltinMethod
+var Plane_hasPoint: PtrBuiltinMethod
+var Plane_project: PtrBuiltinMethod
+var Plane_intersect3: PtrBuiltinMethod
+var Plane_intersectsRay: PtrBuiltinMethod
+var Plane_intersectsSegment: PtrBuiltinMethod
+proc normalized*(self: Plane): Plane = Plane_normalized(addr self, nil, addr result, 0)
+proc getCenter*(self: Plane): Vector3 = Plane_getCenter(addr self, nil, addr result, 0)
+proc isEqualApprox*(self: Plane; toPlane: Plane): Bool =
+  let argArr = [cast[pointer](addr toPlane)]
+  Plane_isEqualApprox(addr self, addr argArr[0], addr result, 1)
+proc isFinite*(self: Plane): Bool = Plane_isFinite(addr self, nil, addr result, 0)
+proc isPointOver*(self: Plane; point: Vector3): Bool =
+  let argArr = [cast[pointer](addr point)]
+  Plane_isPointOver(addr self, addr argArr[0], addr result, 1)
+proc distanceTo*(self: Plane; point: Vector3): Float =
+  let argArr = [cast[pointer](addr point)]
+  Plane_distanceTo(addr self, addr argArr[0], addr result, 1)
+proc hasPoint*(self: Plane; point: Vector3; tolerance: Float = 1e-05): Bool =
+  let argArr = [cast[pointer](addr point), cast[pointer](addr tolerance)]
+  Plane_hasPoint(addr self, addr argArr[0], addr result, 2)
+proc project*(self: Plane; point: Vector3): Vector3 =
+  let argArr = [cast[pointer](addr point)]
+  Plane_project(addr self, addr argArr[0], addr result, 1)
+proc intersect3*(self: Plane; b: Plane; c: Plane): Variant =
+  let argArr = [cast[pointer](addr b), cast[pointer](addr c)]
+  Plane_intersect3(addr self, addr argArr[0], addr result, 2)
+proc intersectsRay*(self: Plane; `from`: Vector3; dir: Vector3): Variant =
+  let argArr = [cast[pointer](addr `from`), cast[pointer](addr dir)]
+  Plane_intersectsRay(addr self, addr argArr[0], addr result, 2)
+proc intersectsSegment*(self: Plane; `from`: Vector3; to: Vector3): Variant =
+  let argArr = [cast[pointer](addr `from`), cast[pointer](addr to)]
+  Plane_intersectsSegment(addr self, addr argArr[0], addr result, 2)
+proc load_Plane_proc =
+  var proc_name: StringName
+  proc_name = init_StringName("normalized")
+  Plane_normalized = interface_Variant_getPtrBuiltinMethod(variantType Plane, addr proc_name, 1051796340)
+  proc_name = init_StringName("get_center")
+  Plane_getCenter = interface_Variant_getPtrBuiltinMethod(variantType Plane, addr proc_name, 1776574132)
+  proc_name = init_StringName("is_equal_approx")
+  Plane_isEqualApprox = interface_Variant_getPtrBuiltinMethod(variantType Plane, addr proc_name, 1150170233)
+  proc_name = init_StringName("is_finite")
+  Plane_isFinite = interface_Variant_getPtrBuiltinMethod(variantType Plane, addr proc_name, 3918633141)
+  proc_name = init_StringName("is_point_over")
+  Plane_isPointOver = interface_Variant_getPtrBuiltinMethod(variantType Plane, addr proc_name, 1749054343)
+  proc_name = init_StringName("distance_to")
+  Plane_distanceTo = interface_Variant_getPtrBuiltinMethod(variantType Plane, addr proc_name, 1047977935)
+  proc_name = init_StringName("has_point")
+  Plane_hasPoint = interface_Variant_getPtrBuiltinMethod(variantType Plane, addr proc_name, 1258189072)
+  proc_name = init_StringName("project")
+  Plane_project = interface_Variant_getPtrBuiltinMethod(variantType Plane, addr proc_name, 2923479887)
+  proc_name = init_StringName("intersect_3")
+  Plane_intersect3 = interface_Variant_getPtrBuiltinMethod(variantType Plane, addr proc_name, 2012052692)
+  proc_name = init_StringName("intersects_ray")
+  Plane_intersectsRay = interface_Variant_getPtrBuiltinMethod(variantType Plane, addr proc_name, 2048133369)
+  proc_name = init_StringName("intersects_segment")
+  Plane_intersectsSegment = interface_Variant_getPtrBuiltinMethod(variantType Plane, addr proc_name, 2048133369)
 var Equal_Plane_Variant: PtrOperatorEvaluator
 var NotEqual_Plane_Variant: PtrOperatorEvaluator
 var Negate_Plane: PtrOperatorEvaluator

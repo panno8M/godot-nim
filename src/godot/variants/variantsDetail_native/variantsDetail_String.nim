@@ -7,113 +7,528 @@ import ./../../helper/variantDefiner
 # type String* = object
 #   self.json.is_keyed=false
 #   self.json.indexing_return_type=some("String")
-
-String.procedures(loader= load_String_proc):
-  proc getSlicec*(self: String; delimiter: Int; slice: Int): String {.loadfrom("get_slicec", 787537301).}
-  proc getSliceCount*(self: String; delimiter: String): Int {.loadfrom("get_slice_count", 2920860731).}
-  proc find*(self: String; what: String; `from`: Int = 0): Int {.loadfrom("find", 1760645412).}
-  proc count*(self: String; what: String; `from`: Int = 0; to: Int = 0): Int {.loadfrom("count", 2343087891).}
-  proc countn*(self: String; what: String; `from`: Int = 0; to: Int = 0): Int {.loadfrom("countn", 2343087891).}
-  proc findn*(self: String; what: String; `from`: Int = 0): Int {.loadfrom("findn", 1760645412).}
-  proc rfind*(self: String; what: String; `from`: Int = -1): Int {.loadfrom("rfind", 1760645412).}
-  proc rfindn*(self: String; what: String; `from`: Int = -1): Int {.loadfrom("rfindn", 1760645412).}
-  proc match*(self: String; expr: String): Bool {.loadfrom("match", 2566493496).}
-  proc matchn*(self: String; expr: String): Bool {.loadfrom("matchn", 2566493496).}
-  proc beginsWith*(self: String; text: String): Bool {.loadfrom("begins_with", 2566493496).}
-  proc endsWith*(self: String; text: String): Bool {.loadfrom("ends_with", 2566493496).}
-  proc isSubsequenceOf*(self: String; text: String): Bool {.loadfrom("is_subsequence_of", 2566493496).}
-  proc isSubsequenceOfn*(self: String; text: String): Bool {.loadfrom("is_subsequence_ofn", 2566493496).}
-  proc bigrams*(self: String): PackedStringArray {.loadfrom("bigrams", 747180633).}
-  proc similarity*(self: String; text: String): Float {.loadfrom("similarity", 2697460964).}
-  proc format*(self: String; values: ptr Variant; placeholder: String = "{_}"): String {.loadfrom("format", 3212199029).}
-  proc replace*(self: String; what: String; forwhat: String): String {.loadfrom("replace", 1340436205).}
-  proc replacen*(self: String; what: String; forwhat: String): String {.loadfrom("replacen", 1340436205).}
-  proc repeat*(self: String; count: Int): String {.loadfrom("repeat", 2162347432).}
-  proc insert*(self: String; position: Int; what: String): String {.loadfrom("insert", 248737229).}
-  proc erase*(self: String; position: Int; chars: Int = 1): String {.loadfrom("erase", 787537301).}
-  proc capitalize*(self: String): String {.loadfrom("capitalize", 3942272618).}
-  proc toCamelCase*(self: String): String {.loadfrom("to_camel_case", 3942272618).}
-  proc toPascalCase*(self: String): String {.loadfrom("to_pascal_case", 3942272618).}
-  proc toSnakeCase*(self: String): String {.loadfrom("to_snake_case", 3942272618).}
-  proc split*(self: String; delimiter: String = ""; allowEmpty: Bool = true; maxsplit: Int = 0): PackedStringArray {.loadfrom("split", 1252735785).}
-  proc rsplit*(self: String; delimiter: String = ""; allowEmpty: Bool = true; maxsplit: Int = 0): PackedStringArray {.loadfrom("rsplit", 1252735785).}
-  proc splitFloats*(self: String; delimiter: String; allowEmpty: Bool = true): PackedFloat64Array {.loadfrom("split_floats", 2092079095).}
-  proc join*(self: String; parts: PackedStringArray): String {.loadfrom("join", 3595973238).}
-  proc toUpper*(self: String): String {.loadfrom("to_upper", 3942272618).}
-  proc toLower*(self: String): String {.loadfrom("to_lower", 3942272618).}
-  proc left*(self: String; length: Int): String {.loadfrom("left", 2162347432).}
-  proc right*(self: String; length: Int): String {.loadfrom("right", 2162347432).}
-  proc stripEdges*(self: String; left: Bool = true; right: Bool = true): String {.loadfrom("strip_edges", 907855311).}
-  proc stripEscapes*(self: String): String {.loadfrom("strip_escapes", 3942272618).}
-  proc lstrip*(self: String; chars: String): String {.loadfrom("lstrip", 3134094431).}
-  proc rstrip*(self: String; chars: String): String {.loadfrom("rstrip", 3134094431).}
-  proc getExtension*(self: String): String {.loadfrom("get_extension", 3942272618).}
-  proc getBasename*(self: String): String {.loadfrom("get_basename", 3942272618).}
-  proc pathJoin*(self: String; file: String): String {.loadfrom("path_join", 3134094431).}
-  proc unicodeAt*(self: String; at: Int): Int {.loadfrom("unicode_at", 4103005248).}
-  proc indent*(self: String; prefix: String): String {.loadfrom("indent", 3134094431).}
-  proc dedent*(self: String): String {.loadfrom("dedent", 3942272618).}
-  proc hash*(self: String): Int {.loadfrom("hash", 3173160232).}
-  proc md5Text*(self: String): String {.loadfrom("md5_text", 3942272618).}
-  proc sha1Text*(self: String): String {.loadfrom("sha1_text", 3942272618).}
-  proc sha256Text*(self: String): String {.loadfrom("sha256_text", 3942272618).}
-  proc md5Buffer*(self: String): PackedByteArray {.loadfrom("md5_buffer", 247621236).}
-  proc sha1Buffer*(self: String): PackedByteArray {.loadfrom("sha1_buffer", 247621236).}
-  proc sha256Buffer*(self: String): PackedByteArray {.loadfrom("sha256_buffer", 247621236).}
-  proc isEmpty*(self: String): Bool {.loadfrom("is_empty", 3918633141).}
-  proc contains*(self: String; what: String): Bool {.loadfrom("contains", 2566493496).}
-  proc isAbsolutePath*(self: String): Bool {.loadfrom("is_absolute_path", 3918633141).}
-  proc isRelativePath*(self: String): Bool {.loadfrom("is_relative_path", 3918633141).}
-  proc simplifyPath*(self: String): String {.loadfrom("simplify_path", 3942272618).}
-  proc getBaseDir*(self: String): String {.loadfrom("get_base_dir", 3942272618).}
-  proc getFile*(self: String): String {.loadfrom("get_file", 3942272618).}
-  proc xmlEscape*(self: String; escapeQuotes: Bool = false): String {.loadfrom("xml_escape", 3429816538).}
-  proc xmlUnescape*(self: String): String {.loadfrom("xml_unescape", 3942272618).}
-  proc uriEncode*(self: String): String {.loadfrom("uri_encode", 3942272618).}
-  proc uriDecode*(self: String): String {.loadfrom("uri_decode", 3942272618).}
-  proc cEscape*(self: String): String {.loadfrom("c_escape", 3942272618).}
-  proc cUnescape*(self: String): String {.loadfrom("c_unescape", 3942272618).}
-  proc jsonEscape*(self: String): String {.loadfrom("json_escape", 3942272618).}
-  proc validateNodeName*(self: String): String {.loadfrom("validate_node_name", 3942272618).}
-  proc validateFilename*(self: String): String {.loadfrom("validate_filename", 3942272618).}
-  proc isValidIdentifier*(self: String): Bool {.loadfrom("is_valid_identifier", 3918633141).}
-  proc isValidInt*(self: String): Bool {.loadfrom("is_valid_int", 3918633141).}
-  proc isValidFloat*(self: String): Bool {.loadfrom("is_valid_float", 3918633141).}
-  proc isValidHexNumber*(self: String; withPrefix: Bool = false): Bool {.loadfrom("is_valid_hex_number", 593672999).}
-  proc isValidHtmlColor*(self: String): Bool {.loadfrom("is_valid_html_color", 3918633141).}
-  proc isValidIpAddress*(self: String): Bool {.loadfrom("is_valid_ip_address", 3918633141).}
-  proc isValidFilename*(self: String): Bool {.loadfrom("is_valid_filename", 3918633141).}
-  proc toInt*(self: String): Int {.loadfrom("to_int", 3173160232).}
-  proc toFloat*(self: String): Float {.loadfrom("to_float", 466405837).}
-  proc hexToInt*(self: String): Int {.loadfrom("hex_to_int", 3173160232).}
-  proc binToInt*(self: String): Int {.loadfrom("bin_to_int", 3173160232).}
-  proc lpad*(self: String; minLength: Int; character: String = " "): String {.loadfrom("lpad", 248737229).}
-  proc rpad*(self: String; minLength: Int; character: String = " "): String {.loadfrom("rpad", 248737229).}
-  proc padDecimals*(self: String; digits: Int): String {.loadfrom("pad_decimals", 2162347432).}
-  proc padZeros*(self: String; digits: Int): String {.loadfrom("pad_zeros", 2162347432).}
-  proc trimPrefix*(self: String; prefix: String): String {.loadfrom("trim_prefix", 3134094431).}
-  proc trimSuffix*(self: String; suffix: String): String {.loadfrom("trim_suffix", 3134094431).}
-  proc toAsciiBuffer*(self: String): PackedByteArray {.loadfrom("to_ascii_buffer", 247621236).}
-  proc toUtf8Buffer*(self: String): PackedByteArray {.loadfrom("to_utf8_buffer", 247621236).}
-  proc toUtf16Buffer*(self: String): PackedByteArray {.loadfrom("to_utf16_buffer", 247621236).}
-  proc toUtf32Buffer*(self: String): PackedByteArray {.loadfrom("to_utf32_buffer", 247621236).}
-  proc hexDecode*(self: String): PackedByteArray {.loadfrom("hex_decode", 247621236).}
-  proc toWcharBuffer*(self: String): PackedByteArray {.loadfrom("to_wchar_buffer", 247621236).}
-  proc casecmpTo*(self: String; to: String): Int {.loadfrom("casecmp_to", 2920860731).}
-  proc nocasecmpTo*(self: String; to: String): Int {.loadfrom("nocasecmp_to", 2920860731).}
-  proc naturalcasecmpTo*(self: String; to: String): Int {.loadfrom("naturalcasecmp_to", 2920860731).}
-  proc naturalnocasecmpTo*(self: String; to: String): Int {.loadfrom("naturalnocasecmp_to", 2920860731).}
-  proc length*(self: String): Int {.loadfrom("length", 3173160232).}
-  proc substr*(self: String; `from`: Int; len: Int = -1): String {.loadfrom("substr", 787537301).}
-  proc getSlice*(self: String; delimiter: String; slice: Int): String {.loadfrom("get_slice", 3535100402).}
-
-String.procedures(loader= load_String_sproc):
-  proc numScientific*(_: typedesc[String]; number: Float): String {.loadfrom("num_scientific", 2710373411).}
-  proc num*(_: typedesc[String]; number: Float; decimals: Int = -1): String {.loadfrom("num", 1555901022).}
-  proc numInt64*(_: typedesc[String]; number: Int; base: Int = 10; capitalizeHex: Bool = false): String {.loadfrom("num_int64", 2111271071).}
-  proc numUint64*(_: typedesc[String]; number: Int; base: Int = 10; capitalizeHex: Bool = false): String {.loadfrom("num_uint64", 2111271071).}
-  proc chr*(_: typedesc[String]; char: Int): String {.loadfrom("chr", 897497541).}
-  proc humanizeSize*(_: typedesc[String]; size: Int): String {.loadfrom("humanize_size", 897497541).}
+var String_casecmpTo: PtrBuiltinMethod
+var String_nocasecmpTo: PtrBuiltinMethod
+var String_naturalcasecmpTo: PtrBuiltinMethod
+var String_naturalnocasecmpTo: PtrBuiltinMethod
+var String_length: PtrBuiltinMethod
+var String_substr: PtrBuiltinMethod
+var String_getSlice: PtrBuiltinMethod
+var String_getSlicec: PtrBuiltinMethod
+var String_getSliceCount: PtrBuiltinMethod
+var String_find: PtrBuiltinMethod
+var String_count: PtrBuiltinMethod
+var String_countn: PtrBuiltinMethod
+var String_findn: PtrBuiltinMethod
+var String_rfind: PtrBuiltinMethod
+var String_rfindn: PtrBuiltinMethod
+var String_match: PtrBuiltinMethod
+var String_matchn: PtrBuiltinMethod
+var String_beginsWith: PtrBuiltinMethod
+var String_endsWith: PtrBuiltinMethod
+var String_isSubsequenceOf: PtrBuiltinMethod
+var String_isSubsequenceOfn: PtrBuiltinMethod
+var String_bigrams: PtrBuiltinMethod
+var String_similarity: PtrBuiltinMethod
+var String_format: PtrBuiltinMethod
+var String_replace: PtrBuiltinMethod
+var String_replacen: PtrBuiltinMethod
+var String_repeat: PtrBuiltinMethod
+var String_insert: PtrBuiltinMethod
+var String_erase: PtrBuiltinMethod
+var String_capitalize: PtrBuiltinMethod
+var String_toCamelCase: PtrBuiltinMethod
+var String_toPascalCase: PtrBuiltinMethod
+var String_toSnakeCase: PtrBuiltinMethod
+var String_split: PtrBuiltinMethod
+var String_rsplit: PtrBuiltinMethod
+var String_splitFloats: PtrBuiltinMethod
+var String_join: PtrBuiltinMethod
+var String_toUpper: PtrBuiltinMethod
+var String_toLower: PtrBuiltinMethod
+var String_left: PtrBuiltinMethod
+var String_right: PtrBuiltinMethod
+var String_stripEdges: PtrBuiltinMethod
+var String_stripEscapes: PtrBuiltinMethod
+var String_lstrip: PtrBuiltinMethod
+var String_rstrip: PtrBuiltinMethod
+var String_getExtension: PtrBuiltinMethod
+var String_getBasename: PtrBuiltinMethod
+var String_pathJoin: PtrBuiltinMethod
+var String_unicodeAt: PtrBuiltinMethod
+var String_indent: PtrBuiltinMethod
+var String_dedent: PtrBuiltinMethod
+var String_hash: PtrBuiltinMethod
+var String_md5Text: PtrBuiltinMethod
+var String_sha1Text: PtrBuiltinMethod
+var String_sha256Text: PtrBuiltinMethod
+var String_md5Buffer: PtrBuiltinMethod
+var String_sha1Buffer: PtrBuiltinMethod
+var String_sha256Buffer: PtrBuiltinMethod
+var String_isEmpty: PtrBuiltinMethod
+var String_contains: PtrBuiltinMethod
+var String_isAbsolutePath: PtrBuiltinMethod
+var String_isRelativePath: PtrBuiltinMethod
+var String_simplifyPath: PtrBuiltinMethod
+var String_getBaseDir: PtrBuiltinMethod
+var String_getFile: PtrBuiltinMethod
+var String_xmlEscape: PtrBuiltinMethod
+var String_xmlUnescape: PtrBuiltinMethod
+var String_uriEncode: PtrBuiltinMethod
+var String_uriDecode: PtrBuiltinMethod
+var String_cEscape: PtrBuiltinMethod
+var String_cUnescape: PtrBuiltinMethod
+var String_jsonEscape: PtrBuiltinMethod
+var String_validateNodeName: PtrBuiltinMethod
+var String_validateFilename: PtrBuiltinMethod
+var String_isValidIdentifier: PtrBuiltinMethod
+var String_isValidInt: PtrBuiltinMethod
+var String_isValidFloat: PtrBuiltinMethod
+var String_isValidHexNumber: PtrBuiltinMethod
+var String_isValidHtmlColor: PtrBuiltinMethod
+var String_isValidIpAddress: PtrBuiltinMethod
+var String_isValidFilename: PtrBuiltinMethod
+var String_toInt: PtrBuiltinMethod
+var String_toFloat: PtrBuiltinMethod
+var String_hexToInt: PtrBuiltinMethod
+var String_binToInt: PtrBuiltinMethod
+var String_lpad: PtrBuiltinMethod
+var String_rpad: PtrBuiltinMethod
+var String_padDecimals: PtrBuiltinMethod
+var String_padZeros: PtrBuiltinMethod
+var String_trimPrefix: PtrBuiltinMethod
+var String_trimSuffix: PtrBuiltinMethod
+var String_toAsciiBuffer: PtrBuiltinMethod
+var String_toUtf8Buffer: PtrBuiltinMethod
+var String_toUtf16Buffer: PtrBuiltinMethod
+var String_toUtf32Buffer: PtrBuiltinMethod
+var String_hexDecode: PtrBuiltinMethod
+var String_toWcharBuffer: PtrBuiltinMethod
+var String_numScientific: PtrBuiltinMethod
+var String_num: PtrBuiltinMethod
+var String_numInt64: PtrBuiltinMethod
+var String_numUint64: PtrBuiltinMethod
+var String_chr: PtrBuiltinMethod
+var String_humanizeSize: PtrBuiltinMethod
+proc casecmpTo*(self: String; to: String): Int =
+  let argArr = [cast[pointer](addr to)]
+  String_casecmpTo(addr self, addr argArr[0], addr result, 1)
+proc nocasecmpTo*(self: String; to: String): Int =
+  let argArr = [cast[pointer](addr to)]
+  String_nocasecmpTo(addr self, addr argArr[0], addr result, 1)
+proc naturalcasecmpTo*(self: String; to: String): Int =
+  let argArr = [cast[pointer](addr to)]
+  String_naturalcasecmpTo(addr self, addr argArr[0], addr result, 1)
+proc naturalnocasecmpTo*(self: String; to: String): Int =
+  let argArr = [cast[pointer](addr to)]
+  String_naturalnocasecmpTo(addr self, addr argArr[0], addr result, 1)
+proc length*(self: String): Int = String_length(addr self, nil, addr result, 0)
+proc substr*(self: String; `from`: Int; len: Int = -1): String =
+  let argArr = [cast[pointer](addr `from`), cast[pointer](addr len)]
+  String_substr(addr self, addr argArr[0], addr result, 2)
+proc getSlice*(self: String; delimiter: String; slice: Int): String =
+  let argArr = [cast[pointer](addr delimiter), cast[pointer](addr slice)]
+  String_getSlice(addr self, addr argArr[0], addr result, 2)
+proc getSlicec*(self: String; delimiter: Int; slice: Int): String =
+  let argArr = [cast[pointer](addr delimiter), cast[pointer](addr slice)]
+  String_getSlicec(addr self, addr argArr[0], addr result, 2)
+proc getSliceCount*(self: String; delimiter: String): Int =
+  let argArr = [cast[pointer](addr delimiter)]
+  String_getSliceCount(addr self, addr argArr[0], addr result, 1)
+proc find*(self: String; what: String; `from`: Int = 0): Int =
+  let argArr = [cast[pointer](addr what), cast[pointer](addr `from`)]
+  String_find(addr self, addr argArr[0], addr result, 2)
+proc count*(self: String; what: String; `from`: Int = 0; to: Int = 0): Int =
+  let argArr = [cast[pointer](addr what), cast[pointer](addr `from`), cast[pointer](addr to)]
+  String_count(addr self, addr argArr[0], addr result, 3)
+proc countn*(self: String; what: String; `from`: Int = 0; to: Int = 0): Int =
+  let argArr = [cast[pointer](addr what), cast[pointer](addr `from`), cast[pointer](addr to)]
+  String_countn(addr self, addr argArr[0], addr result, 3)
+proc findn*(self: String; what: String; `from`: Int = 0): Int =
+  let argArr = [cast[pointer](addr what), cast[pointer](addr `from`)]
+  String_findn(addr self, addr argArr[0], addr result, 2)
+proc rfind*(self: String; what: String; `from`: Int = -1): Int =
+  let argArr = [cast[pointer](addr what), cast[pointer](addr `from`)]
+  String_rfind(addr self, addr argArr[0], addr result, 2)
+proc rfindn*(self: String; what: String; `from`: Int = -1): Int =
+  let argArr = [cast[pointer](addr what), cast[pointer](addr `from`)]
+  String_rfindn(addr self, addr argArr[0], addr result, 2)
+proc match*(self: String; expr: String): Bool =
+  let argArr = [cast[pointer](addr expr)]
+  String_match(addr self, addr argArr[0], addr result, 1)
+proc matchn*(self: String; expr: String): Bool =
+  let argArr = [cast[pointer](addr expr)]
+  String_matchn(addr self, addr argArr[0], addr result, 1)
+proc beginsWith*(self: String; text: String): Bool =
+  let argArr = [cast[pointer](addr text)]
+  String_beginsWith(addr self, addr argArr[0], addr result, 1)
+proc endsWith*(self: String; text: String): Bool =
+  let argArr = [cast[pointer](addr text)]
+  String_endsWith(addr self, addr argArr[0], addr result, 1)
+proc isSubsequenceOf*(self: String; text: String): Bool =
+  let argArr = [cast[pointer](addr text)]
+  String_isSubsequenceOf(addr self, addr argArr[0], addr result, 1)
+proc isSubsequenceOfn*(self: String; text: String): Bool =
+  let argArr = [cast[pointer](addr text)]
+  String_isSubsequenceOfn(addr self, addr argArr[0], addr result, 1)
+proc bigrams*(self: String): PackedStringArray = String_bigrams(addr self, nil, addr result, 0)
+proc similarity*(self: String; text: String): Float =
+  let argArr = [cast[pointer](addr text)]
+  String_similarity(addr self, addr argArr[0], addr result, 1)
+proc format*(self: String; values: ptr Variant; placeholder: String = "{_}"): String =
+  let argArr = [cast[pointer](addr values), cast[pointer](addr placeholder)]
+  String_format(addr self, addr argArr[0], addr result, 2)
+proc replace*(self: String; what: String; forwhat: String): String =
+  let argArr = [cast[pointer](addr what), cast[pointer](addr forwhat)]
+  String_replace(addr self, addr argArr[0], addr result, 2)
+proc replacen*(self: String; what: String; forwhat: String): String =
+  let argArr = [cast[pointer](addr what), cast[pointer](addr forwhat)]
+  String_replacen(addr self, addr argArr[0], addr result, 2)
+proc repeat*(self: String; count: Int): String =
+  let argArr = [cast[pointer](addr count)]
+  String_repeat(addr self, addr argArr[0], addr result, 1)
+proc insert*(self: String; position: Int; what: String): String =
+  let argArr = [cast[pointer](addr position), cast[pointer](addr what)]
+  String_insert(addr self, addr argArr[0], addr result, 2)
+proc erase*(self: String; position: Int; chars: Int = 1): String =
+  let argArr = [cast[pointer](addr position), cast[pointer](addr chars)]
+  String_erase(addr self, addr argArr[0], addr result, 2)
+proc capitalize*(self: String): String = String_capitalize(addr self, nil, addr result, 0)
+proc toCamelCase*(self: String): String = String_toCamelCase(addr self, nil, addr result, 0)
+proc toPascalCase*(self: String): String = String_toPascalCase(addr self, nil, addr result, 0)
+proc toSnakeCase*(self: String): String = String_toSnakeCase(addr self, nil, addr result, 0)
+proc split*(self: String; delimiter: String = ""; allowEmpty: Bool = true; maxsplit: Int = 0): PackedStringArray =
+  let argArr = [cast[pointer](addr delimiter), cast[pointer](addr allowEmpty), cast[pointer](addr maxsplit)]
+  String_split(addr self, addr argArr[0], addr result, 3)
+proc rsplit*(self: String; delimiter: String = ""; allowEmpty: Bool = true; maxsplit: Int = 0): PackedStringArray =
+  let argArr = [cast[pointer](addr delimiter), cast[pointer](addr allowEmpty), cast[pointer](addr maxsplit)]
+  String_rsplit(addr self, addr argArr[0], addr result, 3)
+proc splitFloats*(self: String; delimiter: String; allowEmpty: Bool = true): PackedFloat64Array =
+  let argArr = [cast[pointer](addr delimiter), cast[pointer](addr allowEmpty)]
+  String_splitFloats(addr self, addr argArr[0], addr result, 2)
+proc join*(self: String; parts: PackedStringArray): String =
+  let argArr = [cast[pointer](addr parts)]
+  String_join(addr self, addr argArr[0], addr result, 1)
+proc toUpper*(self: String): String = String_toUpper(addr self, nil, addr result, 0)
+proc toLower*(self: String): String = String_toLower(addr self, nil, addr result, 0)
+proc left*(self: String; length: Int): String =
+  let argArr = [cast[pointer](addr length)]
+  String_left(addr self, addr argArr[0], addr result, 1)
+proc right*(self: String; length: Int): String =
+  let argArr = [cast[pointer](addr length)]
+  String_right(addr self, addr argArr[0], addr result, 1)
+proc stripEdges*(self: String; left: Bool = true; right: Bool = true): String =
+  let argArr = [cast[pointer](addr left), cast[pointer](addr right)]
+  String_stripEdges(addr self, addr argArr[0], addr result, 2)
+proc stripEscapes*(self: String): String = String_stripEscapes(addr self, nil, addr result, 0)
+proc lstrip*(self: String; chars: String): String =
+  let argArr = [cast[pointer](addr chars)]
+  String_lstrip(addr self, addr argArr[0], addr result, 1)
+proc rstrip*(self: String; chars: String): String =
+  let argArr = [cast[pointer](addr chars)]
+  String_rstrip(addr self, addr argArr[0], addr result, 1)
+proc getExtension*(self: String): String = String_getExtension(addr self, nil, addr result, 0)
+proc getBasename*(self: String): String = String_getBasename(addr self, nil, addr result, 0)
+proc pathJoin*(self: String; file: String): String =
+  let argArr = [cast[pointer](addr file)]
+  String_pathJoin(addr self, addr argArr[0], addr result, 1)
+proc unicodeAt*(self: String; at: Int): Int =
+  let argArr = [cast[pointer](addr at)]
+  String_unicodeAt(addr self, addr argArr[0], addr result, 1)
+proc indent*(self: String; prefix: String): String =
+  let argArr = [cast[pointer](addr prefix)]
+  String_indent(addr self, addr argArr[0], addr result, 1)
+proc dedent*(self: String): String = String_dedent(addr self, nil, addr result, 0)
+proc hash*(self: String): Int = String_hash(addr self, nil, addr result, 0)
+proc md5Text*(self: String): String = String_md5Text(addr self, nil, addr result, 0)
+proc sha1Text*(self: String): String = String_sha1Text(addr self, nil, addr result, 0)
+proc sha256Text*(self: String): String = String_sha256Text(addr self, nil, addr result, 0)
+proc md5Buffer*(self: String): PackedByteArray = String_md5Buffer(addr self, nil, addr result, 0)
+proc sha1Buffer*(self: String): PackedByteArray = String_sha1Buffer(addr self, nil, addr result, 0)
+proc sha256Buffer*(self: String): PackedByteArray = String_sha256Buffer(addr self, nil, addr result, 0)
+proc isEmpty*(self: String): Bool = String_isEmpty(addr self, nil, addr result, 0)
+proc contains*(self: String; what: String): Bool =
+  let argArr = [cast[pointer](addr what)]
+  String_contains(addr self, addr argArr[0], addr result, 1)
+proc isAbsolutePath*(self: String): Bool = String_isAbsolutePath(addr self, nil, addr result, 0)
+proc isRelativePath*(self: String): Bool = String_isRelativePath(addr self, nil, addr result, 0)
+proc simplifyPath*(self: String): String = String_simplifyPath(addr self, nil, addr result, 0)
+proc getBaseDir*(self: String): String = String_getBaseDir(addr self, nil, addr result, 0)
+proc getFile*(self: String): String = String_getFile(addr self, nil, addr result, 0)
+proc xmlEscape*(self: String; escapeQuotes: Bool = false): String =
+  let argArr = [cast[pointer](addr escapeQuotes)]
+  String_xmlEscape(addr self, addr argArr[0], addr result, 1)
+proc xmlUnescape*(self: String): String = String_xmlUnescape(addr self, nil, addr result, 0)
+proc uriEncode*(self: String): String = String_uriEncode(addr self, nil, addr result, 0)
+proc uriDecode*(self: String): String = String_uriDecode(addr self, nil, addr result, 0)
+proc cEscape*(self: String): String = String_cEscape(addr self, nil, addr result, 0)
+proc cUnescape*(self: String): String = String_cUnescape(addr self, nil, addr result, 0)
+proc jsonEscape*(self: String): String = String_jsonEscape(addr self, nil, addr result, 0)
+proc validateNodeName*(self: String): String = String_validateNodeName(addr self, nil, addr result, 0)
+proc validateFilename*(self: String): String = String_validateFilename(addr self, nil, addr result, 0)
+proc isValidIdentifier*(self: String): Bool = String_isValidIdentifier(addr self, nil, addr result, 0)
+proc isValidInt*(self: String): Bool = String_isValidInt(addr self, nil, addr result, 0)
+proc isValidFloat*(self: String): Bool = String_isValidFloat(addr self, nil, addr result, 0)
+proc isValidHexNumber*(self: String; withPrefix: Bool = false): Bool =
+  let argArr = [cast[pointer](addr withPrefix)]
+  String_isValidHexNumber(addr self, addr argArr[0], addr result, 1)
+proc isValidHtmlColor*(self: String): Bool = String_isValidHtmlColor(addr self, nil, addr result, 0)
+proc isValidIpAddress*(self: String): Bool = String_isValidIpAddress(addr self, nil, addr result, 0)
+proc isValidFilename*(self: String): Bool = String_isValidFilename(addr self, nil, addr result, 0)
+proc toInt*(self: String): Int = String_toInt(addr self, nil, addr result, 0)
+proc toFloat*(self: String): Float = String_toFloat(addr self, nil, addr result, 0)
+proc hexToInt*(self: String): Int = String_hexToInt(addr self, nil, addr result, 0)
+proc binToInt*(self: String): Int = String_binToInt(addr self, nil, addr result, 0)
+proc lpad*(self: String; minLength: Int; character: String = " "): String =
+  let argArr = [cast[pointer](addr minLength), cast[pointer](addr character)]
+  String_lpad(addr self, addr argArr[0], addr result, 2)
+proc rpad*(self: String; minLength: Int; character: String = " "): String =
+  let argArr = [cast[pointer](addr minLength), cast[pointer](addr character)]
+  String_rpad(addr self, addr argArr[0], addr result, 2)
+proc padDecimals*(self: String; digits: Int): String =
+  let argArr = [cast[pointer](addr digits)]
+  String_padDecimals(addr self, addr argArr[0], addr result, 1)
+proc padZeros*(self: String; digits: Int): String =
+  let argArr = [cast[pointer](addr digits)]
+  String_padZeros(addr self, addr argArr[0], addr result, 1)
+proc trimPrefix*(self: String; prefix: String): String =
+  let argArr = [cast[pointer](addr prefix)]
+  String_trimPrefix(addr self, addr argArr[0], addr result, 1)
+proc trimSuffix*(self: String; suffix: String): String =
+  let argArr = [cast[pointer](addr suffix)]
+  String_trimSuffix(addr self, addr argArr[0], addr result, 1)
+proc toAsciiBuffer*(self: String): PackedByteArray = String_toAsciiBuffer(addr self, nil, addr result, 0)
+proc toUtf8Buffer*(self: String): PackedByteArray = String_toUtf8Buffer(addr self, nil, addr result, 0)
+proc toUtf16Buffer*(self: String): PackedByteArray = String_toUtf16Buffer(addr self, nil, addr result, 0)
+proc toUtf32Buffer*(self: String): PackedByteArray = String_toUtf32Buffer(addr self, nil, addr result, 0)
+proc hexDecode*(self: String): PackedByteArray = String_hexDecode(addr self, nil, addr result, 0)
+proc toWcharBuffer*(self: String): PackedByteArray = String_toWcharBuffer(addr self, nil, addr result, 0)
+proc numScientific*(_: typedesc[String]; number: Float): String =
+  let argArr = [cast[pointer](addr number)]
+  String_numScientific(nil, addr argArr[0], addr result, 1)
+proc num*(_: typedesc[String]; number: Float; decimals: Int = -1): String =
+  let argArr = [cast[pointer](addr number), cast[pointer](addr decimals)]
+  String_num(nil, addr argArr[0], addr result, 2)
+proc numInt64*(_: typedesc[String]; number: Int; base: Int = 10; capitalizeHex: Bool = false): String =
+  let argArr = [cast[pointer](addr number), cast[pointer](addr base), cast[pointer](addr capitalizeHex)]
+  String_numInt64(nil, addr argArr[0], addr result, 3)
+proc numUint64*(_: typedesc[String]; number: Int; base: Int = 10; capitalizeHex: Bool = false): String =
+  let argArr = [cast[pointer](addr number), cast[pointer](addr base), cast[pointer](addr capitalizeHex)]
+  String_numUint64(nil, addr argArr[0], addr result, 3)
+proc chr*(_: typedesc[String]; char: Int): String =
+  let argArr = [cast[pointer](addr char)]
+  String_chr(nil, addr argArr[0], addr result, 1)
+proc humanizeSize*(_: typedesc[String]; size: Int): String =
+  let argArr = [cast[pointer](addr size)]
+  String_humanizeSize(nil, addr argArr[0], addr result, 1)
+proc load_String_proc =
+  var proc_name: StringName
+  proc_name = init_StringName("casecmp_to")
+  String_casecmpTo = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 2920860731)
+  proc_name = init_StringName("nocasecmp_to")
+  String_nocasecmpTo = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 2920860731)
+  proc_name = init_StringName("naturalcasecmp_to")
+  String_naturalcasecmpTo = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 2920860731)
+  proc_name = init_StringName("naturalnocasecmp_to")
+  String_naturalnocasecmpTo = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 2920860731)
+  proc_name = init_StringName("length")
+  String_length = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3173160232)
+  proc_name = init_StringName("substr")
+  String_substr = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 787537301)
+  proc_name = init_StringName("get_slice")
+  String_getSlice = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3535100402)
+  proc_name = init_StringName("get_slicec")
+  String_getSlicec = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 787537301)
+  proc_name = init_StringName("get_slice_count")
+  String_getSliceCount = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 2920860731)
+  proc_name = init_StringName("find")
+  String_find = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 1760645412)
+  proc_name = init_StringName("count")
+  String_count = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 2343087891)
+  proc_name = init_StringName("countn")
+  String_countn = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 2343087891)
+  proc_name = init_StringName("findn")
+  String_findn = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 1760645412)
+  proc_name = init_StringName("rfind")
+  String_rfind = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 1760645412)
+  proc_name = init_StringName("rfindn")
+  String_rfindn = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 1760645412)
+  proc_name = init_StringName("match")
+  String_match = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 2566493496)
+  proc_name = init_StringName("matchn")
+  String_matchn = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 2566493496)
+  proc_name = init_StringName("begins_with")
+  String_beginsWith = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 2566493496)
+  proc_name = init_StringName("ends_with")
+  String_endsWith = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 2566493496)
+  proc_name = init_StringName("is_subsequence_of")
+  String_isSubsequenceOf = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 2566493496)
+  proc_name = init_StringName("is_subsequence_ofn")
+  String_isSubsequenceOfn = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 2566493496)
+  proc_name = init_StringName("bigrams")
+  String_bigrams = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 747180633)
+  proc_name = init_StringName("similarity")
+  String_similarity = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 2697460964)
+  proc_name = init_StringName("format")
+  String_format = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3212199029)
+  proc_name = init_StringName("replace")
+  String_replace = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 1340436205)
+  proc_name = init_StringName("replacen")
+  String_replacen = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 1340436205)
+  proc_name = init_StringName("repeat")
+  String_repeat = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 2162347432)
+  proc_name = init_StringName("insert")
+  String_insert = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 248737229)
+  proc_name = init_StringName("erase")
+  String_erase = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 787537301)
+  proc_name = init_StringName("capitalize")
+  String_capitalize = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3942272618)
+  proc_name = init_StringName("to_camel_case")
+  String_toCamelCase = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3942272618)
+  proc_name = init_StringName("to_pascal_case")
+  String_toPascalCase = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3942272618)
+  proc_name = init_StringName("to_snake_case")
+  String_toSnakeCase = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3942272618)
+  proc_name = init_StringName("split")
+  String_split = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 1252735785)
+  proc_name = init_StringName("rsplit")
+  String_rsplit = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 1252735785)
+  proc_name = init_StringName("split_floats")
+  String_splitFloats = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 2092079095)
+  proc_name = init_StringName("join")
+  String_join = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3595973238)
+  proc_name = init_StringName("to_upper")
+  String_toUpper = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3942272618)
+  proc_name = init_StringName("to_lower")
+  String_toLower = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3942272618)
+  proc_name = init_StringName("left")
+  String_left = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 2162347432)
+  proc_name = init_StringName("right")
+  String_right = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 2162347432)
+  proc_name = init_StringName("strip_edges")
+  String_stripEdges = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 907855311)
+  proc_name = init_StringName("strip_escapes")
+  String_stripEscapes = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3942272618)
+  proc_name = init_StringName("lstrip")
+  String_lstrip = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3134094431)
+  proc_name = init_StringName("rstrip")
+  String_rstrip = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3134094431)
+  proc_name = init_StringName("get_extension")
+  String_getExtension = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3942272618)
+  proc_name = init_StringName("get_basename")
+  String_getBasename = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3942272618)
+  proc_name = init_StringName("path_join")
+  String_pathJoin = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3134094431)
+  proc_name = init_StringName("unicode_at")
+  String_unicodeAt = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 4103005248)
+  proc_name = init_StringName("indent")
+  String_indent = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3134094431)
+  proc_name = init_StringName("dedent")
+  String_dedent = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3942272618)
+  proc_name = init_StringName("hash")
+  String_hash = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3173160232)
+  proc_name = init_StringName("md5_text")
+  String_md5Text = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3942272618)
+  proc_name = init_StringName("sha1_text")
+  String_sha1Text = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3942272618)
+  proc_name = init_StringName("sha256_text")
+  String_sha256Text = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3942272618)
+  proc_name = init_StringName("md5_buffer")
+  String_md5Buffer = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 247621236)
+  proc_name = init_StringName("sha1_buffer")
+  String_sha1Buffer = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 247621236)
+  proc_name = init_StringName("sha256_buffer")
+  String_sha256Buffer = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 247621236)
+  proc_name = init_StringName("is_empty")
+  String_isEmpty = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3918633141)
+  proc_name = init_StringName("contains")
+  String_contains = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 2566493496)
+  proc_name = init_StringName("is_absolute_path")
+  String_isAbsolutePath = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3918633141)
+  proc_name = init_StringName("is_relative_path")
+  String_isRelativePath = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3918633141)
+  proc_name = init_StringName("simplify_path")
+  String_simplifyPath = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3942272618)
+  proc_name = init_StringName("get_base_dir")
+  String_getBaseDir = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3942272618)
+  proc_name = init_StringName("get_file")
+  String_getFile = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3942272618)
+  proc_name = init_StringName("xml_escape")
+  String_xmlEscape = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3429816538)
+  proc_name = init_StringName("xml_unescape")
+  String_xmlUnescape = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3942272618)
+  proc_name = init_StringName("uri_encode")
+  String_uriEncode = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3942272618)
+  proc_name = init_StringName("uri_decode")
+  String_uriDecode = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3942272618)
+  proc_name = init_StringName("c_escape")
+  String_cEscape = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3942272618)
+  proc_name = init_StringName("c_unescape")
+  String_cUnescape = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3942272618)
+  proc_name = init_StringName("json_escape")
+  String_jsonEscape = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3942272618)
+  proc_name = init_StringName("validate_node_name")
+  String_validateNodeName = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3942272618)
+  proc_name = init_StringName("validate_filename")
+  String_validateFilename = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3942272618)
+  proc_name = init_StringName("is_valid_identifier")
+  String_isValidIdentifier = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3918633141)
+  proc_name = init_StringName("is_valid_int")
+  String_isValidInt = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3918633141)
+  proc_name = init_StringName("is_valid_float")
+  String_isValidFloat = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3918633141)
+  proc_name = init_StringName("is_valid_hex_number")
+  String_isValidHexNumber = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 593672999)
+  proc_name = init_StringName("is_valid_html_color")
+  String_isValidHtmlColor = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3918633141)
+  proc_name = init_StringName("is_valid_ip_address")
+  String_isValidIpAddress = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3918633141)
+  proc_name = init_StringName("is_valid_filename")
+  String_isValidFilename = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3918633141)
+  proc_name = init_StringName("to_int")
+  String_toInt = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3173160232)
+  proc_name = init_StringName("to_float")
+  String_toFloat = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 466405837)
+  proc_name = init_StringName("hex_to_int")
+  String_hexToInt = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3173160232)
+  proc_name = init_StringName("bin_to_int")
+  String_binToInt = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3173160232)
+  proc_name = init_StringName("lpad")
+  String_lpad = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 248737229)
+  proc_name = init_StringName("rpad")
+  String_rpad = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 248737229)
+  proc_name = init_StringName("pad_decimals")
+  String_padDecimals = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 2162347432)
+  proc_name = init_StringName("pad_zeros")
+  String_padZeros = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 2162347432)
+  proc_name = init_StringName("trim_prefix")
+  String_trimPrefix = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3134094431)
+  proc_name = init_StringName("trim_suffix")
+  String_trimSuffix = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 3134094431)
+  proc_name = init_StringName("to_ascii_buffer")
+  String_toAsciiBuffer = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 247621236)
+  proc_name = init_StringName("to_utf8_buffer")
+  String_toUtf8Buffer = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 247621236)
+  proc_name = init_StringName("to_utf16_buffer")
+  String_toUtf16Buffer = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 247621236)
+  proc_name = init_StringName("to_utf32_buffer")
+  String_toUtf32Buffer = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 247621236)
+  proc_name = init_StringName("hex_decode")
+  String_hexDecode = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 247621236)
+  proc_name = init_StringName("to_wchar_buffer")
+  String_toWcharBuffer = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 247621236)
+  proc_name = init_StringName("num_scientific")
+  String_numScientific = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 2710373411)
+  proc_name = init_StringName("num")
+  String_num = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 1555901022)
+  proc_name = init_StringName("num_int64")
+  String_numInt64 = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 2111271071)
+  proc_name = init_StringName("num_uint64")
+  String_numUint64 = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 2111271071)
+  proc_name = init_StringName("chr")
+  String_chr = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 897497541)
+  proc_name = init_StringName("humanize_size")
+  String_humanizeSize = interface_Variant_getPtrBuiltinMethod(variantType String, addr proc_name, 897497541)
 var Equal_String_Variant: PtrOperatorEvaluator
 var NotEqual_String_Variant: PtrOperatorEvaluator
 var Module_String_Variant: PtrOperatorEvaluator
@@ -286,4 +701,3 @@ proc load_String_op =
 proc load_String_allmethod* =
   load_String_op()
   load_String_proc()
-  load_String_sproc()

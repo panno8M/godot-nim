@@ -135,16 +135,42 @@ proc prerender_virtual*(self: JsonMethod; self_type: SelfType): GodotProcSt =
   )
   result.children.add "(discard)"
 
-proc prerender*(self: JsonMethod; self_type: SelfType): GodotProcSt =
-  result = GodotProcSt(
+proc prerender_variantMethod*(self: JsonMethod; self_type: SelfType, ignore: IgnoreConf): tuple[procdef: GodotProcSt; container, load: Statement] =
+  result.procdef = GodotProcSt(
     kind: npkProc,
     name: self.name >!> Snake,
     native_name: self.name,
     self: self_type,
     args: self.get_args(),
     result: self.get_return(),
-    pragmas: @[&"loadfrom(\"{self.name}\", {get self.hash})"],
   )
+  let container = fmt "{self_type.name}_{result.procdef.name.replace(\"`\", \"\")}"
+  if ignore.procedure:
+    if container notin ignore.procedure_white:
+      result.procdef = nil; return
+  result.container = &"var {container}: PtrBuiltinMethod"
+  result.load = +$$..ParagraphSt():
+    &"proc_name = init_StringName(\"{self.name}\")"
+    &"{container} = interface_Variant_getPtrBuiltinMethod(variantType {self_type.name}, addr proc_name, {get self.hash})"
+
+  let argArr = ParagraphSt()
+  if result.procdef.args.len != 0:
+    let arrdef = result.procdef.args.mapIt(&"cast[pointer](addr {it.name})").join(", ")
+    discard +$$..argArr:
+      &"let argArr = [{arrdef}]"
+
+  let p_self =
+    if self_type.isStatic: "nil"
+    else: &"addr {self_type.argname}"
+  let p_args =
+    if result.procdef.args.len == 0: "nil"
+    else: "addr argArr[0]"
+  let p_result =
+    if result.procdef.result.isNone: "nil"
+    else: "addr result"
+  discard +$$..result.procdef:
+    argArr
+    &"{container}({p_self}, {p_args}, {p_result}, {result.procdef.args.len})"
 
 
 method render*(self: GodotVirtualmethods; cfg: RenderingConfig): seq[string] =

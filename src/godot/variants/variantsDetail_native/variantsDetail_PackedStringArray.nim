@@ -7,29 +7,120 @@ import ./../../helper/variantDefiner
 # type PackedStringArray* = object
 #   self.json.is_keyed=false
 #   self.json.indexing_return_type=some("String")
-
-PackedStringArray.procedures(loader= load_PackedStringArray_proc):
-  proc size*(self: PackedStringArray): Int {.loadfrom("size", 3173160232).}
-  proc isEmpty*(self: PackedStringArray): Bool {.loadfrom("is_empty", 3918633141).}
-  proc set*(self: PackedStringArray; index: Int; value: String) {.loadfrom("set", 725585539).}
-  proc pushBack*(self: PackedStringArray; value: String): Bool {.loadfrom("push_back", 816187996).}
-  proc append*(self: PackedStringArray; value: String): Bool {.loadfrom("append", 816187996).}
-  proc appendArray*(self: PackedStringArray; array: PackedStringArray) {.loadfrom("append_array", 1120103966).}
-  proc removeAt*(self: PackedStringArray; index: Int) {.loadfrom("remove_at", 2823966027).}
-  proc insert*(self: PackedStringArray; atIndex: Int; value: String): Int {.loadfrom("insert", 2432393153).}
-  proc fill*(self: PackedStringArray; value: String) {.loadfrom("fill", 3174917410).}
-  proc resize*(self: PackedStringArray; newSize: Int): Int {.loadfrom("resize", 848867239).}
-  proc clear*(self: PackedStringArray) {.loadfrom("clear", 3218959716).}
-  proc has*(self: PackedStringArray; value: String): Bool {.loadfrom("has", 2566493496).}
-  proc reverse*(self: PackedStringArray) {.loadfrom("reverse", 3218959716).}
-  proc slice*(self: PackedStringArray; begin: Int; `end`: Int = 2147483647): PackedStringArray {.loadfrom("slice", 2094601407).}
-  proc toByteArray*(self: PackedStringArray): PackedByteArray {.loadfrom("to_byte_array", 247621236).}
-  proc sort*(self: PackedStringArray) {.loadfrom("sort", 3218959716).}
-  proc bsearch*(self: PackedStringArray; value: String; before: Bool = true): Int {.loadfrom("bsearch", 328976671).}
-  proc duplicate*(self: PackedStringArray): PackedStringArray {.loadfrom("duplicate", 2991231410).}
-  proc find*(self: PackedStringArray; value: String; `from`: Int = 0): Int {.loadfrom("find", 1760645412).}
-  proc rfind*(self: PackedStringArray; value: String; `from`: Int = -1): Int {.loadfrom("rfind", 1760645412).}
-  proc count*(self: PackedStringArray; value: String): Int {.loadfrom("count", 2920860731).}
+var PackedStringArray_size: PtrBuiltinMethod
+var PackedStringArray_isEmpty: PtrBuiltinMethod
+var PackedStringArray_set: PtrBuiltinMethod
+var PackedStringArray_pushBack: PtrBuiltinMethod
+var PackedStringArray_append: PtrBuiltinMethod
+var PackedStringArray_appendArray: PtrBuiltinMethod
+var PackedStringArray_removeAt: PtrBuiltinMethod
+var PackedStringArray_insert: PtrBuiltinMethod
+var PackedStringArray_fill: PtrBuiltinMethod
+var PackedStringArray_resize: PtrBuiltinMethod
+var PackedStringArray_clear: PtrBuiltinMethod
+var PackedStringArray_has: PtrBuiltinMethod
+var PackedStringArray_reverse: PtrBuiltinMethod
+var PackedStringArray_slice: PtrBuiltinMethod
+var PackedStringArray_toByteArray: PtrBuiltinMethod
+var PackedStringArray_sort: PtrBuiltinMethod
+var PackedStringArray_bsearch: PtrBuiltinMethod
+var PackedStringArray_duplicate: PtrBuiltinMethod
+var PackedStringArray_find: PtrBuiltinMethod
+var PackedStringArray_rfind: PtrBuiltinMethod
+var PackedStringArray_count: PtrBuiltinMethod
+proc size*(self: PackedStringArray): Int = PackedStringArray_size(addr self, nil, addr result, 0)
+proc isEmpty*(self: PackedStringArray): Bool = PackedStringArray_isEmpty(addr self, nil, addr result, 0)
+proc set*(self: PackedStringArray; index: Int; value: String) =
+  let argArr = [cast[pointer](addr index), cast[pointer](addr value)]
+  PackedStringArray_set(addr self, addr argArr[0], nil, 2)
+proc pushBack*(self: PackedStringArray; value: String): Bool =
+  let argArr = [cast[pointer](addr value)]
+  PackedStringArray_pushBack(addr self, addr argArr[0], addr result, 1)
+proc append*(self: PackedStringArray; value: String): Bool =
+  let argArr = [cast[pointer](addr value)]
+  PackedStringArray_append(addr self, addr argArr[0], addr result, 1)
+proc appendArray*(self: PackedStringArray; array: PackedStringArray) =
+  let argArr = [cast[pointer](addr array)]
+  PackedStringArray_appendArray(addr self, addr argArr[0], nil, 1)
+proc removeAt*(self: PackedStringArray; index: Int) =
+  let argArr = [cast[pointer](addr index)]
+  PackedStringArray_removeAt(addr self, addr argArr[0], nil, 1)
+proc insert*(self: PackedStringArray; atIndex: Int; value: String): Int =
+  let argArr = [cast[pointer](addr atIndex), cast[pointer](addr value)]
+  PackedStringArray_insert(addr self, addr argArr[0], addr result, 2)
+proc fill*(self: PackedStringArray; value: String) =
+  let argArr = [cast[pointer](addr value)]
+  PackedStringArray_fill(addr self, addr argArr[0], nil, 1)
+proc resize*(self: PackedStringArray; newSize: Int): Int =
+  let argArr = [cast[pointer](addr newSize)]
+  PackedStringArray_resize(addr self, addr argArr[0], addr result, 1)
+proc clear*(self: PackedStringArray) = PackedStringArray_clear(addr self, nil, nil, 0)
+proc has*(self: PackedStringArray; value: String): Bool =
+  let argArr = [cast[pointer](addr value)]
+  PackedStringArray_has(addr self, addr argArr[0], addr result, 1)
+proc reverse*(self: PackedStringArray) = PackedStringArray_reverse(addr self, nil, nil, 0)
+proc slice*(self: PackedStringArray; begin: Int; `end`: Int = 2147483647): PackedStringArray =
+  let argArr = [cast[pointer](addr begin), cast[pointer](addr `end`)]
+  PackedStringArray_slice(addr self, addr argArr[0], addr result, 2)
+proc toByteArray*(self: PackedStringArray): PackedByteArray = PackedStringArray_toByteArray(addr self, nil, addr result, 0)
+proc sort*(self: PackedStringArray) = PackedStringArray_sort(addr self, nil, nil, 0)
+proc bsearch*(self: PackedStringArray; value: String; before: Bool = true): Int =
+  let argArr = [cast[pointer](addr value), cast[pointer](addr before)]
+  PackedStringArray_bsearch(addr self, addr argArr[0], addr result, 2)
+proc duplicate*(self: PackedStringArray): PackedStringArray = PackedStringArray_duplicate(addr self, nil, addr result, 0)
+proc find*(self: PackedStringArray; value: String; `from`: Int = 0): Int =
+  let argArr = [cast[pointer](addr value), cast[pointer](addr `from`)]
+  PackedStringArray_find(addr self, addr argArr[0], addr result, 2)
+proc rfind*(self: PackedStringArray; value: String; `from`: Int = -1): Int =
+  let argArr = [cast[pointer](addr value), cast[pointer](addr `from`)]
+  PackedStringArray_rfind(addr self, addr argArr[0], addr result, 2)
+proc count*(self: PackedStringArray; value: String): Int =
+  let argArr = [cast[pointer](addr value)]
+  PackedStringArray_count(addr self, addr argArr[0], addr result, 1)
+proc load_PackedStringArray_proc =
+  var proc_name: StringName
+  proc_name = init_StringName("size")
+  PackedStringArray_size = interface_Variant_getPtrBuiltinMethod(variantType PackedStringArray, addr proc_name, 3173160232)
+  proc_name = init_StringName("is_empty")
+  PackedStringArray_isEmpty = interface_Variant_getPtrBuiltinMethod(variantType PackedStringArray, addr proc_name, 3918633141)
+  proc_name = init_StringName("set")
+  PackedStringArray_set = interface_Variant_getPtrBuiltinMethod(variantType PackedStringArray, addr proc_name, 725585539)
+  proc_name = init_StringName("push_back")
+  PackedStringArray_pushBack = interface_Variant_getPtrBuiltinMethod(variantType PackedStringArray, addr proc_name, 816187996)
+  proc_name = init_StringName("append")
+  PackedStringArray_append = interface_Variant_getPtrBuiltinMethod(variantType PackedStringArray, addr proc_name, 816187996)
+  proc_name = init_StringName("append_array")
+  PackedStringArray_appendArray = interface_Variant_getPtrBuiltinMethod(variantType PackedStringArray, addr proc_name, 1120103966)
+  proc_name = init_StringName("remove_at")
+  PackedStringArray_removeAt = interface_Variant_getPtrBuiltinMethod(variantType PackedStringArray, addr proc_name, 2823966027)
+  proc_name = init_StringName("insert")
+  PackedStringArray_insert = interface_Variant_getPtrBuiltinMethod(variantType PackedStringArray, addr proc_name, 2432393153)
+  proc_name = init_StringName("fill")
+  PackedStringArray_fill = interface_Variant_getPtrBuiltinMethod(variantType PackedStringArray, addr proc_name, 3174917410)
+  proc_name = init_StringName("resize")
+  PackedStringArray_resize = interface_Variant_getPtrBuiltinMethod(variantType PackedStringArray, addr proc_name, 848867239)
+  proc_name = init_StringName("clear")
+  PackedStringArray_clear = interface_Variant_getPtrBuiltinMethod(variantType PackedStringArray, addr proc_name, 3218959716)
+  proc_name = init_StringName("has")
+  PackedStringArray_has = interface_Variant_getPtrBuiltinMethod(variantType PackedStringArray, addr proc_name, 2566493496)
+  proc_name = init_StringName("reverse")
+  PackedStringArray_reverse = interface_Variant_getPtrBuiltinMethod(variantType PackedStringArray, addr proc_name, 3218959716)
+  proc_name = init_StringName("slice")
+  PackedStringArray_slice = interface_Variant_getPtrBuiltinMethod(variantType PackedStringArray, addr proc_name, 2094601407)
+  proc_name = init_StringName("to_byte_array")
+  PackedStringArray_toByteArray = interface_Variant_getPtrBuiltinMethod(variantType PackedStringArray, addr proc_name, 247621236)
+  proc_name = init_StringName("sort")
+  PackedStringArray_sort = interface_Variant_getPtrBuiltinMethod(variantType PackedStringArray, addr proc_name, 3218959716)
+  proc_name = init_StringName("bsearch")
+  PackedStringArray_bsearch = interface_Variant_getPtrBuiltinMethod(variantType PackedStringArray, addr proc_name, 328976671)
+  proc_name = init_StringName("duplicate")
+  PackedStringArray_duplicate = interface_Variant_getPtrBuiltinMethod(variantType PackedStringArray, addr proc_name, 2991231410)
+  proc_name = init_StringName("find")
+  PackedStringArray_find = interface_Variant_getPtrBuiltinMethod(variantType PackedStringArray, addr proc_name, 1760645412)
+  proc_name = init_StringName("rfind")
+  PackedStringArray_rfind = interface_Variant_getPtrBuiltinMethod(variantType PackedStringArray, addr proc_name, 1760645412)
+  proc_name = init_StringName("count")
+  PackedStringArray_count = interface_Variant_getPtrBuiltinMethod(variantType PackedStringArray, addr proc_name, 2920860731)
 var Equal_PackedStringArray_Variant: PtrOperatorEvaluator
 var NotEqual_PackedStringArray_Variant: PtrOperatorEvaluator
 var Not_PackedStringArray: PtrOperatorEvaluator

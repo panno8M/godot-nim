@@ -8,29 +8,102 @@ const Quaternion_Identity*: Quaternion = init_Quaternion(0, 0, 0, 1)
 # type Quaternion* = object
 #   self.json.is_keyed=false
 #   self.json.indexing_return_type=some("float")
-
-Quaternion.procedures(loader= load_Quaternion_proc):
-  proc length*(self: Quaternion): Float {.loadfrom("length", 466405837).}
-  proc lengthSquared*(self: Quaternion): Float {.loadfrom("length_squared", 466405837).}
-  proc normalized*(self: Quaternion): Quaternion {.loadfrom("normalized", 4274879941).}
-  proc isNormalized*(self: Quaternion): Bool {.loadfrom("is_normalized", 3918633141).}
-  proc isEqualApprox*(self: Quaternion; to: Quaternion): Bool {.loadfrom("is_equal_approx", 1682156903).}
-  proc isFinite*(self: Quaternion): Bool {.loadfrom("is_finite", 3918633141).}
-  proc inverse*(self: Quaternion): Quaternion {.loadfrom("inverse", 4274879941).}
-  proc log*(self: Quaternion): Quaternion {.loadfrom("log", 4274879941).}
-  proc exp*(self: Quaternion): Quaternion {.loadfrom("exp", 4274879941).}
-  proc angleTo*(self: Quaternion; to: Quaternion): Float {.loadfrom("angle_to", 3244682419).}
-  proc dot*(self: Quaternion; with: Quaternion): Float {.loadfrom("dot", 3244682419).}
-  proc slerp*(self: Quaternion; to: Quaternion; weight: Float): Quaternion {.loadfrom("slerp", 1773590316).}
-  proc slerpni*(self: Quaternion; to: Quaternion; weight: Float): Quaternion {.loadfrom("slerpni", 1773590316).}
-  proc sphericalCubicInterpolate*(self: Quaternion; b: Quaternion; preA: Quaternion; postB: Quaternion; weight: Float): Quaternion {.loadfrom("spherical_cubic_interpolate", 2150967576).}
-  proc sphericalCubicInterpolateInTime*(self: Quaternion; b: Quaternion; preA: Quaternion; postB: Quaternion; weight: Float; bT: Float; preAT: Float; postBT: Float): Quaternion {.loadfrom("spherical_cubic_interpolate_in_time", 1436023539).}
-  proc getEuler*(self: Quaternion; order: Int = 2): Vector3 {.loadfrom("get_euler", 1394941017).}
-  proc getAxis*(self: Quaternion): Vector3 {.loadfrom("get_axis", 1776574132).}
-  proc getAngle*(self: Quaternion): Float {.loadfrom("get_angle", 466405837).}
-
-Quaternion.procedures(loader= load_Quaternion_sproc):
-  proc fromEuler*(_: typedesc[Quaternion]; euler: Vector3): Quaternion {.loadfrom("from_euler", 4053467903).}
+var Quaternion_length: PtrBuiltinMethod
+var Quaternion_lengthSquared: PtrBuiltinMethod
+var Quaternion_normalized: PtrBuiltinMethod
+var Quaternion_isNormalized: PtrBuiltinMethod
+var Quaternion_isEqualApprox: PtrBuiltinMethod
+var Quaternion_isFinite: PtrBuiltinMethod
+var Quaternion_inverse: PtrBuiltinMethod
+var Quaternion_log: PtrBuiltinMethod
+var Quaternion_exp: PtrBuiltinMethod
+var Quaternion_angleTo: PtrBuiltinMethod
+var Quaternion_dot: PtrBuiltinMethod
+var Quaternion_slerp: PtrBuiltinMethod
+var Quaternion_slerpni: PtrBuiltinMethod
+var Quaternion_sphericalCubicInterpolate: PtrBuiltinMethod
+var Quaternion_sphericalCubicInterpolateInTime: PtrBuiltinMethod
+var Quaternion_getEuler: PtrBuiltinMethod
+var Quaternion_fromEuler: PtrBuiltinMethod
+var Quaternion_getAxis: PtrBuiltinMethod
+var Quaternion_getAngle: PtrBuiltinMethod
+proc length*(self: Quaternion): Float = Quaternion_length(addr self, nil, addr result, 0)
+proc lengthSquared*(self: Quaternion): Float = Quaternion_lengthSquared(addr self, nil, addr result, 0)
+proc normalized*(self: Quaternion): Quaternion = Quaternion_normalized(addr self, nil, addr result, 0)
+proc isNormalized*(self: Quaternion): Bool = Quaternion_isNormalized(addr self, nil, addr result, 0)
+proc isEqualApprox*(self: Quaternion; to: Quaternion): Bool =
+  let argArr = [cast[pointer](addr to)]
+  Quaternion_isEqualApprox(addr self, addr argArr[0], addr result, 1)
+proc isFinite*(self: Quaternion): Bool = Quaternion_isFinite(addr self, nil, addr result, 0)
+proc inverse*(self: Quaternion): Quaternion = Quaternion_inverse(addr self, nil, addr result, 0)
+proc log*(self: Quaternion): Quaternion = Quaternion_log(addr self, nil, addr result, 0)
+proc exp*(self: Quaternion): Quaternion = Quaternion_exp(addr self, nil, addr result, 0)
+proc angleTo*(self: Quaternion; to: Quaternion): Float =
+  let argArr = [cast[pointer](addr to)]
+  Quaternion_angleTo(addr self, addr argArr[0], addr result, 1)
+proc dot*(self: Quaternion; with: Quaternion): Float =
+  let argArr = [cast[pointer](addr with)]
+  Quaternion_dot(addr self, addr argArr[0], addr result, 1)
+proc slerp*(self: Quaternion; to: Quaternion; weight: Float): Quaternion =
+  let argArr = [cast[pointer](addr to), cast[pointer](addr weight)]
+  Quaternion_slerp(addr self, addr argArr[0], addr result, 2)
+proc slerpni*(self: Quaternion; to: Quaternion; weight: Float): Quaternion =
+  let argArr = [cast[pointer](addr to), cast[pointer](addr weight)]
+  Quaternion_slerpni(addr self, addr argArr[0], addr result, 2)
+proc sphericalCubicInterpolate*(self: Quaternion; b: Quaternion; preA: Quaternion; postB: Quaternion; weight: Float): Quaternion =
+  let argArr = [cast[pointer](addr b), cast[pointer](addr preA), cast[pointer](addr postB), cast[pointer](addr weight)]
+  Quaternion_sphericalCubicInterpolate(addr self, addr argArr[0], addr result, 4)
+proc sphericalCubicInterpolateInTime*(self: Quaternion; b: Quaternion; preA: Quaternion; postB: Quaternion; weight: Float; bT: Float; preAT: Float; postBT: Float): Quaternion =
+  let argArr = [cast[pointer](addr b), cast[pointer](addr preA), cast[pointer](addr postB), cast[pointer](addr weight), cast[pointer](addr bT), cast[pointer](addr preAT), cast[pointer](addr postBT)]
+  Quaternion_sphericalCubicInterpolateInTime(addr self, addr argArr[0], addr result, 7)
+proc getEuler*(self: Quaternion; order: Int = 2): Vector3 =
+  let argArr = [cast[pointer](addr order)]
+  Quaternion_getEuler(addr self, addr argArr[0], addr result, 1)
+proc fromEuler*(_: typedesc[Quaternion]; euler: Vector3): Quaternion =
+  let argArr = [cast[pointer](addr euler)]
+  Quaternion_fromEuler(nil, addr argArr[0], addr result, 1)
+proc getAxis*(self: Quaternion): Vector3 = Quaternion_getAxis(addr self, nil, addr result, 0)
+proc getAngle*(self: Quaternion): Float = Quaternion_getAngle(addr self, nil, addr result, 0)
+proc load_Quaternion_proc =
+  var proc_name: StringName
+  proc_name = init_StringName("length")
+  Quaternion_length = interface_Variant_getPtrBuiltinMethod(variantType Quaternion, addr proc_name, 466405837)
+  proc_name = init_StringName("length_squared")
+  Quaternion_lengthSquared = interface_Variant_getPtrBuiltinMethod(variantType Quaternion, addr proc_name, 466405837)
+  proc_name = init_StringName("normalized")
+  Quaternion_normalized = interface_Variant_getPtrBuiltinMethod(variantType Quaternion, addr proc_name, 4274879941)
+  proc_name = init_StringName("is_normalized")
+  Quaternion_isNormalized = interface_Variant_getPtrBuiltinMethod(variantType Quaternion, addr proc_name, 3918633141)
+  proc_name = init_StringName("is_equal_approx")
+  Quaternion_isEqualApprox = interface_Variant_getPtrBuiltinMethod(variantType Quaternion, addr proc_name, 1682156903)
+  proc_name = init_StringName("is_finite")
+  Quaternion_isFinite = interface_Variant_getPtrBuiltinMethod(variantType Quaternion, addr proc_name, 3918633141)
+  proc_name = init_StringName("inverse")
+  Quaternion_inverse = interface_Variant_getPtrBuiltinMethod(variantType Quaternion, addr proc_name, 4274879941)
+  proc_name = init_StringName("log")
+  Quaternion_log = interface_Variant_getPtrBuiltinMethod(variantType Quaternion, addr proc_name, 4274879941)
+  proc_name = init_StringName("exp")
+  Quaternion_exp = interface_Variant_getPtrBuiltinMethod(variantType Quaternion, addr proc_name, 4274879941)
+  proc_name = init_StringName("angle_to")
+  Quaternion_angleTo = interface_Variant_getPtrBuiltinMethod(variantType Quaternion, addr proc_name, 3244682419)
+  proc_name = init_StringName("dot")
+  Quaternion_dot = interface_Variant_getPtrBuiltinMethod(variantType Quaternion, addr proc_name, 3244682419)
+  proc_name = init_StringName("slerp")
+  Quaternion_slerp = interface_Variant_getPtrBuiltinMethod(variantType Quaternion, addr proc_name, 1773590316)
+  proc_name = init_StringName("slerpni")
+  Quaternion_slerpni = interface_Variant_getPtrBuiltinMethod(variantType Quaternion, addr proc_name, 1773590316)
+  proc_name = init_StringName("spherical_cubic_interpolate")
+  Quaternion_sphericalCubicInterpolate = interface_Variant_getPtrBuiltinMethod(variantType Quaternion, addr proc_name, 2150967576)
+  proc_name = init_StringName("spherical_cubic_interpolate_in_time")
+  Quaternion_sphericalCubicInterpolateInTime = interface_Variant_getPtrBuiltinMethod(variantType Quaternion, addr proc_name, 1436023539)
+  proc_name = init_StringName("get_euler")
+  Quaternion_getEuler = interface_Variant_getPtrBuiltinMethod(variantType Quaternion, addr proc_name, 1394941017)
+  proc_name = init_StringName("from_euler")
+  Quaternion_fromEuler = interface_Variant_getPtrBuiltinMethod(variantType Quaternion, addr proc_name, 4053467903)
+  proc_name = init_StringName("get_axis")
+  Quaternion_getAxis = interface_Variant_getPtrBuiltinMethod(variantType Quaternion, addr proc_name, 1776574132)
+  proc_name = init_StringName("get_angle")
+  Quaternion_getAngle = interface_Variant_getPtrBuiltinMethod(variantType Quaternion, addr proc_name, 466405837)
 var Equal_Quaternion_Variant: PtrOperatorEvaluator
 var NotEqual_Quaternion_Variant: PtrOperatorEvaluator
 var Negate_Quaternion: PtrOperatorEvaluator
@@ -86,4 +159,3 @@ proc load_Quaternion_op =
 proc load_Quaternion_allmethod* =
   load_Quaternion_op()
   load_Quaternion_proc()
-  load_Quaternion_sproc()

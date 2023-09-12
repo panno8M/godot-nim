@@ -66,7 +66,6 @@ discard variantLoader
   .incl(
     variantsConstr_native,
     variantsDetail_native,
-    variantsDetail_custom,
   )
 discard variantsDetail_native
   .exportModules_allowed

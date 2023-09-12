@@ -7,29 +7,120 @@ import ./../../helper/variantDefiner
 # type PackedColorArray* = object
 #   self.json.is_keyed=false
 #   self.json.indexing_return_type=some("Color")
-
-PackedColorArray.procedures(loader= load_PackedColorArray_proc):
-  proc size*(self: PackedColorArray): Int {.loadfrom("size", 3173160232).}
-  proc isEmpty*(self: PackedColorArray): Bool {.loadfrom("is_empty", 3918633141).}
-  proc set*(self: PackedColorArray; index: Int; value: Color) {.loadfrom("set", 1444096570).}
-  proc pushBack*(self: PackedColorArray; value: Color): Bool {.loadfrom("push_back", 1007858200).}
-  proc append*(self: PackedColorArray; value: Color): Bool {.loadfrom("append", 1007858200).}
-  proc appendArray*(self: PackedColorArray; array: PackedColorArray) {.loadfrom("append_array", 798822497).}
-  proc removeAt*(self: PackedColorArray; index: Int) {.loadfrom("remove_at", 2823966027).}
-  proc insert*(self: PackedColorArray; atIndex: Int; value: Color): Int {.loadfrom("insert", 785289703).}
-  proc fill*(self: PackedColorArray; value: Color) {.loadfrom("fill", 3730314301).}
-  proc resize*(self: PackedColorArray; newSize: Int): Int {.loadfrom("resize", 848867239).}
-  proc clear*(self: PackedColorArray) {.loadfrom("clear", 3218959716).}
-  proc has*(self: PackedColorArray; value: Color): Bool {.loadfrom("has", 3167426256).}
-  proc reverse*(self: PackedColorArray) {.loadfrom("reverse", 3218959716).}
-  proc slice*(self: PackedColorArray; begin: Int; `end`: Int = 2147483647): PackedColorArray {.loadfrom("slice", 2451797139).}
-  proc toByteArray*(self: PackedColorArray): PackedByteArray {.loadfrom("to_byte_array", 247621236).}
-  proc sort*(self: PackedColorArray) {.loadfrom("sort", 3218959716).}
-  proc bsearch*(self: PackedColorArray; value: Color; before: Bool = true): Int {.loadfrom("bsearch", 314143821).}
-  proc duplicate*(self: PackedColorArray): PackedColorArray {.loadfrom("duplicate", 1011903421).}
-  proc find*(self: PackedColorArray; value: Color; `from`: Int = 0): Int {.loadfrom("find", 3156095363).}
-  proc rfind*(self: PackedColorArray; value: Color; `from`: Int = -1): Int {.loadfrom("rfind", 3156095363).}
-  proc count*(self: PackedColorArray; value: Color): Int {.loadfrom("count", 1682108616).}
+var PackedColorArray_size: PtrBuiltinMethod
+var PackedColorArray_isEmpty: PtrBuiltinMethod
+var PackedColorArray_set: PtrBuiltinMethod
+var PackedColorArray_pushBack: PtrBuiltinMethod
+var PackedColorArray_append: PtrBuiltinMethod
+var PackedColorArray_appendArray: PtrBuiltinMethod
+var PackedColorArray_removeAt: PtrBuiltinMethod
+var PackedColorArray_insert: PtrBuiltinMethod
+var PackedColorArray_fill: PtrBuiltinMethod
+var PackedColorArray_resize: PtrBuiltinMethod
+var PackedColorArray_clear: PtrBuiltinMethod
+var PackedColorArray_has: PtrBuiltinMethod
+var PackedColorArray_reverse: PtrBuiltinMethod
+var PackedColorArray_slice: PtrBuiltinMethod
+var PackedColorArray_toByteArray: PtrBuiltinMethod
+var PackedColorArray_sort: PtrBuiltinMethod
+var PackedColorArray_bsearch: PtrBuiltinMethod
+var PackedColorArray_duplicate: PtrBuiltinMethod
+var PackedColorArray_find: PtrBuiltinMethod
+var PackedColorArray_rfind: PtrBuiltinMethod
+var PackedColorArray_count: PtrBuiltinMethod
+proc size*(self: PackedColorArray): Int = PackedColorArray_size(addr self, nil, addr result, 0)
+proc isEmpty*(self: PackedColorArray): Bool = PackedColorArray_isEmpty(addr self, nil, addr result, 0)
+proc set*(self: PackedColorArray; index: Int; value: Color) =
+  let argArr = [cast[pointer](addr index), cast[pointer](addr value)]
+  PackedColorArray_set(addr self, addr argArr[0], nil, 2)
+proc pushBack*(self: PackedColorArray; value: Color): Bool =
+  let argArr = [cast[pointer](addr value)]
+  PackedColorArray_pushBack(addr self, addr argArr[0], addr result, 1)
+proc append*(self: PackedColorArray; value: Color): Bool =
+  let argArr = [cast[pointer](addr value)]
+  PackedColorArray_append(addr self, addr argArr[0], addr result, 1)
+proc appendArray*(self: PackedColorArray; array: PackedColorArray) =
+  let argArr = [cast[pointer](addr array)]
+  PackedColorArray_appendArray(addr self, addr argArr[0], nil, 1)
+proc removeAt*(self: PackedColorArray; index: Int) =
+  let argArr = [cast[pointer](addr index)]
+  PackedColorArray_removeAt(addr self, addr argArr[0], nil, 1)
+proc insert*(self: PackedColorArray; atIndex: Int; value: Color): Int =
+  let argArr = [cast[pointer](addr atIndex), cast[pointer](addr value)]
+  PackedColorArray_insert(addr self, addr argArr[0], addr result, 2)
+proc fill*(self: PackedColorArray; value: Color) =
+  let argArr = [cast[pointer](addr value)]
+  PackedColorArray_fill(addr self, addr argArr[0], nil, 1)
+proc resize*(self: PackedColorArray; newSize: Int): Int =
+  let argArr = [cast[pointer](addr newSize)]
+  PackedColorArray_resize(addr self, addr argArr[0], addr result, 1)
+proc clear*(self: PackedColorArray) = PackedColorArray_clear(addr self, nil, nil, 0)
+proc has*(self: PackedColorArray; value: Color): Bool =
+  let argArr = [cast[pointer](addr value)]
+  PackedColorArray_has(addr self, addr argArr[0], addr result, 1)
+proc reverse*(self: PackedColorArray) = PackedColorArray_reverse(addr self, nil, nil, 0)
+proc slice*(self: PackedColorArray; begin: Int; `end`: Int = 2147483647): PackedColorArray =
+  let argArr = [cast[pointer](addr begin), cast[pointer](addr `end`)]
+  PackedColorArray_slice(addr self, addr argArr[0], addr result, 2)
+proc toByteArray*(self: PackedColorArray): PackedByteArray = PackedColorArray_toByteArray(addr self, nil, addr result, 0)
+proc sort*(self: PackedColorArray) = PackedColorArray_sort(addr self, nil, nil, 0)
+proc bsearch*(self: PackedColorArray; value: Color; before: Bool = true): Int =
+  let argArr = [cast[pointer](addr value), cast[pointer](addr before)]
+  PackedColorArray_bsearch(addr self, addr argArr[0], addr result, 2)
+proc duplicate*(self: PackedColorArray): PackedColorArray = PackedColorArray_duplicate(addr self, nil, addr result, 0)
+proc find*(self: PackedColorArray; value: Color; `from`: Int = 0): Int =
+  let argArr = [cast[pointer](addr value), cast[pointer](addr `from`)]
+  PackedColorArray_find(addr self, addr argArr[0], addr result, 2)
+proc rfind*(self: PackedColorArray; value: Color; `from`: Int = -1): Int =
+  let argArr = [cast[pointer](addr value), cast[pointer](addr `from`)]
+  PackedColorArray_rfind(addr self, addr argArr[0], addr result, 2)
+proc count*(self: PackedColorArray; value: Color): Int =
+  let argArr = [cast[pointer](addr value)]
+  PackedColorArray_count(addr self, addr argArr[0], addr result, 1)
+proc load_PackedColorArray_proc =
+  var proc_name: StringName
+  proc_name = init_StringName("size")
+  PackedColorArray_size = interface_Variant_getPtrBuiltinMethod(variantType PackedColorArray, addr proc_name, 3173160232)
+  proc_name = init_StringName("is_empty")
+  PackedColorArray_isEmpty = interface_Variant_getPtrBuiltinMethod(variantType PackedColorArray, addr proc_name, 3918633141)
+  proc_name = init_StringName("set")
+  PackedColorArray_set = interface_Variant_getPtrBuiltinMethod(variantType PackedColorArray, addr proc_name, 1444096570)
+  proc_name = init_StringName("push_back")
+  PackedColorArray_pushBack = interface_Variant_getPtrBuiltinMethod(variantType PackedColorArray, addr proc_name, 1007858200)
+  proc_name = init_StringName("append")
+  PackedColorArray_append = interface_Variant_getPtrBuiltinMethod(variantType PackedColorArray, addr proc_name, 1007858200)
+  proc_name = init_StringName("append_array")
+  PackedColorArray_appendArray = interface_Variant_getPtrBuiltinMethod(variantType PackedColorArray, addr proc_name, 798822497)
+  proc_name = init_StringName("remove_at")
+  PackedColorArray_removeAt = interface_Variant_getPtrBuiltinMethod(variantType PackedColorArray, addr proc_name, 2823966027)
+  proc_name = init_StringName("insert")
+  PackedColorArray_insert = interface_Variant_getPtrBuiltinMethod(variantType PackedColorArray, addr proc_name, 785289703)
+  proc_name = init_StringName("fill")
+  PackedColorArray_fill = interface_Variant_getPtrBuiltinMethod(variantType PackedColorArray, addr proc_name, 3730314301)
+  proc_name = init_StringName("resize")
+  PackedColorArray_resize = interface_Variant_getPtrBuiltinMethod(variantType PackedColorArray, addr proc_name, 848867239)
+  proc_name = init_StringName("clear")
+  PackedColorArray_clear = interface_Variant_getPtrBuiltinMethod(variantType PackedColorArray, addr proc_name, 3218959716)
+  proc_name = init_StringName("has")
+  PackedColorArray_has = interface_Variant_getPtrBuiltinMethod(variantType PackedColorArray, addr proc_name, 3167426256)
+  proc_name = init_StringName("reverse")
+  PackedColorArray_reverse = interface_Variant_getPtrBuiltinMethod(variantType PackedColorArray, addr proc_name, 3218959716)
+  proc_name = init_StringName("slice")
+  PackedColorArray_slice = interface_Variant_getPtrBuiltinMethod(variantType PackedColorArray, addr proc_name, 2451797139)
+  proc_name = init_StringName("to_byte_array")
+  PackedColorArray_toByteArray = interface_Variant_getPtrBuiltinMethod(variantType PackedColorArray, addr proc_name, 247621236)
+  proc_name = init_StringName("sort")
+  PackedColorArray_sort = interface_Variant_getPtrBuiltinMethod(variantType PackedColorArray, addr proc_name, 3218959716)
+  proc_name = init_StringName("bsearch")
+  PackedColorArray_bsearch = interface_Variant_getPtrBuiltinMethod(variantType PackedColorArray, addr proc_name, 314143821)
+  proc_name = init_StringName("duplicate")
+  PackedColorArray_duplicate = interface_Variant_getPtrBuiltinMethod(variantType PackedColorArray, addr proc_name, 1011903421)
+  proc_name = init_StringName("find")
+  PackedColorArray_find = interface_Variant_getPtrBuiltinMethod(variantType PackedColorArray, addr proc_name, 3156095363)
+  proc_name = init_StringName("rfind")
+  PackedColorArray_rfind = interface_Variant_getPtrBuiltinMethod(variantType PackedColorArray, addr proc_name, 3156095363)
+  proc_name = init_StringName("count")
+  PackedColorArray_count = interface_Variant_getPtrBuiltinMethod(variantType PackedColorArray, addr proc_name, 1682108616)
 var Equal_PackedColorArray_Variant: PtrOperatorEvaluator
 var NotEqual_PackedColorArray_Variant: PtrOperatorEvaluator
 var Not_PackedColorArray: PtrOperatorEvaluator

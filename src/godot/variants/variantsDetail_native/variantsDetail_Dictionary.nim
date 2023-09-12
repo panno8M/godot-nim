@@ -7,23 +7,82 @@ import ./../../helper/variantDefiner
 # type Dictionary* = object
 #   self.json.is_keyed=true
 #   self.json.indexing_return_type=some("Variant")
-
-Dictionary.procedures(loader= load_Dictionary_proc):
-  proc size*(self: Dictionary): Int {.loadfrom("size", 3173160232).}
-  proc isEmpty*(self: Dictionary): Bool {.loadfrom("is_empty", 3918633141).}
-  proc clear*(self: Dictionary) {.loadfrom("clear", 3218959716).}
-  proc merge*(self: Dictionary; dictionary: Dictionary; overwrite: Bool = false) {.loadfrom("merge", 2079548978).}
-  proc has*(self: Dictionary; key: ptr Variant): Bool {.loadfrom("has", 3680194679).}
-  proc hasAll*(self: Dictionary; keys: Array): Bool {.loadfrom("has_all", 2988181878).}
-  proc findKey*(self: Dictionary; value: ptr Variant): Variant {.loadfrom("find_key", 1988825835).}
-  proc erase*(self: Dictionary; key: ptr Variant): Bool {.loadfrom("erase", 1776646889).}
-  proc hash*(self: Dictionary): Int {.loadfrom("hash", 3173160232).}
-  proc keys*(self: Dictionary): Array {.loadfrom("keys", 4144163970).}
-  proc values*(self: Dictionary): Array {.loadfrom("values", 4144163970).}
-  proc duplicate*(self: Dictionary; deep: Bool = false): Dictionary {.loadfrom("duplicate", 830099069).}
-  proc get*(self: Dictionary; key: ptr Variant; default: ptr Variant = nil): Variant {.loadfrom("get", 2205440559).}
-  proc makeReadOnly*(self: Dictionary) {.loadfrom("make_read_only", 3218959716).}
-  proc isReadOnly*(self: Dictionary): Bool {.loadfrom("is_read_only", 3918633141).}
+var Dictionary_size: PtrBuiltinMethod
+var Dictionary_isEmpty: PtrBuiltinMethod
+var Dictionary_clear: PtrBuiltinMethod
+var Dictionary_merge: PtrBuiltinMethod
+var Dictionary_has: PtrBuiltinMethod
+var Dictionary_hasAll: PtrBuiltinMethod
+var Dictionary_findKey: PtrBuiltinMethod
+var Dictionary_erase: PtrBuiltinMethod
+var Dictionary_hash: PtrBuiltinMethod
+var Dictionary_keys: PtrBuiltinMethod
+var Dictionary_values: PtrBuiltinMethod
+var Dictionary_duplicate: PtrBuiltinMethod
+var Dictionary_get: PtrBuiltinMethod
+var Dictionary_makeReadOnly: PtrBuiltinMethod
+var Dictionary_isReadOnly: PtrBuiltinMethod
+proc size*(self: Dictionary): Int = Dictionary_size(addr self, nil, addr result, 0)
+proc isEmpty*(self: Dictionary): Bool = Dictionary_isEmpty(addr self, nil, addr result, 0)
+proc clear*(self: Dictionary) = Dictionary_clear(addr self, nil, nil, 0)
+proc merge*(self: Dictionary; dictionary: Dictionary; overwrite: Bool = false) =
+  let argArr = [cast[pointer](addr dictionary), cast[pointer](addr overwrite)]
+  Dictionary_merge(addr self, addr argArr[0], nil, 2)
+proc has*(self: Dictionary; key: ptr Variant): Bool =
+  let argArr = [cast[pointer](addr key)]
+  Dictionary_has(addr self, addr argArr[0], addr result, 1)
+proc hasAll*(self: Dictionary; keys: Array): Bool =
+  let argArr = [cast[pointer](addr keys)]
+  Dictionary_hasAll(addr self, addr argArr[0], addr result, 1)
+proc findKey*(self: Dictionary; value: ptr Variant): Variant =
+  let argArr = [cast[pointer](addr value)]
+  Dictionary_findKey(addr self, addr argArr[0], addr result, 1)
+proc erase*(self: Dictionary; key: ptr Variant): Bool =
+  let argArr = [cast[pointer](addr key)]
+  Dictionary_erase(addr self, addr argArr[0], addr result, 1)
+proc hash*(self: Dictionary): Int = Dictionary_hash(addr self, nil, addr result, 0)
+proc keys*(self: Dictionary): Array = Dictionary_keys(addr self, nil, addr result, 0)
+proc values*(self: Dictionary): Array = Dictionary_values(addr self, nil, addr result, 0)
+proc duplicate*(self: Dictionary; deep: Bool = false): Dictionary =
+  let argArr = [cast[pointer](addr deep)]
+  Dictionary_duplicate(addr self, addr argArr[0], addr result, 1)
+proc get*(self: Dictionary; key: ptr Variant; default: ptr Variant = nil): Variant =
+  let argArr = [cast[pointer](addr key), cast[pointer](addr default)]
+  Dictionary_get(addr self, addr argArr[0], addr result, 2)
+proc makeReadOnly*(self: Dictionary) = Dictionary_makeReadOnly(addr self, nil, nil, 0)
+proc isReadOnly*(self: Dictionary): Bool = Dictionary_isReadOnly(addr self, nil, addr result, 0)
+proc load_Dictionary_proc =
+  var proc_name: StringName
+  proc_name = init_StringName("size")
+  Dictionary_size = interface_Variant_getPtrBuiltinMethod(variantType Dictionary, addr proc_name, 3173160232)
+  proc_name = init_StringName("is_empty")
+  Dictionary_isEmpty = interface_Variant_getPtrBuiltinMethod(variantType Dictionary, addr proc_name, 3918633141)
+  proc_name = init_StringName("clear")
+  Dictionary_clear = interface_Variant_getPtrBuiltinMethod(variantType Dictionary, addr proc_name, 3218959716)
+  proc_name = init_StringName("merge")
+  Dictionary_merge = interface_Variant_getPtrBuiltinMethod(variantType Dictionary, addr proc_name, 2079548978)
+  proc_name = init_StringName("has")
+  Dictionary_has = interface_Variant_getPtrBuiltinMethod(variantType Dictionary, addr proc_name, 3680194679)
+  proc_name = init_StringName("has_all")
+  Dictionary_hasAll = interface_Variant_getPtrBuiltinMethod(variantType Dictionary, addr proc_name, 2988181878)
+  proc_name = init_StringName("find_key")
+  Dictionary_findKey = interface_Variant_getPtrBuiltinMethod(variantType Dictionary, addr proc_name, 1988825835)
+  proc_name = init_StringName("erase")
+  Dictionary_erase = interface_Variant_getPtrBuiltinMethod(variantType Dictionary, addr proc_name, 1776646889)
+  proc_name = init_StringName("hash")
+  Dictionary_hash = interface_Variant_getPtrBuiltinMethod(variantType Dictionary, addr proc_name, 3173160232)
+  proc_name = init_StringName("keys")
+  Dictionary_keys = interface_Variant_getPtrBuiltinMethod(variantType Dictionary, addr proc_name, 4144163970)
+  proc_name = init_StringName("values")
+  Dictionary_values = interface_Variant_getPtrBuiltinMethod(variantType Dictionary, addr proc_name, 4144163970)
+  proc_name = init_StringName("duplicate")
+  Dictionary_duplicate = interface_Variant_getPtrBuiltinMethod(variantType Dictionary, addr proc_name, 830099069)
+  proc_name = init_StringName("get")
+  Dictionary_get = interface_Variant_getPtrBuiltinMethod(variantType Dictionary, addr proc_name, 2205440559)
+  proc_name = init_StringName("make_read_only")
+  Dictionary_makeReadOnly = interface_Variant_getPtrBuiltinMethod(variantType Dictionary, addr proc_name, 3218959716)
+  proc_name = init_StringName("is_read_only")
+  Dictionary_isReadOnly = interface_Variant_getPtrBuiltinMethod(variantType Dictionary, addr proc_name, 3918633141)
 var Equal_Dictionary_Variant: PtrOperatorEvaluator
 var NotEqual_Dictionary_Variant: PtrOperatorEvaluator
 var Not_Dictionary: PtrOperatorEvaluator

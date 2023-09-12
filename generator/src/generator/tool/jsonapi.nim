@@ -101,5 +101,6 @@ type
     procedure*: bool
     constructor_white*: seq[int]
     operator_white*: seq[string]
+    procedure_white*: seq[string]
 
 proc `$`*(x: JsonConstant): string = $x[]

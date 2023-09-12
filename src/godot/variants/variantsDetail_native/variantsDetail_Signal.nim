@@ -7,17 +7,50 @@ import ./../../helper/variantDefiner
 # type Signal* = object
 #   self.json.is_keyed=false
 #   self.json.indexing_return_type=none(string)
-
-Signal.procedures(loader= load_Signal_proc):
-  proc isNull*(self: Signal): Bool {.loadfrom("is_null", 3918633141).}
-  proc getObject*(self: Signal): Object {.loadfrom("get_object", 4008621732).}
-  proc getObjectId*(self: Signal): Int {.loadfrom("get_object_id", 3173160232).}
-  proc getName*(self: Signal): StringName {.loadfrom("get_name", 1825232092).}
-  proc connect*(self: Signal; callable: Callable; flags: Int = 0): Int {.loadfrom("connect", 979702392).}
-  proc disconnect*(self: Signal; callable: Callable) {.loadfrom("disconnect", 3470848906).}
-  proc isConnected*(self: Signal; callable: Callable): Bool {.loadfrom("is_connected", 4129521963).}
-  proc getConnections*(self: Signal): Array {.loadfrom("get_connections", 4144163970).}
-  proc emit*(self: Signal) {.loadfrom("emit", 3286317445).}
+var Signal_isNull: PtrBuiltinMethod
+var Signal_getObject: PtrBuiltinMethod
+var Signal_getObjectId: PtrBuiltinMethod
+var Signal_getName: PtrBuiltinMethod
+var Signal_connect: PtrBuiltinMethod
+var Signal_disconnect: PtrBuiltinMethod
+var Signal_isConnected: PtrBuiltinMethod
+var Signal_getConnections: PtrBuiltinMethod
+var Signal_emit: PtrBuiltinMethod
+proc isNull*(self: Signal): Bool = Signal_isNull(addr self, nil, addr result, 0)
+proc getObject*(self: Signal): Object = Signal_getObject(addr self, nil, addr result, 0)
+proc getObjectId*(self: Signal): Int = Signal_getObjectId(addr self, nil, addr result, 0)
+proc getName*(self: Signal): StringName = Signal_getName(addr self, nil, addr result, 0)
+proc connect*(self: Signal; callable: Callable; flags: Int = 0): Int =
+  let argArr = [cast[pointer](addr callable), cast[pointer](addr flags)]
+  Signal_connect(addr self, addr argArr[0], addr result, 2)
+proc disconnect*(self: Signal; callable: Callable) =
+  let argArr = [cast[pointer](addr callable)]
+  Signal_disconnect(addr self, addr argArr[0], nil, 1)
+proc isConnected*(self: Signal; callable: Callable): Bool =
+  let argArr = [cast[pointer](addr callable)]
+  Signal_isConnected(addr self, addr argArr[0], addr result, 1)
+proc getConnections*(self: Signal): Array = Signal_getConnections(addr self, nil, addr result, 0)
+proc emit*(self: Signal) = Signal_emit(addr self, nil, nil, 0)
+proc load_Signal_proc =
+  var proc_name: StringName
+  proc_name = init_StringName("is_null")
+  Signal_isNull = interface_Variant_getPtrBuiltinMethod(variantType Signal, addr proc_name, 3918633141)
+  proc_name = init_StringName("get_object")
+  Signal_getObject = interface_Variant_getPtrBuiltinMethod(variantType Signal, addr proc_name, 4008621732)
+  proc_name = init_StringName("get_object_id")
+  Signal_getObjectId = interface_Variant_getPtrBuiltinMethod(variantType Signal, addr proc_name, 3173160232)
+  proc_name = init_StringName("get_name")
+  Signal_getName = interface_Variant_getPtrBuiltinMethod(variantType Signal, addr proc_name, 1825232092)
+  proc_name = init_StringName("connect")
+  Signal_connect = interface_Variant_getPtrBuiltinMethod(variantType Signal, addr proc_name, 979702392)
+  proc_name = init_StringName("disconnect")
+  Signal_disconnect = interface_Variant_getPtrBuiltinMethod(variantType Signal, addr proc_name, 3470848906)
+  proc_name = init_StringName("is_connected")
+  Signal_isConnected = interface_Variant_getPtrBuiltinMethod(variantType Signal, addr proc_name, 4129521963)
+  proc_name = init_StringName("get_connections")
+  Signal_getConnections = interface_Variant_getPtrBuiltinMethod(variantType Signal, addr proc_name, 4144163970)
+  proc_name = init_StringName("emit")
+  Signal_emit = interface_Variant_getPtrBuiltinMethod(variantType Signal, addr proc_name, 3286317445)
 var Equal_Signal_Variant: PtrOperatorEvaluator
 var NotEqual_Signal_Variant: PtrOperatorEvaluator
 var Not_Signal: PtrOperatorEvaluator

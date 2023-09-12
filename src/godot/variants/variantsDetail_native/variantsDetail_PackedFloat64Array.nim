@@ -7,29 +7,120 @@ import ./../../helper/variantDefiner
 # type PackedFloat64Array* = object
 #   self.json.is_keyed=false
 #   self.json.indexing_return_type=some("float")
-
-PackedFloat64Array.procedures(loader= load_PackedFloat64Array_proc):
-  proc size*(self: PackedFloat64Array): Int {.loadfrom("size", 3173160232).}
-  proc isEmpty*(self: PackedFloat64Array): Bool {.loadfrom("is_empty", 3918633141).}
-  proc set*(self: PackedFloat64Array; index: Int; value: Float) {.loadfrom("set", 1113000516).}
-  proc pushBack*(self: PackedFloat64Array; value: Float): Bool {.loadfrom("push_back", 4094791666).}
-  proc append*(self: PackedFloat64Array; value: Float): Bool {.loadfrom("append", 4094791666).}
-  proc appendArray*(self: PackedFloat64Array; array: PackedFloat64Array) {.loadfrom("append_array", 792078629).}
-  proc removeAt*(self: PackedFloat64Array; index: Int) {.loadfrom("remove_at", 2823966027).}
-  proc insert*(self: PackedFloat64Array; atIndex: Int; value: Float): Int {.loadfrom("insert", 1379903876).}
-  proc fill*(self: PackedFloat64Array; value: Float) {.loadfrom("fill", 833936903).}
-  proc resize*(self: PackedFloat64Array; newSize: Int): Int {.loadfrom("resize", 848867239).}
-  proc clear*(self: PackedFloat64Array) {.loadfrom("clear", 3218959716).}
-  proc has*(self: PackedFloat64Array; value: Float): Bool {.loadfrom("has", 1296369134).}
-  proc reverse*(self: PackedFloat64Array) {.loadfrom("reverse", 3218959716).}
-  proc slice*(self: PackedFloat64Array; begin: Int; `end`: Int = 2147483647): PackedFloat64Array {.loadfrom("slice", 2192974324).}
-  proc toByteArray*(self: PackedFloat64Array): PackedByteArray {.loadfrom("to_byte_array", 247621236).}
-  proc sort*(self: PackedFloat64Array) {.loadfrom("sort", 3218959716).}
-  proc bsearch*(self: PackedFloat64Array; value: Float; before: Bool = true): Int {.loadfrom("bsearch", 1188816338).}
-  proc duplicate*(self: PackedFloat64Array): PackedFloat64Array {.loadfrom("duplicate", 949266573).}
-  proc find*(self: PackedFloat64Array; value: Float; `from`: Int = 0): Int {.loadfrom("find", 1343150241).}
-  proc rfind*(self: PackedFloat64Array; value: Float; `from`: Int = -1): Int {.loadfrom("rfind", 1343150241).}
-  proc count*(self: PackedFloat64Array; value: Float): Int {.loadfrom("count", 2859915090).}
+var PackedFloat64Array_size: PtrBuiltinMethod
+var PackedFloat64Array_isEmpty: PtrBuiltinMethod
+var PackedFloat64Array_set: PtrBuiltinMethod
+var PackedFloat64Array_pushBack: PtrBuiltinMethod
+var PackedFloat64Array_append: PtrBuiltinMethod
+var PackedFloat64Array_appendArray: PtrBuiltinMethod
+var PackedFloat64Array_removeAt: PtrBuiltinMethod
+var PackedFloat64Array_insert: PtrBuiltinMethod
+var PackedFloat64Array_fill: PtrBuiltinMethod
+var PackedFloat64Array_resize: PtrBuiltinMethod
+var PackedFloat64Array_clear: PtrBuiltinMethod
+var PackedFloat64Array_has: PtrBuiltinMethod
+var PackedFloat64Array_reverse: PtrBuiltinMethod
+var PackedFloat64Array_slice: PtrBuiltinMethod
+var PackedFloat64Array_toByteArray: PtrBuiltinMethod
+var PackedFloat64Array_sort: PtrBuiltinMethod
+var PackedFloat64Array_bsearch: PtrBuiltinMethod
+var PackedFloat64Array_duplicate: PtrBuiltinMethod
+var PackedFloat64Array_find: PtrBuiltinMethod
+var PackedFloat64Array_rfind: PtrBuiltinMethod
+var PackedFloat64Array_count: PtrBuiltinMethod
+proc size*(self: PackedFloat64Array): Int = PackedFloat64Array_size(addr self, nil, addr result, 0)
+proc isEmpty*(self: PackedFloat64Array): Bool = PackedFloat64Array_isEmpty(addr self, nil, addr result, 0)
+proc set*(self: PackedFloat64Array; index: Int; value: Float) =
+  let argArr = [cast[pointer](addr index), cast[pointer](addr value)]
+  PackedFloat64Array_set(addr self, addr argArr[0], nil, 2)
+proc pushBack*(self: PackedFloat64Array; value: Float): Bool =
+  let argArr = [cast[pointer](addr value)]
+  PackedFloat64Array_pushBack(addr self, addr argArr[0], addr result, 1)
+proc append*(self: PackedFloat64Array; value: Float): Bool =
+  let argArr = [cast[pointer](addr value)]
+  PackedFloat64Array_append(addr self, addr argArr[0], addr result, 1)
+proc appendArray*(self: PackedFloat64Array; array: PackedFloat64Array) =
+  let argArr = [cast[pointer](addr array)]
+  PackedFloat64Array_appendArray(addr self, addr argArr[0], nil, 1)
+proc removeAt*(self: PackedFloat64Array; index: Int) =
+  let argArr = [cast[pointer](addr index)]
+  PackedFloat64Array_removeAt(addr self, addr argArr[0], nil, 1)
+proc insert*(self: PackedFloat64Array; atIndex: Int; value: Float): Int =
+  let argArr = [cast[pointer](addr atIndex), cast[pointer](addr value)]
+  PackedFloat64Array_insert(addr self, addr argArr[0], addr result, 2)
+proc fill*(self: PackedFloat64Array; value: Float) =
+  let argArr = [cast[pointer](addr value)]
+  PackedFloat64Array_fill(addr self, addr argArr[0], nil, 1)
+proc resize*(self: PackedFloat64Array; newSize: Int): Int =
+  let argArr = [cast[pointer](addr newSize)]
+  PackedFloat64Array_resize(addr self, addr argArr[0], addr result, 1)
+proc clear*(self: PackedFloat64Array) = PackedFloat64Array_clear(addr self, nil, nil, 0)
+proc has*(self: PackedFloat64Array; value: Float): Bool =
+  let argArr = [cast[pointer](addr value)]
+  PackedFloat64Array_has(addr self, addr argArr[0], addr result, 1)
+proc reverse*(self: PackedFloat64Array) = PackedFloat64Array_reverse(addr self, nil, nil, 0)
+proc slice*(self: PackedFloat64Array; begin: Int; `end`: Int = 2147483647): PackedFloat64Array =
+  let argArr = [cast[pointer](addr begin), cast[pointer](addr `end`)]
+  PackedFloat64Array_slice(addr self, addr argArr[0], addr result, 2)
+proc toByteArray*(self: PackedFloat64Array): PackedByteArray = PackedFloat64Array_toByteArray(addr self, nil, addr result, 0)
+proc sort*(self: PackedFloat64Array) = PackedFloat64Array_sort(addr self, nil, nil, 0)
+proc bsearch*(self: PackedFloat64Array; value: Float; before: Bool = true): Int =
+  let argArr = [cast[pointer](addr value), cast[pointer](addr before)]
+  PackedFloat64Array_bsearch(addr self, addr argArr[0], addr result, 2)
+proc duplicate*(self: PackedFloat64Array): PackedFloat64Array = PackedFloat64Array_duplicate(addr self, nil, addr result, 0)
+proc find*(self: PackedFloat64Array; value: Float; `from`: Int = 0): Int =
+  let argArr = [cast[pointer](addr value), cast[pointer](addr `from`)]
+  PackedFloat64Array_find(addr self, addr argArr[0], addr result, 2)
+proc rfind*(self: PackedFloat64Array; value: Float; `from`: Int = -1): Int =
+  let argArr = [cast[pointer](addr value), cast[pointer](addr `from`)]
+  PackedFloat64Array_rfind(addr self, addr argArr[0], addr result, 2)
+proc count*(self: PackedFloat64Array; value: Float): Int =
+  let argArr = [cast[pointer](addr value)]
+  PackedFloat64Array_count(addr self, addr argArr[0], addr result, 1)
+proc load_PackedFloat64Array_proc =
+  var proc_name: StringName
+  proc_name = init_StringName("size")
+  PackedFloat64Array_size = interface_Variant_getPtrBuiltinMethod(variantType PackedFloat64Array, addr proc_name, 3173160232)
+  proc_name = init_StringName("is_empty")
+  PackedFloat64Array_isEmpty = interface_Variant_getPtrBuiltinMethod(variantType PackedFloat64Array, addr proc_name, 3918633141)
+  proc_name = init_StringName("set")
+  PackedFloat64Array_set = interface_Variant_getPtrBuiltinMethod(variantType PackedFloat64Array, addr proc_name, 1113000516)
+  proc_name = init_StringName("push_back")
+  PackedFloat64Array_pushBack = interface_Variant_getPtrBuiltinMethod(variantType PackedFloat64Array, addr proc_name, 4094791666)
+  proc_name = init_StringName("append")
+  PackedFloat64Array_append = interface_Variant_getPtrBuiltinMethod(variantType PackedFloat64Array, addr proc_name, 4094791666)
+  proc_name = init_StringName("append_array")
+  PackedFloat64Array_appendArray = interface_Variant_getPtrBuiltinMethod(variantType PackedFloat64Array, addr proc_name, 792078629)
+  proc_name = init_StringName("remove_at")
+  PackedFloat64Array_removeAt = interface_Variant_getPtrBuiltinMethod(variantType PackedFloat64Array, addr proc_name, 2823966027)
+  proc_name = init_StringName("insert")
+  PackedFloat64Array_insert = interface_Variant_getPtrBuiltinMethod(variantType PackedFloat64Array, addr proc_name, 1379903876)
+  proc_name = init_StringName("fill")
+  PackedFloat64Array_fill = interface_Variant_getPtrBuiltinMethod(variantType PackedFloat64Array, addr proc_name, 833936903)
+  proc_name = init_StringName("resize")
+  PackedFloat64Array_resize = interface_Variant_getPtrBuiltinMethod(variantType PackedFloat64Array, addr proc_name, 848867239)
+  proc_name = init_StringName("clear")
+  PackedFloat64Array_clear = interface_Variant_getPtrBuiltinMethod(variantType PackedFloat64Array, addr proc_name, 3218959716)
+  proc_name = init_StringName("has")
+  PackedFloat64Array_has = interface_Variant_getPtrBuiltinMethod(variantType PackedFloat64Array, addr proc_name, 1296369134)
+  proc_name = init_StringName("reverse")
+  PackedFloat64Array_reverse = interface_Variant_getPtrBuiltinMethod(variantType PackedFloat64Array, addr proc_name, 3218959716)
+  proc_name = init_StringName("slice")
+  PackedFloat64Array_slice = interface_Variant_getPtrBuiltinMethod(variantType PackedFloat64Array, addr proc_name, 2192974324)
+  proc_name = init_StringName("to_byte_array")
+  PackedFloat64Array_toByteArray = interface_Variant_getPtrBuiltinMethod(variantType PackedFloat64Array, addr proc_name, 247621236)
+  proc_name = init_StringName("sort")
+  PackedFloat64Array_sort = interface_Variant_getPtrBuiltinMethod(variantType PackedFloat64Array, addr proc_name, 3218959716)
+  proc_name = init_StringName("bsearch")
+  PackedFloat64Array_bsearch = interface_Variant_getPtrBuiltinMethod(variantType PackedFloat64Array, addr proc_name, 1188816338)
+  proc_name = init_StringName("duplicate")
+  PackedFloat64Array_duplicate = interface_Variant_getPtrBuiltinMethod(variantType PackedFloat64Array, addr proc_name, 949266573)
+  proc_name = init_StringName("find")
+  PackedFloat64Array_find = interface_Variant_getPtrBuiltinMethod(variantType PackedFloat64Array, addr proc_name, 1343150241)
+  proc_name = init_StringName("rfind")
+  PackedFloat64Array_rfind = interface_Variant_getPtrBuiltinMethod(variantType PackedFloat64Array, addr proc_name, 1343150241)
+  proc_name = init_StringName("count")
+  PackedFloat64Array_count = interface_Variant_getPtrBuiltinMethod(variantType PackedFloat64Array, addr proc_name, 2859915090)
 var Equal_PackedFloat64Array_Variant: PtrOperatorEvaluator
 var NotEqual_PackedFloat64Array_Variant: PtrOperatorEvaluator
 var Not_PackedFloat64Array: PtrOperatorEvaluator

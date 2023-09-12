@@ -7,67 +7,330 @@ import ./../../helper/variantDefiner
 # type PackedByteArray* = object
 #   self.json.is_keyed=false
 #   self.json.indexing_return_type=some("int")
-
-PackedByteArray.procedures(loader= load_PackedByteArray_proc):
-  proc size*(self: PackedByteArray): Int {.loadfrom("size", 3173160232).}
-  proc isEmpty*(self: PackedByteArray): Bool {.loadfrom("is_empty", 3918633141).}
-  proc set*(self: PackedByteArray; index: Int; value: Int) {.loadfrom("set", 3638975848).}
-  proc pushBack*(self: PackedByteArray; value: Int): Bool {.loadfrom("push_back", 694024632).}
-  proc append*(self: PackedByteArray; value: Int): Bool {.loadfrom("append", 694024632).}
-  proc appendArray*(self: PackedByteArray; array: PackedByteArray) {.loadfrom("append_array", 791097111).}
-  proc removeAt*(self: PackedByteArray; index: Int) {.loadfrom("remove_at", 2823966027).}
-  proc insert*(self: PackedByteArray; atIndex: Int; value: Int): Int {.loadfrom("insert", 1487112728).}
-  proc fill*(self: PackedByteArray; value: Int) {.loadfrom("fill", 2823966027).}
-  proc resize*(self: PackedByteArray; newSize: Int): Int {.loadfrom("resize", 848867239).}
-  proc clear*(self: PackedByteArray) {.loadfrom("clear", 3218959716).}
-  proc has*(self: PackedByteArray; value: Int): Bool {.loadfrom("has", 931488181).}
-  proc reverse*(self: PackedByteArray) {.loadfrom("reverse", 3218959716).}
-  proc slice*(self: PackedByteArray; begin: Int; `end`: Int = 2147483647): PackedByteArray {.loadfrom("slice", 2278869132).}
-  proc sort*(self: PackedByteArray) {.loadfrom("sort", 3218959716).}
-  proc bsearch*(self: PackedByteArray; value: Int; before: Bool = true): Int {.loadfrom("bsearch", 3380005890).}
-  proc duplicate*(self: PackedByteArray): PackedByteArray {.loadfrom("duplicate", 851781288).}
-  proc find*(self: PackedByteArray; value: Int; `from`: Int = 0): Int {.loadfrom("find", 2984303840).}
-  proc rfind*(self: PackedByteArray; value: Int; `from`: Int = -1): Int {.loadfrom("rfind", 2984303840).}
-  proc count*(self: PackedByteArray; value: Int): Int {.loadfrom("count", 4103005248).}
-  proc getStringFromAscii*(self: PackedByteArray): String {.loadfrom("get_string_from_ascii", 3942272618).}
-  proc getStringFromUtf8*(self: PackedByteArray): String {.loadfrom("get_string_from_utf8", 3942272618).}
-  proc getStringFromUtf16*(self: PackedByteArray): String {.loadfrom("get_string_from_utf16", 3942272618).}
-  proc getStringFromUtf32*(self: PackedByteArray): String {.loadfrom("get_string_from_utf32", 3942272618).}
-  proc getStringFromWchar*(self: PackedByteArray): String {.loadfrom("get_string_from_wchar", 3942272618).}
-  proc hexEncode*(self: PackedByteArray): String {.loadfrom("hex_encode", 3942272618).}
-  proc compress*(self: PackedByteArray; compressionMode: Int = 0): PackedByteArray {.loadfrom("compress", 1845905913).}
-  proc decompress*(self: PackedByteArray; bufferSize: Int; compressionMode: Int = 0): PackedByteArray {.loadfrom("decompress", 2278869132).}
-  proc decompressDynamic*(self: PackedByteArray; maxOutputSize: Int; compressionMode: Int = 0): PackedByteArray {.loadfrom("decompress_dynamic", 2278869132).}
-  proc decodeU8*(self: PackedByteArray; byteOffset: Int): Int {.loadfrom("decode_u8", 4103005248).}
-  proc decodeS8*(self: PackedByteArray; byteOffset: Int): Int {.loadfrom("decode_s8", 4103005248).}
-  proc decodeU16*(self: PackedByteArray; byteOffset: Int): Int {.loadfrom("decode_u16", 4103005248).}
-  proc decodeS16*(self: PackedByteArray; byteOffset: Int): Int {.loadfrom("decode_s16", 4103005248).}
-  proc decodeU32*(self: PackedByteArray; byteOffset: Int): Int {.loadfrom("decode_u32", 4103005248).}
-  proc decodeS32*(self: PackedByteArray; byteOffset: Int): Int {.loadfrom("decode_s32", 4103005248).}
-  proc decodeU64*(self: PackedByteArray; byteOffset: Int): Int {.loadfrom("decode_u64", 4103005248).}
-  proc decodeS64*(self: PackedByteArray; byteOffset: Int): Int {.loadfrom("decode_s64", 4103005248).}
-  proc decodeHalf*(self: PackedByteArray; byteOffset: Int): Float {.loadfrom("decode_half", 1401583798).}
-  proc decodeFloat*(self: PackedByteArray; byteOffset: Int): Float {.loadfrom("decode_float", 1401583798).}
-  proc decodeDouble*(self: PackedByteArray; byteOffset: Int): Float {.loadfrom("decode_double", 1401583798).}
-  proc hasEncodedVar*(self: PackedByteArray; byteOffset: Int; allowObjects: Bool = false): Bool {.loadfrom("has_encoded_var", 2914632957).}
-  proc decodeVar*(self: PackedByteArray; byteOffset: Int; allowObjects: Bool = false): Variant {.loadfrom("decode_var", 1740420038).}
-  proc decodeVarSize*(self: PackedByteArray; byteOffset: Int; allowObjects: Bool = false): Int {.loadfrom("decode_var_size", 954237325).}
-  proc toInt32Array*(self: PackedByteArray): PackedInt32Array {.loadfrom("to_int32_array", 3158844420).}
-  proc toInt64Array*(self: PackedByteArray): PackedInt64Array {.loadfrom("to_int64_array", 1961294120).}
-  proc toFloat32Array*(self: PackedByteArray): PackedFloat32Array {.loadfrom("to_float32_array", 3575107827).}
-  proc toFloat64Array*(self: PackedByteArray): PackedFloat64Array {.loadfrom("to_float64_array", 1627308337).}
-  proc encodeU8*(self: PackedByteArray; byteOffset: Int; value: Int) {.loadfrom("encode_u8", 3638975848).}
-  proc encodeS8*(self: PackedByteArray; byteOffset: Int; value: Int) {.loadfrom("encode_s8", 3638975848).}
-  proc encodeU16*(self: PackedByteArray; byteOffset: Int; value: Int) {.loadfrom("encode_u16", 3638975848).}
-  proc encodeS16*(self: PackedByteArray; byteOffset: Int; value: Int) {.loadfrom("encode_s16", 3638975848).}
-  proc encodeU32*(self: PackedByteArray; byteOffset: Int; value: Int) {.loadfrom("encode_u32", 3638975848).}
-  proc encodeS32*(self: PackedByteArray; byteOffset: Int; value: Int) {.loadfrom("encode_s32", 3638975848).}
-  proc encodeU64*(self: PackedByteArray; byteOffset: Int; value: Int) {.loadfrom("encode_u64", 3638975848).}
-  proc encodeS64*(self: PackedByteArray; byteOffset: Int; value: Int) {.loadfrom("encode_s64", 3638975848).}
-  proc encodeHalf*(self: PackedByteArray; byteOffset: Int; value: Float) {.loadfrom("encode_half", 1113000516).}
-  proc encodeFloat*(self: PackedByteArray; byteOffset: Int; value: Float) {.loadfrom("encode_float", 1113000516).}
-  proc encodeDouble*(self: PackedByteArray; byteOffset: Int; value: Float) {.loadfrom("encode_double", 1113000516).}
-  proc encodeVar*(self: PackedByteArray; byteOffset: Int; value: ptr Variant; allowObjects: Bool = false): Int {.loadfrom("encode_var", 2604460497).}
+var PackedByteArray_size: PtrBuiltinMethod
+var PackedByteArray_isEmpty: PtrBuiltinMethod
+var PackedByteArray_set: PtrBuiltinMethod
+var PackedByteArray_pushBack: PtrBuiltinMethod
+var PackedByteArray_append: PtrBuiltinMethod
+var PackedByteArray_appendArray: PtrBuiltinMethod
+var PackedByteArray_removeAt: PtrBuiltinMethod
+var PackedByteArray_insert: PtrBuiltinMethod
+var PackedByteArray_fill: PtrBuiltinMethod
+var PackedByteArray_resize: PtrBuiltinMethod
+var PackedByteArray_clear: PtrBuiltinMethod
+var PackedByteArray_has: PtrBuiltinMethod
+var PackedByteArray_reverse: PtrBuiltinMethod
+var PackedByteArray_slice: PtrBuiltinMethod
+var PackedByteArray_sort: PtrBuiltinMethod
+var PackedByteArray_bsearch: PtrBuiltinMethod
+var PackedByteArray_duplicate: PtrBuiltinMethod
+var PackedByteArray_find: PtrBuiltinMethod
+var PackedByteArray_rfind: PtrBuiltinMethod
+var PackedByteArray_count: PtrBuiltinMethod
+var PackedByteArray_getStringFromAscii: PtrBuiltinMethod
+var PackedByteArray_getStringFromUtf8: PtrBuiltinMethod
+var PackedByteArray_getStringFromUtf16: PtrBuiltinMethod
+var PackedByteArray_getStringFromUtf32: PtrBuiltinMethod
+var PackedByteArray_getStringFromWchar: PtrBuiltinMethod
+var PackedByteArray_hexEncode: PtrBuiltinMethod
+var PackedByteArray_compress: PtrBuiltinMethod
+var PackedByteArray_decompress: PtrBuiltinMethod
+var PackedByteArray_decompressDynamic: PtrBuiltinMethod
+var PackedByteArray_decodeU8: PtrBuiltinMethod
+var PackedByteArray_decodeS8: PtrBuiltinMethod
+var PackedByteArray_decodeU16: PtrBuiltinMethod
+var PackedByteArray_decodeS16: PtrBuiltinMethod
+var PackedByteArray_decodeU32: PtrBuiltinMethod
+var PackedByteArray_decodeS32: PtrBuiltinMethod
+var PackedByteArray_decodeU64: PtrBuiltinMethod
+var PackedByteArray_decodeS64: PtrBuiltinMethod
+var PackedByteArray_decodeHalf: PtrBuiltinMethod
+var PackedByteArray_decodeFloat: PtrBuiltinMethod
+var PackedByteArray_decodeDouble: PtrBuiltinMethod
+var PackedByteArray_hasEncodedVar: PtrBuiltinMethod
+var PackedByteArray_decodeVar: PtrBuiltinMethod
+var PackedByteArray_decodeVarSize: PtrBuiltinMethod
+var PackedByteArray_toInt32Array: PtrBuiltinMethod
+var PackedByteArray_toInt64Array: PtrBuiltinMethod
+var PackedByteArray_toFloat32Array: PtrBuiltinMethod
+var PackedByteArray_toFloat64Array: PtrBuiltinMethod
+var PackedByteArray_encodeU8: PtrBuiltinMethod
+var PackedByteArray_encodeS8: PtrBuiltinMethod
+var PackedByteArray_encodeU16: PtrBuiltinMethod
+var PackedByteArray_encodeS16: PtrBuiltinMethod
+var PackedByteArray_encodeU32: PtrBuiltinMethod
+var PackedByteArray_encodeS32: PtrBuiltinMethod
+var PackedByteArray_encodeU64: PtrBuiltinMethod
+var PackedByteArray_encodeS64: PtrBuiltinMethod
+var PackedByteArray_encodeHalf: PtrBuiltinMethod
+var PackedByteArray_encodeFloat: PtrBuiltinMethod
+var PackedByteArray_encodeDouble: PtrBuiltinMethod
+var PackedByteArray_encodeVar: PtrBuiltinMethod
+proc size*(self: PackedByteArray): Int = PackedByteArray_size(addr self, nil, addr result, 0)
+proc isEmpty*(self: PackedByteArray): Bool = PackedByteArray_isEmpty(addr self, nil, addr result, 0)
+proc set*(self: PackedByteArray; index: Int; value: Int) =
+  let argArr = [cast[pointer](addr index), cast[pointer](addr value)]
+  PackedByteArray_set(addr self, addr argArr[0], nil, 2)
+proc pushBack*(self: PackedByteArray; value: Int): Bool =
+  let argArr = [cast[pointer](addr value)]
+  PackedByteArray_pushBack(addr self, addr argArr[0], addr result, 1)
+proc append*(self: PackedByteArray; value: Int): Bool =
+  let argArr = [cast[pointer](addr value)]
+  PackedByteArray_append(addr self, addr argArr[0], addr result, 1)
+proc appendArray*(self: PackedByteArray; array: PackedByteArray) =
+  let argArr = [cast[pointer](addr array)]
+  PackedByteArray_appendArray(addr self, addr argArr[0], nil, 1)
+proc removeAt*(self: PackedByteArray; index: Int) =
+  let argArr = [cast[pointer](addr index)]
+  PackedByteArray_removeAt(addr self, addr argArr[0], nil, 1)
+proc insert*(self: PackedByteArray; atIndex: Int; value: Int): Int =
+  let argArr = [cast[pointer](addr atIndex), cast[pointer](addr value)]
+  PackedByteArray_insert(addr self, addr argArr[0], addr result, 2)
+proc fill*(self: PackedByteArray; value: Int) =
+  let argArr = [cast[pointer](addr value)]
+  PackedByteArray_fill(addr self, addr argArr[0], nil, 1)
+proc resize*(self: PackedByteArray; newSize: Int): Int =
+  let argArr = [cast[pointer](addr newSize)]
+  PackedByteArray_resize(addr self, addr argArr[0], addr result, 1)
+proc clear*(self: PackedByteArray) = PackedByteArray_clear(addr self, nil, nil, 0)
+proc has*(self: PackedByteArray; value: Int): Bool =
+  let argArr = [cast[pointer](addr value)]
+  PackedByteArray_has(addr self, addr argArr[0], addr result, 1)
+proc reverse*(self: PackedByteArray) = PackedByteArray_reverse(addr self, nil, nil, 0)
+proc slice*(self: PackedByteArray; begin: Int; `end`: Int = 2147483647): PackedByteArray =
+  let argArr = [cast[pointer](addr begin), cast[pointer](addr `end`)]
+  PackedByteArray_slice(addr self, addr argArr[0], addr result, 2)
+proc sort*(self: PackedByteArray) = PackedByteArray_sort(addr self, nil, nil, 0)
+proc bsearch*(self: PackedByteArray; value: Int; before: Bool = true): Int =
+  let argArr = [cast[pointer](addr value), cast[pointer](addr before)]
+  PackedByteArray_bsearch(addr self, addr argArr[0], addr result, 2)
+proc duplicate*(self: PackedByteArray): PackedByteArray = PackedByteArray_duplicate(addr self, nil, addr result, 0)
+proc find*(self: PackedByteArray; value: Int; `from`: Int = 0): Int =
+  let argArr = [cast[pointer](addr value), cast[pointer](addr `from`)]
+  PackedByteArray_find(addr self, addr argArr[0], addr result, 2)
+proc rfind*(self: PackedByteArray; value: Int; `from`: Int = -1): Int =
+  let argArr = [cast[pointer](addr value), cast[pointer](addr `from`)]
+  PackedByteArray_rfind(addr self, addr argArr[0], addr result, 2)
+proc count*(self: PackedByteArray; value: Int): Int =
+  let argArr = [cast[pointer](addr value)]
+  PackedByteArray_count(addr self, addr argArr[0], addr result, 1)
+proc getStringFromAscii*(self: PackedByteArray): String = PackedByteArray_getStringFromAscii(addr self, nil, addr result, 0)
+proc getStringFromUtf8*(self: PackedByteArray): String = PackedByteArray_getStringFromUtf8(addr self, nil, addr result, 0)
+proc getStringFromUtf16*(self: PackedByteArray): String = PackedByteArray_getStringFromUtf16(addr self, nil, addr result, 0)
+proc getStringFromUtf32*(self: PackedByteArray): String = PackedByteArray_getStringFromUtf32(addr self, nil, addr result, 0)
+proc getStringFromWchar*(self: PackedByteArray): String = PackedByteArray_getStringFromWchar(addr self, nil, addr result, 0)
+proc hexEncode*(self: PackedByteArray): String = PackedByteArray_hexEncode(addr self, nil, addr result, 0)
+proc compress*(self: PackedByteArray; compressionMode: Int = 0): PackedByteArray =
+  let argArr = [cast[pointer](addr compressionMode)]
+  PackedByteArray_compress(addr self, addr argArr[0], addr result, 1)
+proc decompress*(self: PackedByteArray; bufferSize: Int; compressionMode: Int = 0): PackedByteArray =
+  let argArr = [cast[pointer](addr bufferSize), cast[pointer](addr compressionMode)]
+  PackedByteArray_decompress(addr self, addr argArr[0], addr result, 2)
+proc decompressDynamic*(self: PackedByteArray; maxOutputSize: Int; compressionMode: Int = 0): PackedByteArray =
+  let argArr = [cast[pointer](addr maxOutputSize), cast[pointer](addr compressionMode)]
+  PackedByteArray_decompressDynamic(addr self, addr argArr[0], addr result, 2)
+proc decodeU8*(self: PackedByteArray; byteOffset: Int): Int =
+  let argArr = [cast[pointer](addr byteOffset)]
+  PackedByteArray_decodeU8(addr self, addr argArr[0], addr result, 1)
+proc decodeS8*(self: PackedByteArray; byteOffset: Int): Int =
+  let argArr = [cast[pointer](addr byteOffset)]
+  PackedByteArray_decodeS8(addr self, addr argArr[0], addr result, 1)
+proc decodeU16*(self: PackedByteArray; byteOffset: Int): Int =
+  let argArr = [cast[pointer](addr byteOffset)]
+  PackedByteArray_decodeU16(addr self, addr argArr[0], addr result, 1)
+proc decodeS16*(self: PackedByteArray; byteOffset: Int): Int =
+  let argArr = [cast[pointer](addr byteOffset)]
+  PackedByteArray_decodeS16(addr self, addr argArr[0], addr result, 1)
+proc decodeU32*(self: PackedByteArray; byteOffset: Int): Int =
+  let argArr = [cast[pointer](addr byteOffset)]
+  PackedByteArray_decodeU32(addr self, addr argArr[0], addr result, 1)
+proc decodeS32*(self: PackedByteArray; byteOffset: Int): Int =
+  let argArr = [cast[pointer](addr byteOffset)]
+  PackedByteArray_decodeS32(addr self, addr argArr[0], addr result, 1)
+proc decodeU64*(self: PackedByteArray; byteOffset: Int): Int =
+  let argArr = [cast[pointer](addr byteOffset)]
+  PackedByteArray_decodeU64(addr self, addr argArr[0], addr result, 1)
+proc decodeS64*(self: PackedByteArray; byteOffset: Int): Int =
+  let argArr = [cast[pointer](addr byteOffset)]
+  PackedByteArray_decodeS64(addr self, addr argArr[0], addr result, 1)
+proc decodeHalf*(self: PackedByteArray; byteOffset: Int): Float =
+  let argArr = [cast[pointer](addr byteOffset)]
+  PackedByteArray_decodeHalf(addr self, addr argArr[0], addr result, 1)
+proc decodeFloat*(self: PackedByteArray; byteOffset: Int): Float =
+  let argArr = [cast[pointer](addr byteOffset)]
+  PackedByteArray_decodeFloat(addr self, addr argArr[0], addr result, 1)
+proc decodeDouble*(self: PackedByteArray; byteOffset: Int): Float =
+  let argArr = [cast[pointer](addr byteOffset)]
+  PackedByteArray_decodeDouble(addr self, addr argArr[0], addr result, 1)
+proc hasEncodedVar*(self: PackedByteArray; byteOffset: Int; allowObjects: Bool = false): Bool =
+  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr allowObjects)]
+  PackedByteArray_hasEncodedVar(addr self, addr argArr[0], addr result, 2)
+proc decodeVar*(self: PackedByteArray; byteOffset: Int; allowObjects: Bool = false): Variant =
+  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr allowObjects)]
+  PackedByteArray_decodeVar(addr self, addr argArr[0], addr result, 2)
+proc decodeVarSize*(self: PackedByteArray; byteOffset: Int; allowObjects: Bool = false): Int =
+  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr allowObjects)]
+  PackedByteArray_decodeVarSize(addr self, addr argArr[0], addr result, 2)
+proc toInt32Array*(self: PackedByteArray): PackedInt32Array = PackedByteArray_toInt32Array(addr self, nil, addr result, 0)
+proc toInt64Array*(self: PackedByteArray): PackedInt64Array = PackedByteArray_toInt64Array(addr self, nil, addr result, 0)
+proc toFloat32Array*(self: PackedByteArray): PackedFloat32Array = PackedByteArray_toFloat32Array(addr self, nil, addr result, 0)
+proc toFloat64Array*(self: PackedByteArray): PackedFloat64Array = PackedByteArray_toFloat64Array(addr self, nil, addr result, 0)
+proc encodeU8*(self: PackedByteArray; byteOffset: Int; value: Int) =
+  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr value)]
+  PackedByteArray_encodeU8(addr self, addr argArr[0], nil, 2)
+proc encodeS8*(self: PackedByteArray; byteOffset: Int; value: Int) =
+  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr value)]
+  PackedByteArray_encodeS8(addr self, addr argArr[0], nil, 2)
+proc encodeU16*(self: PackedByteArray; byteOffset: Int; value: Int) =
+  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr value)]
+  PackedByteArray_encodeU16(addr self, addr argArr[0], nil, 2)
+proc encodeS16*(self: PackedByteArray; byteOffset: Int; value: Int) =
+  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr value)]
+  PackedByteArray_encodeS16(addr self, addr argArr[0], nil, 2)
+proc encodeU32*(self: PackedByteArray; byteOffset: Int; value: Int) =
+  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr value)]
+  PackedByteArray_encodeU32(addr self, addr argArr[0], nil, 2)
+proc encodeS32*(self: PackedByteArray; byteOffset: Int; value: Int) =
+  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr value)]
+  PackedByteArray_encodeS32(addr self, addr argArr[0], nil, 2)
+proc encodeU64*(self: PackedByteArray; byteOffset: Int; value: Int) =
+  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr value)]
+  PackedByteArray_encodeU64(addr self, addr argArr[0], nil, 2)
+proc encodeS64*(self: PackedByteArray; byteOffset: Int; value: Int) =
+  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr value)]
+  PackedByteArray_encodeS64(addr self, addr argArr[0], nil, 2)
+proc encodeHalf*(self: PackedByteArray; byteOffset: Int; value: Float) =
+  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr value)]
+  PackedByteArray_encodeHalf(addr self, addr argArr[0], nil, 2)
+proc encodeFloat*(self: PackedByteArray; byteOffset: Int; value: Float) =
+  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr value)]
+  PackedByteArray_encodeFloat(addr self, addr argArr[0], nil, 2)
+proc encodeDouble*(self: PackedByteArray; byteOffset: Int; value: Float) =
+  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr value)]
+  PackedByteArray_encodeDouble(addr self, addr argArr[0], nil, 2)
+proc encodeVar*(self: PackedByteArray; byteOffset: Int; value: ptr Variant; allowObjects: Bool = false): Int =
+  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr value), cast[pointer](addr allowObjects)]
+  PackedByteArray_encodeVar(addr self, addr argArr[0], addr result, 3)
+proc load_PackedByteArray_proc =
+  var proc_name: StringName
+  proc_name = init_StringName("size")
+  PackedByteArray_size = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 3173160232)
+  proc_name = init_StringName("is_empty")
+  PackedByteArray_isEmpty = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 3918633141)
+  proc_name = init_StringName("set")
+  PackedByteArray_set = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 3638975848)
+  proc_name = init_StringName("push_back")
+  PackedByteArray_pushBack = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 694024632)
+  proc_name = init_StringName("append")
+  PackedByteArray_append = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 694024632)
+  proc_name = init_StringName("append_array")
+  PackedByteArray_appendArray = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 791097111)
+  proc_name = init_StringName("remove_at")
+  PackedByteArray_removeAt = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 2823966027)
+  proc_name = init_StringName("insert")
+  PackedByteArray_insert = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 1487112728)
+  proc_name = init_StringName("fill")
+  PackedByteArray_fill = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 2823966027)
+  proc_name = init_StringName("resize")
+  PackedByteArray_resize = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 848867239)
+  proc_name = init_StringName("clear")
+  PackedByteArray_clear = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 3218959716)
+  proc_name = init_StringName("has")
+  PackedByteArray_has = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 931488181)
+  proc_name = init_StringName("reverse")
+  PackedByteArray_reverse = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 3218959716)
+  proc_name = init_StringName("slice")
+  PackedByteArray_slice = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 2278869132)
+  proc_name = init_StringName("sort")
+  PackedByteArray_sort = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 3218959716)
+  proc_name = init_StringName("bsearch")
+  PackedByteArray_bsearch = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 3380005890)
+  proc_name = init_StringName("duplicate")
+  PackedByteArray_duplicate = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 851781288)
+  proc_name = init_StringName("find")
+  PackedByteArray_find = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 2984303840)
+  proc_name = init_StringName("rfind")
+  PackedByteArray_rfind = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 2984303840)
+  proc_name = init_StringName("count")
+  PackedByteArray_count = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 4103005248)
+  proc_name = init_StringName("get_string_from_ascii")
+  PackedByteArray_getStringFromAscii = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 3942272618)
+  proc_name = init_StringName("get_string_from_utf8")
+  PackedByteArray_getStringFromUtf8 = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 3942272618)
+  proc_name = init_StringName("get_string_from_utf16")
+  PackedByteArray_getStringFromUtf16 = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 3942272618)
+  proc_name = init_StringName("get_string_from_utf32")
+  PackedByteArray_getStringFromUtf32 = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 3942272618)
+  proc_name = init_StringName("get_string_from_wchar")
+  PackedByteArray_getStringFromWchar = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 3942272618)
+  proc_name = init_StringName("hex_encode")
+  PackedByteArray_hexEncode = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 3942272618)
+  proc_name = init_StringName("compress")
+  PackedByteArray_compress = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 1845905913)
+  proc_name = init_StringName("decompress")
+  PackedByteArray_decompress = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 2278869132)
+  proc_name = init_StringName("decompress_dynamic")
+  PackedByteArray_decompressDynamic = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 2278869132)
+  proc_name = init_StringName("decode_u8")
+  PackedByteArray_decodeU8 = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 4103005248)
+  proc_name = init_StringName("decode_s8")
+  PackedByteArray_decodeS8 = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 4103005248)
+  proc_name = init_StringName("decode_u16")
+  PackedByteArray_decodeU16 = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 4103005248)
+  proc_name = init_StringName("decode_s16")
+  PackedByteArray_decodeS16 = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 4103005248)
+  proc_name = init_StringName("decode_u32")
+  PackedByteArray_decodeU32 = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 4103005248)
+  proc_name = init_StringName("decode_s32")
+  PackedByteArray_decodeS32 = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 4103005248)
+  proc_name = init_StringName("decode_u64")
+  PackedByteArray_decodeU64 = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 4103005248)
+  proc_name = init_StringName("decode_s64")
+  PackedByteArray_decodeS64 = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 4103005248)
+  proc_name = init_StringName("decode_half")
+  PackedByteArray_decodeHalf = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 1401583798)
+  proc_name = init_StringName("decode_float")
+  PackedByteArray_decodeFloat = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 1401583798)
+  proc_name = init_StringName("decode_double")
+  PackedByteArray_decodeDouble = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 1401583798)
+  proc_name = init_StringName("has_encoded_var")
+  PackedByteArray_hasEncodedVar = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 2914632957)
+  proc_name = init_StringName("decode_var")
+  PackedByteArray_decodeVar = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 1740420038)
+  proc_name = init_StringName("decode_var_size")
+  PackedByteArray_decodeVarSize = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 954237325)
+  proc_name = init_StringName("to_int32_array")
+  PackedByteArray_toInt32Array = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 3158844420)
+  proc_name = init_StringName("to_int64_array")
+  PackedByteArray_toInt64Array = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 1961294120)
+  proc_name = init_StringName("to_float32_array")
+  PackedByteArray_toFloat32Array = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 3575107827)
+  proc_name = init_StringName("to_float64_array")
+  PackedByteArray_toFloat64Array = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 1627308337)
+  proc_name = init_StringName("encode_u8")
+  PackedByteArray_encodeU8 = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 3638975848)
+  proc_name = init_StringName("encode_s8")
+  PackedByteArray_encodeS8 = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 3638975848)
+  proc_name = init_StringName("encode_u16")
+  PackedByteArray_encodeU16 = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 3638975848)
+  proc_name = init_StringName("encode_s16")
+  PackedByteArray_encodeS16 = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 3638975848)
+  proc_name = init_StringName("encode_u32")
+  PackedByteArray_encodeU32 = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 3638975848)
+  proc_name = init_StringName("encode_s32")
+  PackedByteArray_encodeS32 = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 3638975848)
+  proc_name = init_StringName("encode_u64")
+  PackedByteArray_encodeU64 = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 3638975848)
+  proc_name = init_StringName("encode_s64")
+  PackedByteArray_encodeS64 = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 3638975848)
+  proc_name = init_StringName("encode_half")
+  PackedByteArray_encodeHalf = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 1113000516)
+  proc_name = init_StringName("encode_float")
+  PackedByteArray_encodeFloat = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 1113000516)
+  proc_name = init_StringName("encode_double")
+  PackedByteArray_encodeDouble = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 1113000516)
+  proc_name = init_StringName("encode_var")
+  PackedByteArray_encodeVar = interface_Variant_getPtrBuiltinMethod(variantType PackedByteArray, addr proc_name, 2604460497)
 var Equal_PackedByteArray_Variant: PtrOperatorEvaluator
 var NotEqual_PackedByteArray_Variant: PtrOperatorEvaluator
 var Not_PackedByteArray: PtrOperatorEvaluator

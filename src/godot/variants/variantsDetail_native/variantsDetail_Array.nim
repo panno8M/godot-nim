@@ -7,54 +7,244 @@ import ./../../helper/variantDefiner
 # type Array* = object
 #   self.json.is_keyed=false
 #   self.json.indexing_return_type=some("Variant")
-
-Array.procedures(loader= load_Array_proc):
-  proc size*(self: Array): Int {.loadfrom("size", 3173160232).}
-  proc isEmpty*(self: Array): Bool {.loadfrom("is_empty", 3918633141).}
-  proc clear*(self: Array) {.loadfrom("clear", 3218959716).}
-  proc hash*(self: Array): Int {.loadfrom("hash", 3173160232).}
-  proc assign*(self: Array; array: Array) {.loadfrom("assign", 2307260970).}
-  proc pushBack*(self: Array; value: ptr Variant) {.loadfrom("push_back", 3316032543).}
-  proc pushFront*(self: Array; value: ptr Variant) {.loadfrom("push_front", 3316032543).}
-  proc append*(self: Array; value: ptr Variant) {.loadfrom("append", 3316032543).}
-  proc appendArray*(self: Array; array: Array) {.loadfrom("append_array", 2307260970).}
-  proc resize*(self: Array; size: Int): Int {.loadfrom("resize", 848867239).}
-  proc insert*(self: Array; position: Int; value: ptr Variant): Int {.loadfrom("insert", 3176316662).}
-  proc removeAt*(self: Array; position: Int) {.loadfrom("remove_at", 2823966027).}
-  proc fill*(self: Array; value: ptr Variant) {.loadfrom("fill", 3316032543).}
-  proc erase*(self: Array; value: ptr Variant) {.loadfrom("erase", 3316032543).}
-  proc front*(self: Array): Variant {.loadfrom("front", 1460142086).}
-  proc back*(self: Array): Variant {.loadfrom("back", 1460142086).}
-  proc pickRandom*(self: Array): Variant {.loadfrom("pick_random", 1460142086).}
-  proc find*(self: Array; what: ptr Variant; `from`: Int = 0): Int {.loadfrom("find", 2336346817).}
-  proc rfind*(self: Array; what: ptr Variant; `from`: Int = -1): Int {.loadfrom("rfind", 2336346817).}
-  proc count*(self: Array; value: ptr Variant): Int {.loadfrom("count", 1481661226).}
-  proc has*(self: Array; value: ptr Variant): Bool {.loadfrom("has", 3680194679).}
-  proc popBack*(self: Array): Variant {.loadfrom("pop_back", 1321915136).}
-  proc popFront*(self: Array): Variant {.loadfrom("pop_front", 1321915136).}
-  proc popAt*(self: Array; position: Int): Variant {.loadfrom("pop_at", 3518259424).}
-  proc sort*(self: Array) {.loadfrom("sort", 3218959716).}
-  proc sortCustom*(self: Array; `func`: Callable) {.loadfrom("sort_custom", 3470848906).}
-  proc shuffle*(self: Array) {.loadfrom("shuffle", 3218959716).}
-  proc bsearch*(self: Array; value: ptr Variant; before: Bool = true): Int {.loadfrom("bsearch", 3372222236).}
-  proc bsearchCustom*(self: Array; value: ptr Variant; `func`: Callable; before: Bool = true): Int {.loadfrom("bsearch_custom", 161317131).}
-  proc reverse*(self: Array) {.loadfrom("reverse", 3218959716).}
-  proc duplicate*(self: Array; deep: Bool = false): Array {.loadfrom("duplicate", 636440122).}
-  proc slice*(self: Array; begin: Int; `end`: Int = 2147483647; step: Int = 1; deep: Bool = false): Array {.loadfrom("slice", 1393718243).}
-  proc filter*(self: Array; `method`: Callable): Array {.loadfrom("filter", 4075186556).}
-  proc map*(self: Array; `method`: Callable): Array {.loadfrom("map", 4075186556).}
-  proc reduce*(self: Array; `method`: Callable; accum: ptr Variant = nil): Variant {.loadfrom("reduce", 4272450342).}
-  proc any*(self: Array; `method`: Callable): Bool {.loadfrom("any", 4129521963).}
-  proc all*(self: Array; `method`: Callable): Bool {.loadfrom("all", 4129521963).}
-  proc max*(self: Array): Variant {.loadfrom("max", 1460142086).}
-  proc min*(self: Array): Variant {.loadfrom("min", 1460142086).}
-  proc isTyped*(self: Array): Bool {.loadfrom("is_typed", 3918633141).}
-  proc isSameTyped*(self: Array; array: Array): Bool {.loadfrom("is_same_typed", 2988181878).}
-  proc getTypedBuiltin*(self: Array): Int {.loadfrom("get_typed_builtin", 3173160232).}
-  proc getTypedClassName*(self: Array): StringName {.loadfrom("get_typed_class_name", 1825232092).}
-  proc getTypedScript*(self: Array): Variant {.loadfrom("get_typed_script", 1460142086).}
-  proc makeReadOnly*(self: Array) {.loadfrom("make_read_only", 3218959716).}
-  proc isReadOnly*(self: Array): Bool {.loadfrom("is_read_only", 3918633141).}
+var Array_size: PtrBuiltinMethod
+var Array_isEmpty: PtrBuiltinMethod
+var Array_clear: PtrBuiltinMethod
+var Array_hash: PtrBuiltinMethod
+var Array_assign: PtrBuiltinMethod
+var Array_pushBack: PtrBuiltinMethod
+var Array_pushFront: PtrBuiltinMethod
+var Array_append: PtrBuiltinMethod
+var Array_appendArray: PtrBuiltinMethod
+var Array_resize: PtrBuiltinMethod
+var Array_insert: PtrBuiltinMethod
+var Array_removeAt: PtrBuiltinMethod
+var Array_fill: PtrBuiltinMethod
+var Array_erase: PtrBuiltinMethod
+var Array_front: PtrBuiltinMethod
+var Array_back: PtrBuiltinMethod
+var Array_pickRandom: PtrBuiltinMethod
+var Array_find: PtrBuiltinMethod
+var Array_rfind: PtrBuiltinMethod
+var Array_count: PtrBuiltinMethod
+var Array_has: PtrBuiltinMethod
+var Array_popBack: PtrBuiltinMethod
+var Array_popFront: PtrBuiltinMethod
+var Array_popAt: PtrBuiltinMethod
+var Array_sort: PtrBuiltinMethod
+var Array_sortCustom: PtrBuiltinMethod
+var Array_shuffle: PtrBuiltinMethod
+var Array_bsearch: PtrBuiltinMethod
+var Array_bsearchCustom: PtrBuiltinMethod
+var Array_reverse: PtrBuiltinMethod
+var Array_duplicate: PtrBuiltinMethod
+var Array_slice: PtrBuiltinMethod
+var Array_filter: PtrBuiltinMethod
+var Array_map: PtrBuiltinMethod
+var Array_reduce: PtrBuiltinMethod
+var Array_any: PtrBuiltinMethod
+var Array_all: PtrBuiltinMethod
+var Array_max: PtrBuiltinMethod
+var Array_min: PtrBuiltinMethod
+var Array_isTyped: PtrBuiltinMethod
+var Array_isSameTyped: PtrBuiltinMethod
+var Array_getTypedBuiltin: PtrBuiltinMethod
+var Array_getTypedClassName: PtrBuiltinMethod
+var Array_getTypedScript: PtrBuiltinMethod
+var Array_makeReadOnly: PtrBuiltinMethod
+var Array_isReadOnly: PtrBuiltinMethod
+proc size*(self: Array): Int = Array_size(addr self, nil, addr result, 0)
+proc isEmpty*(self: Array): Bool = Array_isEmpty(addr self, nil, addr result, 0)
+proc clear*(self: Array) = Array_clear(addr self, nil, nil, 0)
+proc hash*(self: Array): Int = Array_hash(addr self, nil, addr result, 0)
+proc assign*(self: Array; array: Array) =
+  let argArr = [cast[pointer](addr array)]
+  Array_assign(addr self, addr argArr[0], nil, 1)
+proc pushBack*(self: Array; value: ptr Variant) =
+  let argArr = [cast[pointer](addr value)]
+  Array_pushBack(addr self, addr argArr[0], nil, 1)
+proc pushFront*(self: Array; value: ptr Variant) =
+  let argArr = [cast[pointer](addr value)]
+  Array_pushFront(addr self, addr argArr[0], nil, 1)
+proc append*(self: Array; value: ptr Variant) =
+  let argArr = [cast[pointer](addr value)]
+  Array_append(addr self, addr argArr[0], nil, 1)
+proc appendArray*(self: Array; array: Array) =
+  let argArr = [cast[pointer](addr array)]
+  Array_appendArray(addr self, addr argArr[0], nil, 1)
+proc resize*(self: Array; size: Int): Int =
+  let argArr = [cast[pointer](addr size)]
+  Array_resize(addr self, addr argArr[0], addr result, 1)
+proc insert*(self: Array; position: Int; value: ptr Variant): Int =
+  let argArr = [cast[pointer](addr position), cast[pointer](addr value)]
+  Array_insert(addr self, addr argArr[0], addr result, 2)
+proc removeAt*(self: Array; position: Int) =
+  let argArr = [cast[pointer](addr position)]
+  Array_removeAt(addr self, addr argArr[0], nil, 1)
+proc fill*(self: Array; value: ptr Variant) =
+  let argArr = [cast[pointer](addr value)]
+  Array_fill(addr self, addr argArr[0], nil, 1)
+proc erase*(self: Array; value: ptr Variant) =
+  let argArr = [cast[pointer](addr value)]
+  Array_erase(addr self, addr argArr[0], nil, 1)
+proc front*(self: Array): Variant = Array_front(addr self, nil, addr result, 0)
+proc back*(self: Array): Variant = Array_back(addr self, nil, addr result, 0)
+proc pickRandom*(self: Array): Variant = Array_pickRandom(addr self, nil, addr result, 0)
+proc find*(self: Array; what: ptr Variant; `from`: Int = 0): Int =
+  let argArr = [cast[pointer](addr what), cast[pointer](addr `from`)]
+  Array_find(addr self, addr argArr[0], addr result, 2)
+proc rfind*(self: Array; what: ptr Variant; `from`: Int = -1): Int =
+  let argArr = [cast[pointer](addr what), cast[pointer](addr `from`)]
+  Array_rfind(addr self, addr argArr[0], addr result, 2)
+proc count*(self: Array; value: ptr Variant): Int =
+  let argArr = [cast[pointer](addr value)]
+  Array_count(addr self, addr argArr[0], addr result, 1)
+proc has*(self: Array; value: ptr Variant): Bool =
+  let argArr = [cast[pointer](addr value)]
+  Array_has(addr self, addr argArr[0], addr result, 1)
+proc popBack*(self: Array): Variant = Array_popBack(addr self, nil, addr result, 0)
+proc popFront*(self: Array): Variant = Array_popFront(addr self, nil, addr result, 0)
+proc popAt*(self: Array; position: Int): Variant =
+  let argArr = [cast[pointer](addr position)]
+  Array_popAt(addr self, addr argArr[0], addr result, 1)
+proc sort*(self: Array) = Array_sort(addr self, nil, nil, 0)
+proc sortCustom*(self: Array; `func`: Callable) =
+  let argArr = [cast[pointer](addr `func`)]
+  Array_sortCustom(addr self, addr argArr[0], nil, 1)
+proc shuffle*(self: Array) = Array_shuffle(addr self, nil, nil, 0)
+proc bsearch*(self: Array; value: ptr Variant; before: Bool = true): Int =
+  let argArr = [cast[pointer](addr value), cast[pointer](addr before)]
+  Array_bsearch(addr self, addr argArr[0], addr result, 2)
+proc bsearchCustom*(self: Array; value: ptr Variant; `func`: Callable; before: Bool = true): Int =
+  let argArr = [cast[pointer](addr value), cast[pointer](addr `func`), cast[pointer](addr before)]
+  Array_bsearchCustom(addr self, addr argArr[0], addr result, 3)
+proc reverse*(self: Array) = Array_reverse(addr self, nil, nil, 0)
+proc duplicate*(self: Array; deep: Bool = false): Array =
+  let argArr = [cast[pointer](addr deep)]
+  Array_duplicate(addr self, addr argArr[0], addr result, 1)
+proc slice*(self: Array; begin: Int; `end`: Int = 2147483647; step: Int = 1; deep: Bool = false): Array =
+  let argArr = [cast[pointer](addr begin), cast[pointer](addr `end`), cast[pointer](addr step), cast[pointer](addr deep)]
+  Array_slice(addr self, addr argArr[0], addr result, 4)
+proc filter*(self: Array; `method`: Callable): Array =
+  let argArr = [cast[pointer](addr `method`)]
+  Array_filter(addr self, addr argArr[0], addr result, 1)
+proc map*(self: Array; `method`: Callable): Array =
+  let argArr = [cast[pointer](addr `method`)]
+  Array_map(addr self, addr argArr[0], addr result, 1)
+proc reduce*(self: Array; `method`: Callable; accum: ptr Variant = nil): Variant =
+  let argArr = [cast[pointer](addr `method`), cast[pointer](addr accum)]
+  Array_reduce(addr self, addr argArr[0], addr result, 2)
+proc any*(self: Array; `method`: Callable): Bool =
+  let argArr = [cast[pointer](addr `method`)]
+  Array_any(addr self, addr argArr[0], addr result, 1)
+proc all*(self: Array; `method`: Callable): Bool =
+  let argArr = [cast[pointer](addr `method`)]
+  Array_all(addr self, addr argArr[0], addr result, 1)
+proc max*(self: Array): Variant = Array_max(addr self, nil, addr result, 0)
+proc min*(self: Array): Variant = Array_min(addr self, nil, addr result, 0)
+proc isTyped*(self: Array): Bool = Array_isTyped(addr self, nil, addr result, 0)
+proc isSameTyped*(self: Array; array: Array): Bool =
+  let argArr = [cast[pointer](addr array)]
+  Array_isSameTyped(addr self, addr argArr[0], addr result, 1)
+proc getTypedBuiltin*(self: Array): Int = Array_getTypedBuiltin(addr self, nil, addr result, 0)
+proc getTypedClassName*(self: Array): StringName = Array_getTypedClassName(addr self, nil, addr result, 0)
+proc getTypedScript*(self: Array): Variant = Array_getTypedScript(addr self, nil, addr result, 0)
+proc makeReadOnly*(self: Array) = Array_makeReadOnly(addr self, nil, nil, 0)
+proc isReadOnly*(self: Array): Bool = Array_isReadOnly(addr self, nil, addr result, 0)
+proc load_Array_proc =
+  var proc_name: StringName
+  proc_name = init_StringName("size")
+  Array_size = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 3173160232)
+  proc_name = init_StringName("is_empty")
+  Array_isEmpty = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 3918633141)
+  proc_name = init_StringName("clear")
+  Array_clear = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 3218959716)
+  proc_name = init_StringName("hash")
+  Array_hash = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 3173160232)
+  proc_name = init_StringName("assign")
+  Array_assign = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 2307260970)
+  proc_name = init_StringName("push_back")
+  Array_pushBack = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 3316032543)
+  proc_name = init_StringName("push_front")
+  Array_pushFront = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 3316032543)
+  proc_name = init_StringName("append")
+  Array_append = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 3316032543)
+  proc_name = init_StringName("append_array")
+  Array_appendArray = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 2307260970)
+  proc_name = init_StringName("resize")
+  Array_resize = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 848867239)
+  proc_name = init_StringName("insert")
+  Array_insert = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 3176316662)
+  proc_name = init_StringName("remove_at")
+  Array_removeAt = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 2823966027)
+  proc_name = init_StringName("fill")
+  Array_fill = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 3316032543)
+  proc_name = init_StringName("erase")
+  Array_erase = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 3316032543)
+  proc_name = init_StringName("front")
+  Array_front = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 1460142086)
+  proc_name = init_StringName("back")
+  Array_back = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 1460142086)
+  proc_name = init_StringName("pick_random")
+  Array_pickRandom = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 1460142086)
+  proc_name = init_StringName("find")
+  Array_find = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 2336346817)
+  proc_name = init_StringName("rfind")
+  Array_rfind = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 2336346817)
+  proc_name = init_StringName("count")
+  Array_count = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 1481661226)
+  proc_name = init_StringName("has")
+  Array_has = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 3680194679)
+  proc_name = init_StringName("pop_back")
+  Array_popBack = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 1321915136)
+  proc_name = init_StringName("pop_front")
+  Array_popFront = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 1321915136)
+  proc_name = init_StringName("pop_at")
+  Array_popAt = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 3518259424)
+  proc_name = init_StringName("sort")
+  Array_sort = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 3218959716)
+  proc_name = init_StringName("sort_custom")
+  Array_sortCustom = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 3470848906)
+  proc_name = init_StringName("shuffle")
+  Array_shuffle = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 3218959716)
+  proc_name = init_StringName("bsearch")
+  Array_bsearch = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 3372222236)
+  proc_name = init_StringName("bsearch_custom")
+  Array_bsearchCustom = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 161317131)
+  proc_name = init_StringName("reverse")
+  Array_reverse = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 3218959716)
+  proc_name = init_StringName("duplicate")
+  Array_duplicate = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 636440122)
+  proc_name = init_StringName("slice")
+  Array_slice = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 1393718243)
+  proc_name = init_StringName("filter")
+  Array_filter = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 4075186556)
+  proc_name = init_StringName("map")
+  Array_map = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 4075186556)
+  proc_name = init_StringName("reduce")
+  Array_reduce = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 4272450342)
+  proc_name = init_StringName("any")
+  Array_any = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 4129521963)
+  proc_name = init_StringName("all")
+  Array_all = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 4129521963)
+  proc_name = init_StringName("max")
+  Array_max = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 1460142086)
+  proc_name = init_StringName("min")
+  Array_min = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 1460142086)
+  proc_name = init_StringName("is_typed")
+  Array_isTyped = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 3918633141)
+  proc_name = init_StringName("is_same_typed")
+  Array_isSameTyped = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 2988181878)
+  proc_name = init_StringName("get_typed_builtin")
+  Array_getTypedBuiltin = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 3173160232)
+  proc_name = init_StringName("get_typed_class_name")
+  Array_getTypedClassName = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 1825232092)
+  proc_name = init_StringName("get_typed_script")
+  Array_getTypedScript = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 1460142086)
+  proc_name = init_StringName("make_read_only")
+  Array_makeReadOnly = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 3218959716)
+  proc_name = init_StringName("is_read_only")
+  Array_isReadOnly = interface_Variant_getPtrBuiltinMethod(variantType Array, addr proc_name, 3918633141)
 var Equal_Array_Variant: PtrOperatorEvaluator
 var NotEqual_Array_Variant: PtrOperatorEvaluator
 var Not_Array: PtrOperatorEvaluator

@@ -7,29 +7,120 @@ import ./../../helper/variantDefiner
 # type PackedVector3Array* = object
 #   self.json.is_keyed=false
 #   self.json.indexing_return_type=some("Vector3")
-
-PackedVector3Array.procedures(loader= load_PackedVector3Array_proc):
-  proc size*(self: PackedVector3Array): Int {.loadfrom("size", 3173160232).}
-  proc isEmpty*(self: PackedVector3Array): Bool {.loadfrom("is_empty", 3918633141).}
-  proc set*(self: PackedVector3Array; index: Int; value: Vector3) {.loadfrom("set", 3975343409).}
-  proc pushBack*(self: PackedVector3Array; value: Vector3): Bool {.loadfrom("push_back", 3295363524).}
-  proc append*(self: PackedVector3Array; value: Vector3): Bool {.loadfrom("append", 3295363524).}
-  proc appendArray*(self: PackedVector3Array; array: PackedVector3Array) {.loadfrom("append_array", 203538016).}
-  proc removeAt*(self: PackedVector3Array; index: Int) {.loadfrom("remove_at", 2823966027).}
-  proc insert*(self: PackedVector3Array; atIndex: Int; value: Vector3): Int {.loadfrom("insert", 3892262309).}
-  proc fill*(self: PackedVector3Array; value: Vector3) {.loadfrom("fill", 3726392409).}
-  proc resize*(self: PackedVector3Array; newSize: Int): Int {.loadfrom("resize", 848867239).}
-  proc clear*(self: PackedVector3Array) {.loadfrom("clear", 3218959716).}
-  proc has*(self: PackedVector3Array; value: Vector3): Bool {.loadfrom("has", 1749054343).}
-  proc reverse*(self: PackedVector3Array) {.loadfrom("reverse", 3218959716).}
-  proc slice*(self: PackedVector3Array; begin: Int; `end`: Int = 2147483647): PackedVector3Array {.loadfrom("slice", 2086131305).}
-  proc toByteArray*(self: PackedVector3Array): PackedByteArray {.loadfrom("to_byte_array", 247621236).}
-  proc sort*(self: PackedVector3Array) {.loadfrom("sort", 3218959716).}
-  proc bsearch*(self: PackedVector3Array; value: Vector3; before: Bool = true): Int {.loadfrom("bsearch", 219263630).}
-  proc duplicate*(self: PackedVector3Array): PackedVector3Array {.loadfrom("duplicate", 2754175465).}
-  proc find*(self: PackedVector3Array; value: Vector3; `from`: Int = 0): Int {.loadfrom("find", 3718155780).}
-  proc rfind*(self: PackedVector3Array; value: Vector3; `from`: Int = -1): Int {.loadfrom("rfind", 3718155780).}
-  proc count*(self: PackedVector3Array; value: Vector3): Int {.loadfrom("count", 194580386).}
+var PackedVector3Array_size: PtrBuiltinMethod
+var PackedVector3Array_isEmpty: PtrBuiltinMethod
+var PackedVector3Array_set: PtrBuiltinMethod
+var PackedVector3Array_pushBack: PtrBuiltinMethod
+var PackedVector3Array_append: PtrBuiltinMethod
+var PackedVector3Array_appendArray: PtrBuiltinMethod
+var PackedVector3Array_removeAt: PtrBuiltinMethod
+var PackedVector3Array_insert: PtrBuiltinMethod
+var PackedVector3Array_fill: PtrBuiltinMethod
+var PackedVector3Array_resize: PtrBuiltinMethod
+var PackedVector3Array_clear: PtrBuiltinMethod
+var PackedVector3Array_has: PtrBuiltinMethod
+var PackedVector3Array_reverse: PtrBuiltinMethod
+var PackedVector3Array_slice: PtrBuiltinMethod
+var PackedVector3Array_toByteArray: PtrBuiltinMethod
+var PackedVector3Array_sort: PtrBuiltinMethod
+var PackedVector3Array_bsearch: PtrBuiltinMethod
+var PackedVector3Array_duplicate: PtrBuiltinMethod
+var PackedVector3Array_find: PtrBuiltinMethod
+var PackedVector3Array_rfind: PtrBuiltinMethod
+var PackedVector3Array_count: PtrBuiltinMethod
+proc size*(self: PackedVector3Array): Int = PackedVector3Array_size(addr self, nil, addr result, 0)
+proc isEmpty*(self: PackedVector3Array): Bool = PackedVector3Array_isEmpty(addr self, nil, addr result, 0)
+proc set*(self: PackedVector3Array; index: Int; value: Vector3) =
+  let argArr = [cast[pointer](addr index), cast[pointer](addr value)]
+  PackedVector3Array_set(addr self, addr argArr[0], nil, 2)
+proc pushBack*(self: PackedVector3Array; value: Vector3): Bool =
+  let argArr = [cast[pointer](addr value)]
+  PackedVector3Array_pushBack(addr self, addr argArr[0], addr result, 1)
+proc append*(self: PackedVector3Array; value: Vector3): Bool =
+  let argArr = [cast[pointer](addr value)]
+  PackedVector3Array_append(addr self, addr argArr[0], addr result, 1)
+proc appendArray*(self: PackedVector3Array; array: PackedVector3Array) =
+  let argArr = [cast[pointer](addr array)]
+  PackedVector3Array_appendArray(addr self, addr argArr[0], nil, 1)
+proc removeAt*(self: PackedVector3Array; index: Int) =
+  let argArr = [cast[pointer](addr index)]
+  PackedVector3Array_removeAt(addr self, addr argArr[0], nil, 1)
+proc insert*(self: PackedVector3Array; atIndex: Int; value: Vector3): Int =
+  let argArr = [cast[pointer](addr atIndex), cast[pointer](addr value)]
+  PackedVector3Array_insert(addr self, addr argArr[0], addr result, 2)
+proc fill*(self: PackedVector3Array; value: Vector3) =
+  let argArr = [cast[pointer](addr value)]
+  PackedVector3Array_fill(addr self, addr argArr[0], nil, 1)
+proc resize*(self: PackedVector3Array; newSize: Int): Int =
+  let argArr = [cast[pointer](addr newSize)]
+  PackedVector3Array_resize(addr self, addr argArr[0], addr result, 1)
+proc clear*(self: PackedVector3Array) = PackedVector3Array_clear(addr self, nil, nil, 0)
+proc has*(self: PackedVector3Array; value: Vector3): Bool =
+  let argArr = [cast[pointer](addr value)]
+  PackedVector3Array_has(addr self, addr argArr[0], addr result, 1)
+proc reverse*(self: PackedVector3Array) = PackedVector3Array_reverse(addr self, nil, nil, 0)
+proc slice*(self: PackedVector3Array; begin: Int; `end`: Int = 2147483647): PackedVector3Array =
+  let argArr = [cast[pointer](addr begin), cast[pointer](addr `end`)]
+  PackedVector3Array_slice(addr self, addr argArr[0], addr result, 2)
+proc toByteArray*(self: PackedVector3Array): PackedByteArray = PackedVector3Array_toByteArray(addr self, nil, addr result, 0)
+proc sort*(self: PackedVector3Array) = PackedVector3Array_sort(addr self, nil, nil, 0)
+proc bsearch*(self: PackedVector3Array; value: Vector3; before: Bool = true): Int =
+  let argArr = [cast[pointer](addr value), cast[pointer](addr before)]
+  PackedVector3Array_bsearch(addr self, addr argArr[0], addr result, 2)
+proc duplicate*(self: PackedVector3Array): PackedVector3Array = PackedVector3Array_duplicate(addr self, nil, addr result, 0)
+proc find*(self: PackedVector3Array; value: Vector3; `from`: Int = 0): Int =
+  let argArr = [cast[pointer](addr value), cast[pointer](addr `from`)]
+  PackedVector3Array_find(addr self, addr argArr[0], addr result, 2)
+proc rfind*(self: PackedVector3Array; value: Vector3; `from`: Int = -1): Int =
+  let argArr = [cast[pointer](addr value), cast[pointer](addr `from`)]
+  PackedVector3Array_rfind(addr self, addr argArr[0], addr result, 2)
+proc count*(self: PackedVector3Array; value: Vector3): Int =
+  let argArr = [cast[pointer](addr value)]
+  PackedVector3Array_count(addr self, addr argArr[0], addr result, 1)
+proc load_PackedVector3Array_proc =
+  var proc_name: StringName
+  proc_name = init_StringName("size")
+  PackedVector3Array_size = interface_Variant_getPtrBuiltinMethod(variantType PackedVector3Array, addr proc_name, 3173160232)
+  proc_name = init_StringName("is_empty")
+  PackedVector3Array_isEmpty = interface_Variant_getPtrBuiltinMethod(variantType PackedVector3Array, addr proc_name, 3918633141)
+  proc_name = init_StringName("set")
+  PackedVector3Array_set = interface_Variant_getPtrBuiltinMethod(variantType PackedVector3Array, addr proc_name, 3975343409)
+  proc_name = init_StringName("push_back")
+  PackedVector3Array_pushBack = interface_Variant_getPtrBuiltinMethod(variantType PackedVector3Array, addr proc_name, 3295363524)
+  proc_name = init_StringName("append")
+  PackedVector3Array_append = interface_Variant_getPtrBuiltinMethod(variantType PackedVector3Array, addr proc_name, 3295363524)
+  proc_name = init_StringName("append_array")
+  PackedVector3Array_appendArray = interface_Variant_getPtrBuiltinMethod(variantType PackedVector3Array, addr proc_name, 203538016)
+  proc_name = init_StringName("remove_at")
+  PackedVector3Array_removeAt = interface_Variant_getPtrBuiltinMethod(variantType PackedVector3Array, addr proc_name, 2823966027)
+  proc_name = init_StringName("insert")
+  PackedVector3Array_insert = interface_Variant_getPtrBuiltinMethod(variantType PackedVector3Array, addr proc_name, 3892262309)
+  proc_name = init_StringName("fill")
+  PackedVector3Array_fill = interface_Variant_getPtrBuiltinMethod(variantType PackedVector3Array, addr proc_name, 3726392409)
+  proc_name = init_StringName("resize")
+  PackedVector3Array_resize = interface_Variant_getPtrBuiltinMethod(variantType PackedVector3Array, addr proc_name, 848867239)
+  proc_name = init_StringName("clear")
+  PackedVector3Array_clear = interface_Variant_getPtrBuiltinMethod(variantType PackedVector3Array, addr proc_name, 3218959716)
+  proc_name = init_StringName("has")
+  PackedVector3Array_has = interface_Variant_getPtrBuiltinMethod(variantType PackedVector3Array, addr proc_name, 1749054343)
+  proc_name = init_StringName("reverse")
+  PackedVector3Array_reverse = interface_Variant_getPtrBuiltinMethod(variantType PackedVector3Array, addr proc_name, 3218959716)
+  proc_name = init_StringName("slice")
+  PackedVector3Array_slice = interface_Variant_getPtrBuiltinMethod(variantType PackedVector3Array, addr proc_name, 2086131305)
+  proc_name = init_StringName("to_byte_array")
+  PackedVector3Array_toByteArray = interface_Variant_getPtrBuiltinMethod(variantType PackedVector3Array, addr proc_name, 247621236)
+  proc_name = init_StringName("sort")
+  PackedVector3Array_sort = interface_Variant_getPtrBuiltinMethod(variantType PackedVector3Array, addr proc_name, 3218959716)
+  proc_name = init_StringName("bsearch")
+  PackedVector3Array_bsearch = interface_Variant_getPtrBuiltinMethod(variantType PackedVector3Array, addr proc_name, 219263630)
+  proc_name = init_StringName("duplicate")
+  PackedVector3Array_duplicate = interface_Variant_getPtrBuiltinMethod(variantType PackedVector3Array, addr proc_name, 2754175465)
+  proc_name = init_StringName("find")
+  PackedVector3Array_find = interface_Variant_getPtrBuiltinMethod(variantType PackedVector3Array, addr proc_name, 3718155780)
+  proc_name = init_StringName("rfind")
+  PackedVector3Array_rfind = interface_Variant_getPtrBuiltinMethod(variantType PackedVector3Array, addr proc_name, 3718155780)
+  proc_name = init_StringName("count")
+  PackedVector3Array_count = interface_Variant_getPtrBuiltinMethod(variantType PackedVector3Array, addr proc_name, 194580386)
 var Equal_PackedVector3Array_Variant: PtrOperatorEvaluator
 var NotEqual_PackedVector3Array_Variant: PtrOperatorEvaluator
 var Not_PackedVector3Array: PtrOperatorEvaluator
