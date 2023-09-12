@@ -26,10 +26,14 @@ template register_class*(T: typedesc[SomeUserClass]) =
   register_class(T.make_ClassRegistrationInfo(false, false))
   EngineClass(T).bind_virtuals(T)
 
+template register_method*(T: typedesc[SomeUserClass]; info: ClassMethodInfo) =
+  mixin p
+  interface_classDbRegisterExtensionClassMethod(library, addr className(T), addr info)
 template register_method*(T: typedesc[SomeUserClass]; p: proc) =
   mixin p
+  mixin build_methodInfo
   let info = build_methodInfo(p)
-  interface_classDbRegisterExtensionClassMethod(library, addr className(T), addr info)
+  T.register_method(info)
 
 proc add_property*(T: typedesc[SomeUserClass]; info: PropertyInfo; setter, getter: static string) =
   let setter: StringName = setter
@@ -140,13 +144,14 @@ macro build_methodInfo*(Proc: proc): ClassMethodInfo =
       ptrcall.add quote do: `p_args_ptrcall`[`i_lit`].decode(typedesc `Type`)
     if has_return:
       call_func_body = quote do:
-        `r_return`[] = variant `call`
+        let result = variant `call`
+        interface_Variant_newCopy(`r_return`, addr result)
       ptrcall_func_body = quote do:
         `ptrcall`.encode(`r_ret`)
     else:
       call_func_body = quote do:
-        `call`
-        `r_return`[] = variant()
+        let result = variant(); `call`
+        interface_Variant_newCopy(`r_return`, addr result)
       ptrcall_func_body = ptrcall
 
   let argcount_lit = newlit argcount
