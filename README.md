@@ -57,6 +57,8 @@ This project is in the early stages of development and some features are not yet
 * Getting items of Godot's container (E.g. Array, Dictionary...)
 * Using Parallelism
 * Library hot reloading
+* C++ backend
+  * Module development
 
 ...And so on.
 
