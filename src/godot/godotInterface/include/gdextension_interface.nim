@@ -117,7 +117,7 @@ type
     `type`*: Variant_Type
     name*: StringNamePtr
     class_name*: StringNamePtr
-    hint*: set[PropertyHint]
+    hint*: PropertyHint
     hint_string*: StringPtr
     usage*: set[PropertyUsageFlags]
   MethodInfo* {.bycopy.} = object

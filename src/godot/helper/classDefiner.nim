@@ -27,10 +27,8 @@ template register_class*(T: typedesc[SomeUserClass]) =
   EngineClass(T).bind_virtuals(T)
 
 template register_method*(T: typedesc[SomeUserClass]; info: ClassMethodInfo) =
-  mixin p
   interface_classDbRegisterExtensionClassMethod(library, addr className(T), addr info)
 template register_method*(T: typedesc[SomeUserClass]; p: proc) =
-  mixin p
   mixin build_methodInfo
   let info = build_methodInfo(p)
   T.register_method(info)
@@ -40,8 +38,8 @@ proc add_property*(T: typedesc[SomeUserClass]; info: PropertyInfo; setter, gette
   let getter: StringName = getter
   interface_ClassDB_registerExtensionClassProperty(library, addr className(T), addr info, addr setter, addr getter)
 proc add_property*(T: typedesc[SomeUserClass]; P: typedesc; prop, setter, getter: static string) =
-  let info = propertyInfo(P, prop)
-  T.add_property(info[], setter, getter)
+  let info = propertyInfo(P, prop).info
+  T.add_property(info, setter, getter)
 
 proc free_bind(p_userdata: pointer; p_instance: ClassInstancePtr) {.gdcall.} =
   when TraceEngineAllocationCallback:
@@ -112,7 +110,7 @@ macro build_methodInfo*(Proc: proc): ClassMethodInfo =
       let name = toStrLit name
       inc argcount
       info.add quote do:
-        propertyInfo(typedesc `Type`, `name`)[]
+        propertyInfo(typedesc `Type`, `name`).info
       meta.add quote do:
         metadata(typedesc `Type`)
     if info.len != 0:
@@ -174,18 +172,18 @@ macro build_methodInfo*(Proc: proc): ClassMethodInfo =
 
     ClassMethodInfo(
       name: addr proc_name,
-      call_func: call_func,
-      ptrcall_func: ptrcall_func,
-      method_flags: {MethodFlag_Normal},
+        call_func: call_func,
+        ptrcall_func: ptrcall_func,
+        method_flags: {MethodFlag_Normal},
 
-      has_return_value: `has_return_lit`,
-      return_value_info: `return_value_info`,
-      return_value_metadata: `return_value_metadata`,
+        has_return_value: `has_return_lit`,
+        return_value_info: `return_value_info`,
+        return_value_metadata: `return_value_metadata`,
 
-      argument_count: `arg_count_lit`,
-      arguments_info: `arguments_info`,
-      arguments_metadata: `arguments_metadata`,
+        argument_count: `arg_count_lit`,
+        arguments_info: `arguments_info`,
+        arguments_metadata: `arguments_metadata`,
 
-      # default_argument_count: default_argument_count,
-      # default_arguments: addr p_default_arguments[0],
-    )
+        # default_argument_count: default_argument_count,
+        # default_arguments: addr p_default_arguments[0],
+      )

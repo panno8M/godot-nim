@@ -1,3 +1,4 @@
+import std/macros
 import variantTypeSolver
 import ../godotInterface
 import ../godotInterface/objectBase
@@ -52,7 +53,17 @@ template convert_alternative(Decoded, Encoded, encoder, decoder): untyped =
     decoder(v.get(Encoded))
 
 template convert_alternative_autocast(Decoded, Encoded): untyped =
-  convert_alternative Decoded, Encoded, Encoded, Decoded
+  bind Decoded
+  bind Encoded
+  template encoded*(T: typedesc[Decoded]): typedesc[Encoded] = Encoded
+  template encode*(v: Decoded; p: pointer) =
+    Encoded(encoder(v), p)
+  proc decode*(p: pointer; D: typedesc[Decoded]): D =
+    D(p.decode(Encoded))
+  proc variant*(v: Decoded): Variant =
+    variant Encoded(v)
+  proc get*(v: ptr Variant; D: typedesc[Decoded]): D =
+    D(v.get(Encoded))
 
 template convert_generics_forcecast(Decoded, Encoded): untyped =
   template encoded*[T: Decoded](_: typedesc[T]): typedesc[Encoded] = Encoded
@@ -79,16 +90,9 @@ template convert_generic_params_forcecast(Decoded, Encoded): untyped =
 
 convert_alternative string, String, init_String, `$`
 
-convert_alternative_autocast int8, Int
-convert_alternative_autocast int16, Int
-convert_alternative_autocast int32, Int
+convert_alternative_autocast AltInt, Int
 
-convert_alternative_autocast uint8, Int
-convert_alternative_autocast uint16, Int
-convert_alternative_autocast uint32, Int
-convert_alternative_autocast uint64, Int
-
-convert_alternative_autocast float32, Float
+convert_alternative_autocast AltFloat, Float
 
 convert_generics_forcecast enum, Int
 
@@ -177,41 +181,92 @@ proc get*[T: SomeClass](v: ptr Variant; _: typedesc[T]): T =
 # Property Info
 # =============
 
-template metadata*(T: typedesc[int]): ClassMethodArgumentMetadata = MethodArgumentMetadata_Int_is_Int64
-proc propertyInfo*(T: typedesc[int]; name: static string = ""): ptr PropertyInfo =
-  var info {.global.} : PropertyInfo
-  var hint {.global.} : String
-  var prop_name {.global.} : StringName
-  var class_name {.global.} : StringName
-  once:
-    hint = ""
-    prop_name = name
-    class_name = ""
-    info = PropertyInfo(
-      `type`: VariantType_Int,
-      name: addr prop_name,
-      class_name: addr class_name,
-      hint: {propertyHint_None},
-      hint_string: addr hint,
-      usage: PropertyUsageFlags.propertyUsageDefault
-    )
-  addr info
+# Metadata
+# ========
 
-proc propertyInfo*(T: typedesc[String|string]; name: static string = ""): ptr PropertyInfo =
-  var info {.global.} : PropertyInfo
-  var hint {.global.} : String
-  var prop_name {.global.} : StringName
-  var class_name {.global.} : StringName
-  once:
-    hint = ""
-    class_name = ""
-    prop_name = name
-    info = PropertyInfo(
-      `type`: VariantType_String,
-      name: addr prop_name,
-      class_name: addr class_name,
-      hint: {propertyHint_None},
-      hint_string: addr hint,
-      usage: PropertyUsageFlags.propertyUsageDefault
-    )
-  addr info
+# Int
+# ---
+template metadata*(T: typedesc[int]): ClassMethodArgumentMetadata =
+  when sizeof(int) == 8: MethodArgumentMetadata_Int_is_Int64
+  else: MethodArgumentMetadata_Int_is_Int32
+template metadata*(T: typedesc[uint]): ClassMethodArgumentMetadata =
+  when sizeof(int) == 8: MethodArgumentMetadata_Int_is_Uint64
+  else: MethodArgumentMetadata_Int_is_Uint32
+
+template metadata*(T: typedesc[int64]): ClassMethodArgumentMetadata = MethodArgumentMetadata_Int_is_Int64
+template metadata*(T: typedesc[int32]): ClassMethodArgumentMetadata = MethodArgumentMetadata_Int_is_Int32
+template metadata*(T: typedesc[int16]): ClassMethodArgumentMetadata = MethodArgumentMetadata_Int_is_Int32
+template metadata*(T: typedesc[int8]): ClassMethodArgumentMetadata = MethodArgumentMetadata_Int_is_Int8
+
+template metadata*(T: typedesc[uint64]): ClassMethodArgumentMetadata = MethodArgumentMetadata_Int_is_Uint64
+template metadata*(T: typedesc[uint32]): ClassMethodArgumentMetadata = MethodArgumentMetadata_Int_is_Uint32
+template metadata*(T: typedesc[uint16]): ClassMethodArgumentMetadata = MethodArgumentMetadata_Int_is_Uint32
+template metadata*(T: typedesc[uint8]): ClassMethodArgumentMetadata = MethodArgumentMetadata_Int_is_Uint8
+
+# float
+# -----
+template metadata*(T: typedesc[float64]): ClassMethodArgumentMetadata = MethodArgumentMetadata_Real_is_Double
+template metadata*(T: typedesc[float32]): ClassMethodArgumentMetadata = MethodArgumentMetadata_Real_is_Float
+
+
+# Property Info
+# =============
+
+type PropertyInfoGlue* = ref object
+  info*: PropertyInfo
+  name*: StringName
+  class_name*: StringName
+  hint_string*: String
+
+converter getRaw*(glue: PropertyInfoGlue): ptr PropertyInfo = addr glue.info
+
+proc newPropertyInfoGlue(`type`: VariantType; name, class_name: StringName; hint: PropertyHint; hint_string: String; usage: set[PropertyUsageFlags]): PropertyInfoGlue =
+  new result
+  result.name = name
+  result.class_name = class_name
+  result.hint_string = hint_string
+  result.info = PropertyInfo(
+    `type`: `type`,
+    name: addr result.name,
+    class_name: addr result.class_name,
+    hint: hint,
+    hint_string: addr result.hint_string,
+    usage: usage,
+  )
+
+template propertyInfo_blueprint(Type: typedesc; body): untyped =
+  proc propertyInfo*(T {.inject.} : typedesc[Type];
+        name {.inject.} : StringName = "";
+        class_name {.inject.} : StringName = "";
+        hint {.inject.} : PropertyHint = propertyHint_None;
+        hint_string {.inject.} : String = "";
+        usage {.inject.} : system.set[PropertyUsageFlags] = PropertyUsageFlags.propertyUsageDefault
+      ): PropertyInfoGlue =
+    body
+
+propertyInfo_blueprint(SomeVariants):
+  newPropertyInfoGlue(
+    `type`= variantType T,
+    name,
+    class_name,
+    hint,
+    hint_string,
+    usage,
+  )
+
+propertyInfo_blueprint(SomeClass):
+  newPropertyInfoGlue(
+    `type`= VariantType_Object,
+    name,
+    class_name,
+    hint,
+    hint_string,
+    usage,
+  )
+
+propertyInfo_blueprint(AltInt):
+  propertyInfo(Int, name, class_name, hint, hint_string, usage)
+propertyInfo_blueprint(AltFloat):
+  propertyInfo(Float, name, class_name, hint, hint_string, usage)
+propertyInfo_blueprint(AltString):
+  propertyInfo(String, name, class_name, hint, hint_string, usage)

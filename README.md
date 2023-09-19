@@ -45,7 +45,6 @@ This project is in the early stages of development and some features are not yet
   * [ ] Support static
   * [ ] Support virtual
   * [ ] Support default-value
-* [ ] Prepare PropertyInfo template
 * [ ] Auto-react to typical notifications
 * [ ] Define constants
   * [x] Define Variant constants
@@ -59,6 +58,7 @@ This project is in the early stages of development and some features are not yet
 * Library hot reloading
 * C++ backend
   * Module development
+* Custom constructor
 
 ...And so on.
 
