@@ -4,9 +4,6 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-# type Transform3D* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=none(string)
 const Transform3D_Identity*: Transform3D = init_Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 const Transform3D_FlipX*: Transform3D = init_Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 const Transform3D_FlipY*: Transform3D = init_Transform3D(1, 0, 0, 0, -1, 0, 0, 0, 1, 0, 0, 0)
@@ -28,31 +25,31 @@ proc inverse*(self: Transform3D): Transform3D = Transform3D_inverse(addr self, n
 proc affineInverse*(self: Transform3D): Transform3D = Transform3D_affineInverse(addr self, nil, addr result, 0)
 proc orthonormalized*(self: Transform3D): Transform3D = Transform3D_orthonormalized(addr self, nil, addr result, 0)
 proc rotated*(self: Transform3D; axis: Vector3; angle: Float): Transform3D =
-  let argArr = [cast[pointer](addr axis), cast[pointer](addr angle)]
+  let argArr = [getPtr axis, getPtr angle]
   Transform3D_rotated(addr self, addr argArr[0], addr result, 2)
 proc rotatedLocal*(self: Transform3D; axis: Vector3; angle: Float): Transform3D =
-  let argArr = [cast[pointer](addr axis), cast[pointer](addr angle)]
+  let argArr = [getPtr axis, getPtr angle]
   Transform3D_rotatedLocal(addr self, addr argArr[0], addr result, 2)
 proc scaled*(self: Transform3D; scale: Vector3): Transform3D =
-  let argArr = [cast[pointer](addr scale)]
+  let argArr = [getPtr scale]
   Transform3D_scaled(addr self, addr argArr[0], addr result, 1)
 proc scaledLocal*(self: Transform3D; scale: Vector3): Transform3D =
-  let argArr = [cast[pointer](addr scale)]
+  let argArr = [getPtr scale]
   Transform3D_scaledLocal(addr self, addr argArr[0], addr result, 1)
 proc translated*(self: Transform3D; offset: Vector3): Transform3D =
-  let argArr = [cast[pointer](addr offset)]
+  let argArr = [getPtr offset]
   Transform3D_translated(addr self, addr argArr[0], addr result, 1)
 proc translatedLocal*(self: Transform3D; offset: Vector3): Transform3D =
-  let argArr = [cast[pointer](addr offset)]
+  let argArr = [getPtr offset]
   Transform3D_translatedLocal(addr self, addr argArr[0], addr result, 1)
 proc lookingAt*(self: Transform3D; target: Vector3; up: Vector3 = gdvec(0, 1, 0); useModelFront: Bool = false): Transform3D =
-  let argArr = [cast[pointer](addr target), cast[pointer](addr up), cast[pointer](addr useModelFront)]
+  let argArr = [getPtr target, getPtr up, getPtr useModelFront]
   Transform3D_lookingAt(addr self, addr argArr[0], addr result, 3)
 proc interpolateWith*(self: Transform3D; xform: Transform3D; weight: Float): Transform3D =
-  let argArr = [cast[pointer](addr xform), cast[pointer](addr weight)]
+  let argArr = [getPtr xform, getPtr weight]
   Transform3D_interpolateWith(addr self, addr argArr[0], addr result, 2)
 proc isEqualApprox*(self: Transform3D; xform: Transform3D): Bool =
-  let argArr = [cast[pointer](addr xform)]
+  let argArr = [getPtr xform]
   Transform3D_isEqualApprox(addr self, addr argArr[0], addr result, 1)
 proc isFinite*(self: Transform3D): Bool = Transform3D_isFinite(addr self, nil, addr result, 0)
 proc load_Transform3D_proc =

@@ -4,9 +4,6 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-# type NodePath* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=none(string)
 var NodePath_isAbsolute: PtrBuiltinMethod
 var NodePath_getNameCount: PtrBuiltinMethod
 var NodePath_getName: PtrBuiltinMethod
@@ -20,12 +17,12 @@ var NodePath_isEmpty: PtrBuiltinMethod
 proc isAbsolute*(self: NodePath): Bool = NodePath_isAbsolute(addr self, nil, addr result, 0)
 proc getNameCount*(self: NodePath): Int = NodePath_getNameCount(addr self, nil, addr result, 0)
 proc getName*(self: NodePath; idx: Int): StringName =
-  let argArr = [cast[pointer](addr idx)]
+  let argArr = [getPtr idx]
   NodePath_getName(addr self, addr argArr[0], addr result, 1)
 proc getSubnameCount*(self: NodePath): Int = NodePath_getSubnameCount(addr self, nil, addr result, 0)
 proc hash*(self: NodePath): Int = NodePath_hash(addr self, nil, addr result, 0)
 proc getSubname*(self: NodePath; idx: Int): StringName =
-  let argArr = [cast[pointer](addr idx)]
+  let argArr = [getPtr idx]
   NodePath_getSubname(addr self, addr argArr[0], addr result, 1)
 proc getConcatenatedNames*(self: NodePath): StringName = NodePath_getConcatenatedNames(addr self, nil, addr result, 0)
 proc getConcatenatedSubnames*(self: NodePath): StringName = NodePath_getConcatenatedSubnames(addr self, nil, addr result, 0)

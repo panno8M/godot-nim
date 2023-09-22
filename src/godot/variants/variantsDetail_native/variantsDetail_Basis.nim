@@ -4,9 +4,6 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-# type Basis* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=some("Vector3")
 const Basis_Identity*: Basis = init_Basis(1, 0, 0, 0, 1, 0, 0, 0, 1)
 const Basis_FlipX*: Basis = init_Basis(-1, 0, 0, 0, 1, 0, 0, 0, 1)
 const Basis_FlipY*: Basis = init_Basis(1, 0, 0, 0, -1, 0, 0, 0, 1)
@@ -34,40 +31,40 @@ proc transposed*(self: Basis): Basis = Basis_transposed(addr self, nil, addr res
 proc orthonormalized*(self: Basis): Basis = Basis_orthonormalized(addr self, nil, addr result, 0)
 proc determinant*(self: Basis): Float = Basis_determinant(addr self, nil, addr result, 0)
 proc rotated*(self: Basis; axis: Vector3; angle: Float): Basis =
-  let argArr = [cast[pointer](addr axis), cast[pointer](addr angle)]
+  let argArr = [getPtr axis, getPtr angle]
   Basis_rotated(addr self, addr argArr[0], addr result, 2)
 proc scaled*(self: Basis; scale: Vector3): Basis =
-  let argArr = [cast[pointer](addr scale)]
+  let argArr = [getPtr scale]
   Basis_scaled(addr self, addr argArr[0], addr result, 1)
 proc getScale*(self: Basis): Vector3 = Basis_getScale(addr self, nil, addr result, 0)
 proc getEuler*(self: Basis; order: Int = 2): Vector3 =
-  let argArr = [cast[pointer](addr order)]
+  let argArr = [getPtr order]
   Basis_getEuler(addr self, addr argArr[0], addr result, 1)
 proc tdotx*(self: Basis; with: Vector3): Float =
-  let argArr = [cast[pointer](addr with)]
+  let argArr = [getPtr with]
   Basis_tdotx(addr self, addr argArr[0], addr result, 1)
 proc tdoty*(self: Basis; with: Vector3): Float =
-  let argArr = [cast[pointer](addr with)]
+  let argArr = [getPtr with]
   Basis_tdoty(addr self, addr argArr[0], addr result, 1)
 proc tdotz*(self: Basis; with: Vector3): Float =
-  let argArr = [cast[pointer](addr with)]
+  let argArr = [getPtr with]
   Basis_tdotz(addr self, addr argArr[0], addr result, 1)
 proc slerp*(self: Basis; to: Basis; weight: Float): Basis =
-  let argArr = [cast[pointer](addr to), cast[pointer](addr weight)]
+  let argArr = [getPtr to, getPtr weight]
   Basis_slerp(addr self, addr argArr[0], addr result, 2)
 proc isEqualApprox*(self: Basis; b: Basis): Bool =
-  let argArr = [cast[pointer](addr b)]
+  let argArr = [getPtr b]
   Basis_isEqualApprox(addr self, addr argArr[0], addr result, 1)
 proc isFinite*(self: Basis): Bool = Basis_isFinite(addr self, nil, addr result, 0)
 proc getRotationQuaternion*(self: Basis): Quaternion = Basis_getRotationQuaternion(addr self, nil, addr result, 0)
 proc lookingAt*(_: typedesc[Basis]; target: Vector3; up: Vector3 = gdvec(0, 1, 0); useModelFront: Bool = false): Basis =
-  let argArr = [cast[pointer](addr target), cast[pointer](addr up), cast[pointer](addr useModelFront)]
+  let argArr = [getPtr target, getPtr up, getPtr useModelFront]
   Basis_lookingAt(nil, addr argArr[0], addr result, 3)
 proc fromScale*(_: typedesc[Basis]; scale: Vector3): Basis =
-  let argArr = [cast[pointer](addr scale)]
+  let argArr = [getPtr scale]
   Basis_fromScale(nil, addr argArr[0], addr result, 1)
 proc fromEuler*(_: typedesc[Basis]; euler: Vector3; order: Int = 2): Basis =
-  let argArr = [cast[pointer](addr euler), cast[pointer](addr order)]
+  let argArr = [getPtr euler, getPtr order]
   Basis_fromEuler(nil, addr argArr[0], addr result, 2)
 proc load_Basis_proc =
   var proc_name: StringName

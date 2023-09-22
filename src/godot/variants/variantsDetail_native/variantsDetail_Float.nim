@@ -4,9 +4,6 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-# type Float* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=none(string)
 var Equal_Float_Variant: PtrOperatorEvaluator
 var NotEqual_Float_Variant: PtrOperatorEvaluator
 var In_Float_Dictionary: PtrOperatorEvaluator

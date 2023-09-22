@@ -99,6 +99,7 @@ type
     constructor*: bool
     operator*: bool
     procedure*: bool
+    indexer*: bool
     constructor_white*: seq[int]
     operator_white*: seq[string]
     procedure_white*: seq[string]

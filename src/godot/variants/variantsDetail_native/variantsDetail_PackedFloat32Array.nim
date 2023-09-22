@@ -4,9 +4,8 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-# type PackedFloat32Array* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=some("float")
+proc `[]`*(self: PackedFloat32Array; index: int): var PackedFloat32Array.Item = interface_PackedFloat32Array_operatorIndex(addr self, index)[]
+proc `[]=`*(self: PackedFloat32Array; index: int; value: PackedFloat32Array.Item) = interface_PackedFloat32Array_operatorIndex(addr self, index)[] = value
 var PackedFloat32Array_size: PtrBuiltinMethod
 var PackedFloat32Array_isEmpty: PtrBuiltinMethod
 var PackedFloat32Array_set: PtrBuiltinMethod
@@ -30,52 +29,52 @@ var PackedFloat32Array_rfind: PtrBuiltinMethod
 var PackedFloat32Array_count: PtrBuiltinMethod
 proc size*(self: PackedFloat32Array): Int = PackedFloat32Array_size(addr self, nil, addr result, 0)
 proc isEmpty*(self: PackedFloat32Array): Bool = PackedFloat32Array_isEmpty(addr self, nil, addr result, 0)
-proc set*(self: PackedFloat32Array; index: Int; value: Float) =
-  let argArr = [cast[pointer](addr index), cast[pointer](addr value)]
+proc set*(self: var PackedFloat32Array; index: Int; value: Float) =
+  let argArr = [getPtr index, getPtr value]
   PackedFloat32Array_set(addr self, addr argArr[0], nil, 2)
-proc pushBack*(self: PackedFloat32Array; value: Float): Bool =
-  let argArr = [cast[pointer](addr value)]
+proc pushBack*(self: var PackedFloat32Array; value: Float): Bool =
+  let argArr = [getPtr value]
   PackedFloat32Array_pushBack(addr self, addr argArr[0], addr result, 1)
-proc append*(self: PackedFloat32Array; value: Float): Bool =
-  let argArr = [cast[pointer](addr value)]
+proc append*(self: var PackedFloat32Array; value: Float): Bool =
+  let argArr = [getPtr value]
   PackedFloat32Array_append(addr self, addr argArr[0], addr result, 1)
-proc appendArray*(self: PackedFloat32Array; array: PackedFloat32Array) =
-  let argArr = [cast[pointer](addr array)]
+proc appendArray*(self: var PackedFloat32Array; array: PackedFloat32Array) =
+  let argArr = [getPtr array]
   PackedFloat32Array_appendArray(addr self, addr argArr[0], nil, 1)
-proc removeAt*(self: PackedFloat32Array; index: Int) =
-  let argArr = [cast[pointer](addr index)]
+proc removeAt*(self: var PackedFloat32Array; index: Int) =
+  let argArr = [getPtr index]
   PackedFloat32Array_removeAt(addr self, addr argArr[0], nil, 1)
-proc insert*(self: PackedFloat32Array; atIndex: Int; value: Float): Int =
-  let argArr = [cast[pointer](addr atIndex), cast[pointer](addr value)]
+proc insert*(self: var PackedFloat32Array; atIndex: Int; value: Float): Int =
+  let argArr = [getPtr atIndex, getPtr value]
   PackedFloat32Array_insert(addr self, addr argArr[0], addr result, 2)
-proc fill*(self: PackedFloat32Array; value: Float) =
-  let argArr = [cast[pointer](addr value)]
+proc fill*(self: var PackedFloat32Array; value: Float) =
+  let argArr = [getPtr value]
   PackedFloat32Array_fill(addr self, addr argArr[0], nil, 1)
-proc resize*(self: PackedFloat32Array; newSize: Int): Int =
-  let argArr = [cast[pointer](addr newSize)]
+proc resize*(self: var PackedFloat32Array; newSize: Int): Int =
+  let argArr = [getPtr newSize]
   PackedFloat32Array_resize(addr self, addr argArr[0], addr result, 1)
-proc clear*(self: PackedFloat32Array) = PackedFloat32Array_clear(addr self, nil, nil, 0)
+proc clear*(self: var PackedFloat32Array) = PackedFloat32Array_clear(addr self, nil, nil, 0)
 proc has*(self: PackedFloat32Array; value: Float): Bool =
-  let argArr = [cast[pointer](addr value)]
+  let argArr = [getPtr value]
   PackedFloat32Array_has(addr self, addr argArr[0], addr result, 1)
-proc reverse*(self: PackedFloat32Array) = PackedFloat32Array_reverse(addr self, nil, nil, 0)
+proc reverse*(self: var PackedFloat32Array) = PackedFloat32Array_reverse(addr self, nil, nil, 0)
 proc slice*(self: PackedFloat32Array; begin: Int; `end`: Int = 2147483647): PackedFloat32Array =
-  let argArr = [cast[pointer](addr begin), cast[pointer](addr `end`)]
+  let argArr = [getPtr begin, getPtr `end`]
   PackedFloat32Array_slice(addr self, addr argArr[0], addr result, 2)
 proc toByteArray*(self: PackedFloat32Array): PackedByteArray = PackedFloat32Array_toByteArray(addr self, nil, addr result, 0)
-proc sort*(self: PackedFloat32Array) = PackedFloat32Array_sort(addr self, nil, nil, 0)
-proc bsearch*(self: PackedFloat32Array; value: Float; before: Bool = true): Int =
-  let argArr = [cast[pointer](addr value), cast[pointer](addr before)]
+proc sort*(self: var PackedFloat32Array) = PackedFloat32Array_sort(addr self, nil, nil, 0)
+proc bsearch*(self: var PackedFloat32Array; value: Float; before: Bool = true): Int =
+  let argArr = [getPtr value, getPtr before]
   PackedFloat32Array_bsearch(addr self, addr argArr[0], addr result, 2)
-proc duplicate*(self: PackedFloat32Array): PackedFloat32Array = PackedFloat32Array_duplicate(addr self, nil, addr result, 0)
+proc duplicate*(self: var PackedFloat32Array): PackedFloat32Array = PackedFloat32Array_duplicate(addr self, nil, addr result, 0)
 proc find*(self: PackedFloat32Array; value: Float; `from`: Int = 0): Int =
-  let argArr = [cast[pointer](addr value), cast[pointer](addr `from`)]
+  let argArr = [getPtr value, getPtr `from`]
   PackedFloat32Array_find(addr self, addr argArr[0], addr result, 2)
 proc rfind*(self: PackedFloat32Array; value: Float; `from`: Int = -1): Int =
-  let argArr = [cast[pointer](addr value), cast[pointer](addr `from`)]
+  let argArr = [getPtr value, getPtr `from`]
   PackedFloat32Array_rfind(addr self, addr argArr[0], addr result, 2)
 proc count*(self: PackedFloat32Array; value: Float): Int =
-  let argArr = [cast[pointer](addr value)]
+  let argArr = [getPtr value]
   PackedFloat32Array_count(addr self, addr argArr[0], addr result, 1)
 proc load_PackedFloat32Array_proc =
   var proc_name: StringName

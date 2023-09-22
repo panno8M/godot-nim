@@ -26,9 +26,10 @@ This project is in the early stages of development and some features are not yet
 * Define Extension-Class
 * Define **Simple** Extension-Class method
 * Define Extension-Class property
-* Override virtual hooks of Engine-Class (E.g. `_ready`, `_process`)
-* Call Engine-Class method (E.g. `Node.get_node`)
 * Instantiate Engine-Class
+* Call Engine-Class method (E.g. `Node.get_node`)
+* Override virtual hooks of Engine-Class (E.g. `_ready`, `_process`)
+* Call Variants' method
 
 ### 🟡Never tested yet
 
@@ -53,7 +54,6 @@ This project is in the early stages of development and some features are not yet
 ### 🔴Still can't
 
 * Using utility functions (E.g. `print`)
-* Getting items of Godot's container (E.g. Array, Dictionary...)
 * Using Parallelism
 * Library hot reloading
 * C++ backend

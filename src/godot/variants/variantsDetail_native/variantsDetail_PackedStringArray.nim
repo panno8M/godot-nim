@@ -4,9 +4,8 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-# type PackedStringArray* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=some("String")
+proc `[]`*(self: PackedStringArray; index: int): var PackedStringArray.Item = interface_PackedStringArray_operatorIndex(addr self, index)[]
+proc `[]=`*(self: PackedStringArray; index: int; value: PackedStringArray.Item) = interface_PackedStringArray_operatorIndex(addr self, index)[] = value
 var PackedStringArray_size: PtrBuiltinMethod
 var PackedStringArray_isEmpty: PtrBuiltinMethod
 var PackedStringArray_set: PtrBuiltinMethod
@@ -30,52 +29,52 @@ var PackedStringArray_rfind: PtrBuiltinMethod
 var PackedStringArray_count: PtrBuiltinMethod
 proc size*(self: PackedStringArray): Int = PackedStringArray_size(addr self, nil, addr result, 0)
 proc isEmpty*(self: PackedStringArray): Bool = PackedStringArray_isEmpty(addr self, nil, addr result, 0)
-proc set*(self: PackedStringArray; index: Int; value: String) =
-  let argArr = [cast[pointer](addr index), cast[pointer](addr value)]
+proc set*(self: var PackedStringArray; index: Int; value: String) =
+  let argArr = [getPtr index, getPtr value]
   PackedStringArray_set(addr self, addr argArr[0], nil, 2)
-proc pushBack*(self: PackedStringArray; value: String): Bool =
-  let argArr = [cast[pointer](addr value)]
+proc pushBack*(self: var PackedStringArray; value: String): Bool =
+  let argArr = [getPtr value]
   PackedStringArray_pushBack(addr self, addr argArr[0], addr result, 1)
-proc append*(self: PackedStringArray; value: String): Bool =
-  let argArr = [cast[pointer](addr value)]
+proc append*(self: var PackedStringArray; value: String): Bool =
+  let argArr = [getPtr value]
   PackedStringArray_append(addr self, addr argArr[0], addr result, 1)
-proc appendArray*(self: PackedStringArray; array: PackedStringArray) =
-  let argArr = [cast[pointer](addr array)]
+proc appendArray*(self: var PackedStringArray; array: PackedStringArray) =
+  let argArr = [getPtr array]
   PackedStringArray_appendArray(addr self, addr argArr[0], nil, 1)
-proc removeAt*(self: PackedStringArray; index: Int) =
-  let argArr = [cast[pointer](addr index)]
+proc removeAt*(self: var PackedStringArray; index: Int) =
+  let argArr = [getPtr index]
   PackedStringArray_removeAt(addr self, addr argArr[0], nil, 1)
-proc insert*(self: PackedStringArray; atIndex: Int; value: String): Int =
-  let argArr = [cast[pointer](addr atIndex), cast[pointer](addr value)]
+proc insert*(self: var PackedStringArray; atIndex: Int; value: String): Int =
+  let argArr = [getPtr atIndex, getPtr value]
   PackedStringArray_insert(addr self, addr argArr[0], addr result, 2)
-proc fill*(self: PackedStringArray; value: String) =
-  let argArr = [cast[pointer](addr value)]
+proc fill*(self: var PackedStringArray; value: String) =
+  let argArr = [getPtr value]
   PackedStringArray_fill(addr self, addr argArr[0], nil, 1)
-proc resize*(self: PackedStringArray; newSize: Int): Int =
-  let argArr = [cast[pointer](addr newSize)]
+proc resize*(self: var PackedStringArray; newSize: Int): Int =
+  let argArr = [getPtr newSize]
   PackedStringArray_resize(addr self, addr argArr[0], addr result, 1)
-proc clear*(self: PackedStringArray) = PackedStringArray_clear(addr self, nil, nil, 0)
+proc clear*(self: var PackedStringArray) = PackedStringArray_clear(addr self, nil, nil, 0)
 proc has*(self: PackedStringArray; value: String): Bool =
-  let argArr = [cast[pointer](addr value)]
+  let argArr = [getPtr value]
   PackedStringArray_has(addr self, addr argArr[0], addr result, 1)
-proc reverse*(self: PackedStringArray) = PackedStringArray_reverse(addr self, nil, nil, 0)
+proc reverse*(self: var PackedStringArray) = PackedStringArray_reverse(addr self, nil, nil, 0)
 proc slice*(self: PackedStringArray; begin: Int; `end`: Int = 2147483647): PackedStringArray =
-  let argArr = [cast[pointer](addr begin), cast[pointer](addr `end`)]
+  let argArr = [getPtr begin, getPtr `end`]
   PackedStringArray_slice(addr self, addr argArr[0], addr result, 2)
 proc toByteArray*(self: PackedStringArray): PackedByteArray = PackedStringArray_toByteArray(addr self, nil, addr result, 0)
-proc sort*(self: PackedStringArray) = PackedStringArray_sort(addr self, nil, nil, 0)
-proc bsearch*(self: PackedStringArray; value: String; before: Bool = true): Int =
-  let argArr = [cast[pointer](addr value), cast[pointer](addr before)]
+proc sort*(self: var PackedStringArray) = PackedStringArray_sort(addr self, nil, nil, 0)
+proc bsearch*(self: var PackedStringArray; value: String; before: Bool = true): Int =
+  let argArr = [getPtr value, getPtr before]
   PackedStringArray_bsearch(addr self, addr argArr[0], addr result, 2)
-proc duplicate*(self: PackedStringArray): PackedStringArray = PackedStringArray_duplicate(addr self, nil, addr result, 0)
+proc duplicate*(self: var PackedStringArray): PackedStringArray = PackedStringArray_duplicate(addr self, nil, addr result, 0)
 proc find*(self: PackedStringArray; value: String; `from`: Int = 0): Int =
-  let argArr = [cast[pointer](addr value), cast[pointer](addr `from`)]
+  let argArr = [getPtr value, getPtr `from`]
   PackedStringArray_find(addr self, addr argArr[0], addr result, 2)
 proc rfind*(self: PackedStringArray; value: String; `from`: Int = -1): Int =
-  let argArr = [cast[pointer](addr value), cast[pointer](addr `from`)]
+  let argArr = [getPtr value, getPtr `from`]
   PackedStringArray_rfind(addr self, addr argArr[0], addr result, 2)
 proc count*(self: PackedStringArray; value: String): Int =
-  let argArr = [cast[pointer](addr value)]
+  let argArr = [getPtr value]
   PackedStringArray_count(addr self, addr argArr[0], addr result, 1)
 proc load_PackedStringArray_proc =
   var proc_name: StringName

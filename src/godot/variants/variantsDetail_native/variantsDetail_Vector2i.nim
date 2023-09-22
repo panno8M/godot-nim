@@ -4,9 +4,6 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-# type Vector2i* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=some("int")
 const Vector2i_AxisX*: int = 0
 const Vector2i_AxisY*: int = 1
 const Vector2i_Zero*: Vector2i = gdveci(0, 0)

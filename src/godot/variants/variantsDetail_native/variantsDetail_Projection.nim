@@ -4,9 +4,6 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-# type Projection* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=some("Vector4")
 const Projection_PlaneNear*: int = 0
 const Projection_PlaneFar*: int = 1
 const Projection_PlaneLeft*: int = 2
@@ -42,48 +39,48 @@ var Projection_inverse: PtrBuiltinMethod
 var Projection_getPixelsPerMeter: PtrBuiltinMethod
 var Projection_getLodMultiplier: PtrBuiltinMethod
 proc createDepthCorrection*(_: typedesc[Projection]; flipY: Bool): Projection =
-  let argArr = [cast[pointer](addr flipY)]
+  let argArr = [getPtr flipY]
   Projection_createDepthCorrection(nil, addr argArr[0], addr result, 1)
 proc createLightAtlasRect*(_: typedesc[Projection]; rect: Rect2): Projection =
-  let argArr = [cast[pointer](addr rect)]
+  let argArr = [getPtr rect]
   Projection_createLightAtlasRect(nil, addr argArr[0], addr result, 1)
 proc createPerspective*(_: typedesc[Projection]; fovy: Float; aspect: Float; zNear: Float; zFar: Float; flipFov: Bool = false): Projection =
-  let argArr = [cast[pointer](addr fovy), cast[pointer](addr aspect), cast[pointer](addr zNear), cast[pointer](addr zFar), cast[pointer](addr flipFov)]
+  let argArr = [getPtr fovy, getPtr aspect, getPtr zNear, getPtr zFar, getPtr flipFov]
   Projection_createPerspective(nil, addr argArr[0], addr result, 5)
 proc createPerspectiveHmd*(_: typedesc[Projection]; fovy: Float; aspect: Float; zNear: Float; zFar: Float; flipFov: Bool; eye: Int; intraocularDist: Float; convergenceDist: Float): Projection =
-  let argArr = [cast[pointer](addr fovy), cast[pointer](addr aspect), cast[pointer](addr zNear), cast[pointer](addr zFar), cast[pointer](addr flipFov), cast[pointer](addr eye), cast[pointer](addr intraocularDist), cast[pointer](addr convergenceDist)]
+  let argArr = [getPtr fovy, getPtr aspect, getPtr zNear, getPtr zFar, getPtr flipFov, getPtr eye, getPtr intraocularDist, getPtr convergenceDist]
   Projection_createPerspectiveHmd(nil, addr argArr[0], addr result, 8)
 proc createForHmd*(_: typedesc[Projection]; eye: Int; aspect: Float; intraocularDist: Float; displayWidth: Float; displayToLens: Float; oversample: Float; zNear: Float; zFar: Float): Projection =
-  let argArr = [cast[pointer](addr eye), cast[pointer](addr aspect), cast[pointer](addr intraocularDist), cast[pointer](addr displayWidth), cast[pointer](addr displayToLens), cast[pointer](addr oversample), cast[pointer](addr zNear), cast[pointer](addr zFar)]
+  let argArr = [getPtr eye, getPtr aspect, getPtr intraocularDist, getPtr displayWidth, getPtr displayToLens, getPtr oversample, getPtr zNear, getPtr zFar]
   Projection_createForHmd(nil, addr argArr[0], addr result, 8)
 proc createOrthogonal*(_: typedesc[Projection]; left: Float; right: Float; bottom: Float; top: Float; zNear: Float; zFar: Float): Projection =
-  let argArr = [cast[pointer](addr left), cast[pointer](addr right), cast[pointer](addr bottom), cast[pointer](addr top), cast[pointer](addr zNear), cast[pointer](addr zFar)]
+  let argArr = [getPtr left, getPtr right, getPtr bottom, getPtr top, getPtr zNear, getPtr zFar]
   Projection_createOrthogonal(nil, addr argArr[0], addr result, 6)
 proc createOrthogonalAspect*(_: typedesc[Projection]; size: Float; aspect: Float; zNear: Float; zFar: Float; flipFov: Bool = false): Projection =
-  let argArr = [cast[pointer](addr size), cast[pointer](addr aspect), cast[pointer](addr zNear), cast[pointer](addr zFar), cast[pointer](addr flipFov)]
+  let argArr = [getPtr size, getPtr aspect, getPtr zNear, getPtr zFar, getPtr flipFov]
   Projection_createOrthogonalAspect(nil, addr argArr[0], addr result, 5)
 proc createFrustum*(_: typedesc[Projection]; left: Float; right: Float; bottom: Float; top: Float; zNear: Float; zFar: Float): Projection =
-  let argArr = [cast[pointer](addr left), cast[pointer](addr right), cast[pointer](addr bottom), cast[pointer](addr top), cast[pointer](addr zNear), cast[pointer](addr zFar)]
+  let argArr = [getPtr left, getPtr right, getPtr bottom, getPtr top, getPtr zNear, getPtr zFar]
   Projection_createFrustum(nil, addr argArr[0], addr result, 6)
 proc createFrustumAspect*(_: typedesc[Projection]; size: Float; aspect: Float; offset: Vector2; zNear: Float; zFar: Float; flipFov: Bool = false): Projection =
-  let argArr = [cast[pointer](addr size), cast[pointer](addr aspect), cast[pointer](addr offset), cast[pointer](addr zNear), cast[pointer](addr zFar), cast[pointer](addr flipFov)]
+  let argArr = [getPtr size, getPtr aspect, getPtr offset, getPtr zNear, getPtr zFar, getPtr flipFov]
   Projection_createFrustumAspect(nil, addr argArr[0], addr result, 6)
 proc createFitAabb*(_: typedesc[Projection]; aabb: AABB): Projection =
-  let argArr = [cast[pointer](addr aabb)]
+  let argArr = [getPtr aabb]
   Projection_createFitAabb(nil, addr argArr[0], addr result, 1)
 proc determinant*(self: Projection): Float = Projection_determinant(addr self, nil, addr result, 0)
 proc perspectiveZnearAdjusted*(self: Projection; newZnear: Float): Projection =
-  let argArr = [cast[pointer](addr newZnear)]
+  let argArr = [getPtr newZnear]
   Projection_perspectiveZnearAdjusted(addr self, addr argArr[0], addr result, 1)
 proc getProjectionPlane*(self: Projection; plane: Int): Plane =
-  let argArr = [cast[pointer](addr plane)]
+  let argArr = [getPtr plane]
   Projection_getProjectionPlane(addr self, addr argArr[0], addr result, 1)
 proc flippedY*(self: Projection): Projection = Projection_flippedY(addr self, nil, addr result, 0)
 proc jitterOffseted*(self: Projection; offset: Vector2): Projection =
-  let argArr = [cast[pointer](addr offset)]
+  let argArr = [getPtr offset]
   Projection_jitterOffseted(addr self, addr argArr[0], addr result, 1)
 proc getFovy*(_: typedesc[Projection]; fovx: Float; aspect: Float): Float =
-  let argArr = [cast[pointer](addr fovx), cast[pointer](addr aspect)]
+  let argArr = [getPtr fovx, getPtr aspect]
   Projection_getFovy(nil, addr argArr[0], addr result, 2)
 proc getZFar*(self: Projection): Float = Projection_getZFar(addr self, nil, addr result, 0)
 proc getZNear*(self: Projection): Float = Projection_getZNear(addr self, nil, addr result, 0)
@@ -94,7 +91,7 @@ proc getViewportHalfExtents*(self: Projection): Vector2 = Projection_getViewport
 proc getFarPlaneHalfExtents*(self: Projection): Vector2 = Projection_getFarPlaneHalfExtents(addr self, nil, addr result, 0)
 proc inverse*(self: Projection): Projection = Projection_inverse(addr self, nil, addr result, 0)
 proc getPixelsPerMeter*(self: Projection; forPixelWidth: Int): Int =
-  let argArr = [cast[pointer](addr forPixelWidth)]
+  let argArr = [getPtr forPixelWidth]
   Projection_getPixelsPerMeter(addr self, addr argArr[0], addr result, 1)
 proc getLodMultiplier*(self: Projection): Float = Projection_getLodMultiplier(addr self, nil, addr result, 0)
 proc load_Projection_proc =

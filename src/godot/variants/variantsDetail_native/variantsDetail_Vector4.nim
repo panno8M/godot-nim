@@ -4,9 +4,6 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-# type Vector4* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=some("float")
 const Vector4_AxisX*: int = 0
 const Vector4_AxisY*: int = 1
 const Vector4_AxisZ*: int = 2
@@ -18,10 +15,10 @@ var Vector4_cubicInterpolate: PtrBuiltinMethod
 var Vector4_cubicInterpolateInTime: PtrBuiltinMethod
 var Vector4_inverse: PtrBuiltinMethod
 proc cubicInterpolate*(self: Vector4; b: Vector4; preA: Vector4; postB: Vector4; weight: Float): Vector4 =
-  let argArr = [cast[pointer](addr b), cast[pointer](addr preA), cast[pointer](addr postB), cast[pointer](addr weight)]
+  let argArr = [getPtr b, getPtr preA, getPtr postB, getPtr weight]
   Vector4_cubicInterpolate(addr self, addr argArr[0], addr result, 4)
 proc cubicInterpolateInTime*(self: Vector4; b: Vector4; preA: Vector4; postB: Vector4; weight: Float; bT: Float; preAT: Float; postBT: Float): Vector4 =
-  let argArr = [cast[pointer](addr b), cast[pointer](addr preA), cast[pointer](addr postB), cast[pointer](addr weight), cast[pointer](addr bT), cast[pointer](addr preAT), cast[pointer](addr postBT)]
+  let argArr = [getPtr b, getPtr preA, getPtr postB, getPtr weight, getPtr bT, getPtr preAT, getPtr postBT]
   Vector4_cubicInterpolateInTime(addr self, addr argArr[0], addr result, 7)
 proc inverse*(self: Vector4): Vector4 = Vector4_inverse(addr self, nil, addr result, 0)
 proc load_Vector4_proc =

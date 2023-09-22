@@ -4,9 +4,6 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-# type Quaternion* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=some("float")
 const Quaternion_Identity*: Quaternion = init_Quaternion(0, 0, 0, 1)
 var Quaternion_length: PtrBuiltinMethod
 var Quaternion_lengthSquared: PtrBuiltinMethod
@@ -32,35 +29,35 @@ proc lengthSquared*(self: Quaternion): Float = Quaternion_lengthSquared(addr sel
 proc normalized*(self: Quaternion): Quaternion = Quaternion_normalized(addr self, nil, addr result, 0)
 proc isNormalized*(self: Quaternion): Bool = Quaternion_isNormalized(addr self, nil, addr result, 0)
 proc isEqualApprox*(self: Quaternion; to: Quaternion): Bool =
-  let argArr = [cast[pointer](addr to)]
+  let argArr = [getPtr to]
   Quaternion_isEqualApprox(addr self, addr argArr[0], addr result, 1)
 proc isFinite*(self: Quaternion): Bool = Quaternion_isFinite(addr self, nil, addr result, 0)
 proc inverse*(self: Quaternion): Quaternion = Quaternion_inverse(addr self, nil, addr result, 0)
 proc log*(self: Quaternion): Quaternion = Quaternion_log(addr self, nil, addr result, 0)
 proc exp*(self: Quaternion): Quaternion = Quaternion_exp(addr self, nil, addr result, 0)
 proc angleTo*(self: Quaternion; to: Quaternion): Float =
-  let argArr = [cast[pointer](addr to)]
+  let argArr = [getPtr to]
   Quaternion_angleTo(addr self, addr argArr[0], addr result, 1)
 proc dot*(self: Quaternion; with: Quaternion): Float =
-  let argArr = [cast[pointer](addr with)]
+  let argArr = [getPtr with]
   Quaternion_dot(addr self, addr argArr[0], addr result, 1)
 proc slerp*(self: Quaternion; to: Quaternion; weight: Float): Quaternion =
-  let argArr = [cast[pointer](addr to), cast[pointer](addr weight)]
+  let argArr = [getPtr to, getPtr weight]
   Quaternion_slerp(addr self, addr argArr[0], addr result, 2)
 proc slerpni*(self: Quaternion; to: Quaternion; weight: Float): Quaternion =
-  let argArr = [cast[pointer](addr to), cast[pointer](addr weight)]
+  let argArr = [getPtr to, getPtr weight]
   Quaternion_slerpni(addr self, addr argArr[0], addr result, 2)
 proc sphericalCubicInterpolate*(self: Quaternion; b: Quaternion; preA: Quaternion; postB: Quaternion; weight: Float): Quaternion =
-  let argArr = [cast[pointer](addr b), cast[pointer](addr preA), cast[pointer](addr postB), cast[pointer](addr weight)]
+  let argArr = [getPtr b, getPtr preA, getPtr postB, getPtr weight]
   Quaternion_sphericalCubicInterpolate(addr self, addr argArr[0], addr result, 4)
 proc sphericalCubicInterpolateInTime*(self: Quaternion; b: Quaternion; preA: Quaternion; postB: Quaternion; weight: Float; bT: Float; preAT: Float; postBT: Float): Quaternion =
-  let argArr = [cast[pointer](addr b), cast[pointer](addr preA), cast[pointer](addr postB), cast[pointer](addr weight), cast[pointer](addr bT), cast[pointer](addr preAT), cast[pointer](addr postBT)]
+  let argArr = [getPtr b, getPtr preA, getPtr postB, getPtr weight, getPtr bT, getPtr preAT, getPtr postBT]
   Quaternion_sphericalCubicInterpolateInTime(addr self, addr argArr[0], addr result, 7)
 proc getEuler*(self: Quaternion; order: Int = 2): Vector3 =
-  let argArr = [cast[pointer](addr order)]
+  let argArr = [getPtr order]
   Quaternion_getEuler(addr self, addr argArr[0], addr result, 1)
 proc fromEuler*(_: typedesc[Quaternion]; euler: Vector3): Quaternion =
-  let argArr = [cast[pointer](addr euler)]
+  let argArr = [getPtr euler]
   Quaternion_fromEuler(nil, addr argArr[0], addr result, 1)
 proc getAxis*(self: Quaternion): Vector3 = Quaternion_getAxis(addr self, nil, addr result, 0)
 proc getAngle*(self: Quaternion): Float = Quaternion_getAngle(addr self, nil, addr result, 0)

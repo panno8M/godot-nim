@@ -4,9 +4,6 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-# type RID* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=none(string)
 var RID_isValid: PtrBuiltinMethod
 var RID_getId: PtrBuiltinMethod
 proc isValid*(self: RID): Bool = RID_isValid(addr self, nil, addr result, 0)

@@ -4,9 +4,6 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-# type Transform2D* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=some("Vector2")
 const Transform2D_Identity*: Transform2D = init_Transform2D(1, 0, 0, 1, 0, 0)
 const Transform2D_FlipX*: Transform2D = init_Transform2D(-1, 0, 0, 1, 0, 0)
 const Transform2D_FlipY*: Transform2D = init_Transform2D(1, 0, 0, -1, 0, 0)
@@ -38,39 +35,39 @@ proc getScale*(self: Transform2D): Vector2 = Transform2D_getScale(addr self, nil
 proc getSkew*(self: Transform2D): Float = Transform2D_getSkew(addr self, nil, addr result, 0)
 proc orthonormalized*(self: Transform2D): Transform2D = Transform2D_orthonormalized(addr self, nil, addr result, 0)
 proc rotated*(self: Transform2D; angle: Float): Transform2D =
-  let argArr = [cast[pointer](addr angle)]
+  let argArr = [getPtr angle]
   Transform2D_rotated(addr self, addr argArr[0], addr result, 1)
 proc rotatedLocal*(self: Transform2D; angle: Float): Transform2D =
-  let argArr = [cast[pointer](addr angle)]
+  let argArr = [getPtr angle]
   Transform2D_rotatedLocal(addr self, addr argArr[0], addr result, 1)
 proc scaled*(self: Transform2D; scale: Vector2): Transform2D =
-  let argArr = [cast[pointer](addr scale)]
+  let argArr = [getPtr scale]
   Transform2D_scaled(addr self, addr argArr[0], addr result, 1)
 proc scaledLocal*(self: Transform2D; scale: Vector2): Transform2D =
-  let argArr = [cast[pointer](addr scale)]
+  let argArr = [getPtr scale]
   Transform2D_scaledLocal(addr self, addr argArr[0], addr result, 1)
 proc translated*(self: Transform2D; offset: Vector2): Transform2D =
-  let argArr = [cast[pointer](addr offset)]
+  let argArr = [getPtr offset]
   Transform2D_translated(addr self, addr argArr[0], addr result, 1)
 proc translatedLocal*(self: Transform2D; offset: Vector2): Transform2D =
-  let argArr = [cast[pointer](addr offset)]
+  let argArr = [getPtr offset]
   Transform2D_translatedLocal(addr self, addr argArr[0], addr result, 1)
 proc determinant*(self: Transform2D): Float = Transform2D_determinant(addr self, nil, addr result, 0)
 proc basisXform*(self: Transform2D; v: Vector2): Vector2 =
-  let argArr = [cast[pointer](addr v)]
+  let argArr = [getPtr v]
   Transform2D_basisXform(addr self, addr argArr[0], addr result, 1)
 proc basisXformInv*(self: Transform2D; v: Vector2): Vector2 =
-  let argArr = [cast[pointer](addr v)]
+  let argArr = [getPtr v]
   Transform2D_basisXformInv(addr self, addr argArr[0], addr result, 1)
 proc interpolateWith*(self: Transform2D; xform: Transform2D; weight: Float): Transform2D =
-  let argArr = [cast[pointer](addr xform), cast[pointer](addr weight)]
+  let argArr = [getPtr xform, getPtr weight]
   Transform2D_interpolateWith(addr self, addr argArr[0], addr result, 2)
 proc isEqualApprox*(self: Transform2D; xform: Transform2D): Bool =
-  let argArr = [cast[pointer](addr xform)]
+  let argArr = [getPtr xform]
   Transform2D_isEqualApprox(addr self, addr argArr[0], addr result, 1)
 proc isFinite*(self: Transform2D): Bool = Transform2D_isFinite(addr self, nil, addr result, 0)
 proc lookingAt*(self: Transform2D; target: Vector2 = gdvec(0, 0)): Transform2D =
-  let argArr = [cast[pointer](addr target)]
+  let argArr = [getPtr target]
   Transform2D_lookingAt(addr self, addr argArr[0], addr result, 1)
 proc load_Transform2D_proc =
   var proc_name: StringName

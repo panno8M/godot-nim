@@ -4,9 +4,6 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-# type Bool* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=none(string)
 var Equal_Bool_Variant: PtrOperatorEvaluator
 var NotEqual_Bool_Variant: PtrOperatorEvaluator
 var In_Bool_Dictionary: PtrOperatorEvaluator

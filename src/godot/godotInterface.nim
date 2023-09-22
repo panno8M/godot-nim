@@ -1,4 +1,5 @@
 import std/macros
+import std/unicode
 
 import ./godotInterface/localEnums; export localEnums
 import ./godotInterface/globalEnums; export globalEnums
@@ -192,3 +193,16 @@ include "godotInterface/include/hook_define_Variants"
 proc init_interface*(getProcAddress: InterfaceGetProcAddress) =
   load_interface_api(getProcAddress)
   load_interface_VariantHook()
+
+template Item*(T: typedesc[PackedByteArray]): typedesc = byte
+template Item*(T: typedesc[PackedColorArray]): typedesc = Color
+template Item*(T: typedesc[PackedFloat32Array]): typedesc = float32
+template Item*(T: typedesc[PackedFloat64Array]): typedesc = float64
+template Item*(T: typedesc[PackedInt32Array]): typedesc = int32
+template Item*(T: typedesc[PackedInt64Array]): typedesc = int64
+template Item*(T: typedesc[PackedStringArray]): typedesc = String
+template Item*(T: typedesc[PackedVector2Array]): typedesc = Vector2
+template Item*(T: typedesc[PackedVector3Array]): typedesc = Vector3
+template Item*(T: typedesc[String]): typedesc = Rune
+template Item*(T: typedesc[Array]): typedesc = Variant
+template Item*(T: typedesc[Dictionary]): typedesc = Variant

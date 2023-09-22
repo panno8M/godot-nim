@@ -1,2 +1,3 @@
 import variantsDetail_custom/variantsDetail_vectors; export variantsDetail_vectors
 import variantsDetail_custom/variantsDetail_stringUtils; export variantsDetail_stringUtils
+import variantsDetail_custom/variantsDetail_indexer; export variantsDetail_indexer

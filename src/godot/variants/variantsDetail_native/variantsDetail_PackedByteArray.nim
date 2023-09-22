@@ -4,9 +4,8 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-# type PackedByteArray* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=some("int")
+proc `[]`*(self: PackedByteArray; index: int): var PackedByteArray.Item = interface_PackedByteArray_operatorIndex(addr self, index)[]
+proc `[]=`*(self: PackedByteArray; index: int; value: PackedByteArray.Item) = interface_PackedByteArray_operatorIndex(addr self, index)[] = value
 var PackedByteArray_size: PtrBuiltinMethod
 var PackedByteArray_isEmpty: PtrBuiltinMethod
 var PackedByteArray_set: PtrBuiltinMethod
@@ -68,51 +67,51 @@ var PackedByteArray_encodeDouble: PtrBuiltinMethod
 var PackedByteArray_encodeVar: PtrBuiltinMethod
 proc size*(self: PackedByteArray): Int = PackedByteArray_size(addr self, nil, addr result, 0)
 proc isEmpty*(self: PackedByteArray): Bool = PackedByteArray_isEmpty(addr self, nil, addr result, 0)
-proc set*(self: PackedByteArray; index: Int; value: Int) =
-  let argArr = [cast[pointer](addr index), cast[pointer](addr value)]
+proc set*(self: var PackedByteArray; index: Int; value: Int) =
+  let argArr = [getPtr index, getPtr value]
   PackedByteArray_set(addr self, addr argArr[0], nil, 2)
-proc pushBack*(self: PackedByteArray; value: Int): Bool =
-  let argArr = [cast[pointer](addr value)]
+proc pushBack*(self: var PackedByteArray; value: Int): Bool =
+  let argArr = [getPtr value]
   PackedByteArray_pushBack(addr self, addr argArr[0], addr result, 1)
-proc append*(self: PackedByteArray; value: Int): Bool =
-  let argArr = [cast[pointer](addr value)]
+proc append*(self: var PackedByteArray; value: Int): Bool =
+  let argArr = [getPtr value]
   PackedByteArray_append(addr self, addr argArr[0], addr result, 1)
-proc appendArray*(self: PackedByteArray; array: PackedByteArray) =
-  let argArr = [cast[pointer](addr array)]
+proc appendArray*(self: var PackedByteArray; array: PackedByteArray) =
+  let argArr = [getPtr array]
   PackedByteArray_appendArray(addr self, addr argArr[0], nil, 1)
-proc removeAt*(self: PackedByteArray; index: Int) =
-  let argArr = [cast[pointer](addr index)]
+proc removeAt*(self: var PackedByteArray; index: Int) =
+  let argArr = [getPtr index]
   PackedByteArray_removeAt(addr self, addr argArr[0], nil, 1)
-proc insert*(self: PackedByteArray; atIndex: Int; value: Int): Int =
-  let argArr = [cast[pointer](addr atIndex), cast[pointer](addr value)]
+proc insert*(self: var PackedByteArray; atIndex: Int; value: Int): Int =
+  let argArr = [getPtr atIndex, getPtr value]
   PackedByteArray_insert(addr self, addr argArr[0], addr result, 2)
-proc fill*(self: PackedByteArray; value: Int) =
-  let argArr = [cast[pointer](addr value)]
+proc fill*(self: var PackedByteArray; value: Int) =
+  let argArr = [getPtr value]
   PackedByteArray_fill(addr self, addr argArr[0], nil, 1)
-proc resize*(self: PackedByteArray; newSize: Int): Int =
-  let argArr = [cast[pointer](addr newSize)]
+proc resize*(self: var PackedByteArray; newSize: Int): Int =
+  let argArr = [getPtr newSize]
   PackedByteArray_resize(addr self, addr argArr[0], addr result, 1)
-proc clear*(self: PackedByteArray) = PackedByteArray_clear(addr self, nil, nil, 0)
+proc clear*(self: var PackedByteArray) = PackedByteArray_clear(addr self, nil, nil, 0)
 proc has*(self: PackedByteArray; value: Int): Bool =
-  let argArr = [cast[pointer](addr value)]
+  let argArr = [getPtr value]
   PackedByteArray_has(addr self, addr argArr[0], addr result, 1)
-proc reverse*(self: PackedByteArray) = PackedByteArray_reverse(addr self, nil, nil, 0)
+proc reverse*(self: var PackedByteArray) = PackedByteArray_reverse(addr self, nil, nil, 0)
 proc slice*(self: PackedByteArray; begin: Int; `end`: Int = 2147483647): PackedByteArray =
-  let argArr = [cast[pointer](addr begin), cast[pointer](addr `end`)]
+  let argArr = [getPtr begin, getPtr `end`]
   PackedByteArray_slice(addr self, addr argArr[0], addr result, 2)
-proc sort*(self: PackedByteArray) = PackedByteArray_sort(addr self, nil, nil, 0)
-proc bsearch*(self: PackedByteArray; value: Int; before: Bool = true): Int =
-  let argArr = [cast[pointer](addr value), cast[pointer](addr before)]
+proc sort*(self: var PackedByteArray) = PackedByteArray_sort(addr self, nil, nil, 0)
+proc bsearch*(self: var PackedByteArray; value: Int; before: Bool = true): Int =
+  let argArr = [getPtr value, getPtr before]
   PackedByteArray_bsearch(addr self, addr argArr[0], addr result, 2)
-proc duplicate*(self: PackedByteArray): PackedByteArray = PackedByteArray_duplicate(addr self, nil, addr result, 0)
+proc duplicate*(self: var PackedByteArray): PackedByteArray = PackedByteArray_duplicate(addr self, nil, addr result, 0)
 proc find*(self: PackedByteArray; value: Int; `from`: Int = 0): Int =
-  let argArr = [cast[pointer](addr value), cast[pointer](addr `from`)]
+  let argArr = [getPtr value, getPtr `from`]
   PackedByteArray_find(addr self, addr argArr[0], addr result, 2)
 proc rfind*(self: PackedByteArray; value: Int; `from`: Int = -1): Int =
-  let argArr = [cast[pointer](addr value), cast[pointer](addr `from`)]
+  let argArr = [getPtr value, getPtr `from`]
   PackedByteArray_rfind(addr self, addr argArr[0], addr result, 2)
 proc count*(self: PackedByteArray; value: Int): Int =
-  let argArr = [cast[pointer](addr value)]
+  let argArr = [getPtr value]
   PackedByteArray_count(addr self, addr argArr[0], addr result, 1)
 proc getStringFromAscii*(self: PackedByteArray): String = PackedByteArray_getStringFromAscii(addr self, nil, addr result, 0)
 proc getStringFromUtf8*(self: PackedByteArray): String = PackedByteArray_getStringFromUtf8(addr self, nil, addr result, 0)
@@ -121,95 +120,95 @@ proc getStringFromUtf32*(self: PackedByteArray): String = PackedByteArray_getStr
 proc getStringFromWchar*(self: PackedByteArray): String = PackedByteArray_getStringFromWchar(addr self, nil, addr result, 0)
 proc hexEncode*(self: PackedByteArray): String = PackedByteArray_hexEncode(addr self, nil, addr result, 0)
 proc compress*(self: PackedByteArray; compressionMode: Int = 0): PackedByteArray =
-  let argArr = [cast[pointer](addr compressionMode)]
+  let argArr = [getPtr compressionMode]
   PackedByteArray_compress(addr self, addr argArr[0], addr result, 1)
 proc decompress*(self: PackedByteArray; bufferSize: Int; compressionMode: Int = 0): PackedByteArray =
-  let argArr = [cast[pointer](addr bufferSize), cast[pointer](addr compressionMode)]
+  let argArr = [getPtr bufferSize, getPtr compressionMode]
   PackedByteArray_decompress(addr self, addr argArr[0], addr result, 2)
 proc decompressDynamic*(self: PackedByteArray; maxOutputSize: Int; compressionMode: Int = 0): PackedByteArray =
-  let argArr = [cast[pointer](addr maxOutputSize), cast[pointer](addr compressionMode)]
+  let argArr = [getPtr maxOutputSize, getPtr compressionMode]
   PackedByteArray_decompressDynamic(addr self, addr argArr[0], addr result, 2)
 proc decodeU8*(self: PackedByteArray; byteOffset: Int): Int =
-  let argArr = [cast[pointer](addr byteOffset)]
+  let argArr = [getPtr byteOffset]
   PackedByteArray_decodeU8(addr self, addr argArr[0], addr result, 1)
 proc decodeS8*(self: PackedByteArray; byteOffset: Int): Int =
-  let argArr = [cast[pointer](addr byteOffset)]
+  let argArr = [getPtr byteOffset]
   PackedByteArray_decodeS8(addr self, addr argArr[0], addr result, 1)
 proc decodeU16*(self: PackedByteArray; byteOffset: Int): Int =
-  let argArr = [cast[pointer](addr byteOffset)]
+  let argArr = [getPtr byteOffset]
   PackedByteArray_decodeU16(addr self, addr argArr[0], addr result, 1)
 proc decodeS16*(self: PackedByteArray; byteOffset: Int): Int =
-  let argArr = [cast[pointer](addr byteOffset)]
+  let argArr = [getPtr byteOffset]
   PackedByteArray_decodeS16(addr self, addr argArr[0], addr result, 1)
 proc decodeU32*(self: PackedByteArray; byteOffset: Int): Int =
-  let argArr = [cast[pointer](addr byteOffset)]
+  let argArr = [getPtr byteOffset]
   PackedByteArray_decodeU32(addr self, addr argArr[0], addr result, 1)
 proc decodeS32*(self: PackedByteArray; byteOffset: Int): Int =
-  let argArr = [cast[pointer](addr byteOffset)]
+  let argArr = [getPtr byteOffset]
   PackedByteArray_decodeS32(addr self, addr argArr[0], addr result, 1)
 proc decodeU64*(self: PackedByteArray; byteOffset: Int): Int =
-  let argArr = [cast[pointer](addr byteOffset)]
+  let argArr = [getPtr byteOffset]
   PackedByteArray_decodeU64(addr self, addr argArr[0], addr result, 1)
 proc decodeS64*(self: PackedByteArray; byteOffset: Int): Int =
-  let argArr = [cast[pointer](addr byteOffset)]
+  let argArr = [getPtr byteOffset]
   PackedByteArray_decodeS64(addr self, addr argArr[0], addr result, 1)
 proc decodeHalf*(self: PackedByteArray; byteOffset: Int): Float =
-  let argArr = [cast[pointer](addr byteOffset)]
+  let argArr = [getPtr byteOffset]
   PackedByteArray_decodeHalf(addr self, addr argArr[0], addr result, 1)
 proc decodeFloat*(self: PackedByteArray; byteOffset: Int): Float =
-  let argArr = [cast[pointer](addr byteOffset)]
+  let argArr = [getPtr byteOffset]
   PackedByteArray_decodeFloat(addr self, addr argArr[0], addr result, 1)
 proc decodeDouble*(self: PackedByteArray; byteOffset: Int): Float =
-  let argArr = [cast[pointer](addr byteOffset)]
+  let argArr = [getPtr byteOffset]
   PackedByteArray_decodeDouble(addr self, addr argArr[0], addr result, 1)
 proc hasEncodedVar*(self: PackedByteArray; byteOffset: Int; allowObjects: Bool = false): Bool =
-  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr allowObjects)]
+  let argArr = [getPtr byteOffset, getPtr allowObjects]
   PackedByteArray_hasEncodedVar(addr self, addr argArr[0], addr result, 2)
 proc decodeVar*(self: PackedByteArray; byteOffset: Int; allowObjects: Bool = false): Variant =
-  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr allowObjects)]
+  let argArr = [getPtr byteOffset, getPtr allowObjects]
   PackedByteArray_decodeVar(addr self, addr argArr[0], addr result, 2)
 proc decodeVarSize*(self: PackedByteArray; byteOffset: Int; allowObjects: Bool = false): Int =
-  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr allowObjects)]
+  let argArr = [getPtr byteOffset, getPtr allowObjects]
   PackedByteArray_decodeVarSize(addr self, addr argArr[0], addr result, 2)
 proc toInt32Array*(self: PackedByteArray): PackedInt32Array = PackedByteArray_toInt32Array(addr self, nil, addr result, 0)
 proc toInt64Array*(self: PackedByteArray): PackedInt64Array = PackedByteArray_toInt64Array(addr self, nil, addr result, 0)
 proc toFloat32Array*(self: PackedByteArray): PackedFloat32Array = PackedByteArray_toFloat32Array(addr self, nil, addr result, 0)
 proc toFloat64Array*(self: PackedByteArray): PackedFloat64Array = PackedByteArray_toFloat64Array(addr self, nil, addr result, 0)
-proc encodeU8*(self: PackedByteArray; byteOffset: Int; value: Int) =
-  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr value)]
+proc encodeU8*(self: var PackedByteArray; byteOffset: Int; value: Int) =
+  let argArr = [getPtr byteOffset, getPtr value]
   PackedByteArray_encodeU8(addr self, addr argArr[0], nil, 2)
-proc encodeS8*(self: PackedByteArray; byteOffset: Int; value: Int) =
-  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr value)]
+proc encodeS8*(self: var PackedByteArray; byteOffset: Int; value: Int) =
+  let argArr = [getPtr byteOffset, getPtr value]
   PackedByteArray_encodeS8(addr self, addr argArr[0], nil, 2)
-proc encodeU16*(self: PackedByteArray; byteOffset: Int; value: Int) =
-  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr value)]
+proc encodeU16*(self: var PackedByteArray; byteOffset: Int; value: Int) =
+  let argArr = [getPtr byteOffset, getPtr value]
   PackedByteArray_encodeU16(addr self, addr argArr[0], nil, 2)
-proc encodeS16*(self: PackedByteArray; byteOffset: Int; value: Int) =
-  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr value)]
+proc encodeS16*(self: var PackedByteArray; byteOffset: Int; value: Int) =
+  let argArr = [getPtr byteOffset, getPtr value]
   PackedByteArray_encodeS16(addr self, addr argArr[0], nil, 2)
-proc encodeU32*(self: PackedByteArray; byteOffset: Int; value: Int) =
-  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr value)]
+proc encodeU32*(self: var PackedByteArray; byteOffset: Int; value: Int) =
+  let argArr = [getPtr byteOffset, getPtr value]
   PackedByteArray_encodeU32(addr self, addr argArr[0], nil, 2)
-proc encodeS32*(self: PackedByteArray; byteOffset: Int; value: Int) =
-  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr value)]
+proc encodeS32*(self: var PackedByteArray; byteOffset: Int; value: Int) =
+  let argArr = [getPtr byteOffset, getPtr value]
   PackedByteArray_encodeS32(addr self, addr argArr[0], nil, 2)
-proc encodeU64*(self: PackedByteArray; byteOffset: Int; value: Int) =
-  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr value)]
+proc encodeU64*(self: var PackedByteArray; byteOffset: Int; value: Int) =
+  let argArr = [getPtr byteOffset, getPtr value]
   PackedByteArray_encodeU64(addr self, addr argArr[0], nil, 2)
-proc encodeS64*(self: PackedByteArray; byteOffset: Int; value: Int) =
-  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr value)]
+proc encodeS64*(self: var PackedByteArray; byteOffset: Int; value: Int) =
+  let argArr = [getPtr byteOffset, getPtr value]
   PackedByteArray_encodeS64(addr self, addr argArr[0], nil, 2)
-proc encodeHalf*(self: PackedByteArray; byteOffset: Int; value: Float) =
-  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr value)]
+proc encodeHalf*(self: var PackedByteArray; byteOffset: Int; value: Float) =
+  let argArr = [getPtr byteOffset, getPtr value]
   PackedByteArray_encodeHalf(addr self, addr argArr[0], nil, 2)
-proc encodeFloat*(self: PackedByteArray; byteOffset: Int; value: Float) =
-  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr value)]
+proc encodeFloat*(self: var PackedByteArray; byteOffset: Int; value: Float) =
+  let argArr = [getPtr byteOffset, getPtr value]
   PackedByteArray_encodeFloat(addr self, addr argArr[0], nil, 2)
-proc encodeDouble*(self: PackedByteArray; byteOffset: Int; value: Float) =
-  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr value)]
+proc encodeDouble*(self: var PackedByteArray; byteOffset: Int; value: Float) =
+  let argArr = [getPtr byteOffset, getPtr value]
   PackedByteArray_encodeDouble(addr self, addr argArr[0], nil, 2)
-proc encodeVar*(self: PackedByteArray; byteOffset: Int; value: ptr Variant; allowObjects: Bool = false): Int =
-  let argArr = [cast[pointer](addr byteOffset), cast[pointer](addr value), cast[pointer](addr allowObjects)]
+proc encodeVar*(self: var PackedByteArray; byteOffset: Int; value: ptr Variant; allowObjects: Bool = false): Int =
+  let argArr = [getPtr byteOffset, getPtr value, getPtr allowObjects]
   PackedByteArray_encodeVar(addr self, addr argArr[0], addr result, 3)
 proc load_PackedByteArray_proc =
   var proc_name: StringName

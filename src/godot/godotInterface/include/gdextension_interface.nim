@@ -1,8 +1,8 @@
 import ../../pure/helper/interfaceParser
 
 type
-  char32_t* = uint32
-  char16_t* = uint16
+  char32_t = Rune
+  char16_t = uint16
 # Enums
 # =====
 type Variant_Type* {.size: sizeof(cuint).} = enum
@@ -345,24 +345,24 @@ parseInterface:
     InterfaceFileAccessGetBuffer* = proc ( p_instance: ConstObjectPtr; p_dst: ptr uint8; p_length: uint64): uint64 {.gdcall.}
     InterfaceWorkerThreadPoolAddNativeGroupTask* = proc ( p_instance: ObjectPtr; p_func: proc (a1: pointer; a2: uint32); p_userdata: pointer; p_elements: cint; p_tasks: cint; p_high_priority: Bool; p_description: ConstStringPtr): int64 {.gdcall.}
     InterfaceWorkerThreadPoolAddNativeTask* = proc ( p_instance: ObjectPtr; p_func: proc (a1: pointer); p_userdata: pointer; p_high_priority: Bool; p_description: ConstStringPtr): int64 {.gdcall.}
-    InterfacePackedByteArrayOperatorIndex* = proc ( p_self: TypePtr; p_index: Int): ptr uint8 {.gdcall.}
-    InterfacePackedByteArrayOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_index: Int): ptr uint8 {.gdcall.}
-    InterfacePackedColorArrayOperatorIndex* = proc ( p_self: TypePtr; p_index: Int): TypePtr {.gdcall.}
-    InterfacePackedColorArrayOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_index: Int): TypePtr {.gdcall.}
-    InterfacePackedFloat32ArrayOperatorIndex* = proc ( p_self: TypePtr; p_index: Int): ptr cfloat {.gdcall.}
-    InterfacePackedFloat32ArrayOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_index: Int): ptr cfloat {.gdcall.}
-    InterfacePackedFloat64ArrayOperatorIndex* = proc ( p_self: TypePtr; p_index: Int): ptr cdouble {.gdcall.}
-    InterfacePackedFloat64ArrayOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_index: Int): ptr cdouble {.gdcall.}
-    InterfacePackedInt32ArrayOperatorIndex* = proc ( p_self: TypePtr; p_index: Int): ptr uint32 {.gdcall.}
-    InterfacePackedInt32ArrayOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_index: Int): ptr uint32 {.gdcall.}
+    InterfacePackedByteArrayOperatorIndex* = proc ( p_self: TypePtr; p_index: Int): ptr byte {.gdcall.}
+    InterfacePackedByteArrayOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_index: Int): ptr byte {.gdcall.}
+    InterfacePackedColorArrayOperatorIndex* = proc ( p_self: TypePtr; p_index: Int): ptr Color {.gdcall.}
+    InterfacePackedColorArrayOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_index: Int): ptr Color {.gdcall.}
+    InterfacePackedFloat32ArrayOperatorIndex* = proc ( p_self: TypePtr; p_index: Int): ptr float32 {.gdcall.}
+    InterfacePackedFloat32ArrayOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_index: Int): ptr float32 {.gdcall.}
+    InterfacePackedFloat64ArrayOperatorIndex* = proc ( p_self: TypePtr; p_index: Int): ptr float64 {.gdcall.}
+    InterfacePackedFloat64ArrayOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_index: Int): ptr float64 {.gdcall.}
+    InterfacePackedInt32ArrayOperatorIndex* = proc ( p_self: TypePtr; p_index: Int): ptr int32 {.gdcall.}
+    InterfacePackedInt32ArrayOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_index: Int): ptr int32 {.gdcall.}
     InterfacePackedInt64ArrayOperatorIndex* = proc ( p_self: TypePtr; p_index: Int): ptr int64 {.gdcall.}
     InterfacePackedInt64ArrayOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_index: Int): ptr int64 {.gdcall.}
     InterfacePackedStringArrayOperatorIndex* = proc ( p_self: TypePtr; p_index: Int): StringPtr {.gdcall.}
     InterfacePackedStringArrayOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_index: Int): StringPtr {.gdcall.}
-    InterfacePackedVector2ArrayOperatorIndex* = proc ( p_self: TypePtr; p_index: Int): TypePtr {.gdcall.}
-    InterfacePackedVector2ArrayOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_index: Int): TypePtr {.gdcall.}
-    InterfacePackedVector3ArrayOperatorIndex* = proc ( p_self: TypePtr; p_index: Int): TypePtr {.gdcall.}
-    InterfacePackedVector3ArrayOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_index: Int): TypePtr {.gdcall.}
+    InterfacePackedVector2ArrayOperatorIndex* = proc ( p_self: TypePtr; p_index: Int): ptr Vector2 {.gdcall.}
+    InterfacePackedVector2ArrayOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_index: Int): ptr Vector2 {.gdcall.}
+    InterfacePackedVector3ArrayOperatorIndex* = proc ( p_self: TypePtr; p_index: Int): ptr Vector3 {.gdcall.}
+    InterfacePackedVector3ArrayOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_index: Int): ptr Vector3 {.gdcall.}
     InterfaceArrayOperatorIndex* = proc (p_self: TypePtr; p_index: Int): VariantPtr {.gdcall.}
     InterfaceArrayOperatorIndexConst* = proc ( p_self: ConstTypePtr; p_index: Int): VariantPtr {.gdcall.}
     InterfaceArrayRef* = proc (p_self: TypePtr; p_from: ConstTypePtr) {.gdcall.}

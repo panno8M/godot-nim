@@ -4,9 +4,6 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-# type Int* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=none(string)
 var Equal_Int_Variant: PtrOperatorEvaluator
 var NotEqual_Int_Variant: PtrOperatorEvaluator
 proc `==`*(left: Int; right: ptr Variant): Bool = Equal_Int_Variant(addr left, addr right, addr result)

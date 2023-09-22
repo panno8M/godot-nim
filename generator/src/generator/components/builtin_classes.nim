@@ -26,6 +26,7 @@ type
 
 const ignoreConf: Table[string, IgnoreConf] = toTable {
   "Vector2": IgnoreConf(
+    indexer: true,
     constructor: true,
     procedure: true,
     procedure_white: @[
@@ -52,6 +53,7 @@ const ignoreConf: Table[string, IgnoreConf] = toTable {
     ],
   ),
   "Vector2i": IgnoreConf(
+    indexer: true,
     constructor: true,
     procedure: true,
     operator: true,
@@ -63,6 +65,7 @@ const ignoreConf: Table[string, IgnoreConf] = toTable {
     ],
   ),
   "Vector3": IgnoreConf(
+    indexer: true,
     constructor: true,
     procedure: true,
     procedure_white: @[
@@ -97,6 +100,7 @@ const ignoreConf: Table[string, IgnoreConf] = toTable {
     ],
   ),
   "Vector3i": IgnoreConf(
+    indexer: true,
     constructor: true,
     procedure: true,
     operator: true,
@@ -108,6 +112,7 @@ const ignoreConf: Table[string, IgnoreConf] = toTable {
     ],
   ),
   "Vector4": IgnoreConf(
+    indexer: true,
     constructor: true,
     procedure: true,
     procedure_white: @[
@@ -125,6 +130,7 @@ const ignoreConf: Table[string, IgnoreConf] = toTable {
     ],
   ),
   "Vector4i": IgnoreConf(
+    indexer: true,
     constructor: true,
     procedure: true,
     operator: true,
@@ -136,16 +142,27 @@ const ignoreConf: Table[string, IgnoreConf] = toTable {
     ],
   ),
   "Quaternion": IgnoreConf(
+    indexer: true,
     constructor: true,
     constructor_white: @[1, 2, 3, 4],
   ),
   "Color": IgnoreConf(
+    indexer: true,
     constructor: true,
     constructor_white: @[5, 6],
   ),
   "Plane": IgnoreConf(
     constructor: true,
     constructor_white: @[1, 2, 3, 4, 5],
+  ),
+  "Basis": IgnoreConf(
+    indexer: true,
+  ),
+  "Projection": IgnoreConf(
+    indexer: true,
+  ),
+  "Transform2D": IgnoreConf(
+    indexer: true,
   ),
   "Bool": IgnoreConf(
     constructor: true,
@@ -263,14 +280,25 @@ proc renderLocalEnums*(self: seq[NimBuiltinClass]): Statement =
     discard +$$..result:
       variant.enums.mapit it.render
 
+proc `render[]`(self: NimBuiltinClass): Statement =
+  if self.json.indexing_return_type.isNone: return
+  if ignoreConf.getOrDefault($self.name).indexer: return
+  var acc: string
+  var acc_T: string
+  if self.json.is_keyed:
+    acc = "key"
+    acc_T = "ptr Variant"
+  else:
+    acc = "index"
+    acc_T = "int"
+  +$$..ParagraphSt():
+    &"proc `[]`*(self: {self.name}; {acc}: {acc_T}): var {self.name}.Item = interface_{self.name}_operatorIndex(addr self, {acc})[]"
+    &"proc `[]=`*(self: {self.name}; {acc}: {acc_T}; value: {self.name}.Item) = interface_{self.name}_operatorIndex(addr self, {acc})[] = value"
+
 type RenderedVariant = tuple
-  define, methods, operators, constants, loader: Statement
+  methods, operators, indexer, constants, loader: Statement
 proc prerender*(self: NimBuiltinClass): RenderedVariant =
-  result.define = +$$..ParagraphSt():
-    +$$..CommentSt.nim(execute= true):
-      +$$..BlockSt(head: fmt"type {self.name}* = object"):
-        fmt"{self.json.is_keyed=}"
-        fmt"{self.json.indexing_return_type=}"
+  result.indexer = `render[]`(self)
 
   let (opdefine, oploader) = prerender(self.json.operators, argType self.name, ignoreConf.getOrDefault($self.name))
   result.operators = opdefine
@@ -284,7 +312,7 @@ proc prerender*(self: NimBuiltinClass): RenderedVariant =
   var procloader = BlockSt(head: &"proc {procLoader $self.name} =")
   procloader.children.add "var proc_name: StringName"
   for m in self.json.methods.get(@[]):
-    let self_type = selfType(self.name, m.isStatic)
+    let self_type = selfType(self.name, m.isStatic, not m.is_const)
     let (procdef, container, load) = m.prerender_variantMethod(self_type, ignoreConf.getOrDefault($self.name))
     if container.isNil: continue
     proccontainers.children.add container
@@ -326,10 +354,10 @@ proc modulateDetail*(self: NimBuiltinClass): Module =
   if ignoreConf.getOrDefault($self.name).module: return
   result = mdl(self.moduleName)
     .incl(moduleTree.variantDefiner)
-  let (define, methods, operators, constants, loader) = self.prerender
+  let (methods, operators, indexer, constants, loader) = self.prerender
   discard +$$..result.contents:
-    define
     constants
+    indexer
     methods
     operators
     loader

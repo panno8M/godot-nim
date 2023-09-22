@@ -4,9 +4,6 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-# type Signal* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=none(string)
 var Signal_isNull: PtrBuiltinMethod
 var Signal_getObject: PtrBuiltinMethod
 var Signal_getObjectId: PtrBuiltinMethod
@@ -20,14 +17,14 @@ proc isNull*(self: Signal): Bool = Signal_isNull(addr self, nil, addr result, 0)
 proc getObject*(self: Signal): Object = Signal_getObject(addr self, nil, addr result, 0)
 proc getObjectId*(self: Signal): Int = Signal_getObjectId(addr self, nil, addr result, 0)
 proc getName*(self: Signal): StringName = Signal_getName(addr self, nil, addr result, 0)
-proc connect*(self: Signal; callable: Callable; flags: Int = 0): Int =
-  let argArr = [cast[pointer](addr callable), cast[pointer](addr flags)]
+proc connect*(self: var Signal; callable: Callable; flags: Int = 0): Int =
+  let argArr = [getPtr callable, getPtr flags]
   Signal_connect(addr self, addr argArr[0], addr result, 2)
-proc disconnect*(self: Signal; callable: Callable) =
-  let argArr = [cast[pointer](addr callable)]
+proc disconnect*(self: var Signal; callable: Callable) =
+  let argArr = [getPtr callable]
   Signal_disconnect(addr self, addr argArr[0], nil, 1)
 proc isConnected*(self: Signal; callable: Callable): Bool =
-  let argArr = [cast[pointer](addr callable)]
+  let argArr = [getPtr callable]
   Signal_isConnected(addr self, addr argArr[0], addr result, 1)
 proc getConnections*(self: Signal): Array = Signal_getConnections(addr self, nil, addr result, 0)
 proc emit*(self: Signal) = Signal_emit(addr self, nil, nil, 0)

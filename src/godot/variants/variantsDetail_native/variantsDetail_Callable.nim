@@ -4,9 +4,6 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-# type Callable* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=none(string)
 var Callable_callv: PtrBuiltinMethod
 var Callable_isNull: PtrBuiltinMethod
 var Callable_isCustom: PtrBuiltinMethod
@@ -26,7 +23,7 @@ var Callable_rpc: PtrBuiltinMethod
 var Callable_rpcId: PtrBuiltinMethod
 var Callable_bind: PtrBuiltinMethod
 proc callv*(self: Callable; arguments: Array): Variant =
-  let argArr = [cast[pointer](addr arguments)]
+  let argArr = [getPtr arguments]
   Callable_callv(addr self, addr argArr[0], addr result, 1)
 proc isNull*(self: Callable): Bool = Callable_isNull(addr self, nil, addr result, 0)
 proc isCustom*(self: Callable): Bool = Callable_isCustom(addr self, nil, addr result, 0)
@@ -38,17 +35,17 @@ proc getMethod*(self: Callable): StringName = Callable_getMethod(addr self, nil,
 proc getBoundArgumentsCount*(self: Callable): Int = Callable_getBoundArgumentsCount(addr self, nil, addr result, 0)
 proc getBoundArguments*(self: Callable): Array = Callable_getBoundArguments(addr self, nil, addr result, 0)
 proc hash*(self: Callable): Int = Callable_hash(addr self, nil, addr result, 0)
-proc bindv*(self: Callable; arguments: Array): Callable =
-  let argArr = [cast[pointer](addr arguments)]
+proc bindv*(self: var Callable; arguments: Array): Callable =
+  let argArr = [getPtr arguments]
   Callable_bindv(addr self, addr argArr[0], addr result, 1)
 proc unbind*(self: Callable; argcount: Int): Callable =
-  let argArr = [cast[pointer](addr argcount)]
+  let argArr = [getPtr argcount]
   Callable_unbind(addr self, addr argArr[0], addr result, 1)
 proc call*(self: Callable): Variant = Callable_call(addr self, nil, addr result, 0)
 proc callDeferred*(self: Callable) = Callable_callDeferred(addr self, nil, nil, 0)
 proc rpc*(self: Callable) = Callable_rpc(addr self, nil, nil, 0)
 proc rpcId*(self: Callable; peerId: Int) =
-  let argArr = [cast[pointer](addr peerId)]
+  let argArr = [getPtr peerId]
   Callable_rpcId(addr self, addr argArr[0], nil, 1)
 proc `bind`*(self: Callable): Callable = Callable_bind(addr self, nil, addr result, 0)
 proc load_Callable_proc =

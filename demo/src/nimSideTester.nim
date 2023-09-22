@@ -23,6 +23,17 @@ proc test_SomeVariants(self: NimSideTester) =
     test "String conversion":
       let gdstr: String = "String"
       check $gdstr == "String"
+    test "indexing":
+      var arr: PackedByteArray = init_PackedByteArray()
+      check arr.size == 0
+      check arr.resize(3) == 0
+      check arr.size == 3
+      for i in 0..<3:
+        check arr[i] == 0
+      for i in 0..<3:
+        arr[i] = byte i
+      for i in 0..<3:
+        check arr[i] == byte i
 
 proc test_Object(self: NimSideTester) =
   suite "Object":

@@ -4,9 +4,6 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-# type Color* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=some("float")
 const Color_AliceBlue*: Color = init_Color(0.941176, 0.972549, 1, 1)
 const Color_AntiqueWhite*: Color = init_Color(0.980392, 0.921569, 0.843137, 1)
 const Color_Aqua*: Color = init_Color(0, 1, 1, 1)
@@ -185,53 +182,53 @@ proc toArgb64*(self: Color): Int = Color_toArgb64(addr self, nil, addr result, 0
 proc toAbgr64*(self: Color): Int = Color_toAbgr64(addr self, nil, addr result, 0)
 proc toRgba64*(self: Color): Int = Color_toRgba64(addr self, nil, addr result, 0)
 proc toHtml*(self: Color; withAlpha: Bool = true): String =
-  let argArr = [cast[pointer](addr withAlpha)]
+  let argArr = [getPtr withAlpha]
   Color_toHtml(addr self, addr argArr[0], addr result, 1)
 proc clamp*(self: Color; min: Color = init_Color(0, 0, 0, 0); max: Color = init_Color(1, 1, 1, 1)): Color =
-  let argArr = [cast[pointer](addr min), cast[pointer](addr max)]
+  let argArr = [getPtr min, getPtr max]
   Color_clamp(addr self, addr argArr[0], addr result, 2)
 proc inverted*(self: Color): Color = Color_inverted(addr self, nil, addr result, 0)
 proc lerp*(self: Color; to: Color; weight: Float): Color =
-  let argArr = [cast[pointer](addr to), cast[pointer](addr weight)]
+  let argArr = [getPtr to, getPtr weight]
   Color_lerp(addr self, addr argArr[0], addr result, 2)
 proc lightened*(self: Color; amount: Float): Color =
-  let argArr = [cast[pointer](addr amount)]
+  let argArr = [getPtr amount]
   Color_lightened(addr self, addr argArr[0], addr result, 1)
 proc darkened*(self: Color; amount: Float): Color =
-  let argArr = [cast[pointer](addr amount)]
+  let argArr = [getPtr amount]
   Color_darkened(addr self, addr argArr[0], addr result, 1)
 proc blend*(self: Color; over: Color): Color =
-  let argArr = [cast[pointer](addr over)]
+  let argArr = [getPtr over]
   Color_blend(addr self, addr argArr[0], addr result, 1)
 proc getLuminance*(self: Color): Float = Color_getLuminance(addr self, nil, addr result, 0)
 proc srgbToLinear*(self: Color): Color = Color_srgbToLinear(addr self, nil, addr result, 0)
 proc linearToSrgb*(self: Color): Color = Color_linearToSrgb(addr self, nil, addr result, 0)
 proc isEqualApprox*(self: Color; to: Color): Bool =
-  let argArr = [cast[pointer](addr to)]
+  let argArr = [getPtr to]
   Color_isEqualApprox(addr self, addr argArr[0], addr result, 1)
 proc hex*(_: typedesc[Color]; hex: Int): Color =
-  let argArr = [cast[pointer](addr hex)]
+  let argArr = [getPtr hex]
   Color_hex(nil, addr argArr[0], addr result, 1)
 proc hex64*(_: typedesc[Color]; hex: Int): Color =
-  let argArr = [cast[pointer](addr hex)]
+  let argArr = [getPtr hex]
   Color_hex64(nil, addr argArr[0], addr result, 1)
 proc html*(_: typedesc[Color]; rgba: String): Color =
-  let argArr = [cast[pointer](addr rgba)]
+  let argArr = [getPtr rgba]
   Color_html(nil, addr argArr[0], addr result, 1)
 proc htmlIsValid*(_: typedesc[Color]; color: String): Bool =
-  let argArr = [cast[pointer](addr color)]
+  let argArr = [getPtr color]
   Color_htmlIsValid(nil, addr argArr[0], addr result, 1)
 proc fromString*(_: typedesc[Color]; str: String; default: Color): Color =
-  let argArr = [cast[pointer](addr str), cast[pointer](addr default)]
+  let argArr = [getPtr str, getPtr default]
   Color_fromString(nil, addr argArr[0], addr result, 2)
 proc fromHsv*(_: typedesc[Color]; h: Float; s: Float; v: Float; alpha: Float = 1.0): Color =
-  let argArr = [cast[pointer](addr h), cast[pointer](addr s), cast[pointer](addr v), cast[pointer](addr alpha)]
+  let argArr = [getPtr h, getPtr s, getPtr v, getPtr alpha]
   Color_fromHsv(nil, addr argArr[0], addr result, 4)
 proc fromOkHsl*(_: typedesc[Color]; h: Float; s: Float; l: Float; alpha: Float = 1.0): Color =
-  let argArr = [cast[pointer](addr h), cast[pointer](addr s), cast[pointer](addr l), cast[pointer](addr alpha)]
+  let argArr = [getPtr h, getPtr s, getPtr l, getPtr alpha]
   Color_fromOkHsl(nil, addr argArr[0], addr result, 4)
 proc fromRgbe9995*(_: typedesc[Color]; rgbe: Int): Color =
-  let argArr = [cast[pointer](addr rgbe)]
+  let argArr = [getPtr rgbe]
   Color_fromRgbe9995(nil, addr argArr[0], addr result, 1)
 proc load_Color_proc =
   var proc_name: StringName

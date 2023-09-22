@@ -4,9 +4,8 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-# type Dictionary* = object
-#   self.json.is_keyed=true
-#   self.json.indexing_return_type=some("Variant")
+proc `[]`*(self: Dictionary; key: ptr Variant): var Dictionary.Item = interface_Dictionary_operatorIndex(addr self, key)[]
+proc `[]=`*(self: Dictionary; key: ptr Variant; value: Dictionary.Item) = interface_Dictionary_operatorIndex(addr self, key)[] = value
 var Dictionary_size: PtrBuiltinMethod
 var Dictionary_isEmpty: PtrBuiltinMethod
 var Dictionary_clear: PtrBuiltinMethod
@@ -24,32 +23,32 @@ var Dictionary_makeReadOnly: PtrBuiltinMethod
 var Dictionary_isReadOnly: PtrBuiltinMethod
 proc size*(self: Dictionary): Int = Dictionary_size(addr self, nil, addr result, 0)
 proc isEmpty*(self: Dictionary): Bool = Dictionary_isEmpty(addr self, nil, addr result, 0)
-proc clear*(self: Dictionary) = Dictionary_clear(addr self, nil, nil, 0)
-proc merge*(self: Dictionary; dictionary: Dictionary; overwrite: Bool = false) =
-  let argArr = [cast[pointer](addr dictionary), cast[pointer](addr overwrite)]
+proc clear*(self: var Dictionary) = Dictionary_clear(addr self, nil, nil, 0)
+proc merge*(self: var Dictionary; dictionary: Dictionary; overwrite: Bool = false) =
+  let argArr = [getPtr dictionary, getPtr overwrite]
   Dictionary_merge(addr self, addr argArr[0], nil, 2)
 proc has*(self: Dictionary; key: ptr Variant): Bool =
-  let argArr = [cast[pointer](addr key)]
+  let argArr = [getPtr key]
   Dictionary_has(addr self, addr argArr[0], addr result, 1)
 proc hasAll*(self: Dictionary; keys: Array): Bool =
-  let argArr = [cast[pointer](addr keys)]
+  let argArr = [getPtr keys]
   Dictionary_hasAll(addr self, addr argArr[0], addr result, 1)
 proc findKey*(self: Dictionary; value: ptr Variant): Variant =
-  let argArr = [cast[pointer](addr value)]
+  let argArr = [getPtr value]
   Dictionary_findKey(addr self, addr argArr[0], addr result, 1)
-proc erase*(self: Dictionary; key: ptr Variant): Bool =
-  let argArr = [cast[pointer](addr key)]
+proc erase*(self: var Dictionary; key: ptr Variant): Bool =
+  let argArr = [getPtr key]
   Dictionary_erase(addr self, addr argArr[0], addr result, 1)
 proc hash*(self: Dictionary): Int = Dictionary_hash(addr self, nil, addr result, 0)
 proc keys*(self: Dictionary): Array = Dictionary_keys(addr self, nil, addr result, 0)
 proc values*(self: Dictionary): Array = Dictionary_values(addr self, nil, addr result, 0)
 proc duplicate*(self: Dictionary; deep: Bool = false): Dictionary =
-  let argArr = [cast[pointer](addr deep)]
+  let argArr = [getPtr deep]
   Dictionary_duplicate(addr self, addr argArr[0], addr result, 1)
 proc get*(self: Dictionary; key: ptr Variant; default: ptr Variant = nil): Variant =
-  let argArr = [cast[pointer](addr key), cast[pointer](addr default)]
+  let argArr = [getPtr key, getPtr default]
   Dictionary_get(addr self, addr argArr[0], addr result, 2)
-proc makeReadOnly*(self: Dictionary) = Dictionary_makeReadOnly(addr self, nil, nil, 0)
+proc makeReadOnly*(self: var Dictionary) = Dictionary_makeReadOnly(addr self, nil, nil, 0)
 proc isReadOnly*(self: Dictionary): Bool = Dictionary_isReadOnly(addr self, nil, addr result, 0)
 proc load_Dictionary_proc =
   var proc_name: StringName

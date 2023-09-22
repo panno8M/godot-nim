@@ -4,9 +4,6 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-# type Vector3i* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=some("int")
 const Vector3i_AxisX*: int = 0
 const Vector3i_AxisY*: int = 1
 const Vector3i_AxisZ*: int = 2

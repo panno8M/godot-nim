@@ -4,9 +4,8 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-# type PackedVector3Array* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=some("Vector3")
+proc `[]`*(self: PackedVector3Array; index: int): var PackedVector3Array.Item = interface_PackedVector3Array_operatorIndex(addr self, index)[]
+proc `[]=`*(self: PackedVector3Array; index: int; value: PackedVector3Array.Item) = interface_PackedVector3Array_operatorIndex(addr self, index)[] = value
 var PackedVector3Array_size: PtrBuiltinMethod
 var PackedVector3Array_isEmpty: PtrBuiltinMethod
 var PackedVector3Array_set: PtrBuiltinMethod
@@ -30,52 +29,52 @@ var PackedVector3Array_rfind: PtrBuiltinMethod
 var PackedVector3Array_count: PtrBuiltinMethod
 proc size*(self: PackedVector3Array): Int = PackedVector3Array_size(addr self, nil, addr result, 0)
 proc isEmpty*(self: PackedVector3Array): Bool = PackedVector3Array_isEmpty(addr self, nil, addr result, 0)
-proc set*(self: PackedVector3Array; index: Int; value: Vector3) =
-  let argArr = [cast[pointer](addr index), cast[pointer](addr value)]
+proc set*(self: var PackedVector3Array; index: Int; value: Vector3) =
+  let argArr = [getPtr index, getPtr value]
   PackedVector3Array_set(addr self, addr argArr[0], nil, 2)
-proc pushBack*(self: PackedVector3Array; value: Vector3): Bool =
-  let argArr = [cast[pointer](addr value)]
+proc pushBack*(self: var PackedVector3Array; value: Vector3): Bool =
+  let argArr = [getPtr value]
   PackedVector3Array_pushBack(addr self, addr argArr[0], addr result, 1)
-proc append*(self: PackedVector3Array; value: Vector3): Bool =
-  let argArr = [cast[pointer](addr value)]
+proc append*(self: var PackedVector3Array; value: Vector3): Bool =
+  let argArr = [getPtr value]
   PackedVector3Array_append(addr self, addr argArr[0], addr result, 1)
-proc appendArray*(self: PackedVector3Array; array: PackedVector3Array) =
-  let argArr = [cast[pointer](addr array)]
+proc appendArray*(self: var PackedVector3Array; array: PackedVector3Array) =
+  let argArr = [getPtr array]
   PackedVector3Array_appendArray(addr self, addr argArr[0], nil, 1)
-proc removeAt*(self: PackedVector3Array; index: Int) =
-  let argArr = [cast[pointer](addr index)]
+proc removeAt*(self: var PackedVector3Array; index: Int) =
+  let argArr = [getPtr index]
   PackedVector3Array_removeAt(addr self, addr argArr[0], nil, 1)
-proc insert*(self: PackedVector3Array; atIndex: Int; value: Vector3): Int =
-  let argArr = [cast[pointer](addr atIndex), cast[pointer](addr value)]
+proc insert*(self: var PackedVector3Array; atIndex: Int; value: Vector3): Int =
+  let argArr = [getPtr atIndex, getPtr value]
   PackedVector3Array_insert(addr self, addr argArr[0], addr result, 2)
-proc fill*(self: PackedVector3Array; value: Vector3) =
-  let argArr = [cast[pointer](addr value)]
+proc fill*(self: var PackedVector3Array; value: Vector3) =
+  let argArr = [getPtr value]
   PackedVector3Array_fill(addr self, addr argArr[0], nil, 1)
-proc resize*(self: PackedVector3Array; newSize: Int): Int =
-  let argArr = [cast[pointer](addr newSize)]
+proc resize*(self: var PackedVector3Array; newSize: Int): Int =
+  let argArr = [getPtr newSize]
   PackedVector3Array_resize(addr self, addr argArr[0], addr result, 1)
-proc clear*(self: PackedVector3Array) = PackedVector3Array_clear(addr self, nil, nil, 0)
+proc clear*(self: var PackedVector3Array) = PackedVector3Array_clear(addr self, nil, nil, 0)
 proc has*(self: PackedVector3Array; value: Vector3): Bool =
-  let argArr = [cast[pointer](addr value)]
+  let argArr = [getPtr value]
   PackedVector3Array_has(addr self, addr argArr[0], addr result, 1)
-proc reverse*(self: PackedVector3Array) = PackedVector3Array_reverse(addr self, nil, nil, 0)
+proc reverse*(self: var PackedVector3Array) = PackedVector3Array_reverse(addr self, nil, nil, 0)
 proc slice*(self: PackedVector3Array; begin: Int; `end`: Int = 2147483647): PackedVector3Array =
-  let argArr = [cast[pointer](addr begin), cast[pointer](addr `end`)]
+  let argArr = [getPtr begin, getPtr `end`]
   PackedVector3Array_slice(addr self, addr argArr[0], addr result, 2)
 proc toByteArray*(self: PackedVector3Array): PackedByteArray = PackedVector3Array_toByteArray(addr self, nil, addr result, 0)
-proc sort*(self: PackedVector3Array) = PackedVector3Array_sort(addr self, nil, nil, 0)
-proc bsearch*(self: PackedVector3Array; value: Vector3; before: Bool = true): Int =
-  let argArr = [cast[pointer](addr value), cast[pointer](addr before)]
+proc sort*(self: var PackedVector3Array) = PackedVector3Array_sort(addr self, nil, nil, 0)
+proc bsearch*(self: var PackedVector3Array; value: Vector3; before: Bool = true): Int =
+  let argArr = [getPtr value, getPtr before]
   PackedVector3Array_bsearch(addr self, addr argArr[0], addr result, 2)
-proc duplicate*(self: PackedVector3Array): PackedVector3Array = PackedVector3Array_duplicate(addr self, nil, addr result, 0)
+proc duplicate*(self: var PackedVector3Array): PackedVector3Array = PackedVector3Array_duplicate(addr self, nil, addr result, 0)
 proc find*(self: PackedVector3Array; value: Vector3; `from`: Int = 0): Int =
-  let argArr = [cast[pointer](addr value), cast[pointer](addr `from`)]
+  let argArr = [getPtr value, getPtr `from`]
   PackedVector3Array_find(addr self, addr argArr[0], addr result, 2)
 proc rfind*(self: PackedVector3Array; value: Vector3; `from`: Int = -1): Int =
-  let argArr = [cast[pointer](addr value), cast[pointer](addr `from`)]
+  let argArr = [getPtr value, getPtr `from`]
   PackedVector3Array_rfind(addr self, addr argArr[0], addr result, 2)
 proc count*(self: PackedVector3Array; value: Vector3): Int =
-  let argArr = [cast[pointer](addr value)]
+  let argArr = [getPtr value]
   PackedVector3Array_count(addr self, addr argArr[0], addr result, 1)
 proc load_PackedVector3Array_proc =
   var proc_name: StringName

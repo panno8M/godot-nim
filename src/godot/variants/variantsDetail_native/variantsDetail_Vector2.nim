@@ -4,9 +4,6 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-# type Vector2* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=some("float")
 const Vector2_AxisX*: int = 0
 const Vector2_AxisY*: int = 1
 const Vector2_Zero*: Vector2 = gdvec(0, 0)
@@ -28,35 +25,35 @@ var Vector2_orthogonal: PtrBuiltinMethod
 var Vector2_bounce: PtrBuiltinMethod
 var Vector2_reflect: PtrBuiltinMethod
 proc limitLength*(self: Vector2; length: Float = 1.0): Vector2 =
-  let argArr = [cast[pointer](addr length)]
+  let argArr = [getPtr length]
   Vector2_limitLength(addr self, addr argArr[0], addr result, 1)
 proc project*(self: Vector2; b: Vector2): Vector2 =
-  let argArr = [cast[pointer](addr b)]
+  let argArr = [getPtr b]
   Vector2_project(addr self, addr argArr[0], addr result, 1)
 proc slerp*(self: Vector2; to: Vector2; weight: Float): Vector2 =
-  let argArr = [cast[pointer](addr to), cast[pointer](addr weight)]
+  let argArr = [getPtr to, getPtr weight]
   Vector2_slerp(addr self, addr argArr[0], addr result, 2)
 proc cubicInterpolate*(self: Vector2; b: Vector2; preA: Vector2; postB: Vector2; weight: Float): Vector2 =
-  let argArr = [cast[pointer](addr b), cast[pointer](addr preA), cast[pointer](addr postB), cast[pointer](addr weight)]
+  let argArr = [getPtr b, getPtr preA, getPtr postB, getPtr weight]
   Vector2_cubicInterpolate(addr self, addr argArr[0], addr result, 4)
 proc cubicInterpolateInTime*(self: Vector2; b: Vector2; preA: Vector2; postB: Vector2; weight: Float; bT: Float; preAT: Float; postBT: Float): Vector2 =
-  let argArr = [cast[pointer](addr b), cast[pointer](addr preA), cast[pointer](addr postB), cast[pointer](addr weight), cast[pointer](addr bT), cast[pointer](addr preAT), cast[pointer](addr postBT)]
+  let argArr = [getPtr b, getPtr preA, getPtr postB, getPtr weight, getPtr bT, getPtr preAT, getPtr postBT]
   Vector2_cubicInterpolateInTime(addr self, addr argArr[0], addr result, 7)
 proc bezierInterpolate*(self: Vector2; control1: Vector2; control2: Vector2; `end`: Vector2; t: Float): Vector2 =
-  let argArr = [cast[pointer](addr control1), cast[pointer](addr control2), cast[pointer](addr `end`), cast[pointer](addr t)]
+  let argArr = [getPtr control1, getPtr control2, getPtr `end`, getPtr t]
   Vector2_bezierInterpolate(addr self, addr argArr[0], addr result, 4)
 proc bezierDerivative*(self: Vector2; control1: Vector2; control2: Vector2; `end`: Vector2; t: Float): Vector2 =
-  let argArr = [cast[pointer](addr control1), cast[pointer](addr control2), cast[pointer](addr `end`), cast[pointer](addr t)]
+  let argArr = [getPtr control1, getPtr control2, getPtr `end`, getPtr t]
   Vector2_bezierDerivative(addr self, addr argArr[0], addr result, 4)
 proc rotated*(self: Vector2; angle: Float): Vector2 =
-  let argArr = [cast[pointer](addr angle)]
+  let argArr = [getPtr angle]
   Vector2_rotated(addr self, addr argArr[0], addr result, 1)
 proc orthogonal*(self: Vector2): Vector2 = Vector2_orthogonal(addr self, nil, addr result, 0)
 proc bounce*(self: Vector2; n: Vector2): Vector2 =
-  let argArr = [cast[pointer](addr n)]
+  let argArr = [getPtr n]
   Vector2_bounce(addr self, addr argArr[0], addr result, 1)
 proc reflect*(self: Vector2; n: Vector2): Vector2 =
-  let argArr = [cast[pointer](addr n)]
+  let argArr = [getPtr n]
   Vector2_reflect(addr self, addr argArr[0], addr result, 1)
 proc load_Vector2_proc =
   var proc_name: StringName

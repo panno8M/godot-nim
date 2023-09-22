@@ -4,9 +4,6 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-# type StringName* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=none(string)
 var StringName_casecmpTo: PtrBuiltinMethod
 var StringName_nocasecmpTo: PtrBuiltinMethod
 var StringName_naturalcasecmpTo: PtrBuiltinMethod
@@ -105,132 +102,132 @@ var StringName_hexDecode: PtrBuiltinMethod
 var StringName_toWcharBuffer: PtrBuiltinMethod
 var StringName_hash: PtrBuiltinMethod
 proc casecmpTo*(self: StringName; to: String): Int =
-  let argArr = [cast[pointer](addr to)]
+  let argArr = [getPtr to]
   StringName_casecmpTo(addr self, addr argArr[0], addr result, 1)
 proc nocasecmpTo*(self: StringName; to: String): Int =
-  let argArr = [cast[pointer](addr to)]
+  let argArr = [getPtr to]
   StringName_nocasecmpTo(addr self, addr argArr[0], addr result, 1)
 proc naturalcasecmpTo*(self: StringName; to: String): Int =
-  let argArr = [cast[pointer](addr to)]
+  let argArr = [getPtr to]
   StringName_naturalcasecmpTo(addr self, addr argArr[0], addr result, 1)
 proc naturalnocasecmpTo*(self: StringName; to: String): Int =
-  let argArr = [cast[pointer](addr to)]
+  let argArr = [getPtr to]
   StringName_naturalnocasecmpTo(addr self, addr argArr[0], addr result, 1)
 proc length*(self: StringName): Int = StringName_length(addr self, nil, addr result, 0)
 proc substr*(self: StringName; `from`: Int; len: Int = -1): String =
-  let argArr = [cast[pointer](addr `from`), cast[pointer](addr len)]
+  let argArr = [getPtr `from`, getPtr len]
   StringName_substr(addr self, addr argArr[0], addr result, 2)
 proc getSlice*(self: StringName; delimiter: String; slice: Int): String =
-  let argArr = [cast[pointer](addr delimiter), cast[pointer](addr slice)]
+  let argArr = [getPtr delimiter, getPtr slice]
   StringName_getSlice(addr self, addr argArr[0], addr result, 2)
 proc getSlicec*(self: StringName; delimiter: Int; slice: Int): String =
-  let argArr = [cast[pointer](addr delimiter), cast[pointer](addr slice)]
+  let argArr = [getPtr delimiter, getPtr slice]
   StringName_getSlicec(addr self, addr argArr[0], addr result, 2)
 proc getSliceCount*(self: StringName; delimiter: String): Int =
-  let argArr = [cast[pointer](addr delimiter)]
+  let argArr = [getPtr delimiter]
   StringName_getSliceCount(addr self, addr argArr[0], addr result, 1)
 proc find*(self: StringName; what: String; `from`: Int = 0): Int =
-  let argArr = [cast[pointer](addr what), cast[pointer](addr `from`)]
+  let argArr = [getPtr what, getPtr `from`]
   StringName_find(addr self, addr argArr[0], addr result, 2)
 proc count*(self: StringName; what: String; `from`: Int = 0; to: Int = 0): Int =
-  let argArr = [cast[pointer](addr what), cast[pointer](addr `from`), cast[pointer](addr to)]
+  let argArr = [getPtr what, getPtr `from`, getPtr to]
   StringName_count(addr self, addr argArr[0], addr result, 3)
 proc countn*(self: StringName; what: String; `from`: Int = 0; to: Int = 0): Int =
-  let argArr = [cast[pointer](addr what), cast[pointer](addr `from`), cast[pointer](addr to)]
+  let argArr = [getPtr what, getPtr `from`, getPtr to]
   StringName_countn(addr self, addr argArr[0], addr result, 3)
 proc findn*(self: StringName; what: String; `from`: Int = 0): Int =
-  let argArr = [cast[pointer](addr what), cast[pointer](addr `from`)]
+  let argArr = [getPtr what, getPtr `from`]
   StringName_findn(addr self, addr argArr[0], addr result, 2)
 proc rfind*(self: StringName; what: String; `from`: Int = -1): Int =
-  let argArr = [cast[pointer](addr what), cast[pointer](addr `from`)]
+  let argArr = [getPtr what, getPtr `from`]
   StringName_rfind(addr self, addr argArr[0], addr result, 2)
 proc rfindn*(self: StringName; what: String; `from`: Int = -1): Int =
-  let argArr = [cast[pointer](addr what), cast[pointer](addr `from`)]
+  let argArr = [getPtr what, getPtr `from`]
   StringName_rfindn(addr self, addr argArr[0], addr result, 2)
 proc match*(self: StringName; expr: String): Bool =
-  let argArr = [cast[pointer](addr expr)]
+  let argArr = [getPtr expr]
   StringName_match(addr self, addr argArr[0], addr result, 1)
 proc matchn*(self: StringName; expr: String): Bool =
-  let argArr = [cast[pointer](addr expr)]
+  let argArr = [getPtr expr]
   StringName_matchn(addr self, addr argArr[0], addr result, 1)
 proc beginsWith*(self: StringName; text: String): Bool =
-  let argArr = [cast[pointer](addr text)]
+  let argArr = [getPtr text]
   StringName_beginsWith(addr self, addr argArr[0], addr result, 1)
 proc endsWith*(self: StringName; text: String): Bool =
-  let argArr = [cast[pointer](addr text)]
+  let argArr = [getPtr text]
   StringName_endsWith(addr self, addr argArr[0], addr result, 1)
 proc isSubsequenceOf*(self: StringName; text: String): Bool =
-  let argArr = [cast[pointer](addr text)]
+  let argArr = [getPtr text]
   StringName_isSubsequenceOf(addr self, addr argArr[0], addr result, 1)
 proc isSubsequenceOfn*(self: StringName; text: String): Bool =
-  let argArr = [cast[pointer](addr text)]
+  let argArr = [getPtr text]
   StringName_isSubsequenceOfn(addr self, addr argArr[0], addr result, 1)
 proc bigrams*(self: StringName): PackedStringArray = StringName_bigrams(addr self, nil, addr result, 0)
 proc similarity*(self: StringName; text: String): Float =
-  let argArr = [cast[pointer](addr text)]
+  let argArr = [getPtr text]
   StringName_similarity(addr self, addr argArr[0], addr result, 1)
 proc format*(self: StringName; values: ptr Variant; placeholder: String = "{_}"): String =
-  let argArr = [cast[pointer](addr values), cast[pointer](addr placeholder)]
+  let argArr = [getPtr values, getPtr placeholder]
   StringName_format(addr self, addr argArr[0], addr result, 2)
 proc replace*(self: StringName; what: String; forwhat: String): String =
-  let argArr = [cast[pointer](addr what), cast[pointer](addr forwhat)]
+  let argArr = [getPtr what, getPtr forwhat]
   StringName_replace(addr self, addr argArr[0], addr result, 2)
 proc replacen*(self: StringName; what: String; forwhat: String): String =
-  let argArr = [cast[pointer](addr what), cast[pointer](addr forwhat)]
+  let argArr = [getPtr what, getPtr forwhat]
   StringName_replacen(addr self, addr argArr[0], addr result, 2)
 proc repeat*(self: StringName; count: Int): String =
-  let argArr = [cast[pointer](addr count)]
+  let argArr = [getPtr count]
   StringName_repeat(addr self, addr argArr[0], addr result, 1)
 proc insert*(self: StringName; position: Int; what: String): String =
-  let argArr = [cast[pointer](addr position), cast[pointer](addr what)]
+  let argArr = [getPtr position, getPtr what]
   StringName_insert(addr self, addr argArr[0], addr result, 2)
 proc erase*(self: StringName; position: Int; chars: Int = 1): String =
-  let argArr = [cast[pointer](addr position), cast[pointer](addr chars)]
+  let argArr = [getPtr position, getPtr chars]
   StringName_erase(addr self, addr argArr[0], addr result, 2)
 proc capitalize*(self: StringName): String = StringName_capitalize(addr self, nil, addr result, 0)
 proc toCamelCase*(self: StringName): String = StringName_toCamelCase(addr self, nil, addr result, 0)
 proc toPascalCase*(self: StringName): String = StringName_toPascalCase(addr self, nil, addr result, 0)
 proc toSnakeCase*(self: StringName): String = StringName_toSnakeCase(addr self, nil, addr result, 0)
 proc split*(self: StringName; delimiter: String = ""; allowEmpty: Bool = true; maxsplit: Int = 0): PackedStringArray =
-  let argArr = [cast[pointer](addr delimiter), cast[pointer](addr allowEmpty), cast[pointer](addr maxsplit)]
+  let argArr = [getPtr delimiter, getPtr allowEmpty, getPtr maxsplit]
   StringName_split(addr self, addr argArr[0], addr result, 3)
 proc rsplit*(self: StringName; delimiter: String = ""; allowEmpty: Bool = true; maxsplit: Int = 0): PackedStringArray =
-  let argArr = [cast[pointer](addr delimiter), cast[pointer](addr allowEmpty), cast[pointer](addr maxsplit)]
+  let argArr = [getPtr delimiter, getPtr allowEmpty, getPtr maxsplit]
   StringName_rsplit(addr self, addr argArr[0], addr result, 3)
 proc splitFloats*(self: StringName; delimiter: String; allowEmpty: Bool = true): PackedFloat64Array =
-  let argArr = [cast[pointer](addr delimiter), cast[pointer](addr allowEmpty)]
+  let argArr = [getPtr delimiter, getPtr allowEmpty]
   StringName_splitFloats(addr self, addr argArr[0], addr result, 2)
 proc join*(self: StringName; parts: PackedStringArray): String =
-  let argArr = [cast[pointer](addr parts)]
+  let argArr = [getPtr parts]
   StringName_join(addr self, addr argArr[0], addr result, 1)
 proc toUpper*(self: StringName): String = StringName_toUpper(addr self, nil, addr result, 0)
 proc toLower*(self: StringName): String = StringName_toLower(addr self, nil, addr result, 0)
 proc left*(self: StringName; length: Int): String =
-  let argArr = [cast[pointer](addr length)]
+  let argArr = [getPtr length]
   StringName_left(addr self, addr argArr[0], addr result, 1)
 proc right*(self: StringName; length: Int): String =
-  let argArr = [cast[pointer](addr length)]
+  let argArr = [getPtr length]
   StringName_right(addr self, addr argArr[0], addr result, 1)
 proc stripEdges*(self: StringName; left: Bool = true; right: Bool = true): String =
-  let argArr = [cast[pointer](addr left), cast[pointer](addr right)]
+  let argArr = [getPtr left, getPtr right]
   StringName_stripEdges(addr self, addr argArr[0], addr result, 2)
 proc stripEscapes*(self: StringName): String = StringName_stripEscapes(addr self, nil, addr result, 0)
 proc lstrip*(self: StringName; chars: String): String =
-  let argArr = [cast[pointer](addr chars)]
+  let argArr = [getPtr chars]
   StringName_lstrip(addr self, addr argArr[0], addr result, 1)
 proc rstrip*(self: StringName; chars: String): String =
-  let argArr = [cast[pointer](addr chars)]
+  let argArr = [getPtr chars]
   StringName_rstrip(addr self, addr argArr[0], addr result, 1)
 proc getExtension*(self: StringName): String = StringName_getExtension(addr self, nil, addr result, 0)
 proc getBasename*(self: StringName): String = StringName_getBasename(addr self, nil, addr result, 0)
 proc pathJoin*(self: StringName; file: String): String =
-  let argArr = [cast[pointer](addr file)]
+  let argArr = [getPtr file]
   StringName_pathJoin(addr self, addr argArr[0], addr result, 1)
 proc unicodeAt*(self: StringName; at: Int): Int =
-  let argArr = [cast[pointer](addr at)]
+  let argArr = [getPtr at]
   StringName_unicodeAt(addr self, addr argArr[0], addr result, 1)
 proc indent*(self: StringName; prefix: String): String =
-  let argArr = [cast[pointer](addr prefix)]
+  let argArr = [getPtr prefix]
   StringName_indent(addr self, addr argArr[0], addr result, 1)
 proc dedent*(self: StringName): String = StringName_dedent(addr self, nil, addr result, 0)
 proc md5Text*(self: StringName): String = StringName_md5Text(addr self, nil, addr result, 0)
@@ -241,7 +238,7 @@ proc sha1Buffer*(self: StringName): PackedByteArray = StringName_sha1Buffer(addr
 proc sha256Buffer*(self: StringName): PackedByteArray = StringName_sha256Buffer(addr self, nil, addr result, 0)
 proc isEmpty*(self: StringName): Bool = StringName_isEmpty(addr self, nil, addr result, 0)
 proc contains*(self: StringName; what: String): Bool =
-  let argArr = [cast[pointer](addr what)]
+  let argArr = [getPtr what]
   StringName_contains(addr self, addr argArr[0], addr result, 1)
 proc isAbsolutePath*(self: StringName): Bool = StringName_isAbsolutePath(addr self, nil, addr result, 0)
 proc isRelativePath*(self: StringName): Bool = StringName_isRelativePath(addr self, nil, addr result, 0)
@@ -249,7 +246,7 @@ proc simplifyPath*(self: StringName): String = StringName_simplifyPath(addr self
 proc getBaseDir*(self: StringName): String = StringName_getBaseDir(addr self, nil, addr result, 0)
 proc getFile*(self: StringName): String = StringName_getFile(addr self, nil, addr result, 0)
 proc xmlEscape*(self: StringName; escapeQuotes: Bool = false): String =
-  let argArr = [cast[pointer](addr escapeQuotes)]
+  let argArr = [getPtr escapeQuotes]
   StringName_xmlEscape(addr self, addr argArr[0], addr result, 1)
 proc xmlUnescape*(self: StringName): String = StringName_xmlUnescape(addr self, nil, addr result, 0)
 proc uriEncode*(self: StringName): String = StringName_uriEncode(addr self, nil, addr result, 0)
@@ -263,7 +260,7 @@ proc isValidIdentifier*(self: StringName): Bool = StringName_isValidIdentifier(a
 proc isValidInt*(self: StringName): Bool = StringName_isValidInt(addr self, nil, addr result, 0)
 proc isValidFloat*(self: StringName): Bool = StringName_isValidFloat(addr self, nil, addr result, 0)
 proc isValidHexNumber*(self: StringName; withPrefix: Bool = false): Bool =
-  let argArr = [cast[pointer](addr withPrefix)]
+  let argArr = [getPtr withPrefix]
   StringName_isValidHexNumber(addr self, addr argArr[0], addr result, 1)
 proc isValidHtmlColor*(self: StringName): Bool = StringName_isValidHtmlColor(addr self, nil, addr result, 0)
 proc isValidIpAddress*(self: StringName): Bool = StringName_isValidIpAddress(addr self, nil, addr result, 0)
@@ -273,22 +270,22 @@ proc toFloat*(self: StringName): Float = StringName_toFloat(addr self, nil, addr
 proc hexToInt*(self: StringName): Int = StringName_hexToInt(addr self, nil, addr result, 0)
 proc binToInt*(self: StringName): Int = StringName_binToInt(addr self, nil, addr result, 0)
 proc lpad*(self: StringName; minLength: Int; character: String = " "): String =
-  let argArr = [cast[pointer](addr minLength), cast[pointer](addr character)]
+  let argArr = [getPtr minLength, getPtr character]
   StringName_lpad(addr self, addr argArr[0], addr result, 2)
 proc rpad*(self: StringName; minLength: Int; character: String = " "): String =
-  let argArr = [cast[pointer](addr minLength), cast[pointer](addr character)]
+  let argArr = [getPtr minLength, getPtr character]
   StringName_rpad(addr self, addr argArr[0], addr result, 2)
 proc padDecimals*(self: StringName; digits: Int): String =
-  let argArr = [cast[pointer](addr digits)]
+  let argArr = [getPtr digits]
   StringName_padDecimals(addr self, addr argArr[0], addr result, 1)
 proc padZeros*(self: StringName; digits: Int): String =
-  let argArr = [cast[pointer](addr digits)]
+  let argArr = [getPtr digits]
   StringName_padZeros(addr self, addr argArr[0], addr result, 1)
 proc trimPrefix*(self: StringName; prefix: String): String =
-  let argArr = [cast[pointer](addr prefix)]
+  let argArr = [getPtr prefix]
   StringName_trimPrefix(addr self, addr argArr[0], addr result, 1)
 proc trimSuffix*(self: StringName; suffix: String): String =
-  let argArr = [cast[pointer](addr suffix)]
+  let argArr = [getPtr suffix]
   StringName_trimSuffix(addr self, addr argArr[0], addr result, 1)
 proc toAsciiBuffer*(self: StringName): PackedByteArray = StringName_toAsciiBuffer(addr self, nil, addr result, 0)
 proc toUtf8Buffer*(self: StringName): PackedByteArray = StringName_toUtf8Buffer(addr self, nil, addr result, 0)

@@ -4,9 +4,6 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-# type AABB* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=none(string)
 var AABB_abs: PtrBuiltinMethod
 var AABB_getCenter: PtrBuiltinMethod
 var AABB_getVolume: PtrBuiltinMethod
@@ -38,35 +35,35 @@ proc getVolume*(self: AABB): Float = AABB_getVolume(addr self, nil, addr result,
 proc hasVolume*(self: AABB): Bool = AABB_hasVolume(addr self, nil, addr result, 0)
 proc hasSurface*(self: AABB): Bool = AABB_hasSurface(addr self, nil, addr result, 0)
 proc hasPoint*(self: AABB; point: Vector3): Bool =
-  let argArr = [cast[pointer](addr point)]
+  let argArr = [getPtr point]
   AABB_hasPoint(addr self, addr argArr[0], addr result, 1)
 proc isEqualApprox*(self: AABB; aabb: AABB): Bool =
-  let argArr = [cast[pointer](addr aabb)]
+  let argArr = [getPtr aabb]
   AABB_isEqualApprox(addr self, addr argArr[0], addr result, 1)
 proc isFinite*(self: AABB): Bool = AABB_isFinite(addr self, nil, addr result, 0)
 proc intersects*(self: AABB; with: AABB): Bool =
-  let argArr = [cast[pointer](addr with)]
+  let argArr = [getPtr with]
   AABB_intersects(addr self, addr argArr[0], addr result, 1)
 proc encloses*(self: AABB; with: AABB): Bool =
-  let argArr = [cast[pointer](addr with)]
+  let argArr = [getPtr with]
   AABB_encloses(addr self, addr argArr[0], addr result, 1)
 proc intersectsPlane*(self: AABB; plane: Plane): Bool =
-  let argArr = [cast[pointer](addr plane)]
+  let argArr = [getPtr plane]
   AABB_intersectsPlane(addr self, addr argArr[0], addr result, 1)
 proc intersection*(self: AABB; with: AABB): AABB =
-  let argArr = [cast[pointer](addr with)]
+  let argArr = [getPtr with]
   AABB_intersection(addr self, addr argArr[0], addr result, 1)
 proc merge*(self: AABB; with: AABB): AABB =
-  let argArr = [cast[pointer](addr with)]
+  let argArr = [getPtr with]
   AABB_merge(addr self, addr argArr[0], addr result, 1)
 proc expand*(self: AABB; toPoint: Vector3): AABB =
-  let argArr = [cast[pointer](addr toPoint)]
+  let argArr = [getPtr toPoint]
   AABB_expand(addr self, addr argArr[0], addr result, 1)
 proc grow*(self: AABB; by: Float): AABB =
-  let argArr = [cast[pointer](addr by)]
+  let argArr = [getPtr by]
   AABB_grow(addr self, addr argArr[0], addr result, 1)
 proc getSupport*(self: AABB; dir: Vector3): Vector3 =
-  let argArr = [cast[pointer](addr dir)]
+  let argArr = [getPtr dir]
   AABB_getSupport(addr self, addr argArr[0], addr result, 1)
 proc getLongestAxis*(self: AABB): Vector3 = AABB_getLongestAxis(addr self, nil, addr result, 0)
 proc getLongestAxisIndex*(self: AABB): Int = AABB_getLongestAxisIndex(addr self, nil, addr result, 0)
@@ -75,13 +72,13 @@ proc getShortestAxis*(self: AABB): Vector3 = AABB_getShortestAxis(addr self, nil
 proc getShortestAxisIndex*(self: AABB): Int = AABB_getShortestAxisIndex(addr self, nil, addr result, 0)
 proc getShortestAxisSize*(self: AABB): Float = AABB_getShortestAxisSize(addr self, nil, addr result, 0)
 proc getEndpoint*(self: AABB; idx: Int): Vector3 =
-  let argArr = [cast[pointer](addr idx)]
+  let argArr = [getPtr idx]
   AABB_getEndpoint(addr self, addr argArr[0], addr result, 1)
 proc intersectsSegment*(self: AABB; `from`: Vector3; to: Vector3): Variant =
-  let argArr = [cast[pointer](addr `from`), cast[pointer](addr to)]
+  let argArr = [getPtr `from`, getPtr to]
   AABB_intersectsSegment(addr self, addr argArr[0], addr result, 2)
 proc intersectsRay*(self: AABB; `from`: Vector3; dir: Vector3): Variant =
-  let argArr = [cast[pointer](addr `from`), cast[pointer](addr dir)]
+  let argArr = [getPtr `from`, getPtr dir]
   AABB_intersectsRay(addr self, addr argArr[0], addr result, 2)
 proc load_AABB_proc =
   var proc_name: StringName

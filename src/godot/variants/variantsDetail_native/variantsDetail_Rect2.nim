@@ -4,9 +4,6 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-# type Rect2* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=none(string)
 var Rect2_getCenter: PtrBuiltinMethod
 var Rect2_getArea: PtrBuiltinMethod
 var Rect2_hasArea: PtrBuiltinMethod
@@ -26,35 +23,35 @@ proc getCenter*(self: Rect2): Vector2 = Rect2_getCenter(addr self, nil, addr res
 proc getArea*(self: Rect2): Float = Rect2_getArea(addr self, nil, addr result, 0)
 proc hasArea*(self: Rect2): Bool = Rect2_hasArea(addr self, nil, addr result, 0)
 proc hasPoint*(self: Rect2; point: Vector2): Bool =
-  let argArr = [cast[pointer](addr point)]
+  let argArr = [getPtr point]
   Rect2_hasPoint(addr self, addr argArr[0], addr result, 1)
 proc isEqualApprox*(self: Rect2; rect: Rect2): Bool =
-  let argArr = [cast[pointer](addr rect)]
+  let argArr = [getPtr rect]
   Rect2_isEqualApprox(addr self, addr argArr[0], addr result, 1)
 proc isFinite*(self: Rect2): Bool = Rect2_isFinite(addr self, nil, addr result, 0)
 proc intersects*(self: Rect2; b: Rect2; includeBorders: Bool = false): Bool =
-  let argArr = [cast[pointer](addr b), cast[pointer](addr includeBorders)]
+  let argArr = [getPtr b, getPtr includeBorders]
   Rect2_intersects(addr self, addr argArr[0], addr result, 2)
 proc encloses*(self: Rect2; b: Rect2): Bool =
-  let argArr = [cast[pointer](addr b)]
+  let argArr = [getPtr b]
   Rect2_encloses(addr self, addr argArr[0], addr result, 1)
 proc intersection*(self: Rect2; b: Rect2): Rect2 =
-  let argArr = [cast[pointer](addr b)]
+  let argArr = [getPtr b]
   Rect2_intersection(addr self, addr argArr[0], addr result, 1)
 proc merge*(self: Rect2; b: Rect2): Rect2 =
-  let argArr = [cast[pointer](addr b)]
+  let argArr = [getPtr b]
   Rect2_merge(addr self, addr argArr[0], addr result, 1)
 proc expand*(self: Rect2; to: Vector2): Rect2 =
-  let argArr = [cast[pointer](addr to)]
+  let argArr = [getPtr to]
   Rect2_expand(addr self, addr argArr[0], addr result, 1)
 proc grow*(self: Rect2; amount: Float): Rect2 =
-  let argArr = [cast[pointer](addr amount)]
+  let argArr = [getPtr amount]
   Rect2_grow(addr self, addr argArr[0], addr result, 1)
 proc growSide*(self: Rect2; side: Int; amount: Float): Rect2 =
-  let argArr = [cast[pointer](addr side), cast[pointer](addr amount)]
+  let argArr = [getPtr side, getPtr amount]
   Rect2_growSide(addr self, addr argArr[0], addr result, 2)
 proc growIndividual*(self: Rect2; left: Float; top: Float; right: Float; bottom: Float): Rect2 =
-  let argArr = [cast[pointer](addr left), cast[pointer](addr top), cast[pointer](addr right), cast[pointer](addr bottom)]
+  let argArr = [getPtr left, getPtr top, getPtr right, getPtr bottom]
   Rect2_growIndividual(addr self, addr argArr[0], addr result, 4)
 proc abs*(self: Rect2): Rect2 = Rect2_abs(addr self, nil, addr result, 0)
 proc load_Rect2_proc =

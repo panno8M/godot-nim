@@ -155,7 +155,7 @@ proc prerender_variantMethod*(self: JsonMethod; self_type: SelfType, ignore: Ign
 
   let argArr = ParagraphSt()
   if result.procdef.args.len != 0:
-    let arrdef = result.procdef.args.mapIt(&"cast[pointer](addr {it.name})").join(", ")
+    let arrdef = result.procdef.args.mapIt(&"getPtr {it.name}").join(", ")
     discard +$$..argArr:
       &"let argArr = [{arrdef}]"
 

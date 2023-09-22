@@ -4,9 +4,8 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-# type Array* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=some("Variant")
+proc `[]`*(self: Array; index: int): var Array.Item = interface_Array_operatorIndex(addr self, index)[]
+proc `[]=`*(self: Array; index: int; value: Array.Item) = interface_Array_operatorIndex(addr self, index)[] = value
 var Array_size: PtrBuiltinMethod
 var Array_isEmpty: PtrBuiltinMethod
 var Array_clear: PtrBuiltinMethod
@@ -55,101 +54,101 @@ var Array_makeReadOnly: PtrBuiltinMethod
 var Array_isReadOnly: PtrBuiltinMethod
 proc size*(self: Array): Int = Array_size(addr self, nil, addr result, 0)
 proc isEmpty*(self: Array): Bool = Array_isEmpty(addr self, nil, addr result, 0)
-proc clear*(self: Array) = Array_clear(addr self, nil, nil, 0)
+proc clear*(self: var Array) = Array_clear(addr self, nil, nil, 0)
 proc hash*(self: Array): Int = Array_hash(addr self, nil, addr result, 0)
-proc assign*(self: Array; array: Array) =
-  let argArr = [cast[pointer](addr array)]
+proc assign*(self: var Array; array: Array) =
+  let argArr = [getPtr array]
   Array_assign(addr self, addr argArr[0], nil, 1)
-proc pushBack*(self: Array; value: ptr Variant) =
-  let argArr = [cast[pointer](addr value)]
+proc pushBack*(self: var Array; value: ptr Variant) =
+  let argArr = [getPtr value]
   Array_pushBack(addr self, addr argArr[0], nil, 1)
-proc pushFront*(self: Array; value: ptr Variant) =
-  let argArr = [cast[pointer](addr value)]
+proc pushFront*(self: var Array; value: ptr Variant) =
+  let argArr = [getPtr value]
   Array_pushFront(addr self, addr argArr[0], nil, 1)
-proc append*(self: Array; value: ptr Variant) =
-  let argArr = [cast[pointer](addr value)]
+proc append*(self: var Array; value: ptr Variant) =
+  let argArr = [getPtr value]
   Array_append(addr self, addr argArr[0], nil, 1)
-proc appendArray*(self: Array; array: Array) =
-  let argArr = [cast[pointer](addr array)]
+proc appendArray*(self: var Array; array: Array) =
+  let argArr = [getPtr array]
   Array_appendArray(addr self, addr argArr[0], nil, 1)
-proc resize*(self: Array; size: Int): Int =
-  let argArr = [cast[pointer](addr size)]
+proc resize*(self: var Array; size: Int): Int =
+  let argArr = [getPtr size]
   Array_resize(addr self, addr argArr[0], addr result, 1)
-proc insert*(self: Array; position: Int; value: ptr Variant): Int =
-  let argArr = [cast[pointer](addr position), cast[pointer](addr value)]
+proc insert*(self: var Array; position: Int; value: ptr Variant): Int =
+  let argArr = [getPtr position, getPtr value]
   Array_insert(addr self, addr argArr[0], addr result, 2)
-proc removeAt*(self: Array; position: Int) =
-  let argArr = [cast[pointer](addr position)]
+proc removeAt*(self: var Array; position: Int) =
+  let argArr = [getPtr position]
   Array_removeAt(addr self, addr argArr[0], nil, 1)
-proc fill*(self: Array; value: ptr Variant) =
-  let argArr = [cast[pointer](addr value)]
+proc fill*(self: var Array; value: ptr Variant) =
+  let argArr = [getPtr value]
   Array_fill(addr self, addr argArr[0], nil, 1)
-proc erase*(self: Array; value: ptr Variant) =
-  let argArr = [cast[pointer](addr value)]
+proc erase*(self: var Array; value: ptr Variant) =
+  let argArr = [getPtr value]
   Array_erase(addr self, addr argArr[0], nil, 1)
 proc front*(self: Array): Variant = Array_front(addr self, nil, addr result, 0)
 proc back*(self: Array): Variant = Array_back(addr self, nil, addr result, 0)
 proc pickRandom*(self: Array): Variant = Array_pickRandom(addr self, nil, addr result, 0)
 proc find*(self: Array; what: ptr Variant; `from`: Int = 0): Int =
-  let argArr = [cast[pointer](addr what), cast[pointer](addr `from`)]
+  let argArr = [getPtr what, getPtr `from`]
   Array_find(addr self, addr argArr[0], addr result, 2)
 proc rfind*(self: Array; what: ptr Variant; `from`: Int = -1): Int =
-  let argArr = [cast[pointer](addr what), cast[pointer](addr `from`)]
+  let argArr = [getPtr what, getPtr `from`]
   Array_rfind(addr self, addr argArr[0], addr result, 2)
 proc count*(self: Array; value: ptr Variant): Int =
-  let argArr = [cast[pointer](addr value)]
+  let argArr = [getPtr value]
   Array_count(addr self, addr argArr[0], addr result, 1)
 proc has*(self: Array; value: ptr Variant): Bool =
-  let argArr = [cast[pointer](addr value)]
+  let argArr = [getPtr value]
   Array_has(addr self, addr argArr[0], addr result, 1)
-proc popBack*(self: Array): Variant = Array_popBack(addr self, nil, addr result, 0)
-proc popFront*(self: Array): Variant = Array_popFront(addr self, nil, addr result, 0)
-proc popAt*(self: Array; position: Int): Variant =
-  let argArr = [cast[pointer](addr position)]
+proc popBack*(self: var Array): Variant = Array_popBack(addr self, nil, addr result, 0)
+proc popFront*(self: var Array): Variant = Array_popFront(addr self, nil, addr result, 0)
+proc popAt*(self: var Array; position: Int): Variant =
+  let argArr = [getPtr position]
   Array_popAt(addr self, addr argArr[0], addr result, 1)
-proc sort*(self: Array) = Array_sort(addr self, nil, nil, 0)
-proc sortCustom*(self: Array; `func`: Callable) =
-  let argArr = [cast[pointer](addr `func`)]
+proc sort*(self: var Array) = Array_sort(addr self, nil, nil, 0)
+proc sortCustom*(self: var Array; `func`: Callable) =
+  let argArr = [getPtr `func`]
   Array_sortCustom(addr self, addr argArr[0], nil, 1)
-proc shuffle*(self: Array) = Array_shuffle(addr self, nil, nil, 0)
+proc shuffle*(self: var Array) = Array_shuffle(addr self, nil, nil, 0)
 proc bsearch*(self: Array; value: ptr Variant; before: Bool = true): Int =
-  let argArr = [cast[pointer](addr value), cast[pointer](addr before)]
+  let argArr = [getPtr value, getPtr before]
   Array_bsearch(addr self, addr argArr[0], addr result, 2)
 proc bsearchCustom*(self: Array; value: ptr Variant; `func`: Callable; before: Bool = true): Int =
-  let argArr = [cast[pointer](addr value), cast[pointer](addr `func`), cast[pointer](addr before)]
+  let argArr = [getPtr value, getPtr `func`, getPtr before]
   Array_bsearchCustom(addr self, addr argArr[0], addr result, 3)
-proc reverse*(self: Array) = Array_reverse(addr self, nil, nil, 0)
+proc reverse*(self: var Array) = Array_reverse(addr self, nil, nil, 0)
 proc duplicate*(self: Array; deep: Bool = false): Array =
-  let argArr = [cast[pointer](addr deep)]
+  let argArr = [getPtr deep]
   Array_duplicate(addr self, addr argArr[0], addr result, 1)
 proc slice*(self: Array; begin: Int; `end`: Int = 2147483647; step: Int = 1; deep: Bool = false): Array =
-  let argArr = [cast[pointer](addr begin), cast[pointer](addr `end`), cast[pointer](addr step), cast[pointer](addr deep)]
+  let argArr = [getPtr begin, getPtr `end`, getPtr step, getPtr deep]
   Array_slice(addr self, addr argArr[0], addr result, 4)
 proc filter*(self: Array; `method`: Callable): Array =
-  let argArr = [cast[pointer](addr `method`)]
+  let argArr = [getPtr `method`]
   Array_filter(addr self, addr argArr[0], addr result, 1)
 proc map*(self: Array; `method`: Callable): Array =
-  let argArr = [cast[pointer](addr `method`)]
+  let argArr = [getPtr `method`]
   Array_map(addr self, addr argArr[0], addr result, 1)
 proc reduce*(self: Array; `method`: Callable; accum: ptr Variant = nil): Variant =
-  let argArr = [cast[pointer](addr `method`), cast[pointer](addr accum)]
+  let argArr = [getPtr `method`, getPtr accum]
   Array_reduce(addr self, addr argArr[0], addr result, 2)
 proc any*(self: Array; `method`: Callable): Bool =
-  let argArr = [cast[pointer](addr `method`)]
+  let argArr = [getPtr `method`]
   Array_any(addr self, addr argArr[0], addr result, 1)
 proc all*(self: Array; `method`: Callable): Bool =
-  let argArr = [cast[pointer](addr `method`)]
+  let argArr = [getPtr `method`]
   Array_all(addr self, addr argArr[0], addr result, 1)
 proc max*(self: Array): Variant = Array_max(addr self, nil, addr result, 0)
 proc min*(self: Array): Variant = Array_min(addr self, nil, addr result, 0)
 proc isTyped*(self: Array): Bool = Array_isTyped(addr self, nil, addr result, 0)
 proc isSameTyped*(self: Array; array: Array): Bool =
-  let argArr = [cast[pointer](addr array)]
+  let argArr = [getPtr array]
   Array_isSameTyped(addr self, addr argArr[0], addr result, 1)
 proc getTypedBuiltin*(self: Array): Int = Array_getTypedBuiltin(addr self, nil, addr result, 0)
 proc getTypedClassName*(self: Array): StringName = Array_getTypedClassName(addr self, nil, addr result, 0)
 proc getTypedScript*(self: Array): Variant = Array_getTypedScript(addr self, nil, addr result, 0)
-proc makeReadOnly*(self: Array) = Array_makeReadOnly(addr self, nil, nil, 0)
+proc makeReadOnly*(self: var Array) = Array_makeReadOnly(addr self, nil, nil, 0)
 proc isReadOnly*(self: Array): Bool = Array_isReadOnly(addr self, nil, addr result, 0)
 proc load_Array_proc =
   var proc_name: StringName

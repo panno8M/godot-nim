@@ -30,6 +30,7 @@ type
   RetType* = object of ParamType
   SelfType* = object of ParamType
     isStatic*: bool
+    isVar*: bool
 
   ObjectInfo* = ref object of RootObj
     name*: TypeName
@@ -67,6 +68,8 @@ func `$`*(self: SelfType): string =
   result = $(ParamType self)
   if self.isStatic:
     return &"typedesc[{result}]"
+  if self.isVar:
+    return &"var {result}"
 func argname*(self: SelfType): string =
   if self.isStatic: "_"
   else: "self"
@@ -110,9 +113,10 @@ proc argType*(typeName: TypeName): ArgType =
   paramType typeName, result
 proc retType*(typeName: TypeName): RetType =
   paramType typeName, result
-proc selfType*(typeName: TypeName; isStatic = false): SelfType =
+proc selfType*(typeName: TypeName; isStatic = false; isVar = false): SelfType =
   paramType typeName, result
   result.isStatic = isStatic
+  result.isVar = isVar
 
 
 proc paramType*(basename: string; result: var ParamType) =

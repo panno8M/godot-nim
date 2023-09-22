@@ -4,9 +4,6 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-# type Plane* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=none(string)
 const Plane_PlaneYz*: Plane = init_Plane(1, 0, 0, 0)
 const Plane_PlaneXz*: Plane = init_Plane(0, 1, 0, 0)
 const Plane_PlaneXy*: Plane = init_Plane(0, 0, 1, 0)
@@ -24,29 +21,29 @@ var Plane_intersectsSegment: PtrBuiltinMethod
 proc normalized*(self: Plane): Plane = Plane_normalized(addr self, nil, addr result, 0)
 proc getCenter*(self: Plane): Vector3 = Plane_getCenter(addr self, nil, addr result, 0)
 proc isEqualApprox*(self: Plane; toPlane: Plane): Bool =
-  let argArr = [cast[pointer](addr toPlane)]
+  let argArr = [getPtr toPlane]
   Plane_isEqualApprox(addr self, addr argArr[0], addr result, 1)
 proc isFinite*(self: Plane): Bool = Plane_isFinite(addr self, nil, addr result, 0)
 proc isPointOver*(self: Plane; point: Vector3): Bool =
-  let argArr = [cast[pointer](addr point)]
+  let argArr = [getPtr point]
   Plane_isPointOver(addr self, addr argArr[0], addr result, 1)
 proc distanceTo*(self: Plane; point: Vector3): Float =
-  let argArr = [cast[pointer](addr point)]
+  let argArr = [getPtr point]
   Plane_distanceTo(addr self, addr argArr[0], addr result, 1)
 proc hasPoint*(self: Plane; point: Vector3; tolerance: Float = 1e-05): Bool =
-  let argArr = [cast[pointer](addr point), cast[pointer](addr tolerance)]
+  let argArr = [getPtr point, getPtr tolerance]
   Plane_hasPoint(addr self, addr argArr[0], addr result, 2)
 proc project*(self: Plane; point: Vector3): Vector3 =
-  let argArr = [cast[pointer](addr point)]
+  let argArr = [getPtr point]
   Plane_project(addr self, addr argArr[0], addr result, 1)
 proc intersect3*(self: Plane; b: Plane; c: Plane): Variant =
-  let argArr = [cast[pointer](addr b), cast[pointer](addr c)]
+  let argArr = [getPtr b, getPtr c]
   Plane_intersect3(addr self, addr argArr[0], addr result, 2)
 proc intersectsRay*(self: Plane; `from`: Vector3; dir: Vector3): Variant =
-  let argArr = [cast[pointer](addr `from`), cast[pointer](addr dir)]
+  let argArr = [getPtr `from`, getPtr dir]
   Plane_intersectsRay(addr self, addr argArr[0], addr result, 2)
 proc intersectsSegment*(self: Plane; `from`: Vector3; to: Vector3): Variant =
-  let argArr = [cast[pointer](addr `from`), cast[pointer](addr to)]
+  let argArr = [getPtr `from`, getPtr to]
   Plane_intersectsSegment(addr self, addr argArr[0], addr result, 2)
 proc load_Plane_proc =
   var proc_name: StringName
