@@ -4,17 +4,17 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-const int_PlaneNear*: int = 0
-const int_PlaneFar*: int = 1
-const int_PlaneLeft*: int = 2
-const int_PlaneTop*: int = 3
-const int_PlaneRight*: int = 4
-const int_PlaneBottom*: int = 5
-const Projection_Identity*: Projection = init_Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
-const Projection_Zero*: Projection = init_Projection(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 # type Projection* = object
 #   self.json.is_keyed=false
 #   self.json.indexing_return_type=some("Vector4")
+const Projection_PlaneNear*: int = 0
+const Projection_PlaneFar*: int = 1
+const Projection_PlaneLeft*: int = 2
+const Projection_PlaneTop*: int = 3
+const Projection_PlaneRight*: int = 4
+const Projection_PlaneBottom*: int = 5
+const Projection_Identity*: Projection = init_Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+const Projection_Zero*: Projection = init_Projection(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 var Projection_createDepthCorrection: PtrBuiltinMethod
 var Projection_createLightAtlasRect: PtrBuiltinMethod
 var Projection_createPerspective: PtrBuiltinMethod

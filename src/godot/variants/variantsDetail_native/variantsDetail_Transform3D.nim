@@ -4,13 +4,13 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
+# type Transform3D* = object
+#   self.json.is_keyed=false
+#   self.json.indexing_return_type=none(string)
 const Transform3D_Identity*: Transform3D = init_Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 const Transform3D_FlipX*: Transform3D = init_Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 const Transform3D_FlipY*: Transform3D = init_Transform3D(1, 0, 0, 0, -1, 0, 0, 0, 1, 0, 0, 0)
 const Transform3D_FlipZ*: Transform3D = init_Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
-# type Transform3D* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=none(string)
 var Transform3D_inverse: PtrBuiltinMethod
 var Transform3D_affineInverse: PtrBuiltinMethod
 var Transform3D_orthonormalized: PtrBuiltinMethod

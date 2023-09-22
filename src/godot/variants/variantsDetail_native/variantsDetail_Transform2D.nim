@@ -4,12 +4,12 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-const Transform2D_Identity*: Transform2D = init_Transform2D(1, 0, 0, 1, 0, 0)
-const Transform2D_FlipX*: Transform2D = init_Transform2D(-1, 0, 0, 1, 0, 0)
-const Transform2D_FlipY*: Transform2D = init_Transform2D(1, 0, 0, -1, 0, 0)
 # type Transform2D* = object
 #   self.json.is_keyed=false
 #   self.json.indexing_return_type=some("Vector2")
+const Transform2D_Identity*: Transform2D = init_Transform2D(1, 0, 0, 1, 0, 0)
+const Transform2D_FlipX*: Transform2D = init_Transform2D(-1, 0, 0, 1, 0, 0)
+const Transform2D_FlipY*: Transform2D = init_Transform2D(1, 0, 0, -1, 0, 0)
 var Transform2D_inverse: PtrBuiltinMethod
 var Transform2D_affineInverse: PtrBuiltinMethod
 var Transform2D_getRotation: PtrBuiltinMethod

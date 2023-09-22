@@ -4,9 +4,12 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-const int_AxisX*: int = 0
-const int_AxisY*: int = 1
-const int_AxisZ*: int = 2
+# type Vector3* = object
+#   self.json.is_keyed=false
+#   self.json.indexing_return_type=some("float")
+const Vector3_AxisX*: int = 0
+const Vector3_AxisY*: int = 1
+const Vector3_AxisZ*: int = 2
 const Vector3_Zero*: Vector3 = gdvec(0, 0, 0)
 const Vector3_One*: Vector3 = gdvec(1, 1, 1)
 const Vector3_Inf*: Vector3 = gdvec(Inf, Inf, Inf)
@@ -22,9 +25,6 @@ const Vector3_ModelTop*: Vector3 = gdvec(0, 1, 0)
 const Vector3_ModelBottom*: Vector3 = gdvec(0, -1, 0)
 const Vector3_ModelFront*: Vector3 = gdvec(0, 0, 1)
 const Vector3_ModelRear*: Vector3 = gdvec(0, 0, -1)
-# type Vector3* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=some("float")
 var Vector3_angleTo: PtrBuiltinMethod
 var Vector3_signedAngleTo: PtrBuiltinMethod
 var Vector3_limitLength: PtrBuiltinMethod

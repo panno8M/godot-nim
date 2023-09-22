@@ -4,15 +4,15 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-const int_AxisX*: int = 0
-const int_AxisY*: int = 1
-const int_AxisZ*: int = 2
-const int_AxisW*: int = 3
-const Vector4i_Zero*: Vector4i = gdveci(0, 0, 0, 0)
-const Vector4i_One*: Vector4i = gdveci(1, 1, 1, 1)
 # type Vector4i* = object
 #   self.json.is_keyed=false
 #   self.json.indexing_return_type=some("int")
+const Vector4i_AxisX*: int = 0
+const Vector4i_AxisY*: int = 1
+const Vector4i_AxisZ*: int = 2
+const Vector4i_AxisW*: int = 3
+const Vector4i_Zero*: Vector4i = gdveci(0, 0, 0, 0)
+const Vector4i_One*: Vector4i = gdveci(1, 1, 1, 1)
 var Equal_Vector4i_Variant: PtrOperatorEvaluator
 var NotEqual_Vector4i_Variant: PtrOperatorEvaluator
 var In_Vector4i_Dictionary: PtrOperatorEvaluator

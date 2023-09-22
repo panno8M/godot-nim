@@ -4,16 +4,16 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-const int_AxisX*: int = 0
-const int_AxisY*: int = 1
-const int_AxisZ*: int = 2
-const int_AxisW*: int = 3
-const Vector4_Zero*: Vector4 = gdvec(0, 0, 0, 0)
-const Vector4_One*: Vector4 = gdvec(1, 1, 1, 1)
-const Vector4_Inf*: Vector4 = gdvec(Inf, Inf, Inf, Inf)
 # type Vector4* = object
 #   self.json.is_keyed=false
 #   self.json.indexing_return_type=some("float")
+const Vector4_AxisX*: int = 0
+const Vector4_AxisY*: int = 1
+const Vector4_AxisZ*: int = 2
+const Vector4_AxisW*: int = 3
+const Vector4_Zero*: Vector4 = gdvec(0, 0, 0, 0)
+const Vector4_One*: Vector4 = gdvec(1, 1, 1, 1)
+const Vector4_Inf*: Vector4 = gdvec(Inf, Inf, Inf, Inf)
 var Vector4_cubicInterpolate: PtrBuiltinMethod
 var Vector4_cubicInterpolateInTime: PtrBuiltinMethod
 var Vector4_inverse: PtrBuiltinMethod

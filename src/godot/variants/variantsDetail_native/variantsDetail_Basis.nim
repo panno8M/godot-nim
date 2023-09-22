@@ -4,13 +4,13 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
+# type Basis* = object
+#   self.json.is_keyed=false
+#   self.json.indexing_return_type=some("Vector3")
 const Basis_Identity*: Basis = init_Basis(1, 0, 0, 0, 1, 0, 0, 0, 1)
 const Basis_FlipX*: Basis = init_Basis(-1, 0, 0, 0, 1, 0, 0, 0, 1)
 const Basis_FlipY*: Basis = init_Basis(1, 0, 0, 0, -1, 0, 0, 0, 1)
 const Basis_FlipZ*: Basis = init_Basis(1, 0, 0, 0, 1, 0, 0, 0, -1)
-# type Basis* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=some("Vector3")
 var Basis_inverse: PtrBuiltinMethod
 var Basis_transposed: PtrBuiltinMethod
 var Basis_orthonormalized: PtrBuiltinMethod

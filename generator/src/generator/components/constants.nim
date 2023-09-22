@@ -3,6 +3,7 @@ import beyond/meta/statements
 import std/strformat
 import std/strutils
 import ../tool/jsonapi
+import ../tool/namespace
 
 proc constValue*(t: string; value: string): string =
   case t
@@ -13,14 +14,14 @@ proc constValue*(t: string; value: string): string =
   else:
     value.replace(t, "init_"&t)
 
-proc prerender*(constant: JsonConstant): Statement =
-  &"const {constant.`type`}_{constant.name >!> Snake >=> NimType}*: {constant.`type`} = {constValue constant.`type`, constant.value}"
+proc prerender*(constant: JsonConstant; owner: TypeName): Statement =
+  &"const {owner}_{constant.name >!> Snake >=> NimType}*: {constant.`type`} = {constValue constant.`type`, constant.value}"
 
-iterator prerender*(constants: seq[JsonConstant]): Statement =
+iterator prerender*(constants: seq[JsonConstant]; owner: TypeName): Statement =
   for constant in constants:
-    yield prerender constant
+    yield constant.prerender(owner)
 
-proc prerender*(constants: seq[JsonConstant]): Statement =
+proc prerender*(constants: seq[JsonConstant]; owner: TypeName): Statement =
   result = new ParagraphSt
-  for stmt in constants.prerender:
+  for stmt in constants.prerender(owner):
     result.children.add stmt

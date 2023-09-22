@@ -4,12 +4,12 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-const Plane_PlaneYz*: Plane = init_Plane(1, 0, 0, 0)
-const Plane_PlaneXz*: Plane = init_Plane(0, 1, 0, 0)
-const Plane_PlaneXy*: Plane = init_Plane(0, 0, 1, 0)
 # type Plane* = object
 #   self.json.is_keyed=false
 #   self.json.indexing_return_type=none(string)
+const Plane_PlaneYz*: Plane = init_Plane(1, 0, 0, 0)
+const Plane_PlaneXz*: Plane = init_Plane(0, 1, 0, 0)
+const Plane_PlaneXy*: Plane = init_Plane(0, 0, 1, 0)
 var Plane_normalized: PtrBuiltinMethod
 var Plane_getCenter: PtrBuiltinMethod
 var Plane_isEqualApprox: PtrBuiltinMethod

@@ -4,6 +4,9 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
+# type Color* = object
+#   self.json.is_keyed=false
+#   self.json.indexing_return_type=some("float")
 const Color_AliceBlue*: Color = init_Color(0.941176, 0.972549, 1, 1)
 const Color_AntiqueWhite*: Color = init_Color(0.980392, 0.921569, 0.843137, 1)
 const Color_Aqua*: Color = init_Color(0, 1, 1, 1)
@@ -150,9 +153,6 @@ const Color_White*: Color = init_Color(1, 1, 1, 1)
 const Color_WhiteSmoke*: Color = init_Color(0.960784, 0.960784, 0.960784, 1)
 const Color_Yellow*: Color = init_Color(1, 1, 0, 1)
 const Color_YellowGreen*: Color = init_Color(0.603922, 0.803922, 0.196078, 1)
-# type Color* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=some("float")
 var Color_toArgb32: PtrBuiltinMethod
 var Color_toAbgr32: PtrBuiltinMethod
 var Color_toRgba32: PtrBuiltinMethod

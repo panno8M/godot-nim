@@ -4,10 +4,10 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-const Quaternion_Identity*: Quaternion = init_Quaternion(0, 0, 0, 1)
 # type Quaternion* = object
 #   self.json.is_keyed=false
 #   self.json.indexing_return_type=some("float")
+const Quaternion_Identity*: Quaternion = init_Quaternion(0, 0, 0, 1)
 var Quaternion_length: PtrBuiltinMethod
 var Quaternion_lengthSquared: PtrBuiltinMethod
 var Quaternion_normalized: PtrBuiltinMethod

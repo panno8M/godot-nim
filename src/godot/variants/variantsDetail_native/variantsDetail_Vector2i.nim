@@ -4,17 +4,17 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-const int_AxisX*: int = 0
-const int_AxisY*: int = 1
+# type Vector2i* = object
+#   self.json.is_keyed=false
+#   self.json.indexing_return_type=some("int")
+const Vector2i_AxisX*: int = 0
+const Vector2i_AxisY*: int = 1
 const Vector2i_Zero*: Vector2i = gdveci(0, 0)
 const Vector2i_One*: Vector2i = gdveci(1, 1)
 const Vector2i_Left*: Vector2i = gdveci(-1, 0)
 const Vector2i_Right*: Vector2i = gdveci(1, 0)
 const Vector2i_Up*: Vector2i = gdveci(0, -1)
 const Vector2i_Down*: Vector2i = gdveci(0, 1)
-# type Vector2i* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=some("int")
 var Equal_Vector2i_Variant: PtrOperatorEvaluator
 var NotEqual_Vector2i_Variant: PtrOperatorEvaluator
 var In_Vector2i_Dictionary: PtrOperatorEvaluator

@@ -264,7 +264,7 @@ proc renderLocalEnums*(self: seq[NimBuiltinClass]): Statement =
       variant.enums.mapit it.render
 
 type RenderedVariant = tuple
-  define, operators, constants, loader: Statement
+  define, methods, operators, constants, loader: Statement
 proc prerender*(self: NimBuiltinClass): RenderedVariant =
   result.define = +$$..ParagraphSt():
     +$$..CommentSt.nim(execute= true):
@@ -279,7 +279,7 @@ proc prerender*(self: NimBuiltinClass): RenderedVariant =
     result.operators.children.add oploader
     result.loader.children.add fmt"{opLoader $self.name}()"
 
-  var containers = ParagraphSt()
+  var proccontainers = ParagraphSt()
   var procdefs = ParagraphSt()
   var procloader = BlockSt(head: &"proc {procLoader $self.name} =")
   procloader.children.add "var proc_name: StringName"
@@ -287,13 +287,13 @@ proc prerender*(self: NimBuiltinClass): RenderedVariant =
     let self_type = selfType(self.name, m.isStatic)
     let (procdef, container, load) = m.prerender_variantMethod(self_type, ignoreConf.getOrDefault($self.name))
     if container.isNil: continue
-    containers.children.add container
+    proccontainers.children.add container
     procdefs.children.add procdef
     procloader.children.add load
 
-  if containers.children.len != 0:
-    discard +$$..result.define:
-      containers
+  if proccontainers.children.len != 0:
+    result.methods = +$$..ParagraphSt():
+      proccontainers
       procdefs
       procLoader
     result.loader.children.add fmt"{procLoader $self.name}()"
@@ -301,7 +301,7 @@ proc prerender*(self: NimBuiltinClass): RenderedVariant =
   if result.loader.children.len == 0:
     result.loader.children.add "discard"
 
-  result.constants = prerender self.json.constants.get(@[])
+  result.constants = self.json.constants.get(@[]).prerender(self.name)
 
 
 func renderLoader*(classes: seq[NimBuiltinClass]): Statement =
@@ -326,10 +326,11 @@ proc modulateDetail*(self: NimBuiltinClass): Module =
   if ignoreConf.getOrDefault($self.name).module: return
   result = mdl(self.moduleName)
     .incl(moduleTree.variantDefiner)
-  let (define, operators, constants, loader) = self.prerender
+  let (define, methods, operators, constants, loader) = self.prerender
   discard +$$..result.contents:
-    constants
     define
+    constants
+    methods
     operators
     loader
 

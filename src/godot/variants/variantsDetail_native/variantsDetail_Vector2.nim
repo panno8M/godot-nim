@@ -4,8 +4,11 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-const int_AxisX*: int = 0
-const int_AxisY*: int = 1
+# type Vector2* = object
+#   self.json.is_keyed=false
+#   self.json.indexing_return_type=some("float")
+const Vector2_AxisX*: int = 0
+const Vector2_AxisY*: int = 1
 const Vector2_Zero*: Vector2 = gdvec(0, 0)
 const Vector2_One*: Vector2 = gdvec(1, 1)
 const Vector2_Inf*: Vector2 = gdvec(Inf, Inf)
@@ -13,9 +16,6 @@ const Vector2_Left*: Vector2 = gdvec(-1, 0)
 const Vector2_Right*: Vector2 = gdvec(1, 0)
 const Vector2_Up*: Vector2 = gdvec(0, -1)
 const Vector2_Down*: Vector2 = gdvec(0, 1)
-# type Vector2* = object
-#   self.json.is_keyed=false
-#   self.json.indexing_return_type=some("float")
 var Vector2_limitLength: PtrBuiltinMethod
 var Vector2_project: PtrBuiltinMethod
 var Vector2_slerp: PtrBuiltinMethod
