@@ -3,32 +3,16 @@ import godot
 import ./nimSideTester
 import ./godotSideTester
 
-when TraceAny:
-  import std/[
-    os,
-    sequtils,
-    strutils,
-    strformat,
-  ]
-  import godot/logging
-  proc format(data: LogData; args: seq[string]): string {.gcsafe.} =
-    let data = GDLogData data
-    fmt "{levelname}-{stage} @{handler} >>> {summary}\n{args.join().splitLines().mapIt(\"  :: \"&it).join()}"
+include logging
 
-  proc newDemoLogger: FileLogger =
-    createDir("log")
-    newFileLogger("log/demo.log", fmWrite, format= format)
-
-  defaultGroup.loggers.add newDemoLogger()
-  defaultGroup.loggers.add newConsoleLogger(format= format)
-
-
+# Executed when this library is loaded (the godot project is executed)
 proc initialize(lvl: InitializationLevel): void =
   if lvl != Initialization_Scene: return
 
   register NimSideTester
   register GodotSideTester
 
+# Executed when this library is unloaded (the godot project is terminated)
 proc terminate(lvl: InitializationLevel): void =
   if lvl != Initialization_Scene: return
 
@@ -38,4 +22,6 @@ let cfg = GDExtensionConfig(
   minimumInitializationLevel: Initialization_Editor
 )
 
-GDExtension_EntryPoint init_library, cfg
+# Expand the entry point. Your project must have this section.
+# Then put the name (in this case, `init_library`) to `entry_symbol` of *.gdextension.
+GDExtension_EntryPoint name=init_library, config=cfg
