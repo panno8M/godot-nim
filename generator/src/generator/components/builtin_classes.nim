@@ -283,17 +283,19 @@ proc renderLocalEnums*(self: seq[NimBuiltinClass]): Statement =
 proc `render[]`(self: NimBuiltinClass): Statement =
   if self.json.indexing_return_type.isNone: return
   if ignoreConf.getOrDefault($self.name).indexer: return
-  var acc: string
-  var acc_T: string
   if self.json.is_keyed:
-    acc = "key"
-    acc_T = "ptr Variant"
+    +$$..ParagraphSt():
+      &"proc `[]`*(self: {self.name}; key: ptr Variant): var {self.name}.Item = interface_{self.name}_operatorIndex(addr self, key)[]"
+      &"proc `[]=`*(self: {self.name}; key: ptr Variant; value: {self.name}.Item) = interface_{self.name}_operatorIndex(addr self, key)[] = value"
   else:
-    acc = "index"
-    acc_T = "int"
-  +$$..ParagraphSt():
-    &"proc `[]`*(self: {self.name}; {acc}: {acc_T}): var {self.name}.Item = interface_{self.name}_operatorIndex(addr self, {acc})[]"
-    &"proc `[]=`*(self: {self.name}; {acc}: {acc_T}; value: {self.name}.Item) = interface_{self.name}_operatorIndex(addr self, {acc})[] = value"
+    if "Packed" in $self.name:
+      +$$..ParagraphSt():
+        &"proc `[]`*(self: {self.name}; index: int): var {self.name}.Item = self.data_unsafe[index]"
+        &"proc `[]=`*(self: {self.name}; index: int; value: {self.name}.Item) = self.data_unsafe[index] = value"
+    else:
+      +$$..ParagraphSt():
+        &"proc `[]`*(self: {self.name}; index: int): var {self.name}.Item = interface_{self.name}_operatorIndex(addr self, index)[]"
+        &"proc `[]=`*(self: {self.name}; index: int; value: {self.name}.Item) = interface_{self.name}_operatorIndex(addr self, index)[] = value"
 
 type RenderedVariant = tuple
   methods, operators, indexer, constants, loader: Statement

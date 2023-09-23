@@ -4,8 +4,8 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-proc `[]`*(self: PackedVector2Array; index: int): var PackedVector2Array.Item = interface_PackedVector2Array_operatorIndex(addr self, index)[]
-proc `[]=`*(self: PackedVector2Array; index: int; value: PackedVector2Array.Item) = interface_PackedVector2Array_operatorIndex(addr self, index)[] = value
+proc `[]`*(self: PackedVector2Array; index: int): var PackedVector2Array.Item = self.data_unsafe[index]
+proc `[]=`*(self: PackedVector2Array; index: int; value: PackedVector2Array.Item) = self.data_unsafe[index] = value
 var PackedVector2Array_size: PtrBuiltinMethod
 var PackedVector2Array_isEmpty: PtrBuiltinMethod
 var PackedVector2Array_set: PtrBuiltinMethod

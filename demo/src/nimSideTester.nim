@@ -24,7 +24,7 @@ proc test_SomeVariants(self: NimSideTester) =
       let gdstr: String = "String"
       check $gdstr == "String"
     test "indexing":
-      var arr: PackedByteArray = init_PackedByteArray()
+      var arr: PackedByteArray
       check arr.size == 0
       check arr.resize(3) == 0
       check arr.size == 3
@@ -34,6 +34,7 @@ proc test_SomeVariants(self: NimSideTester) =
         arr[i] = byte i
       for i in 0..<3:
         check arr[i] == byte i
+      check @(arr.data_unsafe.toOpenArray(0, 2)) == [0.byte, 1, 2]
 
 proc test_Object(self: NimSideTester) =
   suite "Object":

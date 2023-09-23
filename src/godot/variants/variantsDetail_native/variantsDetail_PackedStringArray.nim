@@ -4,8 +4,8 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-proc `[]`*(self: PackedStringArray; index: int): var PackedStringArray.Item = interface_PackedStringArray_operatorIndex(addr self, index)[]
-proc `[]=`*(self: PackedStringArray; index: int; value: PackedStringArray.Item) = interface_PackedStringArray_operatorIndex(addr self, index)[] = value
+proc `[]`*(self: PackedStringArray; index: int): var PackedStringArray.Item = self.data_unsafe[index]
+proc `[]=`*(self: PackedStringArray; index: int; value: PackedStringArray.Item) = self.data_unsafe[index] = value
 var PackedStringArray_size: PtrBuiltinMethod
 var PackedStringArray_isEmpty: PtrBuiltinMethod
 var PackedStringArray_set: PtrBuiltinMethod

@@ -90,23 +90,32 @@ type
   Array* {.bycopy.} = object
     opaque: Opaque[1]
   PackedByteArray* {.bycopy.} = object
-    opaque: Opaque[2]
+    proxy: pointer
+    data_unsafe*: ptr UncheckedArray[byte]
   PackedInt32Array* {.bycopy.} = object
-    opaque: Opaque[2]
+    proxy: pointer
+    data_unsafe*: ptr UncheckedArray[int32]
   PackedInt64Array* {.bycopy.} = object
-    opaque: Opaque[2]
+    proxy: pointer
+    data_unsafe*: ptr UncheckedArray[int64]
   PackedFloat32Array* {.bycopy.} = object
-    opaque: Opaque[2]
+    proxy: pointer
+    data_unsafe*: ptr UncheckedArray[float32]
   PackedFloat64Array* {.bycopy.} = object
-    opaque: Opaque[2]
+    proxy: pointer
+    data_unsafe*: ptr UncheckedArray[float64]
   PackedStringArray* {.bycopy.} = object
-    opaque: Opaque[2]
+    proxy: pointer
+    data_unsafe*: ptr UncheckedArray[String]
   PackedVector2Array* {.bycopy.} = object
-    opaque: Opaque[2]
+    proxy: pointer
+    data_unsafe*: ptr UncheckedArray[Vector2]
   PackedVector3Array* {.bycopy.} = object
-    opaque: Opaque[2]
+    proxy: pointer
+    data_unsafe*: ptr UncheckedArray[Vector3]
   PackedColorArray* {.bycopy.} = object
-    opaque: Opaque[2]
+    proxy: pointer
+    data_unsafe*: ptr UncheckedArray[Color]
 
   Variant* {.byref.} = object
     opaque: Opaque[4]

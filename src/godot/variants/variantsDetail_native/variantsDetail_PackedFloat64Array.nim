@@ -4,8 +4,8 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-proc `[]`*(self: PackedFloat64Array; index: int): var PackedFloat64Array.Item = interface_PackedFloat64Array_operatorIndex(addr self, index)[]
-proc `[]=`*(self: PackedFloat64Array; index: int; value: PackedFloat64Array.Item) = interface_PackedFloat64Array_operatorIndex(addr self, index)[] = value
+proc `[]`*(self: PackedFloat64Array; index: int): var PackedFloat64Array.Item = self.data_unsafe[index]
+proc `[]=`*(self: PackedFloat64Array; index: int; value: PackedFloat64Array.Item) = self.data_unsafe[index] = value
 var PackedFloat64Array_size: PtrBuiltinMethod
 var PackedFloat64Array_isEmpty: PtrBuiltinMethod
 var PackedFloat64Array_set: PtrBuiltinMethod

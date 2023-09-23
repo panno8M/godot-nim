@@ -4,8 +4,8 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-proc `[]`*(self: PackedColorArray; index: int): var PackedColorArray.Item = interface_PackedColorArray_operatorIndex(addr self, index)[]
-proc `[]=`*(self: PackedColorArray; index: int; value: PackedColorArray.Item) = interface_PackedColorArray_operatorIndex(addr self, index)[] = value
+proc `[]`*(self: PackedColorArray; index: int): var PackedColorArray.Item = self.data_unsafe[index]
+proc `[]=`*(self: PackedColorArray; index: int; value: PackedColorArray.Item) = self.data_unsafe[index] = value
 var PackedColorArray_size: PtrBuiltinMethod
 var PackedColorArray_isEmpty: PtrBuiltinMethod
 var PackedColorArray_set: PtrBuiltinMethod
