@@ -27,7 +27,6 @@ proc get_float_value*(self: GodotSideTester): float {.exportgd.} =
   self.float_value_raw
 
 # fold into macro in future
-# FIXME Currently, name conflicts can occur.
 proc register*(T: typedesc[GodotSideTester]) =
   register_class(GodotSideTester)
   GodotSideTester.add_property(int, "int_value", "set_int_value", "get_int_value")
