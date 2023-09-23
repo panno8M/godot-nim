@@ -82,6 +82,10 @@ proc build_methodInfo_fromdef(procdef: NimNode; gdname: NimNode): NimNode =
   var proc_name = procdef[0]
   if proc_name.kind == nnkPostfix: proc_name = proc_name[1]
 
+  let is_static =
+    self_t.kind == nnkBracketExpr and
+    self_t[0].eqIdent "typedesc"
+
   let return_value_info =
     if has_return:
       quote do:
@@ -118,8 +122,12 @@ proc build_methodInfo_fromdef(procdef: NimNode; gdname: NimNode): NimNode =
   block:
     var call = proc_name.newCall()
     var ptrcall = proc_name.newCall()
-    call.add quote do: cast[`self_t`](p_instance)
-    ptrcall.add quote do: cast[`self_t`](p_instance)
+    if is_static:
+      call.add self_t
+      ptrcall.add self_t
+    else:
+      call.add quote do: cast[`self_t`](p_instance)
+      ptrcall.add quote do: cast[`self_t`](p_instance)
 
     for i, (name, Type, default) in params.breakArgs:
       if i == 0: continue # [0: self/typedesc[self], 1: arg1, 2: arg2...]
@@ -140,6 +148,12 @@ proc build_methodInfo_fromdef(procdef: NimNode; gdname: NimNode): NimNode =
 
   let argcount_lit = newlit argcount
   let hasReturn_lit = newlit hasReturn
+
+  var flags = newNimNode nnkCurly
+  if is_static:
+    flags.add bindSym"MethodFlag_Static"
+  else:
+    flags.add bindSym"MethodFlag_Normal"
 
   result = quote do:
     proc call_func(method_userdata: pointer; p_instance {.inject.}: ClassInstancePtr; p_args {.inject.}: UncheckedArray[ConstVariantPtr]; p_argument_count: Int; r_return {.inject.}: VariantPtr; r_error: ptr CallError) {.gdcall, gensym.} =
@@ -162,7 +176,7 @@ proc build_methodInfo_fromdef(procdef: NimNode; gdname: NimNode): NimNode =
       name: addr proc_name,
       call_func: call_func,
       ptrcall_func: ptrcall_func,
-      method_flags: {MethodFlag_Normal},
+      method_flags: `flags`,
 
       has_return_value: `has_return_lit`,
       return_value_info: `return_value_info`,

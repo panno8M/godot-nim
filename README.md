@@ -43,7 +43,7 @@ This project is in the early stages of development and some features are not yet
     * [x] access to other arguments
     * [x] return value
   * [ ] Support varargs
-  * [ ] Support static
+  * [x] Support static
   * [ ] Support virtual
   * [ ] Support default-value
 * [ ] Auto-react to typical notifications
