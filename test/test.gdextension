@@ -1,0 +1,11 @@
+[configuration]
+
+entry_symbol = "init_library"
+compatibility_minimum = 4.1
+
+[libraries]
+
+linux.debug.x86_64 = "res://lib/libtest.debug.so"
+linux.release.x86_64 = "res://lib/libtest.release.so"
+windows.debug.x86_64 = "res://lib/libtest.debug.dll"
+windows.release.x86_64 = "res://lib/libtest.release.dll"

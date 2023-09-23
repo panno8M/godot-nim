@@ -1,8 +1,0 @@
-nimcache/
-nimblecache/
-htmldocs/
-.vscode
-*.cpp
-*.hpp
-
-/src/godot_old

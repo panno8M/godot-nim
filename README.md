@@ -4,9 +4,7 @@ Based on **[godot-cpp 4.1 stable](https://github.com/godotengine/godot-cpp/tree/
 
 ## How to use
 
-See **[demo/](https://github.com/panno8M/godot-nim/tree/main/demo)**.
-
-Or clone this repo and execute `nimble debugdemo` to compile demo(test) project and run it.
+See **[test/](https://github.com/panno8M/godot-nim/tree/main/test)** to get an overview of the binding interface.
 
 ## Features
 

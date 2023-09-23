@@ -2,9 +2,9 @@
 --path: "$ProjectDir/../../src"
 --app:lib
 if defined(release):
-  switch("out", "demo.release".toDll)
+  switch("out", "test.release".toDll)
 else:
-  switch("out", "demo.debug".toDll)
+  switch("out", "test.debug".toDll)
 --outDir: "$ProjectDir/../lib"
 
 
