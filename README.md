@@ -6,6 +6,10 @@ Based on **[godot-cpp 4.1 stable](https://github.com/godotengine/godot-cpp/tree/
 
 See **[test/](https://github.com/panno8M/godot-nim/tree/main/test)** to get an overview of the binding interface.
 
+### Caution
+
+The cause is under investigation, but it appears that initialization of the extension fails the first time. Reloading solves the problem.
+
 ## Features
 
 This project is in the early stages of development and some features are not yet operational.
