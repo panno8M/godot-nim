@@ -30,7 +30,7 @@ method push*(self: EditorVCSInterface; remote: String; force: Bool) {.base.} = (
 method fetch*(self: EditorVCSInterface; remote: String) {.base.} = (discard)
 method getLineDiff*(self: EditorVCSInterface; filePath: String; text: String): TypedArray[Dictionary] {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[EditorVCSInterface]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_initialize"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorVCSInterface](p_instance).initialize(p_args[0].decode(String)).encode(r_ret)
   table["_set_credentials"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorVCSInterface](p_instance).setCredentials(p_args[0].decode(String), p_args[1].decode(String), p_args[2].decode(String), p_args[3].decode(String), p_args[4].decode(String))
@@ -61,7 +61,7 @@ method physicsProcess*(self: MainLoop; delta: float64): Bool {.base.} = (discard
 method process*(self: MainLoop; delta: float64): Bool {.base.} = (discard)
 method finalize*(self: MainLoop) {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[MainLoop]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_initialize"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[MainLoop](p_instance).initialize()
   table["_physics_process"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[MainLoop](p_instance).physicsProcess(p_args[0].decode(float64)).encode(r_ret)
@@ -75,7 +75,7 @@ method writeBegin*(self: MovieWriter; movieSize: Vector2i; fps: uint32; basePath
 method writeFrame*(self: MovieWriter; frameImage: Image; audioFrameBlock: pointer): Error {.base.} = (discard)
 method writeEnd*(self: MovieWriter) {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[MovieWriter]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_get_audio_mix_rate"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[MovieWriter](p_instance).getAudioMixRate().encode(r_ret)
   table["_get_audio_speaker_mode"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[MovieWriter](p_instance).getAudioSpeakerMode().encode(r_ret)
@@ -95,7 +95,7 @@ method shortcutInput*(self: Node; event: InputEvent) {.base.} = (discard)
 method unhandledInput*(self: Node; event: InputEvent) {.base.} = (discard)
 method unhandledKeyInput*(self: Node; event: InputEvent) {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[Node]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_process"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[Node](p_instance).process(p_args[0].decode(float64))
   table["_physics_process"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[Node](p_instance).physicsProcess(p_args[0].decode(float64))
@@ -112,7 +112,7 @@ method setVertex*(self: PhysicsServer3DRenderingServerHandler; vertexId: int32; 
 method setNormal*(self: PhysicsServer3DRenderingServerHandler; vertexId: int32; normals: pointer) {.base.} = (discard)
 method setAabb*(self: PhysicsServer3DRenderingServerHandler; aabb: AABB) {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[PhysicsServer3DRenderingServerHandler]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_set_vertex"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[PhysicsServer3DRenderingServerHandler](p_instance).setVertex(p_args[0].decode(int32), p_args[1].decode(pointer))
   table["_set_normal"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[PhysicsServer3DRenderingServerHandler](p_instance).setNormal(p_args[0].decode(int32), p_args[1].decode(pointer))
@@ -120,19 +120,19 @@ proc bind_virtuals*(S: typedesc[PhysicsServer3DRenderingServerHandler]; T: typed
 
 method postProcessKeyValue*(self: AnimationPlayer; animation: Animation; track: int32; value: ptr Variant; `object`: Object; objectIdx: int32): Variant {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[AnimationPlayer]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_post_process_key_value"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[AnimationPlayer](p_instance).postProcessKeyValue(p_args[0].decode(Animation), p_args[1].decode(int32), p_args[2].decode(ptr Variant), p_args[3].decode(Object), p_args[4].decode(int32)).encode(r_ret)
 
 method postProcessKeyValue*(self: AnimationTree; animation: Animation; track: int32; value: ptr Variant; `object`: Object; objectIdx: int32): Variant {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[AnimationTree]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_post_process_key_value"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[AnimationTree](p_instance).postProcessKeyValue(p_args[0].decode(Animation), p_args[1].decode(int32), p_args[2].decode(ptr Variant), p_args[3].decode(Object), p_args[4].decode(int32)).encode(r_ret)
 
 method draw*(self: CanvasItem) {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[CanvasItem]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_draw"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[CanvasItem](p_instance).draw()
 
@@ -160,7 +160,7 @@ method build*(self: EditorPlugin): Bool {.base.} = (discard)
 method enablePlugin*(self: EditorPlugin) {.base.} = (discard)
 method disablePlugin*(self: EditorPlugin) {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[EditorPlugin]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_forward_canvas_gui_input"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorPlugin](p_instance).forwardCanvasGuiInput(p_args[0].decode(InputEvent)).encode(r_ret)
   table["_forward_canvas_draw_over_viewport"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorPlugin](p_instance).forwardCanvasDrawOverViewport(p_args[0].decode(Control))
@@ -231,7 +231,7 @@ method getStep*(self: PhysicsDirectBodyState2DExtension): Float {.base.} = (disc
 method integrateForces*(self: PhysicsDirectBodyState2DExtension) {.base.} = (discard)
 method getSpaceState*(self: PhysicsDirectBodyState2DExtension): PhysicsDirectSpaceState2D {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[PhysicsDirectBodyState2DExtension]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_get_total_gravity"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[PhysicsDirectBodyState2DExtension](p_instance).getTotalGravity().encode(r_ret)
   table["_get_total_linear_damp"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[PhysicsDirectBodyState2DExtension](p_instance).getTotalLinearDamp().encode(r_ret)
@@ -325,7 +325,7 @@ method getStep*(self: PhysicsDirectBodyState3DExtension): Float {.base.} = (disc
 method integrateForces*(self: PhysicsDirectBodyState3DExtension) {.base.} = (discard)
 method getSpaceState*(self: PhysicsDirectBodyState3DExtension): PhysicsDirectSpaceState3D {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[PhysicsDirectBodyState3DExtension]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_get_total_gravity"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[PhysicsDirectBodyState3DExtension](p_instance).getTotalGravity().encode(r_ret)
   table["_get_total_linear_damp"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[PhysicsDirectBodyState3DExtension](p_instance).getTotalLinearDamp().encode(r_ret)
@@ -381,7 +381,7 @@ method castMotion*(self: PhysicsDirectSpaceState2DExtension; shapeRid: RID; tran
 method collideShape*(self: PhysicsDirectSpaceState2DExtension; shapeRid: RID; transform: Transform2D; motion: Vector2; margin: Float; collisionMask: uint32; collideWithBodies: Bool; collideWithAreas: Bool; retvals: pointer; maxRetvals: int32; retvalCount: ptr int32): Bool {.base.} = (discard)
 method restInfo*(self: PhysicsDirectSpaceState2DExtension; shapeRid: RID; transform: Transform2D; motion: Vector2; margin: Float; collisionMask: uint32; collideWithBodies: Bool; collideWithAreas: Bool; restInfo: ptr PhysicsServer2DExtensionShapeRestInfo): Bool {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[PhysicsDirectSpaceState2DExtension]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_intersect_ray"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[PhysicsDirectSpaceState2DExtension](p_instance).intersectRay(p_args[0].decode(Vector2), p_args[1].decode(Vector2), p_args[2].decode(uint32), p_args[3].decode(Bool), p_args[4].decode(Bool), p_args[5].decode(Bool), p_args[6].decode(ptr PhysicsServer2DExtensionRayResult)).encode(r_ret)
   table["_intersect_point"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[PhysicsDirectSpaceState2DExtension](p_instance).intersectPoint(p_args[0].decode(Vector2), p_args[1].decode(uint64), p_args[2].decode(uint32), p_args[3].decode(Bool), p_args[4].decode(Bool), p_args[5].decode(ptr PhysicsServer2DExtensionShapeResult), p_args[6].decode(int32)).encode(r_ret)
@@ -398,7 +398,7 @@ method collideShape*(self: PhysicsDirectSpaceState3DExtension; shapeRid: RID; tr
 method restInfo*(self: PhysicsDirectSpaceState3DExtension; shapeRid: RID; transform: Transform3D; motion: Vector3; margin: Float; collisionMask: uint32; collideWithBodies: Bool; collideWithAreas: Bool; restInfo: ptr PhysicsServer3DExtensionShapeRestInfo): Bool {.base.} = (discard)
 method getClosestPointToObjectVolume*(self: PhysicsDirectSpaceState3DExtension; `object`: RID; point: Vector3): Vector3 {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[PhysicsDirectSpaceState3DExtension]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_intersect_ray"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[PhysicsDirectSpaceState3DExtension](p_instance).intersectRay(p_args[0].decode(Vector3), p_args[1].decode(Vector3), p_args[2].decode(uint32), p_args[3].decode(Bool), p_args[4].decode(Bool), p_args[5].decode(Bool), p_args[6].decode(Bool), p_args[7].decode(Bool), p_args[8].decode(ptr PhysicsServer3DExtensionRayResult)).encode(r_ret)
   table["_intersect_point"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[PhysicsDirectSpaceState3DExtension](p_instance).intersectPoint(p_args[0].decode(Vector3), p_args[1].decode(uint32), p_args[2].decode(Bool), p_args[3].decode(Bool), p_args[4].decode(ptr PhysicsServer3DExtensionShapeResult), p_args[5].decode(int32)).encode(r_ret)
@@ -545,7 +545,7 @@ method finish*(self: PhysicsServer2DExtension) {.base.} = (discard)
 method isFlushingQueries*(self: PhysicsServer2DExtension): Bool {.base.} = (discard)
 method getProcessInfo*(self: PhysicsServer2DExtension; processInfo: PhysicsServer2D_ProcessInfo): int32 {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[PhysicsServer2DExtension]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_world_boundary_shape_create"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[PhysicsServer2DExtension](p_instance).worldBoundaryShapeCreate().encode(r_ret)
   table["_separation_ray_shape_create"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[PhysicsServer2DExtension](p_instance).separationRayShapeCreate().encode(r_ret)
@@ -873,7 +873,7 @@ method finish*(self: PhysicsServer3DExtension) {.base.} = (discard)
 method isFlushingQueries*(self: PhysicsServer3DExtension): Bool {.base.} = (discard)
 method getProcessInfo*(self: PhysicsServer3DExtension; processInfo: PhysicsServer3D_ProcessInfo): int32 {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[PhysicsServer3DExtension]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_world_boundary_shape_create"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[PhysicsServer3DExtension](p_instance).worldBoundaryShapeCreate().encode(r_ret)
   table["_separation_ray_shape_create"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[PhysicsServer3DExtension](p_instance).separationRayShapeCreate().encode(r_ret)
@@ -1067,7 +1067,7 @@ proc bind_virtuals*(S: typedesc[PhysicsServer3DExtension]; T: typedesc) =
 method estimateCost*(self: AStar2D; fromId: int64; toId: int64): Float {.base.} = (discard)
 method computeCost*(self: AStar2D; fromId: int64; toId: int64): Float {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[AStar2D]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_estimate_cost"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[AStar2D](p_instance).estimateCost(p_args[0].decode(int64), p_args[1].decode(int64)).encode(r_ret)
   table["_compute_cost"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[AStar2D](p_instance).computeCost(p_args[0].decode(int64), p_args[1].decode(int64)).encode(r_ret)
@@ -1075,7 +1075,7 @@ proc bind_virtuals*(S: typedesc[AStar2D]; T: typedesc) =
 method estimateCost*(self: AStar3D; fromId: int64; toId: int64): Float {.base.} = (discard)
 method computeCost*(self: AStar3D; fromId: int64; toId: int64): Float {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[AStar3D]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_estimate_cost"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[AStar3D](p_instance).estimateCost(p_args[0].decode(int64), p_args[1].decode(int64)).encode(r_ret)
   table["_compute_cost"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[AStar3D](p_instance).computeCost(p_args[0].decode(int64), p_args[1].decode(int64)).encode(r_ret)
@@ -1083,7 +1083,7 @@ proc bind_virtuals*(S: typedesc[AStar3D]; T: typedesc) =
 method estimateCost*(self: AStarGrid2D; fromId: Vector2i; toId: Vector2i): Float {.base.} = (discard)
 method computeCost*(self: AStarGrid2D; fromId: Vector2i; toId: Vector2i): Float {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[AStarGrid2D]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_estimate_cost"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[AStarGrid2D](p_instance).estimateCost(p_args[0].decode(Vector2i), p_args[1].decode(Vector2i)).encode(r_ret)
   table["_compute_cost"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[AStarGrid2D](p_instance).computeCost(p_args[0].decode(Vector2i), p_args[1].decode(Vector2i)).encode(r_ret)
@@ -1091,7 +1091,7 @@ proc bind_virtuals*(S: typedesc[AStarGrid2D]; T: typedesc) =
 method process*(self: AudioEffectInstance; srcBuffer: pointer; dstBuffer: ptr AudioFrame; frameCount: int32) {.base.} = (discard)
 method processSilence*(self: AudioEffectInstance): Bool {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[AudioEffectInstance]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_process"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[AudioEffectInstance](p_instance).process(p_args[0].decode(pointer), p_args[1].decode(ptr AudioFrame), p_args[2].decode(int32))
   table["_process_silence"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[AudioEffectInstance](p_instance).processSilence().encode(r_ret)
@@ -1105,7 +1105,7 @@ method seek*(self: AudioStreamPlayback; position: float64) {.base.} = (discard)
 method mix*(self: AudioStreamPlayback; buffer: ptr AudioFrame; rateScale: Float; frames: int32): int32 {.base.} = (discard)
 method tagUsedStreams*(self: AudioStreamPlayback) {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[AudioStreamPlayback]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_start"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[AudioStreamPlayback](p_instance).start(p_args[0].decode(float64))
   table["_stop"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[AudioStreamPlayback](p_instance).stop()
@@ -1120,7 +1120,7 @@ method setupSession*(self: EditorDebuggerPlugin; sessionId: int32) {.base.} = (d
 method hasCapture*(self: EditorDebuggerPlugin; capture: String): Bool {.base.} = (discard)
 method capture*(self: EditorDebuggerPlugin; message: String; data: Array; sessionId: int32): Bool {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[EditorDebuggerPlugin]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_setup_session"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorDebuggerPlugin](p_instance).setupSession(p_args[0].decode(int32))
   table["_has_capture"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorDebuggerPlugin](p_instance).hasCapture(p_args[0].decode(String)).encode(r_ret)
@@ -1141,7 +1141,7 @@ method shouldUpdateExportOptions*(self: EditorExportPlugin; platform: EditorExpo
 method getExportFeatures*(self: EditorExportPlugin; platform: EditorExportPlatform; debug: Bool): PackedStringArray {.base.} = (discard)
 method getName*(self: EditorExportPlugin): String {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[EditorExportPlugin]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_export_file"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorExportPlugin](p_instance).exportFile(p_args[0].decode(String), p_args[1].decode(String), p_args[2].decode(PackedStringArray))
   table["_export_begin"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorExportPlugin](p_instance).exportBegin(p_args[0].decode(PackedStringArray), p_args[1].decode(Bool), p_args[2].decode(String), p_args[3].decode(uint32))
@@ -1162,7 +1162,7 @@ method isActive*(self: EditorFileSystemImportFormatSupportQuery): Bool {.base.} 
 method getFileExtensions*(self: EditorFileSystemImportFormatSupportQuery): PackedStringArray {.base.} = (discard)
 method query*(self: EditorFileSystemImportFormatSupportQuery): Bool {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[EditorFileSystemImportFormatSupportQuery]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_is_active"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorFileSystemImportFormatSupportQuery](p_instance).isActive().encode(r_ret)
   table["_get_file_extensions"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorFileSystemImportFormatSupportQuery](p_instance).getFileExtensions().encode(r_ret)
@@ -1175,7 +1175,7 @@ method parseGroup*(self: EditorInspectorPlugin; `object`: Object; group: String)
 method parseProperty*(self: EditorInspectorPlugin; `object`: Object; `type`: Variant_Type; name: String; hintType: PropertyHint; hintString: String; usageFlags: set[PropertyUsageFlags]; wide: Bool): Bool {.base.} = (discard)
 method parseEnd*(self: EditorInspectorPlugin; `object`: Object) {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[EditorInspectorPlugin]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_can_handle"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorInspectorPlugin](p_instance).canHandle(p_args[0].decode(Object)).encode(r_ret)
   table["_parse_begin"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorInspectorPlugin](p_instance).parseBegin(p_args[0].decode(Object))
@@ -1188,7 +1188,7 @@ method convertsTo*(self: EditorResourceConversionPlugin): String {.base.} = (dis
 method handles*(self: EditorResourceConversionPlugin; resource: Resource): Bool {.base.} = (discard)
 method convert*(self: EditorResourceConversionPlugin; resource: Resource): Resource {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[EditorResourceConversionPlugin]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_converts_to"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorResourceConversionPlugin](p_instance).convertsTo().encode(r_ret)
   table["_handles"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorResourceConversionPlugin](p_instance).handles(p_args[0].decode(Resource)).encode(r_ret)
@@ -1200,7 +1200,7 @@ method generateFromPath*(self: EditorResourcePreviewGenerator; path: String; siz
 method generateSmallPreviewAutomatically*(self: EditorResourcePreviewGenerator): Bool {.base.} = (discard)
 method canGenerateSmallPreview*(self: EditorResourcePreviewGenerator): Bool {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[EditorResourcePreviewGenerator]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_handles"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorResourcePreviewGenerator](p_instance).handles(p_args[0].decode(String)).encode(r_ret)
   table["_generate"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorResourcePreviewGenerator](p_instance).generate(p_args[0].decode(Resource), p_args[1].decode(Vector2i), p_args[2].decode(Dictionary)).encode(r_ret)
@@ -1211,7 +1211,7 @@ proc bind_virtuals*(S: typedesc[EditorResourcePreviewGenerator]; T: typedesc) =
 method handles*(self: EditorResourceTooltipPlugin; `type`: String): Bool {.base.} = (discard)
 method makeTooltipForPath*(self: EditorResourceTooltipPlugin; path: String; metadata: Dictionary; base: Control): Control {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[EditorResourceTooltipPlugin]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_handles"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorResourceTooltipPlugin](p_instance).handles(p_args[0].decode(String)).encode(r_ret)
   table["_make_tooltip_for_path"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorResourceTooltipPlugin](p_instance).makeTooltipForPath(p_args[0].decode(String), p_args[1].decode(Dictionary), p_args[2].decode(Control)).encode(r_ret)
@@ -1222,7 +1222,7 @@ method importScene*(self: EditorSceneFormatImporter; path: String; flags: uint32
 method getImportOptions*(self: EditorSceneFormatImporter; path: String) {.base.} = (discard)
 method getOptionVisibility*(self: EditorSceneFormatImporter; path: String; forAnimation: Bool; option: String): Variant {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[EditorSceneFormatImporter]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_get_import_flags"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorSceneFormatImporter](p_instance).getImportFlags().encode(r_ret)
   table["_get_extensions"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorSceneFormatImporter](p_instance).getExtensions().encode(r_ret)
@@ -1232,7 +1232,7 @@ proc bind_virtuals*(S: typedesc[EditorSceneFormatImporter]; T: typedesc) =
 
 method postImport*(self: EditorScenePostImport; scene: Node): Object {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[EditorScenePostImport]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_post_import"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorScenePostImport](p_instance).postImport(p_args[0].decode(Node)).encode(r_ret)
 
@@ -1245,7 +1245,7 @@ method getOptionVisibility*(self: EditorScenePostImportPlugin; path: String; for
 method preProcess*(self: EditorScenePostImportPlugin; scene: Node) {.base.} = (discard)
 method postProcess*(self: EditorScenePostImportPlugin; scene: Node) {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[EditorScenePostImportPlugin]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_get_internal_import_options"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorScenePostImportPlugin](p_instance).getInternalImportOptions(p_args[0].decode(int32))
   table["_get_internal_option_visibility"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorScenePostImportPlugin](p_instance).getInternalOptionVisibility(p_args[0].decode(int32), p_args[1].decode(Bool), p_args[2].decode(String)).encode(r_ret)
@@ -1258,14 +1258,14 @@ proc bind_virtuals*(S: typedesc[EditorScenePostImportPlugin]; T: typedesc) =
 
 method run*(self: EditorScript) {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[EditorScript]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_run"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorScript](p_instance).run()
 
 method parseFile*(self: EditorTranslationParserPlugin; path: String; msgids: TypedArray[String]; msgidsContextPlural: TypedArray[Array]) {.base.} = (discard)
 method getRecognizedExtensions*(self: EditorTranslationParserPlugin): PackedStringArray {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[EditorTranslationParserPlugin]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_parse_file"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorTranslationParserPlugin](p_instance).parseFile(p_args[0].decode(String), p_args[1].decode(TypedArray[String]), p_args[2].decode(TypedArray[Array]))
   table["_get_recognized_extensions"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorTranslationParserPlugin](p_instance).getRecognizedExtensions().encode(r_ret)
@@ -1274,7 +1274,7 @@ method toggle*(self: EngineProfiler; enable: Bool; options: Array) {.base.} = (d
 method addFrame*(self: EngineProfiler; data: Array) {.base.} = (discard)
 method tick*(self: EngineProfiler; frameTime: float64; processTime: float64; physicsTime: float64; physicsFrameTime: float64) {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[EngineProfiler]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_toggle"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EngineProfiler](p_instance).toggle(p_args[0].decode(Bool), p_args[1].decode(Array))
   table["_add_frame"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EngineProfiler](p_instance).addFrame(p_args[0].decode(Array))
@@ -1292,7 +1292,7 @@ method exists*(self: ResourceFormatLoader; path: String): Bool {.base.} = (disca
 method getClassesUsed*(self: ResourceFormatLoader; path: String): PackedStringArray {.base.} = (discard)
 method load*(self: ResourceFormatLoader; path: String; originalPath: String; useSubThreads: Bool; cacheMode: int32): Variant {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[ResourceFormatLoader]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_get_recognized_extensions"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[ResourceFormatLoader](p_instance).getRecognizedExtensions().encode(r_ret)
   table["_recognize_path"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[ResourceFormatLoader](p_instance).recognizePath(p_args[0].decode(String), p_args[1].decode(StringName)).encode(r_ret)
@@ -1312,7 +1312,7 @@ method recognize*(self: ResourceFormatSaver; resource: Resource): Bool {.base.} 
 method getRecognizedExtensions*(self: ResourceFormatSaver; resource: Resource): PackedStringArray {.base.} = (discard)
 method recognizePath*(self: ResourceFormatSaver; resource: Resource; path: String): Bool {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[ResourceFormatSaver]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_save"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[ResourceFormatSaver](p_instance).save(p_args[0].decode(Resource), p_args[1].decode(String), p_args[2].decode(uint32)).encode(r_ret)
   table["_set_uid"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[ResourceFormatSaver](p_instance).setUid(p_args[0].decode(String), p_args[1].decode(int64)).encode(r_ret)
@@ -1375,7 +1375,7 @@ method frame*(self: ScriptLanguageExtension) {.base.} = (discard)
 method handlesGlobalClassType*(self: ScriptLanguageExtension; `type`: String): Bool {.base.} = (discard)
 method getGlobalClassName*(self: ScriptLanguageExtension; path: String): Dictionary {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[ScriptLanguageExtension]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_get_name"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[ScriptLanguageExtension](p_instance).getName().encode(r_ret)
   table["_init"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[ScriptLanguageExtension](p_instance).init()
@@ -1442,7 +1442,7 @@ method dropData*(self: Control; atPosition: Vector2; data: ptr Variant) {.base.}
 method makeCustomTooltip*(self: Control; forText: String): Object {.base.} = (discard)
 method guiInput*(self: Control; event: InputEvent) {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[Control]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_has_point"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[Control](p_instance).hasPoint(p_args[0].decode(Vector2)).encode(r_ret)
   table["_structured_text_parser"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[Control](p_instance).structuredTextParser(p_args[0].decode(Array), p_args[1].decode(String)).encode(r_ret)
@@ -1458,7 +1458,7 @@ method inputEvent*(self: CollisionObject3D; camera: Camera3D; event: InputEvent;
 method mouseEnter*(self: CollisionObject3D) {.base.} = (discard)
 method mouseExit*(self: CollisionObject3D) {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[CollisionObject3D]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_input_event"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[CollisionObject3D](p_instance).inputEvent(p_args[0].decode(Camera3D), p_args[1].decode(InputEvent), p_args[2].decode(Vector3), p_args[3].decode(Vector3), p_args[4].decode(int32))
   table["_mouse_enter"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[CollisionObject3D](p_instance).mouseEnter()
@@ -1466,14 +1466,14 @@ proc bind_virtuals*(S: typedesc[CollisionObject3D]; T: typedesc) =
 
 method getAabb*(self: VisualInstance3D): AABB {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[VisualInstance3D]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_get_aabb"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[VisualInstance3D](p_instance).getAabb().encode(r_ret)
 
 method mixResampled*(self: AudioStreamPlaybackResampled; dstBuffer: ptr AudioFrame; frameCount: int32): int32 {.base.} = (discard)
 method getStreamSamplingRate*(self: AudioStreamPlaybackResampled): Float {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[AudioStreamPlaybackResampled]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_mix_resampled"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[AudioStreamPlaybackResampled](p_instance).mixResampled(p_args[0].decode(ptr AudioFrame), p_args[1].decode(int32)).encode(r_ret)
   table["_get_stream_sampling_rate"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[AudioStreamPlaybackResampled](p_instance).getStreamSamplingRate().encode(r_ret)
@@ -1481,7 +1481,7 @@ proc bind_virtuals*(S: typedesc[AudioStreamPlaybackResampled]; T: typedesc) =
 method getRecognizedExtensions*(self: ImageFormatLoaderExtension): PackedStringArray {.base.} = (discard)
 method loadImage*(self: ImageFormatLoaderExtension; image: Image; fileaccess: FileAccess; flags: set[ImageFormatLoader_LoaderFlags]; scale: Float): Error {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[ImageFormatLoaderExtension]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_get_recognized_extensions"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[ImageFormatLoaderExtension](p_instance).getRecognizedExtensions().encode(r_ret)
   table["_load_image"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[ImageFormatLoaderExtension](p_instance).loadImage(p_args[0].decode(Image), p_args[1].decode(FileAccess), p_args[2].decode(set[ImageFormatLoader_LoaderFlags]), p_args[3].decode(Float)).encode(r_ret)
@@ -1496,7 +1496,7 @@ method getRemoteSenderId*(self: MultiplayerAPIExtension): int32 {.base.} = (disc
 method objectConfigurationAdd*(self: MultiplayerAPIExtension; `object`: Object; configuration: ptr Variant): Error {.base.} = (discard)
 method objectConfigurationRemove*(self: MultiplayerAPIExtension; `object`: Object; configuration: ptr Variant): Error {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[MultiplayerAPIExtension]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_poll"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[MultiplayerAPIExtension](p_instance).poll().encode(r_ret)
   table["_set_multiplayer_peer"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[MultiplayerAPIExtension](p_instance).setMultiplayerPeer(p_args[0].decode(MultiplayerPeer))
@@ -1520,7 +1520,7 @@ method setSubgizmoTransform*(self: EditorNode3DGizmo; id: int32; transform: Tran
 method getSubgizmoTransform*(self: EditorNode3DGizmo; id: int32): Transform3D {.base.} = (discard)
 method commitSubgizmos*(self: EditorNode3DGizmo; ids: PackedInt32Array; restores: TypedArray[Transform3D]; cancel: Bool) {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[EditorNode3DGizmo]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_redraw"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorNode3DGizmo](p_instance).redraw()
   table["_get_handle_name"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorNode3DGizmo](p_instance).getHandleName(p_args[0].decode(int32), p_args[1].decode(Bool)).encode(r_ret)
@@ -1539,7 +1539,7 @@ method putPacket*(self: PacketPeerExtension; pBuffer: ptr uint8; pBufferSize: in
 method getAvailablePacketCount*(self: PacketPeerExtension): int32 {.base.} = (discard)
 method getMaxPacketSize*(self: PacketPeerExtension): int32 {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[PacketPeerExtension]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_get_packet"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[PacketPeerExtension](p_instance).getPacket(p_args[0].decode(ptr ptr uint8), p_args[1].decode(ptr int32)).encode(r_ret)
   table["_put_packet"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[PacketPeerExtension](p_instance).putPacket(p_args[0].decode(ptr uint8), p_args[1].decode(int32)).encode(r_ret)
@@ -1555,7 +1555,7 @@ method process*(self: AnimationNode; time: float64; seek: Bool; isExternalSeekin
 method getCaption*(self: AnimationNode): String {.base.} = (discard)
 method hasFilter*(self: AnimationNode): Bool {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[AnimationNode]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_get_child_nodes"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[AnimationNode](p_instance).getChildNodes().encode(r_ret)
   table["_get_parameter_list"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[AnimationNode](p_instance).getParameterList().encode(r_ret)
@@ -1568,7 +1568,7 @@ proc bind_virtuals*(S: typedesc[AnimationNode]; T: typedesc) =
 
 method instantiate*(self: AudioEffect): AudioEffectInstance {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[AudioEffect]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_instantiate"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[AudioEffect](p_instance).instantiate().encode(r_ret)
 
@@ -1579,7 +1579,7 @@ method isMonophonic*(self: AudioStream): Bool {.base.} = (discard)
 method getBpm*(self: AudioStream): float64 {.base.} = (discard)
 method getBeatCount*(self: AudioStream): int32 {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[AudioStream]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_instantiate_playback"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[AudioStream](p_instance).instantiatePlayback().encode(r_ret)
   table["_get_stream_name"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[AudioStream](p_instance).getStreamName().encode(r_ret)
@@ -1606,7 +1606,7 @@ method getSubgizmoTransform*(self: EditorNode3DGizmoPlugin; gizmo: EditorNode3DG
 method setSubgizmoTransform*(self: EditorNode3DGizmoPlugin; gizmo: EditorNode3DGizmo; subgizmoId: int32; transform: Transform3D) {.base.} = (discard)
 method commitSubgizmos*(self: EditorNode3DGizmoPlugin; gizmo: EditorNode3DGizmo; ids: PackedInt32Array; restores: TypedArray[Transform3D]; cancel: Bool) {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[EditorNode3DGizmoPlugin]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_has_gizmo"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorNode3DGizmoPlugin](p_instance).hasGizmo(p_args[0].decode(Node3D)).encode(r_ret)
   table["_create_gizmo"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorNode3DGizmoPlugin](p_instance).createGizmo(p_args[0].decode(Node3D)).encode(r_ret)
@@ -1640,7 +1640,7 @@ method convertSceneNode*(self: GLTFDocumentExtension; state: GLTFState; gltfNode
 method exportNode*(self: GLTFDocumentExtension; state: GLTFState; gltfNode: GLTFNode; json: Dictionary; node: Node): Error {.base.} = (discard)
 method exportPost*(self: GLTFDocumentExtension; state: GLTFState): Error {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[GLTFDocumentExtension]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_import_preflight"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[GLTFDocumentExtension](p_instance).importPreflight(p_args[0].decode(GLTFState), p_args[1].decode(PackedStringArray)).encode(r_ret)
   table["_get_supported_extensions"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[GLTFDocumentExtension](p_instance).getSupportedExtensions().encode(r_ret)
@@ -1661,7 +1661,7 @@ method getShaderMode*(self: Material): Shader_Mode {.base.} = (discard)
 method canDoNextPass*(self: Material): Bool {.base.} = (discard)
 method canUseRenderPriority*(self: Material): Bool {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[Material]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_get_shader_rid"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[Material](p_instance).getShaderRid().encode(r_ret)
   table["_get_shader_mode"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[Material](p_instance).getShaderMode().encode(r_ret)
@@ -1683,7 +1683,7 @@ method getBlendShapeName*(self: Mesh; index: int32): StringName {.base.} = (disc
 method setBlendShapeName*(self: Mesh; index: int32; name: StringName) {.base.} = (discard)
 method getAabb*(self: Mesh): AABB {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[Mesh]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_get_surface_count"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[Mesh](p_instance).getSurfaceCount().encode(r_ret)
   table["_surface_get_array_len"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[Mesh](p_instance).surfaceGetArrayLen(p_args[0].decode(int32)).encode(r_ret)
@@ -1702,7 +1702,7 @@ proc bind_virtuals*(S: typedesc[Mesh]; T: typedesc) =
 
 method processCustomFx*(self: RichTextEffect; charFx: CharFXTransform): Bool {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[RichTextEffect]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_process_custom_fx"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[RichTextEffect](p_instance).processCustomFx(p_args[0].decode(CharFXTransform)).encode(r_ret)
 
@@ -1710,7 +1710,7 @@ method execute*(self: SkeletonModification2D; delta: float64) {.base.} = (discar
 method setupModification*(self: SkeletonModification2D; modificationStack: SkeletonModificationStack2D) {.base.} = (discard)
 method drawEditorGizmo*(self: SkeletonModification2D) {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[SkeletonModification2D]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_execute"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[SkeletonModification2D](p_instance).execute(p_args[0].decode(float64))
   table["_setup_modification"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[SkeletonModification2D](p_instance).setupModification(p_args[0].decode(SkeletonModificationStack2D))
@@ -1721,7 +1721,7 @@ method getDrawRect*(self: StyleBox; rect: Rect2): Rect2 {.base.} = (discard)
 method getMinimumSize*(self: StyleBox): Vector2 {.base.} = (discard)
 method testMask*(self: StyleBox; point: Vector2; rect: Rect2): Bool {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[StyleBox]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_draw"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[StyleBox](p_instance).draw(p_args[0].decode(RID), p_args[1].decode(Rect2))
   table["_get_draw_rect"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[StyleBox](p_instance).getDrawRect(p_args[0].decode(Rect2)).encode(r_ret)
@@ -1732,7 +1732,7 @@ method getLineSyntaxHighlighting*(self: SyntaxHighlighter; line: int32): Diction
 method clearHighlightingCache*(self: SyntaxHighlighter) {.base.} = (discard)
 method updateCache*(self: SyntaxHighlighter) {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[SyntaxHighlighter]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_get_line_syntax_highlighting"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[SyntaxHighlighter](p_instance).getLineSyntaxHighlighting(p_args[0].decode(int32)).encode(r_ret)
   table["_clear_highlighting_cache"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[SyntaxHighlighter](p_instance).clearHighlightingCache()
@@ -1741,14 +1741,14 @@ proc bind_virtuals*(S: typedesc[SyntaxHighlighter]; T: typedesc) =
 method getPluralMessage*(self: Translation; srcMessage: StringName; srcPluralMessage: StringName; n: int32; context: StringName): StringName {.base.} = (discard)
 method getMessage*(self: Translation; srcMessage: StringName; context: StringName): StringName {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[Translation]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_get_plural_message"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[Translation](p_instance).getPluralMessage(p_args[0].decode(StringName), p_args[1].decode(StringName), p_args[2].decode(int32), p_args[3].decode(StringName)).encode(r_ret)
   table["_get_message"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[Translation](p_instance).getMessage(p_args[0].decode(StringName), p_args[1].decode(StringName)).encode(r_ret)
 
 method instantiatePlayback*(self: VideoStream): VideoStreamPlayback {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[VideoStream]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_instantiate_playback"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[VideoStream](p_instance).instantiatePlayback().encode(r_ret)
 
@@ -1766,7 +1766,7 @@ method update*(self: VideoStreamPlayback; delta: float64) {.base.} = (discard)
 method getChannels*(self: VideoStreamPlayback): int32 {.base.} = (discard)
 method getMixRate*(self: VideoStreamPlayback): int32 {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[VideoStreamPlayback]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_stop"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[VideoStreamPlayback](p_instance).stop()
   table["_play"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[VideoStreamPlayback](p_instance).play()
@@ -1795,7 +1795,7 @@ method getImportOrder*(self: EditorImportPlugin): int32 {.base.} = (discard)
 method getOptionVisibility*(self: EditorImportPlugin; path: String; optionName: StringName; options: Dictionary): Bool {.base.} = (discard)
 method `import`*(self: EditorImportPlugin; sourceFile: String; savePath: String; options: Dictionary; platformVariants: TypedArray[String]; genFiles: TypedArray[String]): Error {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[EditorImportPlugin]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_get_importer_name"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorImportPlugin](p_instance).getImporterName().encode(r_ret)
   table["_get_visible_name"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorImportPlugin](p_instance).getVisibleName().encode(r_ret)
@@ -1816,7 +1816,7 @@ method putData*(self: StreamPeerExtension; pData: ptr uint8; pBytes: int32; rSen
 method putPartialData*(self: StreamPeerExtension; pData: ptr uint8; pBytes: int32; rSent: ptr int32): Error {.base.} = (discard)
 method getAvailableBytes*(self: StreamPeerExtension): int32 {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[StreamPeerExtension]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_get_data"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[StreamPeerExtension](p_instance).getData(p_args[0].decode(ptr uint8), p_args[1].decode(int32), p_args[2].decode(ptr int32)).encode(r_ret)
   table["_get_partial_data"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[StreamPeerExtension](p_instance).getPartialData(p_args[0].decode(ptr uint8), p_args[1].decode(int32), p_args[2].decode(ptr int32)).encode(r_ret)
@@ -2021,7 +2021,7 @@ method stringToLower*(self: TextServerExtension; string: String; language: Strin
 method parseStructuredText*(self: TextServerExtension; parserType: TextServer_StructuredTextParser; args: Array; text: String): TypedArray[Vector3i] {.base.} = (discard)
 method cleanup*(self: TextServerExtension) {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[TextServerExtension]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_has_feature"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[TextServerExtension](p_instance).hasFeature(p_args[0].decode(TextServer_Feature)).encode(r_ret)
   table["_get_name"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[TextServerExtension](p_instance).getName().encode(r_ret)
@@ -2232,7 +2232,7 @@ method addIceCandidate*(self: WebRTCPeerConnectionExtension; pSdpMidName: String
 method poll*(self: WebRTCPeerConnectionExtension): Error {.base.} = (discard)
 method close*(self: WebRTCPeerConnectionExtension) {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[WebRTCPeerConnectionExtension]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_get_connection_state"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[WebRTCPeerConnectionExtension](p_instance).getConnectionState().encode(r_ret)
   table["_get_gathering_state"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[WebRTCPeerConnectionExtension](p_instance).getGatheringState().encode(r_ret)
@@ -2278,7 +2278,7 @@ method getColorTexture*(self: XRInterfaceExtension): RID {.base.} = (discard)
 method getDepthTexture*(self: XRInterfaceExtension): RID {.base.} = (discard)
 method getVelocityTexture*(self: XRInterfaceExtension): RID {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[XRInterfaceExtension]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_get_name"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[XRInterfaceExtension](p_instance).getName().encode(r_ret)
   table["_get_capabilities"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[XRInterfaceExtension](p_instance).getCapabilities().encode(r_ret)
@@ -2315,7 +2315,7 @@ proc bind_virtuals*(S: typedesc[XRInterfaceExtension]; T: typedesc) =
 method pressed*(self: BaseButton) {.base.} = (discard)
 method toggled*(self: BaseButton; buttonPressed: Bool) {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[BaseButton]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_pressed"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[BaseButton](p_instance).pressed()
   table["_toggled"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[BaseButton](p_instance).toggled(p_args[0].decode(Bool))
@@ -2323,7 +2323,7 @@ proc bind_virtuals*(S: typedesc[BaseButton]; T: typedesc) =
 method getAllowedSizeFlagsHorizontal*(self: Container): PackedInt32Array {.base.} = (discard)
 method getAllowedSizeFlagsVertical*(self: Container): PackedInt32Array {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[Container]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_get_allowed_size_flags_horizontal"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[Container](p_instance).getAllowedSizeFlagsHorizontal().encode(r_ret)
   table["_get_allowed_size_flags_vertical"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[Container](p_instance).getAllowedSizeFlagsVertical().encode(r_ret)
@@ -2333,7 +2333,7 @@ method isInOutputHotzone*(self: GraphEdit; inNode: Object; inPort: int32; mouseP
 method getConnectionLine*(self: GraphEdit; fromPosition: Vector2; toPosition: Vector2): PackedVector2Array {.base.} = (discard)
 method isNodeHoverValid*(self: GraphEdit; fromNode: StringName; fromPort: int32; toNode: StringName; toPort: int32): Bool {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[GraphEdit]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_is_in_input_hotzone"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[GraphEdit](p_instance).isInInputHotzone(p_args[0].decode(Object), p_args[1].decode(int32), p_args[2].decode(Vector2)).encode(r_ret)
   table["_is_in_output_hotzone"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[GraphEdit](p_instance).isInOutputHotzone(p_args[0].decode(Object), p_args[1].decode(int32), p_args[2].decode(Vector2)).encode(r_ret)
@@ -2342,7 +2342,7 @@ proc bind_virtuals*(S: typedesc[GraphEdit]; T: typedesc) =
 
 method valueChanged*(self: Range; newValue: float64) {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[Range]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_value_changed"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[Range](p_instance).valueChanged(p_args[0].decode(float64))
 
@@ -2353,7 +2353,7 @@ method copy*(self: TextEdit; caretIndex: int32) {.base.} = (discard)
 method paste*(self: TextEdit; caretIndex: int32) {.base.} = (discard)
 method pastePrimaryClipboard*(self: TextEdit; caretIndex: int32) {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[TextEdit]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_handle_unicode_input"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[TextEdit](p_instance).handleUnicodeInput(p_args[0].decode(int32), p_args[1].decode(int32))
   table["_backspace"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[TextEdit](p_instance).backspace(p_args[0].decode(int32))
@@ -2368,7 +2368,7 @@ method mouseExit*(self: CollisionObject2D) {.base.} = (discard)
 method mouseShapeEnter*(self: CollisionObject2D; shapeIdx: int32) {.base.} = (discard)
 method mouseShapeExit*(self: CollisionObject2D; shapeIdx: int32) {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[CollisionObject2D]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_input_event"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[CollisionObject2D](p_instance).inputEvent(p_args[0].decode(Viewport), p_args[1].decode(InputEvent), p_args[2].decode(int32))
   table["_mouse_enter"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[CollisionObject2D](p_instance).mouseEnter()
@@ -2379,7 +2379,7 @@ proc bind_virtuals*(S: typedesc[CollisionObject2D]; T: typedesc) =
 method useTileDataRuntimeUpdate*(self: TileMap; layer: int32; coords: Vector2i): Bool {.base.} = (discard)
 method tileDataRuntimeUpdate*(self: TileMap; layer: int32; coords: Vector2i; tileData: TileData) {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[TileMap]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_use_tile_data_runtime_update"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[TileMap](p_instance).useTileDataRuntimeUpdate(p_args[0].decode(int32), p_args[1].decode(Vector2i)).encode(r_ret)
   table["_tile_data_runtime_update"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[TileMap](p_instance).tileDataRuntimeUpdate(p_args[0].decode(int32), p_args[1].decode(Vector2i), p_args[2].decode(TileData))
@@ -2408,7 +2408,7 @@ method isRefusingNewConnections*(self: MultiplayerPeerExtension): Bool {.base.} 
 method isServerRelaySupported*(self: MultiplayerPeerExtension): Bool {.base.} = (discard)
 method getConnectionStatus*(self: MultiplayerPeerExtension): MultiplayerPeer_ConnectionStatus {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[MultiplayerPeerExtension]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_get_packet"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[MultiplayerPeerExtension](p_instance).getPacket(p_args[0].decode(ptr ptr uint8), p_args[1].decode(ptr int32)).encode(r_ret)
   table["_put_packet"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[MultiplayerPeerExtension](p_instance).putPacket(p_args[0].decode(ptr uint8), p_args[1].decode(int32)).encode(r_ret)
@@ -2453,7 +2453,7 @@ method getProtocol*(self: WebRTCDataChannelExtension): String {.base.} = (discar
 method isNegotiated*(self: WebRTCDataChannelExtension): Bool {.base.} = (discard)
 method getBufferedAmount*(self: WebRTCDataChannelExtension): int32 {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[WebRTCDataChannelExtension]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_get_packet"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[WebRTCDataChannelExtension](p_instance).getPacket(p_args[0].decode(ptr ptr uint8), p_args[1].decode(ptr int32)).encode(r_ret)
   table["_put_packet"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[WebRTCDataChannelExtension](p_instance).putPacket(p_args[0].decode(ptr uint8), p_args[1].decode(int32)).encode(r_ret)
@@ -2476,7 +2476,7 @@ proc bind_virtuals*(S: typedesc[WebRTCDataChannelExtension]; T: typedesc) =
 
 method createMeshArray*(self: PrimitiveMesh): Array {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[PrimitiveMesh]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_create_mesh_array"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[PrimitiveMesh](p_instance).createMeshArray().encode(r_ret)
 
@@ -2513,7 +2513,7 @@ method getMembers*(self: ScriptExtension): TypedArray[StringName] {.base.} = (di
 method isPlaceholderFallbackEnabled*(self: ScriptExtension): Bool {.base.} = (discard)
 method getRpcConfig*(self: ScriptExtension): Variant {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[ScriptExtension]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_editor_can_reload_from_file"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[ScriptExtension](p_instance).editorCanReloadFromFile().encode(r_ret)
   table["_placeholder_erased"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[ScriptExtension](p_instance).placeholderErased(p_args[0].decode(pointer))
@@ -2551,7 +2551,7 @@ proc bind_virtuals*(S: typedesc[ScriptExtension]; T: typedesc) =
 method getName*(self: EditorSyntaxHighlighter): String {.base.} = (discard)
 method getSupportedLanguages*(self: EditorSyntaxHighlighter): PackedStringArray {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[EditorSyntaxHighlighter]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_get_name"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorSyntaxHighlighter](p_instance).getName().encode(r_ret)
   table["_get_supported_languages"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorSyntaxHighlighter](p_instance).getSupportedLanguages().encode(r_ret)
@@ -2564,7 +2564,7 @@ method draw*(self: Texture2D; toCanvasItem: RID; pos: Vector2; modulate: Color; 
 method drawRect*(self: Texture2D; toCanvasItem: RID; rect: Rect2; tile: Bool; modulate: Color; transpose: Bool) {.base.} = (discard)
 method drawRectRegion*(self: Texture2D; toCanvasItem: RID; rect: Rect2; srcRect: Rect2; modulate: Color; transpose: Bool; clipUv: Bool) {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[Texture2D]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_get_width"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[Texture2D](p_instance).getWidth().encode(r_ret)
   table["_get_height"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[Texture2D](p_instance).getHeight().encode(r_ret)
@@ -2581,7 +2581,7 @@ method getDepth*(self: Texture3D): int32 {.base.} = (discard)
 method hasMipmaps*(self: Texture3D): Bool {.base.} = (discard)
 method getData*(self: Texture3D): TypedArray[Image] {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[Texture3D]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_get_format"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[Texture3D](p_instance).getFormat().encode(r_ret)
   table["_get_width"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[Texture3D](p_instance).getWidth().encode(r_ret)
@@ -2598,7 +2598,7 @@ method getLayers*(self: TextureLayered): int32 {.base.} = (discard)
 method hasMipmaps*(self: TextureLayered): Bool {.base.} = (discard)
 method getLayerData*(self: TextureLayered; layerIndex: int32): Image {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[TextureLayered]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_get_format"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[TextureLayered](p_instance).getFormat().encode(r_ret)
   table["_get_layered_type"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[TextureLayered](p_instance).getLayeredType().encode(r_ret)
@@ -2624,7 +2624,7 @@ method getGlobalCode*(self: VisualShaderNodeCustom; mode: Shader_Mode): String {
 method isHighend*(self: VisualShaderNodeCustom): Bool {.base.} = (discard)
 method isAvailable*(self: VisualShaderNodeCustom; mode: Shader_Mode; `type`: VisualShader_Type): Bool {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[VisualShaderNodeCustom]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_get_name"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[VisualShaderNodeCustom](p_instance).getName().encode(r_ret)
   table["_get_description"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[VisualShaderNodeCustom](p_instance).getDescription().encode(r_ret)
@@ -2645,7 +2645,7 @@ proc bind_virtuals*(S: typedesc[VisualShaderNodeCustom]; T: typedesc) =
 method updateProperty*(self: EditorProperty) {.base.} = (discard)
 method setReadOnly*(self: EditorProperty; readOnly: Bool) {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[EditorProperty]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_update_property"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorProperty](p_instance).updateProperty()
   table["_set_read_only"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorProperty](p_instance).setReadOnly(p_args[0].decode(Bool))
@@ -2654,7 +2654,7 @@ method confirmCodeCompletion*(self: CodeEdit; replace: Bool) {.base.} = (discard
 method requestCodeCompletion*(self: CodeEdit; force: Bool) {.base.} = (discard)
 method filterCodeCompletionCandidates*(self: CodeEdit; candidates: TypedArray[Dictionary]): TypedArray[Dictionary] {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[CodeEdit]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_confirm_code_completion"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[CodeEdit](p_instance).confirmCodeCompletion(p_args[0].decode(Bool))
   table["_request_code_completion"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[CodeEdit](p_instance).requestCodeCompletion(p_args[0].decode(Bool))
@@ -2662,26 +2662,26 @@ proc bind_virtuals*(S: typedesc[CodeEdit]; T: typedesc) =
 
 method integrateForces*(self: PhysicalBone3D; state: PhysicsDirectBodyState3D) {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[PhysicalBone3D]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_integrate_forces"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[PhysicalBone3D](p_instance).integrateForces(p_args[0].decode(PhysicsDirectBodyState3D))
 
 method integrateForces*(self: RigidBody3D; state: PhysicsDirectBodyState3D) {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[RigidBody3D]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_integrate_forces"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[RigidBody3D](p_instance).integrateForces(p_args[0].decode(PhysicsDirectBodyState3D))
 
 method integrateForces*(self: RigidBody2D; state: PhysicsDirectBodyState2D) {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[RigidBody2D]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_integrate_forces"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[RigidBody2D](p_instance).integrateForces(p_args[0].decode(PhysicsDirectBodyState2D))
 
 method setCreateOptions*(self: EditorResourcePicker; menuNode: Object) {.base.} = (discard)
 method handleMenuSelected*(self: EditorResourcePicker; id: int32): Bool {.base.} = (discard)
 proc bind_virtuals*(S: typedesc[EditorResourcePicker]; T: typedesc) =
-  S.Inherit.bind_virtuals(T)
+  S.Super.bind_virtuals(T)
   let table = vmethods(T)
   table["_set_create_options"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorResourcePicker](p_instance).setCreateOptions(p_args[0].decode(Object))
   table["_handle_menu_selected"] = proc(p_instance: ClassInstancePtr; p_args: UncheckedArray[ConstTypePtr]; r_ret: TypePtr) {.gdcall.} = cast[EditorResourcePicker](p_instance).handleMenuSelected(p_args[0].decode(int32)).encode(r_ret)

@@ -13,8 +13,10 @@ when TraceEngineReferenceCallback:
 type ClassUserData* = object
   virtualMethods*: TableRef[StringName, ClassCallVirtual]
   className*: StringName
-  inheritName*: StringName
   callbacks*: InstanceBindingCallbacks
+  create*: ClassCreateInstance
+
+  super*: ptr ClassUserData
 
 type ObjectBaseObj* = object of RootObj
   owner*: ObjectPtr
@@ -43,6 +45,15 @@ proc instantiate*(T: typedesc[SomeClass]): T =
     interfaceObjectSetInstance(result.owner, addr T.className, cast[pointer](result))
   interfaceObjectSetInstanceBinding(result.owner, token, cast[pointer](result), addr T.callbacks)
 
+method `=init`*(self: ObjectBase) {.base.} = discard
+proc create(T: typedesc[SomeUserClass]): ObjectPtr {.gdcall.} =
+  when TraceEngineAllocationCallback:
+    me.debug "[Extent] create ", T
+  let new_object = instantiate T
+  `=init` new_object
+  GC_ref new_object
+  return new_object.owner
+
 proc initialize(T: typedesc[SomeEngineClass]; userdata: ptr ClassUserData) =
   userdata.callbacks.create_callback = proc (p_token: pointer; p_instance: pointer): pointer {.gdcall.} =
     when TraceEngineAllocationCallback:
@@ -56,17 +67,15 @@ proc initialize(T: typedesc[SomeUserClass]; userdata: ptr ClassUserData) =
   userdata.callbacks.create_callback = proc (p_token: pointer; p_instance: pointer): pointer {.gdcall.} =
     when TraceEngineAllocationCallback:
       me_alloc.debug "[Engine] create ", T
-
+  userdata.create = proc(p_userdata: pointer): ObjectPtr {.gdcall.} = T.create()
 
 proc get_userdata*(T: typedesc[SomeClass]): ptr ClassUserData =
   var userdata {.global.} : ClassUserData
   once:
     new userdata.virtualMethods
     userdata.className = $T
-    when T.Inherit isnot ObjectBase:
-      userdata.inheritName = $T.Inherit
-    else:
-      userdata.inheritName = ""
+    when T.Super isnot ObjectBase:
+      userdata.super = get_userdata(T.Super)
 
     userdata.callbacks.free_callback = proc (p_token: pointer; p_instance: pointer; p_binding: pointer) {.gdcall.} =
       when TraceEngineAllocationCallback:
@@ -82,8 +91,6 @@ proc get_userdata*(T: typedesc[SomeClass]): ptr ClassUserData =
 {.push, inline.}
 proc className*(T: typedesc[SomeClass]): var StringName =
   get_userdata(T).className
-proc inheritName*(T: typedesc[SomeClass]): var StringName =
-  get_userdata(T).inheritName
 
 proc callbacks*(T: typedesc[SomeClass]): var InstanceBindingCallbacks =
   get_userdata(T).callbacks
@@ -99,7 +106,6 @@ proc getVirtual*(p_userdata: pointer; p_name: ConstStringNamePtr): ClassCallVirt
 
 # User Class callbacks
 # ====================
-
 method notification*(self: ObjectBase; p_what: uint32) {.base.} = discard
 proc notification_bind*(p_instance: ClassInstancePtr; p_what: uint32) {.gdcall.} =
   cast[ObjectBase](p_instance).notification(p_what)

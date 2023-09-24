@@ -57,7 +57,7 @@ proc renderClassDefine(class: NimClass): Statement =
   return +$$..ParagraphSt():
     &"type {name}Obj* = object of {inherits}Obj"
     &"type {name}* = ref {name}Obj"
-    &"template Inherit*(_: typedesc[{name}]): typedesc = {inherits}"
+    &"template Super*(_: typedesc[{name}]): typedesc = {inherits}"
     &"template EngineClass*(_: typedesc[{name}]): typedesc = {name}"
 proc renderLocalEnums(class: NimClass): Statement =
   result = ParagraphSt()

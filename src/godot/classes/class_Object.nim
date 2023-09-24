@@ -6,7 +6,7 @@ import ./../helper/standAloneEngineClassDefiner
 
 type ObjectObj* = object of ObjectBaseObj
 type Object* = ref ObjectObj
-template Inherit*(_: typedesc[Object]): typedesc = ObjectBase
+template Super*(_: typedesc[Object]): typedesc = ObjectBase
 template EngineClass*(_: typedesc[Object]): typedesc = Object
 proc getClass*(self: Object): String =
   var methodbind {.global.}: MethodBindPtr

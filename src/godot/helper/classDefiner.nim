@@ -21,11 +21,37 @@ proc get_registrationData*(T: typedesc[SomeUserClass]): RegistrationData =
     registrationTable[$T] = new RegistrationData
   registrationTable[$T]
 
+
+proc free_bind(p_userdata: pointer; p_instance: ClassInstancePtr) {.gdcall.} =
+  when TraceEngineAllocationCallback:
+    me.debug "[Extent] free ", cast[ptr ClassUserData](p_userdata).className
+
+proc creationInfo(T: typedesc[SomeUserClass]; is_virtual, is_abstract: bool): ClassCreationInfo =
+  let userdata = get_userdata(T)
+  ClassCreationInfo(
+    is_virtual: is_virtual,
+    is_abstract: is_abstract,
+    set_func: set_bind,
+    get_func: get_bind,
+    get_property_list_func: get_property_list_bind,
+    free_property_list_func: free_property_list_bind,
+    property_can_revert_func: property_can_revert_bind,
+    property_get_revert_func: property_get_revert_bind,
+    notification_func: notification_bind,
+    to_string_func: to_string_bind,
+    create_instance_func: userdata.create,
+    free_instance_func: free_bind,
+    get_virtual_func: getVirtual,
+    class_userdata: userdata,
+  )
+
+template isInheritanceOf*(Class, Inherits: typedesc): untyped =
+  template Super*(_: typedesc[Class]): typedesc[Inherits] = Inherits
+
 template register_class*(T: typedesc[SomeUserClass]) =
   mixin bind_virtuals
-  mixin initialize_class
   let info = T.creationInfo(false, false)
-  interfaceClassdbRegisterExtensionClass(library, addr className(T), addr className(Inherit(T)), addr info)
+  interfaceClassdbRegisterExtensionClass(library, addr className(T), addr className(Super(T)), addr info)
   EngineClass(T).bind_virtuals(T)
   for p in get_registrationData(T).methods: p()
 
@@ -36,39 +62,6 @@ proc add_property*(T: typedesc[SomeUserClass]; info: PropertyInfo; setter, gette
 proc add_property*(T: typedesc[SomeUserClass]; P: typedesc; prop, setter, getter: static string) =
   let info = propertyInfo(P, prop).info
   T.add_property(info, setter, getter)
-
-proc free_bind(p_userdata: pointer; p_instance: ClassInstancePtr) {.gdcall.} =
-  when TraceEngineAllocationCallback:
-    me.debug "[Extent] free ", cast[ptr ClassUserData](p_userdata).className
-
-template define_godot_class_essencials*(Class, Inherits: typedesc): untyped =
-  template Inherit*(_: typedesc[Class]): typedesc[Inherits] = Inherits
-
-  proc create(p_userdata: pointer): ObjectPtr {.gdcall, gensym.} =
-    when TraceEngineAllocationCallback:
-      me.debug "[Extent] create ", Class
-    bind instantiate
-    let new_object = instantiate Class
-    GC_ref new_object
-    return new_object.owner
-
-  proc creationInfo*(T: typedesc[Class]; is_virtual, is_abstract: bool): ClassCreationInfo =
-    ClassCreationInfo(
-      is_virtual: is_virtual,
-      is_abstract: is_abstract,
-      set_func: set_bind,
-      get_func: get_bind,
-      get_property_list_func: get_property_list_bind,
-      free_property_list_func: free_property_list_bind,
-      property_can_revert_func: property_can_revert_bind,
-      property_get_revert_func: property_get_revert_bind,
-      notification_func: notification_bind,
-      to_string_func: to_string_bind,
-      create_instance_func: create,
-      free_instance_func: free_bind,
-      get_virtual_func: getVirtual,
-      class_userdata: get_userdata(T),
-    )
 
 type ClassMethodInfoGlue = ref object
   info*: ClassMethodInfo

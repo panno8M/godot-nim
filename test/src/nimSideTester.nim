@@ -16,7 +16,29 @@ importClass Node
 unittest.disableParamFiltering()
 
 type NimSideTester* = ref object of Node
-define_godot_class_essencials NimSideTester, Node
+  initialized: bool
+# The source of inheritance must be a class known to Godot.
+# (Engine-Class, or Extension-Class from which register_class will be called)
+NimSideTester.isInheritanceOf Node
+
+# If you want to use the object without ref, you can:
+# ```
+# type NimSideTesterObj = object of NodeObj
+# type NimSideTester = ref NimSideTesterObj
+# NimSideTester.isInheritanceOf Node
+# ```
+
+# Override `=init` hook to customize the behavior when the object is created.
+method `=init`(self: NimSideTester) =
+  if unlikely(not self.initialized):
+    self.initialized = true
+  else:
+    raise newException(CatchableError, "duplicated initialize")
+
+proc test_UserClass(self: NimSideTester) =
+  suite "UserClass":
+    test "initialize":
+      check self.initialized
 
 proc test_SomeVariants(self: NimSideTester) =
   suite "Some Variants":
@@ -72,7 +94,11 @@ proc test_Node(self: NimSideTester) =
       let node2 = self.getNode("Node")
       check node1 == node2
 
+# Using `method` to override virtual functions of Engine-Class.
+# No specific pragma is needed.
+# based on Node.ready()
 method ready(self: NimSideTester) =
+  self.test_UserClass()
   self.test_SomeVariants()
   self.test_Object()
   self.test_RefCounted()

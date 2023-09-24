@@ -3,7 +3,16 @@ import godot
 type GodotSideTester* = ref object of Node
   int_value_raw: int
   float_value_raw: float
-define_godot_class_essencials GodotSideTester, Node
+# The source of inheritance must be a class known to Godot.
+# (Engine-Class, or Extension-Class from which register_class will be called)
+GodotSideTester.isInheritanceOf Node
+
+# If you want to use the object without ref, you can:
+# ```
+# type GodotSideTesterObj = object of NodeObj
+# type GodotSideTester = ref GodotSideTesterObj
+# GodotSideTester.isInheritanceOf Node
+# ```
 
 # To register as static method, you must place typedesc[UserClass] at first argument
 # and put `{.exportgd.}`.
