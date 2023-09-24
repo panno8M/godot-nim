@@ -1,3 +1,5 @@
+# Godot-Nim v4.1
+
 It enable us to work godot-4.x with Nim.
 
 Based on **[godot-cpp 4.1 stable](https://github.com/godotengine/godot-cpp/tree/godot-4.1-stable)**
@@ -18,12 +20,16 @@ This project is in the early stages of development and some features are not yet
 
 #### Godot (Editor/GDScript) Side
 
+See **[GodotSideTester](https://github.com/panno8M/godot-nim/tree/main/test/src/godotSideTester.nim)** and **[tester.gd](https://github.com/panno8M/godot-nim/tree/main/test/tester.gd)**
+
 * Add defined Extension-Class Node into scene
 * Instantiate Extension-Class
 * Call Extension-Class method
 * Use Extension-Class property
 
 #### Nim (GDExtension) Side
+
+See **[NimSideTester](https://github.com/panno8M/godot-nim/tree/main/test/src/nimSideTester.nim)**
 
 * Define Extension-Class
 * Define **Simple** Extension-Class method
@@ -60,7 +66,6 @@ This project is in the early stages of development and some features are not yet
 * Library hot reloading
 * C++ backend
   * Module development
-* Custom constructor
 
 ...And so on.
 
