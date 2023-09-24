@@ -1,0 +1,11 @@
+[configuration]
+
+entry_symbol = "init_library"
+compatibility_minimum = 4.1
+
+[libraries]
+
+linux.debug.x86_64 = "res://lib/libtemplate.so"
+linux.release.x86_64 = "res://lib/libtemplate.so"
+windows.debug.x86_64 = "res://lib/libtemplate.dll"
+windows.release.x86_64 = "res://lib/libtemplate.dll"

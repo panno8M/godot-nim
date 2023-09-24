@@ -1,0 +1,3 @@
+--path:"$projectdir/../../../src"
+--app:lib
+--outDir:"$projectdir/../lib"
