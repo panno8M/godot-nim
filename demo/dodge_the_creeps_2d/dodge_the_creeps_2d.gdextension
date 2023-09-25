@@ -1,0 +1,11 @@
+[configuration]
+
+entry_symbol = "init_library"
+compatibility_minimum = 4.1
+
+[libraries]
+
+linux.debug.x86_64 = "res://lib/libcore.so"
+linux.release.x86_64 = "res://lib/libcore.so"
+windows.debug.x86_64 = "res://lib/libcore.dll"
+windows.release.x86_64 = "res://lib/libcore.dll"
