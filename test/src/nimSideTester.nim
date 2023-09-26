@@ -103,7 +103,3 @@ method ready(self: NimSideTester) =
   self.test_Object()
   self.test_RefCounted()
   self.test_Node()
-
-# fold into macro in future
-proc register*(T: typedesc[NimSideTester]) =
-  register_class(NimSideTester)

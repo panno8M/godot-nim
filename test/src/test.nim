@@ -9,8 +9,8 @@ include logging
 proc initialize(lvl: InitializationLevel): void =
   if lvl != Initialization_Scene: return
 
-  register NimSideTester
-  register GodotSideTester
+  register_class NimSideTester
+  register_class GodotSideTester
 
 # Executed when this library is unloaded (the godot project is terminated)
 proc terminate(lvl: InitializationLevel): void =

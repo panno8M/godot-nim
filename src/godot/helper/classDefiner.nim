@@ -16,6 +16,7 @@ when TraceEngineAllocationCallback:
 
 type RegistrationData = ref object
   methods*: seq[proc()]
+  props*: seq[proc()]
 var registrationTable: Table[string, RegistrationData]
 proc get_registrationData*(T: typedesc[SomeUserClass]): RegistrationData =
   if unlikely(not registrationTable.hasKey($T)):
@@ -55,14 +56,39 @@ template register_class*(T: typedesc[SomeUserClass]) =
   interfaceClassdbRegisterExtensionClass(library, addr className(T), addr className(Super(T)), addr info)
   EngineClass(T).bind_virtuals(T)
   for p in get_registrationData(T).methods: p()
+  for p in get_registrationData(T).props: p()
 
-proc add_property*(T: typedesc[SomeUserClass]; info: PropertyInfo; setter, getter: static string) =
-  let setter: StringName = setter
-  let getter: StringName = getter
-  interface_ClassDB_registerExtensionClassProperty(library, addr className(T), addr info, addr setter, addr getter)
-proc add_property*(T: typedesc[SomeUserClass]; P: typedesc; prop, setter, getter: static string) =
-  let info = propertyInfo(P, prop)
-  T.add_property(native info[], setter, getter)
+
+macro property*(Class: typedesc[SomeUserClass]; name: string; `type`: typedesc; body) =
+  var getter, setter, hint, usage: NimNode
+  let glue = genSym(nskLet, "glue")
+  var set_hint = nnkDiscardStmt.newTree(newEmptyNode())
+  var set_usage = nnkDiscardStmt.newTree(newEmptyNode())
+  for tag in body:
+    case tag.kind
+    of nnkCall:
+      case $tag[0]
+      of "getter": getter = tag[1]
+      of "setter": setter = tag[1]
+      of "hint": hint = tag[1]
+      of "usage": usage = tag[1]
+    else:
+      discard
+  if hint != nil:
+    set_hint = quote do:
+      `glue`.hint = `hint`
+  if usage != nil:
+    set_usage = quote do:
+      `glue`.usage = `usage`
+
+  quote do:
+    get_registrationData(`Class`).props.add proc() =
+      let `glue`: ref PropertyInfoGlue = propertyInfo(`type`, `name`)
+      `set_hint`
+      `set_usage`
+      let setter: StringName = `setter`
+      let getter: StringName = `getter`
+      interface_ClassDB_registerExtensionClassProperty(library, addr className(`Class`), native `glue`, addr setter, addr getter)
 
 
 proc exportgd_impl(body: NimNode; gdname: NimNode = nil): NimNode =

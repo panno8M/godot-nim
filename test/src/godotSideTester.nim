@@ -35,8 +35,16 @@ proc int_value*(self: GodotSideTester): int {.exportgd: "get_int_value".} =
 proc get_float_value*(self: GodotSideTester): float {.exportgd.} =
   self.float_value_raw
 
-# fold into macro in future
-proc register*(T: typedesc[GodotSideTester]) =
-  register_class(GodotSideTester)
-  GodotSideTester.add_property(int, "int_value", "set_int_value", "get_int_value")
-  GodotSideTester.add_property(float, "float_value", "set_float_value", "get_float_value")
+# To register your property, you need to write this section.
+GodotSideTester.property(name= "int_value", type= int):
+  # exported method name
+  getter: "get_int_value"
+  setter: "set_int_value"
+
+  # Optional:
+  hint: propertyHintNone
+  usage: {propertyUsageStorage, propertyUsageEditor}
+
+GodotSideTester.property(name= "float_value", type= float):
+  getter: "get_float_value"
+  setter: "set_float_value"
