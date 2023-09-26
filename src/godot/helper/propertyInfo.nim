@@ -34,27 +34,26 @@ template metadata*(T: typedesc[float32]): ClassMethodArgumentMetadata = MethodAr
 # Property Info
 # =============
 
-type PropertyInfoGlue* = ref object
-  info*: PropertyInfo
-  name*: StringName
-  class_name*: StringName
-  hint_string*: String
-
-converter getRaw*(glue: PropertyInfoGlue): ptr PropertyInfo = addr glue.info
-
-proc newPropertyInfoGlue(`type`: VariantType; name, class_name: StringName; hint: PropertyHint; hint_string: String; usage: set[PropertyUsageFlags]): PropertyInfoGlue =
+proc new[T: String|StringName](s: T): ref T =
   new result
-  result.name = name
-  result.class_name = class_name
-  result.hint_string = hint_string
-  result.info = PropertyInfo(
-    `type`: `type`,
-    name: addr result.name,
-    class_name: addr result.class_name,
-    hint: hint,
-    hint_string: addr result.hint_string,
-    usage: usage,
-  )
+  result[] = s
+
+
+type
+  PropertyInfoGlue* = object
+    `type`*: Variant_Type
+    name*: ref StringName
+    class_name*: ref StringName
+    hint*: PropertyHint
+    hint_string*: ref String
+    usage*: set[PropertyUsageFlags]
+
+converter native*(p: ref PropertyInfoGlue): ptr PropertyInfo =
+  cast[ptr PropertyInfo](p)
+converter native*(p: PropertyInfoGlue): PropertyInfo =
+  cast[PropertyInfo](p)
+converter native*(a: openArray[PropertyInfoGlue]): ptr PropertyInfo =
+  cast[ptr PropertyInfo](addr a[0])
 
 template propertyInfo_blueprint(Type: typedesc; body): untyped =
   proc propertyInfo*(T {.inject.} : typedesc[Type];
@@ -63,27 +62,26 @@ template propertyInfo_blueprint(Type: typedesc; body): untyped =
         hint {.inject.} : PropertyHint = propertyHint_None;
         hint_string {.inject.} : String = "";
         usage {.inject.} : system.set[PropertyUsageFlags] = PropertyUsageFlags.propertyUsageDefault
-      ): PropertyInfoGlue =
+      ): ref PropertyInfoGlue =
     body
 
 propertyInfo_blueprint(SomeVariants):
-  newPropertyInfoGlue(
-    `type`= variantType T,
-    name,
-    class_name,
-    hint,
-    hint_string,
-    usage,
+  (ref PropertyInfoGlue)(
+    type: variantType T,
+    name: new name,
+    class_name: new class_name,
+    hint: hint,
+    hint_string: new hint_string,
+    usage: usage,
   )
-
 propertyInfo_blueprint(SomeClass):
-  newPropertyInfoGlue(
-    `type`= VariantType_Object,
-    name,
-    class_name,
-    hint,
-    hint_string,
-    usage,
+  (ref PropertyInfoGlue)(
+    type: VariantType_Object,
+    name: new name,
+    class_name: new class_name,
+    hint: hint,
+    hint_string: new hint_string,
+    usage: usage,
   )
 
 propertyInfo_blueprint(AltInt):
