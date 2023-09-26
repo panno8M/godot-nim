@@ -4,6 +4,7 @@ import std/tables
 import ../pure/compileTimeSwitch
 
 import objectConverter
+import propertyInfo
 
 import ../godotInterface
 import ../godotInterface/objectBase
