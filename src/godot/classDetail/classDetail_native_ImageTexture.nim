@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Texture2D; export classDetail_native_Texture2D
 
 proc createFromImage*(_: typedesc[ImageTexture]; image: Image): ImageTexture =
   var methodbind {.global.}: MethodBindPtr

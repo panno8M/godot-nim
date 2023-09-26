@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Font; export classDetail_native_Font
 
 proc `antialiasing=`*(self: SystemFont; antialiasing: TextServer_FontAntialiasing) =
   var methodbind {.global.}: MethodBindPtr

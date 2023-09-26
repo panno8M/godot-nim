@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Object; export classDetail_native_Object
 
 proc createAction*(self: UndoRedo; name: String; mergeMode: UndoRedo_MergeMode = mergeDisable; backwardUndoOps: Bool = false) =
   var methodbind {.global.}: MethodBindPtr

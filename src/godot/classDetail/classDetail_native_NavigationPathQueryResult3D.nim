@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 
 proc `path=`*(self: NavigationPathQueryResult3D; path: PackedVector3Array) =
   var methodbind {.global.}: MethodBindPtr

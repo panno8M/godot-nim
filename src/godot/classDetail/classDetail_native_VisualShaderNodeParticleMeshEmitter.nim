@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_VisualShaderNodeParticleEmitter; export classDetail_native_VisualShaderNodeParticleEmitter
 
 proc `mesh=`*(self: VisualShaderNodeParticleMeshEmitter; mesh: Mesh) =
   var methodbind {.global.}: MethodBindPtr

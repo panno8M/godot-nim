@@ -21,8 +21,7 @@ type
     json*: JsonClass
   NimClasses* = seq[NimClass]
   RenderedNimClass* = tuple
-    class, inherits: TypeName
-    define, essencial, detail, enums: Statement
+    define, detail, enums: Statement
     virtual: GodotVirtualmethods
 
 const classBaseName* = "ObjectBase"
@@ -66,47 +65,37 @@ proc renderLocalEnums(class: NimClass): Statement =
   if class.enums.len != 0:
     result.children.add ""
 
-iterator renderDetail*(classes: NimClasses): RenderedNimClass =
-  for classes in classes.parentalSorted:
-    for class in classes:
-      var res = (
-        class: class.name,
-        inherits: class.inherits,
-        define: renderClassDefine class,
-        essencial: ParagraphSt(),
-        detail: ParagraphSt(),
-        enums: renderLocalEnums class,
-        virtual: GodotVirtualmethods(),
-      )
+proc renderDetail*(class: NimClass): RenderedNimClass =
+  result.define = renderClassDefine class
+  result.enums= renderLocalEnums class
+  result.virtual = GodotVirtualmethods()
 
-      var getters: HashSet[string]
-      var setters: HashSet[string]
-      for prop in class.json.properties.get(@[]):
-        discard
-        getters.incl prop.getter
-        if prop.setter.isSome:
-          setters.incl prop.setter.get
+  var getters: HashSet[string]
+  var setters: HashSet[string]
+  for prop in class.json.properties.get(@[]):
+    discard
+    getters.incl prop.getter
+    if prop.setter.isSome:
+      setters.incl prop.setter.get
 
-      let localProcs = ParagraphSt()
-      let self_type = selfType class.name
-      for mhd in class.json.methods.get(@[]):
-        if mhd.is_virtual.get(false):
-          res.virtual.methods.add mhd.prerender_virtual(self_type)
-        else:
-          if mhd.is_static:
-            let self_type = selfType(class.name, true)
-            localProcs.children.add mhd.prerender_classMethod(self_type, None)
-          elif mhd.name in getters:
-            localProcs.children.add mhd.prerender_classMethod(self_type, Getter)
-          elif mhd.name in setters:
-            localProcs.children.add mhd.prerender_classMethod(self_type, Setter)
-          else:
-            localProcs.children.add mhd.prerender_classMethod(self_type, None)
+  let localProcs = ParagraphSt()
+  let self_type = selfType class.name
+  for mhd in class.json.methods.get(@[]):
+    if mhd.is_virtual.get(false):
+      result.virtual.methods.add mhd.prerender_virtual(self_type)
+    else:
+      if mhd.is_static:
+        let self_type = selfType(class.name, true)
+        localProcs.children.add mhd.prerender_classMethod(self_type, None)
+      elif mhd.name in getters:
+        localProcs.children.add mhd.prerender_classMethod(self_type, Getter)
+      elif mhd.name in setters:
+        localProcs.children.add mhd.prerender_classMethod(self_type, Setter)
+      else:
+        localProcs.children.add mhd.prerender_classMethod(self_type, None)
 
-      if localProcs.children.len != 0:
-        res.detail.children.add localProcs
-
-      yield res
+  if localProcs.children.len != 0:
+    result.detail = localProcs
 
 method defaultValue*(info: NimClass; value: string; argType: ArgType): string =
   if value == "null":

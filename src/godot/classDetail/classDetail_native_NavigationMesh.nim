@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Resource; export classDetail_native_Resource
 
 proc `samplePartitionType=`*(self: NavigationMesh; samplePartitionType: NavigationMesh_SamplePartitionType) =
   var methodbind {.global.}: MethodBindPtr

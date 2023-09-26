@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Resource; export classDetail_native_Resource
 
 proc setCell*(self: TileMapPattern; coords: Vector2i; sourceId: int32 = -1; atlasCoords: Vector2i = gdveci(-1, -1); alternativeTile: int32 = -1) =
   var methodbind {.global.}: MethodBindPtr

@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Node; export classDetail_native_Node
 
 proc `world2d=`*(self: Viewport; world2d: World2D) =
   var methodbind {.global.}: MethodBindPtr

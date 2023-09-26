@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_GeometryInstance3D; export classDetail_native_GeometryInstance3D
 
 proc isRootShape*(self: CSGShape3D): Bool =
   var methodbind {.global.}: MethodBindPtr

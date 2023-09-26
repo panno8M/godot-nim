@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 
 proc open*(_: typedesc[FileAccess]; path: String; flags: FileAccess_ModeFlags): FileAccess =
   var methodbind {.global.}: MethodBindPtr

@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Node3D; export classDetail_native_Node3D
 
 proc `curve=`*(self: Path3D; curve: Curve3D) =
   var methodbind {.global.}: MethodBindPtr

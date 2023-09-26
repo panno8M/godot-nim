@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Node2D; export classDetail_native_Node2D
 
 proc `polygon=`*(self: CollisionPolygon2D; polygon: PackedVector2Array) =
   var methodbind {.global.}: MethodBindPtr

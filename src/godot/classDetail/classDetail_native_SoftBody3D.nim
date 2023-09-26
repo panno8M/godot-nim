@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_MeshInstance3D; export classDetail_native_MeshInstance3D
 
 proc getPhysicsRid*(self: SoftBody3D): RID =
   var methodbind {.global.}: MethodBindPtr

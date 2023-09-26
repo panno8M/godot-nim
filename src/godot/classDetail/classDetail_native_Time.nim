@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Object; export classDetail_native_Object
 
 proc getDatetimeDictFromUnixTime*(self: Time; unixTimeVal: int64): Dictionary =
   var methodbind {.global.}: MethodBindPtr

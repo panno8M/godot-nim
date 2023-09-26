@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_VisualShaderNodeGroupBase; export classDetail_native_VisualShaderNodeGroupBase
 
 proc `expression=`*(self: VisualShaderNodeExpression; expression: String) =
   var methodbind {.global.}: MethodBindPtr

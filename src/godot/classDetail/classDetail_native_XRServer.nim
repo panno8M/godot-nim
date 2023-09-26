@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Object; export classDetail_native_Object
 
 proc worldScale*(self: XRServer): float64 =
   var methodbind {.global.}: MethodBindPtr

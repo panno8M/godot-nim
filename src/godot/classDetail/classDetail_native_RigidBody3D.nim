@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_PhysicsBody3D; export classDetail_native_PhysicsBody3D
 
 proc `mass=`*(self: RigidBody3D; mass: Float) =
   var methodbind {.global.}: MethodBindPtr

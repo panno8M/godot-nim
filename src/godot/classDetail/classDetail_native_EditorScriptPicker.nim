@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_EditorResourcePicker; export classDetail_native_EditorResourcePicker
 
 proc `scriptOwner=`*(self: EditorScriptPicker; ownerNode: Node) =
   var methodbind {.global.}: MethodBindPtr

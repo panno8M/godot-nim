@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Node2D; export classDetail_native_Node2D
 
 proc `emitting=`*(self: CPUParticles2D; emitting: Bool) =
   var methodbind {.global.}: MethodBindPtr

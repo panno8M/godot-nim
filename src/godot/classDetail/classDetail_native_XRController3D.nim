@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_XRNode3D; export classDetail_native_XRNode3D
 
 proc isButtonPressed*(self: XRController3D; name: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr

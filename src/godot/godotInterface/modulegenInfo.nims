@@ -1,7 +1,6 @@
 let modules: seq[string] = @[
   "include/",
   "globalEnums.nim",
-  "engineClassDefines.nim",
   "(objectBase.nim)",
   "localEnums.nim",
 ]

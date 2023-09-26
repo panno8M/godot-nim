@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_PacketPeer; export classDetail_native_PacketPeer
 
 proc connectToUrl*(self: WebSocketPeer; url: String; tlsClientOptions: TLSOptions = default TLSOptions): Error =
   var methodbind {.global.}: MethodBindPtr

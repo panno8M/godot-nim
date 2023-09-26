@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_ResourceImporter; export classDetail_native_ResourceImporter
 
 proc appendImportExternalResource*(self: EditorImportPlugin; path: String; customOptions: Dictionary = init_Dictionary(); customImporter: String = ""; generatorParameters: ptr Variant = nil): Error =
   var methodbind {.global.}: MethodBindPtr

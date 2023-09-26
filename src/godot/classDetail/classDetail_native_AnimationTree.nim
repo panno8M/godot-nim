@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Node; export classDetail_native_Node
 
 proc `active=`*(self: AnimationTree; active: Bool) =
   var methodbind {.global.}: MethodBindPtr

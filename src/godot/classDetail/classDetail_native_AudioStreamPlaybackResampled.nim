@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_AudioStreamPlayback; export classDetail_native_AudioStreamPlayback
 
 proc beginResample*(self: AudioStreamPlaybackResampled) =
   var methodbind {.global.}: MethodBindPtr

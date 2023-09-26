@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_CameraAttributes; export classDetail_native_CameraAttributes
 
 proc `aperture=`*(self: CameraAttributesPhysical; aperture: Float) =
   var methodbind {.global.}: MethodBindPtr

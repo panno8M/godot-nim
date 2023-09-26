@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Range; export classDetail_native_Range
 
 proc `customStep=`*(self: ScrollBar; step: Float) =
   var methodbind {.global.}: MethodBindPtr

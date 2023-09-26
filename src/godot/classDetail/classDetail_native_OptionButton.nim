@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Button; export classDetail_native_Button
 
 proc addItem*(self: OptionButton; label: String; id: int32 = -1) =
   var methodbind {.global.}: MethodBindPtr

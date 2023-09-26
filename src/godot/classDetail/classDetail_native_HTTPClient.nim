@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 
 proc connectToHost*(self: HTTPClient; host: String; port: int32 = -1; tlsOptions: TLSOptions = default TLSOptions): Error =
   var methodbind {.global.}: MethodBindPtr

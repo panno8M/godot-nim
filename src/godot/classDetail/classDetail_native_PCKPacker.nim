@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 
 proc pckStart*(self: PCKPacker; pckName: String; alignment: int32 = 32; key: String = "0000000000000000000000000000000000000000000000000000000000000000"; encryptDirectory: Bool = false): Error =
   var methodbind {.global.}: MethodBindPtr

@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Tweener; export classDetail_native_Tweener
 
 proc `from`*(self: PropertyTweener; value: ptr Variant): PropertyTweener =
   var methodbind {.global.}: MethodBindPtr

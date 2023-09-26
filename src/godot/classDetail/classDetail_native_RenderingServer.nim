@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Object; export classDetail_native_Object
 
 proc texture2dCreate*(self: RenderingServer; image: Image): RID =
   var methodbind {.global.}: MethodBindPtr

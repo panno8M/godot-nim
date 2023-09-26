@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Resource; export classDetail_native_Resource
 
 proc stringify*(_: typedesc[JSON]; data: ptr Variant; indent: String = ""; sortKeys: Bool = true; fullPrecision: Bool = false): String =
   var methodbind {.global.}: MethodBindPtr

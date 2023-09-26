@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_AudioStreamPlayback; export classDetail_native_AudioStreamPlayback
 
 proc playStream*(self: AudioStreamPlaybackPolyphonic; stream: AudioStream; fromOffset: Float = 0; volumeDb: Float = 0; pitchScale: Float = 1.0): int64 =
   var methodbind {.global.}: MethodBindPtr

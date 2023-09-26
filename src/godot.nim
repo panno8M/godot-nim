@@ -3,9 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./godot/classEssencial; export classEssencial
-import ./godot/classes/class_Object; export class_Object
-import ./godot/classes/class_RefCounted; export class_RefCounted
-import ./godot/godotInterface/engineClassDefines; export engineClassDefines
+import ./godot/classIndex; export classIndex
 import ./godot/godotInterface/globalEnums; export globalEnums
 import ./godot/godotInterface/localEnums; export localEnums
 import ./godot/godotInterface/objectBase; export objectBase

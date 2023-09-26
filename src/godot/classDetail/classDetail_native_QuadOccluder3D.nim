@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Occluder3D; export classDetail_native_Occluder3D
 
 proc `size=`*(self: QuadOccluder3D; size: Vector2) =
   var methodbind {.global.}: MethodBindPtr

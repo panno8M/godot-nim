@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Viewport; export classDetail_native_Viewport
 
 proc `title=`*(self: Window; title: String) =
   var methodbind {.global.}: MethodBindPtr

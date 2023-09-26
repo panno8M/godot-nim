@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_SyntaxHighlighter; export classDetail_native_SyntaxHighlighter
 
 proc addKeywordColor*(self: CodeHighlighter; keyword: String; color: Color) =
   var methodbind {.global.}: MethodBindPtr

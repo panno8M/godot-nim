@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_AnimationRootNode; export classDetail_native_AnimationRootNode
 
 proc addBlendPoint*(self: AnimationNodeBlendSpace2D; node: AnimationRootNode; pos: Vector2; atIndex: int32 = -1) =
   var methodbind {.global.}: MethodBindPtr

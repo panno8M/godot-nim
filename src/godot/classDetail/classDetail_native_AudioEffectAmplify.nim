@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_AudioEffect; export classDetail_native_AudioEffect
 
 proc `volumeDb=`*(self: AudioEffectAmplify; volume: Float) =
   var methodbind {.global.}: MethodBindPtr

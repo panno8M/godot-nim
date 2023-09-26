@@ -7,7 +7,6 @@ let # directories
   d_godot* = dir"godot"
   d_variants* = dir"variants"
   d_variantsDetail_native* = dir"variantsDetail_native"
-  d_classes* = dir"classes"
   d_classDetail* = dir"classDetail"
   d_helper* = dir"helper"
   d_pure* = dir"pure"
@@ -37,7 +36,6 @@ let # modules
   variantDefiner* = dummy mdl"variantDefiner"
   variantConstrDefiner* = dummy mdl"variantConstrDefiner"
   engineClassDefiner* = dummy mdl"engineClassDefiner"
-  standAloneEngineClassDefiner* = dummy mdl"standAloneEngineClassDefiner"
   classDefiner* = dummy mdl"classDefiner"
   typedArray* = dummy mdl"typedArray"
   classImporter* = dummy mdl"classImporter"
@@ -89,7 +87,6 @@ discard +/%..d_root:
       objectBase
     nativeStructs
     variants
-    d_classes
     +/%..internal d_variants:
       dummy mdl"variantsDetail_Variant"
       variantsDetail_native
@@ -106,10 +103,9 @@ discard +/%..d_root:
       variantTypeSolver
       classDefiner
       classImporter
-      internal variantDefiner
-      internal variantConstrDefiner
-      internal engineClassDefiner
-      internal standAloneEngineClassDefiner
+      internal importOnly variantDefiner
+      internal importOnly variantConstrDefiner
+      internal importOnly engineClassDefiner
 
     +/%..d_pure:
       compileTimeSwitch

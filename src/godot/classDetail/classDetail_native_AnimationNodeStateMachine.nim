@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_AnimationRootNode; export classDetail_native_AnimationRootNode
 
 proc addNode*(self: AnimationNodeStateMachine; name: StringName; node: AnimationNode; position: Vector2 = gdvec(0, 0)) =
   var methodbind {.global.}: MethodBindPtr

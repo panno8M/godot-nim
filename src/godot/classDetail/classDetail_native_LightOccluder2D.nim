@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Node2D; export classDetail_native_Node2D
 
 proc `occluderPolygon=`*(self: LightOccluder2D; polygon: OccluderPolygon2D) =
   var methodbind {.global.}: MethodBindPtr

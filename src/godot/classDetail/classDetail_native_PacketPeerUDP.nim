@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_PacketPeer; export classDetail_native_PacketPeer
 
 proc `bind`*(self: PacketPeerUDP; port: int32; bindAddress: String = "*"; recvBufSize: int32 = 65536): Error =
   var methodbind {.global.}: MethodBindPtr

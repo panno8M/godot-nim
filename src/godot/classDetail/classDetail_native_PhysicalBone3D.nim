@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_PhysicsBody3D; export classDetail_native_PhysicsBody3D
 
 proc applyCentralImpulse*(self: PhysicalBone3D; impulse: Vector3) =
   var methodbind {.global.}: MethodBindPtr

@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_PhysicsDirectSpaceState3D; export classDetail_native_PhysicsDirectSpaceState3D
 
 proc isBodyExcludedFromQuery*(self: PhysicsDirectSpaceState3DExtension; body: RID): Bool =
   var methodbind {.global.}: MethodBindPtr

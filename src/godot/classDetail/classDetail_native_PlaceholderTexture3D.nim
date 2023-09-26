@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Texture3D; export classDetail_native_Texture3D
 
 proc `size=`*(self: PlaceholderTexture3D; size: Vector3i) =
   var methodbind {.global.}: MethodBindPtr

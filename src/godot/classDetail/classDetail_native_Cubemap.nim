@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_ImageTextureLayered; export classDetail_native_ImageTextureLayered
 
 proc createPlaceholder*(self: Cubemap): Resource =
   var methodbind {.global.}: MethodBindPtr

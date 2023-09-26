@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_AudioEffect; export classDetail_native_AudioEffect
 
 proc setBandGainDb*(self: AudioEffectEQ; bandIdx: int32; volumeDb: Float) =
   var methodbind {.global.}: MethodBindPtr

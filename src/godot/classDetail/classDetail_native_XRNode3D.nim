@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Node3D; export classDetail_native_Node3D
 
 proc `tracker=`*(self: XRNode3D; trackerName: StringName) =
   var methodbind {.global.}: MethodBindPtr

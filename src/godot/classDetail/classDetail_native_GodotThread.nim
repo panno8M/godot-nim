@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 
 proc start*(self: GodotThread; callable: Callable; priority: GodotThread_Priority = priorityNormal): Error =
   var methodbind {.global.}: MethodBindPtr

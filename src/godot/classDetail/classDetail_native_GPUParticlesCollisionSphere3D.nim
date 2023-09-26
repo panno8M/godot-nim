@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_GPUParticlesCollision3D; export classDetail_native_GPUParticlesCollision3D
 
 proc `radius=`*(self: GPUParticlesCollisionSphere3D; radius: Float) =
   var methodbind {.global.}: MethodBindPtr

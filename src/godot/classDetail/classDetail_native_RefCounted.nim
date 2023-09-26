@@ -2,14 +2,8 @@
 # This module was generated automatically. #
 # Edits will be lost.                      #
 # ======================================== #
-import ./../helper/standAloneEngineClassDefiner
-import ./class_Object
+import ./../helper/engineClassDefiner
 
-type RefCountedObj* = object of ObjectObj
-type RefCounted* = ref RefCountedObj
-template Super*(_: typedesc[RefCounted]): typedesc = Object
-template EngineClass*(_: typedesc[RefCounted]): typedesc = RefCounted
-include "include/hook_RefCounted"
 proc initRef*(self: RefCounted): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

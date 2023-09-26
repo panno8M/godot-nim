@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_VisualShaderNode; export classDetail_native_VisualShaderNode
 
 proc `flags=`*(self: VisualShaderNodeParticleEmit; flags: VisualShaderNodeParticleEmit_EmitFlags) =
   var methodbind {.global.}: MethodBindPtr

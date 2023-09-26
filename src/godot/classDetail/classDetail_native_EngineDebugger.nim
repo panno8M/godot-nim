@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Object; export classDetail_native_Object
 
 proc isActive*(self: EngineDebugger): Bool =
   var methodbind {.global.}: MethodBindPtr

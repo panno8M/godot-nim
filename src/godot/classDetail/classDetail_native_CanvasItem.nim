@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Node; export classDetail_native_Node
 
 proc getCanvasItem*(self: CanvasItem): RID =
   var methodbind {.global.}: MethodBindPtr

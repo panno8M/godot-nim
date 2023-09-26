@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 
 proc start*(self: HashingContext; `type`: HashingContext_HashType): Error =
   var methodbind {.global.}: MethodBindPtr

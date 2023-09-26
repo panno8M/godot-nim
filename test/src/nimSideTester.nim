@@ -1,15 +1,10 @@
 import std/unittest
 import godot
 
+# sugar of `import godot/classDetail/classDetail_native_T`
+# Since this library is still early stage, we recommend to use this sugar for portability
 importClass Node
-
-# To reduce compilation time, we recommend importing functions
-# on a class-by-class basis using the `importClass` macro. Or,
-#
-# import godot/classDetail_all
-#
-# to import them all at once.
-
+importClass RefCounted
 
 # paramFiltering tryes to access to `paramCount` and it cause `OSError`
 # because the program will finally be shared object(dll).

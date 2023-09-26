@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_InputEvent; export classDetail_native_InputEvent
 
 proc `windowId=`*(self: InputEventFromWindow; id: int64) =
   var methodbind {.global.}: MethodBindPtr

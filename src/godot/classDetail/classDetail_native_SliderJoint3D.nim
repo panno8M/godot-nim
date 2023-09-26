@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Joint3D; export classDetail_native_Joint3D
 
 proc setParam*(self: SliderJoint3D; param: SliderJoint3D_Param; value: Float) =
   var methodbind {.global.}: MethodBindPtr

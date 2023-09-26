@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_VisualInstance3D; export classDetail_native_VisualInstance3D
 
 proc `size=`*(self: FogVolume; size: Vector3) =
   var methodbind {.global.}: MethodBindPtr

@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_AudioEffect; export classDetail_native_AudioEffect
 
 proc canGetBuffer*(self: AudioEffectCapture; frames: int32): Bool =
   var methodbind {.global.}: MethodBindPtr

@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Texture2D; export classDetail_native_Texture2D
 
 proc `gradient=`*(self: GradientTexture1D; gradient: Gradient) =
   var methodbind {.global.}: MethodBindPtr

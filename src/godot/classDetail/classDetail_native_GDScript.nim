@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Script; export classDetail_native_Script
 
 proc new*(self: GDScript): Variant =
   var methodbind {.global.}: MethodBindPtr

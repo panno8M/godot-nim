@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Shape2D; export classDetail_native_Shape2D
 
 proc `segments=`*(self: ConcavePolygonShape2D; segments: PackedVector2Array) =
   var methodbind {.global.}: MethodBindPtr

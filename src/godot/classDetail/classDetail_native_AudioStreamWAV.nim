@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_AudioStream; export classDetail_native_AudioStream
 
 proc `data=`*(self: AudioStreamWAV; data: PackedByteArray) =
   var methodbind {.global.}: MethodBindPtr

@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Resource; export classDetail_native_Resource
 
 proc createMaterial*(self: EditorNode3DGizmoPlugin; name: String; color: Color; billboard: Bool = false; onTop: Bool = false; useVertexColor: Bool = false) =
   var methodbind {.global.}: MethodBindPtr

@@ -2,9 +2,14 @@
 # This module was generated automatically. #
 # Edits will be lost.                      #
 # ======================================== #
-import ./../classes/class_Object
-import ./../classes/class_RefCounted
+import ./godotInterface
+import ./godotInterface/objectBase
+import ./variants
 
+type ObjectObj* = object of ObjectBaseObj
+type Object* = ref ObjectObj
+template Super*(_: typedesc[Object]): typedesc = ObjectBase
+template EngineClass*(_: typedesc[Object]): typedesc = Object
 type AudioServerObj* = object of ObjectObj
 type AudioServer* = ref AudioServerObj
 template Super*(_: typedesc[AudioServer]): typedesc = Object
@@ -173,6 +178,11 @@ type ProjectSettingsObj* = object of ObjectObj
 type ProjectSettings* = ref ProjectSettingsObj
 template Super*(_: typedesc[ProjectSettings]): typedesc = Object
 template EngineClass*(_: typedesc[ProjectSettings]): typedesc = ProjectSettings
+type RefCountedObj* = object of ObjectObj
+type RefCounted* = ref RefCountedObj
+template Super*(_: typedesc[RefCounted]): typedesc = Object
+template EngineClass*(_: typedesc[RefCounted]): typedesc = RefCounted
+include "include/hook_RefCounted"
 type RenderingDeviceObj* = object of ObjectObj
 type RenderingDevice* = ref RenderingDeviceObj
 template Super*(_: typedesc[RenderingDevice]): typedesc = Object

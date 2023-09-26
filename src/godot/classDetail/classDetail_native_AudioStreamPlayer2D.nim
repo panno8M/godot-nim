@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Node2D; export classDetail_native_Node2D
 
 proc `stream=`*(self: AudioStreamPlayer2D; stream: AudioStream) =
   var methodbind {.global.}: MethodBindPtr

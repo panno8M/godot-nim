@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_StyleBox; export classDetail_native_StyleBox
 
 proc `texture=`*(self: StyleBoxTexture; texture: Texture2D) =
   var methodbind {.global.}: MethodBindPtr

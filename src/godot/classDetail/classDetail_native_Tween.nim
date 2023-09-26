@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 
 proc tweenProperty*(self: Tween; `object`: Object; property: NodePath; finalVal: ptr Variant; duration: float64): PropertyTweener =
   var methodbind {.global.}: MethodBindPtr

@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Object; export classDetail_native_Object
 
 proc registerServer*(self: PhysicsServer2DManager; name: String; createCallback: Callable) =
   var methodbind {.global.}: MethodBindPtr

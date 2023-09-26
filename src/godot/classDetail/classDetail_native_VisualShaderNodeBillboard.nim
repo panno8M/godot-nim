@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_VisualShaderNode; export classDetail_native_VisualShaderNode
 
 proc `billboardType=`*(self: VisualShaderNodeBillboard; billboardType: VisualShaderNodeBillboard_BillboardType) =
   var methodbind {.global.}: MethodBindPtr

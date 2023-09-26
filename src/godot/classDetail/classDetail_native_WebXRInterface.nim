@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_XRInterface; export classDetail_native_XRInterface
 
 proc isSessionSupported*(self: WebXRInterface; sessionMode: String) =
   var methodbind {.global.}: MethodBindPtr

@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 
 proc createFromString*(_: typedesc[RegEx]; pattern: String): RegEx =
   var methodbind {.global.}: MethodBindPtr

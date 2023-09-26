@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_PhysicsBody2D; export classDetail_native_PhysicsBody2D
 
 proc `constantLinearVelocity=`*(self: StaticBody2D; vel: Vector2) =
   var methodbind {.global.}: MethodBindPtr

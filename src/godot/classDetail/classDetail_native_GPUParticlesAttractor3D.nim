@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_VisualInstance3D; export classDetail_native_VisualInstance3D
 
 proc `cullMask=`*(self: GPUParticlesAttractor3D; mask: uint32) =
   var methodbind {.global.}: MethodBindPtr

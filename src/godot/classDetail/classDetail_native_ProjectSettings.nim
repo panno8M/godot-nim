@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Object; export classDetail_native_Object
 
 proc hasSetting*(self: ProjectSettings; name: String): Bool =
   var methodbind {.global.}: MethodBindPtr

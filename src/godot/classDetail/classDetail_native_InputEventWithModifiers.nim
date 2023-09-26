@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_InputEventFromWindow; export classDetail_native_InputEventFromWindow
 
 proc `commandOrControlAutoremap=`*(self: InputEventWithModifiers; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr

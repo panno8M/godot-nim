@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Popup; export classDetail_native_Popup
 
 proc addItem*(self: PopupMenu; label: String; id: int32 = -1; accel: Key = keyNone) =
   var methodbind {.global.}: MethodBindPtr

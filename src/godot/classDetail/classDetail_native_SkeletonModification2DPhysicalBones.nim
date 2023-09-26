@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_SkeletonModification2D; export classDetail_native_SkeletonModification2D
 
 proc `physicalBoneChainLength=`*(self: SkeletonModification2DPhysicalBones; length: int32) =
   var methodbind {.global.}: MethodBindPtr

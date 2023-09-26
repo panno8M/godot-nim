@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_CollisionObject2D; export classDetail_native_CollisionObject2D
 
 proc moveAndCollide*(self: PhysicsBody2D; motion: Vector2; testOnly: Bool = false; safeMargin: Float = 0.08; recoveryAsCollision: Bool = false): KinematicCollision2D =
   var methodbind {.global.}: MethodBindPtr

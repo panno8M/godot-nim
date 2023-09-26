@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_AnimationNodeSync; export classDetail_native_AnimationNodeSync
 
 proc `fadeinTime=`*(self: AnimationNodeOneShot; time: float64) =
   var methodbind {.global.}: MethodBindPtr

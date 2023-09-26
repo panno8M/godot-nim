@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Node2D; export classDetail_native_Node2D
 
 proc `multimesh=`*(self: MultiMeshInstance2D; multimesh: MultiMesh) =
   var methodbind {.global.}: MethodBindPtr

@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Object; export classDetail_native_Object
 
 proc worldBoundaryShapeCreate*(self: PhysicsServer2D): RID =
   var methodbind {.global.}: MethodBindPtr

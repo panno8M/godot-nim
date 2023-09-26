@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Object; export classDetail_native_Object
 
 proc eval*(self: JavaScriptBridge; code: String; useGlobalExecutionContext: Bool = false): Variant =
   var methodbind {.global.}: MethodBindPtr

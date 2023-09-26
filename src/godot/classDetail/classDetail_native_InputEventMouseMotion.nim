@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_InputEventMouse; export classDetail_native_InputEventMouse
 
 proc `tilt=`*(self: InputEventMouseMotion; tilt: Vector2) =
   var methodbind {.global.}: MethodBindPtr

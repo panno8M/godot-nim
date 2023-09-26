@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Material; export classDetail_native_Material
 
 proc `direction=`*(self: ParticleProcessMaterial; degrees: Vector3) =
   var methodbind {.global.}: MethodBindPtr

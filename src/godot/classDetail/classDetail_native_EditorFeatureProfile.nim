@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 
 proc setDisableClass*(self: EditorFeatureProfile; className: StringName; disable: Bool) =
   var methodbind {.global.}: MethodBindPtr

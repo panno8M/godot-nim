@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 
 proc getTravel*(self: KinematicCollision3D): Vector3 =
   var methodbind {.global.}: MethodBindPtr

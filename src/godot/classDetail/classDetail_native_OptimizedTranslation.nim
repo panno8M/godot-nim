@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Translation; export classDetail_native_Translation
 
 proc generate*(self: OptimizedTranslation; `from`: Translation) =
   var methodbind {.global.}: MethodBindPtr

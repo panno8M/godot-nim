@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_VisualShaderNodeParameter; export classDetail_native_VisualShaderNodeParameter
 
 proc `defaultValueEnabled=`*(self: VisualShaderNodeTransformParameter; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr

@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_AudioStream; export classDetail_native_AudioStream
 
 proc `packetSequence=`*(self: AudioStreamOggVorbis; packetSequence: OggPacketSequence) =
   var methodbind {.global.}: MethodBindPtr

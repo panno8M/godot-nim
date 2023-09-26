@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Node; export classDetail_native_Node
 
 proc `layer=`*(self: CanvasLayer; layer: int32) =
   var methodbind {.global.}: MethodBindPtr

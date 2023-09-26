@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Resource; export classDetail_native_Resource
 
 proc `lightmapSizeHint=`*(self: Mesh; size: Vector2i) =
   var methodbind {.global.}: MethodBindPtr

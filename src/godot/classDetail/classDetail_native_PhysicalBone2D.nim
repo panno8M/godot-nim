@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_RigidBody2D; export classDetail_native_RigidBody2D
 
 proc getJoint*(self: PhysicalBone2D): Joint2D =
   var methodbind {.global.}: MethodBindPtr

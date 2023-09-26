@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Resource; export classDetail_native_Resource
 
 proc setup*(self: PolygonPathFinder; points: PackedVector2Array; connections: PackedInt32Array) =
   var methodbind {.global.}: MethodBindPtr

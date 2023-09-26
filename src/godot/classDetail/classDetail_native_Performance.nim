@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Object; export classDetail_native_Object
 
 proc getMonitor*(self: Performance; monitor: Performance_Monitor): float64 =
   var methodbind {.global.}: MethodBindPtr

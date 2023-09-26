@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Container; export classDetail_native_Container
 
 proc getTabCount*(self: TabContainer): int32 =
   var methodbind {.global.}: MethodBindPtr

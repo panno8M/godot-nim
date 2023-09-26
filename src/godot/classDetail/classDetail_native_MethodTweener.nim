@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Tweener; export classDetail_native_Tweener
 
 proc setDelay*(self: MethodTweener; delay: float64): MethodTweener =
   var methodbind {.global.}: MethodBindPtr

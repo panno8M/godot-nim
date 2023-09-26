@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_PrimitiveMesh; export classDetail_native_PrimitiveMesh
 
 proc `radius=`*(self: SphereMesh; radius: Float) =
   var methodbind {.global.}: MethodBindPtr

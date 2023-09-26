@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Noise; export classDetail_native_Noise
 
 proc `noiseType=`*(self: FastNoiseLite; `type`: FastNoiseLite_NoiseType) =
   var methodbind {.global.}: MethodBindPtr

@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Object; export classDetail_native_Object
 
 proc getDefaultTheme*(self: ThemeDB): Theme =
   var methodbind {.global.}: MethodBindPtr

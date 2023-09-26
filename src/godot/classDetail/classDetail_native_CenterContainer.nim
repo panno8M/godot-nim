@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Container; export classDetail_native_Container
 
 proc `useTopLeft=`*(self: CenterContainer; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr

@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Mesh; export classDetail_native_Mesh
 
 proc surfaceBegin*(self: ImmediateMesh; primitive: Mesh_PrimitiveType; material: Material = default Material) =
   var methodbind {.global.}: MethodBindPtr

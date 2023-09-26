@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Material; export classDetail_native_Material
 
 proc `rayleighCoefficient=`*(self: PhysicalSkyMaterial; rayleigh: Float) =
   var methodbind {.global.}: MethodBindPtr

@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_GeometryInstance3D; export classDetail_native_GeometryInstance3D
 
 proc `mesh=`*(self: MeshInstance3D; mesh: Mesh) =
   var methodbind {.global.}: MethodBindPtr

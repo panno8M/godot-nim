@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Object; export classDetail_native_Object
 
 proc getMaps*(self: NavigationServer3D): TypedArray[RID] =
   var methodbind {.global.}: MethodBindPtr

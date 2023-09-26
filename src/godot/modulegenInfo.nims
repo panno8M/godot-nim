@@ -1,7 +1,6 @@
 let modules: seq[string] = @[
   "helper/",
   "pure/",
-  "classes/",
   "classDetail/",
   "godotInterface/",
   "variants/",
@@ -11,6 +10,7 @@ let modules: seq[string] = @[
   "(typedArray.nim)",
   "(init.nim)",
   "(godotInterface.nim)",
+  "classIndex.nim",
   "variants.nim",
   "(logging.nim)",
 ]

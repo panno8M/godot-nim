@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_PrimitiveMesh; export classDetail_native_PrimitiveMesh
 
 proc `size=`*(self: PlaneMesh; size: Vector2) =
   var methodbind {.global.}: MethodBindPtr

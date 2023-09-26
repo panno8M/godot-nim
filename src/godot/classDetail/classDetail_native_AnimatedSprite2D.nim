@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Node2D; export classDetail_native_Node2D
 
 proc `spriteFrames=`*(self: AnimatedSprite2D; spriteFrames: SpriteFrames) =
   var methodbind {.global.}: MethodBindPtr

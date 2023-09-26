@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Occluder3D; export classDetail_native_Occluder3D
 
 proc `radius=`*(self: SphereOccluder3D; radius: Float) =
   var methodbind {.global.}: MethodBindPtr

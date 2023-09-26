@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Resource; export classDetail_native_Resource
 
 proc `actionSets=`*(self: OpenXRActionMap; actionSets: Array) =
   var methodbind {.global.}: MethodBindPtr

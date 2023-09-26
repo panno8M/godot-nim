@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_BaseButton; export classDetail_native_BaseButton
 
 proc `text=`*(self: Button; text: String) =
   var methodbind {.global.}: MethodBindPtr

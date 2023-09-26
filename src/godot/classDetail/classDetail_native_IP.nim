@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Object; export classDetail_native_Object
 
 proc resolveHostname*(self: IP; host: String; ipType: IP_Type = typeAny): String =
   var methodbind {.global.}: MethodBindPtr

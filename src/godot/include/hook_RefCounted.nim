@@ -2,7 +2,7 @@ proc `=copy`(dst: var RefCountedObj; src: RefCountedObj)
 proc `=dup`(src: RefCountedObj): RefCountedObj {.noDestroy.}
 proc `=destroy`(x: RefCountedObj)
 
-import ../../pure/compileTimeSwitch
+import ../pure/compileTimeSwitch
 when TraceRefCountedHook:
   import ../../logging
   import std/strutils

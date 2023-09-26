@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Object; export classDetail_native_Object
 
 proc intersectPoint*(self: PhysicsDirectSpaceState2D; parameters: PhysicsPointQueryParameters2D; maxRetvals: int32 = 32): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr

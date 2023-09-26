@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_StreamPeer; export classDetail_native_StreamPeer
 
 proc seek*(self: StreamPeerBuffer; position: int32) =
   var methodbind {.global.}: MethodBindPtr

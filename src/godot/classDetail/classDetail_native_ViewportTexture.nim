@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Texture2D; export classDetail_native_Texture2D
 
 proc `viewportPathInScene=`*(self: ViewportTexture; path: NodePath) =
   var methodbind {.global.}: MethodBindPtr

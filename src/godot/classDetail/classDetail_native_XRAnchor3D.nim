@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_XRNode3D; export classDetail_native_XRNode3D
 
 proc getSize*(self: XRAnchor3D): Vector3 =
   var methodbind {.global.}: MethodBindPtr

@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_VisibleOnScreenNotifier2D; export classDetail_native_VisibleOnScreenNotifier2D
 
 proc `enableMode=`*(self: VisibleOnScreenEnabler2D; mode: VisibleOnScreenEnabler2D_EnableMode) =
   var methodbind {.global.}: MethodBindPtr

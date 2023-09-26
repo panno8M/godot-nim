@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_InputEventWithModifiers; export classDetail_native_InputEventWithModifiers
 
 proc `buttonMask=`*(self: InputEventMouse; buttonMask: set[MouseButtonMask]) =
   var methodbind {.global.}: MethodBindPtr

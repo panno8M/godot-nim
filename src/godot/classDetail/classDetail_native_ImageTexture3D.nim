@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Texture3D; export classDetail_native_Texture3D
 
 proc create*(self: ImageTexture3D; format: Image_Format; width: int32; height: int32; depth: int32; useMipmaps: Bool; data: TypedArray[Image]): Error =
   var methodbind {.global.}: MethodBindPtr

@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_PacketPeer; export classDetail_native_PacketPeer
 
 proc peerDisconnect*(self: ENetPacketPeer; data: int32 = 0) =
   var methodbind {.global.}: MethodBindPtr

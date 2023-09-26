@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Node3D; export classDetail_native_Node3D
 
 proc resourceChanged*(self: ShapeCast3D; resource: Resource) =
   var methodbind {.global.}: MethodBindPtr

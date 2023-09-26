@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_VisualShaderNodeResizableBase; export classDetail_native_VisualShaderNodeResizableBase
 
 proc `texture=`*(self: VisualShaderNodeCurveTexture; texture: CurveTexture) =
   var methodbind {.global.}: MethodBindPtr

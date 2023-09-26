@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_PacketPeer; export classDetail_native_PacketPeer
 
 proc `streamPeer=`*(self: PacketPeerStream; peer: StreamPeer) =
   var methodbind {.global.}: MethodBindPtr

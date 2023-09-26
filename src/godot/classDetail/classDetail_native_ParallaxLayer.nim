@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Node2D; export classDetail_native_Node2D
 
 proc `motionScale=`*(self: ParallaxLayer; scale: Vector2) =
   var methodbind {.global.}: MethodBindPtr

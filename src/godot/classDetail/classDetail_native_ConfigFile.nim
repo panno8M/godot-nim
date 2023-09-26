@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 
 proc setValue*(self: ConfigFile; section: String; key: String; value: ptr Variant) =
   var methodbind {.global.}: MethodBindPtr

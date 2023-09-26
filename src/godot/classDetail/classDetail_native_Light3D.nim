@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_VisualInstance3D; export classDetail_native_VisualInstance3D
 
 proc `editorOnly=`*(self: Light3D; editorOnly: Bool) =
   var methodbind {.global.}: MethodBindPtr

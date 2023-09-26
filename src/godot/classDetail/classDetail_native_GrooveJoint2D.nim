@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Joint2D; export classDetail_native_Joint2D
 
 proc `length=`*(self: GrooveJoint2D; length: Float) =
   var methodbind {.global.}: MethodBindPtr

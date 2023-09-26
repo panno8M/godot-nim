@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_StreamPeer; export classDetail_native_StreamPeer
 
 proc poll*(self: StreamPeerTLS) =
   var methodbind {.global.}: MethodBindPtr

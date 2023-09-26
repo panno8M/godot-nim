@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Resource; export classDetail_native_Resource
 
 proc save*(self: CryptoKey; path: String; publicOnly: Bool = false): Error =
   var methodbind {.global.}: MethodBindPtr

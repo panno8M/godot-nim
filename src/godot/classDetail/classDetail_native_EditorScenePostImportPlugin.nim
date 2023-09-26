@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 
 proc getOptionValue*(self: EditorScenePostImportPlugin; name: StringName): Variant =
   var methodbind {.global.}: MethodBindPtr

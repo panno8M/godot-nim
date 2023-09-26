@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_AcceptDialog; export classDetail_native_AcceptDialog
 
 proc getCancelButton*(self: ConfirmationDialog): Button =
   var methodbind {.global.}: MethodBindPtr

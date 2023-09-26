@@ -2,12 +2,8 @@
 # This module was generated automatically. #
 # Edits will be lost.                      #
 # ======================================== #
-import ./../helper/standAloneEngineClassDefiner
+import ./../helper/engineClassDefiner
 
-type ObjectObj* = object of ObjectBaseObj
-type Object* = ref ObjectObj
-template Super*(_: typedesc[Object]): typedesc = ObjectBase
-template EngineClass*(_: typedesc[Object]): typedesc = Object
 proc getClass*(self: Object): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

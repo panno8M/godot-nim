@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Object; export classDetail_native_Object
 
 proc getConnectedMidiInputs*(self: OS): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr

@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Resource; export classDetail_native_Resource
 
 proc `outputPortForPreview=`*(self: VisualShaderNode; port: int32) =
   var methodbind {.global.}: MethodBindPtr

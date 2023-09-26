@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_InputEventWithModifiers; export classDetail_native_InputEventWithModifiers
 
 proc `position=`*(self: InputEventGesture; position: Vector2) =
   var methodbind {.global.}: MethodBindPtr

@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Shape3D; export classDetail_native_Shape3D
 
 proc `radius=`*(self: CapsuleShape3D; radius: Float) =
   var methodbind {.global.}: MethodBindPtr

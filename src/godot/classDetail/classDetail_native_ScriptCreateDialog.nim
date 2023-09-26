@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_ConfirmationDialog; export classDetail_native_ConfirmationDialog
 
 proc config*(self: ScriptCreateDialog; inherits: String; path: String; builtInEnabled: Bool = true; loadEnabled: Bool = true) =
   var methodbind {.global.}: MethodBindPtr

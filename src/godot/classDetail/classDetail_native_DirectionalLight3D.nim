@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Light3D; export classDetail_native_Light3D
 
 proc `shadowMode=`*(self: DirectionalLight3D; mode: DirectionalLight3D_ShadowMode) =
   var methodbind {.global.}: MethodBindPtr

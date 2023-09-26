@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_BaseButton; export classDetail_native_BaseButton
 
 proc `textureNormal=`*(self: TextureButton; texture: Texture2D) =
   var methodbind {.global.}: MethodBindPtr

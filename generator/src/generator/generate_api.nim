@@ -3,8 +3,8 @@
 import beyond/meta/modules
 import std/[
   json,
-  sequtils,
   strutils,
+  strformat,
   sets,
   options,
 ]
@@ -70,39 +70,32 @@ proc generate*(api: JsonNode) =
 
   let essencial_mdl = mdl("classEssencial")
     .incl(moduleTree.engineClassDefiner)
-  let engineClassDefines_mdl = mdl("engineClassDefines")
-  d_godotInterface.take engineClassDefines_mdl
+  let engineClassDefines_mdl = mdl("classIndex")
+    .incl(objectBase, godotInterface, moduleTree.variants)
+  d_godot.take engineClassDefines_mdl
   moduleTree.d_godot.take essencial_mdl
-  for rend in api.classes.toNim.parentalSorted.toSeq.concat.renderDetail:
-    case rend.class.name
-    of "Object", "RefCounted":
-      let class_mdl = mdl("class_" & rend.class.name)
-        .incl(standAloneEngineClassDefiner)
+  for group in api.classes.toNim.parentalSorted:
+    for class in group:
+      let rend = class.renderDetail
+
       let prototype = new ParagraphSt
-      discard +$$..class_mdl.contents:
+      discard +$$..engineClassDefines_mdl.contents:
         rend.define
         prototype
-        rend.essencial
-        rend.detail
-        rend.virtual
-      moduleTree.localEnums.contents.children.add rend.enums
-      d_classes.take class_mdl
-      if rend.class.name == "RefCounted":
-        discard class_mdl.incl(d_classes//"class_Object")
-        prototype.children.add "include \"include/hook_RefCounted\""
-
-    else:
-      engineClassDefines_mdl.contents.children.add rend.define
-      let detail_mdl = mdl("classDetail_native_" & $rend.class)
+      let detail_mdl = mdl("classDetail_native_" & $class.name)
+        .exportModules_allowed
         .incl(moduleTree.engineClassDefiner)
       moduleTree.d_classDetail.take detail_mdl
       detail_mdl.contents = rend.detail
-      essencial_mdl.contents.children.add rend.essencial
       moduleTree.localEnums.contents.children.add rend.enums
       essencial_mdl.contents.children.add rend.virtual
 
-  for name in ["class_Object", "class_RefCounted"]:
-    discard essencial_mdl.incl(d_classes//name)
-    discard engineClassDefines_mdl.incl(d_classes//name)
+      case $class.name
+      of "Object":
+        discard
+      of "RefCounted":
+        prototype.children.add "include \"include/hook_RefCounted\""
+      else:
+        discard detail_mdl.incl d_classDetail//fmt"classDetail_native_{class.inherits}"
 
   moduleTree.nativeStructs.contents.children.add prerender api.native_structures

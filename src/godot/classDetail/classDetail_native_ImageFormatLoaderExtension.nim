@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_ImageFormatLoader; export classDetail_native_ImageFormatLoader
 
 proc addFormatLoader*(self: ImageFormatLoaderExtension) =
   var methodbind {.global.}: MethodBindPtr

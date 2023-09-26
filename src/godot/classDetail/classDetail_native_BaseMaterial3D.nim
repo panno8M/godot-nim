@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Material; export classDetail_native_Material
 
 proc `albedo=`*(self: BaseMaterial3D; albedo: Color) =
   var methodbind {.global.}: MethodBindPtr

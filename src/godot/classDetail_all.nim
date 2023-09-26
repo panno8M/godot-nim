@@ -432,6 +432,7 @@ import ./classDetail/classDetail_native_NoiseTexture2D; export classDetail_nativ
 import ./classDetail/classDetail_native_NoiseTexture3D; export classDetail_native_NoiseTexture3D
 import ./classDetail/classDetail_native_ORMMaterial3D; export classDetail_native_ORMMaterial3D
 import ./classDetail/classDetail_native_OS; export classDetail_native_OS
+import ./classDetail/classDetail_native_Object; export classDetail_native_Object
 import ./classDetail/classDetail_native_Occluder3D; export classDetail_native_Occluder3D
 import ./classDetail/classDetail_native_OccluderInstance3D; export classDetail_native_OccluderInstance3D
 import ./classDetail/classDetail_native_OccluderPolygon2D; export classDetail_native_OccluderPolygon2D
@@ -548,6 +549,7 @@ import ./classDetail/classDetail_native_Range; export classDetail_native_Range
 import ./classDetail/classDetail_native_RayCast2D; export classDetail_native_RayCast2D
 import ./classDetail/classDetail_native_RayCast3D; export classDetail_native_RayCast3D
 import ./classDetail/classDetail_native_RectangleShape2D; export classDetail_native_RectangleShape2D
+import ./classDetail/classDetail_native_RefCounted; export classDetail_native_RefCounted
 import ./classDetail/classDetail_native_ReferenceRect; export classDetail_native_ReferenceRect
 import ./classDetail/classDetail_native_ReflectionProbe; export classDetail_native_ReflectionProbe
 import ./classDetail/classDetail_native_RegEx; export classDetail_native_RegEx

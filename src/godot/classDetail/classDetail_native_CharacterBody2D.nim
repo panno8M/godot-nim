@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_PhysicsBody2D; export classDetail_native_PhysicsBody2D
 
 proc moveAndSlide*(self: CharacterBody2D): Bool =
   var methodbind {.global.}: MethodBindPtr

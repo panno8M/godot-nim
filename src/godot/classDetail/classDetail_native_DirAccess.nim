@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 
 proc open*(_: typedesc[DirAccess]; path: String): DirAccess =
   var methodbind {.global.}: MethodBindPtr

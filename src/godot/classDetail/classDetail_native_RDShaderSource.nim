@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 
 proc `stageSource=`*(self: RDShaderSource; stage: RenderingDevice_ShaderStage; source: String) =
   var methodbind {.global.}: MethodBindPtr

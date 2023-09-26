@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_CanvasLayer; export classDetail_native_CanvasLayer
 
 proc `scrollOffset=`*(self: ParallaxBackground; offset: Vector2) =
   var methodbind {.global.}: MethodBindPtr

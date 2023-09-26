@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_AnimationNodeSync; export classDetail_native_AnimationNodeSync
 
 proc `inputCount=`*(self: AnimationNodeTransition; inputCount: int32) =
   var methodbind {.global.}: MethodBindPtr

@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 
 proc sendMessage*(self: EditorDebuggerSession; message: String; data: Array = init_Array()) =
   var methodbind {.global.}: MethodBindPtr

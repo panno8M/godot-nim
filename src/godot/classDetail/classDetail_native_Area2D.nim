@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_CollisionObject2D; export classDetail_native_CollisionObject2D
 
 proc `gravitySpaceOverrideMode=`*(self: Area2D; spaceOverrideMode: Area2D_SpaceOverride) =
   var methodbind {.global.}: MethodBindPtr

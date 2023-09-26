@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_StreamPeer; export classDetail_native_StreamPeer
 
 proc startCompression*(self: StreamPeerGZIP; useDeflate: Bool = false; bufferSize: int32 = 65535): Error =
   var methodbind {.global.}: MethodBindPtr

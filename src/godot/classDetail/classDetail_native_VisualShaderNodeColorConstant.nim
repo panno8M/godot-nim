@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_VisualShaderNodeConstant; export classDetail_native_VisualShaderNodeConstant
 
 proc `constant=`*(self: VisualShaderNodeColorConstant; constant: Color) =
   var methodbind {.global.}: MethodBindPtr

@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Mesh; export classDetail_native_Mesh
 
 proc `aabb=`*(self: PlaceholderMesh; aabb: AABB) =
   var methodbind {.global.}: MethodBindPtr

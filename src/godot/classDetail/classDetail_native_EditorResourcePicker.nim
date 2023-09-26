@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_HBoxContainer; export classDetail_native_HBoxContainer
 
 proc `baseType=`*(self: EditorResourcePicker; baseType: String) =
   var methodbind {.global.}: MethodBindPtr

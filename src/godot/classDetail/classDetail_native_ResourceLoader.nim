@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Object; export classDetail_native_Object
 
 proc loadThreadedRequest*(self: ResourceLoader; path: String; typeHint: String = ""; useSubThreads: Bool = false; cacheMode: ResourceLoader_CacheMode = cacheModeReuse): Error =
   var methodbind {.global.}: MethodBindPtr

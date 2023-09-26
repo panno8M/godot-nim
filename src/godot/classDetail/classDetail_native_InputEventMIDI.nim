@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_InputEvent; export classDetail_native_InputEvent
 
 proc `channel=`*(self: InputEventMIDI; channel: int32) =
   var methodbind {.global.}: MethodBindPtr

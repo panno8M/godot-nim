@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Texture; export classDetail_native_Texture
 
 proc getFormat*(self: TextureLayered): Image_Format =
   var methodbind {.global.}: MethodBindPtr

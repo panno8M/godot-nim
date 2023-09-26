@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Control; export classDetail_native_Control
 
 proc borderColor*(self: ReferenceRect): Color =
   var methodbind {.global.}: MethodBindPtr

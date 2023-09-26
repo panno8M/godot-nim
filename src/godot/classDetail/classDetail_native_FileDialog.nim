@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_ConfirmationDialog; export classDetail_native_ConfirmationDialog
 
 proc clearFilters*(self: FileDialog) =
   var methodbind {.global.}: MethodBindPtr

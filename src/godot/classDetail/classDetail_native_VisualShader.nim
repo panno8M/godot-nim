@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Shader; export classDetail_native_Shader
 
 proc setMode*(self: VisualShader; mode: Shader_Mode) =
   var methodbind {.global.}: MethodBindPtr

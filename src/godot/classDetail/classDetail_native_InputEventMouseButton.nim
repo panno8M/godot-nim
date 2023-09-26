@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_InputEventMouse; export classDetail_native_InputEventMouse
 
 proc `factor=`*(self: InputEventMouseButton; factor: Float) =
   var methodbind {.global.}: MethodBindPtr

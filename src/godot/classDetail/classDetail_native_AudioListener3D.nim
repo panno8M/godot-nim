@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Node3D; export classDetail_native_Node3D
 
 proc makeCurrent*(self: AudioListener3D) =
   var methodbind {.global.}: MethodBindPtr

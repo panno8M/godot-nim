@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_CameraAttributes; export classDetail_native_CameraAttributes
 
 proc `dofBlurFarEnabled=`*(self: CameraAttributesPractical; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr

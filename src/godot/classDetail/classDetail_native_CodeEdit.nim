@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_TextEdit; export classDetail_native_TextEdit
 
 proc `indentSize=`*(self: CodeEdit; size: int32) =
   var methodbind {.global.}: MethodBindPtr

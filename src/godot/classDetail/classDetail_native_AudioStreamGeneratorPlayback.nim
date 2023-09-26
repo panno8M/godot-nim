@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_AudioStreamPlaybackResampled; export classDetail_native_AudioStreamPlaybackResampled
 
 proc pushFrame*(self: AudioStreamGeneratorPlayback; frame: Vector2): Bool =
   var methodbind {.global.}: MethodBindPtr

@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_VisualShaderNodeVectorBase; export classDetail_native_VisualShaderNodeVectorBase
 
 proc `function=`*(self: VisualShaderNodeVectorFunc; `func`: VisualShaderNodeVectorFunc_Function) =
   var methodbind {.global.}: MethodBindPtr

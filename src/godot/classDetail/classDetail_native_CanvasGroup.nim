@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Node2D; export classDetail_native_Node2D
 
 proc `fitMargin=`*(self: CanvasGroup; fitMargin: Float) =
   var methodbind {.global.}: MethodBindPtr

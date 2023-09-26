@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_StyleBox; export classDetail_native_StyleBox
 
 proc `color=`*(self: StyleBoxLine; color: Color) =
   var methodbind {.global.}: MethodBindPtr

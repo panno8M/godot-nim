@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_SpriteBase3D; export classDetail_native_SpriteBase3D
 
 proc `texture=`*(self: Sprite3D; texture: Texture2D) =
   var methodbind {.global.}: MethodBindPtr

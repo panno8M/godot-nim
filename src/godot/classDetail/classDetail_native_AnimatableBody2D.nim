@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_StaticBody2D; export classDetail_native_StaticBody2D
 
 proc `syncToPhysics=`*(self: AnimatableBody2D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr

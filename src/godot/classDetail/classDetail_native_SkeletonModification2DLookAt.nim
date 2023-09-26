@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_SkeletonModification2D; export classDetail_native_SkeletonModification2D
 
 proc `bone2dNode=`*(self: SkeletonModification2DLookAt; bone2dNodepath: NodePath) =
   var methodbind {.global.}: MethodBindPtr

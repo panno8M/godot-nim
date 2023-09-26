@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Window; export classDetail_native_Window
 
 proc getOkButton*(self: AcceptDialog): Button =
   var methodbind {.global.}: MethodBindPtr

@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_AudioStream; export classDetail_native_AudioStream
 
 proc addStream*(self: AudioStreamRandomizer; index: int32; stream: AudioStream; weight: Float = 1.0) =
   var methodbind {.global.}: MethodBindPtr

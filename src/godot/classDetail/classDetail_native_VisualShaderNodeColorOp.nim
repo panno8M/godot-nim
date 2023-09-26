@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_VisualShaderNode; export classDetail_native_VisualShaderNode
 
 proc `operator=`*(self: VisualShaderNodeColorOp; op: VisualShaderNodeColorOp_Operator) =
   var methodbind {.global.}: MethodBindPtr

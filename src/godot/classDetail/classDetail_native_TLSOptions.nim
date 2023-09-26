@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 
 proc client*(_: typedesc[TLSOptions]; trustedChain: X509Certificate = default X509Certificate; commonNameOverride: String = ""): TLSOptions =
   var methodbind {.global.}: MethodBindPtr

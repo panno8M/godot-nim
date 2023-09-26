@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Button; export classDetail_native_Button
 
 proc getPopup*(self: MenuButton): PopupMenu =
   var methodbind {.global.}: MethodBindPtr

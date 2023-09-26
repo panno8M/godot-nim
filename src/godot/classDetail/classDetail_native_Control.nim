@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_CanvasItem; export classDetail_native_CanvasItem
 
 proc acceptEvent*(self: Control) =
   var methodbind {.global.}: MethodBindPtr

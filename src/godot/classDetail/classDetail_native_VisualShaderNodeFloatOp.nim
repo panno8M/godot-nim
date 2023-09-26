@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_VisualShaderNode; export classDetail_native_VisualShaderNode
 
 proc `operator=`*(self: VisualShaderNodeFloatOp; op: VisualShaderNodeFloatOp_Operator) =
   var methodbind {.global.}: MethodBindPtr

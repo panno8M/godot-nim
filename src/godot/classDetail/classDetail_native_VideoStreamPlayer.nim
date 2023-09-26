@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Control; export classDetail_native_Control
 
 proc `stream=`*(self: VideoStreamPlayer; stream: VideoStream) =
   var methodbind {.global.}: MethodBindPtr

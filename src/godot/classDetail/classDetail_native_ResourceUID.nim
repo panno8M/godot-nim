@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Object; export classDetail_native_Object
 
 proc idToText*(self: ResourceUID; id: int64): String =
   var methodbind {.global.}: MethodBindPtr

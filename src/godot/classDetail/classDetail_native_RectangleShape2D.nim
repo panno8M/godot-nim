@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Shape2D; export classDetail_native_Shape2D
 
 proc `size=`*(self: RectangleShape2D; size: Vector2) =
   var methodbind {.global.}: MethodBindPtr

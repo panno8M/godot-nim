@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_VisualInstance3D; export classDetail_native_VisualInstance3D
 
 proc `materialOverride=`*(self: GeometryInstance3D; material: Material) =
   var methodbind {.global.}: MethodBindPtr

@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_TextureLayered; export classDetail_native_TextureLayered
 
 proc `load=`*(self: CompressedTextureLayered; path: String): Error =
   var methodbind {.global.}: MethodBindPtr

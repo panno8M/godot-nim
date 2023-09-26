@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_AnimationRootNode; export classDetail_native_AnimationRootNode
 
 proc `animation=`*(self: AnimationNodeAnimation; name: StringName) =
   var methodbind {.global.}: MethodBindPtr

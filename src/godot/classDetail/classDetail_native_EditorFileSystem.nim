@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Node; export classDetail_native_Node
 
 proc getFilesystem*(self: EditorFileSystem): EditorFileSystemDirectory =
   var methodbind {.global.}: MethodBindPtr

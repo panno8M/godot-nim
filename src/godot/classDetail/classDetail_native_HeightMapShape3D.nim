@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Shape3D; export classDetail_native_Shape3D
 
 proc `mapWidth=`*(self: HeightMapShape3D; width: int32) =
   var methodbind {.global.}: MethodBindPtr

@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Resource; export classDetail_native_Resource
 
 proc addPoint*(self: Gradient; offset: Float; color: Color) =
   var methodbind {.global.}: MethodBindPtr

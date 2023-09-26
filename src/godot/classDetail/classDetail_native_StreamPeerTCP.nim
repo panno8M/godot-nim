@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_StreamPeer; export classDetail_native_StreamPeer
 
 proc `bind`*(self: StreamPeerTCP; port: int32; host: String = "*"): Error =
   var methodbind {.global.}: MethodBindPtr

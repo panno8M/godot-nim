@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_AudioEffect; export classDetail_native_AudioEffect
 
 proc `mode=`*(self: AudioEffectDistortion; mode: AudioEffectDistortion_Mode) =
   var methodbind {.global.}: MethodBindPtr

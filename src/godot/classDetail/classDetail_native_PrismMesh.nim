@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_PrimitiveMesh; export classDetail_native_PrimitiveMesh
 
 proc `leftToRight=`*(self: PrismMesh; leftToRight: Float) =
   var methodbind {.global.}: MethodBindPtr

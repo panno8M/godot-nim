@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Node3D; export classDetail_native_Node3D
 
 proc projectRayNormal*(self: Camera3D; screenPoint: Vector2): Vector3 =
   var methodbind {.global.}: MethodBindPtr

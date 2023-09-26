@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Object; export classDetail_native_Object
 
 proc variantToBase64*(self: Marshalls; variant: ptr Variant; fullObjects: Bool = false): String =
   var methodbind {.global.}: MethodBindPtr

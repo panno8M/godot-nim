@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_PhysicsServer2D; export classDetail_native_PhysicsServer2D
 
 proc bodyTestMotionIsExcludingBody*(self: PhysicsServer2DExtension; body: RID): Bool =
   var methodbind {.global.}: MethodBindPtr

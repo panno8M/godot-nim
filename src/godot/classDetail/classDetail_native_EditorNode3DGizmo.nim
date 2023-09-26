@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Node3DGizmo; export classDetail_native_Node3DGizmo
 
 proc addLines*(self: EditorNode3DGizmo; lines: PackedVector3Array; material: Material; billboard: Bool = false; modulate: Color = init_Color(1, 1, 1, 1)) =
   var methodbind {.global.}: MethodBindPtr

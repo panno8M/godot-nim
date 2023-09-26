@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Object; export classDetail_native_Object
 
 proc textureCreate*(self: RenderingDevice; format: RDTextureFormat; view: RDTextureView; data: TypedArray[PackedByteArray] = init_TypedArray[PackedByteArray]()): RID =
   var methodbind {.global.}: MethodBindPtr

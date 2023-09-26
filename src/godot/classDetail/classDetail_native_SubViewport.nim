@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Viewport; export classDetail_native_Viewport
 
 proc `size=`*(self: SubViewport; size: Vector2i) =
   var methodbind {.global.}: MethodBindPtr

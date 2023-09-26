@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Node2D; export classDetail_native_Node2D
 
 proc getRid*(self: CollisionObject2D): RID =
   var methodbind {.global.}: MethodBindPtr

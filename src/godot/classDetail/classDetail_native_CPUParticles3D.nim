@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_GeometryInstance3D; export classDetail_native_GeometryInstance3D
 
 proc `emitting=`*(self: CPUParticles3D; emitting: Bool) =
   var methodbind {.global.}: MethodBindPtr

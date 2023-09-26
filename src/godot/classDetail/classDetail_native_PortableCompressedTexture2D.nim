@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Texture2D; export classDetail_native_Texture2D
 
 proc createFromImage*(self: PortableCompressedTexture2D; image: Image; compressionMode: PortableCompressedTexture2D_CompressionMode; normalMap: Bool = false; lossyQuality: Float = 0.8) =
   var methodbind {.global.}: MethodBindPtr

@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_CSGPrimitive3D; export classDetail_native_CSGPrimitive3D
 
 proc `radius=`*(self: CSGSphere3D; radius: Float) =
   var methodbind {.global.}: MethodBindPtr

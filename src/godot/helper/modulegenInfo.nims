@@ -1,5 +1,4 @@
 let modules: seq[string] = @[
-  "(standAloneEngineClassDefiner.nim)",
   "(engineClassDefiner.nim)",
   "(classImporter.nim)",
   "(variantConstrDefiner.nim)",

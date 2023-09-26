@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Control; export classDetail_native_Control
 
 proc addItem*(self: ItemList; text: String; icon: Texture2D = default Texture2D; selectable: Bool = true): int32 =
   var methodbind {.global.}: MethodBindPtr

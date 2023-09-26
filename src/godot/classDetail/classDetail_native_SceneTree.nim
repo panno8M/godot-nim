@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_MainLoop; export classDetail_native_MainLoop
 
 proc root*(self: SceneTree): Window =
   var methodbind {.global.}: MethodBindPtr

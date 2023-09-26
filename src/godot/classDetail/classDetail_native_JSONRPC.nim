@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Object; export classDetail_native_Object
 
 proc setScope*(self: JSONRPC; scope: String; target: Object) =
   var methodbind {.global.}: MethodBindPtr

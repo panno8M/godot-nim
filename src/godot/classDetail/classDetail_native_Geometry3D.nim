@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_Object; export classDetail_native_Object
 
 proc buildBoxPlanes*(self: Geometry3D; extents: Vector3): TypedArray[Plane] =
   var methodbind {.global.}: MethodBindPtr

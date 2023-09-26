@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_TileSetSource; export classDetail_native_TileSetSource
 
 proc getSceneTilesCount*(self: TileSetScenesCollectionSource): int32 =
   var methodbind {.global.}: MethodBindPtr

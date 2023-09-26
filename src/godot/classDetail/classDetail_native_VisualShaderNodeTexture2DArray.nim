@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_VisualShaderNodeSample3D; export classDetail_native_VisualShaderNodeSample3D
 
 proc `textureArray=`*(self: VisualShaderNodeTexture2DArray; value: Texture2DArray) =
   var methodbind {.global.}: MethodBindPtr

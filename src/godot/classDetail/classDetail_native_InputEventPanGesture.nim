@@ -3,6 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./../helper/engineClassDefiner
+import ./classDetail_native_InputEventGesture; export classDetail_native_InputEventGesture
 
 proc `delta=`*(self: InputEventPanGesture; delta: Vector2) =
   var methodbind {.global.}: MethodBindPtr
