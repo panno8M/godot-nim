@@ -5,6 +5,8 @@ import godot
 # Since this library is still early stage, we recommend to use this sugar for portability
 importClass Node
 importClass RefCounted
+importClass InputEventKey
+importClass Engine
 
 # paramFiltering tryes to access to `paramCount` and it cause `OSError`
 # because the program will finally be shared object(dll).
@@ -59,6 +61,11 @@ proc test_Object(self: NimSideTester) =
       let obj = instantiate Object
       check obj.owner != nil
 
+    test "singleton":
+      # `/T` is same as `T.singleton`
+      (/Engine).registerSingleton(NimSideTester, self)
+      check self == NimSideTester (/Engine).getSingleton(NimSideTester)
+
 proc test_RefCounted(self: NimSideTester) =
   suite "RefCounted":
     test "reference counting":
@@ -93,8 +100,14 @@ proc test_Node(self: NimSideTester) =
 # No specific pragma is needed.
 # based on Node.ready()
 method ready(self: NimSideTester) =
+
   self.test_UserClass()
   self.test_SomeVariants()
   self.test_Object()
   self.test_RefCounted()
   self.test_Node()
+
+method input(self: NimSideTester; event: InputEvent) =
+  let evkey = event.castTo InputEventKey
+  if evkey.isNil: return
+  echo evkey, ": ", evkey.keyLabel

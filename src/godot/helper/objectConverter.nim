@@ -1,6 +1,5 @@
 import std/macros
 import variantTypeSolver
-import ../internal/runtime
 import ../godotInterface
 import ../objectBase
 import ../variants/variantsConstr_custom
@@ -149,32 +148,14 @@ proc get*(v: ptr Variant; T: typedesc[ObjectPtr]): T =
 # Godot Object
 # ============
 
-proc getInstanceBinding[T: SomeClass](p_engine_object: ObjectPtr; _: typedesc[T]): T =
-  if p_engine_object.isNil: return
-
-  # Get existing instance binding, if one already exists.
-  let instance = interface_objectGetInstanceBinding(p_engine_object, token, nil)
-  if not instance.isNil:
-    return cast[T](instance)
-
-  # Otherwise, try to look up the correct binding callbacks.
-  var binding_callbacks: ptr InstanceBindingCallbacks
-  # var class_name: StringName
-  # if interface_objectGetClassName(p_engine_object, library, addr class_name):
-  #   binding_callbacks = ClassDB::get_instance_binding_callbacks(class_name);
-  if binding_callbacks == nil:
-    binding_callbacks = addr T.callbacks
-
-  return cast[T](interface_objectGetInstanceBinding(p_engine_object, token, binding_callbacks))
-
 template encoded*[T: SomeClass](_: typedesc[T]): typedesc[ObjectPtr] = ObjectPtr
 template encode*[T: SomeClass](v: T; p: pointer) =
   encode(v.owner, p)
 proc decode*[T: SomeClass](p: pointer; _: typedesc[T]): T =
-  p.decode(ObjectPtr).getInstanceBinding(T)
+  p.decode(ObjectPtr).getInstance(T)
 proc variant*[T: SomeClass](v: T): Variant =
   variant v.owner
 proc get*[T: SomeClass](v: ptr Variant; _: typedesc[T]): T =
-  v.get(ObjectPtr).getInstanceBinding(T)
+  v.get(ObjectPtr).getInstance(T)
 
 {.pop.}

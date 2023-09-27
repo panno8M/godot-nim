@@ -26,9 +26,6 @@ type
     t is SomeClass
     t.EngineClass isnot t
 
-proc bind_virtuals*(S: typedesc[ObjectBase]; T: typedesc) =
-  discard
-
 method `=init`*(self: ObjectBase) {.base.} = discard
 
 # User Class callbacks
