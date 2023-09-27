@@ -38,10 +38,6 @@ proc get*[T: SomeVariants](v: ptr Variant; _: typedesc[T]): T =
 # ========
 
 template convert_alternative(Decoded, Encoded, encoder, decoder): untyped =
-  bind Decoded
-  bind Encoded
-  bind encoder
-  bind decoder
   template encoded*(T: typedesc[Decoded]): typedesc[Encoded] = Encoded
   template encode*(v: Decoded; p: pointer) =
     encode(encoder(v), p)
@@ -53,11 +49,9 @@ template convert_alternative(Decoded, Encoded, encoder, decoder): untyped =
     decoder(v.get(Encoded))
 
 template convert_alternative_autocast(Decoded, Encoded): untyped =
-  bind Decoded
-  bind Encoded
   template encoded*(T: typedesc[Decoded]): typedesc[Encoded] = Encoded
   template encode*(v: Decoded; p: pointer) =
-    Encoded(encoder(v), p)
+    encode(Encoded(v), p)
   proc decode*(p: pointer; D: typedesc[Decoded]): D =
     D(p.decode(Encoded))
   proc variant*(v: Decoded): Variant =
