@@ -16,9 +16,8 @@ type ObjectBase* = ref ObjectBaseObj
 proc `=destroy`(x: ObjectBaseObj)
 
 type
-  SomeClass* = ObjectBase
-  # SomeClass* = concept type t
-  #   t is ObjectBase
+  SomeClass* = concept type t
+    t is ObjectBase
   SomeEngineClass* = concept type t
     t is SomeClass
     t.EngineClass is t

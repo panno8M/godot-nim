@@ -1,4 +1,6 @@
 import std/unittest
+import std/strformat
+import std/strutils
 import godot
 
 # sugar of `import godot/classDetail/classDetail_native_T`
@@ -89,12 +91,33 @@ proc test_RefCounted(self: NimSideTester) =
 
 proc test_Node(self: NimSideTester) =
   suite "Node":
+    # Shorthand of that:
+    # let node1 = instantiate(Node2D)
+    # node1.name = "MyNode2D"
+    let node = instantiate(Node2D, "MyNode2D")
+
     test "get node from tree":
-      let node1 = instantiate Node
-      node1.name = "Node"
-      self.addChild node1
-      let node2 = self.getNode("Node")
-      check node1 == node2
+      self.addChild node
+
+      let node2_node: Node = self/"MyNode2D"
+      # Or, `self.getNode("MyNode2D")`
+
+      let node2: Node2D = node2_node as Node2D
+      check node == node2
+
+    test "stringify":
+      echo &"{node=}"
+      check "MyNode2D" in $node
+
+    test "get node from tree (using sugar)":
+      let node = instantiate(Node2D, "Node2D")
+      self.addChild node
+
+      # Shorthand of: `self.getNode($Node2D) as Node2D
+      let node2: Node2D = self/Node2D
+
+      check node == node2
+
 
 # Using `method` to override virtual functions of Engine-Class.
 # No specific pragma is needed.

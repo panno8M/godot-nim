@@ -55,4 +55,7 @@ proc singleton*[T: SomeClass](_: typedesc[T]): T =
 template `/`*[T: SomeClass](_: typedesc[T]): T = T.singleton
 
 proc `$`*[T: SomeClass](self: T): string =
-  $T & "(0x" & self.instanceID.toHex & ")"
+  if self.isNil: return $T & "(nil)"
+  result = $T & "(ID: 0x" & self.instanceID.toHex & ")"
+  when compiles self.name():
+    return $self.name() & " [" & result & "]"

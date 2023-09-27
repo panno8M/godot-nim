@@ -68,6 +68,7 @@ proc generate*(api: JsonNode) =
   moduleTree.localEnums.contents.children.add variants.renderLocalEnums
   genVariantHook(api.builtin_classes)
 
+  const hasCustomDetail = toHashSet ["Node"]
   let essencial_mdl = mdl("classEssencial")
     .incl(moduleTree.engineClassDefiner)
   moduleTree.d_godot.take essencial_mdl
@@ -84,6 +85,8 @@ proc generate*(api: JsonNode) =
         .incl(moduleTree.engineClassDefiner)
       moduleTree.d_classDetail.take detail_mdl
       detail_mdl.contents = rend.detail
+      if $class.name in hasCustomDetail:
+        detail_mdl.contents.children.add &"include \"include/classDetail_custom_{class.name}\""
       moduleTree.localEnums.contents.children.add rend.enums
       essencial_mdl.contents.children.add rend.virtual
 

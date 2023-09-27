@@ -801,3 +801,4 @@ proc notifyThreadSafe*(self: Node; what: int32) =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 1286410249)
   var `?param` = [getPtr what]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
+include "include/classDetail_custom_Node"
