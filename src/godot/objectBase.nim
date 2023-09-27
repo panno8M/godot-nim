@@ -44,8 +44,8 @@ proc castTo*[T, S: SomeClass](self: T; _: typedesc[S]): S =
     .interface_Object_castTo(interface_ClassDB_getClassTag(addr className S))
     .getInstance(S)
 
-template `as`*[T, S: SomeClass](self: T; _: typedesc[S]): S =
-  self.castTo S
+template `as`*[T, S: SomeClass](self: T; T_Other: typedesc[S]): S =
+  castTo(self, T_Other)
 
 proc singleton*[T: SomeClass](_: typedesc[T]): T =
   (addr className T)

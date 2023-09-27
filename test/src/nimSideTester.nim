@@ -108,6 +108,7 @@ method ready(self: NimSideTester) =
   self.test_Node()
 
 method input(self: NimSideTester; event: InputEvent) =
-  let evkey = event.castTo InputEventKey
+  let evkey = event as InputEventKey
+  # Or, `let evkey = event.castTo InputEventKey`
   if evkey.isNil: return
   echo evkey, ": ", evkey.keyLabel
