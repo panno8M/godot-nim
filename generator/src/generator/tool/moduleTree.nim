@@ -12,6 +12,7 @@ let # directories
   d_pure* = dir"pure"
   d_godotInterface* = dir"godotInterface"
   d_godotInterface_include* = dir"include"
+  d_internal* = dir"internal"
 
 
 let # modules
@@ -25,6 +26,8 @@ let # modules
   variantsConstr_custom* = dummy mdl"variantsConstr_custom"
   variantLoader* = mdl"variantsLoader"
 
+  runtime* = dummy mdl"runtime"
+  classIndex* = mdl"classIndex"
   classDetail_all* = mdl"classDetail_all"
 
   globalEnums* = mdl"globalEnums"
@@ -57,6 +60,13 @@ discard nativeStructs
   .incl(
     godotInterface,
     objectBase)
+discard classIndex
+  .incl(
+    godotInterface,
+    objectBase,
+    variants,
+    runtime,
+  )
 discard classDetail_all
   .exportModules_allowed
   .incl(d_classDetail)
@@ -79,13 +89,16 @@ discard variantsConstr_native
 discard +/%..d_root:
   godot
   +/%..d_godot:
+    +/%..internal d_internal:
+      runtime
+
     godotInterface
-    +/%..d_godotInterface:
+    +/%..internal d_godotInterface:
       internal d_godotInterface_include
       globalEnums
       localEnums
-      objectBase
     nativeStructs
+    objectBase
     variants
     +/%..internal d_variants:
       dummy mdl"variantsDetail_Variant"
@@ -96,6 +109,7 @@ discard +/%..d_root:
       variantsConstr_custom
       internal variantLoader
 
+    classIndex
     internal classDetail_all
     internal d_classDetail
 

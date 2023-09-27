@@ -1,7 +1,5 @@
 let modules: seq[string] = @[
-  "include/",
-  "globalEnums.nim",
-  "localEnums.nim",
+  "(runtime.nim)",
 ]
 import strformat, os
 const cYELLOW = "\x1b[33m"

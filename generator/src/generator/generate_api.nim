@@ -70,16 +70,13 @@ proc generate*(api: JsonNode) =
 
   let essencial_mdl = mdl("classEssencial")
     .incl(moduleTree.engineClassDefiner)
-  let engineClassDefines_mdl = mdl("classIndex")
-    .incl(objectBase, godotInterface, moduleTree.variants)
-  d_godot.take engineClassDefines_mdl
   moduleTree.d_godot.take essencial_mdl
   for group in api.classes.toNim.parentalSorted:
     for class in group:
       let rend = class.renderDetail
 
       let prototype = new ParagraphSt
-      discard +$$..engineClassDefines_mdl.contents:
+      discard +$$..classIndex.contents:
         rend.define
         prototype
       let detail_mdl = mdl("classDetail_native_" & $class.name)

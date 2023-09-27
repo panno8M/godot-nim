@@ -7,29 +7,33 @@ import propertyInfo
 import classMethodInfo
 
 import ../godotInterface
-import ../godotInterface/objectBase
+import ../objectBase
 import ../variants
+
+import ../internal/register
+import ../internal/runtime
 
 when TraceEngineAllocationCallback:
   import ../logging
   template me: GDLogData = iam("allocation-hook", stgLibrary)
 
-type RegistrationData = ref object
-  methods*: seq[proc()]
-  props*: seq[proc()]
-var registrationTable: Table[string, RegistrationData]
-proc get_registrationData*(T: typedesc[SomeUserClass]): RegistrationData =
-  if unlikely(not registrationTable.hasKey($T)):
-    registrationTable[$T] = new RegistrationData
-  registrationTable[$T]
-
+proc get_virtual_bind*(p_userdata: pointer; p_name: ConstStringNamePtr): ClassCallVirtual {.gdcall.} =
+  cast[ClassRuntimeData](p_userdata).virtualMethods.getOrDefault(p_name[], nil)
 
 proc free_bind(p_userdata: pointer; p_instance: ClassInstancePtr) {.gdcall.} =
   when TraceEngineAllocationCallback:
-    me.debug "[Extent] free ", cast[ptr ClassUserData](p_userdata).className
+    me.debug "[Extent] free ", cast[ClassRuntimeData](p_userdata).className
+
+proc create(T: typedesc[SomeUserClass]): ObjectPtr {.gdcall.} =
+  when TraceEngineAllocationCallback:
+    me.debug "[Extent] create ", T
+  let new_object = instantiate T
+  `=init` new_object
+  GC_ref new_object
+  return new_object.owner
 
 proc creationInfo(T: typedesc[SomeUserClass]; is_virtual, is_abstract: bool): ClassCreationInfo =
-  let userdata = get_userdata(T)
+  let userdata = get_runtimeData(T)
   ClassCreationInfo(
     is_virtual: is_virtual,
     is_abstract: is_abstract,
@@ -41,10 +45,10 @@ proc creationInfo(T: typedesc[SomeUserClass]; is_virtual, is_abstract: bool): Cl
     property_get_revert_func: property_get_revert_bind,
     notification_func: notification_bind,
     to_string_func: to_string_bind,
-    create_instance_func: userdata.create,
+    create_instance_func: proc(p_userdata: pointer): ObjectPtr {.gdcall.} = T.create(),
     free_instance_func: free_bind,
-    get_virtual_func: getVirtual,
-    class_userdata: userdata,
+    get_virtual_func: get_virtual_bind,
+    class_userdata: cast[pointer](userdata),
   )
 
 template isInheritanceOf*(Class, Inherits: typedesc): untyped =

@@ -3,7 +3,7 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./godotInterface
-import ./godotInterface/objectBase
+import ./objectBase
 
 type AudioFrame* = object
   left*: cfloat

@@ -3,7 +3,8 @@
 # Edits will be lost.                      #
 # ======================================== #
 import ./godotInterface
-import ./godotInterface/objectBase
+import ./internal/runtime
+import ./objectBase
 import ./variants
 
 type ObjectObj* = object of ObjectBaseObj

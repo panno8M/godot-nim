@@ -1,9 +1,11 @@
 let modules: seq[string] = @[
   "helper/",
   "pure/",
+  "internal/",
   "classDetail/",
   "godotInterface/",
   "variants/",
+  "(objectBase.nim)",
   "classDetail_all.nim",
   "classEssencial.nim",
   "nativeStructs.nim",

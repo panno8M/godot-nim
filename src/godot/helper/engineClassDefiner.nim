@@ -7,6 +7,7 @@ import ../godotInterface/objectBase; export objectBase
 import ../typedArray; export typedArray
 import ../nativeStructs; export nativeStructs
 import ../variants; export variants
+import ../internal/runtime; export runtime
 
 from std/tables import `[]=`
 export tables.`[]=`

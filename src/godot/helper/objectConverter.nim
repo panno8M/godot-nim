@@ -1,7 +1,8 @@
 import std/macros
 import variantTypeSolver
+import ../internal/runtime
 import ../godotInterface
-import ../godotInterface/objectBase
+import ../objectBase
 import ../variants/variantsConstr_custom
 import ../variants/variantsDetail_custom/variantsDetail_stringUtils
 import ../typedArray
