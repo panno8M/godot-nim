@@ -74,6 +74,12 @@ func `div`*[N: static int; T,S: SomeInteger](left: Vector[N,T]; right: Vector[N,
 func `mod`*[N: static int; T,S: SomeInteger](left: Vector[N,T]; right: Vector[N,S]): auto = <$>(left, right): a mod b
 
 # with other norms
+proc `+`*[N: static int; T,S: SomeNumber](left:Vector[N,T]; right: S): auto = <$>left: a + right
+proc `+`*[N: static int; T,S: SomeNumber](left: T; right:Vector[N,S]): auto = <$>right: left + a
+
+proc `-`*[N: static int; T,S: SomeNumber](left:Vector[N,T]; right: S): auto = <$>left: a - right
+proc `-`*[N: static int; T,S: SomeNumber](left: T; right:Vector[N,S]): auto = <$>right: left - a
+
 proc `*`*[N: static int; T,S: SomeNumber](left:Vector[N,T]; right: S): auto = <$>left: a * right
 proc `*`*[N: static int; T,S: SomeNumber](left: T; right:Vector[N,S]): auto = <$>right: left * a
 
@@ -94,8 +100,15 @@ func dot*[N: static int; T: SomeNumber](left, right: Vector[N,T]): T = sum (left
 func lengthSquared*[N: static int; T: SomeNumber](self:Vector[N,T]): T = dot(self, self)
 func length*[N: static int; T: SomeFloat](self: Vector[N,T]): T = sqrt self.lengthSquared
 func length*[N: static int; T: SomeInteger](self: Vector[N,T]): float = sqrt float(self.lengthSquared)
-func normalized*[N: static int; T: SomeFloat](self: Vector[N,T]): NVector[N,T] = asNormalized(self / self.length)
 converter unwrapped*[N: static int; T: SomeFloat](v: NVector[N,T]): Vector[N,T] = Vector[N,T](v)
+
+func length*[N: static int; T: SomeFloat](self: NVector[N,T]): T =
+  if unlikely(self.lengthSquared == 0): 0
+  else: 1
+func normalized*[N: static int; T: SomeFloat](self: Vector[N,T]): NVector[N,T] =
+  let length2 = self.lengthSquared
+  if unlikely(length2 == 0): return
+  asNormalized(self / sqrt length2)
 
 # math
 func abs  *[N: static int; T: SomeNumber](self: Vector[N,T]): Vector[N,T] = <$>self: abs a

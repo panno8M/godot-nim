@@ -3,6 +3,8 @@ import godot
 import ./nimSideTester
 import ./godotSideTester
 
+import ./geometrics; export geometrics
+
 include logging
 
 # Executed when this library is loaded (the godot project is executed)

@@ -11,7 +11,7 @@ type
   Radian32* = Radian[float32]
   Radian64* = Radian[float64]
 
-template asNormalized*[N: static int; T: SomeFloat](vec: Vector[N,T]): NVector[N,T] = NVector[N,T](vec)
+proc asNormalized*[N: static int; T: SomeFloat](vec: Vector[N,T]): NVector[N,T] {.inline.} = NVector[N,T](vec)
 
 func makeVec(components: seq[NimNode]): tuple[lets: seq[NimNode]; brackets: seq[NimNode]] =
   for i, e in components:
