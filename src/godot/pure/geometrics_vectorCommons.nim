@@ -1,6 +1,5 @@
-import beyond/functional
-
 import ./geometrics_typedef
+import ./geometrics_fmaps
 import ./geometrics_math
 import ./geometrics_interpolations
 
@@ -125,3 +124,7 @@ proc moveToward*[N: static int; T: SomeFloat](`from`,to: Vector[N,T]; delta: T):
   let len = dist.length
   if len <= delta or len < CMP_EPSILON: return to
   `from` + (dist/len) * delta
+
+when isMainModule:
+  let a = [1f, 0]
+  echo a * a
