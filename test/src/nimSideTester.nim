@@ -6,6 +6,7 @@ import godot
 # sugar of `import godot/classDetail/classDetail_native_T`
 # Since this library is still early stage, we recommend to use this sugar for portability
 importClass Node
+importClass SceneTree
 importClass RefCounted
 importClass InputEventKey
 importClass Engine
@@ -67,6 +68,8 @@ proc test_Object(self: NimSideTester) =
       # `/T` is same as `T.singleton`
       (/Engine).registerSingleton(NimSideTester, self)
       check self == NimSideTester (/Engine).getSingleton(NimSideTester)
+      check self == (/Engine).getSingleton(NimSideTester).as NimSideTester
+      check self == (/NimSideTester)
 
 proc test_RefCounted(self: NimSideTester) =
   suite "RefCounted":
