@@ -77,7 +77,7 @@ See **[NimSideTester](https://github.com/panno8M/godot-nim/tree/main/test/src/ni
 Every Godot's classes is defined as `ref object` in this library.
 RefCounted has =copy, =dup, and =destroy custom hooks defined, which automatically call RefCounted::reference(), RefCounted::unreference(), etc. inside the hooks.
 
-### Various ways to get Godot's object
+### Various ways to fetch Godot's object
 
 #### Singleton
 
@@ -89,9 +89,9 @@ let obj2: Engine = /Engine
 #### Get Node
 
 ```nim
-# getNode(Node, StringName): Node
+# getNode(Node, NodePath): Node
 let obj1: Control = node.getNode("Control") as Control
-# `/`(Node, StringName): Node = getNode(Node, StringName)
+# `/`(Node, NodePath): Node = getNode(Node, NodePath)
 let obj2: Control = node/"Control" as Control
 # `/`(Node, typedesc[SomeNode]): SomeNode = getNode(Node, $SomeNode) as SomeNode
 let obj3: Control = node/Control
