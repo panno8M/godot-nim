@@ -1,5 +1,5 @@
 import std/unittest
-import godot/pure/geometrics
+import godot
 
 suite "Geometrics":
   let v012 = [0f, 1, 2]
@@ -45,3 +45,35 @@ suite "Geometrics":
     check x.length == 1
     check y.length != 1
     check y.length ~= 1
+
+  test "swizzling":
+    var v = [1, 2, 3]
+
+    # echo v.x
+    check v.*x == 1
+    check v.*y == 2
+    check v.*z == 3
+    check not compiles v.*w
+    check not compiles v.*a
+
+    check v.*yx == [2, 1]
+    check v.*yy == [2, 2]
+    check v.*yz == [2, 3]
+
+    check v.*xy == [1, 2]
+    check v.*yy == [2, 2]
+    check v.*zy == [3, 2]
+
+    check v.*xxxxxxxxxx == [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+    v.*xy = [4, 5]
+    check v == [4, 5, 3]
+
+    var v2 = [1, 2, 3, 4]
+    check v2.*x == 1
+    check v2.*y == 2
+    check v2.*z == 3
+    check v2.*w == 4
+    check not compiles v2.*a
+
+    check not compiles ([1, 2, 3, 4].*xyz = [5, 6, 7])
