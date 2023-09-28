@@ -6,7 +6,6 @@ import godot
 # sugar of `import godot/classDetail/classDetail_native_T`
 # Since this library is still early stage, we recommend to use this sugar for portability
 importClass Node
-importClass SceneTree
 importClass RefCounted
 importClass InputEventKey
 importClass Engine
