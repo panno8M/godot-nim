@@ -7,6 +7,19 @@ import ../variants/variantsConstr_custom
 # Metadata
 # ========
 
+# Enum
+# ----
+
+template metadata*(T: typedesc[enum]): ClassMethodArgumentMetadata =
+  when sizeof(T) <= 1:
+    MethodArgumentMetadata_Int_is_Uint8
+  elif sizeof(T) <= 2:
+    MethodArgumentMetadata_Int_is_Uint16
+  elif sizeof(T) <= 4:
+    MethodArgumentMetadata_Int_is_Uint32
+  else:
+    MethodArgumentMetadata_Int_is_Uint64
+
 # Int
 # ---
 template metadata*(T: typedesc[int]): ClassMethodArgumentMetadata =
@@ -85,6 +98,8 @@ propertyInfo_blueprint(SomeClass):
   )
 
 propertyInfo_blueprint(AltInt):
+  propertyInfo(Int, name, class_name, hint, hint_string, usage)
+propertyInfo_blueprint(enum):
   propertyInfo(Int, name, class_name, hint, hint_string, usage)
 propertyInfo_blueprint(AltFloat):
   propertyInfo(Float, name, class_name, hint, hint_string, usage)

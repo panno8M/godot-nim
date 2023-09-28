@@ -13,9 +13,17 @@ import ../variants
 import ../internal/register
 import ../internal/runtime
 
+import ../helper/methodDefiner
+import ../helper/objectConverter
+
+const Auto* = ""
+
 when TraceEngineAllocationCallback:
   import ../logging
   template me: GDLogData = iam("allocation-hook", stgLibrary)
+
+# Class
+# -----
 
 proc get_virtual_bind*(p_userdata: pointer; p_name: ConstStringNamePtr): ClassCallVirtual {.gdcall.} =
   cast[ClassRuntimeData](p_userdata).virtualMethods.getOrDefault(p_name[], nil)
@@ -61,7 +69,66 @@ template register_class*(T: typedesc[SomeUserClass]) =
   EngineClass(T).bind_virtuals(T)
   for p in get_registrationData(T).methods: p()
   for p in get_registrationData(T).props: p()
+  for p in get_registrationData(T).signals: p()
 
+# Signal
+# ------
+
+template signal* {.pragma.}
+import ../classIndex
+proc emit_signal_internal(self: Object; paramhead: ptr ptr Variant; paramcount: int): Error =
+  var methodbind {.global.}: MethodBindPtr
+  if unlikely(methodbind.isNil):
+    let name: StringName = "emit_signal"
+    methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 4047867050)
+  var ret: Variant
+  var err: CallError
+  interface_Object_methodBindCall(methodbind, getOwner self, paramhead, paramcount, addr ret, addr err)
+  return (addr ret).get(Error)
+
+type ClassSignalInfo* = ref object
+  name*: StringName
+  arguments*: seq[PropertyInfo]
+proc classSignalInfo_fromdef*(procdef: NimNode; gdname: NimNode): NimNode =
+  let params = procDef.params
+
+  var arguments = newNimNode nnkBracket
+  for i, (name, Type, default) in params.breakArgs:
+    if i == 0: continue # [0: self/typedesc[self], 1: arg1, 2: arg2...]
+    let name = toStrLit name
+    arguments.add quote do:
+      native propertyInfo(typedesc `Type`, `name`)[]
+
+  result = quote do:
+    ClassSignalInfo(
+      name: `gdname`,
+      arguments: @`arguments`,
+    )
+proc signalBody*(procdef: NimNode; gdname: NimNode): NimNode =
+  var self: NimNode
+  let signalName = genSym(nskVar, "signalName")
+  let variantArr = genSym(nskLet, "variantArr")
+  let variantArrDef = newNimNode nnkBracket
+  let variantPtrArrDef = newNimNode nnkBracket
+  for i, (name, Type, default) in procdef.params.breakArgs:
+    if i == 0:
+      variantPtrArrDef.add bindSym"addr".newCall signalName
+      self = name
+    else:
+      variantArrDef.add bindSym"variant".newCall(name)
+      variantPtrArrDef.add bindSym"addr".newCall nnkBracketExpr.newTree(variantArr, newlit i.pred)
+
+  quote do:
+    var `signalName` {.global.}: Variant
+    once:
+      `signalName` = variant init_StringName `gdname`
+
+    let `variantArr` = `variantArrDef`
+    let variantPtrArr = `variantPtrArrDef`
+    `self`.emit_signal_internal(addr variantPtrArr[0], variantPtrArr.len)
+
+# Property
+# --------
 
 macro property*(Class: typedesc[SomeUserClass]; name: string; `type`: typedesc; body) =
   var getter, setter, hint, usage: NimNode
@@ -94,25 +161,39 @@ macro property*(Class: typedesc[SomeUserClass]; name: string; `type`: typedesc; 
       let getter: StringName = `getter`
       interface_ClassDB_registerExtensionClassProperty(library, addr className(`Class`), native `glue`, addr setter, addr getter)
 
+# Method
+# ------
+
+proc useDefaultName(name: NimNode): bool = name.kind == nnkSym and name.eqIdent "Auto"
 
 proc exportgd_impl(body: NimNode; gdname: NimNode = nil): NimNode =
-  case body.kind
-  of nnkProcDef:
-    let arg0 = body.params[1][1]
-    let gdname = if gdname.isNil: body.name.toStrLit else: gdname
-    let methodinfoDef = classMethodInfo_fromdef(body, gdname)
+  let procdef = body
+  case procdef.kind
+  of RoutineNodes:
+    let arg0_T = procdef.params[1][1]
+    let gdname = if gdname.useDefaultName: procdef.name.toStrLit else: gdname
     result = newStmtList()
     if body.name.kind != nnkSym:
-      result.add body
-    result.add quote do:
-      get_registrationData(typedesc `arg0`).methods.add proc() =
-        let glue = `methodinfoDef`
-        interface_classDbRegisterExtensionClassMethod(library, addr className(typedesc `arg0`), addr glue.info)
+      result.add procdef
+
+    let signal = procdef.getPragma("signal")
+    if signal.isNil:
+      let methodinfoDef = classMethodInfo_fromdef(procdef, gdname)
+      result.add quote do:
+        get_registrationData(typedesc `arg0_T`).methods.add proc() =
+          let glue = `methodinfoDef`
+          interface_ClassDB_registerExtensionClassMethod(library, addr className(typedesc `arg0_T`), addr glue.info)
+    else:
+      let signalInfoDef = classSignalInfo_fromdef(procdef, gdname)
+      procdef.body = procdef.signalBody(gdname)
+
+      result.add quote do:
+        get_registrationData(typedesc `arg0_T`).signals.add proc() =
+          let info = `signalInfoDef`
+          interface_ClassDB_registerExtensionClassSignal(library, addr className(typedesc `arg0_T`), addr info.name, addr info.arguments[0], info.arguments.len)
     return
   else:
-    warning $body.kind, body
-    return body
+    warning $procdef.kind, procdef
+    return procdef
 macro exportgd*(gdname: string; body): untyped =
   exportgd_impl(body, gdname)
-macro exportgd*(body: untyped): untyped =
-  result = exportgd_impl(body)

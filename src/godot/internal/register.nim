@@ -9,6 +9,7 @@ type
   RegistrationDataObj = object
     methods*: seq[proc()]
     props*: seq[proc()]
+    signals*: seq[proc()]
 var registrationTable: Table[string, RegistrationData]
 proc get_registrationData*(T: typedesc[SomeUserClass]): RegistrationData =
   var data {.global.}: PRegistrationData

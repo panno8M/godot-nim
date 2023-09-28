@@ -8,3 +8,5 @@
 script = ExtResource("1_x2b6x")
 
 [node name="TesterNIM" type="NimSideTester" parent="."]
+
+[connection signal="custom_signal" from="TesterNIM" to="TesterGD" method="_on_tester_nim_custom_signal"]

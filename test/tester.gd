@@ -27,3 +27,6 @@ func test_float_value():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func _on_tester_nim_custom_signal(value):
+	assert(value == 10)

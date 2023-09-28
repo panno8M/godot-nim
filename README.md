@@ -26,6 +26,7 @@ See **[GodotSideTester](https://github.com/panno8M/godot-nim/tree/main/test/src/
 * Instantiate Extension-Class
 * Call Extension-Class method
 * Use Extension-Class property
+* Receive/Emit Extension-Class signal
 
 #### Nim (GDExtension) Side
 
@@ -34,6 +35,7 @@ See **[NimSideTester](https://github.com/panno8M/godot-nim/tree/main/test/src/ni
 * Define Extension-Class
 * Define **Simple** Extension-Class method
 * Define Extension-Class property
+* Define/Emit Extension-Class signal
 * Instantiate Engine-Class
 * Call Engine-Class method (E.g. `Node.get_node`)
 * Override virtual hooks of Engine-Class (E.g. `_ready`, `_process`)

@@ -121,17 +121,28 @@ proc test_Node(self: NimSideTester) =
 
       check node == node2
 
+# To register custom signal, define proc with following that rules:
+# 1. put UserClass type on the first argument
+# 2. put Error on return value
+# 3. put `exportgd` and `signal` pragma
+# Then call `custom_signal()` to emit Signal.
+proc custom_signal*(self: NimSideTester; value: int): Error {.exportgd: Auto, signal.}
+
+proc test_Signal*(self: NimSideTester) =
+  suite "Signal":
+    test "send":
+      check self.custom_signal(10) == ok
 
 # Using `method` to override virtual functions of Engine-Class.
 # No specific pragma is needed.
 # based on Node.ready()
 method ready(self: NimSideTester) =
-
   self.test_UserClass()
   self.test_SomeVariants()
   self.test_Object()
   self.test_RefCounted()
   self.test_Node()
+  self.test_Signal()
 
 method input(self: NimSideTester; event: InputEvent) =
   let evkey = event as InputEventKey
