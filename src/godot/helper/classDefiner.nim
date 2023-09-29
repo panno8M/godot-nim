@@ -23,6 +23,10 @@ when TraceEngineAllocationCallback:
   import ../logging
   template me: GDLogData = iam("allocation-hook", stgLibrary)
 
+template log_register(T: typedesc) =
+  when TraceInitialization:
+    iam("class-ragistration", stgLibrary, $T).debug("Processing...")
+
 # Class
 # -----
 
@@ -67,6 +71,7 @@ template isInitializedOn*(Class: typedesc[SomeUserClass]; level: InitializationL
 
 template register_class*(T: typedesc[SomeUserClass]) =
   if get_registrationData(T).initTarget != initManager.currentLevel: return
+  (log_register T)
   let info = T.creationInfo(false, false)
   interfaceClassdbRegisterExtensionClass(library, addr className(T), addr className(T.Super), addr info)
   T.EngineClass.bind_virtuals(T)

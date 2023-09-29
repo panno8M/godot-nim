@@ -1,4 +1,5 @@
 import
+  pure/compileTimeSwitch,
   logging,
   godotInterface,
   variants,
@@ -6,6 +7,9 @@ import
   variants/variantsLoader,
   internal/initManager
 
+template log_init =
+  when TraceInitialization:
+    iam("initialization", stgLibrary, $initProgress).log("Processing...")
 
 type
   InitCallback = proc(lvl: InitializationLevel) {.nimcall.}
@@ -17,6 +21,8 @@ type
 var extcfg: GDExtensionConfig
 proc initialize_module(userdata: pointer; p_level: InitializationLevel) {.gdcall.} =
   currentLevel = p_level
+  (log_init)
+
   if extcfg.initializer != nil:
     extcfg.initializer(p_level)
   initProgress = case currentLevel
@@ -56,6 +62,7 @@ proc init*(p_get_proc_address: InterfaceGetProcAddress; p_library: ClassLibraryP
 
 template GDExtension_EntryPoint*(name; config: GDExtensionConfig): untyped =
   proc name*(p_get_proc_address: InterfaceGetProcAddress; p_library: ClassLibraryPtr; r_initialization: ptr Initialization): Bool {.exportc, dynlib, gdcall.} =
+    (log_init)
     extcfg = config
     init(p_getProcAddress, p_library, r_initialization)
 

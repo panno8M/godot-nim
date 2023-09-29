@@ -4,6 +4,8 @@ const
 
 const # Logging
 
+  TraceInitialization* {.booldefine.} = off
+
   ## Log the class name when the object is created/freed by Script/Extension
   TraceEngineAllocationCallback* {.booldefine.} = off
 
@@ -14,6 +16,7 @@ const # Logging
   TraceRefCountedHook* {.booldefine.} = off
 
   TraceAny* =
+    TraceInitialization or
     TraceEngineAllocationCallback or
     TraceEngineReferenceCallback or
     TraceRefCountedHook or
