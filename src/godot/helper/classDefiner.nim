@@ -207,7 +207,6 @@ proc exportgd_impl(body: NimNode; gdname: NimNode = nil): NimNode =
         get_registrationData(typedesc `arg0_T`).signals.add proc() =
           let info = `signalInfoDef`
           interface_ClassDB_registerExtensionClassSignal(library, addr className(typedesc `arg0_T`), addr info.name, info.argumentHead, info.argumentSize)
-      echo repr result
     return
   else:
     warning $procdef.kind, procdef
