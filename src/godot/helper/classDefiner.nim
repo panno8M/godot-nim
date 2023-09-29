@@ -12,6 +12,7 @@ import ../variants
 
 import ../internal/register
 import ../internal/runtime
+import ../internal/initManager
 
 import ../helper/methodDefiner
 import ../helper/objectConverter
@@ -59,14 +60,16 @@ proc creationInfo(T: typedesc[SomeUserClass]; is_virtual, is_abstract: bool): Cl
     class_userdata: cast[pointer](userdata),
   )
 
-template isInheritanceOf*(Class, Inherits: typedesc): untyped =
+template isInheritanceOf*(Class: typedesc[SomeUserClass]; Inherits: typedesc[SomeClass]): untyped =
   template Super*(_: typedesc[Class]): typedesc[Inherits] = Inherits
+template isInitializedOn*(Class: typedesc[SomeUserClass]; level: InitializationLevel): untyped =
+  get_registrationData(Class).initTarget = level
 
 template register_class*(T: typedesc[SomeUserClass]) =
-  mixin bind_virtuals
+  if get_registrationData(T).initTarget != initManager.currentLevel: return
   let info = T.creationInfo(false, false)
-  interfaceClassdbRegisterExtensionClass(library, addr className(T), addr className(Super(T)), addr info)
-  EngineClass(T).bind_virtuals(T)
+  interfaceClassdbRegisterExtensionClass(library, addr className(T), addr className(T.Super), addr info)
+  T.EngineClass.bind_virtuals(T)
   for p in get_registrationData(T).methods: p()
   for p in get_registrationData(T).props: p()
   for p in get_registrationData(T).signals: p()

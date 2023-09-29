@@ -1,12 +1,14 @@
 import std/[
   tables,
 ]
+import ../godotInterface
 import ../godotInterface/objectBase
 
 type
   RegistrationData = ref RegistrationDataObj
   PRegistrationData = ptr RegistrationDataObj
   RegistrationDataObj = object
+    initTarget* = Initialization_Scene
     methods*: seq[proc()]
     props*: seq[proc()]
     signals*: seq[proc()]

@@ -2,6 +2,7 @@ import std/tables
 import ../godotInterface
 import ../godotInterface/objectBase
 import ../pure/compileTimeSwitch
+import ../internal/initManager
 
 type
   ClassRuntimeData* = ref ClassRuntimeDataObj
@@ -29,6 +30,7 @@ proc initialize(T: typedesc[SomeUserClass]; userdata: ClassRuntimeData) =
 var runtimeDataTable: Table[StringName, ClassRuntimeData]
 proc get_runtimeData*(T: typedesc[SomeClass]): ClassRuntimeData =
   var data {.global.} : ptr ClassRuntimeDataObj
+  check_init initProgress > Interface
   if unlikely(data.isNil):
     let runtimeData = new ClassRuntimeData
     new runtimeData.virtualMethods

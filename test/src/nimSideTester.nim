@@ -27,6 +27,12 @@ NimSideTester.isInheritanceOf Node
 # NimSideTester.isInheritanceOf Node
 # ```
 
+# Optional:
+# Targets are Core, Servers, Scene and Editor.
+# Default is Scene
+# In most cases, it is not necessary to specify.
+NimSideTester.isInitializedOn Initialization_Scene
+
 # Override `=init` hook to customize the behavior when the object is created.
 method `=init`(self: NimSideTester) =
   if unlikely(not self.initialized):
@@ -120,7 +126,7 @@ proc test_Node(self: NimSideTester) =
 
       check node == node2
 
-# To register custom signal, define proc with following that rules:
+# To register custom signal, define proc with following those rules:
 # 1. put UserClass type on the first argument
 # 2. put Error on return value
 # 3. put `exportgd` and `signal` pragma

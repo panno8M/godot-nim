@@ -9,19 +9,16 @@ include logging
 
 # Executed when this library is loaded (the godot project is executed)
 proc initialize(lvl: InitializationLevel): void =
-  if lvl != Initialization_Scene: return
-
   register_class NimSideTester
   register_class GodotSideTester
 
 # Executed when this library is unloaded (the godot project is terminated)
 proc terminate(lvl: InitializationLevel): void =
-  if lvl != Initialization_Scene: return
+  discard
 
 let cfg = GDExtensionConfig(
   initializer: initialize,
   terminator: terminate,
-  minimumInitializationLevel: Initialization_Editor
 )
 
 # Expand the entry point. Your project must have this section.

@@ -3,7 +3,9 @@ import
   godotInterface,
   variants,
   helper/objectConverter,
-  variants/variantsLoader
+  variants/variantsLoader,
+  internal/initManager
+
 
 type
   InitCallback = proc(lvl: InitializationLevel) {.nimcall.}
@@ -11,18 +13,17 @@ type
   GDExtensionConfig* = object
     initializer*: InitCallback
     terminator*: InitCallback
-    minimumInitializationLevel* = Initialization_Scene
 
 var extcfg: GDExtensionConfig
-var currentLevel*: InitializationLevel
-
 proc initialize_module(userdata: pointer; p_level: InitializationLevel) {.gdcall.} =
   currentLevel = p_level
-  # expand_register_stack(preserved):
-  #   register_class preserved.make_ClassRegistrationInfo(false, false)
   if extcfg.initializer != nil:
     extcfg.initializer(p_level)
-
+  initProgress = case currentLevel
+  of Initialization_Core: Servers
+  of Initialization_Servers: Scene
+  of Initialization_Scene: Editor
+  of Initialization_Editor: Done
 proc deinitialize_module(userdata: pointer; p_level: InitializationLevel) {.gdcall.} =
   currentLevel = p_level
   if extcfg.terminator != nil:
@@ -32,6 +33,7 @@ proc deinitialize_module(userdata: pointer; p_level: InitializationLevel) {.gdca
 
 proc init*(p_get_proc_address: InterfaceGetProcAddress; p_library: ClassLibraryPtr; r_initialization: ptr Initialization): Bool {.gdcall.} =
   try:
+    initProgress = InitProgress.Interface
     godotInterface.getProcAddress = p_getProcAddress
     godotInterface.library = p_library
     godotInterface.token = p_library
@@ -48,6 +50,7 @@ proc init*(p_get_proc_address: InterfaceGetProcAddress; p_library: ClassLibraryP
   except:
     iam("unhandled-exception", stgLibrary).error getCurrentExceptionMsg()
     return false
+  initProgress = InitProgress.Core
 
   return true
 
