@@ -133,6 +133,8 @@ proc test_Node(self: NimSideTester) =
 # Then call `custom_signal()` to emit Signal.
 proc custom_signal*(self: NimSideTester; value: int): Error {.exportgd: Auto, signal.}
 
+proc simple_signal*(self: NimSideTester): Error {.exportgd: Auto, signal.}
+
 proc test_Signal*(self: NimSideTester) =
   suite "Signal":
     test "send":

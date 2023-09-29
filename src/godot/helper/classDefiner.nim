@@ -94,9 +94,15 @@ proc emit_signal_internal(self: Object; paramhead: ptr ptr Variant; paramcount: 
   interface_Object_methodBindCall(methodbind, getOwner self, paramhead, paramcount, addr ret, addr err)
   return (addr ret).get(Error)
 
-type ClassSignalInfo* = ref object
-  name*: StringName
-  arguments*: seq[PropertyInfo]
+type ClassSignalInfo = ref object
+  name: StringName
+  arguments: seq[PropertyInfo]
+template argumentHead(info: ClassSignalInfo): ptr PropertyInfo =
+  if info.arguments.len == 0: nil
+  else: addr info.arguments[0]
+template argumentSize(info: ClassSignalInfo): Int =
+  info.arguments.len
+
 proc classSignalInfo_fromdef*(procdef: NimNode; gdname: NimNode): NimNode =
   let params = procDef.params
 
@@ -125,6 +131,8 @@ proc signalBody*(procdef: NimNode; gdname: NimNode): NimNode =
     else:
       variantArrDef.add bindSym"variant".newCall(name)
       variantPtrArrDef.add bindSym"addr".newCall nnkBracketExpr.newTree(variantArr, newlit i.pred)
+  if variantArrDef.len == 0:
+    variantArrDef.add nnkObjConstr.newTree(bindSym"Variant")
 
   quote do:
     var `signalName` {.global.}: Variant
@@ -198,7 +206,8 @@ proc exportgd_impl(body: NimNode; gdname: NimNode = nil): NimNode =
       result.add quote do:
         get_registrationData(typedesc `arg0_T`).signals.add proc() =
           let info = `signalInfoDef`
-          interface_ClassDB_registerExtensionClassSignal(library, addr className(typedesc `arg0_T`), addr info.name, addr info.arguments[0], info.arguments.len)
+          interface_ClassDB_registerExtensionClassSignal(library, addr className(typedesc `arg0_T`), addr info.name, info.argumentHead, info.argumentSize)
+      echo repr result
     return
   else:
     warning $procdef.kind, procdef
