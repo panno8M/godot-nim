@@ -5,7 +5,7 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Resource; export classDetail_native_Resource
 
-proc stringify*(_: typedesc[JSON]; data: ptr Variant; indent: String = ""; sortKeys: Bool = true; fullPrecision: Bool = false): String =
+proc stringify*(_: typedesc[JSON]; data: Variant; indent: String = ""; sortKeys: Bool = true; fullPrecision: Bool = false): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "stringify"
@@ -40,7 +40,7 @@ proc data*(self: JSON): Variant =
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Variant)
-proc `data=`*(self: JSON; data: ptr Variant) =
+proc `data=`*(self: JSON; data: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_data"

@@ -285,8 +285,8 @@ proc `render[]`(self: NimBuiltinClass): Statement =
   if ignoreConf.getOrDefault($self.name).indexer: return
   if self.json.is_keyed:
     +$$..ParagraphSt():
-      &"proc `[]`*(self: {self.name}; key: ptr Variant): var {self.name}.Item = interface_{self.name}_operatorIndex(addr self, key)[]"
-      &"proc `[]=`*(self: {self.name}; key: ptr Variant; value: {self.name}.Item) = interface_{self.name}_operatorIndex(addr self, key)[] = value"
+      &"proc `[]`*(self: {self.name}; key: Variant): var {self.name}.Item = interface_{self.name}_operatorIndex(addr self, addr key)[]"
+      &"proc `[]=`*(self: {self.name}; key: Variant; value: {self.name}.Item) = interface_{self.name}_operatorIndex(addr self, addr key)[] = value"
   else:
     if "Packed" in $self.name:
       +$$..ParagraphSt():

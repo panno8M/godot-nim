@@ -694,7 +694,7 @@ proc multiplayer*(self: Node): MultiplayerAPI =
   var ret: encoded MultiplayerAPI
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(MultiplayerAPI)
-proc rpcConfig*(self: Node; `method`: StringName; config: ptr Variant) =
+proc rpcConfig*(self: Node; `method`: StringName; config: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "rpc_config"
@@ -764,7 +764,7 @@ proc callDeferredThreadGroup*(self: Node; `method`: StringName): Variant =
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
-proc setDeferredThreadGroup*(self: Node; property: StringName; value: ptr Variant) =
+proc setDeferredThreadGroup*(self: Node; property: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_deferred_thread_group"
@@ -787,7 +787,7 @@ proc callThreadSafe*(self: Node; `method`: StringName): Variant =
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
-proc setThreadSafe*(self: Node; property: StringName; value: ptr Variant) =
+proc setThreadSafe*(self: Node; property: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_thread_safe"

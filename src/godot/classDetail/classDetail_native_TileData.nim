@@ -328,7 +328,7 @@ proc probability*(self: TileData): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Float)
-proc setCustomData*(self: TileData; layerName: String; value: ptr Variant) =
+proc setCustomData*(self: TileData; layerName: String; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_custom_data"
@@ -344,7 +344,7 @@ proc getCustomData*(self: TileData; layerName: String): Variant =
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
-proc setCustomDataByLayerId*(self: TileData; layerId: int32; value: ptr Variant) =
+proc setCustomDataByLayerId*(self: TileData; layerId: int32; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_custom_data_by_layer_id"

@@ -78,7 +78,7 @@ proc setBidiOverride*(self: TextLine; override: Array) =
     methodbind = interface_ClassDB_getMethodBind(addr className TextLine, addr name, 381264803)
   var `?param` = [getPtr override]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addString*(self: TextLine; text: String; font: Font; fontSize: int32; language: String = ""; meta: ptr Variant = nil): Bool =
+proc addString*(self: TextLine; text: String; font: Font; fontSize: int32; language: String = ""; meta: Variant = default(Variant)): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_string"
@@ -87,7 +87,7 @@ proc addString*(self: TextLine; text: String; font: Font; fontSize: int32; langu
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc addObject*(self: TextLine; key: ptr Variant; size: Vector2; inlineAlign: InlineAlignment = inlineAlignmentCenter; length: int32 = 1; baseline: Float = 0.0): Bool =
+proc addObject*(self: TextLine; key: Variant; size: Vector2; inlineAlign: InlineAlignment = inlineAlignmentCenter; length: int32 = 1; baseline: Float = 0.0): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_object"
@@ -96,7 +96,7 @@ proc addObject*(self: TextLine; key: ptr Variant; size: Vector2; inlineAlign: In
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc resizeObject*(self: TextLine; key: ptr Variant; size: Vector2; inlineAlign: InlineAlignment = inlineAlignmentCenter; baseline: Float = 0.0): Bool =
+proc resizeObject*(self: TextLine; key: Variant; size: Vector2; inlineAlign: InlineAlignment = inlineAlignmentCenter; baseline: Float = 0.0): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "resize_object"
@@ -180,7 +180,7 @@ proc getObjects*(self: TextLine): Array =
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Array)
-proc getObjectRect*(self: TextLine; key: ptr Variant): Rect2 =
+proc getObjectRect*(self: TextLine; key: Variant): Rect2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_object_rect"

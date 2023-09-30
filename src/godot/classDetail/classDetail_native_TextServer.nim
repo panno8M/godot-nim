@@ -1126,7 +1126,7 @@ proc shapedTextGetSpacing*(self: TextServer; shaped: RID; spacing: TextServer_Sp
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int64)
-proc shapedTextAddString*(self: TextServer; shaped: RID; text: String; fonts: TypedArray[RID]; size: int64; opentypeFeatures: Dictionary = init_Dictionary(); language: String = ""; meta: ptr Variant = nil): Bool =
+proc shapedTextAddString*(self: TextServer; shaped: RID; text: String; fonts: TypedArray[RID]; size: int64; opentypeFeatures: Dictionary = init_Dictionary(); language: String = ""; meta: Variant = default(Variant)): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_add_string"
@@ -1135,7 +1135,7 @@ proc shapedTextAddString*(self: TextServer; shaped: RID; text: String; fonts: Ty
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc shapedTextAddObject*(self: TextServer; shaped: RID; key: ptr Variant; size: Vector2; inlineAlign: InlineAlignment = inlineAlignmentCenter; length: int64 = 1; baseline: float64 = 0.0): Bool =
+proc shapedTextAddObject*(self: TextServer; shaped: RID; key: Variant; size: Vector2; inlineAlign: InlineAlignment = inlineAlignmentCenter; length: int64 = 1; baseline: float64 = 0.0): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_add_object"
@@ -1144,7 +1144,7 @@ proc shapedTextAddObject*(self: TextServer; shaped: RID; key: ptr Variant; size:
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc shapedTextResizeObject*(self: TextServer; shaped: RID; key: ptr Variant; size: Vector2; inlineAlign: InlineAlignment = inlineAlignmentCenter; baseline: float64 = 0.0): Bool =
+proc shapedTextResizeObject*(self: TextServer; shaped: RID; key: Variant; size: Vector2; inlineAlign: InlineAlignment = inlineAlignmentCenter; baseline: float64 = 0.0): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_resize_object"
@@ -1356,7 +1356,7 @@ proc shapedTextGetObjects*(self: TextServer; shaped: RID): Array =
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Array)
-proc shapedTextGetObjectRect*(self: TextServer; shaped: RID; key: ptr Variant): Rect2 =
+proc shapedTextGetObjectRect*(self: TextServer; shaped: RID; key: Variant): Rect2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shaped_text_get_object_rect"

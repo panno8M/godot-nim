@@ -31,8 +31,8 @@ proc decode*[T: SomeVariants](p: pointer; _: typedesc[T]): T =
   cast[ptr T](p)[]
 proc variant*[T: SomeVariants](v: T): Variant =
   variantFromType[variantType T](addr result, addr v)
-proc get*[T: SomeVariants](v: ptr Variant; _: typedesc[T]): T =
-  typeFromVariant[variantType T](addr result, v)
+proc get*[T: SomeVariants](v: Variant; _: typedesc[T]): T =
+  typeFromVariant[variantType T](addr result, addr v)
 
 # Specific
 # ========
@@ -45,7 +45,7 @@ template convert_alternative(Decoded, Encoded, encoder, decoder): untyped =
     decoder(p.decode(Encoded))
   proc variant*(v: Decoded): Variant =
     variant encoder(v)
-  proc get*(v: ptr Variant; _: typedesc[Decoded]): Decoded =
+  proc get*(v: Variant; _: typedesc[Decoded]): Decoded =
     decoder(v.get(Encoded))
 
 template convert_alternative_autocast(Decoded, Encoded): untyped =
@@ -56,7 +56,7 @@ template convert_alternative_autocast(Decoded, Encoded): untyped =
     D(p.decode(Encoded))
   proc variant*(v: Decoded): Variant =
     variant Encoded(v)
-  proc get*(v: ptr Variant; D: typedesc[Decoded]): D =
+  proc get*(v: Variant; D: typedesc[Decoded]): D =
     D(v.get(Encoded))
 
 template convert_generics_forcecast(Decoded, Encoded): untyped =
@@ -67,7 +67,7 @@ template convert_generics_forcecast(Decoded, Encoded): untyped =
     cast[T](p.decode(Encoded))
   proc variant*[T: Decoded](v: T): Variant =
     variant cast[Encoded](v)
-  proc get*[T: Decoded](v: ptr Variant; _: typedesc[T]): T =
+  proc get*[T: Decoded](v: Variant; _: typedesc[T]): T =
     cast[T](v.get(Encoded))
 
 template convert_generic_params_forcecast(Decoded, Encoded): untyped =
@@ -78,7 +78,7 @@ template convert_generic_params_forcecast(Decoded, Encoded): untyped =
     cast[Decoded[T]](p.decode(Encoded))
   proc variant*[T](v: Decoded[T]): Variant =
     variant cast[Encoded](v)
-  proc get*[T](v: ptr Variant; _: typedesc[Decoded[T]]): Decoded[T] =
+  proc get*[T](v: Variant; _: typedesc[Decoded[T]]): Decoded[T] =
     cast[Decoded[T]](v.get(Encoded))
 
 
@@ -114,16 +114,10 @@ proc decode*[T](p: pointer; _: typedesc[ptr T]): ptr T =
 template encoded*(T: typedesc[Variant]): typedesc[Variant] = Variant
 template encode*(v: Variant; p: pointer) =
   cast[ptr Variant](p)[] = v
-proc decode*(p: pointer; T: typedesc[Variant]): T =
+template decode*(p: pointer; T: typedesc[Variant]): T =
   cast[ptr Variant](p)[]
-proc variant*(v: Variant): Variant = v
-proc get*(v: ptr Variant; T: typedesc[Variant]): T = v[]
-
-template encoded*(T: typedesc[ptr Variant]): typedesc[ptr Variant] = ptr Variant
-template encode*(v: ptr Variant; p: pointer) =
-  cast[ptr Variant](p)[] = v[]
-proc decode*(p: pointer; T: typedesc[ptr Variant]): T =
-  cast[ptr Variant](p)
+template variant*(v: Variant): Variant = v
+template get*(v: Variant; T: typedesc[Variant]): T = v
 
 # ObjectPtr
 # =========
@@ -136,8 +130,8 @@ proc decode*(p: pointer; T: typedesc[ObjectPtr]): T =
 
 proc variant*(v: ObjectPtr): Variant =
   variantFromType[VariantType_Object](addr result, addr v)
-proc get*(v: ptr Variant; T: typedesc[ObjectPtr]): T =
-  typeFromVariant[VariantType_Object](addr result, v)
+proc get*(v: Variant; T: typedesc[ObjectPtr]): T =
+  typeFromVariant[VariantType_Object](addr result, addr v)
 
 # Godot Object
 # ============
@@ -149,7 +143,7 @@ proc decode*[T: SomeClass](p: pointer; _: typedesc[T]): T =
   p.decode(ObjectPtr).getInstance(T)
 proc variant*[T: SomeClass](v: T): Variant =
   variant v.owner
-proc get*[T: SomeClass](v: ptr Variant; _: typedesc[T]): T =
+proc get*[T: SomeClass](v: Variant; _: typedesc[T]): T =
   v.get(ObjectPtr).getInstance(T)
 
 {.pop.}

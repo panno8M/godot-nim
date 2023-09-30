@@ -128,8 +128,8 @@ var In_PackedColorArray_Array: PtrOperatorEvaluator
 var Equal_PackedColorArray_PackedColorArray: PtrOperatorEvaluator
 var NotEqual_PackedColorArray_PackedColorArray: PtrOperatorEvaluator
 var Add_PackedColorArray_PackedColorArray: PtrOperatorEvaluator
-proc `==`*(left: PackedColorArray; right: ptr Variant): Bool = Equal_PackedColorArray_Variant(addr left, addr right, addr result)
-proc `!=`*(left: PackedColorArray; right: ptr Variant): Bool = NotEqual_PackedColorArray_Variant(addr left, addr right, addr result)
+proc `==`*(left: PackedColorArray; right: Variant): Bool = Equal_PackedColorArray_Variant(addr left, addr right, addr result)
+proc `!=`*(left: PackedColorArray; right: Variant): Bool = NotEqual_PackedColorArray_Variant(addr left, addr right, addr result)
 proc `not`*(left: PackedColorArray): Bool = Not_PackedColorArray(addr left, nil, addr result)
 proc contains*(left: Dictionary; right: PackedColorArray): Bool = In_PackedColorArray_Dictionary(addr right, addr left, addr result)
 proc contains*(left: Array; right: PackedColorArray): Bool = In_PackedColorArray_Array(addr right, addr left, addr result)

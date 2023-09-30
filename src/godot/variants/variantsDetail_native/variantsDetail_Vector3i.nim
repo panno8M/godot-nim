@@ -19,8 +19,8 @@ var Equal_Vector3i_Variant: PtrOperatorEvaluator
 var NotEqual_Vector3i_Variant: PtrOperatorEvaluator
 var In_Vector3i_Dictionary: PtrOperatorEvaluator
 var In_Vector3i_Array: PtrOperatorEvaluator
-proc `==`*(left: Vector3i; right: ptr Variant): Bool = Equal_Vector3i_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Vector3i; right: ptr Variant): Bool = NotEqual_Vector3i_Variant(addr left, addr right, addr result)
+proc `==`*(left: Vector3i; right: Variant): Bool = Equal_Vector3i_Variant(addr left, addr right, addr result)
+proc `!=`*(left: Vector3i; right: Variant): Bool = NotEqual_Vector3i_Variant(addr left, addr right, addr result)
 proc contains*(left: Dictionary; right: Vector3i): Bool = In_Vector3i_Dictionary(addr right, addr left, addr result)
 proc contains*(left: Array; right: Vector3i): Bool = In_Vector3i_Array(addr right, addr left, addr result)
 proc load_Vector3i_op =

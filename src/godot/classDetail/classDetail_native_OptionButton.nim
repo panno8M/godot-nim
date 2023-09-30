@@ -47,7 +47,7 @@ proc setItemId*(self: OptionButton; idx: int32; id: int32) =
     methodbind = interface_ClassDB_getMethodBind(addr className OptionButton, addr name, 3937882851)
   var `?param` = [getPtr idx, getPtr id]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setItemMetadata*(self: OptionButton; idx: int32; metadata: ptr Variant) =
+proc setItemMetadata*(self: OptionButton; idx: int32; metadata: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_item_metadata"

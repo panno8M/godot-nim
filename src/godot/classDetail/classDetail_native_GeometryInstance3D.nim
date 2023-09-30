@@ -155,7 +155,7 @@ proc visibilityRangeFadeMode*(self: GeometryInstance3D): GeometryInstance3D_Visi
   var ret: encoded GeometryInstance3D_VisibilityRangeFadeMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(GeometryInstance3D_VisibilityRangeFadeMode)
-proc setInstanceShaderParameter*(self: GeometryInstance3D; name: StringName; value: ptr Variant) =
+proc setInstanceShaderParameter*(self: GeometryInstance3D; name: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_instance_shader_parameter"

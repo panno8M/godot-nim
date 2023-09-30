@@ -146,7 +146,7 @@ proc setBottomEditor*(self: EditorProperty; editor: Control) =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorProperty, addr name, 1496901182)
   var `?param` = [getPtr editor]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc emitChanged*(self: EditorProperty; property: StringName; value: ptr Variant; field: StringName = ""; changing: Bool = false) =
+proc emitChanged*(self: EditorProperty; property: StringName; value: Variant; field: StringName = ""; changing: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "emit_changed"

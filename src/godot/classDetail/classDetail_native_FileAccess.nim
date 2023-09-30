@@ -353,7 +353,7 @@ proc storeString*(self: FileAccess; string: String) =
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 83702148)
   var `?param` = [getPtr string]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc storeVar*(self: FileAccess; value: ptr Variant; fullObjects: Bool = false) =
+proc storeVar*(self: FileAccess; value: Variant; fullObjects: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "store_var"

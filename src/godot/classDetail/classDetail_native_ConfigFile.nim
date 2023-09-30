@@ -5,14 +5,14 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 
-proc setValue*(self: ConfigFile; section: String; key: String; value: ptr Variant) =
+proc setValue*(self: ConfigFile; section: String; key: String; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_value"
     methodbind = interface_ClassDB_getMethodBind(addr className ConfigFile, addr name, 2504492430)
   var `?param` = [getPtr section, getPtr key, getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getValue*(self: ConfigFile; section: String; key: String; default: ptr Variant = nil): Variant =
+proc getValue*(self: ConfigFile; section: String; key: String; default: Variant = default(Variant)): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_value"

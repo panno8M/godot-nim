@@ -5,7 +5,7 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 
-proc tweenProperty*(self: Tween; `object`: Object; property: NodePath; finalVal: ptr Variant; duration: float64): PropertyTweener =
+proc tweenProperty*(self: Tween; `object`: Object; property: NodePath; finalVal: Variant; duration: float64): PropertyTweener =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "tween_property"
@@ -32,7 +32,7 @@ proc tweenCallback*(self: Tween; callback: Callable): CallbackTweener =
   var ret: encoded CallbackTweener
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(CallbackTweener)
-proc tweenMethod*(self: Tween; `method`: Callable; `from`: ptr Variant; to: ptr Variant; duration: float64): MethodTweener =
+proc tweenMethod*(self: Tween; `method`: Callable; `from`: Variant; to: Variant; duration: float64): MethodTweener =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "tween_method"
@@ -194,7 +194,7 @@ proc chain*(self: Tween): Tween =
   var ret: encoded Tween
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Tween)
-proc interpolateValue*(_: typedesc[Tween]; initialValue: ptr Variant; deltaValue: ptr Variant; elapsedTime: float64; duration: float64; transType: Tween_TransitionType; easeType: Tween_EaseType): Variant =
+proc interpolateValue*(_: typedesc[Tween]; initialValue: Variant; deltaValue: Variant; elapsedTime: float64; duration: float64; transType: Tween_TransitionType; easeType: Tween_EaseType): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "interpolate_value"

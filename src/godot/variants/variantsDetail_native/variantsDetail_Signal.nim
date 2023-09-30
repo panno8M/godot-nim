@@ -55,8 +55,8 @@ var Equal_Signal_Signal: PtrOperatorEvaluator
 var NotEqual_Signal_Signal: PtrOperatorEvaluator
 var In_Signal_Dictionary: PtrOperatorEvaluator
 var In_Signal_Array: PtrOperatorEvaluator
-proc `==`*(left: Signal; right: ptr Variant): Bool = Equal_Signal_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Signal; right: ptr Variant): Bool = NotEqual_Signal_Variant(addr left, addr right, addr result)
+proc `==`*(left: Signal; right: Variant): Bool = Equal_Signal_Variant(addr left, addr right, addr result)
+proc `!=`*(left: Signal; right: Variant): Bool = NotEqual_Signal_Variant(addr left, addr right, addr result)
 proc `not`*(left: Signal): Bool = Not_Signal(addr left, nil, addr result)
 proc `==`*(left: Signal; right: Signal): Bool = Equal_Signal_Signal(addr left, addr right, addr result)
 proc `!=`*(left: Signal; right: Signal): Bool = NotEqual_Signal_Signal(addr left, addr right, addr result)

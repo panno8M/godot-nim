@@ -148,14 +148,10 @@ proc paramType*(basename: string; result: var ParamType) =
 
 proc argType*(basename: string): ArgType =
   paramType basename, result
-  if $result.name in ["Variant"]:
-    inc result.ptrdepth
 proc retType*(basename: string): RetType =
   paramType basename, result
 proc selfType*(basename: string): SelfType =
   paramType basename, result
-  if $result.name in ["Variant"]:
-    inc result.ptrdepth
 
 method defaultValue*(info: ObjectInfo; value: string; argType: ArgType): string {.base.} =
   let argTypeStr = $argType
@@ -174,7 +170,8 @@ method defaultValue*(info: ObjectInfo; value: string; argType: ArgType): string 
     if t != argTypeStr: continue
     return value.replace(t, v)
   for t, v, vs in items [
-        ("ptr Variant", "0", "nil"),
+        ("Variant", "0", "default(Variant)"),
+        ("Variant", "null", "default(Variant)"),
         ("StringName", "&\"\"", "\"\""),
       ]:
     if t != argTypeStr: continue

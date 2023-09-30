@@ -5,7 +5,7 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Tweener; export classDetail_native_Tweener
 
-proc `from`*(self: PropertyTweener; value: ptr Variant): PropertyTweener =
+proc `from`*(self: PropertyTweener; value: Variant): PropertyTweener =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "from"

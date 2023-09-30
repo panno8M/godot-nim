@@ -14,7 +14,7 @@ proc getVar*(self: PacketPeer; allowObjects: Bool = false): Variant =
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
-proc putVar*(self: PacketPeer; `var`: ptr Variant; fullObjects: Bool = false): Error =
+proc putVar*(self: PacketPeer; `var`: Variant; fullObjects: Bool = false): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "put_var"

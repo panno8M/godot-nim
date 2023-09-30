@@ -5,7 +5,7 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Object; export classDetail_native_Object
 
-proc variantToBase64*(self: Marshalls; variant: ptr Variant; fullObjects: Bool = false): String =
+proc variantToBase64*(self: Marshalls; variant: Variant; fullObjects: Bool = false): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "variant_to_base64"

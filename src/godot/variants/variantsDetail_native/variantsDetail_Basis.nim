@@ -115,8 +115,8 @@ var NotEqual_Basis_Basis: PtrOperatorEvaluator
 var Multiply_Basis_Basis: PtrOperatorEvaluator
 var In_Basis_Dictionary: PtrOperatorEvaluator
 var In_Basis_Array: PtrOperatorEvaluator
-proc `==`*(left: Basis; right: ptr Variant): Bool = Equal_Basis_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Basis; right: ptr Variant): Bool = NotEqual_Basis_Variant(addr left, addr right, addr result)
+proc `==`*(left: Basis; right: Variant): Bool = Equal_Basis_Variant(addr left, addr right, addr result)
+proc `!=`*(left: Basis; right: Variant): Bool = NotEqual_Basis_Variant(addr left, addr right, addr result)
 proc `not`*(left: Basis): Bool = Not_Basis(addr left, nil, addr result)
 proc `*`*(left: Basis; right: Int): Basis = Multiply_Basis_Int(addr left, addr right, addr result)
 proc `*`*(left: Basis; right: Float): Basis = Multiply_Basis_Float(addr left, addr right, addr result)

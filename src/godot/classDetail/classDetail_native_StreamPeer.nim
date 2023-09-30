@@ -148,7 +148,7 @@ proc putUtf8String*(self: StreamPeer; value: String) =
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeer, addr name, 83702148)
   var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc putVar*(self: StreamPeer; value: ptr Variant; fullObjects: Bool = false) =
+proc putVar*(self: StreamPeer; value: Variant; fullObjects: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "put_var"

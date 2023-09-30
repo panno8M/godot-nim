@@ -300,8 +300,8 @@ var Divide_Color_Color: PtrOperatorEvaluator
 var In_Color_Dictionary: PtrOperatorEvaluator
 var In_Color_Array: PtrOperatorEvaluator
 var In_Color_PackedColorArray: PtrOperatorEvaluator
-proc `==`*(left: Color; right: ptr Variant): Bool = Equal_Color_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Color; right: ptr Variant): Bool = NotEqual_Color_Variant(addr left, addr right, addr result)
+proc `==`*(left: Color; right: Variant): Bool = Equal_Color_Variant(addr left, addr right, addr result)
+proc `!=`*(left: Color; right: Variant): Bool = NotEqual_Color_Variant(addr left, addr right, addr result)
 proc `-`*(left: Color): Color = Negate_Color(addr left, nil, addr result)
 proc `+`*(left: Color): Color = Positive_Color(addr left, nil, addr result)
 proc `not`*(left: Color): Bool = Not_Color(addr left, nil, addr result)

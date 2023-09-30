@@ -83,8 +83,8 @@ var Equal_Rect2i_Rect2i: PtrOperatorEvaluator
 var NotEqual_Rect2i_Rect2i: PtrOperatorEvaluator
 var In_Rect2i_Dictionary: PtrOperatorEvaluator
 var In_Rect2i_Array: PtrOperatorEvaluator
-proc `==`*(left: Rect2i; right: ptr Variant): Bool = Equal_Rect2i_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Rect2i; right: ptr Variant): Bool = NotEqual_Rect2i_Variant(addr left, addr right, addr result)
+proc `==`*(left: Rect2i; right: Variant): Bool = Equal_Rect2i_Variant(addr left, addr right, addr result)
+proc `!=`*(left: Rect2i; right: Variant): Bool = NotEqual_Rect2i_Variant(addr left, addr right, addr result)
 proc `not`*(left: Rect2i): Bool = Not_Rect2i(addr left, nil, addr result)
 proc `==`*(left: Rect2i; right: Rect2i): Bool = Equal_Rect2i_Rect2i(addr left, addr right, addr result)
 proc `!=`*(left: Rect2i; right: Rect2i): Bool = NotEqual_Rect2i_Rect2i(addr left, addr right, addr result)

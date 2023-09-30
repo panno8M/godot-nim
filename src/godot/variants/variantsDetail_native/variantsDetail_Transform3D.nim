@@ -94,8 +94,8 @@ var Multiply_Transform3D_Transform3D: PtrOperatorEvaluator
 var In_Transform3D_Dictionary: PtrOperatorEvaluator
 var In_Transform3D_Array: PtrOperatorEvaluator
 var Multiply_Transform3D_PackedVector3Array: PtrOperatorEvaluator
-proc `==`*(left: Transform3D; right: ptr Variant): Bool = Equal_Transform3D_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Transform3D; right: ptr Variant): Bool = NotEqual_Transform3D_Variant(addr left, addr right, addr result)
+proc `==`*(left: Transform3D; right: Variant): Bool = Equal_Transform3D_Variant(addr left, addr right, addr result)
+proc `!=`*(left: Transform3D; right: Variant): Bool = NotEqual_Transform3D_Variant(addr left, addr right, addr result)
 proc `not`*(left: Transform3D): Bool = Not_Transform3D(addr left, nil, addr result)
 proc `*`*(left: Transform3D; right: Int): Transform3D = Multiply_Transform3D_Int(addr left, addr right, addr result)
 proc `*`*(left: Transform3D; right: Float): Transform3D = Multiply_Transform3D_Float(addr left, addr right, addr result)

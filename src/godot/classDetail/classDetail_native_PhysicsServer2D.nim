@@ -69,7 +69,7 @@ proc concavePolygonShapeCreate*(self: PhysicsServer2D): RID =
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(RID)
-proc shapeSetData*(self: PhysicsServer2D; shape: RID; data: ptr Variant) =
+proc shapeSetData*(self: PhysicsServer2D; shape: RID; data: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "shape_set_data"
@@ -268,7 +268,7 @@ proc areaGetCollisionMask*(self: PhysicsServer2D; area: RID): uint32 =
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(uint32)
-proc areaSetParam*(self: PhysicsServer2D; area: RID; param: PhysicsServer2D_AreaParameter; value: ptr Variant) =
+proc areaSetParam*(self: PhysicsServer2D; area: RID; param: PhysicsServer2D_AreaParameter; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "area_set_param"
@@ -565,7 +565,7 @@ proc bodyGetCollisionPriority*(self: PhysicsServer2D; body: RID): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
-proc bodySetParam*(self: PhysicsServer2D; body: RID; param: PhysicsServer2D_BodyParameter; value: ptr Variant) =
+proc bodySetParam*(self: PhysicsServer2D; body: RID; param: PhysicsServer2D_BodyParameter; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "body_set_param"
@@ -588,7 +588,7 @@ proc bodyResetMassProperties*(self: PhysicsServer2D; body: RID) =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsServer2D, addr name, 2722037293)
   var `?param` = [getPtr body]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc bodySetState*(self: PhysicsServer2D; body: RID; state: PhysicsServer2D_BodyState; value: ptr Variant) =
+proc bodySetState*(self: PhysicsServer2D; body: RID; state: PhysicsServer2D_BodyState; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "body_set_state"
@@ -752,7 +752,7 @@ proc bodyIsOmittingForceIntegration*(self: PhysicsServer2D; body: RID): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc bodySetForceIntegrationCallback*(self: PhysicsServer2D; body: RID; callable: Callable; userdata: ptr Variant = nil) =
+proc bodySetForceIntegrationCallback*(self: PhysicsServer2D; body: RID; callable: Callable; userdata: Variant = default(Variant)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "body_set_force_integration_callback"

@@ -5,7 +5,7 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 
-proc `value=`*(self: RDPipelineSpecializationConstant; value: ptr Variant) =
+proc `value=`*(self: RDPipelineSpecializationConstant; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_value"

@@ -410,7 +410,7 @@ proc hasDefaultFontSize*(self: Theme): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Bool)
-proc setThemeItem*(self: Theme; dataType: Theme_DataType; name: StringName; themeType: StringName; value: ptr Variant) =
+proc setThemeItem*(self: Theme; dataType: Theme_DataType; name: StringName; themeType: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_theme_item"

@@ -112,7 +112,7 @@ proc classGetProperty*(self: ClassDB; `object`: Object; property: StringName): V
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
-proc classSetProperty*(self: ClassDB; `object`: Object; property: StringName; value: ptr Variant): Error =
+proc classSetProperty*(self: ClassDB; `object`: Object; property: StringName; value: Variant): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "class_set_property"

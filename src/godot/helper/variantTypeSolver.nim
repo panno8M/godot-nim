@@ -15,7 +15,7 @@ template variantType*(Type: typedesc[ObjectPtr]): Variant_Type =
 template variantType*(Type: typedesc[SomeClass]): Variant_Type =
   VariantType_Object
 
-template variantType*(Type: typedesc[ptr Variant | Variant]): Variant_Type =
+template variantType*(Type: typedesc[Variant]): Variant_Type =
   VariantType_Nil
 template variantType*(Type: typedesc[AltInt]): Variant_Type =
   VariantType_Int

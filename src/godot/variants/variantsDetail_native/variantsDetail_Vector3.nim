@@ -130,8 +130,8 @@ var Multiply_Vector3_Transform3D: PtrOperatorEvaluator
 var In_Vector3_Dictionary: PtrOperatorEvaluator
 var In_Vector3_Array: PtrOperatorEvaluator
 var In_Vector3_PackedVector3Array: PtrOperatorEvaluator
-proc `==`*(left: Vector3; right: ptr Variant): Bool = Equal_Vector3_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Vector3; right: ptr Variant): Bool = NotEqual_Vector3_Variant(addr left, addr right, addr result)
+proc `==`*(left: Vector3; right: Variant): Bool = Equal_Vector3_Variant(addr left, addr right, addr result)
+proc `!=`*(left: Vector3; right: Variant): Bool = NotEqual_Vector3_Variant(addr left, addr right, addr result)
 proc `*`*(left: Vector3; right: Quaternion): Vector3 = Multiply_Vector3_Quaternion(addr left, addr right, addr result)
 proc `*`*(left: Vector3; right: Basis): Vector3 = Multiply_Vector3_Basis(addr left, addr right, addr result)
 proc `*`*(left: Vector3; right: Transform3D): Vector3 = Multiply_Vector3_Transform3D(addr left, addr right, addr result)

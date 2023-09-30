@@ -1389,7 +1389,7 @@ proc getTotalGutterWidth*(self: TextEdit): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc setLineGutterMetadata*(self: TextEdit; line: int32; gutter: int32; metadata: ptr Variant) =
+proc setLineGutterMetadata*(self: TextEdit; line: int32; gutter: int32; metadata: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_line_gutter_metadata"

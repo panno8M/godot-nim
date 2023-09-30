@@ -31,7 +31,7 @@ proc globalMenuAddSubmenuItem*(self: DisplayServer; menuRoot: String; label: Str
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc globalMenuAddItem*(self: DisplayServer; menuRoot: String; label: String; callback: Callable = init_Callable(); keyCallback: Callable = init_Callable(); tag: ptr Variant = nil; accelerator: Key = keyNone; index: int32 = -1): int32 =
+proc globalMenuAddItem*(self: DisplayServer; menuRoot: String; label: String; callback: Callable = init_Callable(); keyCallback: Callable = init_Callable(); tag: Variant = default(Variant); accelerator: Key = keyNone; index: int32 = -1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "global_menu_add_item"
@@ -40,7 +40,7 @@ proc globalMenuAddItem*(self: DisplayServer; menuRoot: String; label: String; ca
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc globalMenuAddCheckItem*(self: DisplayServer; menuRoot: String; label: String; callback: Callable = init_Callable(); keyCallback: Callable = init_Callable(); tag: ptr Variant = nil; accelerator: Key = keyNone; index: int32 = -1): int32 =
+proc globalMenuAddCheckItem*(self: DisplayServer; menuRoot: String; label: String; callback: Callable = init_Callable(); keyCallback: Callable = init_Callable(); tag: Variant = default(Variant); accelerator: Key = keyNone; index: int32 = -1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "global_menu_add_check_item"
@@ -49,7 +49,7 @@ proc globalMenuAddCheckItem*(self: DisplayServer; menuRoot: String; label: Strin
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc globalMenuAddIconItem*(self: DisplayServer; menuRoot: String; icon: Texture2D; label: String; callback: Callable = init_Callable(); keyCallback: Callable = init_Callable(); tag: ptr Variant = nil; accelerator: Key = keyNone; index: int32 = -1): int32 =
+proc globalMenuAddIconItem*(self: DisplayServer; menuRoot: String; icon: Texture2D; label: String; callback: Callable = init_Callable(); keyCallback: Callable = init_Callable(); tag: Variant = default(Variant); accelerator: Key = keyNone; index: int32 = -1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "global_menu_add_icon_item"
@@ -58,7 +58,7 @@ proc globalMenuAddIconItem*(self: DisplayServer; menuRoot: String; icon: Texture
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc globalMenuAddIconCheckItem*(self: DisplayServer; menuRoot: String; icon: Texture2D; label: String; callback: Callable = init_Callable(); keyCallback: Callable = init_Callable(); tag: ptr Variant = nil; accelerator: Key = keyNone; index: int32 = -1): int32 =
+proc globalMenuAddIconCheckItem*(self: DisplayServer; menuRoot: String; icon: Texture2D; label: String; callback: Callable = init_Callable(); keyCallback: Callable = init_Callable(); tag: Variant = default(Variant); accelerator: Key = keyNone; index: int32 = -1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "global_menu_add_icon_check_item"
@@ -67,7 +67,7 @@ proc globalMenuAddIconCheckItem*(self: DisplayServer; menuRoot: String; icon: Te
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc globalMenuAddRadioCheckItem*(self: DisplayServer; menuRoot: String; label: String; callback: Callable = init_Callable(); keyCallback: Callable = init_Callable(); tag: ptr Variant = nil; accelerator: Key = keyNone; index: int32 = -1): int32 =
+proc globalMenuAddRadioCheckItem*(self: DisplayServer; menuRoot: String; label: String; callback: Callable = init_Callable(); keyCallback: Callable = init_Callable(); tag: Variant = default(Variant); accelerator: Key = keyNone; index: int32 = -1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "global_menu_add_radio_check_item"
@@ -76,7 +76,7 @@ proc globalMenuAddRadioCheckItem*(self: DisplayServer; menuRoot: String; label: 
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc globalMenuAddIconRadioCheckItem*(self: DisplayServer; menuRoot: String; icon: Texture2D; label: String; callback: Callable = init_Callable(); keyCallback: Callable = init_Callable(); tag: ptr Variant = nil; accelerator: Key = keyNone; index: int32 = -1): int32 =
+proc globalMenuAddIconRadioCheckItem*(self: DisplayServer; menuRoot: String; icon: Texture2D; label: String; callback: Callable = init_Callable(); keyCallback: Callable = init_Callable(); tag: Variant = default(Variant); accelerator: Key = keyNone; index: int32 = -1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "global_menu_add_icon_radio_check_item"
@@ -85,7 +85,7 @@ proc globalMenuAddIconRadioCheckItem*(self: DisplayServer; menuRoot: String; ico
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc globalMenuAddMultistateItem*(self: DisplayServer; menuRoot: String; label: String; maxStates: int32; defaultState: int32; callback: Callable = init_Callable(); keyCallback: Callable = init_Callable(); tag: ptr Variant = nil; accelerator: Key = keyNone; index: int32 = -1): int32 =
+proc globalMenuAddMultistateItem*(self: DisplayServer; menuRoot: String; label: String; maxStates: int32; defaultState: int32; callback: Callable = init_Callable(); keyCallback: Callable = init_Callable(); tag: Variant = default(Variant); accelerator: Key = keyNone; index: int32 = -1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "global_menu_add_multistate_item"
@@ -112,7 +112,7 @@ proc globalMenuGetItemIndexFromText*(self: DisplayServer; menuRoot: String; text
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc globalMenuGetItemIndexFromTag*(self: DisplayServer; menuRoot: String; tag: ptr Variant): int32 =
+proc globalMenuGetItemIndexFromTag*(self: DisplayServer; menuRoot: String; tag: Variant): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "global_menu_get_item_index_from_tag"
@@ -291,7 +291,7 @@ proc globalMenuSetItemKeyCallback*(self: DisplayServer; menuRoot: String; idx: i
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 3809915389)
   var `?param` = [getPtr menuRoot, getPtr idx, getPtr keyCallback]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc globalMenuSetItemTag*(self: DisplayServer; menuRoot: String; idx: int32; tag: ptr Variant) =
+proc globalMenuSetItemTag*(self: DisplayServer; menuRoot: String; idx: int32; tag: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "global_menu_set_item_tag"

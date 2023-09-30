@@ -196,7 +196,7 @@ proc notifyGroupFlags*(self: SceneTree; callFlags: uint32; group: StringName; no
     methodbind = interface_ClassDB_getMethodBind(addr className SceneTree, addr name, 1245489420)
   var `?param` = [getPtr callFlags, getPtr group, getPtr notification]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setGroupFlags*(self: SceneTree; callFlags: uint32; group: StringName; property: String; value: ptr Variant) =
+proc setGroupFlags*(self: SceneTree; callFlags: uint32; group: StringName; property: String; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_group_flags"
@@ -217,7 +217,7 @@ proc notifyGroup*(self: SceneTree; group: StringName; notification: int32) =
     methodbind = interface_ClassDB_getMethodBind(addr className SceneTree, addr name, 2415702435)
   var `?param` = [getPtr group, getPtr notification]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setGroup*(self: SceneTree; group: StringName; property: String; value: ptr Variant) =
+proc setGroup*(self: SceneTree; group: StringName; property: String; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_group"

@@ -71,7 +71,7 @@ proc classMethodInfo_fromdef*(procdef: NimNode; gdname: NimNode): NimNode =
     for i, (name, Type, default) in params.breakArgs:
       if i == 0: continue # [0: self/typedesc[self], 1: arg1, 2: arg2...]
       let i_lit = newlit i - 1
-      call.add quote do: p_args[`i_lit`].get(typedesc `Type`)
+      call.add quote do: p_args[`i_lit`][].get(typedesc `Type`)
       ptrcall.add quote do: p_args[`i_lit`].decode(typedesc `Type`)
     if has_return:
       call_func_body = quote do:

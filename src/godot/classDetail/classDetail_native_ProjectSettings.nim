@@ -14,14 +14,14 @@ proc hasSetting*(self: ProjectSettings; name: String): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc setSetting*(self: ProjectSettings; name: String; value: ptr Variant) =
+proc setSetting*(self: ProjectSettings; name: String; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_setting"
     methodbind = interface_ClassDB_getMethodBind(addr className ProjectSettings, addr name, 402577236)
   var `?param` = [getPtr name, getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getSetting*(self: ProjectSettings; name: String; defaultValue: ptr Variant = nil): Variant =
+proc getSetting*(self: ProjectSettings; name: String; defaultValue: Variant = default(Variant)): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_setting"
@@ -63,7 +63,7 @@ proc getOrder*(self: ProjectSettings; name: String): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc setInitialValue*(self: ProjectSettings; name: String; value: ptr Variant) =
+proc setInitialValue*(self: ProjectSettings; name: String; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_initial_value"

@@ -189,7 +189,7 @@ proc getVertexWeights*(self: MeshDataTool; idx: int32): PackedFloat32Array =
   var ret: encoded PackedFloat32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedFloat32Array)
-proc setVertexMeta*(self: MeshDataTool; idx: int32; meta: ptr Variant) =
+proc setVertexMeta*(self: MeshDataTool; idx: int32; meta: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_vertex_meta"
@@ -241,7 +241,7 @@ proc getEdgeFaces*(self: MeshDataTool; idx: int32): PackedInt32Array =
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(PackedInt32Array)
-proc setEdgeMeta*(self: MeshDataTool; idx: int32; meta: ptr Variant) =
+proc setEdgeMeta*(self: MeshDataTool; idx: int32; meta: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_edge_meta"
@@ -275,7 +275,7 @@ proc getFaceEdge*(self: MeshDataTool; idx: int32; edge: int32): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(int32)
-proc setFaceMeta*(self: MeshDataTool; idx: int32; meta: ptr Variant) =
+proc setFaceMeta*(self: MeshDataTool; idx: int32; meta: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_face_meta"

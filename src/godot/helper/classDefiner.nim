@@ -84,7 +84,7 @@ template register_class*(T: typedesc[SomeUserClass]) =
 
 template signal* {.pragma.}
 import ../classIndex
-proc emit_signal_internal(self: Object; paramhead: ptr ptr Variant; paramcount: int): Error =
+proc emit_signal_internal(self: Object; paramhead: ptr VariantPtr; paramcount: int): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "emit_signal"
@@ -92,7 +92,7 @@ proc emit_signal_internal(self: Object; paramhead: ptr ptr Variant; paramcount: 
   var ret: Variant
   var err: CallError
   interface_Object_methodBindCall(methodbind, getOwner self, paramhead, paramcount, addr ret, addr err)
-  return (addr ret).get(Error)
+  return ret.get(Error)
 
 type ClassSignalInfo = ref object
   name: StringName

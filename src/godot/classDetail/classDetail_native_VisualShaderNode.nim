@@ -20,7 +20,7 @@ proc outputPortForPreview*(self: VisualShaderNode): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(int32)
-proc setInputPortDefaultValue*(self: VisualShaderNode; port: int32; value: ptr Variant; prevValue: ptr Variant = nil) =
+proc setInputPortDefaultValue*(self: VisualShaderNode; port: int32; value: Variant; prevValue: Variant = default(Variant)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_input_port_default_value"

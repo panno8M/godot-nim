@@ -815,7 +815,7 @@ proc focusPrevious*(self: Control): NodePath =
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(NodePath)
-proc forceDrag*(self: Control; data: ptr Variant; preview: Control) =
+proc forceDrag*(self: Control; data: Variant; preview: Control) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "force_drag"

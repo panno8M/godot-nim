@@ -69,7 +69,7 @@ proc rpc*(self: MultiplayerAPI; peer: int32; `object`: Object; `method`: StringN
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc objectConfigurationAdd*(self: MultiplayerAPI; `object`: Object; configuration: ptr Variant): Error =
+proc objectConfigurationAdd*(self: MultiplayerAPI; `object`: Object; configuration: Variant): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "object_configuration_add"
@@ -78,7 +78,7 @@ proc objectConfigurationAdd*(self: MultiplayerAPI; `object`: Object; configurati
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Error)
-proc objectConfigurationRemove*(self: MultiplayerAPI; `object`: Object; configuration: ptr Variant): Error =
+proc objectConfigurationRemove*(self: MultiplayerAPI; `object`: Object; configuration: Variant): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "object_configuration_remove"

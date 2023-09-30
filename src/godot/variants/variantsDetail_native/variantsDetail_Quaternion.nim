@@ -118,8 +118,8 @@ var Subtract_Quaternion_Quaternion: PtrOperatorEvaluator
 var Multiply_Quaternion_Quaternion: PtrOperatorEvaluator
 var In_Quaternion_Dictionary: PtrOperatorEvaluator
 var In_Quaternion_Array: PtrOperatorEvaluator
-proc `==`*(left: Quaternion; right: ptr Variant): Bool = Equal_Quaternion_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Quaternion; right: ptr Variant): Bool = NotEqual_Quaternion_Variant(addr left, addr right, addr result)
+proc `==`*(left: Quaternion; right: Variant): Bool = Equal_Quaternion_Variant(addr left, addr right, addr result)
+proc `!=`*(left: Quaternion; right: Variant): Bool = NotEqual_Quaternion_Variant(addr left, addr right, addr result)
 proc `-`*(left: Quaternion): Quaternion = Negate_Quaternion(addr left, nil, addr result)
 proc `+`*(left: Quaternion): Quaternion = Positive_Quaternion(addr left, nil, addr result)
 proc `not`*(left: Quaternion): Bool = Not_Quaternion(addr left, nil, addr result)

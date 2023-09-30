@@ -108,7 +108,7 @@ proc clearDropcap*(self: TextParagraph) =
     let name: StringName = "clear_dropcap"
     methodbind = interface_ClassDB_getMethodBind(addr className TextParagraph, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc addString*(self: TextParagraph; text: String; font: Font; fontSize: int32; language: String = ""; meta: ptr Variant = nil): Bool =
+proc addString*(self: TextParagraph; text: String; font: Font; fontSize: int32; language: String = ""; meta: Variant = default(Variant)): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_string"
@@ -117,7 +117,7 @@ proc addString*(self: TextParagraph; text: String; font: Font; fontSize: int32; 
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc addObject*(self: TextParagraph; key: ptr Variant; size: Vector2; inlineAlign: InlineAlignment = inlineAlignmentCenter; length: int32 = 1; baseline: Float = 0.0): Bool =
+proc addObject*(self: TextParagraph; key: Variant; size: Vector2; inlineAlign: InlineAlignment = inlineAlignmentCenter; length: int32 = 1; baseline: Float = 0.0): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_object"
@@ -126,7 +126,7 @@ proc addObject*(self: TextParagraph; key: ptr Variant; size: Vector2; inlineAlig
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc resizeObject*(self: TextParagraph; key: ptr Variant; size: Vector2; inlineAlign: InlineAlignment = inlineAlignmentCenter; baseline: Float = 0.0): Bool =
+proc resizeObject*(self: TextParagraph; key: Variant; size: Vector2; inlineAlign: InlineAlignment = inlineAlignmentCenter; baseline: Float = 0.0): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "resize_object"
@@ -290,7 +290,7 @@ proc getLineObjects*(self: TextParagraph; line: int32): Array =
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Array)
-proc getLineObjectRect*(self: TextParagraph; line: int32; key: ptr Variant): Rect2 =
+proc getLineObjectRect*(self: TextParagraph; line: int32; key: Variant): Rect2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_line_object_rect"

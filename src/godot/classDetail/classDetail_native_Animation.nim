@@ -195,7 +195,7 @@ proc blendShapeTrackInterpolate*(self: Animation; trackIdx: int32; timeSec: floa
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Float)
-proc trackInsertKey*(self: Animation; trackIdx: int32; time: float64; key: ptr Variant; transition: Float = 1): int32 =
+proc trackInsertKey*(self: Animation; trackIdx: int32; time: float64; key: Variant; transition: Float = 1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "track_insert_key"
@@ -218,7 +218,7 @@ proc trackRemoveKeyAtTime*(self: Animation; trackIdx: int32; time: float64) =
     methodbind = interface_ClassDB_getMethodBind(addr className Animation, addr name, 1602489585)
   var `?param` = [getPtr trackIdx, getPtr time]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc trackSetKeyValue*(self: Animation; trackIdx: int32; key: int32; value: ptr Variant) =
+proc trackSetKeyValue*(self: Animation; trackIdx: int32; key: int32; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "track_set_key_value"

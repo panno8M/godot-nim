@@ -41,14 +41,14 @@ proc addUndoMethod*(self: EditorUndoRedoManager; `object`: Object; `method`: Str
     methodbind = interface_ClassDB_getMethodBind(addr className EditorUndoRedoManager, addr name, 1517810467)
   var `?param` = [getPtr `object`, getPtr `method`]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addDoProperty*(self: EditorUndoRedoManager; `object`: Object; property: StringName; value: ptr Variant) =
+proc addDoProperty*(self: EditorUndoRedoManager; `object`: Object; property: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_do_property"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorUndoRedoManager, addr name, 1017172818)
   var `?param` = [getPtr `object`, getPtr property, getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addUndoProperty*(self: EditorUndoRedoManager; `object`: Object; property: StringName; value: ptr Variant) =
+proc addUndoProperty*(self: EditorUndoRedoManager; `object`: Object; property: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_undo_property"

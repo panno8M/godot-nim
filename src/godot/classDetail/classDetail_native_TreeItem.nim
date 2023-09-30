@@ -284,7 +284,7 @@ proc getRangeConfig*(self: TreeItem; column: int32): Dictionary =
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Dictionary)
-proc setMetadata*(self: TreeItem; column: int32; meta: ptr Variant) =
+proc setMetadata*(self: TreeItem; column: int32; meta: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_metadata"

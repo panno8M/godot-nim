@@ -13,8 +13,8 @@ var In_Float_PackedInt32Array: PtrOperatorEvaluator
 var In_Float_PackedInt64Array: PtrOperatorEvaluator
 var In_Float_PackedFloat32Array: PtrOperatorEvaluator
 var In_Float_PackedFloat64Array: PtrOperatorEvaluator
-proc `==`*(left: Float; right: ptr Variant): Bool = Equal_Float_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Float; right: ptr Variant): Bool = NotEqual_Float_Variant(addr left, addr right, addr result)
+proc `==`*(left: Float; right: Variant): Bool = Equal_Float_Variant(addr left, addr right, addr result)
+proc `!=`*(left: Float; right: Variant): Bool = NotEqual_Float_Variant(addr left, addr right, addr result)
 proc contains*(left: Dictionary; right: Float): Bool = In_Float_Dictionary(addr right, addr left, addr result)
 proc contains*(left: Array; right: Float): Bool = In_Float_Array(addr right, addr left, addr result)
 proc contains*(left: PackedByteArray; right: Float): Bool = In_Float_PackedByteArray(addr right, addr left, addr result)

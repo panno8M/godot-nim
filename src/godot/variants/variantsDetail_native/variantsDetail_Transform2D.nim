@@ -124,8 +124,8 @@ var Multiply_Transform2D_Transform2D: PtrOperatorEvaluator
 var In_Transform2D_Dictionary: PtrOperatorEvaluator
 var In_Transform2D_Array: PtrOperatorEvaluator
 var Multiply_Transform2D_PackedVector2Array: PtrOperatorEvaluator
-proc `==`*(left: Transform2D; right: ptr Variant): Bool = Equal_Transform2D_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Transform2D; right: ptr Variant): Bool = NotEqual_Transform2D_Variant(addr left, addr right, addr result)
+proc `==`*(left: Transform2D; right: Variant): Bool = Equal_Transform2D_Variant(addr left, addr right, addr result)
+proc `!=`*(left: Transform2D; right: Variant): Bool = NotEqual_Transform2D_Variant(addr left, addr right, addr result)
 proc `not`*(left: Transform2D): Bool = Not_Transform2D(addr left, nil, addr result)
 proc `*`*(left: Transform2D; right: Int): Transform2D = Multiply_Transform2D_Int(addr left, addr right, addr result)
 proc `*`*(left: Transform2D; right: Float): Transform2D = Multiply_Transform2D_Float(addr left, addr right, addr result)

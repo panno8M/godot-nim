@@ -157,8 +157,8 @@ var NotEqual_Projection_Projection: PtrOperatorEvaluator
 var Multiply_Projection_Projection: PtrOperatorEvaluator
 var In_Projection_Dictionary: PtrOperatorEvaluator
 var In_Projection_Array: PtrOperatorEvaluator
-proc `==`*(left: Projection; right: ptr Variant): Bool = Equal_Projection_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Projection; right: ptr Variant): Bool = NotEqual_Projection_Variant(addr left, addr right, addr result)
+proc `==`*(left: Projection; right: Variant): Bool = Equal_Projection_Variant(addr left, addr right, addr result)
+proc `!=`*(left: Projection; right: Variant): Bool = NotEqual_Projection_Variant(addr left, addr right, addr result)
 proc `not`*(left: Projection): Bool = Not_Projection(addr left, nil, addr result)
 proc `*`*(left: Projection; right: Vector4): Vector4 = Multiply_Projection_Vector4(addr left, addr right, addr result)
 proc `==`*(left: Projection; right: Projection): Bool = Equal_Projection_Projection(addr left, addr right, addr result)

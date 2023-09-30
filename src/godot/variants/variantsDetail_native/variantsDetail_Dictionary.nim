@@ -4,8 +4,8 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-proc `[]`*(self: Dictionary; key: ptr Variant): var Dictionary.Item = interface_Dictionary_operatorIndex(addr self, key)[]
-proc `[]=`*(self: Dictionary; key: ptr Variant; value: Dictionary.Item) = interface_Dictionary_operatorIndex(addr self, key)[] = value
+proc `[]`*(self: Dictionary; key: Variant): var Dictionary.Item = interface_Dictionary_operatorIndex(addr self, addr key)[]
+proc `[]=`*(self: Dictionary; key: Variant; value: Dictionary.Item) = interface_Dictionary_operatorIndex(addr self, addr key)[] = value
 var Dictionary_size: PtrBuiltinMethod
 var Dictionary_isEmpty: PtrBuiltinMethod
 var Dictionary_clear: PtrBuiltinMethod
@@ -27,16 +27,16 @@ proc clear*(self: var Dictionary) = Dictionary_clear(addr self, nil, nil, 0)
 proc merge*(self: var Dictionary; dictionary: Dictionary; overwrite: Bool = false) =
   let argArr = [getPtr dictionary, getPtr overwrite]
   Dictionary_merge(addr self, addr argArr[0], nil, 2)
-proc has*(self: Dictionary; key: ptr Variant): Bool =
+proc has*(self: Dictionary; key: Variant): Bool =
   let argArr = [getPtr key]
   Dictionary_has(addr self, addr argArr[0], addr result, 1)
 proc hasAll*(self: Dictionary; keys: Array): Bool =
   let argArr = [getPtr keys]
   Dictionary_hasAll(addr self, addr argArr[0], addr result, 1)
-proc findKey*(self: Dictionary; value: ptr Variant): Variant =
+proc findKey*(self: Dictionary; value: Variant): Variant =
   let argArr = [getPtr value]
   Dictionary_findKey(addr self, addr argArr[0], addr result, 1)
-proc erase*(self: var Dictionary; key: ptr Variant): Bool =
+proc erase*(self: var Dictionary; key: Variant): Bool =
   let argArr = [getPtr key]
   Dictionary_erase(addr self, addr argArr[0], addr result, 1)
 proc hash*(self: Dictionary): Int = Dictionary_hash(addr self, nil, addr result, 0)
@@ -45,7 +45,7 @@ proc values*(self: Dictionary): Array = Dictionary_values(addr self, nil, addr r
 proc duplicate*(self: Dictionary; deep: Bool = false): Dictionary =
   let argArr = [getPtr deep]
   Dictionary_duplicate(addr self, addr argArr[0], addr result, 1)
-proc get*(self: Dictionary; key: ptr Variant; default: ptr Variant = nil): Variant =
+proc get*(self: Dictionary; key: Variant; default: Variant = default(Variant)): Variant =
   let argArr = [getPtr key, getPtr default]
   Dictionary_get(addr self, addr argArr[0], addr result, 2)
 proc makeReadOnly*(self: var Dictionary) = Dictionary_makeReadOnly(addr self, nil, nil, 0)
@@ -89,8 +89,8 @@ var Equal_Dictionary_Dictionary: PtrOperatorEvaluator
 var NotEqual_Dictionary_Dictionary: PtrOperatorEvaluator
 var In_Dictionary_Dictionary: PtrOperatorEvaluator
 var In_Dictionary_Array: PtrOperatorEvaluator
-proc `==`*(left: Dictionary; right: ptr Variant): Bool = Equal_Dictionary_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Dictionary; right: ptr Variant): Bool = NotEqual_Dictionary_Variant(addr left, addr right, addr result)
+proc `==`*(left: Dictionary; right: Variant): Bool = Equal_Dictionary_Variant(addr left, addr right, addr result)
+proc `!=`*(left: Dictionary; right: Variant): Bool = NotEqual_Dictionary_Variant(addr left, addr right, addr result)
 proc `not`*(left: Dictionary): Bool = Not_Dictionary(addr left, nil, addr result)
 proc `==`*(left: Dictionary; right: Dictionary): Bool = Equal_Dictionary_Dictionary(addr left, addr right, addr result)
 proc `!=`*(left: Dictionary; right: Dictionary): Bool = NotEqual_Dictionary_Dictionary(addr left, addr right, addr result)

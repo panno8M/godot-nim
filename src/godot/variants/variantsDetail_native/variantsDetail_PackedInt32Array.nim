@@ -128,8 +128,8 @@ var In_PackedInt32Array_Array: PtrOperatorEvaluator
 var Equal_PackedInt32Array_PackedInt32Array: PtrOperatorEvaluator
 var NotEqual_PackedInt32Array_PackedInt32Array: PtrOperatorEvaluator
 var Add_PackedInt32Array_PackedInt32Array: PtrOperatorEvaluator
-proc `==`*(left: PackedInt32Array; right: ptr Variant): Bool = Equal_PackedInt32Array_Variant(addr left, addr right, addr result)
-proc `!=`*(left: PackedInt32Array; right: ptr Variant): Bool = NotEqual_PackedInt32Array_Variant(addr left, addr right, addr result)
+proc `==`*(left: PackedInt32Array; right: Variant): Bool = Equal_PackedInt32Array_Variant(addr left, addr right, addr result)
+proc `!=`*(left: PackedInt32Array; right: Variant): Bool = NotEqual_PackedInt32Array_Variant(addr left, addr right, addr result)
 proc `not`*(left: PackedInt32Array): Bool = Not_PackedInt32Array(addr left, nil, addr result)
 proc contains*(left: Dictionary; right: PackedInt32Array): Bool = In_PackedInt32Array_Dictionary(addr right, addr left, addr result)
 proc contains*(left: Array; right: PackedInt32Array): Bool = In_PackedInt32Array_Array(addr right, addr left, addr result)

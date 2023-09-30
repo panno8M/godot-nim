@@ -174,7 +174,7 @@ proc bigrams*(self: String): PackedStringArray = String_bigrams(addr self, nil, 
 proc similarity*(self: String; text: String): Float =
   let argArr = [getPtr text]
   String_similarity(addr self, addr argArr[0], addr result, 1)
-proc format*(self: String; values: ptr Variant; placeholder: String = "{_}"): String =
+proc format*(self: String; values: Variant; placeholder: String = "{_}"): String =
   let argArr = [getPtr values, getPtr placeholder]
   String_format(addr self, addr argArr[0], addr result, 2)
 proc replace*(self: String; what: String; forwhat: String): String =
@@ -584,9 +584,9 @@ var In_String_PackedStringArray: PtrOperatorEvaluator
 var Module_String_PackedVector2Array: PtrOperatorEvaluator
 var Module_String_PackedVector3Array: PtrOperatorEvaluator
 var Module_String_PackedColorArray: PtrOperatorEvaluator
-proc `==`*(left: String; right: ptr Variant): Bool = Equal_String_Variant(addr left, addr right, addr result)
-proc `!=`*(left: String; right: ptr Variant): Bool = NotEqual_String_Variant(addr left, addr right, addr result)
-proc `%`*(left: String; right: ptr Variant): String = Module_String_Variant(addr left, addr right, addr result)
+proc `==`*(left: String; right: Variant): Bool = Equal_String_Variant(addr left, addr right, addr result)
+proc `!=`*(left: String; right: Variant): Bool = NotEqual_String_Variant(addr left, addr right, addr result)
+proc `%`*(left: String; right: Variant): String = Module_String_Variant(addr left, addr right, addr result)
 proc `not`*(left: String): Bool = Not_String(addr left, nil, addr result)
 proc `%`*(left: String; right: Bool): String = Module_String_Bool(addr left, addr right, addr result)
 proc `%`*(left: String; right: Int): String = Module_String_Int(addr left, addr right, addr result)

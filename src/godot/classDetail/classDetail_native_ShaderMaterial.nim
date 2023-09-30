@@ -20,7 +20,7 @@ proc shader*(self: ShaderMaterial): Shader =
   var ret: encoded Shader
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Shader)
-proc setShaderParameter*(self: ShaderMaterial; param: StringName; value: ptr Variant) =
+proc setShaderParameter*(self: ShaderMaterial; param: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_shader_parameter"

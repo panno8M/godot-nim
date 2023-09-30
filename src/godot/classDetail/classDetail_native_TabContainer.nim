@@ -177,7 +177,7 @@ proc isTabHidden*(self: TabContainer; tabIdx: int32): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc setTabMetadata*(self: TabContainer; tabIdx: int32; metadata: ptr Variant) =
+proc setTabMetadata*(self: TabContainer; tabIdx: int32; metadata: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_tab_metadata"

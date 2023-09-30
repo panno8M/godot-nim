@@ -79,8 +79,8 @@ var NotEqual_Plane_Plane: PtrOperatorEvaluator
 var Multiply_Plane_Transform3D: PtrOperatorEvaluator
 var In_Plane_Dictionary: PtrOperatorEvaluator
 var In_Plane_Array: PtrOperatorEvaluator
-proc `==`*(left: Plane; right: ptr Variant): Bool = Equal_Plane_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Plane; right: ptr Variant): Bool = NotEqual_Plane_Variant(addr left, addr right, addr result)
+proc `==`*(left: Plane; right: Variant): Bool = Equal_Plane_Variant(addr left, addr right, addr result)
+proc `!=`*(left: Plane; right: Variant): Bool = NotEqual_Plane_Variant(addr left, addr right, addr result)
 proc `-`*(left: Plane): Plane = Negate_Plane(addr left, nil, addr result)
 proc `+`*(left: Plane): Plane = Positive_Plane(addr left, nil, addr result)
 proc `not`*(left: Plane): Bool = Not_Plane(addr left, nil, addr result)

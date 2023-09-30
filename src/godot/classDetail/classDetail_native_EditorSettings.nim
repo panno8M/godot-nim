@@ -14,7 +14,7 @@ proc hasSetting*(self: EditorSettings; name: String): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc setSetting*(self: EditorSettings; name: String; value: ptr Variant) =
+proc setSetting*(self: EditorSettings; name: String; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_setting"
@@ -37,7 +37,7 @@ proc erase*(self: EditorSettings; property: String) =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorSettings, addr name, 83702148)
   var `?param` = [getPtr property]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setInitialValue*(self: EditorSettings; name: StringName; value: ptr Variant; updateCurrent: Bool) =
+proc setInitialValue*(self: EditorSettings; name: StringName; value: Variant; updateCurrent: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_initial_value"
@@ -51,14 +51,14 @@ proc addPropertyInfo*(self: EditorSettings; info: Dictionary) =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorSettings, addr name, 4155329257)
   var `?param` = [getPtr info]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setProjectMetadata*(self: EditorSettings; section: String; key: String; data: ptr Variant) =
+proc setProjectMetadata*(self: EditorSettings; section: String; key: String; data: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_project_metadata"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorSettings, addr name, 2504492430)
   var `?param` = [getPtr section, getPtr key, getPtr data]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getProjectMetadata*(self: EditorSettings; section: String; key: String; default: ptr Variant = nil): Variant =
+proc getProjectMetadata*(self: EditorSettings; section: String; key: String; default: Variant = default(Variant)): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_project_metadata"

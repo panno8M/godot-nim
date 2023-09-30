@@ -308,7 +308,7 @@ proc init_Array*(): Array =
 converter init_Array*(`from`: Array): Array =
   let argArr = [cast[pointer](addr `from`)]
   Array_constr[1](addr result, addr argArr[0])
-proc init_Array*(base: Array; `type`: Int; className: StringName; script: ptr Variant): Array =
+proc init_Array*(base: Array; `type`: Int; className: StringName; script: Variant): Array =
   let argArr = [cast[pointer](addr base), cast[pointer](addr `type`), cast[pointer](addr className), cast[pointer](addr script)]
   Array_constr[2](addr result, addr argArr[0])
 converter init_Array*(`from`: PackedByteArray): Array =

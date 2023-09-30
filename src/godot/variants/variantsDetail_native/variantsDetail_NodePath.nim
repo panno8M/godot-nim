@@ -57,8 +57,8 @@ var Equal_NodePath_NodePath: PtrOperatorEvaluator
 var NotEqual_NodePath_NodePath: PtrOperatorEvaluator
 var In_NodePath_Dictionary: PtrOperatorEvaluator
 var In_NodePath_Array: PtrOperatorEvaluator
-proc `==`*(left: NodePath; right: ptr Variant): Bool = Equal_NodePath_Variant(addr left, addr right, addr result)
-proc `!=`*(left: NodePath; right: ptr Variant): Bool = NotEqual_NodePath_Variant(addr left, addr right, addr result)
+proc `==`*(left: NodePath; right: Variant): Bool = Equal_NodePath_Variant(addr left, addr right, addr result)
+proc `!=`*(left: NodePath; right: Variant): Bool = NotEqual_NodePath_Variant(addr left, addr right, addr result)
 proc `not`*(left: NodePath): Bool = Not_NodePath(addr left, nil, addr result)
 proc `==`*(left: NodePath; right: NodePath): Bool = Equal_NodePath_NodePath(addr left, addr right, addr result)
 proc `!=`*(left: NodePath; right: NodePath): Bool = NotEqual_NodePath_NodePath(addr left, addr right, addr result)

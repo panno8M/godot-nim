@@ -166,7 +166,7 @@ proc setItemAccelerator*(self: PopupMenu; index: int32; accel: Key) =
     methodbind = interface_ClassDB_getMethodBind(addr className PopupMenu, addr name, 2992817551)
   var `?param` = [getPtr index, getPtr accel]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setItemMetadata*(self: PopupMenu; index: int32; metadata: ptr Variant) =
+proc setItemMetadata*(self: PopupMenu; index: int32; metadata: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_item_metadata"

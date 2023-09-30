@@ -112,7 +112,7 @@ proc blendInput*(self: AnimationNode; inputIndex: int32; time: float64; seek: Bo
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(float64)
-proc setParameter*(self: AnimationNode; name: StringName; value: ptr Variant) =
+proc setParameter*(self: AnimationNode; name: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_parameter"

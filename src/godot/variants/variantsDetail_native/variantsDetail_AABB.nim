@@ -140,8 +140,8 @@ var NotEqual_AABB_AABB: PtrOperatorEvaluator
 var Multiply_AABB_Transform3D: PtrOperatorEvaluator
 var In_AABB_Dictionary: PtrOperatorEvaluator
 var In_AABB_Array: PtrOperatorEvaluator
-proc `==`*(left: AABB; right: ptr Variant): Bool = Equal_AABB_Variant(addr left, addr right, addr result)
-proc `!=`*(left: AABB; right: ptr Variant): Bool = NotEqual_AABB_Variant(addr left, addr right, addr result)
+proc `==`*(left: AABB; right: Variant): Bool = Equal_AABB_Variant(addr left, addr right, addr result)
+proc `!=`*(left: AABB; right: Variant): Bool = NotEqual_AABB_Variant(addr left, addr right, addr result)
 proc `not`*(left: AABB): Bool = Not_AABB(addr left, nil, addr result)
 proc `==`*(left: AABB; right: AABB): Bool = Equal_AABB_AABB(addr left, addr right, addr result)
 proc `!=`*(left: AABB; right: AABB): Bool = NotEqual_AABB_AABB(addr left, addr right, addr result)

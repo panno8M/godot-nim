@@ -121,7 +121,7 @@ proc getInput*(self: XRPositionalTracker; name: StringName): Variant =
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
-proc setInput*(self: XRPositionalTracker; name: StringName; value: ptr Variant) =
+proc setInput*(self: XRPositionalTracker; name: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_input"

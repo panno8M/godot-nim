@@ -135,7 +135,7 @@ proc pushList*(self: RichTextLabel; level: int32; `type`: RichTextLabel_ListType
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 4036303897)
   var `?param` = [getPtr level, getPtr `type`, getPtr capitalize, getPtr bullet]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc pushMeta*(self: RichTextLabel; data: ptr Variant) =
+proc pushMeta*(self: RichTextLabel; data: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "push_meta"
@@ -774,7 +774,7 @@ proc effects*(self: RichTextLabel): Array =
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Array)
-proc installEffect*(self: RichTextLabel; effect: ptr Variant) =
+proc installEffect*(self: RichTextLabel; effect: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "install_effect"

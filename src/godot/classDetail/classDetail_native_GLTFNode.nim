@@ -194,7 +194,7 @@ proc getAdditionalData*(self: GLTFNode; extensionName: StringName): Variant =
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
-proc setAdditionalData*(self: GLTFNode; extensionName: StringName; additionalData: ptr Variant) =
+proc setAdditionalData*(self: GLTFNode; extensionName: StringName; additionalData: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_additional_data"

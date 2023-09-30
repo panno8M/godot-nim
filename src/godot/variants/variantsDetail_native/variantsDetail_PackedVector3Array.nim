@@ -129,8 +129,8 @@ var In_PackedVector3Array_Array: PtrOperatorEvaluator
 var Equal_PackedVector3Array_PackedVector3Array: PtrOperatorEvaluator
 var NotEqual_PackedVector3Array_PackedVector3Array: PtrOperatorEvaluator
 var Add_PackedVector3Array_PackedVector3Array: PtrOperatorEvaluator
-proc `==`*(left: PackedVector3Array; right: ptr Variant): Bool = Equal_PackedVector3Array_Variant(addr left, addr right, addr result)
-proc `!=`*(left: PackedVector3Array; right: ptr Variant): Bool = NotEqual_PackedVector3Array_Variant(addr left, addr right, addr result)
+proc `==`*(left: PackedVector3Array; right: Variant): Bool = Equal_PackedVector3Array_Variant(addr left, addr right, addr result)
+proc `!=`*(left: PackedVector3Array; right: Variant): Bool = NotEqual_PackedVector3Array_Variant(addr left, addr right, addr result)
 proc `not`*(left: PackedVector3Array): Bool = Not_PackedVector3Array(addr left, nil, addr result)
 proc `*`*(left: PackedVector3Array; right: Transform3D): PackedVector3Array = Multiply_PackedVector3Array_Transform3D(addr left, addr right, addr result)
 proc contains*(left: Dictionary; right: PackedVector3Array): Bool = In_PackedVector3Array_Dictionary(addr right, addr left, addr result)

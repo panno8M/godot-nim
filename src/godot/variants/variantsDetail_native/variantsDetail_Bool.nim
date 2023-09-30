@@ -8,8 +8,8 @@ var Equal_Bool_Variant: PtrOperatorEvaluator
 var NotEqual_Bool_Variant: PtrOperatorEvaluator
 var In_Bool_Dictionary: PtrOperatorEvaluator
 var In_Bool_Array: PtrOperatorEvaluator
-proc `==`*(left: Bool; right: ptr Variant): Bool = Equal_Bool_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Bool; right: ptr Variant): Bool = NotEqual_Bool_Variant(addr left, addr right, addr result)
+proc `==`*(left: Bool; right: Variant): Bool = Equal_Bool_Variant(addr left, addr right, addr result)
+proc `!=`*(left: Bool; right: Variant): Bool = NotEqual_Bool_Variant(addr left, addr right, addr result)
 proc contains*(left: Dictionary; right: Bool): Bool = In_Bool_Dictionary(addr right, addr left, addr result)
 proc contains*(left: Array; right: Bool): Bool = In_Bool_Array(addr right, addr left, addr result)
 proc load_Bool_op =

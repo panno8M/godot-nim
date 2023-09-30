@@ -41,14 +41,14 @@ proc addUndoMethod*(self: UndoRedo; callable: Callable) =
     methodbind = interface_ClassDB_getMethodBind(addr className UndoRedo, addr name, 1611583062)
   var `?param` = [getPtr callable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addDoProperty*(self: UndoRedo; `object`: Object; property: StringName; value: ptr Variant) =
+proc addDoProperty*(self: UndoRedo; `object`: Object; property: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_do_property"
     methodbind = interface_ClassDB_getMethodBind(addr className UndoRedo, addr name, 1017172818)
   var `?param` = [getPtr `object`, getPtr property, getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addUndoProperty*(self: UndoRedo; `object`: Object; property: StringName; value: ptr Variant) =
+proc addUndoProperty*(self: UndoRedo; `object`: Object; property: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_undo_property"

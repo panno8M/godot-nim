@@ -85,8 +85,8 @@ var Multiply_Vector2_Transform2D: PtrOperatorEvaluator
 var In_Vector2_Dictionary: PtrOperatorEvaluator
 var In_Vector2_Array: PtrOperatorEvaluator
 var In_Vector2_PackedVector2Array: PtrOperatorEvaluator
-proc `==`*(left: Vector2; right: ptr Variant): Bool = Equal_Vector2_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Vector2; right: ptr Variant): Bool = NotEqual_Vector2_Variant(addr left, addr right, addr result)
+proc `==`*(left: Vector2; right: Variant): Bool = Equal_Vector2_Variant(addr left, addr right, addr result)
+proc `!=`*(left: Vector2; right: Variant): Bool = NotEqual_Vector2_Variant(addr left, addr right, addr result)
 proc `*`*(left: Vector2; right: Transform2D): Vector2 = Multiply_Vector2_Transform2D(addr left, addr right, addr result)
 proc contains*(left: Dictionary; right: Vector2): Bool = In_Vector2_Dictionary(addr right, addr left, addr result)
 proc contains*(left: Array; right: Vector2): Bool = In_Vector2_Array(addr right, addr left, addr result)

@@ -16,8 +16,8 @@ var Equal_Vector2i_Variant: PtrOperatorEvaluator
 var NotEqual_Vector2i_Variant: PtrOperatorEvaluator
 var In_Vector2i_Dictionary: PtrOperatorEvaluator
 var In_Vector2i_Array: PtrOperatorEvaluator
-proc `==`*(left: Vector2i; right: ptr Variant): Bool = Equal_Vector2i_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Vector2i; right: ptr Variant): Bool = NotEqual_Vector2i_Variant(addr left, addr right, addr result)
+proc `==`*(left: Vector2i; right: Variant): Bool = Equal_Vector2i_Variant(addr left, addr right, addr result)
+proc `!=`*(left: Vector2i; right: Variant): Bool = NotEqual_Vector2i_Variant(addr left, addr right, addr result)
 proc contains*(left: Dictionary; right: Vector2i): Bool = In_Vector2i_Dictionary(addr right, addr left, addr result)
 proc contains*(left: Array; right: Vector2i): Bool = In_Vector2i_Array(addr right, addr left, addr result)
 proc load_Vector2i_op =

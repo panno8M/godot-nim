@@ -93,8 +93,8 @@ var Equal_Callable_Callable: PtrOperatorEvaluator
 var NotEqual_Callable_Callable: PtrOperatorEvaluator
 var In_Callable_Dictionary: PtrOperatorEvaluator
 var In_Callable_Array: PtrOperatorEvaluator
-proc `==`*(left: Callable; right: ptr Variant): Bool = Equal_Callable_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Callable; right: ptr Variant): Bool = NotEqual_Callable_Variant(addr left, addr right, addr result)
+proc `==`*(left: Callable; right: Variant): Bool = Equal_Callable_Variant(addr left, addr right, addr result)
+proc `!=`*(left: Callable; right: Variant): Bool = NotEqual_Callable_Variant(addr left, addr right, addr result)
 proc `not`*(left: Callable): Bool = Not_Callable(addr left, nil, addr result)
 proc `==`*(left: Callable; right: Callable): Bool = Equal_Callable_Callable(addr left, addr right, addr result)
 proc `!=`*(left: Callable; right: Callable): Bool = NotEqual_Callable_Callable(addr left, addr right, addr result)

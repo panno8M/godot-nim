@@ -94,8 +94,8 @@ var NotEqual_Rect2_Rect2: PtrOperatorEvaluator
 var Multiply_Rect2_Transform2D: PtrOperatorEvaluator
 var In_Rect2_Dictionary: PtrOperatorEvaluator
 var In_Rect2_Array: PtrOperatorEvaluator
-proc `==`*(left: Rect2; right: ptr Variant): Bool = Equal_Rect2_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Rect2; right: ptr Variant): Bool = NotEqual_Rect2_Variant(addr left, addr right, addr result)
+proc `==`*(left: Rect2; right: Variant): Bool = Equal_Rect2_Variant(addr left, addr right, addr result)
+proc `!=`*(left: Rect2; right: Variant): Bool = NotEqual_Rect2_Variant(addr left, addr right, addr result)
 proc `not`*(left: Rect2): Bool = Not_Rect2(addr left, nil, addr result)
 proc `==`*(left: Rect2; right: Rect2): Bool = Equal_Rect2_Rect2(addr left, addr right, addr result)
 proc `!=`*(left: Rect2; right: Rect2): Bool = NotEqual_Rect2_Rect2(addr left, addr right, addr result)

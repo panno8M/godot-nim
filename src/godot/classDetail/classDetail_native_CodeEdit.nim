@@ -594,7 +594,7 @@ proc requestCodeCompletion*(self: CodeEdit; force: Bool = false) =
     methodbind = interface_ClassDB_getMethodBind(addr className CodeEdit, addr name, 107499316)
   var `?param` = [getPtr force]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addCodeCompletionOption*(self: CodeEdit; `type`: CodeEdit_CodeCompletionKind; displayText: String; insertText: String; textColor: Color = init_Color(1, 1, 1, 1); icon: Resource = default Resource; value: ptr Variant = nil; location: int32 = 1024) =
+proc addCodeCompletionOption*(self: CodeEdit; `type`: CodeEdit_CodeCompletionKind; displayText: String; insertText: String; textColor: Color = init_Color(1, 1, 1, 1); icon: Resource = default Resource; value: Variant = default(Variant); location: int32 = 1024) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "add_code_completion_option"

@@ -21,7 +21,7 @@ proc isClass*(self: Object; class: String): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Bool)
-proc set*(self: Object; property: StringName; value: ptr Variant) =
+proc set*(self: Object; property: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set"
@@ -37,7 +37,7 @@ proc get*(self: Object; property: StringName): Variant =
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
-proc setIndexed*(self: Object; propertyPath: NodePath; value: ptr Variant) =
+proc setIndexed*(self: Object; propertyPath: NodePath; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_indexed"
@@ -110,7 +110,7 @@ proc getInstanceId*(self: Object): uint64 =
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(uint64)
-proc setScript*(self: Object; script: ptr Variant) =
+proc setScript*(self: Object; script: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_script"
@@ -125,7 +125,7 @@ proc getScript*(self: Object): Variant =
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(Variant)
-proc setMeta*(self: Object; name: StringName; value: ptr Variant) =
+proc setMeta*(self: Object; name: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_meta"
@@ -139,7 +139,7 @@ proc removeMeta*(self: Object; name: StringName) =
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 3304788590)
   var `?param` = [getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getMeta*(self: Object; name: StringName; default: ptr Variant = nil): Variant =
+proc getMeta*(self: Object; name: StringName; default: Variant = default(Variant)): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "get_meta"
@@ -208,7 +208,7 @@ proc callDeferred*(self: Object; `method`: StringName): Variant =
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Variant)
-proc setDeferred*(self: Object; property: StringName; value: ptr Variant) =
+proc setDeferred*(self: Object; property: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "set_deferred"

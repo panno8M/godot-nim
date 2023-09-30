@@ -35,7 +35,7 @@ proc clearSpawnableScenes*(self: MultiplayerSpawner) =
     let name: StringName = "clear_spawnable_scenes"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerSpawner, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc spawn*(self: MultiplayerSpawner; data: ptr Variant = nil): Node =
+proc spawn*(self: MultiplayerSpawner; data: Variant = default(Variant)): Node =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "spawn"

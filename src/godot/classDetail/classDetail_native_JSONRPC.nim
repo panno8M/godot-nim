@@ -12,7 +12,7 @@ proc setScope*(self: JSONRPC; scope: String; target: Object) =
     methodbind = interface_ClassDB_getMethodBind(addr className JSONRPC, addr name, 2572618360)
   var `?param` = [getPtr scope, getPtr target]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc processAction*(self: JSONRPC; action: ptr Variant; recurse: Bool = false): Variant =
+proc processAction*(self: JSONRPC; action: Variant; recurse: Bool = false): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "process_action"
@@ -30,7 +30,7 @@ proc processString*(self: JSONRPC; action: String): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(String)
-proc makeRequest*(self: JSONRPC; `method`: String; params: ptr Variant; id: ptr Variant): Dictionary =
+proc makeRequest*(self: JSONRPC; `method`: String; params: Variant; id: Variant): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "make_request"
@@ -39,7 +39,7 @@ proc makeRequest*(self: JSONRPC; `method`: String; params: ptr Variant; id: ptr 
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Dictionary)
-proc makeResponse*(self: JSONRPC; retval: ptr Variant; id: ptr Variant): Dictionary =
+proc makeResponse*(self: JSONRPC; retval: Variant; id: Variant): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "make_response"
@@ -48,7 +48,7 @@ proc makeResponse*(self: JSONRPC; retval: ptr Variant; id: ptr Variant): Diction
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Dictionary)
-proc makeNotification*(self: JSONRPC; `method`: String; params: ptr Variant): Dictionary =
+proc makeNotification*(self: JSONRPC; `method`: String; params: Variant): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "make_notification"
@@ -57,7 +57,7 @@ proc makeNotification*(self: JSONRPC; `method`: String; params: ptr Variant): Di
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode(Dictionary)
-proc makeResponseError*(self: JSONRPC; code: int32; message: String; id: ptr Variant = nil): Dictionary =
+proc makeResponseError*(self: JSONRPC; code: int32; message: String; id: Variant = default(Variant)): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "make_response_error"

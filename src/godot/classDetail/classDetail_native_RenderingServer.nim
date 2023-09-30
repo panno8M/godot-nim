@@ -249,7 +249,7 @@ proc materialSetShader*(self: RenderingServer; shaderMaterial: RID; shader: RID)
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 395945892)
   var `?param` = [getPtr shaderMaterial, getPtr shader]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc materialSetParam*(self: RenderingServer; material: RID; parameter: StringName; value: ptr Variant) =
+proc materialSetParam*(self: RenderingServer; material: RID; parameter: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "material_set_param"
@@ -2521,7 +2521,7 @@ proc instanceGeometrySetLodBias*(self: RenderingServer; instance: RID; lodBias: 
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 1794382983)
   var `?param` = [getPtr instance, getPtr lodBias]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc instanceGeometrySetShaderParameter*(self: RenderingServer; instance: RID; parameter: StringName; value: ptr Variant) =
+proc instanceGeometrySetShaderParameter*(self: RenderingServer; instance: RID; parameter: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "instance_geometry_set_shader_parameter"
@@ -3178,7 +3178,7 @@ proc canvasSetShadowTextureSize*(self: RenderingServer; size: int32) =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 1286410249)
   var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc globalShaderParameterAdd*(self: RenderingServer; name: StringName; `type`: RenderingServer_GlobalShaderParameterType; defaultValue: ptr Variant) =
+proc globalShaderParameterAdd*(self: RenderingServer; name: StringName; `type`: RenderingServer_GlobalShaderParameterType; defaultValue: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "global_shader_parameter_add"
@@ -3200,14 +3200,14 @@ proc globalShaderParameterGetList*(self: RenderingServer): TypedArray[StringName
   var ret: encoded TypedArray[StringName]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode(TypedArray[StringName])
-proc globalShaderParameterSet*(self: RenderingServer; name: StringName; value: ptr Variant) =
+proc globalShaderParameterSet*(self: RenderingServer; name: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "global_shader_parameter_set"
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 3776071444)
   var `?param` = [getPtr name, getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc globalShaderParameterSetOverride*(self: RenderingServer; name: StringName; value: ptr Variant) =
+proc globalShaderParameterSetOverride*(self: RenderingServer; name: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "global_shader_parameter_set_override"

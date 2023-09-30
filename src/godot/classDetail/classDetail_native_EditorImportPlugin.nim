@@ -5,7 +5,7 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_ResourceImporter; export classDetail_native_ResourceImporter
 
-proc appendImportExternalResource*(self: EditorImportPlugin; path: String; customOptions: Dictionary = init_Dictionary(); customImporter: String = ""; generatorParameters: ptr Variant = nil): Error =
+proc appendImportExternalResource*(self: EditorImportPlugin; path: String; customOptions: Dictionary = init_Dictionary(); customImporter: String = ""; generatorParameters: Variant = default(Variant)): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name: StringName = "append_import_external_resource"

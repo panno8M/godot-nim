@@ -207,7 +207,7 @@ proc encodeFloat*(self: var PackedByteArray; byteOffset: Int; value: Float) =
 proc encodeDouble*(self: var PackedByteArray; byteOffset: Int; value: Float) =
   let argArr = [getPtr byteOffset, getPtr value]
   PackedByteArray_encodeDouble(addr self, addr argArr[0], nil, 2)
-proc encodeVar*(self: var PackedByteArray; byteOffset: Int; value: ptr Variant; allowObjects: Bool = false): Int =
+proc encodeVar*(self: var PackedByteArray; byteOffset: Int; value: Variant; allowObjects: Bool = false): Int =
   let argArr = [getPtr byteOffset, getPtr value, getPtr allowObjects]
   PackedByteArray_encodeVar(addr self, addr argArr[0], addr result, 3)
 proc load_PackedByteArray_proc =
@@ -338,8 +338,8 @@ var In_PackedByteArray_Array: PtrOperatorEvaluator
 var Equal_PackedByteArray_PackedByteArray: PtrOperatorEvaluator
 var NotEqual_PackedByteArray_PackedByteArray: PtrOperatorEvaluator
 var Add_PackedByteArray_PackedByteArray: PtrOperatorEvaluator
-proc `==`*(left: PackedByteArray; right: ptr Variant): Bool = Equal_PackedByteArray_Variant(addr left, addr right, addr result)
-proc `!=`*(left: PackedByteArray; right: ptr Variant): Bool = NotEqual_PackedByteArray_Variant(addr left, addr right, addr result)
+proc `==`*(left: PackedByteArray; right: Variant): Bool = Equal_PackedByteArray_Variant(addr left, addr right, addr result)
+proc `!=`*(left: PackedByteArray; right: Variant): Bool = NotEqual_PackedByteArray_Variant(addr left, addr right, addr result)
 proc `not`*(left: PackedByteArray): Bool = Not_PackedByteArray(addr left, nil, addr result)
 proc contains*(left: Dictionary; right: PackedByteArray): Bool = In_PackedByteArray_Dictionary(addr right, addr left, addr result)
 proc contains*(left: Array; right: PackedByteArray): Bool = In_PackedByteArray_Array(addr right, addr left, addr result)
