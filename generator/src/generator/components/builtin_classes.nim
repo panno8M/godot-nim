@@ -230,7 +230,7 @@ proc prerender*(self: JsonConstructor; self_type: TypeName; index: int): Stateme
   var argptr = "nil"
   var argArr = ParagraphSt()
   if self.arguments.get(@[]).len != 0:
-    argArr.children.add &"let argArr = [" & args.mapIt(&"cast[pointer](addr {it.name})").join(", ") & "]"
+    argArr.children.add &"let argArr = [" & args.mapIt(&"getPtr {it.name}").join(", ") & "]"
     argptr = "addr argArr[0]"
 
   +$$..BlockSt(head: &"{prock} init_{self_type}*({args}): {retType self_type} ="):

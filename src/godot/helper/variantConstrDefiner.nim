@@ -1,4 +1,5 @@
-import ./../godotInterface; export godotInterface
+import ../godotInterface; export godotInterface
 import ./variantTypeSolver; export variantTypeSolver
-import ./../godotInterface/objectBase
+import ./methodDefiner; export methodDefiner
+import ../godotInterface/objectBase
 type Object* = ObjectBase
