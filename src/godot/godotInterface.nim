@@ -118,8 +118,8 @@ type
     data_unsafe*: ptr UncheckedArray[Color]
 
   Variant* {.byref.} = object
+    `type`: uint64
     opaque: Opaque[4]
-    opaque_8: array[8, byte]
 
 type SomePackedArray* =
   PackedByteArray    |
@@ -171,6 +171,7 @@ type SomeVariants* = SomePrimitives|SomeGodotUniques
 
 include "godotInterface/include/hook_prototype_Variants"
 proc `=copy`(dest: var Variant; source: Variant)
+proc `=dup`(x: Variant): Variant
 proc `=destroy`(x: Variant)
 
 macro gdcall*(someProc: untyped): untyped =
@@ -192,6 +193,8 @@ proc `=destroy`(x: Variant) =
     if x != Variant():
       interface_variantDestroy(addr x)
   except: discard
+proc `=dup`(x: Variant): Variant =
+  interface_variantNewCopy(addr result, addr x)
 proc `=copy`(dest: var Variant; source: Variant) =
   `=destroy` dest
   wasMoved(dest)

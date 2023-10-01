@@ -97,6 +97,16 @@ propertyInfo_blueprint(SomeClass):
     usage: usage,
   )
 
+propertyInfo_blueprint(Variant):
+  (ref PropertyInfoGlue)(
+    type: VariantType_Nil,
+    name: new name,
+    class_name: new class_name,
+    hint: hint,
+    hint_string: new hint_string,
+    usage: usage + {propertyUsageNilIsVariant},
+  )
+
 propertyInfo_blueprint(AltInt):
   propertyInfo(Int, name, class_name, hint, hint_string, usage)
 propertyInfo_blueprint(enum):

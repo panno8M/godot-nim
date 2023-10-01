@@ -1,4 +1,5 @@
 import std/unittest
+import std/tables
 import std/strformat
 import std/strutils
 import godot
@@ -140,16 +141,106 @@ proc test_Signal*(self: NimSideTester) =
     test "send":
       check self.custom_signal(10) == ok
 
+proc variant_signal*(self: NimSideTester; value: Variant): Error {.exportgd: Auto, signal.}
+var emitteds: array[VariantType.low..VariantType.high, Variant]
+var originals: array[VariantType.low..VariantType.high, Variant]
+proc on_variant_signal*(self: NimSideTester; value: Variant) {.exportgd: "_on_variant_signal".} =
+  emitteds[value.variantType] = value
+
+proc test_Variant(self: NimSideTester) =
+  template test_identity(testname, value) =
+    test testname:
+      let v = value
+      type T = typeof v
+      let t = variantType typeof v
+      originals[t] = variant v
+      check originals[t].variantType == t
+      check originals[t].get(T) == v
+
+      check self.variant_signal(originals[t]) == ok
+      check emitteds[t].variantType == originals[t].variantType
+      check emitteds[t].get(T) == originals[t].get(T)
+
+  suite "Variant":
+    test "identity":
+      test_identity "identity-gd.Int", Int 10
+      test_identity "identity-gd.Float", Float 10
+      test_identity "identity-gd.String", init_String "String"
+      test_identity "identity-gd.StringName", init_StringName "StringName"
+      test_identity "identity-gd.Object", instantiate Object
+      test_identity "identity-int", 11
+      test_identity "identity-int32", 12'i32
+      test_identity "identity-int16", 13'i16
+      test_identity "identity-bool", true
+    test "get/set":
+      var arr = init_Array()
+      discard arr.resize(1)
+      var vdict: Variant = variant init_Dictionary()
+      var varr: Variant = variant arr
+      let vkey: Variant = variant system.Inf
+
+      # Named
+      vdict["Key0"] = variant 1
+      check vdict["Key0"] == variant 1
+      vdict["Key1"] = variant 2
+      check vdict["Key1"] == variant 2
+
+      # Indexed
+      varr[0] = variant 3
+      check varr[0] == variant 3
+      expect IndexDefect:
+        varr[1] = variant 4
+
+      # Keyed
+      vdict[vkey] = variant 5
+      check vdict[vkey] == variant 5
+
+    test "iterate":
+      var arr = init_Array()
+      discard arr.resize(2)
+      var dict = init_Dictionary()
+      var keyObj = instantiate Object
+
+      var expect = toTable {
+        variant 0: variant 0,
+        variant 1: variant 1,
+        variant "Key0": variant 0,
+        variant "Key1": variant 1,
+        variant keyObj: variant 2,
+      }
+
+      var vdict: Variant = variant dict
+      var varr: Variant = variant arr
+
+      varr[0] = variant 0
+      varr[1] = variant 1
+      vdict["Key0"] = variant 0
+      vdict["Key1"] = variant 1
+      vdict[variant keyObj] = variant 2
+
+      for key, item in varr.pairs:
+        check item == expect[key]
+      for key, item in vdict.pairs:
+        check item == expect[key]
+
+
+template connect_all*(self: NimSideTester) =
+  echo self.connect("variant_signal", self.init_Callable("_on_variant_signal"))
+
+
 # Using `method` to override virtual functions of Engine-Class.
 # No specific pragma is needed.
 # based on Node.ready()
 method ready(self: NimSideTester) =
+  (self.connect_all)
+
   self.test_UserClass()
   self.test_SomeVariants()
   self.test_Object()
   self.test_RefCounted()
   self.test_Node()
   self.test_Signal()
+  self.test_Variant()
 
 method input(self: NimSideTester; event: InputEvent) =
   let evkey = event as InputEventKey

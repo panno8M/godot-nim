@@ -4,8 +4,8 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-proc `[]`*(self: Dictionary; key: Variant): var Dictionary.Item = interface_Dictionary_operatorIndex(addr self, addr key)[]
-proc `[]=`*(self: Dictionary; key: Variant; value: Dictionary.Item) = interface_Dictionary_operatorIndex(addr self, addr key)[] = value
+proc `[]`*(self: var Dictionary; key: Variant): var Dictionary.Item = interface_Dictionary_operatorIndex(addr self, addr key)[]
+proc `[]=`*(self: var Dictionary; key: Variant; value: Dictionary.Item) = interface_Dictionary_operatorIndex(addr self, addr key)[] = value
 var Dictionary_size: PtrBuiltinMethod
 var Dictionary_isEmpty: PtrBuiltinMethod
 var Dictionary_clear: PtrBuiltinMethod
