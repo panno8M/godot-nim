@@ -47,6 +47,7 @@ See **[NimSideTester](https://github.com/panno8M/godot-nim/tree/main/test/src/ni
 
 ### ⚫In progress
 
+* [ ] Define utility functions (E.g. `print`)
 * [ ] Register user-defined methods
   * [x] Register and call simple method
     * [x] access to self instance
@@ -61,15 +62,22 @@ See **[NimSideTester](https://github.com/panno8M/godot-nim/tree/main/test/src/ni
   * [x] Define Variant constants
   * [ ] Define Class constants
 
-### 🔴Still can't
+### 🟣Planned
 
-* Using utility functions (E.g. `print`)
 * Using Parallelism
 * Library hot reloading
+* GDScript integration
+  * Static conversion from GDScript to Nim (c2nim-like converter)
+  * GDScript Embedding
+
+### 🔴Still can't
+
 * C++ backend
   * Module development
 
 ...And so on.
+
+
 
 ## Note
 
