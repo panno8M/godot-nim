@@ -13,8 +13,8 @@ const delim = "_"
 type
   TypeNameObj* = object
     name*: string
-    owner*: TypeName
-    children*: Table[string, TypeName]
+    owner: TypeName
+    children: Table[string, TypeName]
     cache: string
     info*: Option[ObjectInfo]
   TypeName* = ref TypeNameOBj
@@ -45,9 +45,20 @@ proc bindName*[T: ObjectInfo](info: T; typeName: TypeName) =
 
 proc isInGlobal*(x: TypeName): bool = x == namespace.root or x.owner == namespace.root
 
-func `$`*(self: TypeName): string =
-  if self.isNil: ""
-  else: self.cache
+proc `$`*(self: TypeName): string =
+  defer:
+    self.cache = result
+
+  if self.isNil:
+    return ""
+
+  if self.cache != "":
+    return self.cache
+
+  if self.isInGlobal:
+    return self.name
+
+  result = $self.owner & delim & self.name
 
 method stringify*(info: ObjectInfo; param: ParamType): string {.base.} =
   let name = "ptr ".repeat(param.ptrdepth) & ($param.name)
@@ -58,13 +69,13 @@ method stringify*(info: ObjectInfo; param: ParamType): string {.base.} =
     &"set[{name}]"
   of ptaTypedArray:
     &"TypedArray[{name}]"
-func `$`*(self: ParamType): string =
+proc `$`*(self: ParamType): string =
   self.name.info.get(ObjectInfo()).stringify(self)
-func `$`*(self: ArgType): string =
+proc `$`*(self: ArgType): string =
   $(ParamType self)
-func `$`*(self: RetType): string =
+proc `$`*(self: RetType): string =
   $(ParamType self)
-func `$`*(self: SelfType): string =
+proc `$`*(self: SelfType): string =
   result = $(ParamType self)
   if self.isStatic:
     return &"typedesc[{result}]"
@@ -81,14 +92,6 @@ proc addget*(owner: TypeName; self: string): TypeName =
     result = TypeName(name: self)
     owner.children[self] = result
     result.owner = owner
-
-  if result.isInGlobal:
-    result.cache = result.name
-  else:
-    result.cache = newStringOfCap(result.owner.cache.len + delim.len + result.name.len)
-    result.cache.add result.owner.cache
-    result.cache.add delim
-    result.cache.add result.name
 
 proc addget*(owner: TypeName; path: seq[string]): TypeName =
   result = owner

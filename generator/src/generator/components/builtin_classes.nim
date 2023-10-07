@@ -334,7 +334,7 @@ proc prerender*(self: NimBuiltinClass): RenderedVariant =
   result.constants = self.json.constants.get(@[]).prerender(self.name)
 
 
-func renderLoader*(classes: seq[NimBuiltinClass]): Statement =
+proc renderLoader*(classes: seq[NimBuiltinClass]): Statement =
   let loaderBody = ParagraphSt()
 
   for class in classes:
