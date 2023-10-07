@@ -129,15 +129,15 @@ var In_PackedVector2Array_Array: PtrOperatorEvaluator
 var Equal_PackedVector2Array_PackedVector2Array: PtrOperatorEvaluator
 var NotEqual_PackedVector2Array_PackedVector2Array: PtrOperatorEvaluator
 var Add_PackedVector2Array_PackedVector2Array: PtrOperatorEvaluator
-proc `==`*(left: PackedVector2Array; right: Variant): Bool = Equal_PackedVector2Array_Variant(addr left, addr right, addr result)
-proc `!=`*(left: PackedVector2Array; right: Variant): Bool = NotEqual_PackedVector2Array_Variant(addr left, addr right, addr result)
-proc `not`*(left: PackedVector2Array): Bool = Not_PackedVector2Array(addr left, nil, addr result)
-proc `*`*(left: PackedVector2Array; right: Transform2D): PackedVector2Array = Multiply_PackedVector2Array_Transform2D(addr left, addr right, addr result)
-proc contains*(left: Dictionary; right: PackedVector2Array): Bool = In_PackedVector2Array_Dictionary(addr right, addr left, addr result)
-proc contains*(left: Array; right: PackedVector2Array): Bool = In_PackedVector2Array_Array(addr right, addr left, addr result)
-proc `==`*(left: PackedVector2Array; right: PackedVector2Array): Bool = Equal_PackedVector2Array_PackedVector2Array(addr left, addr right, addr result)
-proc `!=`*(left: PackedVector2Array; right: PackedVector2Array): Bool = NotEqual_PackedVector2Array_PackedVector2Array(addr left, addr right, addr result)
-proc `+`*(left: PackedVector2Array; right: PackedVector2Array): PackedVector2Array = Add_PackedVector2Array_PackedVector2Array(addr left, addr right, addr result)
+proc `==`*(left: PackedVector2Array; right: Variant): Bool = Equal_PackedVector2Array_Variant(getPtr left, getPtr right, addr result)
+proc `!=`*(left: PackedVector2Array; right: Variant): Bool = NotEqual_PackedVector2Array_Variant(getPtr left, getPtr right, addr result)
+proc `not`*(left: PackedVector2Array): Bool = Not_PackedVector2Array(getPtr left, nil, addr result)
+proc `*`*(left: PackedVector2Array; right: Transform2D): PackedVector2Array = Multiply_PackedVector2Array_Transform2D(getPtr left, getPtr right, addr result)
+proc contains*(left: Dictionary; right: PackedVector2Array): Bool = In_PackedVector2Array_Dictionary(getPtr right, getPtr left, addr result)
+proc contains*(left: Array; right: PackedVector2Array): Bool = In_PackedVector2Array_Array(getPtr right, getPtr left, addr result)
+proc `==`*(left: PackedVector2Array; right: PackedVector2Array): Bool = Equal_PackedVector2Array_PackedVector2Array(getPtr left, getPtr right, addr result)
+proc `!=`*(left: PackedVector2Array; right: PackedVector2Array): Bool = NotEqual_PackedVector2Array_PackedVector2Array(getPtr left, getPtr right, addr result)
+proc `+`*(left: PackedVector2Array; right: PackedVector2Array): PackedVector2Array = Add_PackedVector2Array_PackedVector2Array(getPtr left, getPtr right, addr result)
 proc load_PackedVector2Array_op =
   Equal_PackedVector2Array_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_PackedVector2Array, VariantType_Nil)
   NotEqual_PackedVector2Array_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_PackedVector2Array, VariantType_Nil)

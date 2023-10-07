@@ -128,14 +128,14 @@ var In_PackedStringArray_Array: PtrOperatorEvaluator
 var Equal_PackedStringArray_PackedStringArray: PtrOperatorEvaluator
 var NotEqual_PackedStringArray_PackedStringArray: PtrOperatorEvaluator
 var Add_PackedStringArray_PackedStringArray: PtrOperatorEvaluator
-proc `==`*(left: PackedStringArray; right: Variant): Bool = Equal_PackedStringArray_Variant(addr left, addr right, addr result)
-proc `!=`*(left: PackedStringArray; right: Variant): Bool = NotEqual_PackedStringArray_Variant(addr left, addr right, addr result)
-proc `not`*(left: PackedStringArray): Bool = Not_PackedStringArray(addr left, nil, addr result)
-proc contains*(left: Dictionary; right: PackedStringArray): Bool = In_PackedStringArray_Dictionary(addr right, addr left, addr result)
-proc contains*(left: Array; right: PackedStringArray): Bool = In_PackedStringArray_Array(addr right, addr left, addr result)
-proc `==`*(left: PackedStringArray; right: PackedStringArray): Bool = Equal_PackedStringArray_PackedStringArray(addr left, addr right, addr result)
-proc `!=`*(left: PackedStringArray; right: PackedStringArray): Bool = NotEqual_PackedStringArray_PackedStringArray(addr left, addr right, addr result)
-proc `+`*(left: PackedStringArray; right: PackedStringArray): PackedStringArray = Add_PackedStringArray_PackedStringArray(addr left, addr right, addr result)
+proc `==`*(left: PackedStringArray; right: Variant): Bool = Equal_PackedStringArray_Variant(getPtr left, getPtr right, addr result)
+proc `!=`*(left: PackedStringArray; right: Variant): Bool = NotEqual_PackedStringArray_Variant(getPtr left, getPtr right, addr result)
+proc `not`*(left: PackedStringArray): Bool = Not_PackedStringArray(getPtr left, nil, addr result)
+proc contains*(left: Dictionary; right: PackedStringArray): Bool = In_PackedStringArray_Dictionary(getPtr right, getPtr left, addr result)
+proc contains*(left: Array; right: PackedStringArray): Bool = In_PackedStringArray_Array(getPtr right, getPtr left, addr result)
+proc `==`*(left: PackedStringArray; right: PackedStringArray): Bool = Equal_PackedStringArray_PackedStringArray(getPtr left, getPtr right, addr result)
+proc `!=`*(left: PackedStringArray; right: PackedStringArray): Bool = NotEqual_PackedStringArray_PackedStringArray(getPtr left, getPtr right, addr result)
+proc `+`*(left: PackedStringArray; right: PackedStringArray): PackedStringArray = Add_PackedStringArray_PackedStringArray(getPtr left, getPtr right, addr result)
 proc load_PackedStringArray_op =
   Equal_PackedStringArray_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_PackedStringArray, VariantType_Nil)
   NotEqual_PackedStringArray_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_PackedStringArray, VariantType_Nil)

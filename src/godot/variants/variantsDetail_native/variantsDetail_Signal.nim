@@ -55,13 +55,13 @@ var Equal_Signal_Signal: PtrOperatorEvaluator
 var NotEqual_Signal_Signal: PtrOperatorEvaluator
 var In_Signal_Dictionary: PtrOperatorEvaluator
 var In_Signal_Array: PtrOperatorEvaluator
-proc `==`*(left: Signal; right: Variant): Bool = Equal_Signal_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Signal; right: Variant): Bool = NotEqual_Signal_Variant(addr left, addr right, addr result)
-proc `not`*(left: Signal): Bool = Not_Signal(addr left, nil, addr result)
-proc `==`*(left: Signal; right: Signal): Bool = Equal_Signal_Signal(addr left, addr right, addr result)
-proc `!=`*(left: Signal; right: Signal): Bool = NotEqual_Signal_Signal(addr left, addr right, addr result)
-proc contains*(left: Dictionary; right: Signal): Bool = In_Signal_Dictionary(addr right, addr left, addr result)
-proc contains*(left: Array; right: Signal): Bool = In_Signal_Array(addr right, addr left, addr result)
+proc `==`*(left: Signal; right: Variant): Bool = Equal_Signal_Variant(getPtr left, getPtr right, addr result)
+proc `!=`*(left: Signal; right: Variant): Bool = NotEqual_Signal_Variant(getPtr left, getPtr right, addr result)
+proc `not`*(left: Signal): Bool = Not_Signal(getPtr left, nil, addr result)
+proc `==`*(left: Signal; right: Signal): Bool = Equal_Signal_Signal(getPtr left, getPtr right, addr result)
+proc `!=`*(left: Signal; right: Signal): Bool = NotEqual_Signal_Signal(getPtr left, getPtr right, addr result)
+proc contains*(left: Dictionary; right: Signal): Bool = In_Signal_Dictionary(getPtr right, getPtr left, addr result)
+proc contains*(left: Array; right: Signal): Bool = In_Signal_Array(getPtr right, getPtr left, addr result)
 proc load_Signal_op =
   Equal_Signal_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Signal, VariantType_Nil)
   NotEqual_Signal_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Signal, VariantType_Nil)

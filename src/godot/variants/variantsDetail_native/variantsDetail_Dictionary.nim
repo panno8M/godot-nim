@@ -4,8 +4,8 @@
 # ======================================== #
 import ./../../helper/variantDefiner
 
-proc `[]`*(self: var Dictionary; key: Variant): var Dictionary.Item = interface_Dictionary_operatorIndex(addr self, addr key)[]
-proc `[]=`*(self: var Dictionary; key: Variant; value: Dictionary.Item) = interface_Dictionary_operatorIndex(addr self, addr key)[] = value
+proc `[]`*(self: Dictionary; key: Variant): var Dictionary.Item = interface_Dictionary_operatorIndex(addr self, addr key)[]
+proc `[]=`*(self: Dictionary; key: Variant; value: Dictionary.Item) = interface_Dictionary_operatorIndex(addr self, addr key)[] = value
 var Dictionary_size: PtrBuiltinMethod
 var Dictionary_isEmpty: PtrBuiltinMethod
 var Dictionary_clear: PtrBuiltinMethod
@@ -89,13 +89,13 @@ var Equal_Dictionary_Dictionary: PtrOperatorEvaluator
 var NotEqual_Dictionary_Dictionary: PtrOperatorEvaluator
 var In_Dictionary_Dictionary: PtrOperatorEvaluator
 var In_Dictionary_Array: PtrOperatorEvaluator
-proc `==`*(left: Dictionary; right: Variant): Bool = Equal_Dictionary_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Dictionary; right: Variant): Bool = NotEqual_Dictionary_Variant(addr left, addr right, addr result)
-proc `not`*(left: Dictionary): Bool = Not_Dictionary(addr left, nil, addr result)
-proc `==`*(left: Dictionary; right: Dictionary): Bool = Equal_Dictionary_Dictionary(addr left, addr right, addr result)
-proc `!=`*(left: Dictionary; right: Dictionary): Bool = NotEqual_Dictionary_Dictionary(addr left, addr right, addr result)
-proc contains*(left: Dictionary; right: Dictionary): Bool = In_Dictionary_Dictionary(addr right, addr left, addr result)
-proc contains*(left: Array; right: Dictionary): Bool = In_Dictionary_Array(addr right, addr left, addr result)
+proc `==`*(left: Dictionary; right: Variant): Bool = Equal_Dictionary_Variant(getPtr left, getPtr right, addr result)
+proc `!=`*(left: Dictionary; right: Variant): Bool = NotEqual_Dictionary_Variant(getPtr left, getPtr right, addr result)
+proc `not`*(left: Dictionary): Bool = Not_Dictionary(getPtr left, nil, addr result)
+proc `==`*(left: Dictionary; right: Dictionary): Bool = Equal_Dictionary_Dictionary(getPtr left, getPtr right, addr result)
+proc `!=`*(left: Dictionary; right: Dictionary): Bool = NotEqual_Dictionary_Dictionary(getPtr left, getPtr right, addr result)
+proc contains*(left: Dictionary; right: Dictionary): Bool = In_Dictionary_Dictionary(getPtr right, getPtr left, addr result)
+proc contains*(left: Array; right: Dictionary): Bool = In_Dictionary_Array(getPtr right, getPtr left, addr result)
 proc load_Dictionary_op =
   Equal_Dictionary_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Dictionary, VariantType_Nil)
   NotEqual_Dictionary_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Dictionary, VariantType_Nil)

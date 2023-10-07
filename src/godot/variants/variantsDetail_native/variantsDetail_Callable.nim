@@ -93,13 +93,13 @@ var Equal_Callable_Callable: PtrOperatorEvaluator
 var NotEqual_Callable_Callable: PtrOperatorEvaluator
 var In_Callable_Dictionary: PtrOperatorEvaluator
 var In_Callable_Array: PtrOperatorEvaluator
-proc `==`*(left: Callable; right: Variant): Bool = Equal_Callable_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Callable; right: Variant): Bool = NotEqual_Callable_Variant(addr left, addr right, addr result)
-proc `not`*(left: Callable): Bool = Not_Callable(addr left, nil, addr result)
-proc `==`*(left: Callable; right: Callable): Bool = Equal_Callable_Callable(addr left, addr right, addr result)
-proc `!=`*(left: Callable; right: Callable): Bool = NotEqual_Callable_Callable(addr left, addr right, addr result)
-proc contains*(left: Dictionary; right: Callable): Bool = In_Callable_Dictionary(addr right, addr left, addr result)
-proc contains*(left: Array; right: Callable): Bool = In_Callable_Array(addr right, addr left, addr result)
+proc `==`*(left: Callable; right: Variant): Bool = Equal_Callable_Variant(getPtr left, getPtr right, addr result)
+proc `!=`*(left: Callable; right: Variant): Bool = NotEqual_Callable_Variant(getPtr left, getPtr right, addr result)
+proc `not`*(left: Callable): Bool = Not_Callable(getPtr left, nil, addr result)
+proc `==`*(left: Callable; right: Callable): Bool = Equal_Callable_Callable(getPtr left, getPtr right, addr result)
+proc `!=`*(left: Callable; right: Callable): Bool = NotEqual_Callable_Callable(getPtr left, getPtr right, addr result)
+proc contains*(left: Dictionary; right: Callable): Bool = In_Callable_Dictionary(getPtr right, getPtr left, addr result)
+proc contains*(left: Array; right: Callable): Bool = In_Callable_Array(getPtr right, getPtr left, addr result)
 proc load_Callable_op =
   Equal_Callable_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Callable, VariantType_Nil)
   NotEqual_Callable_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Callable, VariantType_Nil)

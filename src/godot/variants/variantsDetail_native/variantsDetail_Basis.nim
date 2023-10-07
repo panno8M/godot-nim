@@ -115,17 +115,17 @@ var NotEqual_Basis_Basis: PtrOperatorEvaluator
 var Multiply_Basis_Basis: PtrOperatorEvaluator
 var In_Basis_Dictionary: PtrOperatorEvaluator
 var In_Basis_Array: PtrOperatorEvaluator
-proc `==`*(left: Basis; right: Variant): Bool = Equal_Basis_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Basis; right: Variant): Bool = NotEqual_Basis_Variant(addr left, addr right, addr result)
-proc `not`*(left: Basis): Bool = Not_Basis(addr left, nil, addr result)
-proc `*`*(left: Basis; right: Int): Basis = Multiply_Basis_Int(addr left, addr right, addr result)
-proc `*`*(left: Basis; right: Float): Basis = Multiply_Basis_Float(addr left, addr right, addr result)
-proc `*`*(left: Basis; right: Vector3): Vector3 = Multiply_Basis_Vector3(addr left, addr right, addr result)
-proc `==`*(left: Basis; right: Basis): Bool = Equal_Basis_Basis(addr left, addr right, addr result)
-proc `!=`*(left: Basis; right: Basis): Bool = NotEqual_Basis_Basis(addr left, addr right, addr result)
-proc `*`*(left: Basis; right: Basis): Basis = Multiply_Basis_Basis(addr left, addr right, addr result)
-proc contains*(left: Dictionary; right: Basis): Bool = In_Basis_Dictionary(addr right, addr left, addr result)
-proc contains*(left: Array; right: Basis): Bool = In_Basis_Array(addr right, addr left, addr result)
+proc `==`*(left: Basis; right: Variant): Bool = Equal_Basis_Variant(getPtr left, getPtr right, addr result)
+proc `!=`*(left: Basis; right: Variant): Bool = NotEqual_Basis_Variant(getPtr left, getPtr right, addr result)
+proc `not`*(left: Basis): Bool = Not_Basis(getPtr left, nil, addr result)
+proc `*`*(left: Basis; right: Int): Basis = Multiply_Basis_Int(getPtr left, getPtr right, addr result)
+proc `*`*(left: Basis; right: Float): Basis = Multiply_Basis_Float(getPtr left, getPtr right, addr result)
+proc `*`*(left: Basis; right: Vector3): Vector3 = Multiply_Basis_Vector3(getPtr left, getPtr right, addr result)
+proc `==`*(left: Basis; right: Basis): Bool = Equal_Basis_Basis(getPtr left, getPtr right, addr result)
+proc `!=`*(left: Basis; right: Basis): Bool = NotEqual_Basis_Basis(getPtr left, getPtr right, addr result)
+proc `*`*(left: Basis; right: Basis): Basis = Multiply_Basis_Basis(getPtr left, getPtr right, addr result)
+proc contains*(left: Dictionary; right: Basis): Bool = In_Basis_Dictionary(getPtr right, getPtr left, addr result)
+proc contains*(left: Array; right: Basis): Bool = In_Basis_Array(getPtr right, getPtr left, addr result)
 proc load_Basis_op =
   Equal_Basis_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Basis, VariantType_Nil)
   NotEqual_Basis_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Basis, VariantType_Nil)

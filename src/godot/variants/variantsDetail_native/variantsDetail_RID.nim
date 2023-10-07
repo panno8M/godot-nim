@@ -23,15 +23,15 @@ var Less_RID_RID: PtrOperatorEvaluator
 var LessEqual_RID_RID: PtrOperatorEvaluator
 var Greater_RID_RID: PtrOperatorEvaluator
 var GreaterEqual_RID_RID: PtrOperatorEvaluator
-proc `==`*(left: RID; right: Variant): Bool = Equal_RID_Variant(addr left, addr right, addr result)
-proc `!=`*(left: RID; right: Variant): Bool = NotEqual_RID_Variant(addr left, addr right, addr result)
-proc `not`*(left: RID): Bool = Not_RID(addr left, nil, addr result)
-proc `==`*(left: RID; right: RID): Bool = Equal_RID_RID(addr left, addr right, addr result)
-proc `!=`*(left: RID; right: RID): Bool = NotEqual_RID_RID(addr left, addr right, addr result)
-proc `<`*(left: RID; right: RID): Bool = Less_RID_RID(addr left, addr right, addr result)
-proc `<=`*(left: RID; right: RID): Bool = LessEqual_RID_RID(addr left, addr right, addr result)
-proc `>`*(left: RID; right: RID): Bool = Greater_RID_RID(addr left, addr right, addr result)
-proc `>=`*(left: RID; right: RID): Bool = GreaterEqual_RID_RID(addr left, addr right, addr result)
+proc `==`*(left: RID; right: Variant): Bool = Equal_RID_Variant(getPtr left, getPtr right, addr result)
+proc `!=`*(left: RID; right: Variant): Bool = NotEqual_RID_Variant(getPtr left, getPtr right, addr result)
+proc `not`*(left: RID): Bool = Not_RID(getPtr left, nil, addr result)
+proc `==`*(left: RID; right: RID): Bool = Equal_RID_RID(getPtr left, getPtr right, addr result)
+proc `!=`*(left: RID; right: RID): Bool = NotEqual_RID_RID(getPtr left, getPtr right, addr result)
+proc `<`*(left: RID; right: RID): Bool = Less_RID_RID(getPtr left, getPtr right, addr result)
+proc `<=`*(left: RID; right: RID): Bool = LessEqual_RID_RID(getPtr left, getPtr right, addr result)
+proc `>`*(left: RID; right: RID): Bool = Greater_RID_RID(getPtr left, getPtr right, addr result)
+proc `>=`*(left: RID; right: RID): Bool = GreaterEqual_RID_RID(getPtr left, getPtr right, addr result)
 proc load_RID_op =
   Equal_RID_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_RID, VariantType_Nil)
   NotEqual_RID_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_RID, VariantType_Nil)

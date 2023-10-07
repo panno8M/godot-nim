@@ -79,16 +79,16 @@ var NotEqual_Plane_Plane: PtrOperatorEvaluator
 var Multiply_Plane_Transform3D: PtrOperatorEvaluator
 var In_Plane_Dictionary: PtrOperatorEvaluator
 var In_Plane_Array: PtrOperatorEvaluator
-proc `==`*(left: Plane; right: Variant): Bool = Equal_Plane_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Plane; right: Variant): Bool = NotEqual_Plane_Variant(addr left, addr right, addr result)
-proc `-`*(left: Plane): Plane = Negate_Plane(addr left, nil, addr result)
-proc `+`*(left: Plane): Plane = Positive_Plane(addr left, nil, addr result)
-proc `not`*(left: Plane): Bool = Not_Plane(addr left, nil, addr result)
-proc `==`*(left: Plane; right: Plane): Bool = Equal_Plane_Plane(addr left, addr right, addr result)
-proc `!=`*(left: Plane; right: Plane): Bool = NotEqual_Plane_Plane(addr left, addr right, addr result)
-proc `*`*(left: Plane; right: Transform3D): Plane = Multiply_Plane_Transform3D(addr left, addr right, addr result)
-proc contains*(left: Dictionary; right: Plane): Bool = In_Plane_Dictionary(addr right, addr left, addr result)
-proc contains*(left: Array; right: Plane): Bool = In_Plane_Array(addr right, addr left, addr result)
+proc `==`*(left: Plane; right: Variant): Bool = Equal_Plane_Variant(getPtr left, getPtr right, addr result)
+proc `!=`*(left: Plane; right: Variant): Bool = NotEqual_Plane_Variant(getPtr left, getPtr right, addr result)
+proc `-`*(left: Plane): Plane = Negate_Plane(getPtr left, nil, addr result)
+proc `+`*(left: Plane): Plane = Positive_Plane(getPtr left, nil, addr result)
+proc `not`*(left: Plane): Bool = Not_Plane(getPtr left, nil, addr result)
+proc `==`*(left: Plane; right: Plane): Bool = Equal_Plane_Plane(getPtr left, getPtr right, addr result)
+proc `!=`*(left: Plane; right: Plane): Bool = NotEqual_Plane_Plane(getPtr left, getPtr right, addr result)
+proc `*`*(left: Plane; right: Transform3D): Plane = Multiply_Plane_Transform3D(getPtr left, getPtr right, addr result)
+proc contains*(left: Dictionary; right: Plane): Bool = In_Plane_Dictionary(getPtr right, getPtr left, addr result)
+proc contains*(left: Array; right: Plane): Bool = In_Plane_Array(getPtr right, getPtr left, addr result)
 proc load_Plane_op =
   Equal_Plane_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Plane, VariantType_Nil)
   NotEqual_Plane_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Plane, VariantType_Nil)

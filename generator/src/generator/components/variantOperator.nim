@@ -52,12 +52,6 @@ func variantType(t: string): string =
     "VariantType_Nil"
   else:
     "VariantType_" & t
-func argaddr(n: string; t: ArgType): string =
-  case $t
-  of "Object":
-    &"(if {n}.isNil or {n}.owner.isNil: nil else: addr {n}.owner)"
-  else:
-    &"addr {n}"
 
 type RenderedOperator = tuple
   container, define, load: Statement
@@ -86,10 +80,10 @@ proc prerender(operator: JsonOperator; argType: ArgType; ignore: IgnoreConf): Re
 
 
 
-  let left_addr = argaddr(argCall[0][0], argCall[0][1])
+  let left_addr = &"getPtr {argCall[0][0]}"
   let right_addr =
     if argCall.len == 1: "nil"
-    else: argaddr(argCall[1][0], argCall[1][1])
+    else: &"getPtr {argCall[1][0]}"
 
   result.container = +$$..ParagraphSt():
     &"var {container}: PtrOperatorEvaluator"

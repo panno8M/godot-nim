@@ -34,11 +34,11 @@ var NotEqual_Vector4_Variant: PtrOperatorEvaluator
 var Multiply_Vector4_Projection: PtrOperatorEvaluator
 var In_Vector4_Dictionary: PtrOperatorEvaluator
 var In_Vector4_Array: PtrOperatorEvaluator
-proc `==`*(left: Vector4; right: Variant): Bool = Equal_Vector4_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Vector4; right: Variant): Bool = NotEqual_Vector4_Variant(addr left, addr right, addr result)
-proc `*`*(left: Vector4; right: Projection): Vector4 = Multiply_Vector4_Projection(addr left, addr right, addr result)
-proc contains*(left: Dictionary; right: Vector4): Bool = In_Vector4_Dictionary(addr right, addr left, addr result)
-proc contains*(left: Array; right: Vector4): Bool = In_Vector4_Array(addr right, addr left, addr result)
+proc `==`*(left: Vector4; right: Variant): Bool = Equal_Vector4_Variant(getPtr left, getPtr right, addr result)
+proc `!=`*(left: Vector4; right: Variant): Bool = NotEqual_Vector4_Variant(getPtr left, getPtr right, addr result)
+proc `*`*(left: Vector4; right: Projection): Vector4 = Multiply_Vector4_Projection(getPtr left, getPtr right, addr result)
+proc contains*(left: Dictionary; right: Vector4): Bool = In_Vector4_Dictionary(getPtr right, getPtr left, addr result)
+proc contains*(left: Array; right: Vector4): Bool = In_Vector4_Array(getPtr right, getPtr left, addr result)
 proc load_Vector4_op =
   Equal_Vector4_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Vector4, VariantType_Nil)
   NotEqual_Vector4_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Vector4, VariantType_Nil)

@@ -157,15 +157,15 @@ var NotEqual_Projection_Projection: PtrOperatorEvaluator
 var Multiply_Projection_Projection: PtrOperatorEvaluator
 var In_Projection_Dictionary: PtrOperatorEvaluator
 var In_Projection_Array: PtrOperatorEvaluator
-proc `==`*(left: Projection; right: Variant): Bool = Equal_Projection_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Projection; right: Variant): Bool = NotEqual_Projection_Variant(addr left, addr right, addr result)
-proc `not`*(left: Projection): Bool = Not_Projection(addr left, nil, addr result)
-proc `*`*(left: Projection; right: Vector4): Vector4 = Multiply_Projection_Vector4(addr left, addr right, addr result)
-proc `==`*(left: Projection; right: Projection): Bool = Equal_Projection_Projection(addr left, addr right, addr result)
-proc `!=`*(left: Projection; right: Projection): Bool = NotEqual_Projection_Projection(addr left, addr right, addr result)
-proc `*`*(left: Projection; right: Projection): Projection = Multiply_Projection_Projection(addr left, addr right, addr result)
-proc contains*(left: Dictionary; right: Projection): Bool = In_Projection_Dictionary(addr right, addr left, addr result)
-proc contains*(left: Array; right: Projection): Bool = In_Projection_Array(addr right, addr left, addr result)
+proc `==`*(left: Projection; right: Variant): Bool = Equal_Projection_Variant(getPtr left, getPtr right, addr result)
+proc `!=`*(left: Projection; right: Variant): Bool = NotEqual_Projection_Variant(getPtr left, getPtr right, addr result)
+proc `not`*(left: Projection): Bool = Not_Projection(getPtr left, nil, addr result)
+proc `*`*(left: Projection; right: Vector4): Vector4 = Multiply_Projection_Vector4(getPtr left, getPtr right, addr result)
+proc `==`*(left: Projection; right: Projection): Bool = Equal_Projection_Projection(getPtr left, getPtr right, addr result)
+proc `!=`*(left: Projection; right: Projection): Bool = NotEqual_Projection_Projection(getPtr left, getPtr right, addr result)
+proc `*`*(left: Projection; right: Projection): Projection = Multiply_Projection_Projection(getPtr left, getPtr right, addr result)
+proc contains*(left: Dictionary; right: Projection): Bool = In_Projection_Dictionary(getPtr right, getPtr left, addr result)
+proc contains*(left: Array; right: Projection): Bool = In_Projection_Array(getPtr right, getPtr left, addr result)
 proc load_Projection_op =
   Equal_Projection_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Projection, VariantType_Nil)
   NotEqual_Projection_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Projection, VariantType_Nil)

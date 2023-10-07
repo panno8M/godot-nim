@@ -13,15 +13,15 @@ var In_Float_PackedInt32Array: PtrOperatorEvaluator
 var In_Float_PackedInt64Array: PtrOperatorEvaluator
 var In_Float_PackedFloat32Array: PtrOperatorEvaluator
 var In_Float_PackedFloat64Array: PtrOperatorEvaluator
-proc `==`*(left: Float; right: Variant): Bool = Equal_Float_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Float; right: Variant): Bool = NotEqual_Float_Variant(addr left, addr right, addr result)
-proc contains*(left: Dictionary; right: Float): Bool = In_Float_Dictionary(addr right, addr left, addr result)
-proc contains*(left: Array; right: Float): Bool = In_Float_Array(addr right, addr left, addr result)
-proc contains*(left: PackedByteArray; right: Float): Bool = In_Float_PackedByteArray(addr right, addr left, addr result)
-proc contains*(left: PackedInt32Array; right: Float): Bool = In_Float_PackedInt32Array(addr right, addr left, addr result)
-proc contains*(left: PackedInt64Array; right: Float): Bool = In_Float_PackedInt64Array(addr right, addr left, addr result)
-proc contains*(left: PackedFloat32Array; right: Float): Bool = In_Float_PackedFloat32Array(addr right, addr left, addr result)
-proc contains*(left: PackedFloat64Array; right: Float): Bool = In_Float_PackedFloat64Array(addr right, addr left, addr result)
+proc `==`*(left: Float; right: Variant): Bool = Equal_Float_Variant(getPtr left, getPtr right, addr result)
+proc `!=`*(left: Float; right: Variant): Bool = NotEqual_Float_Variant(getPtr left, getPtr right, addr result)
+proc contains*(left: Dictionary; right: Float): Bool = In_Float_Dictionary(getPtr right, getPtr left, addr result)
+proc contains*(left: Array; right: Float): Bool = In_Float_Array(getPtr right, getPtr left, addr result)
+proc contains*(left: PackedByteArray; right: Float): Bool = In_Float_PackedByteArray(getPtr right, getPtr left, addr result)
+proc contains*(left: PackedInt32Array; right: Float): Bool = In_Float_PackedInt32Array(getPtr right, getPtr left, addr result)
+proc contains*(left: PackedInt64Array; right: Float): Bool = In_Float_PackedInt64Array(getPtr right, getPtr left, addr result)
+proc contains*(left: PackedFloat32Array; right: Float): Bool = In_Float_PackedFloat32Array(getPtr right, getPtr left, addr result)
+proc contains*(left: PackedFloat64Array; right: Float): Bool = In_Float_PackedFloat64Array(getPtr right, getPtr left, addr result)
 proc load_Float_op =
   Equal_Float_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Float, VariantType_Nil)
   NotEqual_Float_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Float, VariantType_Nil)

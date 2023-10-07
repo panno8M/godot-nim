@@ -94,14 +94,14 @@ var NotEqual_Rect2_Rect2: PtrOperatorEvaluator
 var Multiply_Rect2_Transform2D: PtrOperatorEvaluator
 var In_Rect2_Dictionary: PtrOperatorEvaluator
 var In_Rect2_Array: PtrOperatorEvaluator
-proc `==`*(left: Rect2; right: Variant): Bool = Equal_Rect2_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Rect2; right: Variant): Bool = NotEqual_Rect2_Variant(addr left, addr right, addr result)
-proc `not`*(left: Rect2): Bool = Not_Rect2(addr left, nil, addr result)
-proc `==`*(left: Rect2; right: Rect2): Bool = Equal_Rect2_Rect2(addr left, addr right, addr result)
-proc `!=`*(left: Rect2; right: Rect2): Bool = NotEqual_Rect2_Rect2(addr left, addr right, addr result)
-proc `*`*(left: Rect2; right: Transform2D): Rect2 = Multiply_Rect2_Transform2D(addr left, addr right, addr result)
-proc contains*(left: Dictionary; right: Rect2): Bool = In_Rect2_Dictionary(addr right, addr left, addr result)
-proc contains*(left: Array; right: Rect2): Bool = In_Rect2_Array(addr right, addr left, addr result)
+proc `==`*(left: Rect2; right: Variant): Bool = Equal_Rect2_Variant(getPtr left, getPtr right, addr result)
+proc `!=`*(left: Rect2; right: Variant): Bool = NotEqual_Rect2_Variant(getPtr left, getPtr right, addr result)
+proc `not`*(left: Rect2): Bool = Not_Rect2(getPtr left, nil, addr result)
+proc `==`*(left: Rect2; right: Rect2): Bool = Equal_Rect2_Rect2(getPtr left, getPtr right, addr result)
+proc `!=`*(left: Rect2; right: Rect2): Bool = NotEqual_Rect2_Rect2(getPtr left, getPtr right, addr result)
+proc `*`*(left: Rect2; right: Transform2D): Rect2 = Multiply_Rect2_Transform2D(getPtr left, getPtr right, addr result)
+proc contains*(left: Dictionary; right: Rect2): Bool = In_Rect2_Dictionary(getPtr right, getPtr left, addr result)
+proc contains*(left: Array; right: Rect2): Bool = In_Rect2_Array(getPtr right, getPtr left, addr result)
 proc load_Rect2_op =
   Equal_Rect2_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Rect2, VariantType_Nil)
   NotEqual_Rect2_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Rect2, VariantType_Nil)

@@ -85,12 +85,12 @@ var Multiply_Vector2_Transform2D: PtrOperatorEvaluator
 var In_Vector2_Dictionary: PtrOperatorEvaluator
 var In_Vector2_Array: PtrOperatorEvaluator
 var In_Vector2_PackedVector2Array: PtrOperatorEvaluator
-proc `==`*(left: Vector2; right: Variant): Bool = Equal_Vector2_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Vector2; right: Variant): Bool = NotEqual_Vector2_Variant(addr left, addr right, addr result)
-proc `*`*(left: Vector2; right: Transform2D): Vector2 = Multiply_Vector2_Transform2D(addr left, addr right, addr result)
-proc contains*(left: Dictionary; right: Vector2): Bool = In_Vector2_Dictionary(addr right, addr left, addr result)
-proc contains*(left: Array; right: Vector2): Bool = In_Vector2_Array(addr right, addr left, addr result)
-proc contains*(left: PackedVector2Array; right: Vector2): Bool = In_Vector2_PackedVector2Array(addr right, addr left, addr result)
+proc `==`*(left: Vector2; right: Variant): Bool = Equal_Vector2_Variant(getPtr left, getPtr right, addr result)
+proc `!=`*(left: Vector2; right: Variant): Bool = NotEqual_Vector2_Variant(getPtr left, getPtr right, addr result)
+proc `*`*(left: Vector2; right: Transform2D): Vector2 = Multiply_Vector2_Transform2D(getPtr left, getPtr right, addr result)
+proc contains*(left: Dictionary; right: Vector2): Bool = In_Vector2_Dictionary(getPtr right, getPtr left, addr result)
+proc contains*(left: Array; right: Vector2): Bool = In_Vector2_Array(getPtr right, getPtr left, addr result)
+proc contains*(left: PackedVector2Array; right: Vector2): Bool = In_Vector2_PackedVector2Array(getPtr right, getPtr left, addr result)
 proc load_Vector2_op =
   Equal_Vector2_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Vector2, VariantType_Nil)
   NotEqual_Vector2_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Vector2, VariantType_Nil)

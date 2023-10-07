@@ -57,13 +57,13 @@ var Equal_NodePath_NodePath: PtrOperatorEvaluator
 var NotEqual_NodePath_NodePath: PtrOperatorEvaluator
 var In_NodePath_Dictionary: PtrOperatorEvaluator
 var In_NodePath_Array: PtrOperatorEvaluator
-proc `==`*(left: NodePath; right: Variant): Bool = Equal_NodePath_Variant(addr left, addr right, addr result)
-proc `!=`*(left: NodePath; right: Variant): Bool = NotEqual_NodePath_Variant(addr left, addr right, addr result)
-proc `not`*(left: NodePath): Bool = Not_NodePath(addr left, nil, addr result)
-proc `==`*(left: NodePath; right: NodePath): Bool = Equal_NodePath_NodePath(addr left, addr right, addr result)
-proc `!=`*(left: NodePath; right: NodePath): Bool = NotEqual_NodePath_NodePath(addr left, addr right, addr result)
-proc contains*(left: Dictionary; right: NodePath): Bool = In_NodePath_Dictionary(addr right, addr left, addr result)
-proc contains*(left: Array; right: NodePath): Bool = In_NodePath_Array(addr right, addr left, addr result)
+proc `==`*(left: NodePath; right: Variant): Bool = Equal_NodePath_Variant(getPtr left, getPtr right, addr result)
+proc `!=`*(left: NodePath; right: Variant): Bool = NotEqual_NodePath_Variant(getPtr left, getPtr right, addr result)
+proc `not`*(left: NodePath): Bool = Not_NodePath(getPtr left, nil, addr result)
+proc `==`*(left: NodePath; right: NodePath): Bool = Equal_NodePath_NodePath(getPtr left, getPtr right, addr result)
+proc `!=`*(left: NodePath; right: NodePath): Bool = NotEqual_NodePath_NodePath(getPtr left, getPtr right, addr result)
+proc contains*(left: Dictionary; right: NodePath): Bool = In_NodePath_Dictionary(getPtr right, getPtr left, addr result)
+proc contains*(left: Array; right: NodePath): Bool = In_NodePath_Array(getPtr right, getPtr left, addr result)
 proc load_NodePath_op =
   Equal_NodePath_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_NodePath, VariantType_Nil)
   NotEqual_NodePath_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_NodePath, VariantType_Nil)

@@ -19,10 +19,10 @@ var Equal_Vector3i_Variant: PtrOperatorEvaluator
 var NotEqual_Vector3i_Variant: PtrOperatorEvaluator
 var In_Vector3i_Dictionary: PtrOperatorEvaluator
 var In_Vector3i_Array: PtrOperatorEvaluator
-proc `==`*(left: Vector3i; right: Variant): Bool = Equal_Vector3i_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Vector3i; right: Variant): Bool = NotEqual_Vector3i_Variant(addr left, addr right, addr result)
-proc contains*(left: Dictionary; right: Vector3i): Bool = In_Vector3i_Dictionary(addr right, addr left, addr result)
-proc contains*(left: Array; right: Vector3i): Bool = In_Vector3i_Array(addr right, addr left, addr result)
+proc `==`*(left: Vector3i; right: Variant): Bool = Equal_Vector3i_Variant(getPtr left, getPtr right, addr result)
+proc `!=`*(left: Vector3i; right: Variant): Bool = NotEqual_Vector3i_Variant(getPtr left, getPtr right, addr result)
+proc contains*(left: Dictionary; right: Vector3i): Bool = In_Vector3i_Dictionary(getPtr right, getPtr left, addr result)
+proc contains*(left: Array; right: Vector3i): Bool = In_Vector3i_Array(getPtr right, getPtr left, addr result)
 proc load_Vector3i_op =
   Equal_Vector3i_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Vector3i, VariantType_Nil)
   NotEqual_Vector3i_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Vector3i, VariantType_Nil)

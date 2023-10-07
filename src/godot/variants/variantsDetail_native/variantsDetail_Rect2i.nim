@@ -83,13 +83,13 @@ var Equal_Rect2i_Rect2i: PtrOperatorEvaluator
 var NotEqual_Rect2i_Rect2i: PtrOperatorEvaluator
 var In_Rect2i_Dictionary: PtrOperatorEvaluator
 var In_Rect2i_Array: PtrOperatorEvaluator
-proc `==`*(left: Rect2i; right: Variant): Bool = Equal_Rect2i_Variant(addr left, addr right, addr result)
-proc `!=`*(left: Rect2i; right: Variant): Bool = NotEqual_Rect2i_Variant(addr left, addr right, addr result)
-proc `not`*(left: Rect2i): Bool = Not_Rect2i(addr left, nil, addr result)
-proc `==`*(left: Rect2i; right: Rect2i): Bool = Equal_Rect2i_Rect2i(addr left, addr right, addr result)
-proc `!=`*(left: Rect2i; right: Rect2i): Bool = NotEqual_Rect2i_Rect2i(addr left, addr right, addr result)
-proc contains*(left: Dictionary; right: Rect2i): Bool = In_Rect2i_Dictionary(addr right, addr left, addr result)
-proc contains*(left: Array; right: Rect2i): Bool = In_Rect2i_Array(addr right, addr left, addr result)
+proc `==`*(left: Rect2i; right: Variant): Bool = Equal_Rect2i_Variant(getPtr left, getPtr right, addr result)
+proc `!=`*(left: Rect2i; right: Variant): Bool = NotEqual_Rect2i_Variant(getPtr left, getPtr right, addr result)
+proc `not`*(left: Rect2i): Bool = Not_Rect2i(getPtr left, nil, addr result)
+proc `==`*(left: Rect2i; right: Rect2i): Bool = Equal_Rect2i_Rect2i(getPtr left, getPtr right, addr result)
+proc `!=`*(left: Rect2i; right: Rect2i): Bool = NotEqual_Rect2i_Rect2i(getPtr left, getPtr right, addr result)
+proc contains*(left: Dictionary; right: Rect2i): Bool = In_Rect2i_Dictionary(getPtr right, getPtr left, addr result)
+proc contains*(left: Array; right: Rect2i): Bool = In_Rect2i_Array(getPtr right, getPtr left, addr result)
 proc load_Rect2i_op =
   Equal_Rect2i_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_Rect2i, VariantType_Nil)
   NotEqual_Rect2i_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_Rect2i, VariantType_Nil)

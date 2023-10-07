@@ -128,14 +128,14 @@ var In_PackedInt32Array_Array: PtrOperatorEvaluator
 var Equal_PackedInt32Array_PackedInt32Array: PtrOperatorEvaluator
 var NotEqual_PackedInt32Array_PackedInt32Array: PtrOperatorEvaluator
 var Add_PackedInt32Array_PackedInt32Array: PtrOperatorEvaluator
-proc `==`*(left: PackedInt32Array; right: Variant): Bool = Equal_PackedInt32Array_Variant(addr left, addr right, addr result)
-proc `!=`*(left: PackedInt32Array; right: Variant): Bool = NotEqual_PackedInt32Array_Variant(addr left, addr right, addr result)
-proc `not`*(left: PackedInt32Array): Bool = Not_PackedInt32Array(addr left, nil, addr result)
-proc contains*(left: Dictionary; right: PackedInt32Array): Bool = In_PackedInt32Array_Dictionary(addr right, addr left, addr result)
-proc contains*(left: Array; right: PackedInt32Array): Bool = In_PackedInt32Array_Array(addr right, addr left, addr result)
-proc `==`*(left: PackedInt32Array; right: PackedInt32Array): Bool = Equal_PackedInt32Array_PackedInt32Array(addr left, addr right, addr result)
-proc `!=`*(left: PackedInt32Array; right: PackedInt32Array): Bool = NotEqual_PackedInt32Array_PackedInt32Array(addr left, addr right, addr result)
-proc `+`*(left: PackedInt32Array; right: PackedInt32Array): PackedInt32Array = Add_PackedInt32Array_PackedInt32Array(addr left, addr right, addr result)
+proc `==`*(left: PackedInt32Array; right: Variant): Bool = Equal_PackedInt32Array_Variant(getPtr left, getPtr right, addr result)
+proc `!=`*(left: PackedInt32Array; right: Variant): Bool = NotEqual_PackedInt32Array_Variant(getPtr left, getPtr right, addr result)
+proc `not`*(left: PackedInt32Array): Bool = Not_PackedInt32Array(getPtr left, nil, addr result)
+proc contains*(left: Dictionary; right: PackedInt32Array): Bool = In_PackedInt32Array_Dictionary(getPtr right, getPtr left, addr result)
+proc contains*(left: Array; right: PackedInt32Array): Bool = In_PackedInt32Array_Array(getPtr right, getPtr left, addr result)
+proc `==`*(left: PackedInt32Array; right: PackedInt32Array): Bool = Equal_PackedInt32Array_PackedInt32Array(getPtr left, getPtr right, addr result)
+proc `!=`*(left: PackedInt32Array; right: PackedInt32Array): Bool = NotEqual_PackedInt32Array_PackedInt32Array(getPtr left, getPtr right, addr result)
+proc `+`*(left: PackedInt32Array; right: PackedInt32Array): PackedInt32Array = Add_PackedInt32Array_PackedInt32Array(getPtr left, getPtr right, addr result)
 proc load_PackedInt32Array_op =
   Equal_PackedInt32Array_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_Equal, VariantType_PackedInt32Array, VariantType_Nil)
   NotEqual_PackedInt32Array_Variant = interface_variantGetPtrOperatorEvaluator(VariantOP_NotEqual, VariantType_PackedInt32Array, VariantType_Nil)
