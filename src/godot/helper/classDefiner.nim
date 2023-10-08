@@ -33,17 +33,16 @@ template log_register(T: typedesc) =
 proc get_virtual_bind*(p_userdata: pointer; p_name: ConstStringNamePtr): ClassCallVirtual {.gdcall.} =
   cast[ClassRuntimeData](p_userdata).virtualMethods.getOrDefault(p_name[], nil)
 
-proc free_bind(p_userdata: pointer; p_instance: ClassInstancePtr) {.gdcall.} =
-  when TraceEngineAllocationCallback:
-    me.debug "[Extent] free ", cast[ClassRuntimeData](p_userdata).className
-
 proc create(T: typedesc[SomeUserClass]): ObjectPtr {.gdcall.} =
   when TraceEngineAllocationCallback:
     me.debug "[Extent] create ", T
-  let new_object = instantiate T
-  `=init` new_object
-  GC_ref new_object
-  return new_object.owner
+  let class = instantiate T
+  GD_ref class
+  return class.owner
+
+proc free[T: SomeUserClass](class: T) =
+  when TraceEngineAllocationCallback:
+    me.debug "[Extent] free ", get_runtimeData(T).className
 
 proc creationInfo(T: typedesc[SomeUserClass]; is_virtual, is_abstract: bool): ClassCreationInfo =
   let userdata = get_runtimeData(T)
@@ -59,7 +58,7 @@ proc creationInfo(T: typedesc[SomeUserClass]; is_virtual, is_abstract: bool): Cl
     notification_func: notification_bind,
     to_string_func: to_string_bind,
     create_instance_func: proc(p_userdata: pointer): ObjectPtr {.gdcall.} = T.create(),
-    free_instance_func: free_bind,
+    free_instance_func: (proc(p_userdata: pointer; p_instance: pointer) {.gdcall.} = cast[T](p_instance).free()),
     get_virtual_func: get_virtual_bind,
     class_userdata: cast[pointer](userdata),
   )

@@ -8,14 +8,14 @@ import ./classDetail_native_Texture2D; export classDetail_native_Texture2D
 proc `mesh=`*(self: MeshTexture; mesh: Mesh) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_mesh"
+    let name = api.newStringName "set_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshTexture, addr name, 194775623)
   var `?param` = [getPtr mesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc mesh*(self: MeshTexture): Mesh =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_mesh"
+    let name = api.newStringName "get_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshTexture, addr name, 1808005922)
   var ret: encoded Mesh
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -23,14 +23,14 @@ proc mesh*(self: MeshTexture): Mesh =
 proc `imageSize=`*(self: MeshTexture; size: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_image_size"
+    let name = api.newStringName "set_image_size"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshTexture, addr name, 743155724)
   var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc imageSize*(self: MeshTexture): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_image_size"
+    let name = api.newStringName "get_image_size"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshTexture, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -38,14 +38,14 @@ proc imageSize*(self: MeshTexture): Vector2 =
 proc `baseTexture=`*(self: MeshTexture; texture: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_base_texture"
+    let name = api.newStringName "set_base_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshTexture, addr name, 4051416890)
   var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc baseTexture*(self: MeshTexture): Texture2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_base_texture"
+    let name = api.newStringName "get_base_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshTexture, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)

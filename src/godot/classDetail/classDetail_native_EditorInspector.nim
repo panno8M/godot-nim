@@ -8,7 +8,7 @@ import ./classDetail_native_ScrollContainer; export classDetail_native_ScrollCon
 proc getSelectedPath*(self: EditorInspector): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_selected_path"
+    let name = api.newStringName "get_selected_path"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInspector, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)

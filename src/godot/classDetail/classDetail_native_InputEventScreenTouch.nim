@@ -8,14 +8,14 @@ import ./classDetail_native_InputEventFromWindow; export classDetail_native_Inpu
 proc `index=`*(self: InputEventScreenTouch; index: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_index"
+    let name = api.newStringName "set_index"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventScreenTouch, addr name, 1286410249)
   var `?param` = [getPtr index]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc index*(self: InputEventScreenTouch): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_index"
+    let name = api.newStringName "get_index"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventScreenTouch, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -23,14 +23,14 @@ proc index*(self: InputEventScreenTouch): int32 =
 proc `position=`*(self: InputEventScreenTouch; position: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_position"
+    let name = api.newStringName "set_position"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventScreenTouch, addr name, 743155724)
   var `?param` = [getPtr position]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc position*(self: InputEventScreenTouch): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_position"
+    let name = api.newStringName "get_position"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventScreenTouch, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -38,28 +38,28 @@ proc position*(self: InputEventScreenTouch): Vector2 =
 proc `pressed=`*(self: InputEventScreenTouch; pressed: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_pressed"
+    let name = api.newStringName "set_pressed"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventScreenTouch, addr name, 2586408642)
   var `?param` = [getPtr pressed]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `canceled=`*(self: InputEventScreenTouch; canceled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_canceled"
+    let name = api.newStringName "set_canceled"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventScreenTouch, addr name, 2586408642)
   var `?param` = [getPtr canceled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc `doubleTap=`*(self: InputEventScreenTouch; doubleTap: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_double_tap"
+    let name = api.newStringName "set_double_tap"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventScreenTouch, addr name, 2586408642)
   var `?param` = [getPtr doubleTap]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isDoubleTap*(self: InputEventScreenTouch): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_double_tap"
+    let name = api.newStringName "is_double_tap"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventScreenTouch, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)

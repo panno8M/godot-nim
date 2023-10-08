@@ -8,7 +8,7 @@ import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 proc setup*(self: DTLSServer; serverOptions: TLSOptions): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "setup"
+    let name = api.newStringName "setup"
     methodbind = interface_ClassDB_getMethodBind(addr className DTLSServer, addr name, 1262296096)
   var `?param` = [getPtr serverOptions]
   var ret: encoded Error
@@ -17,7 +17,7 @@ proc setup*(self: DTLSServer; serverOptions: TLSOptions): Error =
 proc takeConnection*(self: DTLSServer; udpPeer: PacketPeerUDP): PacketPeerDTLS =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "take_connection"
+    let name = api.newStringName "take_connection"
     methodbind = interface_ClassDB_getMethodBind(addr className DTLSServer, addr name, 3946580474)
   var `?param` = [getPtr udpPeer]
   var ret: encoded PacketPeerDTLS

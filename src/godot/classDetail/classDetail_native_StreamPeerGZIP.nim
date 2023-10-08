@@ -8,7 +8,7 @@ import ./classDetail_native_StreamPeer; export classDetail_native_StreamPeer
 proc startCompression*(self: StreamPeerGZIP; useDeflate: Bool = false; bufferSize: int32 = 65535): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "start_compression"
+    let name = api.newStringName "start_compression"
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeerGZIP, addr name, 781582770)
   var `?param` = [getPtr useDeflate, getPtr bufferSize]
   var ret: encoded Error
@@ -17,7 +17,7 @@ proc startCompression*(self: StreamPeerGZIP; useDeflate: Bool = false; bufferSiz
 proc startDecompression*(self: StreamPeerGZIP; useDeflate: Bool = false; bufferSize: int32 = 65535): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "start_decompression"
+    let name = api.newStringName "start_decompression"
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeerGZIP, addr name, 781582770)
   var `?param` = [getPtr useDeflate, getPtr bufferSize]
   var ret: encoded Error
@@ -26,7 +26,7 @@ proc startDecompression*(self: StreamPeerGZIP; useDeflate: Bool = false; bufferS
 proc finish*(self: StreamPeerGZIP): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "finish"
+    let name = api.newStringName "finish"
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeerGZIP, addr name, 166280745)
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -34,6 +34,6 @@ proc finish*(self: StreamPeerGZIP): Error =
 proc clear*(self: StreamPeerGZIP) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "clear"
+    let name = api.newStringName "clear"
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeerGZIP, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)

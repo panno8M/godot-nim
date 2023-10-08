@@ -8,7 +8,7 @@ import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 proc start*(self: HashingContext; `type`: HashingContext_HashType): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "start"
+    let name = api.newStringName "start"
     methodbind = interface_ClassDB_getMethodBind(addr className HashingContext, addr name, 3940338335)
   var `?param` = [getPtr `type`]
   var ret: encoded Error
@@ -17,7 +17,7 @@ proc start*(self: HashingContext; `type`: HashingContext_HashType): Error =
 proc update*(self: HashingContext; chunk: PackedByteArray): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "update"
+    let name = api.newStringName "update"
     methodbind = interface_ClassDB_getMethodBind(addr className HashingContext, addr name, 680677267)
   var `?param` = [getPtr chunk]
   var ret: encoded Error
@@ -26,7 +26,7 @@ proc update*(self: HashingContext; chunk: PackedByteArray): Error =
 proc finish*(self: HashingContext): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "finish"
+    let name = api.newStringName "finish"
     methodbind = interface_ClassDB_getMethodBind(addr className HashingContext, addr name, 2115431945)
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)

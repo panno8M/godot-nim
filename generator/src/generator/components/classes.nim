@@ -53,9 +53,13 @@ iterator parentalSorted*(classes: NimClasses): NimClasses =
 
 proc renderClassDefine(class: NimClass): Statement =
   let (name, inherits) = (class.name, class.inherits)
+  let inherits_override =
+    if $class.name == "RefCounted": typeName "RefCountedBase"
+    else: inherits
+
   return +$$..ParagraphSt():
-    &"type {name}Obj* = object of {inherits}Obj"
-    &"type {name}* = ref {name}Obj"
+    &"type {name}_interface* = object of {inherits_override}_interface"
+    &"type {name}* = ref {name}_interface"
     &"template Super*(_: typedesc[{name}]): typedesc = {inherits}"
     &"template EngineClass*(_: typedesc[{name}]): typedesc = {name}"
 proc renderLocalEnums(class: NimClass): Statement =

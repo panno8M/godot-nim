@@ -57,27 +57,27 @@ proc reflect*(self: Vector2; n: Vector2): Vector2 =
   Vector2_reflect(addr self, addr argArr[0], addr result, 1)
 proc load_Vector2_proc =
   var proc_name: StringName
-  proc_name = init_StringName("limit_length")
+  proc_name = api.newStringName "limit_length"
   Vector2_limitLength = interface_Variant_getPtrBuiltinMethod(variantType Vector2, addr proc_name, 2544004089)
-  proc_name = init_StringName("project")
+  proc_name = api.newStringName "project"
   Vector2_project = interface_Variant_getPtrBuiltinMethod(variantType Vector2, addr proc_name, 2026743667)
-  proc_name = init_StringName("slerp")
+  proc_name = api.newStringName "slerp"
   Vector2_slerp = interface_Variant_getPtrBuiltinMethod(variantType Vector2, addr proc_name, 4250033116)
-  proc_name = init_StringName("cubic_interpolate")
+  proc_name = api.newStringName "cubic_interpolate"
   Vector2_cubicInterpolate = interface_Variant_getPtrBuiltinMethod(variantType Vector2, addr proc_name, 193522989)
-  proc_name = init_StringName("cubic_interpolate_in_time")
+  proc_name = api.newStringName "cubic_interpolate_in_time"
   Vector2_cubicInterpolateInTime = interface_Variant_getPtrBuiltinMethod(variantType Vector2, addr proc_name, 1957055074)
-  proc_name = init_StringName("bezier_interpolate")
+  proc_name = api.newStringName "bezier_interpolate"
   Vector2_bezierInterpolate = interface_Variant_getPtrBuiltinMethod(variantType Vector2, addr proc_name, 193522989)
-  proc_name = init_StringName("bezier_derivative")
+  proc_name = api.newStringName "bezier_derivative"
   Vector2_bezierDerivative = interface_Variant_getPtrBuiltinMethod(variantType Vector2, addr proc_name, 193522989)
-  proc_name = init_StringName("rotated")
+  proc_name = api.newStringName "rotated"
   Vector2_rotated = interface_Variant_getPtrBuiltinMethod(variantType Vector2, addr proc_name, 2544004089)
-  proc_name = init_StringName("orthogonal")
+  proc_name = api.newStringName "orthogonal"
   Vector2_orthogonal = interface_Variant_getPtrBuiltinMethod(variantType Vector2, addr proc_name, 2428350749)
-  proc_name = init_StringName("bounce")
+  proc_name = api.newStringName "bounce"
   Vector2_bounce = interface_Variant_getPtrBuiltinMethod(variantType Vector2, addr proc_name, 2026743667)
-  proc_name = init_StringName("reflect")
+  proc_name = api.newStringName "reflect"
   Vector2_reflect = interface_Variant_getPtrBuiltinMethod(variantType Vector2, addr proc_name, 2026743667)
 var Equal_Vector2_Variant: PtrOperatorEvaluator
 var NotEqual_Vector2_Variant: PtrOperatorEvaluator

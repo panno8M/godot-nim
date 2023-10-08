@@ -19,13 +19,19 @@ proc initialize(T: typedesc[SomeEngineClass]; userdata: ClassRuntimeData) =
       me_alloc.debug "[Engine] create ", T
     let class = new T
     class.owner = cast[ObjectPtr](p_instance)
-    GC_ref class
+    GD_ref class
     result = cast[pointer](class)
+  userdata.callbacks.free_callback = proc (p_token: pointer; p_instance: pointer; p_binding: pointer) {.gdcall.} =
+    when TraceEngineAllocationCallback:
+      me_alloc.debug "[Engine] free ", T
 
 proc initialize(T: typedesc[SomeUserClass]; userdata: ClassRuntimeData) =
   userdata.callbacks.create_callback = proc (p_token: pointer; p_instance: pointer): pointer {.gdcall.} =
     when TraceEngineAllocationCallback:
       me_alloc.debug "[Engine] create ", T
+  userdata.callbacks.free_callback = proc (p_token: pointer; p_instance: pointer; p_binding: pointer) {.gdcall.} =
+    when TraceEngineAllocationCallback:
+      me_alloc.debug "[Engine] free ", T
 
 var runtimeDataTable: Table[StringName, ClassRuntimeData]
 proc get_runtimeData*(T: typedesc[SomeClass]): ClassRuntimeData =
@@ -38,9 +44,6 @@ proc get_runtimeData*(T: typedesc[SomeClass]): ClassRuntimeData =
     when T.Super isnot ObjectBase:
       runtimeData.super = get_runtimeData(T.Super)
 
-    runtimeData.callbacks.free_callback = proc (p_token: pointer; p_instance: pointer; p_binding: pointer) {.gdcall.} =
-      when TraceEngineAllocationCallback:
-        me_alloc.debug "[Engine] free ", T
     runtimeData.callbacks.reference_callback = proc (p_token: pointer; p_binding: pointer; p_reference: Bool): Bool {.gdcall.} =
       when TraceEngineReferenceCallback:
         me_refer.debug "reference ", T, " <reference= ", p_reference, ">"

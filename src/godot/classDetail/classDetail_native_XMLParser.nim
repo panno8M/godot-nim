@@ -8,7 +8,7 @@ import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 proc read*(self: XMLParser): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "read"
+    let name = api.newStringName "read"
     methodbind = interface_ClassDB_getMethodBind(addr className XMLParser, addr name, 166280745)
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -16,7 +16,7 @@ proc read*(self: XMLParser): Error =
 proc getNodeType*(self: XMLParser): XMLParser_NodeType =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_node_type"
+    let name = api.newStringName "get_node_type"
     methodbind = interface_ClassDB_getMethodBind(addr className XMLParser, addr name, 2984359541)
   var ret: encoded XMLParser_NodeType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -24,7 +24,7 @@ proc getNodeType*(self: XMLParser): XMLParser_NodeType =
 proc getNodeName*(self: XMLParser): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_node_name"
+    let name = api.newStringName "get_node_name"
     methodbind = interface_ClassDB_getMethodBind(addr className XMLParser, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -32,7 +32,7 @@ proc getNodeName*(self: XMLParser): String =
 proc getNodeData*(self: XMLParser): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_node_data"
+    let name = api.newStringName "get_node_data"
     methodbind = interface_ClassDB_getMethodBind(addr className XMLParser, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -40,7 +40,7 @@ proc getNodeData*(self: XMLParser): String =
 proc getNodeOffset*(self: XMLParser): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_node_offset"
+    let name = api.newStringName "get_node_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className XMLParser, addr name, 3905245786)
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -48,7 +48,7 @@ proc getNodeOffset*(self: XMLParser): uint64 =
 proc getAttributeCount*(self: XMLParser): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_attribute_count"
+    let name = api.newStringName "get_attribute_count"
     methodbind = interface_ClassDB_getMethodBind(addr className XMLParser, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -56,7 +56,7 @@ proc getAttributeCount*(self: XMLParser): int32 =
 proc getAttributeName*(self: XMLParser; idx: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_attribute_name"
+    let name = api.newStringName "get_attribute_name"
     methodbind = interface_ClassDB_getMethodBind(addr className XMLParser, addr name, 844755477)
   var `?param` = [getPtr idx]
   var ret: encoded String
@@ -65,7 +65,7 @@ proc getAttributeName*(self: XMLParser; idx: int32): String =
 proc getAttributeValue*(self: XMLParser; idx: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_attribute_value"
+    let name = api.newStringName "get_attribute_value"
     methodbind = interface_ClassDB_getMethodBind(addr className XMLParser, addr name, 844755477)
   var `?param` = [getPtr idx]
   var ret: encoded String
@@ -74,7 +74,7 @@ proc getAttributeValue*(self: XMLParser; idx: int32): String =
 proc hasAttribute*(self: XMLParser; name: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "has_attribute"
+    let name = api.newStringName "has_attribute"
     methodbind = interface_ClassDB_getMethodBind(addr className XMLParser, addr name, 3927539163)
   var `?param` = [getPtr name]
   var ret: encoded Bool
@@ -83,7 +83,7 @@ proc hasAttribute*(self: XMLParser; name: String): Bool =
 proc getNamedAttributeValue*(self: XMLParser; name: String): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_named_attribute_value"
+    let name = api.newStringName "get_named_attribute_value"
     methodbind = interface_ClassDB_getMethodBind(addr className XMLParser, addr name, 3135753539)
   var `?param` = [getPtr name]
   var ret: encoded String
@@ -92,7 +92,7 @@ proc getNamedAttributeValue*(self: XMLParser; name: String): String =
 proc getNamedAttributeValueSafe*(self: XMLParser; name: String): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_named_attribute_value_safe"
+    let name = api.newStringName "get_named_attribute_value_safe"
     methodbind = interface_ClassDB_getMethodBind(addr className XMLParser, addr name, 3135753539)
   var `?param` = [getPtr name]
   var ret: encoded String
@@ -101,7 +101,7 @@ proc getNamedAttributeValueSafe*(self: XMLParser; name: String): String =
 proc isEmpty*(self: XMLParser): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_empty"
+    let name = api.newStringName "is_empty"
     methodbind = interface_ClassDB_getMethodBind(addr className XMLParser, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -109,7 +109,7 @@ proc isEmpty*(self: XMLParser): Bool =
 proc getCurrentLine*(self: XMLParser): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_current_line"
+    let name = api.newStringName "get_current_line"
     methodbind = interface_ClassDB_getMethodBind(addr className XMLParser, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -117,13 +117,13 @@ proc getCurrentLine*(self: XMLParser): int32 =
 proc skipSection*(self: XMLParser) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "skip_section"
+    let name = api.newStringName "skip_section"
     methodbind = interface_ClassDB_getMethodBind(addr className XMLParser, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
 proc seek*(self: XMLParser; position: uint64): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "seek"
+    let name = api.newStringName "seek"
     methodbind = interface_ClassDB_getMethodBind(addr className XMLParser, addr name, 844576869)
   var `?param` = [getPtr position]
   var ret: encoded Error
@@ -132,7 +132,7 @@ proc seek*(self: XMLParser; position: uint64): Error =
 proc open*(self: XMLParser; file: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "open"
+    let name = api.newStringName "open"
     methodbind = interface_ClassDB_getMethodBind(addr className XMLParser, addr name, 166001499)
   var `?param` = [getPtr file]
   var ret: encoded Error
@@ -141,7 +141,7 @@ proc open*(self: XMLParser; file: String): Error =
 proc openBuffer*(self: XMLParser; buffer: PackedByteArray): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "open_buffer"
+    let name = api.newStringName "open_buffer"
     methodbind = interface_ClassDB_getMethodBind(addr className XMLParser, addr name, 680677267)
   var `?param` = [getPtr buffer]
   var ret: encoded Error

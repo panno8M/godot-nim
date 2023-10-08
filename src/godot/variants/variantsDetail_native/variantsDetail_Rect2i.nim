@@ -50,31 +50,31 @@ proc growIndividual*(self: Rect2i; left: Int; top: Int; right: Int; bottom: Int)
 proc abs*(self: Rect2i): Rect2i = Rect2i_abs(addr self, nil, addr result, 0)
 proc load_Rect2i_proc =
   var proc_name: StringName
-  proc_name = init_StringName("get_center")
+  proc_name = api.newStringName "get_center"
   Rect2i_getCenter = interface_Variant_getPtrBuiltinMethod(variantType Rect2i, addr proc_name, 3444277866)
-  proc_name = init_StringName("get_area")
+  proc_name = api.newStringName "get_area"
   Rect2i_getArea = interface_Variant_getPtrBuiltinMethod(variantType Rect2i, addr proc_name, 3173160232)
-  proc_name = init_StringName("has_area")
+  proc_name = api.newStringName "has_area"
   Rect2i_hasArea = interface_Variant_getPtrBuiltinMethod(variantType Rect2i, addr proc_name, 3918633141)
-  proc_name = init_StringName("has_point")
+  proc_name = api.newStringName "has_point"
   Rect2i_hasPoint = interface_Variant_getPtrBuiltinMethod(variantType Rect2i, addr proc_name, 328189994)
-  proc_name = init_StringName("intersects")
+  proc_name = api.newStringName "intersects"
   Rect2i_intersects = interface_Variant_getPtrBuiltinMethod(variantType Rect2i, addr proc_name, 3434691493)
-  proc_name = init_StringName("encloses")
+  proc_name = api.newStringName "encloses"
   Rect2i_encloses = interface_Variant_getPtrBuiltinMethod(variantType Rect2i, addr proc_name, 3434691493)
-  proc_name = init_StringName("intersection")
+  proc_name = api.newStringName "intersection"
   Rect2i_intersection = interface_Variant_getPtrBuiltinMethod(variantType Rect2i, addr proc_name, 717431873)
-  proc_name = init_StringName("merge")
+  proc_name = api.newStringName "merge"
   Rect2i_merge = interface_Variant_getPtrBuiltinMethod(variantType Rect2i, addr proc_name, 717431873)
-  proc_name = init_StringName("expand")
+  proc_name = api.newStringName "expand"
   Rect2i_expand = interface_Variant_getPtrBuiltinMethod(variantType Rect2i, addr proc_name, 1355196872)
-  proc_name = init_StringName("grow")
+  proc_name = api.newStringName "grow"
   Rect2i_grow = interface_Variant_getPtrBuiltinMethod(variantType Rect2i, addr proc_name, 1578070074)
-  proc_name = init_StringName("grow_side")
+  proc_name = api.newStringName "grow_side"
   Rect2i_growSide = interface_Variant_getPtrBuiltinMethod(variantType Rect2i, addr proc_name, 3191154199)
-  proc_name = init_StringName("grow_individual")
+  proc_name = api.newStringName "grow_individual"
   Rect2i_growIndividual = interface_Variant_getPtrBuiltinMethod(variantType Rect2i, addr proc_name, 1893743416)
-  proc_name = init_StringName("abs")
+  proc_name = api.newStringName "abs"
   Rect2i_abs = interface_Variant_getPtrBuiltinMethod(variantType Rect2i, addr proc_name, 1469025700)
 var Equal_Rect2i_Variant: PtrOperatorEvaluator
 var NotEqual_Rect2i_Variant: PtrOperatorEvaluator

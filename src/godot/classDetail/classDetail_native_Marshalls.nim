@@ -8,7 +8,7 @@ import ./classDetail_native_Object; export classDetail_native_Object
 proc variantToBase64*(self: Marshalls; variant: Variant; fullObjects: Bool = false): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "variant_to_base64"
+    let name = api.newStringName "variant_to_base64"
     methodbind = interface_ClassDB_getMethodBind(addr className Marshalls, addr name, 3876248563)
   var `?param` = [getPtr variant, getPtr fullObjects]
   var ret: encoded String
@@ -17,7 +17,7 @@ proc variantToBase64*(self: Marshalls; variant: Variant; fullObjects: Bool = fal
 proc base64ToVariant*(self: Marshalls; base64Str: String; allowObjects: Bool = false): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "base64_to_variant"
+    let name = api.newStringName "base64_to_variant"
     methodbind = interface_ClassDB_getMethodBind(addr className Marshalls, addr name, 218087648)
   var `?param` = [getPtr base64Str, getPtr allowObjects]
   var ret: encoded Variant
@@ -26,7 +26,7 @@ proc base64ToVariant*(self: Marshalls; base64Str: String; allowObjects: Bool = f
 proc rawToBase64*(self: Marshalls; array: PackedByteArray): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "raw_to_base64"
+    let name = api.newStringName "raw_to_base64"
     methodbind = interface_ClassDB_getMethodBind(addr className Marshalls, addr name, 3999417757)
   var `?param` = [getPtr array]
   var ret: encoded String
@@ -35,7 +35,7 @@ proc rawToBase64*(self: Marshalls; array: PackedByteArray): String =
 proc base64ToRaw*(self: Marshalls; base64Str: String): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "base64_to_raw"
+    let name = api.newStringName "base64_to_raw"
     methodbind = interface_ClassDB_getMethodBind(addr className Marshalls, addr name, 659035735)
   var `?param` = [getPtr base64Str]
   var ret: encoded PackedByteArray
@@ -44,7 +44,7 @@ proc base64ToRaw*(self: Marshalls; base64Str: String): PackedByteArray =
 proc utf8ToBase64*(self: Marshalls; utf8Str: String): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "utf8_to_base64"
+    let name = api.newStringName "utf8_to_base64"
     methodbind = interface_ClassDB_getMethodBind(addr className Marshalls, addr name, 1703090593)
   var `?param` = [getPtr utf8Str]
   var ret: encoded String
@@ -53,7 +53,7 @@ proc utf8ToBase64*(self: Marshalls; utf8Str: String): String =
 proc base64ToUtf8*(self: Marshalls; base64Str: String): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "base64_to_utf8"
+    let name = api.newStringName "base64_to_utf8"
     methodbind = interface_ClassDB_getMethodBind(addr className Marshalls, addr name, 1703090593)
   var `?param` = [getPtr base64Str]
   var ret: encoded String

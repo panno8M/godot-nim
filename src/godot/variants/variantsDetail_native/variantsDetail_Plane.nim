@@ -47,27 +47,27 @@ proc intersectsSegment*(self: Plane; `from`: Vector3; to: Vector3): Variant =
   Plane_intersectsSegment(addr self, addr argArr[0], addr result, 2)
 proc load_Plane_proc =
   var proc_name: StringName
-  proc_name = init_StringName("normalized")
+  proc_name = api.newStringName "normalized"
   Plane_normalized = interface_Variant_getPtrBuiltinMethod(variantType Plane, addr proc_name, 1051796340)
-  proc_name = init_StringName("get_center")
+  proc_name = api.newStringName "get_center"
   Plane_getCenter = interface_Variant_getPtrBuiltinMethod(variantType Plane, addr proc_name, 1776574132)
-  proc_name = init_StringName("is_equal_approx")
+  proc_name = api.newStringName "is_equal_approx"
   Plane_isEqualApprox = interface_Variant_getPtrBuiltinMethod(variantType Plane, addr proc_name, 1150170233)
-  proc_name = init_StringName("is_finite")
+  proc_name = api.newStringName "is_finite"
   Plane_isFinite = interface_Variant_getPtrBuiltinMethod(variantType Plane, addr proc_name, 3918633141)
-  proc_name = init_StringName("is_point_over")
+  proc_name = api.newStringName "is_point_over"
   Plane_isPointOver = interface_Variant_getPtrBuiltinMethod(variantType Plane, addr proc_name, 1749054343)
-  proc_name = init_StringName("distance_to")
+  proc_name = api.newStringName "distance_to"
   Plane_distanceTo = interface_Variant_getPtrBuiltinMethod(variantType Plane, addr proc_name, 1047977935)
-  proc_name = init_StringName("has_point")
+  proc_name = api.newStringName "has_point"
   Plane_hasPoint = interface_Variant_getPtrBuiltinMethod(variantType Plane, addr proc_name, 1258189072)
-  proc_name = init_StringName("project")
+  proc_name = api.newStringName "project"
   Plane_project = interface_Variant_getPtrBuiltinMethod(variantType Plane, addr proc_name, 2923479887)
-  proc_name = init_StringName("intersect_3")
+  proc_name = api.newStringName "intersect_3"
   Plane_intersect3 = interface_Variant_getPtrBuiltinMethod(variantType Plane, addr proc_name, 2012052692)
-  proc_name = init_StringName("intersects_ray")
+  proc_name = api.newStringName "intersects_ray"
   Plane_intersectsRay = interface_Variant_getPtrBuiltinMethod(variantType Plane, addr proc_name, 2048133369)
-  proc_name = init_StringName("intersects_segment")
+  proc_name = api.newStringName "intersects_segment"
   Plane_intersectsSegment = interface_Variant_getPtrBuiltinMethod(variantType Plane, addr proc_name, 2048133369)
 var Equal_Plane_Variant: PtrOperatorEvaluator
 var NotEqual_Plane_Variant: PtrOperatorEvaluator

@@ -8,7 +8,7 @@ import ./classDetail_native_ImageTextureLayered; export classDetail_native_Image
 proc createPlaceholder*(self: CubemapArray): Resource =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "create_placeholder"
+    let name = api.newStringName "create_placeholder"
     methodbind = interface_ClassDB_getMethodBind(addr className CubemapArray, addr name, 121922552)
   var ret: encoded Resource
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)

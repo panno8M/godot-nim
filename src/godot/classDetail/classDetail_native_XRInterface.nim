@@ -8,7 +8,7 @@ import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 proc getName*(self: XRInterface): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_name"
+    let name = api.newStringName "get_name"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 2002593661)
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -16,7 +16,7 @@ proc getName*(self: XRInterface): StringName =
 proc getCapabilities*(self: XRInterface): uint32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_capabilities"
+    let name = api.newStringName "get_capabilities"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -24,7 +24,7 @@ proc getCapabilities*(self: XRInterface): uint32 =
 proc isPrimary*(self: XRInterface): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_primary"
+    let name = api.newStringName "is_primary"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -32,14 +32,14 @@ proc isPrimary*(self: XRInterface): Bool =
 proc `primary=`*(self: XRInterface; primary: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_primary"
+    let name = api.newStringName "set_primary"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 2586408642)
   var `?param` = [getPtr primary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isInitialized*(self: XRInterface): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_initialized"
+    let name = api.newStringName "is_initialized"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -47,7 +47,7 @@ proc isInitialized*(self: XRInterface): Bool =
 proc initialize*(self: XRInterface): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "initialize"
+    let name = api.newStringName "initialize"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -55,13 +55,13 @@ proc initialize*(self: XRInterface): Bool =
 proc uninitialize*(self: XRInterface) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "uninitialize"
+    let name = api.newStringName "uninitialize"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
 proc getSystemInfo*(self: XRInterface): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_system_info"
+    let name = api.newStringName "get_system_info"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 2382534195)
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -69,7 +69,7 @@ proc getSystemInfo*(self: XRInterface): Dictionary =
 proc getTrackingStatus*(self: XRInterface): XRInterface_TrackingStatus =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_tracking_status"
+    let name = api.newStringName "get_tracking_status"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 167423259)
   var ret: encoded XRInterface_TrackingStatus
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -77,7 +77,7 @@ proc getTrackingStatus*(self: XRInterface): XRInterface_TrackingStatus =
 proc getRenderTargetSize*(self: XRInterface): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_render_target_size"
+    let name = api.newStringName "get_render_target_size"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 1497962370)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -85,7 +85,7 @@ proc getRenderTargetSize*(self: XRInterface): Vector2 =
 proc getViewCount*(self: XRInterface): uint32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_view_count"
+    let name = api.newStringName "get_view_count"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 2455072627)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -93,14 +93,14 @@ proc getViewCount*(self: XRInterface): uint32 =
 proc triggerHapticPulse*(self: XRInterface; actionName: String; trackerName: StringName; frequency: float64; amplitude: float64; durationSec: float64; delaySec: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "trigger_haptic_pulse"
+    let name = api.newStringName "trigger_haptic_pulse"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 3752640163)
   var `?param` = [getPtr actionName, getPtr trackerName, getPtr frequency, getPtr amplitude, getPtr durationSec, getPtr delaySec]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc supportsPlayAreaMode*(self: XRInterface; mode: XRInterface_PlayAreaMode): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "supports_play_area_mode"
+    let name = api.newStringName "supports_play_area_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 3429955281)
   var `?param` = [getPtr mode]
   var ret: encoded Bool
@@ -109,7 +109,7 @@ proc supportsPlayAreaMode*(self: XRInterface; mode: XRInterface_PlayAreaMode): B
 proc playAreaMode*(self: XRInterface): XRInterface_PlayAreaMode =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_play_area_mode"
+    let name = api.newStringName "get_play_area_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 1615132885)
   var ret: encoded XRInterface_PlayAreaMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -117,7 +117,7 @@ proc playAreaMode*(self: XRInterface): XRInterface_PlayAreaMode =
 proc `playAreaMode=`*(self: XRInterface; mode: XRInterface_PlayAreaMode): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_play_area_mode"
+    let name = api.newStringName "set_play_area_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 3429955281)
   var `?param` = [getPtr mode]
   var ret: encoded Bool
@@ -126,7 +126,7 @@ proc `playAreaMode=`*(self: XRInterface; mode: XRInterface_PlayAreaMode): Bool =
 proc getPlayArea*(self: XRInterface): PackedVector3Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_play_area"
+    let name = api.newStringName "get_play_area"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 497664490)
   var ret: encoded PackedVector3Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -134,7 +134,7 @@ proc getPlayArea*(self: XRInterface): PackedVector3Array =
 proc anchorDetectionIsEnabled*(self: XRInterface): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_anchor_detection_is_enabled"
+    let name = api.newStringName "get_anchor_detection_is_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -142,14 +142,14 @@ proc anchorDetectionIsEnabled*(self: XRInterface): Bool =
 proc `anchorDetectionIsEnabled=`*(self: XRInterface; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_anchor_detection_is_enabled"
+    let name = api.newStringName "set_anchor_detection_is_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 2586408642)
   var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getCameraFeedId*(self: XRInterface): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_camera_feed_id"
+    let name = api.newStringName "get_camera_feed_id"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -157,7 +157,7 @@ proc getCameraFeedId*(self: XRInterface): int32 =
 proc isPassthroughSupported*(self: XRInterface): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_passthrough_supported"
+    let name = api.newStringName "is_passthrough_supported"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -165,7 +165,7 @@ proc isPassthroughSupported*(self: XRInterface): Bool =
 proc isPassthroughEnabled*(self: XRInterface): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_passthrough_enabled"
+    let name = api.newStringName "is_passthrough_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -173,7 +173,7 @@ proc isPassthroughEnabled*(self: XRInterface): Bool =
 proc startPassthrough*(self: XRInterface): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "start_passthrough"
+    let name = api.newStringName "start_passthrough"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -181,13 +181,13 @@ proc startPassthrough*(self: XRInterface): Bool =
 proc stopPassthrough*(self: XRInterface) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "stop_passthrough"
+    let name = api.newStringName "stop_passthrough"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
 proc getTransformForView*(self: XRInterface; view: uint32; camTransform: Transform3D): Transform3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_transform_for_view"
+    let name = api.newStringName "get_transform_for_view"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 518934792)
   var `?param` = [getPtr view, getPtr camTransform]
   var ret: encoded Transform3D
@@ -196,7 +196,7 @@ proc getTransformForView*(self: XRInterface; view: uint32; camTransform: Transfo
 proc getProjectionForView*(self: XRInterface; view: uint32; aspect: float64; near: float64; far: float64): Projection =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_projection_for_view"
+    let name = api.newStringName "get_projection_for_view"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 3766090294)
   var `?param` = [getPtr view, getPtr aspect, getPtr near, getPtr far]
   var ret: encoded Projection
@@ -205,7 +205,7 @@ proc getProjectionForView*(self: XRInterface; view: uint32; aspect: float64; nea
 proc getSupportedEnvironmentBlendModes*(self: XRInterface): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_supported_environment_blend_modes"
+    let name = api.newStringName "get_supported_environment_blend_modes"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 2915620761)
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -213,7 +213,7 @@ proc getSupportedEnvironmentBlendModes*(self: XRInterface): Array =
 proc setEnvironmentBlendMode*(self: XRInterface; mode: XRInterface_EnvironmentBlendMode): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_environment_blend_mode"
+    let name = api.newStringName "set_environment_blend_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className XRInterface, addr name, 551152418)
   var `?param` = [getPtr mode]
   var ret: encoded Bool

@@ -8,14 +8,14 @@ import ./classDetail_native_Resource; export classDetail_native_Resource
 proc `device=`*(self: InputEvent; device: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_device"
+    let name = api.newStringName "set_device"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 1286410249)
   var `?param` = [getPtr device]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc device*(self: InputEvent): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_device"
+    let name = api.newStringName "get_device"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -23,7 +23,7 @@ proc device*(self: InputEvent): int32 =
 proc isAction*(self: InputEvent; action: StringName; exactMatch: Bool = false): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_action"
+    let name = api.newStringName "is_action"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 1558498928)
   var `?param` = [getPtr action, getPtr exactMatch]
   var ret: encoded Bool
@@ -32,7 +32,7 @@ proc isAction*(self: InputEvent; action: StringName; exactMatch: Bool = false): 
 proc isActionPressed*(self: InputEvent; action: StringName; allowEcho: Bool = false; exactMatch: Bool = false): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_action_pressed"
+    let name = api.newStringName "is_action_pressed"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 1631499404)
   var `?param` = [getPtr action, getPtr allowEcho, getPtr exactMatch]
   var ret: encoded Bool
@@ -41,7 +41,7 @@ proc isActionPressed*(self: InputEvent; action: StringName; allowEcho: Bool = fa
 proc isActionReleased*(self: InputEvent; action: StringName; exactMatch: Bool = false): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_action_released"
+    let name = api.newStringName "is_action_released"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 1558498928)
   var `?param` = [getPtr action, getPtr exactMatch]
   var ret: encoded Bool
@@ -50,7 +50,7 @@ proc isActionReleased*(self: InputEvent; action: StringName; exactMatch: Bool = 
 proc getActionStrength*(self: InputEvent; action: StringName; exactMatch: Bool = false): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_action_strength"
+    let name = api.newStringName "get_action_strength"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 801543509)
   var `?param` = [getPtr action, getPtr exactMatch]
   var ret: encoded Float
@@ -59,7 +59,7 @@ proc getActionStrength*(self: InputEvent; action: StringName; exactMatch: Bool =
 proc isCanceled*(self: InputEvent): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_canceled"
+    let name = api.newStringName "is_canceled"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -67,7 +67,7 @@ proc isCanceled*(self: InputEvent): Bool =
 proc isPressed*(self: InputEvent): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_pressed"
+    let name = api.newStringName "is_pressed"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -75,7 +75,7 @@ proc isPressed*(self: InputEvent): Bool =
 proc isReleased*(self: InputEvent): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_released"
+    let name = api.newStringName "is_released"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -83,7 +83,7 @@ proc isReleased*(self: InputEvent): Bool =
 proc isEcho*(self: InputEvent): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_echo"
+    let name = api.newStringName "is_echo"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -91,7 +91,7 @@ proc isEcho*(self: InputEvent): Bool =
 proc asText*(self: InputEvent): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "as_text"
+    let name = api.newStringName "as_text"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -99,7 +99,7 @@ proc asText*(self: InputEvent): String =
 proc isMatch*(self: InputEvent; event: InputEvent; exactMatch: Bool = true): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_match"
+    let name = api.newStringName "is_match"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 3392494811)
   var `?param` = [getPtr event, getPtr exactMatch]
   var ret: encoded Bool
@@ -108,7 +108,7 @@ proc isMatch*(self: InputEvent; event: InputEvent; exactMatch: Bool = true): Boo
 proc isActionType*(self: InputEvent): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_action_type"
+    let name = api.newStringName "is_action_type"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -116,7 +116,7 @@ proc isActionType*(self: InputEvent): Bool =
 proc accumulate*(self: InputEvent; withEvent: InputEvent): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "accumulate"
+    let name = api.newStringName "accumulate"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 1062211774)
   var `?param` = [getPtr withEvent]
   var ret: encoded Bool
@@ -125,7 +125,7 @@ proc accumulate*(self: InputEvent; withEvent: InputEvent): Bool =
 proc xformedBy*(self: InputEvent; xform: Transform2D; localOfs: Vector2 = gdvec(0, 0)): InputEvent =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "xformed_by"
+    let name = api.newStringName "xformed_by"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 2747409789)
   var `?param` = [getPtr xform, getPtr localOfs]
   var ret: encoded InputEvent

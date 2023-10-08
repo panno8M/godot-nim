@@ -8,7 +8,7 @@ import ./classDetail_native_Tweener; export classDetail_native_Tweener
 proc setDelay*(self: CallbackTweener; delay: float64): CallbackTweener =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_delay"
+    let name = api.newStringName "set_delay"
     methodbind = interface_ClassDB_getMethodBind(addr className CallbackTweener, addr name, 3008182292)
   var `?param` = [getPtr delay]
   var ret: encoded CallbackTweener

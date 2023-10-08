@@ -8,7 +8,7 @@ import ./classDetail_native_AudioEffectInstance; export classDetail_native_Audio
 proc getMagnitudeForFrequencyRange*(self: AudioEffectSpectrumAnalyzerInstance; fromHz: Float; toHz: Float; mode: AudioEffectSpectrumAnalyzerInstance_MagnitudeMode = magnitudeMax): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_magnitude_for_frequency_range"
+    let name = api.newStringName "get_magnitude_for_frequency_range"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectSpectrumAnalyzerInstance, addr name, 2693213071)
   var `?param` = [getPtr fromHz, getPtr toHz, getPtr mode]
   var ret: encoded Vector2

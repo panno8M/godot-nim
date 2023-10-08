@@ -8,14 +8,14 @@ import ./classDetail_native_Object; export classDetail_native_Object
 proc setScope*(self: JSONRPC; scope: String; target: Object) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_scope"
+    let name = api.newStringName "set_scope"
     methodbind = interface_ClassDB_getMethodBind(addr className JSONRPC, addr name, 2572618360)
   var `?param` = [getPtr scope, getPtr target]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc processAction*(self: JSONRPC; action: Variant; recurse: Bool = false): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "process_action"
+    let name = api.newStringName "process_action"
     methodbind = interface_ClassDB_getMethodBind(addr className JSONRPC, addr name, 2963479484)
   var `?param` = [getPtr action, getPtr recurse]
   var ret: encoded Variant
@@ -24,7 +24,7 @@ proc processAction*(self: JSONRPC; action: Variant; recurse: Bool = false): Vari
 proc processString*(self: JSONRPC; action: String): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "process_string"
+    let name = api.newStringName "process_string"
     methodbind = interface_ClassDB_getMethodBind(addr className JSONRPC, addr name, 1703090593)
   var `?param` = [getPtr action]
   var ret: encoded String
@@ -33,7 +33,7 @@ proc processString*(self: JSONRPC; action: String): String =
 proc makeRequest*(self: JSONRPC; `method`: String; params: Variant; id: Variant): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "make_request"
+    let name = api.newStringName "make_request"
     methodbind = interface_ClassDB_getMethodBind(addr className JSONRPC, addr name, 3423508980)
   var `?param` = [getPtr `method`, getPtr params, getPtr id]
   var ret: encoded Dictionary
@@ -42,7 +42,7 @@ proc makeRequest*(self: JSONRPC; `method`: String; params: Variant; id: Variant)
 proc makeResponse*(self: JSONRPC; retval: Variant; id: Variant): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "make_response"
+    let name = api.newStringName "make_response"
     methodbind = interface_ClassDB_getMethodBind(addr className JSONRPC, addr name, 5053918)
   var `?param` = [getPtr retval, getPtr id]
   var ret: encoded Dictionary
@@ -51,7 +51,7 @@ proc makeResponse*(self: JSONRPC; retval: Variant; id: Variant): Dictionary =
 proc makeNotification*(self: JSONRPC; `method`: String; params: Variant): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "make_notification"
+    let name = api.newStringName "make_notification"
     methodbind = interface_ClassDB_getMethodBind(addr className JSONRPC, addr name, 2949127017)
   var `?param` = [getPtr `method`, getPtr params]
   var ret: encoded Dictionary
@@ -60,7 +60,7 @@ proc makeNotification*(self: JSONRPC; `method`: String; params: Variant): Dictio
 proc makeResponseError*(self: JSONRPC; code: int32; message: String; id: Variant = default(Variant)): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "make_response_error"
+    let name = api.newStringName "make_response_error"
     methodbind = interface_ClassDB_getMethodBind(addr className JSONRPC, addr name, 928596297)
   var `?param` = [getPtr code, getPtr message, getPtr id]
   var ret: encoded Dictionary

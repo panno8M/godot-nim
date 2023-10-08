@@ -8,7 +8,7 @@ import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 proc open*(_: typedesc[DirAccess]; path: String): DirAccess =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "open"
+    let name = api.newStringName "open"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 1923528528)
   var `?param` = [getPtr path]
   var ret: encoded DirAccess
@@ -17,7 +17,7 @@ proc open*(_: typedesc[DirAccess]; path: String): DirAccess =
 proc getOpenError*(_: typedesc[DirAccess]): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_open_error"
+    let name = api.newStringName "get_open_error"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 166280745)
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, nil, nil, addr ret)
@@ -25,7 +25,7 @@ proc getOpenError*(_: typedesc[DirAccess]): Error =
 proc listDirBegin*(self: DirAccess): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "list_dir_begin"
+    let name = api.newStringName "list_dir_begin"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 2018049411)
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -33,7 +33,7 @@ proc listDirBegin*(self: DirAccess): Error =
 proc getNext*(self: DirAccess): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_next"
+    let name = api.newStringName "get_next"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 2841200299)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -41,7 +41,7 @@ proc getNext*(self: DirAccess): String =
 proc currentIsDir*(self: DirAccess): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "current_is_dir"
+    let name = api.newStringName "current_is_dir"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -49,13 +49,13 @@ proc currentIsDir*(self: DirAccess): Bool =
 proc listDirEnd*(self: DirAccess) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "list_dir_end"
+    let name = api.newStringName "list_dir_end"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
 proc getFiles*(self: DirAccess): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_files"
+    let name = api.newStringName "get_files"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 2981934095)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -63,7 +63,7 @@ proc getFiles*(self: DirAccess): PackedStringArray =
 proc getFilesAt*(_: typedesc[DirAccess]; path: String): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_files_at"
+    let name = api.newStringName "get_files_at"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 3538744774)
   var `?param` = [getPtr path]
   var ret: encoded PackedStringArray
@@ -72,7 +72,7 @@ proc getFilesAt*(_: typedesc[DirAccess]; path: String): PackedStringArray =
 proc getDirectories*(self: DirAccess): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_directories"
+    let name = api.newStringName "get_directories"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 2981934095)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -80,7 +80,7 @@ proc getDirectories*(self: DirAccess): PackedStringArray =
 proc getDirectoriesAt*(_: typedesc[DirAccess]; path: String): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_directories_at"
+    let name = api.newStringName "get_directories_at"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 3538744774)
   var `?param` = [getPtr path]
   var ret: encoded PackedStringArray
@@ -89,7 +89,7 @@ proc getDirectoriesAt*(_: typedesc[DirAccess]; path: String): PackedStringArray 
 proc getDriveCount*(_: typedesc[DirAccess]): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_drive_count"
+    let name = api.newStringName "get_drive_count"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, nil, nil, addr ret)
@@ -97,7 +97,7 @@ proc getDriveCount*(_: typedesc[DirAccess]): int32 =
 proc getDriveName*(_: typedesc[DirAccess]; idx: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_drive_name"
+    let name = api.newStringName "get_drive_name"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 990163283)
   var `?param` = [getPtr idx]
   var ret: encoded String
@@ -106,7 +106,7 @@ proc getDriveName*(_: typedesc[DirAccess]; idx: int32): String =
 proc getCurrentDrive*(self: DirAccess): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_current_drive"
+    let name = api.newStringName "get_current_drive"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -114,7 +114,7 @@ proc getCurrentDrive*(self: DirAccess): int32 =
 proc changeDir*(self: DirAccess; toDir: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "change_dir"
+    let name = api.newStringName "change_dir"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 166001499)
   var `?param` = [getPtr toDir]
   var ret: encoded Error
@@ -123,7 +123,7 @@ proc changeDir*(self: DirAccess; toDir: String): Error =
 proc getCurrentDir*(self: DirAccess; includeDrive: Bool = true): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_current_dir"
+    let name = api.newStringName "get_current_dir"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 1287308131)
   var `?param` = [getPtr includeDrive]
   var ret: encoded String
@@ -132,7 +132,7 @@ proc getCurrentDir*(self: DirAccess; includeDrive: Bool = true): String =
 proc makeDir*(self: DirAccess; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "make_dir"
+    let name = api.newStringName "make_dir"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 166001499)
   var `?param` = [getPtr path]
   var ret: encoded Error
@@ -141,7 +141,7 @@ proc makeDir*(self: DirAccess; path: String): Error =
 proc makeDirAbsolute*(_: typedesc[DirAccess]; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "make_dir_absolute"
+    let name = api.newStringName "make_dir_absolute"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 166001499)
   var `?param` = [getPtr path]
   var ret: encoded Error
@@ -150,7 +150,7 @@ proc makeDirAbsolute*(_: typedesc[DirAccess]; path: String): Error =
 proc makeDirRecursive*(self: DirAccess; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "make_dir_recursive"
+    let name = api.newStringName "make_dir_recursive"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 166001499)
   var `?param` = [getPtr path]
   var ret: encoded Error
@@ -159,7 +159,7 @@ proc makeDirRecursive*(self: DirAccess; path: String): Error =
 proc makeDirRecursiveAbsolute*(_: typedesc[DirAccess]; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "make_dir_recursive_absolute"
+    let name = api.newStringName "make_dir_recursive_absolute"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 166001499)
   var `?param` = [getPtr path]
   var ret: encoded Error
@@ -168,7 +168,7 @@ proc makeDirRecursiveAbsolute*(_: typedesc[DirAccess]; path: String): Error =
 proc fileExists*(self: DirAccess; path: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "file_exists"
+    let name = api.newStringName "file_exists"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 2323990056)
   var `?param` = [getPtr path]
   var ret: encoded Bool
@@ -177,7 +177,7 @@ proc fileExists*(self: DirAccess; path: String): Bool =
 proc dirExists*(self: DirAccess; path: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "dir_exists"
+    let name = api.newStringName "dir_exists"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 2323990056)
   var `?param` = [getPtr path]
   var ret: encoded Bool
@@ -186,7 +186,7 @@ proc dirExists*(self: DirAccess; path: String): Bool =
 proc dirExistsAbsolute*(_: typedesc[DirAccess]; path: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "dir_exists_absolute"
+    let name = api.newStringName "dir_exists_absolute"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 2323990056)
   var `?param` = [getPtr path]
   var ret: encoded Bool
@@ -195,7 +195,7 @@ proc dirExistsAbsolute*(_: typedesc[DirAccess]; path: String): Bool =
 proc getSpaceLeft*(self: DirAccess): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_space_left"
+    let name = api.newStringName "get_space_left"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 2455072627)
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -203,7 +203,7 @@ proc getSpaceLeft*(self: DirAccess): uint64 =
 proc copy*(self: DirAccess; `from`: String; to: String; chmodFlags: int32 = -1): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "copy"
+    let name = api.newStringName "copy"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 198434953)
   var `?param` = [getPtr `from`, getPtr to, getPtr chmodFlags]
   var ret: encoded Error
@@ -212,7 +212,7 @@ proc copy*(self: DirAccess; `from`: String; to: String; chmodFlags: int32 = -1):
 proc copyAbsolute*(_: typedesc[DirAccess]; `from`: String; to: String; chmodFlags: int32 = -1): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "copy_absolute"
+    let name = api.newStringName "copy_absolute"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 198434953)
   var `?param` = [getPtr `from`, getPtr to, getPtr chmodFlags]
   var ret: encoded Error
@@ -221,7 +221,7 @@ proc copyAbsolute*(_: typedesc[DirAccess]; `from`: String; to: String; chmodFlag
 proc rename*(self: DirAccess; `from`: String; to: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "rename"
+    let name = api.newStringName "rename"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 852856452)
   var `?param` = [getPtr `from`, getPtr to]
   var ret: encoded Error
@@ -230,7 +230,7 @@ proc rename*(self: DirAccess; `from`: String; to: String): Error =
 proc renameAbsolute*(_: typedesc[DirAccess]; `from`: String; to: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "rename_absolute"
+    let name = api.newStringName "rename_absolute"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 852856452)
   var `?param` = [getPtr `from`, getPtr to]
   var ret: encoded Error
@@ -239,7 +239,7 @@ proc renameAbsolute*(_: typedesc[DirAccess]; `from`: String; to: String): Error 
 proc remove*(self: DirAccess; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "remove"
+    let name = api.newStringName "remove"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 166001499)
   var `?param` = [getPtr path]
   var ret: encoded Error
@@ -248,7 +248,7 @@ proc remove*(self: DirAccess; path: String): Error =
 proc removeAbsolute*(_: typedesc[DirAccess]; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "remove_absolute"
+    let name = api.newStringName "remove_absolute"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 166001499)
   var `?param` = [getPtr path]
   var ret: encoded Error
@@ -257,14 +257,14 @@ proc removeAbsolute*(_: typedesc[DirAccess]; path: String): Error =
 proc `includeNavigational=`*(self: DirAccess; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_include_navigational"
+    let name = api.newStringName "set_include_navigational"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 2586408642)
   var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc includeNavigational*(self: DirAccess): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_include_navigational"
+    let name = api.newStringName "get_include_navigational"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -272,14 +272,14 @@ proc includeNavigational*(self: DirAccess): Bool =
 proc `includeHidden=`*(self: DirAccess; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_include_hidden"
+    let name = api.newStringName "set_include_hidden"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 2586408642)
   var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc includeHidden*(self: DirAccess): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_include_hidden"
+    let name = api.newStringName "get_include_hidden"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)

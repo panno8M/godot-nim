@@ -8,7 +8,7 @@ import ./classDetail_native_Resource; export classDetail_native_Resource
 proc save*(self: X509Certificate; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "save"
+    let name = api.newStringName "save"
     methodbind = interface_ClassDB_getMethodBind(addr className X509Certificate, addr name, 166001499)
   var `?param` = [getPtr path]
   var ret: encoded Error
@@ -17,7 +17,7 @@ proc save*(self: X509Certificate; path: String): Error =
 proc load*(self: X509Certificate; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "load"
+    let name = api.newStringName "load"
     methodbind = interface_ClassDB_getMethodBind(addr className X509Certificate, addr name, 166001499)
   var `?param` = [getPtr path]
   var ret: encoded Error
@@ -26,7 +26,7 @@ proc load*(self: X509Certificate; path: String): Error =
 proc saveToString*(self: X509Certificate): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "save_to_string"
+    let name = api.newStringName "save_to_string"
     methodbind = interface_ClassDB_getMethodBind(addr className X509Certificate, addr name, 2841200299)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -34,7 +34,7 @@ proc saveToString*(self: X509Certificate): String =
 proc loadFromString*(self: X509Certificate; string: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "load_from_string"
+    let name = api.newStringName "load_from_string"
     methodbind = interface_ClassDB_getMethodBind(addr className X509Certificate, addr name, 166001499)
   var `?param` = [getPtr string]
   var ret: encoded Error

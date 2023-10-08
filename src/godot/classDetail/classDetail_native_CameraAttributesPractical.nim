@@ -8,14 +8,14 @@ import ./classDetail_native_CameraAttributes; export classDetail_native_CameraAt
 proc `dofBlurFarEnabled=`*(self: CameraAttributesPractical; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_dof_blur_far_enabled"
+    let name = api.newStringName "set_dof_blur_far_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPractical, addr name, 2586408642)
   var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isDofBlurFarEnabled*(self: CameraAttributesPractical): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_dof_blur_far_enabled"
+    let name = api.newStringName "is_dof_blur_far_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPractical, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -23,14 +23,14 @@ proc isDofBlurFarEnabled*(self: CameraAttributesPractical): Bool =
 proc `dofBlurFarDistance=`*(self: CameraAttributesPractical; distance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_dof_blur_far_distance"
+    let name = api.newStringName "set_dof_blur_far_distance"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPractical, addr name, 373806689)
   var `?param` = [getPtr distance]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc dofBlurFarDistance*(self: CameraAttributesPractical): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_dof_blur_far_distance"
+    let name = api.newStringName "get_dof_blur_far_distance"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPractical, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -38,14 +38,14 @@ proc dofBlurFarDistance*(self: CameraAttributesPractical): Float =
 proc `dofBlurFarTransition=`*(self: CameraAttributesPractical; distance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_dof_blur_far_transition"
+    let name = api.newStringName "set_dof_blur_far_transition"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPractical, addr name, 373806689)
   var `?param` = [getPtr distance]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc dofBlurFarTransition*(self: CameraAttributesPractical): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_dof_blur_far_transition"
+    let name = api.newStringName "get_dof_blur_far_transition"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPractical, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -53,14 +53,14 @@ proc dofBlurFarTransition*(self: CameraAttributesPractical): Float =
 proc `dofBlurNearEnabled=`*(self: CameraAttributesPractical; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_dof_blur_near_enabled"
+    let name = api.newStringName "set_dof_blur_near_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPractical, addr name, 2586408642)
   var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isDofBlurNearEnabled*(self: CameraAttributesPractical): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_dof_blur_near_enabled"
+    let name = api.newStringName "is_dof_blur_near_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPractical, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -68,14 +68,14 @@ proc isDofBlurNearEnabled*(self: CameraAttributesPractical): Bool =
 proc `dofBlurNearDistance=`*(self: CameraAttributesPractical; distance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_dof_blur_near_distance"
+    let name = api.newStringName "set_dof_blur_near_distance"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPractical, addr name, 373806689)
   var `?param` = [getPtr distance]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc dofBlurNearDistance*(self: CameraAttributesPractical): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_dof_blur_near_distance"
+    let name = api.newStringName "get_dof_blur_near_distance"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPractical, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -83,14 +83,14 @@ proc dofBlurNearDistance*(self: CameraAttributesPractical): Float =
 proc `dofBlurNearTransition=`*(self: CameraAttributesPractical; distance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_dof_blur_near_transition"
+    let name = api.newStringName "set_dof_blur_near_transition"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPractical, addr name, 373806689)
   var `?param` = [getPtr distance]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc dofBlurNearTransition*(self: CameraAttributesPractical): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_dof_blur_near_transition"
+    let name = api.newStringName "get_dof_blur_near_transition"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPractical, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -98,14 +98,14 @@ proc dofBlurNearTransition*(self: CameraAttributesPractical): Float =
 proc `dofBlurAmount=`*(self: CameraAttributesPractical; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_dof_blur_amount"
+    let name = api.newStringName "set_dof_blur_amount"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPractical, addr name, 373806689)
   var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc dofBlurAmount*(self: CameraAttributesPractical): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_dof_blur_amount"
+    let name = api.newStringName "get_dof_blur_amount"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPractical, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -113,14 +113,14 @@ proc dofBlurAmount*(self: CameraAttributesPractical): Float =
 proc `autoExposureMaxSensitivity=`*(self: CameraAttributesPractical; maxSensitivity: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_auto_exposure_max_sensitivity"
+    let name = api.newStringName "set_auto_exposure_max_sensitivity"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPractical, addr name, 373806689)
   var `?param` = [getPtr maxSensitivity]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc autoExposureMaxSensitivity*(self: CameraAttributesPractical): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_auto_exposure_max_sensitivity"
+    let name = api.newStringName "get_auto_exposure_max_sensitivity"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPractical, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -128,14 +128,14 @@ proc autoExposureMaxSensitivity*(self: CameraAttributesPractical): Float =
 proc `autoExposureMinSensitivity=`*(self: CameraAttributesPractical; minSensitivity: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_auto_exposure_min_sensitivity"
+    let name = api.newStringName "set_auto_exposure_min_sensitivity"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPractical, addr name, 373806689)
   var `?param` = [getPtr minSensitivity]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc autoExposureMinSensitivity*(self: CameraAttributesPractical): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_auto_exposure_min_sensitivity"
+    let name = api.newStringName "get_auto_exposure_min_sensitivity"
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPractical, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)

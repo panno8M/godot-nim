@@ -5,7 +5,9 @@ import
   variants,
   helper/objectConverter,
   variants/variantsLoader,
-  internal/initManager
+  internal/[
+    initManager,
+    api]
 
 template log_init =
   when TraceInitialization:
@@ -46,12 +48,12 @@ proc init*(p_get_proc_address: InterfaceGetProcAddress; p_library: ClassLibraryP
 
     init_interface(p_getProcAddress)
     interfaceGetGodotVersion addr godotVersion
+    load_api()
+    load_converter()
+    load_Variants()
 
     r_initialization.initialize = initialize_module
     r_initialization.deinitialize = deinitialize_module
-
-    load_converter()
-    load_Variants()
 
   except:
     iam("unhandled-exception", stgLibrary).error getCurrentExceptionMsg()

@@ -62,10 +62,7 @@ discard nativeStructs
     objectBase)
 discard classIndex
   .incl(
-    godotInterface,
     objectBase,
-    variants,
-    runtime,
   )
 discard classDetail_all
   .exportModules_allowed

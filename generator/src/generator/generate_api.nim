@@ -93,8 +93,6 @@ proc generate*(api: JsonNode) =
       case $class.name
       of "Object":
         discard
-      of "RefCounted":
-        prototype.children.add "include \"include/hook_RefCounted\""
       else:
         discard detail_mdl.incl d_classDetail//fmt"classDetail_native_{class.inherits}"
 

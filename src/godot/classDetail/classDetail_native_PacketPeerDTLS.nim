@@ -8,13 +8,13 @@ import ./classDetail_native_PacketPeer; export classDetail_native_PacketPeer
 proc poll*(self: PacketPeerDTLS) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "poll"
+    let name = api.newStringName "poll"
     methodbind = interface_ClassDB_getMethodBind(addr className PacketPeerDTLS, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
 proc connectToPeer*(self: PacketPeerDTLS; packetPeer: PacketPeerUDP; hostname: String; clientOptions: TLSOptions = default TLSOptions): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "connect_to_peer"
+    let name = api.newStringName "connect_to_peer"
     methodbind = interface_ClassDB_getMethodBind(addr className PacketPeerDTLS, addr name, 1801538152)
   var `?param` = [getPtr packetPeer, getPtr hostname, getPtr clientOptions]
   var ret: encoded Error
@@ -23,7 +23,7 @@ proc connectToPeer*(self: PacketPeerDTLS; packetPeer: PacketPeerUDP; hostname: S
 proc getStatus*(self: PacketPeerDTLS): PacketPeerDTLS_Status =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_status"
+    let name = api.newStringName "get_status"
     methodbind = interface_ClassDB_getMethodBind(addr className PacketPeerDTLS, addr name, 3248654679)
   var ret: encoded PacketPeerDTLS_Status
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -31,6 +31,6 @@ proc getStatus*(self: PacketPeerDTLS): PacketPeerDTLS_Status =
 proc disconnectFromPeer*(self: PacketPeerDTLS) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "disconnect_from_peer"
+    let name = api.newStringName "disconnect_from_peer"
     methodbind = interface_ClassDB_getMethodBind(addr className PacketPeerDTLS, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)

@@ -115,7 +115,7 @@ proc prerender_classMethod*(self: JsonMethod; self_type: SelfType; attr: ClassMe
   discard +$$..result:
     &"var methodbind {{.global.}}: MethodBindPtr"
     &"if unlikely(methodbind.isNil):"
-    &"  let name: StringName = \"{self.name}\""
+    &"  let name = api.newStringName \"{self.name}\""
     &"  methodbind = interface_ClassDB_getMethodBind(addr className {self_type.name}, addr name, {get self.hash})"
     paramArrayDef
     retDef
@@ -150,7 +150,7 @@ proc prerender_variantMethod*(self: JsonMethod; self_type: SelfType, ignore: Ign
       result.procdef = nil; return
   result.container = &"var {container}: PtrBuiltinMethod"
   result.load = +$$..ParagraphSt():
-    &"proc_name = init_StringName(\"{self.name}\")"
+    &"proc_name = api.newStringName \"{self.name}\""
     &"{container} = interface_Variant_getPtrBuiltinMethod(variantType {self_type.name}, addr proc_name, {get self.hash})"
 
   let argArr = ParagraphSt()

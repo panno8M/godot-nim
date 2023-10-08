@@ -23,11 +23,11 @@ proc cubicInterpolateInTime*(self: Vector4; b: Vector4; preA: Vector4; postB: Ve
 proc inverse*(self: Vector4): Vector4 = Vector4_inverse(addr self, nil, addr result, 0)
 proc load_Vector4_proc =
   var proc_name: StringName
-  proc_name = init_StringName("cubic_interpolate")
+  proc_name = api.newStringName "cubic_interpolate"
   Vector4_cubicInterpolate = interface_Variant_getPtrBuiltinMethod(variantType Vector4, addr proc_name, 726768410)
-  proc_name = init_StringName("cubic_interpolate_in_time")
+  proc_name = api.newStringName "cubic_interpolate_in_time"
   Vector4_cubicInterpolateInTime = interface_Variant_getPtrBuiltinMethod(variantType Vector4, addr proc_name, 681631873)
-  proc_name = init_StringName("inverse")
+  proc_name = api.newStringName "inverse"
   Vector4_inverse = interface_Variant_getPtrBuiltinMethod(variantType Vector4, addr proc_name, 80860099)
 var Equal_Vector4_Variant: PtrOperatorEvaluator
 var NotEqual_Vector4_Variant: PtrOperatorEvaluator

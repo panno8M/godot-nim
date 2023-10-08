@@ -8,14 +8,14 @@ import ./classDetail_native_Node2D; export classDetail_native_Node2D
 proc `mesh=`*(self: MeshInstance2D; mesh: Mesh) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_mesh"
+    let name = api.newStringName "set_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshInstance2D, addr name, 194775623)
   var `?param` = [getPtr mesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc mesh*(self: MeshInstance2D): Mesh =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_mesh"
+    let name = api.newStringName "get_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshInstance2D, addr name, 1808005922)
   var ret: encoded Mesh
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -23,14 +23,14 @@ proc mesh*(self: MeshInstance2D): Mesh =
 proc `texture=`*(self: MeshInstance2D; texture: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_texture"
+    let name = api.newStringName "set_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshInstance2D, addr name, 4051416890)
   var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc texture*(self: MeshInstance2D): Texture2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_texture"
+    let name = api.newStringName "get_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshInstance2D, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)

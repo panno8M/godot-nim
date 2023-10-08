@@ -30,25 +30,25 @@ proc getAsPropertyPath*(self: NodePath): NodePath = NodePath_getAsPropertyPath(a
 proc isEmpty*(self: NodePath): Bool = NodePath_isEmpty(addr self, nil, addr result, 0)
 proc load_NodePath_proc =
   var proc_name: StringName
-  proc_name = init_StringName("is_absolute")
+  proc_name = api.newStringName "is_absolute"
   NodePath_isAbsolute = interface_Variant_getPtrBuiltinMethod(variantType NodePath, addr proc_name, 3918633141)
-  proc_name = init_StringName("get_name_count")
+  proc_name = api.newStringName "get_name_count"
   NodePath_getNameCount = interface_Variant_getPtrBuiltinMethod(variantType NodePath, addr proc_name, 3173160232)
-  proc_name = init_StringName("get_name")
+  proc_name = api.newStringName "get_name"
   NodePath_getName = interface_Variant_getPtrBuiltinMethod(variantType NodePath, addr proc_name, 2948586938)
-  proc_name = init_StringName("get_subname_count")
+  proc_name = api.newStringName "get_subname_count"
   NodePath_getSubnameCount = interface_Variant_getPtrBuiltinMethod(variantType NodePath, addr proc_name, 3173160232)
-  proc_name = init_StringName("hash")
+  proc_name = api.newStringName "hash"
   NodePath_hash = interface_Variant_getPtrBuiltinMethod(variantType NodePath, addr proc_name, 3173160232)
-  proc_name = init_StringName("get_subname")
+  proc_name = api.newStringName "get_subname"
   NodePath_getSubname = interface_Variant_getPtrBuiltinMethod(variantType NodePath, addr proc_name, 2948586938)
-  proc_name = init_StringName("get_concatenated_names")
+  proc_name = api.newStringName "get_concatenated_names"
   NodePath_getConcatenatedNames = interface_Variant_getPtrBuiltinMethod(variantType NodePath, addr proc_name, 1825232092)
-  proc_name = init_StringName("get_concatenated_subnames")
+  proc_name = api.newStringName "get_concatenated_subnames"
   NodePath_getConcatenatedSubnames = interface_Variant_getPtrBuiltinMethod(variantType NodePath, addr proc_name, 1825232092)
-  proc_name = init_StringName("get_as_property_path")
+  proc_name = api.newStringName "get_as_property_path"
   NodePath_getAsPropertyPath = interface_Variant_getPtrBuiltinMethod(variantType NodePath, addr proc_name, 1598598043)
-  proc_name = init_StringName("is_empty")
+  proc_name = api.newStringName "is_empty"
   NodePath_isEmpty = interface_Variant_getPtrBuiltinMethod(variantType NodePath, addr proc_name, 3918633141)
 var Equal_NodePath_Variant: PtrOperatorEvaluator
 var NotEqual_NodePath_Variant: PtrOperatorEvaluator

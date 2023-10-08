@@ -2,6 +2,7 @@ import std/strutils
 import godotInterface
 import godotInterface/objectBase; export objectBase
 import internal/runtime
+import internal/api
 
 export className
 proc className*[T: SomeClass](self: T): var StringName =
@@ -12,9 +13,14 @@ converter toStringName*[T: SomeClass](_: typedesc[T]): var StringName =
 proc instantiate*(T: typedesc[SomeClass]): T =
   new result
   result.owner = interface_classdb_construct_object(addr T.EngineClass.className)
+
   when T is SomeUserClass:
     interfaceObjectSetInstance(result.owner, addr T.className, cast[pointer](result))
   interfaceObjectSetInstanceBinding(result.owner, token, cast[pointer](result), addr T.callbacks)
+  when T is RefCountedBase:
+    echo "instantiate: ", api.hook_getReferenceCount(result.owner)
+  when T is SomeUserClass:
+    `=init` result
 
 proc bind_virtuals*(S: typedesc[ObjectBase]; T: typedesc) =
   discard
@@ -22,18 +28,10 @@ proc bind_virtuals*(S: typedesc[ObjectBase]; T: typedesc) =
 proc getInstance*[T: SomeClass](p_engine_object: ObjectPtr; _: typedesc[T]): T =
   if p_engine_object.isNil: return
 
-  # Get existing instance binding, if one already exists.
-  let instance = interface_objectGetInstanceBinding(p_engine_object, token, nil)
-  if not instance.isNil:
-    return cast[T](instance)
-
-  # Otherwise, try to look up the correct binding callbacks.
-  var binding_callbacks: ptr InstanceBindingCallbacks
-
-  if binding_callbacks == nil:
-    binding_callbacks = addr T.callbacks
-
-  return cast[T](interface_objectGetInstanceBinding(p_engine_object, token, binding_callbacks))
+  result = cast[T](interface_objectGetInstanceBinding(p_engine_object, token, addr T.callbacks))
+  when T is RefCountedBase:
+    echo "get-instance"
+    discard api.hook_unreference(result.owner)
 
 proc instanceID*(self: SomeClass): GDObjectInstanceID =
   interface_Object_getInstanceId(self.owner)

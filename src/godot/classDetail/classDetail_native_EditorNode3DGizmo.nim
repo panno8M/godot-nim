@@ -8,56 +8,56 @@ import ./classDetail_native_Node3DGizmo; export classDetail_native_Node3DGizmo
 proc addLines*(self: EditorNode3DGizmo; lines: PackedVector3Array; material: Material; billboard: Bool = false; modulate: Color = init_Color(1, 1, 1, 1)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "add_lines"
+    let name = api.newStringName "add_lines"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorNode3DGizmo, addr name, 302451090)
   var `?param` = [getPtr lines, getPtr material, getPtr billboard, getPtr modulate]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc addMesh*(self: EditorNode3DGizmo; mesh: Mesh; material: Material = default Material; transform: Transform3D = init_Transform3D(); skeleton: SkinReference = default SkinReference) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "add_mesh"
+    let name = api.newStringName "add_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorNode3DGizmo, addr name, 1868867708)
   var `?param` = [getPtr mesh, getPtr material, getPtr transform, getPtr skeleton]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc addCollisionSegments*(self: EditorNode3DGizmo; segments: PackedVector3Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "add_collision_segments"
+    let name = api.newStringName "add_collision_segments"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorNode3DGizmo, addr name, 334873810)
   var `?param` = [getPtr segments]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc addCollisionTriangles*(self: EditorNode3DGizmo; triangles: TriangleMesh) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "add_collision_triangles"
+    let name = api.newStringName "add_collision_triangles"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorNode3DGizmo, addr name, 54901064)
   var `?param` = [getPtr triangles]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc addUnscaledBillboard*(self: EditorNode3DGizmo; material: Material; defaultScale: Float = 1; modulate: Color = init_Color(1, 1, 1, 1)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "add_unscaled_billboard"
+    let name = api.newStringName "add_unscaled_billboard"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorNode3DGizmo, addr name, 3719733075)
   var `?param` = [getPtr material, getPtr defaultScale, getPtr modulate]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc addHandles*(self: EditorNode3DGizmo; handles: PackedVector3Array; material: Material; ids: PackedInt32Array; billboard: Bool = false; secondary: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "add_handles"
+    let name = api.newStringName "add_handles"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorNode3DGizmo, addr name, 2254560097)
   var `?param` = [getPtr handles, getPtr material, getPtr ids, getPtr billboard, getPtr secondary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setNode3d*(self: EditorNode3DGizmo; node: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_node_3d"
+    let name = api.newStringName "set_node_3d"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorNode3DGizmo, addr name, 1078189570)
   var `?param` = [getPtr node]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getNode3d*(self: EditorNode3DGizmo): Node3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_node_3d"
+    let name = api.newStringName "get_node_3d"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorNode3DGizmo, addr name, 151077316)
   var ret: encoded Node3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -65,7 +65,7 @@ proc getNode3d*(self: EditorNode3DGizmo): Node3D =
 proc getPlugin*(self: EditorNode3DGizmo): EditorNode3DGizmoPlugin =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_plugin"
+    let name = api.newStringName "get_plugin"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorNode3DGizmo, addr name, 4250544552)
   var ret: encoded EditorNode3DGizmoPlugin
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -73,20 +73,20 @@ proc getPlugin*(self: EditorNode3DGizmo): EditorNode3DGizmoPlugin =
 proc clear*(self: EditorNode3DGizmo) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "clear"
+    let name = api.newStringName "clear"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorNode3DGizmo, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
 proc setHidden*(self: EditorNode3DGizmo; hidden: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_hidden"
+    let name = api.newStringName "set_hidden"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorNode3DGizmo, addr name, 2586408642)
   var `?param` = [getPtr hidden]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isSubgizmoSelected*(self: EditorNode3DGizmo; id: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_subgizmo_selected"
+    let name = api.newStringName "is_subgizmo_selected"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorNode3DGizmo, addr name, 1116898809)
   var `?param` = [getPtr id]
   var ret: encoded Bool
@@ -95,7 +95,7 @@ proc isSubgizmoSelected*(self: EditorNode3DGizmo; id: int32): Bool =
 proc getSubgizmoSelection*(self: EditorNode3DGizmo): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_subgizmo_selection"
+    let name = api.newStringName "get_subgizmo_selection"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorNode3DGizmo, addr name, 1930428628)
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)

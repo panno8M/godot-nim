@@ -8,7 +8,7 @@ import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 proc getTravel*(self: PhysicsTestMotionResult3D): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_travel"
+    let name = api.newStringName "get_travel"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionResult3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -16,7 +16,7 @@ proc getTravel*(self: PhysicsTestMotionResult3D): Vector3 =
 proc getRemainder*(self: PhysicsTestMotionResult3D): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_remainder"
+    let name = api.newStringName "get_remainder"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionResult3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -24,7 +24,7 @@ proc getRemainder*(self: PhysicsTestMotionResult3D): Vector3 =
 proc getCollisionSafeFraction*(self: PhysicsTestMotionResult3D): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_collision_safe_fraction"
+    let name = api.newStringName "get_collision_safe_fraction"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionResult3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -32,7 +32,7 @@ proc getCollisionSafeFraction*(self: PhysicsTestMotionResult3D): Float =
 proc getCollisionUnsafeFraction*(self: PhysicsTestMotionResult3D): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_collision_unsafe_fraction"
+    let name = api.newStringName "get_collision_unsafe_fraction"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionResult3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -40,7 +40,7 @@ proc getCollisionUnsafeFraction*(self: PhysicsTestMotionResult3D): Float =
 proc getCollisionCount*(self: PhysicsTestMotionResult3D): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_collision_count"
+    let name = api.newStringName "get_collision_count"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionResult3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -48,7 +48,7 @@ proc getCollisionCount*(self: PhysicsTestMotionResult3D): int32 =
 proc getCollisionPoint*(self: PhysicsTestMotionResult3D; collisionIndex: int32 = 0): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_collision_point"
+    let name = api.newStringName "get_collision_point"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionResult3D, addr name, 1914908202)
   var `?param` = [getPtr collisionIndex]
   var ret: encoded Vector3
@@ -57,7 +57,7 @@ proc getCollisionPoint*(self: PhysicsTestMotionResult3D; collisionIndex: int32 =
 proc getCollisionNormal*(self: PhysicsTestMotionResult3D; collisionIndex: int32 = 0): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_collision_normal"
+    let name = api.newStringName "get_collision_normal"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionResult3D, addr name, 1914908202)
   var `?param` = [getPtr collisionIndex]
   var ret: encoded Vector3
@@ -66,7 +66,7 @@ proc getCollisionNormal*(self: PhysicsTestMotionResult3D; collisionIndex: int32 
 proc getColliderVelocity*(self: PhysicsTestMotionResult3D; collisionIndex: int32 = 0): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_collider_velocity"
+    let name = api.newStringName "get_collider_velocity"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionResult3D, addr name, 1914908202)
   var `?param` = [getPtr collisionIndex]
   var ret: encoded Vector3
@@ -75,7 +75,7 @@ proc getColliderVelocity*(self: PhysicsTestMotionResult3D; collisionIndex: int32
 proc getColliderId*(self: PhysicsTestMotionResult3D; collisionIndex: int32 = 0): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_collider_id"
+    let name = api.newStringName "get_collider_id"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionResult3D, addr name, 1591665591)
   var `?param` = [getPtr collisionIndex]
   var ret: encoded uint64
@@ -84,7 +84,7 @@ proc getColliderId*(self: PhysicsTestMotionResult3D; collisionIndex: int32 = 0):
 proc getColliderRid*(self: PhysicsTestMotionResult3D; collisionIndex: int32 = 0): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_collider_rid"
+    let name = api.newStringName "get_collider_rid"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionResult3D, addr name, 1231817359)
   var `?param` = [getPtr collisionIndex]
   var ret: encoded RID
@@ -93,7 +93,7 @@ proc getColliderRid*(self: PhysicsTestMotionResult3D; collisionIndex: int32 = 0)
 proc getCollider*(self: PhysicsTestMotionResult3D; collisionIndex: int32 = 0): Object =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_collider"
+    let name = api.newStringName "get_collider"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionResult3D, addr name, 2639523548)
   var `?param` = [getPtr collisionIndex]
   var ret: encoded Object
@@ -102,7 +102,7 @@ proc getCollider*(self: PhysicsTestMotionResult3D; collisionIndex: int32 = 0): O
 proc getColliderShape*(self: PhysicsTestMotionResult3D; collisionIndex: int32 = 0): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_collider_shape"
+    let name = api.newStringName "get_collider_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionResult3D, addr name, 1591665591)
   var `?param` = [getPtr collisionIndex]
   var ret: encoded int32
@@ -111,7 +111,7 @@ proc getColliderShape*(self: PhysicsTestMotionResult3D; collisionIndex: int32 = 
 proc getCollisionLocalShape*(self: PhysicsTestMotionResult3D; collisionIndex: int32 = 0): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_collision_local_shape"
+    let name = api.newStringName "get_collision_local_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionResult3D, addr name, 1591665591)
   var `?param` = [getPtr collisionIndex]
   var ret: encoded int32
@@ -120,7 +120,7 @@ proc getCollisionLocalShape*(self: PhysicsTestMotionResult3D; collisionIndex: in
 proc getCollisionDepth*(self: PhysicsTestMotionResult3D; collisionIndex: int32 = 0): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_collision_depth"
+    let name = api.newStringName "get_collision_depth"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionResult3D, addr name, 218038398)
   var `?param` = [getPtr collisionIndex]
   var ret: encoded Float

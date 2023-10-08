@@ -10,9 +10,9 @@ proc isValid*(self: RID): Bool = RID_isValid(addr self, nil, addr result, 0)
 proc getId*(self: RID): Int = RID_getId(addr self, nil, addr result, 0)
 proc load_RID_proc =
   var proc_name: StringName
-  proc_name = init_StringName("is_valid")
+  proc_name = api.newStringName "is_valid"
   RID_isValid = interface_Variant_getPtrBuiltinMethod(variantType RID, addr proc_name, 3918633141)
-  proc_name = init_StringName("get_id")
+  proc_name = api.newStringName "get_id"
   RID_getId = interface_Variant_getPtrBuiltinMethod(variantType RID, addr proc_name, 3173160232)
 var Equal_RID_Variant: PtrOperatorEvaluator
 var NotEqual_RID_Variant: PtrOperatorEvaluator

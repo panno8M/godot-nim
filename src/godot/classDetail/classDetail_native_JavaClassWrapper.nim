@@ -8,7 +8,7 @@ import ./classDetail_native_Object; export classDetail_native_Object
 proc wrap*(self: JavaClassWrapper; name: String): JavaClass =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "wrap"
+    let name = api.newStringName "wrap"
     methodbind = interface_ClassDB_getMethodBind(addr className JavaClassWrapper, addr name, 1124367868)
   var `?param` = [getPtr name]
   var ret: encoded JavaClass

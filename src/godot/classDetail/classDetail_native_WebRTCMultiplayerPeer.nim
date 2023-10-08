@@ -8,7 +8,7 @@ import ./classDetail_native_MultiplayerPeer; export classDetail_native_Multiplay
 proc createServer*(self: WebRTCMultiplayerPeer; channelsConfig: Array = init_Array()): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "create_server"
+    let name = api.newStringName "create_server"
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCMultiplayerPeer, addr name, 2865356025)
   var `?param` = [getPtr channelsConfig]
   var ret: encoded Error
@@ -17,7 +17,7 @@ proc createServer*(self: WebRTCMultiplayerPeer; channelsConfig: Array = init_Arr
 proc createClient*(self: WebRTCMultiplayerPeer; peerId: int32; channelsConfig: Array = init_Array()): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "create_client"
+    let name = api.newStringName "create_client"
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCMultiplayerPeer, addr name, 1777354631)
   var `?param` = [getPtr peerId, getPtr channelsConfig]
   var ret: encoded Error
@@ -26,7 +26,7 @@ proc createClient*(self: WebRTCMultiplayerPeer; peerId: int32; channelsConfig: A
 proc createMesh*(self: WebRTCMultiplayerPeer; peerId: int32; channelsConfig: Array = init_Array()): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "create_mesh"
+    let name = api.newStringName "create_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCMultiplayerPeer, addr name, 1777354631)
   var `?param` = [getPtr peerId, getPtr channelsConfig]
   var ret: encoded Error
@@ -35,7 +35,7 @@ proc createMesh*(self: WebRTCMultiplayerPeer; peerId: int32; channelsConfig: Arr
 proc addPeer*(self: WebRTCMultiplayerPeer; peer: WebRTCPeerConnection; peerId: int32; unreliableLifetime: int32 = 1): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "add_peer"
+    let name = api.newStringName "add_peer"
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCMultiplayerPeer, addr name, 2555866323)
   var `?param` = [getPtr peer, getPtr peerId, getPtr unreliableLifetime]
   var ret: encoded Error
@@ -44,14 +44,14 @@ proc addPeer*(self: WebRTCMultiplayerPeer; peer: WebRTCPeerConnection; peerId: i
 proc removePeer*(self: WebRTCMultiplayerPeer; peerId: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "remove_peer"
+    let name = api.newStringName "remove_peer"
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCMultiplayerPeer, addr name, 1286410249)
   var `?param` = [getPtr peerId]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc hasPeer*(self: WebRTCMultiplayerPeer; peerId: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "has_peer"
+    let name = api.newStringName "has_peer"
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCMultiplayerPeer, addr name, 3067735520)
   var `?param` = [getPtr peerId]
   var ret: encoded Bool
@@ -60,7 +60,7 @@ proc hasPeer*(self: WebRTCMultiplayerPeer; peerId: int32): Bool =
 proc getPeer*(self: WebRTCMultiplayerPeer; peerId: int32): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_peer"
+    let name = api.newStringName "get_peer"
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCMultiplayerPeer, addr name, 3554694381)
   var `?param` = [getPtr peerId]
   var ret: encoded Dictionary
@@ -69,7 +69,7 @@ proc getPeer*(self: WebRTCMultiplayerPeer; peerId: int32): Dictionary =
 proc getPeers*(self: WebRTCMultiplayerPeer): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_peers"
+    let name = api.newStringName "get_peers"
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCMultiplayerPeer, addr name, 2382534195)
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)

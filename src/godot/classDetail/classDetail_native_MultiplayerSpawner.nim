@@ -8,14 +8,14 @@ import ./classDetail_native_Node; export classDetail_native_Node
 proc addSpawnableScene*(self: MultiplayerSpawner; path: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "add_spawnable_scene"
+    let name = api.newStringName "add_spawnable_scene"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerSpawner, addr name, 83702148)
   var `?param` = [getPtr path]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getSpawnableSceneCount*(self: MultiplayerSpawner): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_spawnable_scene_count"
+    let name = api.newStringName "get_spawnable_scene_count"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerSpawner, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -23,7 +23,7 @@ proc getSpawnableSceneCount*(self: MultiplayerSpawner): int32 =
 proc getSpawnableScene*(self: MultiplayerSpawner; index: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_spawnable_scene"
+    let name = api.newStringName "get_spawnable_scene"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerSpawner, addr name, 844755477)
   var `?param` = [getPtr index]
   var ret: encoded String
@@ -32,13 +32,13 @@ proc getSpawnableScene*(self: MultiplayerSpawner; index: int32): String =
 proc clearSpawnableScenes*(self: MultiplayerSpawner) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "clear_spawnable_scenes"
+    let name = api.newStringName "clear_spawnable_scenes"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerSpawner, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
 proc spawn*(self: MultiplayerSpawner; data: Variant = default(Variant)): Node =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "spawn"
+    let name = api.newStringName "spawn"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerSpawner, addr name, 1991184589)
   var `?param` = [getPtr data]
   var ret: encoded Node
@@ -47,7 +47,7 @@ proc spawn*(self: MultiplayerSpawner; data: Variant = default(Variant)): Node =
 proc spawnPath*(self: MultiplayerSpawner): NodePath =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_spawn_path"
+    let name = api.newStringName "get_spawn_path"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerSpawner, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -55,14 +55,14 @@ proc spawnPath*(self: MultiplayerSpawner): NodePath =
 proc `spawnPath=`*(self: MultiplayerSpawner; path: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_spawn_path"
+    let name = api.newStringName "set_spawn_path"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerSpawner, addr name, 1348162250)
   var `?param` = [getPtr path]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc spawnLimit*(self: MultiplayerSpawner): uint32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_spawn_limit"
+    let name = api.newStringName "get_spawn_limit"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerSpawner, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -70,14 +70,14 @@ proc spawnLimit*(self: MultiplayerSpawner): uint32 =
 proc `spawnLimit=`*(self: MultiplayerSpawner; limit: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_spawn_limit"
+    let name = api.newStringName "set_spawn_limit"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerSpawner, addr name, 1286410249)
   var `?param` = [getPtr limit]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc spawnFunction*(self: MultiplayerSpawner): Callable =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_spawn_function"
+    let name = api.newStringName "get_spawn_function"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerSpawner, addr name, 1307783378)
   var ret: encoded Callable
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -85,7 +85,7 @@ proc spawnFunction*(self: MultiplayerSpawner): Callable =
 proc `spawnFunction=`*(self: MultiplayerSpawner; spawnFunction: Callable) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_spawn_function"
+    let name = api.newStringName "set_spawn_function"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerSpawner, addr name, 1611583062)
   var `?param` = [getPtr spawnFunction]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

@@ -8,7 +8,7 @@ import ./classDetail_native_Node; export classDetail_native_Node
 proc request*(self: HTTPRequest; url: String; customHeaders: PackedStringArray = PackedStringArray(); `method`: HTTPClient_Method = methodGet; requestData: String = ""): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "request"
+    let name = api.newStringName "request"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 2720304520)
   var `?param` = [getPtr url, getPtr customHeaders, getPtr `method`, getPtr requestData]
   var ret: encoded Error
@@ -17,7 +17,7 @@ proc request*(self: HTTPRequest; url: String; customHeaders: PackedStringArray =
 proc requestRaw*(self: HTTPRequest; url: String; customHeaders: PackedStringArray = PackedStringArray(); `method`: HTTPClient_Method = methodGet; requestDataRaw: PackedByteArray = PackedByteArray()): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "request_raw"
+    let name = api.newStringName "request_raw"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 4282724657)
   var `?param` = [getPtr url, getPtr customHeaders, getPtr `method`, getPtr requestDataRaw]
   var ret: encoded Error
@@ -26,20 +26,20 @@ proc requestRaw*(self: HTTPRequest; url: String; customHeaders: PackedStringArra
 proc cancelRequest*(self: HTTPRequest) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "cancel_request"
+    let name = api.newStringName "cancel_request"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
 proc setTlsOptions*(self: HTTPRequest; clientOptions: TLSOptions) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_tls_options"
+    let name = api.newStringName "set_tls_options"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 2210231844)
   var `?param` = [getPtr clientOptions]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getHttpClientStatus*(self: HTTPRequest): HTTPClient_Status =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_http_client_status"
+    let name = api.newStringName "get_http_client_status"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 1426656811)
   var ret: encoded HTTPClient_Status
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -47,14 +47,14 @@ proc getHttpClientStatus*(self: HTTPRequest): HTTPClient_Status =
 proc `useThreads=`*(self: HTTPRequest; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_use_threads"
+    let name = api.newStringName "set_use_threads"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 2586408642)
   var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isUsingThreads*(self: HTTPRequest): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_using_threads"
+    let name = api.newStringName "is_using_threads"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -62,14 +62,14 @@ proc isUsingThreads*(self: HTTPRequest): Bool =
 proc `acceptGzip=`*(self: HTTPRequest; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_accept_gzip"
+    let name = api.newStringName "set_accept_gzip"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 2586408642)
   var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isAcceptingGzip*(self: HTTPRequest): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_accepting_gzip"
+    let name = api.newStringName "is_accepting_gzip"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -77,14 +77,14 @@ proc isAcceptingGzip*(self: HTTPRequest): Bool =
 proc `bodySizeLimit=`*(self: HTTPRequest; bytes: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_body_size_limit"
+    let name = api.newStringName "set_body_size_limit"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 1286410249)
   var `?param` = [getPtr bytes]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc bodySizeLimit*(self: HTTPRequest): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_body_size_limit"
+    let name = api.newStringName "get_body_size_limit"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -92,14 +92,14 @@ proc bodySizeLimit*(self: HTTPRequest): int32 =
 proc `maxRedirects=`*(self: HTTPRequest; amount: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_max_redirects"
+    let name = api.newStringName "set_max_redirects"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 1286410249)
   var `?param` = [getPtr amount]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc maxRedirects*(self: HTTPRequest): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_max_redirects"
+    let name = api.newStringName "get_max_redirects"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -107,14 +107,14 @@ proc maxRedirects*(self: HTTPRequest): int32 =
 proc `downloadFile=`*(self: HTTPRequest; path: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_download_file"
+    let name = api.newStringName "set_download_file"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 83702148)
   var `?param` = [getPtr path]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc downloadFile*(self: HTTPRequest): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_download_file"
+    let name = api.newStringName "get_download_file"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -122,7 +122,7 @@ proc downloadFile*(self: HTTPRequest): String =
 proc getDownloadedBytes*(self: HTTPRequest): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_downloaded_bytes"
+    let name = api.newStringName "get_downloaded_bytes"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -130,7 +130,7 @@ proc getDownloadedBytes*(self: HTTPRequest): int32 =
 proc getBodySize*(self: HTTPRequest): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_body_size"
+    let name = api.newStringName "get_body_size"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -138,14 +138,14 @@ proc getBodySize*(self: HTTPRequest): int32 =
 proc `timeout=`*(self: HTTPRequest; timeout: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_timeout"
+    let name = api.newStringName "set_timeout"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 373806689)
   var `?param` = [getPtr timeout]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc timeout*(self: HTTPRequest): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_timeout"
+    let name = api.newStringName "get_timeout"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 191475506)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -153,14 +153,14 @@ proc timeout*(self: HTTPRequest): float64 =
 proc `downloadChunkSize=`*(self: HTTPRequest; chunkSize: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_download_chunk_size"
+    let name = api.newStringName "set_download_chunk_size"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 1286410249)
   var `?param` = [getPtr chunkSize]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc downloadChunkSize*(self: HTTPRequest): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_download_chunk_size"
+    let name = api.newStringName "get_download_chunk_size"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -168,14 +168,14 @@ proc downloadChunkSize*(self: HTTPRequest): int32 =
 proc setHttpProxy*(self: HTTPRequest; host: String; port: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_http_proxy"
+    let name = api.newStringName "set_http_proxy"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 2956805083)
   var `?param` = [getPtr host, getPtr port]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setHttpsProxy*(self: HTTPRequest; host: String; port: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_https_proxy"
+    let name = api.newStringName "set_https_proxy"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 2956805083)
   var `?param` = [getPtr host, getPtr port]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)

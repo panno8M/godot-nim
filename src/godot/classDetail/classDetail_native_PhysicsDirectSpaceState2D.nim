@@ -8,7 +8,7 @@ import ./classDetail_native_Object; export classDetail_native_Object
 proc intersectPoint*(self: PhysicsDirectSpaceState2D; parameters: PhysicsPointQueryParameters2D; maxRetvals: int32 = 32): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "intersect_point"
+    let name = api.newStringName "intersect_point"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectSpaceState2D, addr name, 3278207904)
   var `?param` = [getPtr parameters, getPtr maxRetvals]
   var ret: encoded TypedArray[Dictionary]
@@ -17,7 +17,7 @@ proc intersectPoint*(self: PhysicsDirectSpaceState2D; parameters: PhysicsPointQu
 proc intersectRay*(self: PhysicsDirectSpaceState2D; parameters: PhysicsRayQueryParameters2D): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "intersect_ray"
+    let name = api.newStringName "intersect_ray"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectSpaceState2D, addr name, 1590275562)
   var `?param` = [getPtr parameters]
   var ret: encoded Dictionary
@@ -26,7 +26,7 @@ proc intersectRay*(self: PhysicsDirectSpaceState2D; parameters: PhysicsRayQueryP
 proc intersectShape*(self: PhysicsDirectSpaceState2D; parameters: PhysicsShapeQueryParameters2D; maxRetvals: int32 = 32): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "intersect_shape"
+    let name = api.newStringName "intersect_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectSpaceState2D, addr name, 3803848594)
   var `?param` = [getPtr parameters, getPtr maxRetvals]
   var ret: encoded TypedArray[Dictionary]
@@ -35,7 +35,7 @@ proc intersectShape*(self: PhysicsDirectSpaceState2D; parameters: PhysicsShapeQu
 proc castMotion*(self: PhysicsDirectSpaceState2D; parameters: PhysicsShapeQueryParameters2D): PackedFloat32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "cast_motion"
+    let name = api.newStringName "cast_motion"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectSpaceState2D, addr name, 711275086)
   var `?param` = [getPtr parameters]
   var ret: encoded PackedFloat32Array
@@ -44,7 +44,7 @@ proc castMotion*(self: PhysicsDirectSpaceState2D; parameters: PhysicsShapeQueryP
 proc collideShape*(self: PhysicsDirectSpaceState2D; parameters: PhysicsShapeQueryParameters2D; maxRetvals: int32 = 32): TypedArray[Vector2] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "collide_shape"
+    let name = api.newStringName "collide_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectSpaceState2D, addr name, 3803848594)
   var `?param` = [getPtr parameters, getPtr maxRetvals]
   var ret: encoded TypedArray[Vector2]
@@ -53,7 +53,7 @@ proc collideShape*(self: PhysicsDirectSpaceState2D; parameters: PhysicsShapeQuer
 proc getRestInfo*(self: PhysicsDirectSpaceState2D; parameters: PhysicsShapeQueryParameters2D): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_rest_info"
+    let name = api.newStringName "get_rest_info"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectSpaceState2D, addr name, 2803666496)
   var `?param` = [getPtr parameters]
   var ret: encoded Dictionary

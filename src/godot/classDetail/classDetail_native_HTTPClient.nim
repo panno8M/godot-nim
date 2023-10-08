@@ -8,7 +8,7 @@ import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 proc connectToHost*(self: HTTPClient; host: String; port: int32 = -1; tlsOptions: TLSOptions = default TLSOptions): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "connect_to_host"
+    let name = api.newStringName "connect_to_host"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPClient, addr name, 1970282951)
   var `?param` = [getPtr host, getPtr port, getPtr tlsOptions]
   var ret: encoded Error
@@ -17,14 +17,14 @@ proc connectToHost*(self: HTTPClient; host: String; port: int32 = -1; tlsOptions
 proc `connection=`*(self: HTTPClient; connection: StreamPeer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_connection"
+    let name = api.newStringName "set_connection"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPClient, addr name, 3281897016)
   var `?param` = [getPtr connection]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc connection*(self: HTTPClient): StreamPeer =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_connection"
+    let name = api.newStringName "get_connection"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPClient, addr name, 2741655269)
   var ret: encoded StreamPeer
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -32,7 +32,7 @@ proc connection*(self: HTTPClient): StreamPeer =
 proc requestRaw*(self: HTTPClient; `method`: HTTPClient_Method; url: String; headers: PackedStringArray; body: PackedByteArray): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "request_raw"
+    let name = api.newStringName "request_raw"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPClient, addr name, 540161961)
   var `?param` = [getPtr `method`, getPtr url, getPtr headers, getPtr body]
   var ret: encoded Error
@@ -41,7 +41,7 @@ proc requestRaw*(self: HTTPClient; `method`: HTTPClient_Method; url: String; hea
 proc request*(self: HTTPClient; `method`: HTTPClient_Method; url: String; headers: PackedStringArray; body: String = ""): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "request"
+    let name = api.newStringName "request"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPClient, addr name, 3249905507)
   var `?param` = [getPtr `method`, getPtr url, getPtr headers, getPtr body]
   var ret: encoded Error
@@ -50,13 +50,13 @@ proc request*(self: HTTPClient; `method`: HTTPClient_Method; url: String; header
 proc close*(self: HTTPClient) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "close"
+    let name = api.newStringName "close"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPClient, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
 proc hasResponse*(self: HTTPClient): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "has_response"
+    let name = api.newStringName "has_response"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPClient, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -64,7 +64,7 @@ proc hasResponse*(self: HTTPClient): Bool =
 proc isResponseChunked*(self: HTTPClient): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_response_chunked"
+    let name = api.newStringName "is_response_chunked"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPClient, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -72,7 +72,7 @@ proc isResponseChunked*(self: HTTPClient): Bool =
 proc getResponseCode*(self: HTTPClient): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_response_code"
+    let name = api.newStringName "get_response_code"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPClient, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -80,7 +80,7 @@ proc getResponseCode*(self: HTTPClient): int32 =
 proc getResponseHeaders*(self: HTTPClient): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_response_headers"
+    let name = api.newStringName "get_response_headers"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPClient, addr name, 2981934095)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -88,7 +88,7 @@ proc getResponseHeaders*(self: HTTPClient): PackedStringArray =
 proc getResponseHeadersAsDictionary*(self: HTTPClient): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_response_headers_as_dictionary"
+    let name = api.newStringName "get_response_headers_as_dictionary"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPClient, addr name, 2382534195)
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -96,7 +96,7 @@ proc getResponseHeadersAsDictionary*(self: HTTPClient): Dictionary =
 proc getResponseBodyLength*(self: HTTPClient): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_response_body_length"
+    let name = api.newStringName "get_response_body_length"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPClient, addr name, 3905245786)
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -104,7 +104,7 @@ proc getResponseBodyLength*(self: HTTPClient): int64 =
 proc readResponseBodyChunk*(self: HTTPClient): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "read_response_body_chunk"
+    let name = api.newStringName "read_response_body_chunk"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPClient, addr name, 2115431945)
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -112,14 +112,14 @@ proc readResponseBodyChunk*(self: HTTPClient): PackedByteArray =
 proc `readChunkSize=`*(self: HTTPClient; bytes: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_read_chunk_size"
+    let name = api.newStringName "set_read_chunk_size"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPClient, addr name, 1286410249)
   var `?param` = [getPtr bytes]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc readChunkSize*(self: HTTPClient): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_read_chunk_size"
+    let name = api.newStringName "get_read_chunk_size"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPClient, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -127,14 +127,14 @@ proc readChunkSize*(self: HTTPClient): int32 =
 proc `blockingMode=`*(self: HTTPClient; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_blocking_mode"
+    let name = api.newStringName "set_blocking_mode"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPClient, addr name, 2586408642)
   var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isBlockingModeEnabled*(self: HTTPClient): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_blocking_mode_enabled"
+    let name = api.newStringName "is_blocking_mode_enabled"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPClient, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -142,7 +142,7 @@ proc isBlockingModeEnabled*(self: HTTPClient): Bool =
 proc getStatus*(self: HTTPClient): HTTPClient_Status =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_status"
+    let name = api.newStringName "get_status"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPClient, addr name, 1426656811)
   var ret: encoded HTTPClient_Status
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -150,7 +150,7 @@ proc getStatus*(self: HTTPClient): HTTPClient_Status =
 proc poll*(self: HTTPClient): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "poll"
+    let name = api.newStringName "poll"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPClient, addr name, 166280745)
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -158,21 +158,21 @@ proc poll*(self: HTTPClient): Error =
 proc setHttpProxy*(self: HTTPClient; host: String; port: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_http_proxy"
+    let name = api.newStringName "set_http_proxy"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPClient, addr name, 2956805083)
   var `?param` = [getPtr host, getPtr port]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setHttpsProxy*(self: HTTPClient; host: String; port: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_https_proxy"
+    let name = api.newStringName "set_https_proxy"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPClient, addr name, 2956805083)
   var `?param` = [getPtr host, getPtr port]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc queryStringFromDict*(self: HTTPClient; fields: Dictionary): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "query_string_from_dict"
+    let name = api.newStringName "query_string_from_dict"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPClient, addr name, 2538086567)
   var `?param` = [getPtr fields]
   var ret: encoded String

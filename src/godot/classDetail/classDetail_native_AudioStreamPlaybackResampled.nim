@@ -8,6 +8,6 @@ import ./classDetail_native_AudioStreamPlayback; export classDetail_native_Audio
 proc beginResample*(self: AudioStreamPlaybackResampled) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "begin_resample"
+    let name = api.newStringName "begin_resample"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlaybackResampled, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)

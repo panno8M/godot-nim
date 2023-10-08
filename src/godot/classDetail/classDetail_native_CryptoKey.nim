@@ -8,7 +8,7 @@ import ./classDetail_native_Resource; export classDetail_native_Resource
 proc save*(self: CryptoKey; path: String; publicOnly: Bool = false): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "save"
+    let name = api.newStringName "save"
     methodbind = interface_ClassDB_getMethodBind(addr className CryptoKey, addr name, 885841341)
   var `?param` = [getPtr path, getPtr publicOnly]
   var ret: encoded Error
@@ -17,7 +17,7 @@ proc save*(self: CryptoKey; path: String; publicOnly: Bool = false): Error =
 proc load*(self: CryptoKey; path: String; publicOnly: Bool = false): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "load"
+    let name = api.newStringName "load"
     methodbind = interface_ClassDB_getMethodBind(addr className CryptoKey, addr name, 885841341)
   var `?param` = [getPtr path, getPtr publicOnly]
   var ret: encoded Error
@@ -26,7 +26,7 @@ proc load*(self: CryptoKey; path: String; publicOnly: Bool = false): Error =
 proc isPublicOnly*(self: CryptoKey): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_public_only"
+    let name = api.newStringName "is_public_only"
     methodbind = interface_ClassDB_getMethodBind(addr className CryptoKey, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -34,7 +34,7 @@ proc isPublicOnly*(self: CryptoKey): Bool =
 proc saveToString*(self: CryptoKey; publicOnly: Bool = false): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "save_to_string"
+    let name = api.newStringName "save_to_string"
     methodbind = interface_ClassDB_getMethodBind(addr className CryptoKey, addr name, 32795936)
   var `?param` = [getPtr publicOnly]
   var ret: encoded String
@@ -43,7 +43,7 @@ proc saveToString*(self: CryptoKey; publicOnly: Bool = false): String =
 proc loadFromString*(self: CryptoKey; stringKey: String; publicOnly: Bool = false): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "load_from_string"
+    let name = api.newStringName "load_from_string"
     methodbind = interface_ClassDB_getMethodBind(addr className CryptoKey, addr name, 885841341)
   var `?param` = [getPtr stringKey, getPtr publicOnly]
   var ret: encoded Error

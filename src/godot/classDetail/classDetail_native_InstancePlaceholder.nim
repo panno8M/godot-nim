@@ -8,7 +8,7 @@ import ./classDetail_native_Node; export classDetail_native_Node
 proc getStoredValues*(self: InstancePlaceholder; withOrder: Bool = false): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_stored_values"
+    let name = api.newStringName "get_stored_values"
     methodbind = interface_ClassDB_getMethodBind(addr className InstancePlaceholder, addr name, 2230153369)
   var `?param` = [getPtr withOrder]
   var ret: encoded Dictionary
@@ -17,7 +17,7 @@ proc getStoredValues*(self: InstancePlaceholder; withOrder: Bool = false): Dicti
 proc createInstance*(self: InstancePlaceholder; replace: Bool = false; customScene: PackedScene = default PackedScene): Node =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "create_instance"
+    let name = api.newStringName "create_instance"
     methodbind = interface_ClassDB_getMethodBind(addr className InstancePlaceholder, addr name, 3794612210)
   var `?param` = [getPtr replace, getPtr customScene]
   var ret: encoded Node
@@ -26,7 +26,7 @@ proc createInstance*(self: InstancePlaceholder; replace: Bool = false; customSce
 proc getInstancePath*(self: InstancePlaceholder): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_instance_path"
+    let name = api.newStringName "get_instance_path"
     methodbind = interface_ClassDB_getMethodBind(addr className InstancePlaceholder, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)

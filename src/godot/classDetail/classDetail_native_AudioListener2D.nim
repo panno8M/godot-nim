@@ -8,19 +8,19 @@ import ./classDetail_native_Node2D; export classDetail_native_Node2D
 proc makeCurrent*(self: AudioListener2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "make_current"
+    let name = api.newStringName "make_current"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioListener2D, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
 proc clearCurrent*(self: AudioListener2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "clear_current"
+    let name = api.newStringName "clear_current"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioListener2D, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
 proc isCurrent*(self: AudioListener2D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_current"
+    let name = api.newStringName "is_current"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioListener2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)

@@ -30,23 +30,23 @@ proc getConnections*(self: Signal): Array = Signal_getConnections(addr self, nil
 proc emit*(self: Signal) = Signal_emit(addr self, nil, nil, 0)
 proc load_Signal_proc =
   var proc_name: StringName
-  proc_name = init_StringName("is_null")
+  proc_name = api.newStringName "is_null"
   Signal_isNull = interface_Variant_getPtrBuiltinMethod(variantType Signal, addr proc_name, 3918633141)
-  proc_name = init_StringName("get_object")
+  proc_name = api.newStringName "get_object"
   Signal_getObject = interface_Variant_getPtrBuiltinMethod(variantType Signal, addr proc_name, 4008621732)
-  proc_name = init_StringName("get_object_id")
+  proc_name = api.newStringName "get_object_id"
   Signal_getObjectId = interface_Variant_getPtrBuiltinMethod(variantType Signal, addr proc_name, 3173160232)
-  proc_name = init_StringName("get_name")
+  proc_name = api.newStringName "get_name"
   Signal_getName = interface_Variant_getPtrBuiltinMethod(variantType Signal, addr proc_name, 1825232092)
-  proc_name = init_StringName("connect")
+  proc_name = api.newStringName "connect"
   Signal_connect = interface_Variant_getPtrBuiltinMethod(variantType Signal, addr proc_name, 979702392)
-  proc_name = init_StringName("disconnect")
+  proc_name = api.newStringName "disconnect"
   Signal_disconnect = interface_Variant_getPtrBuiltinMethod(variantType Signal, addr proc_name, 3470848906)
-  proc_name = init_StringName("is_connected")
+  proc_name = api.newStringName "is_connected"
   Signal_isConnected = interface_Variant_getPtrBuiltinMethod(variantType Signal, addr proc_name, 4129521963)
-  proc_name = init_StringName("get_connections")
+  proc_name = api.newStringName "get_connections"
   Signal_getConnections = interface_Variant_getPtrBuiltinMethod(variantType Signal, addr proc_name, 4144163970)
-  proc_name = init_StringName("emit")
+  proc_name = api.newStringName "emit"
   Signal_emit = interface_Variant_getPtrBuiltinMethod(variantType Signal, addr proc_name, 3286317445)
 var Equal_Signal_Variant: PtrOperatorEvaluator
 var NotEqual_Signal_Variant: PtrOperatorEvaluator

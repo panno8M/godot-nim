@@ -8,7 +8,7 @@ import ./classDetail_native_Resource; export classDetail_native_Resource
 proc pack*(self: PackedScene; path: Node): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "pack"
+    let name = api.newStringName "pack"
     methodbind = interface_ClassDB_getMethodBind(addr className PackedScene, addr name, 2584678054)
   var `?param` = [getPtr path]
   var ret: encoded Error
@@ -17,7 +17,7 @@ proc pack*(self: PackedScene; path: Node): Error =
 proc instantiate*(self: PackedScene; editState: PackedScene_GenEditState = genEditStateDisabled): Node =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "instantiate"
+    let name = api.newStringName "instantiate"
     methodbind = interface_ClassDB_getMethodBind(addr className PackedScene, addr name, 2628778455)
   var `?param` = [getPtr editState]
   var ret: encoded Node
@@ -26,7 +26,7 @@ proc instantiate*(self: PackedScene; editState: PackedScene_GenEditState = genEd
 proc canInstantiate*(self: PackedScene): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "can_instantiate"
+    let name = api.newStringName "can_instantiate"
     methodbind = interface_ClassDB_getMethodBind(addr className PackedScene, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -34,7 +34,7 @@ proc canInstantiate*(self: PackedScene): Bool =
 proc getState*(self: PackedScene): SceneState =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_state"
+    let name = api.newStringName "get_state"
     methodbind = interface_ClassDB_getMethodBind(addr className PackedScene, addr name, 3479783971)
   var ret: encoded SceneState
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)

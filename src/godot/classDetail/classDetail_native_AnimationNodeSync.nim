@@ -8,14 +8,14 @@ import ./classDetail_native_AnimationNode; export classDetail_native_AnimationNo
 proc `useSync=`*(self: AnimationNodeSync; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_use_sync"
+    let name = api.newStringName "set_use_sync"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeSync, addr name, 2586408642)
   var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isUsingSync*(self: AnimationNodeSync): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_using_sync"
+    let name = api.newStringName "is_using_sync"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeSync, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)

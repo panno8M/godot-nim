@@ -8,7 +8,7 @@ import ./classDetail_native_Script; export classDetail_native_Script
 proc new*(self: GDScript): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "new"
+    let name = api.newStringName "new"
     methodbind = interface_ClassDB_getMethodBind(addr className GDScript, addr name, 1545262638)
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)

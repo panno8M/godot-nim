@@ -8,7 +8,7 @@ import ./classDetail_native_Object; export classDetail_native_Object
 proc hasSetting*(self: ProjectSettings; name: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "has_setting"
+    let name = api.newStringName "has_setting"
     methodbind = interface_ClassDB_getMethodBind(addr className ProjectSettings, addr name, 3927539163)
   var `?param` = [getPtr name]
   var ret: encoded Bool
@@ -17,14 +17,14 @@ proc hasSetting*(self: ProjectSettings; name: String): Bool =
 proc setSetting*(self: ProjectSettings; name: String; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_setting"
+    let name = api.newStringName "set_setting"
     methodbind = interface_ClassDB_getMethodBind(addr className ProjectSettings, addr name, 402577236)
   var `?param` = [getPtr name, getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getSetting*(self: ProjectSettings; name: String; defaultValue: Variant = default(Variant)): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_setting"
+    let name = api.newStringName "get_setting"
     methodbind = interface_ClassDB_getMethodBind(addr className ProjectSettings, addr name, 223050753)
   var `?param` = [getPtr name, getPtr defaultValue]
   var ret: encoded Variant
@@ -33,7 +33,7 @@ proc getSetting*(self: ProjectSettings; name: String; defaultValue: Variant = de
 proc getSettingWithOverride*(self: ProjectSettings; name: StringName): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_setting_with_override"
+    let name = api.newStringName "get_setting_with_override"
     methodbind = interface_ClassDB_getMethodBind(addr className ProjectSettings, addr name, 2760726917)
   var `?param` = [getPtr name]
   var ret: encoded Variant
@@ -42,7 +42,7 @@ proc getSettingWithOverride*(self: ProjectSettings; name: StringName): Variant =
 proc getGlobalClassList*(self: ProjectSettings): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_global_class_list"
+    let name = api.newStringName "get_global_class_list"
     methodbind = interface_ClassDB_getMethodBind(addr className ProjectSettings, addr name, 2915620761)
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -50,14 +50,14 @@ proc getGlobalClassList*(self: ProjectSettings): TypedArray[Dictionary] =
 proc setOrder*(self: ProjectSettings; name: String; position: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_order"
+    let name = api.newStringName "set_order"
     methodbind = interface_ClassDB_getMethodBind(addr className ProjectSettings, addr name, 2956805083)
   var `?param` = [getPtr name, getPtr position]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getOrder*(self: ProjectSettings; name: String): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_order"
+    let name = api.newStringName "get_order"
     methodbind = interface_ClassDB_getMethodBind(addr className ProjectSettings, addr name, 1321353865)
   var `?param` = [getPtr name]
   var ret: encoded int32
@@ -66,49 +66,49 @@ proc getOrder*(self: ProjectSettings; name: String): int32 =
 proc setInitialValue*(self: ProjectSettings; name: String; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_initial_value"
+    let name = api.newStringName "set_initial_value"
     methodbind = interface_ClassDB_getMethodBind(addr className ProjectSettings, addr name, 402577236)
   var `?param` = [getPtr name, getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setAsBasic*(self: ProjectSettings; name: String; basic: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_as_basic"
+    let name = api.newStringName "set_as_basic"
     methodbind = interface_ClassDB_getMethodBind(addr className ProjectSettings, addr name, 2678287736)
   var `?param` = [getPtr name, getPtr basic]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setAsInternal*(self: ProjectSettings; name: String; internal: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_as_internal"
+    let name = api.newStringName "set_as_internal"
     methodbind = interface_ClassDB_getMethodBind(addr className ProjectSettings, addr name, 2678287736)
   var `?param` = [getPtr name, getPtr internal]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc addPropertyInfo*(self: ProjectSettings; hint: Dictionary) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "add_property_info"
+    let name = api.newStringName "add_property_info"
     methodbind = interface_ClassDB_getMethodBind(addr className ProjectSettings, addr name, 4155329257)
   var `?param` = [getPtr hint]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc setRestartIfChanged*(self: ProjectSettings; name: String; restart: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_restart_if_changed"
+    let name = api.newStringName "set_restart_if_changed"
     methodbind = interface_ClassDB_getMethodBind(addr className ProjectSettings, addr name, 2678287736)
   var `?param` = [getPtr name, getPtr restart]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc clear*(self: ProjectSettings; name: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "clear"
+    let name = api.newStringName "clear"
     methodbind = interface_ClassDB_getMethodBind(addr className ProjectSettings, addr name, 83702148)
   var `?param` = [getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc localizePath*(self: ProjectSettings; path: String): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "localize_path"
+    let name = api.newStringName "localize_path"
     methodbind = interface_ClassDB_getMethodBind(addr className ProjectSettings, addr name, 3135753539)
   var `?param` = [getPtr path]
   var ret: encoded String
@@ -117,7 +117,7 @@ proc localizePath*(self: ProjectSettings; path: String): String =
 proc globalizePath*(self: ProjectSettings; path: String): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "globalize_path"
+    let name = api.newStringName "globalize_path"
     methodbind = interface_ClassDB_getMethodBind(addr className ProjectSettings, addr name, 3135753539)
   var `?param` = [getPtr path]
   var ret: encoded String
@@ -126,7 +126,7 @@ proc globalizePath*(self: ProjectSettings; path: String): String =
 proc save*(self: ProjectSettings): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "save"
+    let name = api.newStringName "save"
     methodbind = interface_ClassDB_getMethodBind(addr className ProjectSettings, addr name, 166280745)
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -134,7 +134,7 @@ proc save*(self: ProjectSettings): Error =
 proc loadResourcePack*(self: ProjectSettings; pack: String; replaceFiles: Bool = true; offset: int32 = 0): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "load_resource_pack"
+    let name = api.newStringName "load_resource_pack"
     methodbind = interface_ClassDB_getMethodBind(addr className ProjectSettings, addr name, 3001721055)
   var `?param` = [getPtr pack, getPtr replaceFiles, getPtr offset]
   var ret: encoded Bool
@@ -143,7 +143,7 @@ proc loadResourcePack*(self: ProjectSettings; pack: String; replaceFiles: Bool =
 proc saveCustom*(self: ProjectSettings; file: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "save_custom"
+    let name = api.newStringName "save_custom"
     methodbind = interface_ClassDB_getMethodBind(addr className ProjectSettings, addr name, 166001499)
   var `?param` = [getPtr file]
   var ret: encoded Error

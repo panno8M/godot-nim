@@ -8,14 +8,14 @@ import ./classDetail_native_Node2D; export classDetail_native_Node2D
 proc `curve=`*(self: Path2D; curve: Curve2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_curve"
+    let name = api.newStringName "set_curve"
     methodbind = interface_ClassDB_getMethodBind(addr className Path2D, addr name, 659985499)
   var `?param` = [getPtr curve]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc curve*(self: Path2D): Curve2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_curve"
+    let name = api.newStringName "get_curve"
     methodbind = interface_ClassDB_getMethodBind(addr className Path2D, addr name, 660369445)
   var ret: encoded Curve2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)

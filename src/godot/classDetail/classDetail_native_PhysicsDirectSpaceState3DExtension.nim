@@ -8,7 +8,7 @@ import ./classDetail_native_PhysicsDirectSpaceState3D; export classDetail_native
 proc isBodyExcludedFromQuery*(self: PhysicsDirectSpaceState3DExtension; body: RID): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_body_excluded_from_query"
+    let name = api.newStringName "is_body_excluded_from_query"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsDirectSpaceState3DExtension, addr name, 4155700596)
   var `?param` = [getPtr body]
   var ret: encoded Bool

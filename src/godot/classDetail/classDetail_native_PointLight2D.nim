@@ -8,14 +8,14 @@ import ./classDetail_native_Light2D; export classDetail_native_Light2D
 proc `texture=`*(self: PointLight2D; texture: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_texture"
+    let name = api.newStringName "set_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className PointLight2D, addr name, 4051416890)
   var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc texture*(self: PointLight2D): Texture2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_texture"
+    let name = api.newStringName "get_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className PointLight2D, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -23,14 +23,14 @@ proc texture*(self: PointLight2D): Texture2D =
 proc `textureOffset=`*(self: PointLight2D; textureOffset: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_texture_offset"
+    let name = api.newStringName "set_texture_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className PointLight2D, addr name, 743155724)
   var `?param` = [getPtr textureOffset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc textureOffset*(self: PointLight2D): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_texture_offset"
+    let name = api.newStringName "get_texture_offset"
     methodbind = interface_ClassDB_getMethodBind(addr className PointLight2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -38,14 +38,14 @@ proc textureOffset*(self: PointLight2D): Vector2 =
 proc `textureScale=`*(self: PointLight2D; textureScale: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_texture_scale"
+    let name = api.newStringName "set_texture_scale"
     methodbind = interface_ClassDB_getMethodBind(addr className PointLight2D, addr name, 373806689)
   var `?param` = [getPtr textureScale]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc textureScale*(self: PointLight2D): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_texture_scale"
+    let name = api.newStringName "get_texture_scale"
     methodbind = interface_ClassDB_getMethodBind(addr className PointLight2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)

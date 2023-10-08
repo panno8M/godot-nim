@@ -7,7 +7,7 @@ import ./../helper/engineClassDefiner
 proc getClass*(self: Object): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_class"
+    let name = api.newStringName "get_class"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -15,7 +15,7 @@ proc getClass*(self: Object): String =
 proc isClass*(self: Object; class: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_class"
+    let name = api.newStringName "is_class"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 3927539163)
   var `?param` = [getPtr class]
   var ret: encoded Bool
@@ -24,14 +24,14 @@ proc isClass*(self: Object; class: String): Bool =
 proc set*(self: Object; property: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set"
+    let name = api.newStringName "set"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 3776071444)
   var `?param` = [getPtr property, getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc get*(self: Object; property: StringName): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get"
+    let name = api.newStringName "get"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 2760726917)
   var `?param` = [getPtr property]
   var ret: encoded Variant
@@ -40,14 +40,14 @@ proc get*(self: Object; property: StringName): Variant =
 proc setIndexed*(self: Object; propertyPath: NodePath; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_indexed"
+    let name = api.newStringName "set_indexed"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 3500910842)
   var `?param` = [getPtr propertyPath, getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getIndexed*(self: Object; propertyPath: NodePath): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_indexed"
+    let name = api.newStringName "get_indexed"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 4006125091)
   var `?param` = [getPtr propertyPath]
   var ret: encoded Variant
@@ -56,7 +56,7 @@ proc getIndexed*(self: Object; propertyPath: NodePath): Variant =
 proc getPropertyList*(self: Object): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_property_list"
+    let name = api.newStringName "get_property_list"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 3995934104)
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -64,7 +64,7 @@ proc getPropertyList*(self: Object): TypedArray[Dictionary] =
 proc getMethodList*(self: Object): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_method_list"
+    let name = api.newStringName "get_method_list"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 3995934104)
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -72,7 +72,7 @@ proc getMethodList*(self: Object): TypedArray[Dictionary] =
 proc propertyCanRevert*(self: Object; property: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "property_can_revert"
+    let name = api.newStringName "property_can_revert"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 2619796661)
   var `?param` = [getPtr property]
   var ret: encoded Bool
@@ -81,7 +81,7 @@ proc propertyCanRevert*(self: Object; property: StringName): Bool =
 proc propertyGetRevert*(self: Object; property: StringName): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "property_get_revert"
+    let name = api.newStringName "property_get_revert"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 2760726917)
   var `?param` = [getPtr property]
   var ret: encoded Variant
@@ -90,14 +90,14 @@ proc propertyGetRevert*(self: Object; property: StringName): Variant =
 proc notification*(self: Object; what: int32; reversed: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "notification"
+    let name = api.newStringName "notification"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 4023243586)
   var `?param` = [getPtr what, getPtr reversed]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc toString*(self: Object): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "to_string"
+    let name = api.newStringName "to_string"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 2841200299)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -105,7 +105,7 @@ proc toString*(self: Object): String =
 proc getInstanceId*(self: Object): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_instance_id"
+    let name = api.newStringName "get_instance_id"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 3905245786)
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -113,14 +113,14 @@ proc getInstanceId*(self: Object): uint64 =
 proc setScript*(self: Object; script: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_script"
+    let name = api.newStringName "set_script"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 1114965689)
   var `?param` = [getPtr script]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getScript*(self: Object): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_script"
+    let name = api.newStringName "get_script"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 1214101251)
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -128,21 +128,21 @@ proc getScript*(self: Object): Variant =
 proc setMeta*(self: Object; name: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_meta"
+    let name = api.newStringName "set_meta"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 3776071444)
   var `?param` = [getPtr name, getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc removeMeta*(self: Object; name: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "remove_meta"
+    let name = api.newStringName "remove_meta"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 3304788590)
   var `?param` = [getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc getMeta*(self: Object; name: StringName; default: Variant = default(Variant)): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_meta"
+    let name = api.newStringName "get_meta"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 3990617847)
   var `?param` = [getPtr name, getPtr default]
   var ret: encoded Variant
@@ -151,7 +151,7 @@ proc getMeta*(self: Object; name: StringName; default: Variant = default(Variant
 proc hasMeta*(self: Object; name: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "has_meta"
+    let name = api.newStringName "has_meta"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 2619796661)
   var `?param` = [getPtr name]
   var ret: encoded Bool
@@ -160,7 +160,7 @@ proc hasMeta*(self: Object; name: StringName): Bool =
 proc getMetaList*(self: Object): TypedArray[StringName] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_meta_list"
+    let name = api.newStringName "get_meta_list"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 3995934104)
   var ret: encoded TypedArray[StringName]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -168,14 +168,14 @@ proc getMetaList*(self: Object): TypedArray[StringName] =
 proc addUserSignal*(self: Object; signal: String; arguments: Array = init_Array()) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "add_user_signal"
+    let name = api.newStringName "add_user_signal"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 3780025912)
   var `?param` = [getPtr signal, getPtr arguments]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc hasUserSignal*(self: Object; signal: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "has_user_signal"
+    let name = api.newStringName "has_user_signal"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 2619796661)
   var `?param` = [getPtr signal]
   var ret: encoded Bool
@@ -184,7 +184,7 @@ proc hasUserSignal*(self: Object; signal: StringName): Bool =
 proc emitSignal*(self: Object; signal: StringName): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "emit_signal"
+    let name = api.newStringName "emit_signal"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 4047867050)
   var `?param` = [getPtr signal]
   var ret: encoded Error
@@ -193,7 +193,7 @@ proc emitSignal*(self: Object; signal: StringName): Error =
 proc call*(self: Object; `method`: StringName): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "call"
+    let name = api.newStringName "call"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 3400424181)
   var `?param` = [getPtr `method`]
   var ret: encoded Variant
@@ -202,7 +202,7 @@ proc call*(self: Object; `method`: StringName): Variant =
 proc callDeferred*(self: Object; `method`: StringName): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "call_deferred"
+    let name = api.newStringName "call_deferred"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 3400424181)
   var `?param` = [getPtr `method`]
   var ret: encoded Variant
@@ -211,14 +211,14 @@ proc callDeferred*(self: Object; `method`: StringName): Variant =
 proc setDeferred*(self: Object; property: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_deferred"
+    let name = api.newStringName "set_deferred"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 3776071444)
   var `?param` = [getPtr property, getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc callv*(self: Object; `method`: StringName; argArray: Array): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "callv"
+    let name = api.newStringName "callv"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 1260104456)
   var `?param` = [getPtr `method`, getPtr argArray]
   var ret: encoded Variant
@@ -227,7 +227,7 @@ proc callv*(self: Object; `method`: StringName; argArray: Array): Variant =
 proc hasMethod*(self: Object; `method`: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "has_method"
+    let name = api.newStringName "has_method"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 2619796661)
   var `?param` = [getPtr `method`]
   var ret: encoded Bool
@@ -236,7 +236,7 @@ proc hasMethod*(self: Object; `method`: StringName): Bool =
 proc hasSignal*(self: Object; signal: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "has_signal"
+    let name = api.newStringName "has_signal"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 2619796661)
   var `?param` = [getPtr signal]
   var ret: encoded Bool
@@ -245,7 +245,7 @@ proc hasSignal*(self: Object; signal: StringName): Bool =
 proc getSignalList*(self: Object): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_signal_list"
+    let name = api.newStringName "get_signal_list"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 3995934104)
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -253,7 +253,7 @@ proc getSignalList*(self: Object): TypedArray[Dictionary] =
 proc getSignalConnectionList*(self: Object; signal: StringName): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_signal_connection_list"
+    let name = api.newStringName "get_signal_connection_list"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 3147814860)
   var `?param` = [getPtr signal]
   var ret: encoded TypedArray[Dictionary]
@@ -262,7 +262,7 @@ proc getSignalConnectionList*(self: Object; signal: StringName): TypedArray[Dict
 proc getIncomingConnections*(self: Object): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "get_incoming_connections"
+    let name = api.newStringName "get_incoming_connections"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 3995934104)
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -270,7 +270,7 @@ proc getIncomingConnections*(self: Object): TypedArray[Dictionary] =
 proc connect*(self: Object; signal: StringName; callable: Callable; flags: uint32 = 0'u32): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "connect"
+    let name = api.newStringName "connect"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 1469446357)
   var `?param` = [getPtr signal, getPtr callable, getPtr flags]
   var ret: encoded Error
@@ -279,14 +279,14 @@ proc connect*(self: Object; signal: StringName; callable: Callable; flags: uint3
 proc disconnect*(self: Object; signal: StringName; callable: Callable) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "disconnect"
+    let name = api.newStringName "disconnect"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 1874754934)
   var `?param` = [getPtr signal, getPtr callable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isConnected*(self: Object; signal: StringName; callable: Callable): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_connected"
+    let name = api.newStringName "is_connected"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 768136979)
   var `?param` = [getPtr signal, getPtr callable]
   var ret: encoded Bool
@@ -295,14 +295,14 @@ proc isConnected*(self: Object; signal: StringName; callable: Callable): Bool =
 proc setBlockSignals*(self: Object; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_block_signals"
+    let name = api.newStringName "set_block_signals"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 2586408642)
   var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc isBlockingSignals*(self: Object): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_blocking_signals"
+    let name = api.newStringName "is_blocking_signals"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -310,20 +310,20 @@ proc isBlockingSignals*(self: Object): Bool =
 proc notifyPropertyListChanged*(self: Object) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "notify_property_list_changed"
+    let name = api.newStringName "notify_property_list_changed"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
 proc setMessageTranslation*(self: Object; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "set_message_translation"
+    let name = api.newStringName "set_message_translation"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 2586408642)
   var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
 proc canTranslateMessages*(self: Object): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "can_translate_messages"
+    let name = api.newStringName "can_translate_messages"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -331,7 +331,7 @@ proc canTranslateMessages*(self: Object): Bool =
 proc tr*(self: Object; message: StringName; context: StringName = ""): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "tr"
+    let name = api.newStringName "tr"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 2475554935)
   var `?param` = [getPtr message, getPtr context]
   var ret: encoded String
@@ -340,7 +340,7 @@ proc tr*(self: Object; message: StringName; context: StringName = ""): String =
 proc trN*(self: Object; message: StringName; pluralMessage: StringName; n: int32; context: StringName = ""): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "tr_n"
+    let name = api.newStringName "tr_n"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 4021311862)
   var `?param` = [getPtr message, getPtr pluralMessage, getPtr n, getPtr context]
   var ret: encoded String
@@ -349,7 +349,7 @@ proc trN*(self: Object; message: StringName; pluralMessage: StringName; n: int32
 proc isQueuedForDeletion*(self: Object): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "is_queued_for_deletion"
+    let name = api.newStringName "is_queued_for_deletion"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
@@ -357,6 +357,6 @@ proc isQueuedForDeletion*(self: Object): Bool =
 proc cancelFree*(self: Object) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "cancel_free"
+    let name = api.newStringName "cancel_free"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)

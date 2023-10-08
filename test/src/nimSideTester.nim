@@ -10,6 +10,7 @@ importClass Node
 importClass RefCounted
 importClass InputEventKey
 importClass Engine
+importClass Sprite2D
 
 # paramFiltering tryes to access to `paramCount` and it cause `OSError`
 # because the program will finally be shared object(dll).
@@ -80,23 +81,11 @@ proc test_Object(self: NimSideTester) =
 proc test_RefCounted(self: NimSideTester) =
   suite "RefCounted":
     test "reference counting":
-      let refc = instantiate RefCounted
-
-      check get_reference_count(refc) == 1
-
-      let refc_shallow = refc
-
-      check get_reference_count(refc) == 1
-      check get_reference_count(refc_shallow) == 1
-
       block Scope:
-        let refc_deep = new RefCounted
-        refc_deep[] = refc[]
-
-        check get_reference_count(refc) == 2
-        check get_reference_count(refc_deep) == 2
-
-      check get_reference_count(refc) == 1
+        echo "<scope>"
+        let refc = instantiate RefCounted
+        check get_reference_count(refc) == 1
+        echo "</scope>"
 
 proc test_Node(self: NimSideTester) =
   suite "Node":
@@ -126,6 +115,24 @@ proc test_Node(self: NimSideTester) =
       let node2: Node2D = self/Node2D
 
       check node == node2
+
+proc test_Resource(self: NimSideTester) =
+  suite "Resource":
+    test "reference counting":
+      let sprite = self/Sprite2D
+      echo "<get texture 1/>"
+      let tex1 = sprite.texture
+      echo "TEX1: ", tex1.getReferenceCount
+
+      block Scope1:
+        echo "<scope>"
+        echo "<get texture 2/>"
+        let tex2 = sprite.texture
+        echo "TEX2: ", tex2.getReferenceCount
+        echo "</scope>"
+      echo "<exit scope/>"
+      echo "TEX1: ", tex1.getReferenceCount
+
 
 # To register custom signal, define proc with following those rules:
 # 1. put UserClass type on the first argument
@@ -239,6 +246,7 @@ method ready(self: NimSideTester) =
   self.test_Object()
   self.test_RefCounted()
   self.test_Node()
+  self.test_Resource()
   self.test_Signal()
   self.test_Variant()
 

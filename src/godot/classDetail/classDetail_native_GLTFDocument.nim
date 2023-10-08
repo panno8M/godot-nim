@@ -8,7 +8,7 @@ import ./classDetail_native_Resource; export classDetail_native_Resource
 proc appendFromFile*(self: GLTFDocument; path: String; state: GLTFState; flags: uint32 = 0'u32; basePath: String = ""): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "append_from_file"
+    let name = api.newStringName "append_from_file"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFDocument, addr name, 1862991421)
   var `?param` = [getPtr path, getPtr state, getPtr flags, getPtr basePath]
   var ret: encoded Error
@@ -17,7 +17,7 @@ proc appendFromFile*(self: GLTFDocument; path: String; state: GLTFState; flags: 
 proc appendFromBuffer*(self: GLTFDocument; bytes: PackedByteArray; basePath: String; state: GLTFState; flags: uint32 = 0'u32): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "append_from_buffer"
+    let name = api.newStringName "append_from_buffer"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFDocument, addr name, 2818062664)
   var `?param` = [getPtr bytes, getPtr basePath, getPtr state, getPtr flags]
   var ret: encoded Error
@@ -26,7 +26,7 @@ proc appendFromBuffer*(self: GLTFDocument; bytes: PackedByteArray; basePath: Str
 proc appendFromScene*(self: GLTFDocument; node: Node; state: GLTFState; flags: uint32 = 0'u32): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "append_from_scene"
+    let name = api.newStringName "append_from_scene"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFDocument, addr name, 374125375)
   var `?param` = [getPtr node, getPtr state, getPtr flags]
   var ret: encoded Error
@@ -35,7 +35,7 @@ proc appendFromScene*(self: GLTFDocument; node: Node; state: GLTFState; flags: u
 proc generateScene*(self: GLTFDocument; state: GLTFState; bakeFps: Float = 30; trimming: Bool = false; removeImmutableTracks: Bool = true): Node =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "generate_scene"
+    let name = api.newStringName "generate_scene"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFDocument, addr name, 2770277081)
   var `?param` = [getPtr state, getPtr bakeFps, getPtr trimming, getPtr removeImmutableTracks]
   var ret: encoded Node
@@ -44,7 +44,7 @@ proc generateScene*(self: GLTFDocument; state: GLTFState; bakeFps: Float = 30; t
 proc generateBuffer*(self: GLTFDocument; state: GLTFState): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "generate_buffer"
+    let name = api.newStringName "generate_buffer"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFDocument, addr name, 741783455)
   var `?param` = [getPtr state]
   var ret: encoded PackedByteArray
@@ -53,7 +53,7 @@ proc generateBuffer*(self: GLTFDocument; state: GLTFState): PackedByteArray =
 proc writeToFilesystem*(self: GLTFDocument; state: GLTFState; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "write_to_filesystem"
+    let name = api.newStringName "write_to_filesystem"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFDocument, addr name, 1784551478)
   var `?param` = [getPtr state, getPtr path]
   var ret: encoded Error
@@ -62,14 +62,14 @@ proc writeToFilesystem*(self: GLTFDocument; state: GLTFState; path: String): Err
 proc registerGltfDocumentExtension*(_: typedesc[GLTFDocument]; extension: GLTFDocumentExtension; firstPriority: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "register_gltf_document_extension"
+    let name = api.newStringName "register_gltf_document_extension"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFDocument, addr name, 3752678331)
   var `?param` = [getPtr extension, getPtr firstPriority]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], nil)
 proc unregisterGltfDocumentExtension*(_: typedesc[GLTFDocument]; extension: GLTFDocumentExtension) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
-    let name: StringName = "unregister_gltf_document_extension"
+    let name = api.newStringName "unregister_gltf_document_extension"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFDocument, addr name, 2684415758)
   var `?param` = [getPtr extension]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], nil)
