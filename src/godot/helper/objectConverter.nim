@@ -138,11 +138,13 @@ proc get*(v: Variant; T: typedesc[ObjectPtr]): T =
 
 template encoded*[T: SomeClass](_: typedesc[T]): typedesc[ObjectPtr] = ObjectPtr
 template encode*[T: SomeClass](v: T; p: pointer) =
-  GD_ref v
+  when T is RefCountedBase:
+    GD_ref v
   encode(v.owner, p)
 proc decode*[T: SomeClass](p: pointer; _: typedesc[T]): T =
   result = p.decode(ObjectPtr).getInstance(T)
-  GD_unref result
+  when T is RefCountedBase:
+    GD_unref result
 proc variant*[T: SomeClass](v: T): Variant =
   variant v.owner
 proc get*[T: SomeClass](v: Variant; _: typedesc[T]): T =
