@@ -18,12 +18,10 @@ type ObjectBase* = ref ObjectBase_interface
 proc `=destroy`(x: ObjectBase_interface)
 
 proc GD_ref*(self: ObjectBase) =
-  echo "GD_ref: ", self.GD_refcount, " -> ", self.GD_refcount.succ
   inc self.GD_refcount
   GC_ref self
 proc GD_unref*(self: ObjectBase) =
   if self.GD_refcount == 0: return
-  echo "GD_unref: ", self.GD_refcount, " -> ", self.GD_refcount.pred
   dec self.GD_refcount
   GC_unref self
 
@@ -67,11 +65,9 @@ type
 proc `=destroy`(x: RefCountedBase_interface) =
   if x.owner.isNil: return
   try:
-    echo "=destroy: ", api.hook_getReferenceCount(x.owner)
     if api.hook_getReferenceCount(x.owner) > 0:
       discard api.hook_unreference(x.owner)
       if api.hook_getReferenceCount(x.owner) == 0:
-        echo "execute destroy"
         interfaceObjectDestroy x.owner
 
   except: discard

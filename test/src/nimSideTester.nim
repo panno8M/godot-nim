@@ -82,10 +82,8 @@ proc test_RefCounted(self: NimSideTester) =
   suite "RefCounted":
     test "reference counting":
       block Scope:
-        echo "<scope>"
         let refc = instantiate RefCounted
         check get_reference_count(refc) == 1
-        echo "</scope>"
 
 proc test_Node(self: NimSideTester) =
   suite "Node":
@@ -120,19 +118,16 @@ proc test_Resource(self: NimSideTester) =
   suite "Resource":
     test "reference counting":
       let sprite = self/Sprite2D
-      echo "<get texture 1/>"
       let tex1 = sprite.texture
-      echo "TEX1: ", tex1.getReferenceCount
+
+      check tex1.getReferenceCount == 2
 
       block Scope1:
-        echo "<scope>"
-        echo "<get texture 2/>"
         let tex2 = sprite.texture
-        echo "TEX2: ", tex2.getReferenceCount
-        echo "</scope>"
-      echo "<exit scope/>"
-      echo "TEX1: ", tex1.getReferenceCount
+        check tex1.getReferenceCount == 2
+        check tex2.getReferenceCount == 2
 
+      check tex1.getReferenceCount == 2
 
 # To register custom signal, define proc with following those rules:
 # 1. put UserClass type on the first argument

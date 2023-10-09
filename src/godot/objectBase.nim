@@ -17,8 +17,6 @@ proc instantiate*(T: typedesc[SomeClass]): T =
   when T is SomeUserClass:
     interfaceObjectSetInstance(result.owner, addr T.className, cast[pointer](result))
   interfaceObjectSetInstanceBinding(result.owner, token, cast[pointer](result), addr T.callbacks)
-  when T is RefCountedBase:
-    echo "instantiate: ", api.hook_getReferenceCount(result.owner)
   when T is SomeUserClass:
     `=init` result
 
@@ -30,7 +28,6 @@ proc getInstance*[T: SomeClass](p_engine_object: ObjectPtr; _: typedesc[T]): T =
 
   result = cast[T](interface_objectGetInstanceBinding(p_engine_object, token, addr T.callbacks))
   when T is RefCountedBase:
-    echo "get-instance"
     discard api.hook_unreference(result.owner)
 
 proc instanceID*(self: SomeClass): GDObjectInstanceID =
