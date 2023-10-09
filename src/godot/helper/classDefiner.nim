@@ -13,6 +13,7 @@ import ../variants
 import ../internal/register
 import ../internal/runtime
 import ../internal/initManager
+import ../internal/api
 
 import ../helper/methodDefiner
 import ../helper/objectConverter
@@ -38,6 +39,8 @@ proc create(T: typedesc[SomeUserClass]): ObjectPtr {.gdcall.} =
     me.debug "[Extent] create ", T
   let class = instantiate T
   GD_ref class
+  when T is RefCountedBase:
+    discard api.hook_reference(class.owner)
   return class.owner
 
 proc free[T: SomeUserClass](class: T) =

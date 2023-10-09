@@ -3,6 +3,7 @@ import ../godotInterface
 import ../godotInterface/objectBase
 import ../pure/compileTimeSwitch
 import ../internal/initManager
+import ../internal/api
 
 type
   ClassRuntimeData* = ref ClassRuntimeDataObj
@@ -20,6 +21,8 @@ proc initialize(T: typedesc[SomeEngineClass]; userdata: ClassRuntimeData) =
     let class = new T
     class.owner = cast[ObjectPtr](p_instance)
     GD_ref class
+    when T is RefCountedBase:
+      discard api.hook_reference(class.owner)
     result = cast[pointer](class)
   userdata.callbacks.free_callback = proc (p_token: pointer; p_instance: pointer; p_binding: pointer) {.gdcall.} =
     when TraceEngineAllocationCallback:
