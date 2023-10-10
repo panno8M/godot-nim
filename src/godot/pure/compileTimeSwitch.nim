@@ -13,11 +13,11 @@ const # Logging
   TraceEngineReferenceCallback* {.booldefine.} = off
 
   ## Log change of reference-count when some RefCounted is copied/destroyed by Extension
-  TraceRefCountedHook* {.booldefine.} = off
+  TraceObjectHook* {.booldefine.} = off
 
   TraceAny* =
     TraceInitialization or
     TraceEngineAllocationCallback or
     TraceEngineReferenceCallback or
-    TraceRefCountedHook or
+    TraceObjectHook or
     false

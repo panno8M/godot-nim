@@ -13,6 +13,7 @@ converter toStringName*[T: SomeClass](_: typedesc[T]): var StringName =
 proc instantiate*(T: typedesc[SomeClass]): T =
   new result
   result.owner = interface_classdb_construct_object(addr T.EngineClass.className)
+  result.GD_alive = true
 
   when T is SomeUserClass:
     interfaceObjectSetInstance(result.owner, addr T.className, cast[pointer](result))

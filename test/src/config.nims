@@ -16,4 +16,4 @@ else:
 --define:"TraceInitialization=off"
 --define:"TraceEngineAllocationCallback=off"
 --define:"TraceEngineReferenceCallback=off"
---define:"TraceRefCountedHook=off"
+--define:"TraceObjectHook=off"

@@ -16,8 +16,20 @@ importClass Sprite2D
 # because the program will finally be shared object(dll).
 unittest.disableParamFiltering()
 
-type NimSideTester* = ref object of Node
-  initialized: bool
+type
+  NimSideTester_interface* = object of Node
+    initialized: bool
+    texture: Texture2D
+  NimSideTester* = ref NimSideTester_interface
+
+# The current implementation overloads `=destroy` for release notification to Godot,
+# so member variables are not automatically released. Please explicitly overload
+# `=destroy` and write the release process. (This implementation will be changed
+# as soon as a better way is found.)
+proc `=destroy`*(x: NimSideTester_interface) =
+  free x.texture
+  free x
+
 # The source of inheritance must be a class known to Godot.
 # (Engine-Class, or Extension-Class from which register_class will be called)
 NimSideTester.isInheritanceOf Node
@@ -119,6 +131,7 @@ proc test_Resource(self: NimSideTester) =
     test "reference counting":
       let sprite = self/Sprite2D
       let tex1 = sprite.texture
+      self.texture = sprite.texture
 
       let refc = tex1.getReferenceCount
 

@@ -1,11 +1,28 @@
 import ../godotInterface
 
 var newStringNameFromString: PtrConstructor
+var newStringFromStringName: PtrConstructor
+
+var String_length: PtrBuiltinMethod
+
 proc newStringName*(str: string): StringName =
   var s: String
   interfaceStringNewWithLatin1Chars(addr s, cstring str)
   let args = [cast[pointer](addr s)]
   newStringNameFromString(addr result, addr args[0])
+
+proc className*(o: ObjectPtr): string =
+  var sn: StringName
+  var s: String
+  var length: Int
+  var args: seq[pointer]
+
+  args = @[cast[pointer](addr sn)]
+  discard interfaceObjectGetClassName(o, library, addr sn)
+  newStringFromStringName(addr s, addr args[0])
+  String_length(addr s, nil, addr length, 0)
+  result = newString(length)
+  discard interfaceStringToLatin1Chars(addr s, cstring result, length)
 
 var RefCounted_reference: MethodBindPtr
 var RefCounted_unreference: MethodBindPtr
@@ -27,6 +44,7 @@ proc hook_getReferenceCount*(o: ObjectPtr): int32 {.raises: [].} =
 
 proc loadAPI* =
   newStringNameFromString = interfaceVariantGetPtrConstructor(VariantType_StringName, 2)
+  newStringFromStringName = interfaceVariantGetPtrConstructor(VariantType_String, 2)
 
   let RefCounted_name = newStringName"RefCounted"
   let RefCounted_reference_name = newStringName"reference"
@@ -37,3 +55,5 @@ proc loadAPI* =
   RefCounted_unreference = interface_ClassDB_getMethodBind(addr RefCounted_name, addr RefCounted_unreference_name, 2240911060)
   RefCounted_get_reference_count = interface_ClassDB_getMethodBind(addr RefCounted_name, addr RefCounted_get_reference_count_name, 3905245786)
 
+  let String_length_name = newStringName"length"
+  String_length = interface_Variant_getPtrBuiltinMethod(VariantType_String, addr String_length_name, 3173160232)

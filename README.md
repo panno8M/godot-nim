@@ -8,9 +8,22 @@ Based on **[godot-cpp 4.1 stable](https://github.com/godotengine/godot-cpp/tree/
 
 See **[test/](https://github.com/panno8M/godot-nim/tree/main/test)** to get an overview of the binding interface.
 
-### Caution
+### Known Issues
 
-The cause is under investigation, but it appears that initialization of the extension fails the first time. Reloading solves the problem.
+* Initial loading of the extension fails
+  > Initialization of the extension fails the first time. Reloading solves the problem.
+
+* Member variables of user-defined classes are not automatically released
+  > Explicitly define `=destroy` and describe the release process as follows:
+  ```nim
+  type
+    MyClass_interface* = object of Node
+      texture: Texture2D
+    MyClass* = ref MyClass_interface
+  proc `=destroy`(x: MyClass_interface) =
+    free x.texture
+    free x
+  ```
 
 ## Features
 

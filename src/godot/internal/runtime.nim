@@ -20,6 +20,7 @@ proc initialize(T: typedesc[SomeEngineClass]; userdata: ClassRuntimeData) =
       me_alloc.debug "[Engine] create ", T
     let class = new T
     class.owner = cast[ObjectPtr](p_instance)
+    class.GD_alive = true
     GD_ref class
     when T is RefCountedBase:
       discard api.hook_reference(class.owner)
@@ -27,6 +28,8 @@ proc initialize(T: typedesc[SomeEngineClass]; userdata: ClassRuntimeData) =
   userdata.callbacks.free_callback = proc (p_token: pointer; p_instance: pointer; p_binding: pointer) {.gdcall.} =
     when TraceEngineAllocationCallback:
       me_alloc.debug "[Engine] free ", T
+    cast[T](p_instance).GD_alive = false
+    GD_kill cast[T](p_instance)
 
 proc initialize(T: typedesc[SomeUserClass]; userdata: ClassRuntimeData) =
   userdata.callbacks.create_callback = proc (p_token: pointer; p_instance: pointer): pointer {.gdcall.} =
