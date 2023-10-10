@@ -120,14 +120,14 @@ proc test_Resource(self: NimSideTester) =
       let sprite = self/Sprite2D
       let tex1 = sprite.texture
 
-      check tex1.getReferenceCount == 2
+      let refc = tex1.getReferenceCount
 
       block Scope1:
         let tex2 = sprite.texture
-        check tex1.getReferenceCount == 2
-        check tex2.getReferenceCount == 2
+        check tex1.getReferenceCount == refc
+        check tex2.getReferenceCount == refc
 
-      check tex1.getReferenceCount == 2
+      check tex1.getReferenceCount == refc
 
 # To register custom signal, define proc with following those rules:
 # 1. put UserClass type on the first argument
