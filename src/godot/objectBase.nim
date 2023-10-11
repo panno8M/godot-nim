@@ -11,10 +11,7 @@ converter toStringName*[T: SomeClass](_: typedesc[T]): var StringName =
   className T
 
 proc instantiate*(T: typedesc[SomeClass]): T =
-  new result
-  result.owner = interface_classdb_construct_object(addr T.EngineClass.className)
-  result.GD_alive = true
-
+  result = GD_create[T](interface_classdb_construct_object(addr className T.EngineClass))
   when T is SomeUserClass:
     interfaceObjectSetInstance(result.owner, addr T.className, cast[pointer](result))
   interfaceObjectSetInstanceBinding(result.owner, token, cast[pointer](result), addr T.callbacks)

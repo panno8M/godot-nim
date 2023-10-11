@@ -5,9 +5,12 @@ import ../pure/compileTimeSwitch
 import ../internal/initManager
 import ../internal/api
 
+when TraceEngineAllocationCallback:
+  import ../logging
+  template me_alloc: GDLogData = iam("allocation-callback", stgLibrary)
+
 type
-  ClassRuntimeData* = ref ClassRuntimeDataObj
-  ClassRuntimeDataObj* = object
+  ClassRuntimeData* = ref object
     virtualMethods*: TableRef[StringName, ClassCallVirtual]
     className*: StringName
     callbacks*: InstanceBindingCallbacks
@@ -18,17 +21,12 @@ proc initialize(T: typedesc[SomeEngineClass]; userdata: ClassRuntimeData) =
   userdata.callbacks.create_callback = proc (p_token: pointer; p_instance: pointer): pointer {.gdcall.} =
     when TraceEngineAllocationCallback:
       me_alloc.debug "[Engine] create ", T
-    let class = new T
-    class.owner = cast[ObjectPtr](p_instance)
-    class.GD_alive = true
-    GD_ref class
-    when T is RefCountedBase:
-      discard api.hook_reference(class.owner)
+    let class = GD_create[T](cast[ObjectPtr](p_instance))
+    GD_sync class
     result = cast[pointer](class)
   userdata.callbacks.free_callback = proc (p_token: pointer; p_instance: pointer; p_binding: pointer) {.gdcall.} =
     when TraceEngineAllocationCallback:
       me_alloc.debug "[Engine] free ", T
-    cast[T](p_instance).GD_alive = false
     GD_kill cast[T](p_instance)
 
 proc initialize(T: typedesc[SomeUserClass]; userdata: ClassRuntimeData) =
@@ -41,7 +39,7 @@ proc initialize(T: typedesc[SomeUserClass]; userdata: ClassRuntimeData) =
 
 var runtimeDataTable: Table[StringName, ClassRuntimeData]
 proc get_runtimeData*(T: typedesc[SomeClass]): ClassRuntimeData =
-  var data {.global.} : ptr ClassRuntimeDataObj
+  var data {.global.} : pointer
   check_init initProgress > Interface
   if unlikely(data.isNil):
     let runtimeData = new ClassRuntimeData
@@ -57,7 +55,7 @@ proc get_runtimeData*(T: typedesc[SomeClass]): ClassRuntimeData =
 
     initialize(T, runtimeData)
     runtimeDataTable[runtimeData.className] = runtimeData
-    data = addr runtimeData[]
+    data = cast[pointer](runtimeData)
   cast[ClassRuntimeData](data)
 
 {.push, inline.}

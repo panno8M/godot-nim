@@ -2,23 +2,31 @@ import ../godotInterface
 import ../pure/compileTimeSwitch
 import ../internal/api
 
-when TraceEngineAllocationCallback or TraceEngineReferenceCallback or TraceObjectHook:
+when TraceObjectHook:
   import ../logging
 
+type
+  ObjectBase_interface* = object of RootObj
+    owner*: ObjectPtr
+    GD_refcount*: int
+    GD_alive*: bool
+  ObjectBase* = ref ObjectBase_interface
 
-when TraceEngineAllocationCallback:
-  template me_alloc: GDLogData = iam("allocation-callback", stgLibrary)
-when TraceEngineReferenceCallback:
-  template me_refer: GDLogData = iam("reference-callback", stgLibrary)
+  RefCountedBase_interface* = object of ObjectBase_interface
+  RefCountedBase* = ref RefCountedBase_interface
 
-type ObjectBase_interface* = object of RootObj
-  owner*: ObjectPtr
-  GD_refcount*: int
-  GD_alive*: bool
-type ObjectBase* = ref ObjectBase_interface
+  SomeClass* = concept type t
+    t is ObjectBase
+  SomeEngineClass* = concept type t
+    t is SomeClass
+    t.EngineClass is t
+  SomeUserClass* = concept type t
+    t is SomeClass
+    t.EngineClass isnot t
 
 {.push, raises: [].}
 proc `=destroy`*(x: ObjectBase_interface)
+proc `=destroy`*(x: RefCountedBase_interface)
 {.pop.}
 
 proc GD_ref*(self: ObjectBase) =
@@ -29,19 +37,19 @@ proc GD_unref*(self: ObjectBase) =
   dec self.GD_refcount
   GC_unref self
 proc GD_kill*(self: ObjectBase) =
+  self.GD_alive = false
   while self.GD_refcount > 0:
     GD_unref self
 
+proc GD_create*[T: SomeClass](o: ObjectPtr): T =
+  new result
+  result.owner = o
+  result.GD_alive = true
 
-type
-  SomeClass* = concept type t
-    t is ObjectBase
-  SomeEngineClass* = concept type t
-    t is SomeClass
-    t.EngineClass is t
-  SomeUserClass* = concept type t
-    t is SomeClass
-    t.EngineClass isnot t
+proc GD_sync*[T: SomeClass](class: T) =
+  GD_ref class
+  when T is RefCountedBase:
+    discard api.hook_reference(class.owner)
 
 method `=init`*(self: ObjectBase) {.base.} = discard
 
@@ -65,17 +73,8 @@ proc `=destroy`*(x: ObjectBase_interface) =
     if x.GD_alive:
       interfaceObjectDestroy(x.owner)
   except Exception: discard
-{.pop.}
 
-
-type
-  RefCountedBase_interface* = object of ObjectBase_interface
-  RefCountedBase* = ref RefCountedBase_interface
-
-# proc `=destroy`(x: RefCountedBaseObj)
-
-{.push, raises: [].}
-proc `=destroy`*(x: RefCountedBase_interface) {.raises: [].} =
+proc `=destroy`*(x: RefCountedBase_interface) =
   if x.owner.isNil: return
   try:
     when TraceObjectHook:

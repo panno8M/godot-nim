@@ -38,15 +38,12 @@ proc create_bind(T: typedesc[SomeUserClass]): ObjectPtr {.gdcall.} =
   when TraceEngineAllocationCallback:
     me.debug "[Extent] create ", T
   let class = instantiate T
-  GD_ref class
-  when T is RefCountedBase:
-    discard api.hook_reference(class.owner)
+  GD_sync class
   return class.owner
 
 proc free_bind[T: SomeUserClass](class: T) =
   when TraceEngineAllocationCallback:
     me.debug "[Extent] free ", get_runtimeData(T).className
-  class.GD_alive = false
   GD_kill class
 
 proc creationInfo(T: typedesc[SomeUserClass]; is_virtual, is_abstract: bool): ClassCreationInfo =
