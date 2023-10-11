@@ -28,14 +28,17 @@ var RefCounted_reference: MethodBindPtr
 var RefCounted_unreference: MethodBindPtr
 var RefCounted_get_reference_count: MethodBindPtr
 proc hook_reference*(o: ObjectPtr): Bool {.raises: [].} =
+  if unlikely(o.isNil): return
   try:
     interface_Object_methodBindPtrCall(RefCounted_reference, o, nil, addr result)
   except: discard
 proc hook_unreference*(o: ObjectPtr): Bool {.raises: [].} =
+  if unlikely(o.isNil): return
   try:
     interface_Object_methodBindPtrCall(RefCounted_unreference, o, nil, addr result)
   except: discard
 proc hook_getReferenceCount*(o: ObjectPtr): int32 {.raises: [].} =
+  if unlikely(o.isNil): return
   try:
     var ret: Int
     interface_Object_methodBindPtrCall(RefCounted_get_reference_count, o, nil, addr ret)
