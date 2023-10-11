@@ -11,6 +11,7 @@ importClass RefCounted
 importClass InputEventKey
 importClass Engine
 importClass Sprite2D
+importClass ResourceLoader
 
 # paramFiltering tryes to access to `paramCount` and it cause `OSError`
 # because the program will finally be shared object(dll).
@@ -141,6 +142,10 @@ proc test_Resource(self: NimSideTester) =
         check tex2.getReferenceCount == refc
 
       check tex1.getReferenceCount == refc
+    test "loading":
+      let loader = /ResourceLoader
+      let icon = loader.load("res://icon.png")
+      check icon == self.texture
 
 # To register custom signal, define proc with following those rules:
 # 1. put UserClass type on the first argument
