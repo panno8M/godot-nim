@@ -19,7 +19,7 @@ proc bufferLength*(self: AudioEffectSpectrumAnalyzer): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectSpectrumAnalyzer, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `tapBackPos=`*(self: AudioEffectSpectrumAnalyzer; seconds: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc tapBackPos*(self: AudioEffectSpectrumAnalyzer): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectSpectrumAnalyzer, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `fftSize=`*(self: AudioEffectSpectrumAnalyzer; size: AudioEffectSpectrumAnalyzer_FFTSize) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,4 +49,4 @@ proc fftSize*(self: AudioEffectSpectrumAnalyzer): AudioEffectSpectrumAnalyzer_FF
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectSpectrumAnalyzer, addr name, 3925405343)
   var ret: encoded AudioEffectSpectrumAnalyzer_FFTSize
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AudioEffectSpectrumAnalyzer_FFTSize)
+  (addr ret).decode_result(AudioEffectSpectrumAnalyzer_FFTSize)

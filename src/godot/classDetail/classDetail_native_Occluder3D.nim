@@ -12,7 +12,7 @@ proc getVertices*(self: Occluder3D): PackedVector3Array =
     methodbind = interface_ClassDB_getMethodBind(addr className Occluder3D, addr name, 497664490)
   var ret: encoded PackedVector3Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedVector3Array)
+  (addr ret).decode_result(PackedVector3Array)
 proc getIndices*(self: Occluder3D): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -20,4 +20,4 @@ proc getIndices*(self: Occluder3D): PackedInt32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className Occluder3D, addr name, 1930428628)
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)

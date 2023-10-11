@@ -19,7 +19,7 @@ proc texture*(self: StyleBoxTexture): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxTexture, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc `textureMargin=`*(self: StyleBoxTexture; margin: Side; size: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc textureMargin*(self: StyleBoxTexture; margin: Side): Float =
   var `?param` = [getPtr margin]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `expandMargin=`*(self: StyleBoxTexture; margin: Side; size: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -65,7 +65,7 @@ proc expandMargin*(self: StyleBoxTexture; margin: Side): Float =
   var `?param` = [getPtr margin]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `regionRect=`*(self: StyleBoxTexture; region: Rect2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -80,7 +80,7 @@ proc regionRect*(self: StyleBoxTexture): Rect2 =
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxTexture, addr name, 1639390495)
   var ret: encoded Rect2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Rect2)
+  (addr ret).decode_result(Rect2)
 proc `drawCenter=`*(self: StyleBoxTexture; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -95,7 +95,7 @@ proc isDrawCenterEnabled*(self: StyleBoxTexture): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxTexture, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `modulate=`*(self: StyleBoxTexture; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -110,7 +110,7 @@ proc modulate*(self: StyleBoxTexture): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxTexture, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `hAxisStretchMode=`*(self: StyleBoxTexture; mode: StyleBoxTexture_AxisStretchMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -125,7 +125,7 @@ proc hAxisStretchMode*(self: StyleBoxTexture): StyleBoxTexture_AxisStretchMode =
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxTexture, addr name, 3807744063)
   var ret: encoded StyleBoxTexture_AxisStretchMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(StyleBoxTexture_AxisStretchMode)
+  (addr ret).decode_result(StyleBoxTexture_AxisStretchMode)
 proc `vAxisStretchMode=`*(self: StyleBoxTexture; mode: StyleBoxTexture_AxisStretchMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -140,4 +140,4 @@ proc vAxisStretchMode*(self: StyleBoxTexture): StyleBoxTexture_AxisStretchMode =
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxTexture, addr name, 3807744063)
   var ret: encoded StyleBoxTexture_AxisStretchMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(StyleBoxTexture_AxisStretchMode)
+  (addr ret).decode_result(StyleBoxTexture_AxisStretchMode)

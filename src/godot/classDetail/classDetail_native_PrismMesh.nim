@@ -19,7 +19,7 @@ proc leftToRight*(self: PrismMesh): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className PrismMesh, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `size=`*(self: PrismMesh; size: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc size*(self: PrismMesh): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className PrismMesh, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `subdivideWidth=`*(self: PrismMesh; segments: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc subdivideWidth*(self: PrismMesh): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className PrismMesh, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `subdivideHeight=`*(self: PrismMesh; segments: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc subdivideHeight*(self: PrismMesh): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className PrismMesh, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `subdivideDepth=`*(self: PrismMesh; segments: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,4 +79,4 @@ proc subdivideDepth*(self: PrismMesh): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className PrismMesh, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)

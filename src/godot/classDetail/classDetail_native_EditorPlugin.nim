@@ -20,7 +20,7 @@ proc addControlToBottomPanel*(self: EditorPlugin; control: Control; title: Strin
   var `?param` = [getPtr control, getPtr title]
   var ret: encoded Button
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Button)
+  (addr ret).decode_result(Button)
 proc addControlToDock*(self: EditorPlugin; slot: EditorPlugin_DockSlot; control: Control) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -77,7 +77,7 @@ proc getExportAsMenu*(self: EditorPlugin): PopupMenu =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorPlugin, addr name, 1775878644)
   var ret: encoded PopupMenu
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PopupMenu)
+  (addr ret).decode_result(PopupMenu)
 proc addCustomType*(self: EditorPlugin; `type`: String; base: String; script: Script; icon: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -113,7 +113,7 @@ proc updateOverlays*(self: EditorPlugin): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorPlugin, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc makeBottomPanelItemVisible*(self: EditorPlugin; item: Control) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -134,7 +134,7 @@ proc getUndoRedo*(self: EditorPlugin): EditorUndoRedoManager =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorPlugin, addr name, 773492341)
   var ret: encoded EditorUndoRedoManager
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(EditorUndoRedoManager)
+  (addr ret).decode_result(EditorUndoRedoManager)
 proc addUndoRedoInspectorHookCallback*(self: EditorPlugin; callable: Callable) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -286,7 +286,7 @@ proc getEditorInterface*(self: EditorPlugin): EditorInterface =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorPlugin, addr name, 4223731786)
   var ret: encoded EditorInterface
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(EditorInterface)
+  (addr ret).decode_result(EditorInterface)
 proc getScriptCreateDialog*(self: EditorPlugin): ScriptCreateDialog =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -294,7 +294,7 @@ proc getScriptCreateDialog*(self: EditorPlugin): ScriptCreateDialog =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorPlugin, addr name, 3121871482)
   var ret: encoded ScriptCreateDialog
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(ScriptCreateDialog)
+  (addr ret).decode_result(ScriptCreateDialog)
 proc addDebuggerPlugin*(self: EditorPlugin; script: EditorDebuggerPlugin) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

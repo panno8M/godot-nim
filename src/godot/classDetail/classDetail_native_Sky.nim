@@ -19,7 +19,7 @@ proc radianceSize*(self: Sky): Sky_RadianceSize =
     methodbind = interface_ClassDB_getMethodBind(addr className Sky, addr name, 2708733976)
   var ret: encoded Sky_RadianceSize
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Sky_RadianceSize)
+  (addr ret).decode_result(Sky_RadianceSize)
 proc `processMode=`*(self: Sky; mode: Sky_ProcessMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc processMode*(self: Sky): Sky_ProcessMode =
     methodbind = interface_ClassDB_getMethodBind(addr className Sky, addr name, 731245043)
   var ret: encoded Sky_ProcessMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Sky_ProcessMode)
+  (addr ret).decode_result(Sky_ProcessMode)
 proc `material=`*(self: Sky; material: Material) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,4 +49,4 @@ proc material*(self: Sky): Material =
     methodbind = interface_ClassDB_getMethodBind(addr className Sky, addr name, 5934680)
   var ret: encoded Material
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Material)
+  (addr ret).decode_result(Material)

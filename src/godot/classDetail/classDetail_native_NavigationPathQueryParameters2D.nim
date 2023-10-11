@@ -19,7 +19,7 @@ proc pathfindingAlgorithm*(self: NavigationPathQueryParameters2D): NavigationPat
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPathQueryParameters2D, addr name, 3000421146)
   var ret: encoded NavigationPathQueryParameters2D_PathfindingAlgorithm
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NavigationPathQueryParameters2D_PathfindingAlgorithm)
+  (addr ret).decode_result(NavigationPathQueryParameters2D_PathfindingAlgorithm)
 proc `pathPostprocessing=`*(self: NavigationPathQueryParameters2D; pathPostprocessing: NavigationPathQueryParameters2D_PathPostProcessing) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc pathPostprocessing*(self: NavigationPathQueryParameters2D): NavigationPathQ
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPathQueryParameters2D, addr name, 3798118993)
   var ret: encoded NavigationPathQueryParameters2D_PathPostProcessing
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NavigationPathQueryParameters2D_PathPostProcessing)
+  (addr ret).decode_result(NavigationPathQueryParameters2D_PathPostProcessing)
 proc `map=`*(self: NavigationPathQueryParameters2D; map: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc map*(self: NavigationPathQueryParameters2D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPathQueryParameters2D, addr name, 2944877500)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc `startPosition=`*(self: NavigationPathQueryParameters2D; startPosition: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc startPosition*(self: NavigationPathQueryParameters2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPathQueryParameters2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `targetPosition=`*(self: NavigationPathQueryParameters2D; targetPosition: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc tarposition*(self: NavigationPathQueryParameters2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPathQueryParameters2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `navigationLayers=`*(self: NavigationPathQueryParameters2D; navigationLayers: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc navigationLayers*(self: NavigationPathQueryParameters2D): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPathQueryParameters2D, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `metadataFlags=`*(self: NavigationPathQueryParameters2D; flags: set[NavigationPathQueryParameters2D_PathMetadataFlags]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,4 +109,4 @@ proc metadataFlags*(self: NavigationPathQueryParameters2D): set[NavigationPathQu
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPathQueryParameters2D, addr name, 488152976)
   var ret: encoded set[NavigationPathQueryParameters2D_PathMetadataFlags]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(set[NavigationPathQueryParameters2D_PathMetadataFlags])
+  (addr ret).decode_result(set[NavigationPathQueryParameters2D_PathMetadataFlags])

@@ -41,7 +41,7 @@ proc getStream*(self: AudioStreamRandomizer; index: int32): AudioStream =
   var `?param` = [getPtr index]
   var ret: encoded AudioStream
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(AudioStream)
+  (addr ret).decode_result(AudioStream)
 proc setStreamProbabilityWeight*(self: AudioStreamRandomizer; index: int32; weight: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc getStreamProbabilityWeight*(self: AudioStreamRandomizer; index: int32): Flo
   var `?param` = [getPtr index]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `streamsCount=`*(self: AudioStreamRandomizer; count: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -72,7 +72,7 @@ proc streamsCount*(self: AudioStreamRandomizer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamRandomizer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `randomPitch=`*(self: AudioStreamRandomizer; scale: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -87,7 +87,7 @@ proc randomPitch*(self: AudioStreamRandomizer): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamRandomizer, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `randomVolumeOffdb=`*(self: AudioStreamRandomizer; dbOffset: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -102,7 +102,7 @@ proc randomVolumeOffsetDb*(self: AudioStreamRandomizer): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamRandomizer, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `playbackMode=`*(self: AudioStreamRandomizer; mode: AudioStreamRandomizer_PlaybackMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -117,4 +117,4 @@ proc playbackMode*(self: AudioStreamRandomizer): AudioStreamRandomizer_PlaybackM
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamRandomizer, addr name, 3943055077)
   var ret: encoded AudioStreamRandomizer_PlaybackMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AudioStreamRandomizer_PlaybackMode)
+  (addr ret).decode_result(AudioStreamRandomizer_PlaybackMode)

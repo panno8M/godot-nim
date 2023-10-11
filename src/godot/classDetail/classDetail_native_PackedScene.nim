@@ -13,7 +13,7 @@ proc pack*(self: PackedScene; path: Node): Error =
   var `?param` = [getPtr path]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc instantiate*(self: PackedScene; editState: PackedScene_GenEditState = genEditStateDisabled): Node =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc instantiate*(self: PackedScene; editState: PackedScene_GenEditState = genEd
   var `?param` = [getPtr editState]
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Node)
+  (addr ret).decode_result(Node)
 proc canInstantiate*(self: PackedScene): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -30,7 +30,7 @@ proc canInstantiate*(self: PackedScene): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PackedScene, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getState*(self: PackedScene): SceneState =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -38,4 +38,4 @@ proc getState*(self: PackedScene): SceneState =
     methodbind = interface_ClassDB_getMethodBind(addr className PackedScene, addr name, 3479783971)
   var ret: encoded SceneState
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(SceneState)
+  (addr ret).decode_result(SceneState)

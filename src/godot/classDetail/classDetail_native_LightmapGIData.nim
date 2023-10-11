@@ -19,7 +19,7 @@ proc lightTexture*(self: LightmapGIData): TextureLayered =
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGIData, addr name, 3984243839)
   var ret: encoded TextureLayered
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextureLayered)
+  (addr ret).decode_result(TextureLayered)
 proc `usesSphericalHarmonics=`*(self: LightmapGIData; usesSphericalHarmonics: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc isUsingSphericalHarmonics*(self: LightmapGIData): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGIData, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc addUser*(self: LightmapGIData; path: NodePath; uvScale: Rect2; sliceIndex: int32; subInstance: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc getUserCount*(self: LightmapGIData): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGIData, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getUserPath*(self: LightmapGIData; userIdx: int32): NodePath =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -58,7 +58,7 @@ proc getUserPath*(self: LightmapGIData; userIdx: int32): NodePath =
   var `?param` = [getPtr userIdx]
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc clearUsers*(self: LightmapGIData) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

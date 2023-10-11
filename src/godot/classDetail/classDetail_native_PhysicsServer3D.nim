@@ -12,7 +12,7 @@ proc worldBoundaryShapeCreate*(self: PhysicsServer3D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsServer3D, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc separationRayShapeCreate*(self: PhysicsServer3D): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -20,7 +20,7 @@ proc separationRayShapeCreate*(self: PhysicsServer3D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsServer3D, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc sphereShapeCreate*(self: PhysicsServer3D): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -28,7 +28,7 @@ proc sphereShapeCreate*(self: PhysicsServer3D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsServer3D, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc boxShapeCreate*(self: PhysicsServer3D): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -36,7 +36,7 @@ proc boxShapeCreate*(self: PhysicsServer3D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsServer3D, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc capsuleShapeCreate*(self: PhysicsServer3D): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -44,7 +44,7 @@ proc capsuleShapeCreate*(self: PhysicsServer3D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsServer3D, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc cylinderShapeCreate*(self: PhysicsServer3D): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -52,7 +52,7 @@ proc cylinderShapeCreate*(self: PhysicsServer3D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsServer3D, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc convexPolygonShapeCreate*(self: PhysicsServer3D): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -60,7 +60,7 @@ proc convexPolygonShapeCreate*(self: PhysicsServer3D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsServer3D, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc concavePolygonShapeCreate*(self: PhysicsServer3D): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -68,7 +68,7 @@ proc concavePolygonShapeCreate*(self: PhysicsServer3D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsServer3D, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc heightmapShapeCreate*(self: PhysicsServer3D): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -76,7 +76,7 @@ proc heightmapShapeCreate*(self: PhysicsServer3D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsServer3D, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc customShapeCreate*(self: PhysicsServer3D): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -84,7 +84,7 @@ proc customShapeCreate*(self: PhysicsServer3D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsServer3D, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc shapeSetData*(self: PhysicsServer3D; shape: RID; data: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -100,7 +100,7 @@ proc shapeGetType*(self: PhysicsServer3D; shape: RID): PhysicsServer3D_ShapeType
   var `?param` = [getPtr shape]
   var ret: encoded PhysicsServer3D_ShapeType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PhysicsServer3D_ShapeType)
+  (addr ret).decode_result(PhysicsServer3D_ShapeType)
 proc shapeGetData*(self: PhysicsServer3D; shape: RID): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc shapeGetData*(self: PhysicsServer3D; shape: RID): Variant =
   var `?param` = [getPtr shape]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc spaceCreate*(self: PhysicsServer3D): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -117,7 +117,7 @@ proc spaceCreate*(self: PhysicsServer3D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsServer3D, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc spaceSetActive*(self: PhysicsServer3D; space: RID; active: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -133,7 +133,7 @@ proc spaceIsActive*(self: PhysicsServer3D; space: RID): Bool =
   var `?param` = [getPtr space]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc spaceSetParam*(self: PhysicsServer3D; space: RID; param: PhysicsServer3D_SpaceParameter; value: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -149,7 +149,7 @@ proc spaceGetParam*(self: PhysicsServer3D; space: RID; param: PhysicsServer3D_Sp
   var `?param` = [getPtr space, getPtr param]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc spaceGetDirectState*(self: PhysicsServer3D; space: RID): PhysicsDirectSpaceState3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -158,7 +158,7 @@ proc spaceGetDirectState*(self: PhysicsServer3D; space: RID): PhysicsDirectSpace
   var `?param` = [getPtr space]
   var ret: encoded PhysicsDirectSpaceState3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PhysicsDirectSpaceState3D)
+  (addr ret).decode_result(PhysicsDirectSpaceState3D)
 proc areaCreate*(self: PhysicsServer3D): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -166,7 +166,7 @@ proc areaCreate*(self: PhysicsServer3D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsServer3D, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc areaSetSpace*(self: PhysicsServer3D; area: RID; space: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -182,7 +182,7 @@ proc areaGetSpace*(self: PhysicsServer3D; area: RID): RID =
   var `?param` = [getPtr area]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc areaAddShape*(self: PhysicsServer3D; area: RID; shape: RID; transform: Transform3D = init_Transform3D(); disabled: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -219,7 +219,7 @@ proc areaGetShapeCount*(self: PhysicsServer3D; area: RID): int32 =
   var `?param` = [getPtr area]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc areaGetShape*(self: PhysicsServer3D; area: RID; shapeIdx: int32): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -228,7 +228,7 @@ proc areaGetShape*(self: PhysicsServer3D; area: RID; shapeIdx: int32): RID =
   var `?param` = [getPtr area, getPtr shapeIdx]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc areaGetShapeTransform*(self: PhysicsServer3D; area: RID; shapeIdx: int32): Transform3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -237,7 +237,7 @@ proc areaGetShapeTransform*(self: PhysicsServer3D; area: RID; shapeIdx: int32): 
   var `?param` = [getPtr area, getPtr shapeIdx]
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc areaRemoveShape*(self: PhysicsServer3D; area: RID; shapeIdx: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -267,7 +267,7 @@ proc areaGetCollisionLayer*(self: PhysicsServer3D; area: RID): uint32 =
   var `?param` = [getPtr area]
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc areaSetCollisionMask*(self: PhysicsServer3D; area: RID; mask: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -283,7 +283,7 @@ proc areaGetCollisionMask*(self: PhysicsServer3D; area: RID): uint32 =
   var `?param` = [getPtr area]
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc areaSetParam*(self: PhysicsServer3D; area: RID; param: PhysicsServer3D_AreaParameter; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -306,7 +306,7 @@ proc areaGetParam*(self: PhysicsServer3D; area: RID; param: PhysicsServer3D_Area
   var `?param` = [getPtr area, getPtr param]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc areaGetTransform*(self: PhysicsServer3D; area: RID): Transform3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -315,7 +315,7 @@ proc areaGetTransform*(self: PhysicsServer3D; area: RID): Transform3D =
   var `?param` = [getPtr area]
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc areaAttachObjectInstanceId*(self: PhysicsServer3D; area: RID; id: uint64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -331,7 +331,7 @@ proc areaGetObjectInstanceId*(self: PhysicsServer3D; area: RID): uint64 =
   var `?param` = [getPtr area]
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)
 proc areaSetMonitorCallback*(self: PhysicsServer3D; area: RID; callback: Callable) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -367,7 +367,7 @@ proc bodyCreate*(self: PhysicsServer3D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsServer3D, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc bodySetSpace*(self: PhysicsServer3D; body: RID; space: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -383,7 +383,7 @@ proc bodyGetSpace*(self: PhysicsServer3D; body: RID): RID =
   var `?param` = [getPtr body]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc bodySetMode*(self: PhysicsServer3D; body: RID; mode: PhysicsServer3D_BodyMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -399,7 +399,7 @@ proc bodyGetMode*(self: PhysicsServer3D; body: RID): PhysicsServer3D_BodyMode =
   var `?param` = [getPtr body]
   var ret: encoded PhysicsServer3D_BodyMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PhysicsServer3D_BodyMode)
+  (addr ret).decode_result(PhysicsServer3D_BodyMode)
 proc bodySetCollisionLayer*(self: PhysicsServer3D; body: RID; layer: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -415,7 +415,7 @@ proc bodyGetCollisionLayer*(self: PhysicsServer3D; body: RID): uint32 =
   var `?param` = [getPtr body]
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc bodySetCollisionMask*(self: PhysicsServer3D; body: RID; mask: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -431,7 +431,7 @@ proc bodyGetCollisionMask*(self: PhysicsServer3D; body: RID): uint32 =
   var `?param` = [getPtr body]
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc bodySetCollisionPriority*(self: PhysicsServer3D; body: RID; priority: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -447,7 +447,7 @@ proc bodyGetCollisionPriority*(self: PhysicsServer3D; body: RID): Float =
   var `?param` = [getPtr body]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc bodyAddShape*(self: PhysicsServer3D; body: RID; shape: RID; transform: Transform3D = init_Transform3D(); disabled: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -484,7 +484,7 @@ proc bodyGetShapeCount*(self: PhysicsServer3D; body: RID): int32 =
   var `?param` = [getPtr body]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc bodyGetShape*(self: PhysicsServer3D; body: RID; shapeIdx: int32): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -493,7 +493,7 @@ proc bodyGetShape*(self: PhysicsServer3D; body: RID; shapeIdx: int32): RID =
   var `?param` = [getPtr body, getPtr shapeIdx]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc bodyGetShapeTransform*(self: PhysicsServer3D; body: RID; shapeIdx: int32): Transform3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -502,7 +502,7 @@ proc bodyGetShapeTransform*(self: PhysicsServer3D; body: RID; shapeIdx: int32): 
   var `?param` = [getPtr body, getPtr shapeIdx]
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc bodyRemoveShape*(self: PhysicsServer3D; body: RID; shapeIdx: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -532,7 +532,7 @@ proc bodyGetObjectInstanceId*(self: PhysicsServer3D; body: RID): uint64 =
   var `?param` = [getPtr body]
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)
 proc bodySetEnableContinuousCollisionDetection*(self: PhysicsServer3D; body: RID; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -548,7 +548,7 @@ proc bodyIsContinuousCollisionDetectionEnabled*(self: PhysicsServer3D; body: RID
   var `?param` = [getPtr body]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc bodySetParam*(self: PhysicsServer3D; body: RID; param: PhysicsServer3D_BodyParameter; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -564,7 +564,7 @@ proc bodyGetParam*(self: PhysicsServer3D; body: RID; param: PhysicsServer3D_Body
   var `?param` = [getPtr body, getPtr param]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc bodyResetMassProperties*(self: PhysicsServer3D; body: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -587,7 +587,7 @@ proc bodyGetState*(self: PhysicsServer3D; body: RID; state: PhysicsServer3D_Body
   var `?param` = [getPtr body, getPtr state]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc bodyApplyCentralImpulse*(self: PhysicsServer3D; body: RID; impulse: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -666,7 +666,7 @@ proc bodyGetConstantForce*(self: PhysicsServer3D; body: RID): Vector3 =
   var `?param` = [getPtr body]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc bodySetConstantTorque*(self: PhysicsServer3D; body: RID; torque: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -682,7 +682,7 @@ proc bodyGetConstantTorque*(self: PhysicsServer3D; body: RID): Vector3 =
   var `?param` = [getPtr body]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc bodySetAxisVelocity*(self: PhysicsServer3D; body: RID; axisVelocity: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -705,7 +705,7 @@ proc bodyIsAxisLocked*(self: PhysicsServer3D; body: RID; axis: PhysicsServer3D_B
   var `?param` = [getPtr body, getPtr axis]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc bodyAddCollisionException*(self: PhysicsServer3D; body: RID; exceptedBody: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -735,7 +735,7 @@ proc bodyGetMaxContactsReported*(self: PhysicsServer3D; body: RID): int32 =
   var `?param` = [getPtr body]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc bodySetOmitForceIntegration*(self: PhysicsServer3D; body: RID; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -751,7 +751,7 @@ proc bodyIsOmittingForceIntegration*(self: PhysicsServer3D; body: RID): Bool =
   var `?param` = [getPtr body]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc bodySetForceIntegrationCallback*(self: PhysicsServer3D; body: RID; callable: Callable; userdata: Variant = default(Variant)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -774,7 +774,7 @@ proc bodyTestMotion*(self: PhysicsServer3D; body: RID; parameters: PhysicsTestMo
   var `?param` = [getPtr body, getPtr parameters, getPtr retval]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc bodyGetDirectState*(self: PhysicsServer3D; body: RID): PhysicsDirectBodyState3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -783,7 +783,7 @@ proc bodyGetDirectState*(self: PhysicsServer3D; body: RID): PhysicsDirectBodySta
   var `?param` = [getPtr body]
   var ret: encoded PhysicsDirectBodyState3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PhysicsDirectBodyState3D)
+  (addr ret).decode_result(PhysicsDirectBodyState3D)
 proc softBodyGetBounds*(self: PhysicsServer3D; body: RID): AABB =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -792,7 +792,7 @@ proc softBodyGetBounds*(self: PhysicsServer3D; body: RID): AABB =
   var `?param` = [getPtr body]
   var ret: encoded AABB
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(AABB)
+  (addr ret).decode_result(AABB)
 proc jointCreate*(self: PhysicsServer3D): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -800,7 +800,7 @@ proc jointCreate*(self: PhysicsServer3D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsServer3D, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc jointClear*(self: PhysicsServer3D; joint: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -830,7 +830,7 @@ proc pinJointGetParam*(self: PhysicsServer3D; joint: RID; param: PhysicsServer3D
   var `?param` = [getPtr joint, getPtr param]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc pinJointSetLocalA*(self: PhysicsServer3D; joint: RID; localA: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -846,7 +846,7 @@ proc pinJointGetLocalA*(self: PhysicsServer3D; joint: RID): Vector3 =
   var `?param` = [getPtr joint]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc pinJointSetLocalB*(self: PhysicsServer3D; joint: RID; localB: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -862,7 +862,7 @@ proc pinJointGetLocalB*(self: PhysicsServer3D; joint: RID): Vector3 =
   var `?param` = [getPtr joint]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc jointMakeHinge*(self: PhysicsServer3D; joint: RID; bodyA: RID; hingeA: Transform3D; bodyB: RID; hingeB: Transform3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -885,7 +885,7 @@ proc hingeJointGetParam*(self: PhysicsServer3D; joint: RID; param: PhysicsServer
   var `?param` = [getPtr joint, getPtr param]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc hingeJointSetFlag*(self: PhysicsServer3D; joint: RID; flag: PhysicsServer3D_HingeJointFlag; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -901,7 +901,7 @@ proc hingeJointGetFlag*(self: PhysicsServer3D; joint: RID; flag: PhysicsServer3D
   var `?param` = [getPtr joint, getPtr flag]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc jointMakeSlider*(self: PhysicsServer3D; joint: RID; bodyA: RID; localRefA: Transform3D; bodyB: RID; localRefB: Transform3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -924,7 +924,7 @@ proc sliderJointGetParam*(self: PhysicsServer3D; joint: RID; param: PhysicsServe
   var `?param` = [getPtr joint, getPtr param]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc jointMakeConeTwist*(self: PhysicsServer3D; joint: RID; bodyA: RID; localRefA: Transform3D; bodyB: RID; localRefB: Transform3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -947,7 +947,7 @@ proc coneTwistJointGetParam*(self: PhysicsServer3D; joint: RID; param: PhysicsSe
   var `?param` = [getPtr joint, getPtr param]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc jointGetType*(self: PhysicsServer3D; joint: RID): PhysicsServer3D_JointType =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -956,7 +956,7 @@ proc jointGetType*(self: PhysicsServer3D; joint: RID): PhysicsServer3D_JointType
   var `?param` = [getPtr joint]
   var ret: encoded PhysicsServer3D_JointType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PhysicsServer3D_JointType)
+  (addr ret).decode_result(PhysicsServer3D_JointType)
 proc jointSetSolverPriority*(self: PhysicsServer3D; joint: RID; priority: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -972,7 +972,7 @@ proc jointGetSolverPriority*(self: PhysicsServer3D; joint: RID): int32 =
   var `?param` = [getPtr joint]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc jointDisableCollisionsBetweenBodies*(self: PhysicsServer3D; joint: RID; disable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -988,7 +988,7 @@ proc jointIsDisabledCollisionsBetweenBodies*(self: PhysicsServer3D; joint: RID):
   var `?param` = [getPtr joint]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc jointMakeGeneric6dof*(self: PhysicsServer3D; joint: RID; bodyA: RID; localRefA: Transform3D; bodyB: RID; localRefB: Transform3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1011,7 +1011,7 @@ proc generic6dofJointGetParam*(self: PhysicsServer3D; joint: RID; axis: Vector3_
   var `?param` = [getPtr joint, getPtr axis, getPtr param]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc generic6dofJointSetFlag*(self: PhysicsServer3D; joint: RID; axis: Vector3_Axis; flag: PhysicsServer3D_G6DOFJointAxisFlag; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1027,7 +1027,7 @@ proc generic6dofJointGetFlag*(self: PhysicsServer3D; joint: RID; axis: Vector3_A
   var `?param` = [getPtr joint, getPtr axis, getPtr flag]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc freeRid*(self: PhysicsServer3D; rid: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1050,4 +1050,4 @@ proc getProcessInfo*(self: PhysicsServer3D; processInfo: PhysicsServer3D_Process
   var `?param` = [getPtr processInfo]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)

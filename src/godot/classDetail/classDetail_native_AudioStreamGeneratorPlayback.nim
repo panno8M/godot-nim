@@ -13,7 +13,7 @@ proc pushFrame*(self: AudioStreamGeneratorPlayback; frame: Vector2): Bool =
   var `?param` = [getPtr frame]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc canPushBuffer*(self: AudioStreamGeneratorPlayback; amount: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc canPushBuffer*(self: AudioStreamGeneratorPlayback; amount: int32): Bool =
   var `?param` = [getPtr amount]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc pushBuffer*(self: AudioStreamGeneratorPlayback; frames: PackedVector2Array): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -31,7 +31,7 @@ proc pushBuffer*(self: AudioStreamGeneratorPlayback; frames: PackedVector2Array)
   var `?param` = [getPtr frames]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getFramesAvailable*(self: AudioStreamGeneratorPlayback): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -39,7 +39,7 @@ proc getFramesAvailable*(self: AudioStreamGeneratorPlayback): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamGeneratorPlayback, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getSkips*(self: AudioStreamGeneratorPlayback): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -47,7 +47,7 @@ proc getSkips*(self: AudioStreamGeneratorPlayback): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamGeneratorPlayback, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc clearBuffer*(self: AudioStreamGeneratorPlayback) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

@@ -19,7 +19,7 @@ proc tracker*(self: XRNode3D): StringName =
     methodbind = interface_ClassDB_getMethodBind(addr className XRNode3D, addr name, 2002593661)
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc `poseName=`*(self: XRNode3D; pose: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc poseName*(self: XRNode3D): StringName =
     methodbind = interface_ClassDB_getMethodBind(addr className XRNode3D, addr name, 2002593661)
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc getIsActive*(self: XRNode3D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc getIsActive*(self: XRNode3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className XRNode3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getHasTrackingData*(self: XRNode3D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -50,7 +50,7 @@ proc getHasTrackingData*(self: XRNode3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className XRNode3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getPose*(self: XRNode3D): XRPose =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -58,7 +58,7 @@ proc getPose*(self: XRNode3D): XRPose =
     methodbind = interface_ClassDB_getMethodBind(addr className XRNode3D, addr name, 2806551826)
   var ret: encoded XRPose
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(XRPose)
+  (addr ret).decode_result(XRPose)
 proc triggerHapticPulse*(self: XRNode3D; actionName: String; frequency: float64; amplitude: float64; durationSec: float64; delaySec: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

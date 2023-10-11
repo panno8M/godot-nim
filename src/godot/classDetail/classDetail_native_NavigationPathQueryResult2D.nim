@@ -19,7 +19,7 @@ proc path*(self: NavigationPathQueryResult2D): PackedVector2Array =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPathQueryResult2D, addr name, 2961356807)
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedVector2Array)
+  (addr ret).decode_result(PackedVector2Array)
 proc `pathTypes=`*(self: NavigationPathQueryResult2D; pathTypes: PackedInt32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc pathTypes*(self: NavigationPathQueryResult2D): PackedInt32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPathQueryResult2D, addr name, 1930428628)
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc `pathRids=`*(self: NavigationPathQueryResult2D; pathRids: TypedArray[RID]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc pathRids*(self: NavigationPathQueryResult2D): TypedArray[RID] =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPathQueryResult2D, addr name, 3995934104)
   var ret: encoded TypedArray[RID]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[RID])
+  (addr ret).decode_result(TypedArray[RID])
 proc `pathOwnerIds=`*(self: NavigationPathQueryResult2D; pathOwnerIds: PackedInt64Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc pathOwnerIds*(self: NavigationPathQueryResult2D): PackedInt64Array =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPathQueryResult2D, addr name, 235988956)
   var ret: encoded PackedInt64Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt64Array)
+  (addr ret).decode_result(PackedInt64Array)
 proc reset*(self: NavigationPathQueryResult2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

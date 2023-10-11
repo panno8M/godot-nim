@@ -13,7 +13,7 @@ proc start*(self: HMACContext; hashType: HashingContext_HashType; key: PackedByt
   var `?param` = [getPtr hashType, getPtr key]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc update*(self: HMACContext; data: PackedByteArray): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc update*(self: HMACContext; data: PackedByteArray): Error =
   var `?param` = [getPtr data]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc finish*(self: HMACContext): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -30,4 +30,4 @@ proc finish*(self: HMACContext): PackedByteArray =
     methodbind = interface_ClassDB_getMethodBind(addr className HMACContext, addr name, 2115431945)
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)

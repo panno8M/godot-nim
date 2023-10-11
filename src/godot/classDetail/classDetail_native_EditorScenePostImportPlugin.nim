@@ -13,7 +13,7 @@ proc getOptionValue*(self: EditorScenePostImportPlugin; name: StringName): Varia
   var `?param` = [getPtr name]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc addImportOption*(self: EditorScenePostImportPlugin; name: String; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

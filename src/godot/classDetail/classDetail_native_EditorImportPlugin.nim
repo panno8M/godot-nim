@@ -13,4 +13,4 @@ proc appendImportExternalResource*(self: EditorImportPlugin; path: String; custo
   var `?param` = [getPtr path, getPtr customOptions, getPtr customImporter, getPtr generatorParameters]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)

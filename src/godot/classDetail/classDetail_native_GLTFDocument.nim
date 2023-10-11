@@ -13,7 +13,7 @@ proc appendFromFile*(self: GLTFDocument; path: String; state: GLTFState; flags: 
   var `?param` = [getPtr path, getPtr state, getPtr flags, getPtr basePath]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc appendFromBuffer*(self: GLTFDocument; bytes: PackedByteArray; basePath: String; state: GLTFState; flags: uint32 = 0'u32): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc appendFromBuffer*(self: GLTFDocument; bytes: PackedByteArray; basePath: Str
   var `?param` = [getPtr bytes, getPtr basePath, getPtr state, getPtr flags]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc appendFromScene*(self: GLTFDocument; node: Node; state: GLTFState; flags: uint32 = 0'u32): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -31,7 +31,7 @@ proc appendFromScene*(self: GLTFDocument; node: Node; state: GLTFState; flags: u
   var `?param` = [getPtr node, getPtr state, getPtr flags]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc generateScene*(self: GLTFDocument; state: GLTFState; bakeFps: Float = 30; trimming: Bool = false; removeImmutableTracks: Bool = true): Node =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -40,7 +40,7 @@ proc generateScene*(self: GLTFDocument; state: GLTFState; bakeFps: Float = 30; t
   var `?param` = [getPtr state, getPtr bakeFps, getPtr trimming, getPtr removeImmutableTracks]
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Node)
+  (addr ret).decode_result(Node)
 proc generateBuffer*(self: GLTFDocument; state: GLTFState): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc generateBuffer*(self: GLTFDocument; state: GLTFState): PackedByteArray =
   var `?param` = [getPtr state]
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)
 proc writeToFilesystem*(self: GLTFDocument; state: GLTFState; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -58,7 +58,7 @@ proc writeToFilesystem*(self: GLTFDocument; state: GLTFState; path: String): Err
   var `?param` = [getPtr state, getPtr path]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc registerGltfDocumentExtension*(_: typedesc[GLTFDocument]; extension: GLTFDocumentExtension; firstPriority: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

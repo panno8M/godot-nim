@@ -19,7 +19,7 @@ proc normal*(self: WorldBoundaryShape2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className WorldBoundaryShape2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `distance=`*(self: WorldBoundaryShape2D; distance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,4 +34,4 @@ proc distance*(self: WorldBoundaryShape2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className WorldBoundaryShape2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

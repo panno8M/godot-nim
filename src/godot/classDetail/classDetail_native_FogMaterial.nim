@@ -19,7 +19,7 @@ proc density*(self: FogMaterial): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className FogMaterial, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `albedo=`*(self: FogMaterial; albedo: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc albedo*(self: FogMaterial): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className FogMaterial, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `emission=`*(self: FogMaterial; emission: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc emission*(self: FogMaterial): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className FogMaterial, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `heightFalloff=`*(self: FogMaterial; heightFalloff: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc heightFalloff*(self: FogMaterial): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className FogMaterial, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `edgeFade=`*(self: FogMaterial; edgeFade: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc edgeFade*(self: FogMaterial): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className FogMaterial, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `densityTexture=`*(self: FogMaterial; densityTexture: Texture3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,4 +94,4 @@ proc densityTexture*(self: FogMaterial): Texture3D =
     methodbind = interface_ClassDB_getMethodBind(addr className FogMaterial, addr name, 373985333)
   var ret: encoded Texture3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture3D)
+  (addr ret).decode_result(Texture3D)

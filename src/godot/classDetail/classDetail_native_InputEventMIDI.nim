@@ -19,7 +19,7 @@ proc channel*(self: InputEventMIDI): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventMIDI, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `message=`*(self: InputEventMIDI; message: MIDIMessage) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc message*(self: InputEventMIDI): MIDIMessage =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventMIDI, addr name, 1936512097)
   var ret: encoded MIDIMessage
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(MIDIMessage)
+  (addr ret).decode_result(MIDIMessage)
 proc `pitch=`*(self: InputEventMIDI; pitch: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc pitch*(self: InputEventMIDI): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventMIDI, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `velocity=`*(self: InputEventMIDI; velocity: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc velocity*(self: InputEventMIDI): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventMIDI, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `instrument=`*(self: InputEventMIDI; instrument: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc instrument*(self: InputEventMIDI): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventMIDI, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `pressure=`*(self: InputEventMIDI; pressure: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc pressure*(self: InputEventMIDI): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventMIDI, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `controllerNumber=`*(self: InputEventMIDI; controllerNumber: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc controllerNumber*(self: InputEventMIDI): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventMIDI, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `controllerValue=`*(self: InputEventMIDI; controllerValue: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,4 +124,4 @@ proc controllerValue*(self: InputEventMIDI): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventMIDI, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)

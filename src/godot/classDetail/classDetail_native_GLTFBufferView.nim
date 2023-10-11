@@ -12,7 +12,7 @@ proc buffer*(self: GLTFBufferView): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFBufferView, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `buffer=`*(self: GLTFBufferView; buffer: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc byteOffset*(self: GLTFBufferView): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFBufferView, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `byteOffset=`*(self: GLTFBufferView; byteOffset: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc byteLength*(self: GLTFBufferView): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFBufferView, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `byteLength=`*(self: GLTFBufferView; byteLength: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc byteStride*(self: GLTFBufferView): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFBufferView, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `byteStride=`*(self: GLTFBufferView; byteStride: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -72,7 +72,7 @@ proc indices*(self: GLTFBufferView): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFBufferView, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `indices=`*(self: GLTFBufferView; indices: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

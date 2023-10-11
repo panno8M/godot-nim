@@ -19,7 +19,7 @@ proc customSolverBias*(self: Shape2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Shape2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc collide*(self: Shape2D; localXform: Transform2D; withShape: Shape2D; shapeXform: Transform2D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -28,7 +28,7 @@ proc collide*(self: Shape2D; localXform: Transform2D; withShape: Shape2D; shapeX
   var `?param` = [getPtr localXform, getPtr withShape, getPtr shapeXform]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc collideWithMotion*(self: Shape2D; localXform: Transform2D; localMotion: Vector2; withShape: Shape2D; shapeXform: Transform2D; shapeMotion: Vector2): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -37,7 +37,7 @@ proc collideWithMotion*(self: Shape2D; localXform: Transform2D; localMotion: Vec
   var `?param` = [getPtr localXform, getPtr localMotion, getPtr withShape, getPtr shapeXform, getPtr shapeMotion]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc collideAndGetContacts*(self: Shape2D; localXform: Transform2D; withShape: Shape2D; shapeXform: Transform2D): PackedVector2Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -46,7 +46,7 @@ proc collideAndGetContacts*(self: Shape2D; localXform: Transform2D; withShape: S
   var `?param` = [getPtr localXform, getPtr withShape, getPtr shapeXform]
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedVector2Array)
+  (addr ret).decode_result(PackedVector2Array)
 proc collideWithMotionAndGetContacts*(self: Shape2D; localXform: Transform2D; localMotion: Vector2; withShape: Shape2D; shapeXform: Transform2D; shapeMotion: Vector2): PackedVector2Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -55,7 +55,7 @@ proc collideWithMotionAndGetContacts*(self: Shape2D; localXform: Transform2D; lo
   var `?param` = [getPtr localXform, getPtr localMotion, getPtr withShape, getPtr shapeXform, getPtr shapeMotion]
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedVector2Array)
+  (addr ret).decode_result(PackedVector2Array)
 proc draw*(self: Shape2D; canvasItem: RID; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -70,4 +70,4 @@ proc getRect*(self: Shape2D): Rect2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Shape2D, addr name, 1639390495)
   var ret: encoded Rect2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Rect2)
+  (addr ret).decode_result(Rect2)

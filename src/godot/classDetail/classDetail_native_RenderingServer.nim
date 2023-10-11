@@ -13,7 +13,7 @@ proc texture2dCreate*(self: RenderingServer; image: Image): RID =
   var `?param` = [getPtr image]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc texture2dLayeredCreate*(self: RenderingServer; layers: TypedArray[Image]; layeredType: RenderingServer_TextureLayeredType): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc texture2dLayeredCreate*(self: RenderingServer; layers: TypedArray[Image]; l
   var `?param` = [getPtr layers, getPtr layeredType]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc texture3dCreate*(self: RenderingServer; format: Image_Format; width: int32; height: int32; depth: int32; mipmaps: Bool; data: TypedArray[Image]): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -31,7 +31,7 @@ proc texture3dCreate*(self: RenderingServer; format: Image_Format; width: int32;
   var `?param` = [getPtr format, getPtr width, getPtr height, getPtr depth, getPtr mipmaps, getPtr data]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc textureProxyCreate*(self: RenderingServer; base: RID): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -40,7 +40,7 @@ proc textureProxyCreate*(self: RenderingServer; base: RID): RID =
   var `?param` = [getPtr base]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc texture2dUpdate*(self: RenderingServer; texture: RID; image: Image; layer: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -69,7 +69,7 @@ proc texture2dPlaceholderCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc texture2dLayeredPlaceholderCreate*(self: RenderingServer; layeredType: RenderingServer_TextureLayeredType): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -78,7 +78,7 @@ proc texture2dLayeredPlaceholderCreate*(self: RenderingServer; layeredType: Rend
   var `?param` = [getPtr layeredType]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc texture3dPlaceholderCreate*(self: RenderingServer): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -86,7 +86,7 @@ proc texture3dPlaceholderCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc texture2dGet*(self: RenderingServer; texture: RID): Image =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -95,7 +95,7 @@ proc texture2dGet*(self: RenderingServer; texture: RID): Image =
   var `?param` = [getPtr texture]
   var ret: encoded Image
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Image)
+  (addr ret).decode_result(Image)
 proc texture2dLayerGet*(self: RenderingServer; texture: RID; layer: int32): Image =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -104,7 +104,7 @@ proc texture2dLayerGet*(self: RenderingServer; texture: RID; layer: int32): Imag
   var `?param` = [getPtr texture, getPtr layer]
   var ret: encoded Image
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Image)
+  (addr ret).decode_result(Image)
 proc texture3dGet*(self: RenderingServer; texture: RID): TypedArray[Image] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -113,7 +113,7 @@ proc texture3dGet*(self: RenderingServer; texture: RID): TypedArray[Image] =
   var `?param` = [getPtr texture]
   var ret: encoded TypedArray[Image]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[Image])
+  (addr ret).decode_result(TypedArray[Image])
 proc textureReplace*(self: RenderingServer; texture: RID; byTexture: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -143,7 +143,7 @@ proc textureGetPath*(self: RenderingServer; texture: RID): String =
   var `?param` = [getPtr texture]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc textureSetForceRedrawIfVisible*(self: RenderingServer; texture: RID; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -159,7 +159,7 @@ proc textureGetRdTexture*(self: RenderingServer; texture: RID; srgb: Bool = fals
   var `?param` = [getPtr texture, getPtr srgb]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc textureGetNativeHandle*(self: RenderingServer; texture: RID; srgb: Bool = false): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -168,7 +168,7 @@ proc textureGetNativeHandle*(self: RenderingServer; texture: RID; srgb: Bool = f
   var `?param` = [getPtr texture, getPtr srgb]
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)
 proc shaderCreate*(self: RenderingServer): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -176,7 +176,7 @@ proc shaderCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc shaderSetCode*(self: RenderingServer; shader: RID; code: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -199,7 +199,7 @@ proc shaderGetCode*(self: RenderingServer; shader: RID): String =
   var `?param` = [getPtr shader]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getShaderParameterList*(self: RenderingServer; shader: RID): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -208,7 +208,7 @@ proc getShaderParameterList*(self: RenderingServer; shader: RID): TypedArray[Dic
   var `?param` = [getPtr shader]
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[Dictionary])
+  (addr ret).decode_result(TypedArray[Dictionary])
 proc shaderGetParameterDefault*(self: RenderingServer; shader: RID; name: StringName): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -217,7 +217,7 @@ proc shaderGetParameterDefault*(self: RenderingServer; shader: RID; name: String
   var `?param` = [getPtr shader, getPtr name]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc shaderSetDefaultTextureParameter*(self: RenderingServer; shader: RID; name: StringName; texture: RID; index: int32 = 0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -233,7 +233,7 @@ proc shaderGetDefaultTextureParameter*(self: RenderingServer; shader: RID; name:
   var `?param` = [getPtr shader, getPtr name, getPtr index]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc materialCreate*(self: RenderingServer): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -241,7 +241,7 @@ proc materialCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc materialSetShader*(self: RenderingServer; shaderMaterial: RID; shader: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -264,7 +264,7 @@ proc materialGetParam*(self: RenderingServer; material: RID; parameter: StringNa
   var `?param` = [getPtr material, getPtr parameter]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc materialSetRenderPriority*(self: RenderingServer; material: RID; priority: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -287,7 +287,7 @@ proc meshCreateFromSurfaces*(self: RenderingServer; surfaces: TypedArray[Diction
   var `?param` = [getPtr surfaces, getPtr blendShapeCount]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc meshCreate*(self: RenderingServer): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -295,7 +295,7 @@ proc meshCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc meshSurfaceGetFormatOffset*(self: RenderingServer; format: set[RenderingServer_ArrayFormat]; vertexCount: int32; arrayIndex: int32): uint32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -304,7 +304,7 @@ proc meshSurfaceGetFormatOffset*(self: RenderingServer; format: set[RenderingSer
   var `?param` = [getPtr format, getPtr vertexCount, getPtr arrayIndex]
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc meshSurfaceGetFormatVertexStride*(self: RenderingServer; format: set[RenderingServer_ArrayFormat]; vertexCount: int32): uint32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -313,7 +313,7 @@ proc meshSurfaceGetFormatVertexStride*(self: RenderingServer; format: set[Render
   var `?param` = [getPtr format, getPtr vertexCount]
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc meshSurfaceGetFormatAttributeStride*(self: RenderingServer; format: set[RenderingServer_ArrayFormat]; vertexCount: int32): uint32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -322,7 +322,7 @@ proc meshSurfaceGetFormatAttributeStride*(self: RenderingServer; format: set[Ren
   var `?param` = [getPtr format, getPtr vertexCount]
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc meshSurfaceGetFormatSkinStride*(self: RenderingServer; format: set[RenderingServer_ArrayFormat]; vertexCount: int32): uint32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -331,7 +331,7 @@ proc meshSurfaceGetFormatSkinStride*(self: RenderingServer; format: set[Renderin
   var `?param` = [getPtr format, getPtr vertexCount]
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc meshAddSurface*(self: RenderingServer; mesh: RID; surface: Dictionary) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -354,7 +354,7 @@ proc meshGetBlendShapeCount*(self: RenderingServer; mesh: RID): int32 =
   var `?param` = [getPtr mesh]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc meshSetBlendShapeMode*(self: RenderingServer; mesh: RID; mode: RenderingServer_BlendShapeMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -370,7 +370,7 @@ proc meshGetBlendShapeMode*(self: RenderingServer; mesh: RID): RenderingServer_B
   var `?param` = [getPtr mesh]
   var ret: encoded RenderingServer_BlendShapeMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RenderingServer_BlendShapeMode)
+  (addr ret).decode_result(RenderingServer_BlendShapeMode)
 proc meshSurfaceSetMaterial*(self: RenderingServer; mesh: RID; surface: int32; material: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -386,7 +386,7 @@ proc meshSurfaceGetMaterial*(self: RenderingServer; mesh: RID; surface: int32): 
   var `?param` = [getPtr mesh, getPtr surface]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc meshGetSurface*(self: RenderingServer; mesh: RID; surface: int32): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -395,7 +395,7 @@ proc meshGetSurface*(self: RenderingServer; mesh: RID; surface: int32): Dictiona
   var `?param` = [getPtr mesh, getPtr surface]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc meshSurfaceGetArrays*(self: RenderingServer; mesh: RID; surface: int32): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -404,7 +404,7 @@ proc meshSurfaceGetArrays*(self: RenderingServer; mesh: RID; surface: int32): Ar
   var `?param` = [getPtr mesh, getPtr surface]
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)
 proc meshSurfaceGetBlendShapeArrays*(self: RenderingServer; mesh: RID; surface: int32): TypedArray[Array] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -413,7 +413,7 @@ proc meshSurfaceGetBlendShapeArrays*(self: RenderingServer; mesh: RID; surface: 
   var `?param` = [getPtr mesh, getPtr surface]
   var ret: encoded TypedArray[Array]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[Array])
+  (addr ret).decode_result(TypedArray[Array])
 proc meshGetSurfaceCount*(self: RenderingServer; mesh: RID): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -422,7 +422,7 @@ proc meshGetSurfaceCount*(self: RenderingServer; mesh: RID): int32 =
   var `?param` = [getPtr mesh]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc meshSetCustomAabb*(self: RenderingServer; mesh: RID; aabb: AABB) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -438,7 +438,7 @@ proc meshGetCustomAabb*(self: RenderingServer; mesh: RID): AABB =
   var `?param` = [getPtr mesh]
   var ret: encoded AABB
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(AABB)
+  (addr ret).decode_result(AABB)
 proc meshClear*(self: RenderingServer; mesh: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -481,7 +481,7 @@ proc multimeshCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc multimeshAllocateData*(self: RenderingServer; multimesh: RID; instances: int32; transformFormat: RenderingServer_MultimeshTransformFormat; colorFormat: Bool = false; customDataFormat: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -497,7 +497,7 @@ proc multimeshGetInstanceCount*(self: RenderingServer; multimesh: RID): int32 =
   var `?param` = [getPtr multimesh]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc multimeshSetMesh*(self: RenderingServer; multimesh: RID; mesh: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -541,7 +541,7 @@ proc multimeshGetMesh*(self: RenderingServer; multimesh: RID): RID =
   var `?param` = [getPtr multimesh]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc multimeshGetAabb*(self: RenderingServer; multimesh: RID): AABB =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -550,7 +550,7 @@ proc multimeshGetAabb*(self: RenderingServer; multimesh: RID): AABB =
   var `?param` = [getPtr multimesh]
   var ret: encoded AABB
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(AABB)
+  (addr ret).decode_result(AABB)
 proc multimeshInstanceGetTransform*(self: RenderingServer; multimesh: RID; index: int32): Transform3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -559,7 +559,7 @@ proc multimeshInstanceGetTransform*(self: RenderingServer; multimesh: RID; index
   var `?param` = [getPtr multimesh, getPtr index]
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc multimeshInstanceGetTransform2d*(self: RenderingServer; multimesh: RID; index: int32): Transform2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -568,7 +568,7 @@ proc multimeshInstanceGetTransform2d*(self: RenderingServer; multimesh: RID; ind
   var `?param` = [getPtr multimesh, getPtr index]
   var ret: encoded Transform2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Transform2D)
+  (addr ret).decode_result(Transform2D)
 proc multimeshInstanceGetColor*(self: RenderingServer; multimesh: RID; index: int32): Color =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -577,7 +577,7 @@ proc multimeshInstanceGetColor*(self: RenderingServer; multimesh: RID; index: in
   var `?param` = [getPtr multimesh, getPtr index]
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc multimeshInstanceGetCustomData*(self: RenderingServer; multimesh: RID; index: int32): Color =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -586,7 +586,7 @@ proc multimeshInstanceGetCustomData*(self: RenderingServer; multimesh: RID; inde
   var `?param` = [getPtr multimesh, getPtr index]
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc multimeshSetVisibleInstances*(self: RenderingServer; multimesh: RID; visible: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -602,7 +602,7 @@ proc multimeshGetVisibleInstances*(self: RenderingServer; multimesh: RID): int32
   var `?param` = [getPtr multimesh]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc multimeshSetBuffer*(self: RenderingServer; multimesh: RID; buffer: PackedFloat32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -618,7 +618,7 @@ proc multimeshGetBuffer*(self: RenderingServer; multimesh: RID): PackedFloat32Ar
   var `?param` = [getPtr multimesh]
   var ret: encoded PackedFloat32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedFloat32Array)
+  (addr ret).decode_result(PackedFloat32Array)
 proc skeletonCreate*(self: RenderingServer): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -626,7 +626,7 @@ proc skeletonCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc skeletonAllocateData*(self: RenderingServer; skeleton: RID; bones: int32; is2dSkeleton: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -642,7 +642,7 @@ proc skeletonGetBoneCount*(self: RenderingServer; skeleton: RID): int32 =
   var `?param` = [getPtr skeleton]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc skeletonBoneSetTransform*(self: RenderingServer; skeleton: RID; bone: int32; transform: Transform3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -658,7 +658,7 @@ proc skeletonBoneGetTransform*(self: RenderingServer; skeleton: RID; bone: int32
   var `?param` = [getPtr skeleton, getPtr bone]
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc skeletonBoneSetTransform2d*(self: RenderingServer; skeleton: RID; bone: int32; transform: Transform2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -674,7 +674,7 @@ proc skeletonBoneGetTransform2d*(self: RenderingServer; skeleton: RID; bone: int
   var `?param` = [getPtr skeleton, getPtr bone]
   var ret: encoded Transform2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Transform2D)
+  (addr ret).decode_result(Transform2D)
 proc skeletonSetBaseTransform2d*(self: RenderingServer; skeleton: RID; baseTransform: Transform2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -689,7 +689,7 @@ proc directionalLightCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc omniLightCreate*(self: RenderingServer): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -697,7 +697,7 @@ proc omniLightCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc spotLightCreate*(self: RenderingServer): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -705,7 +705,7 @@ proc spotLightCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc lightSetColor*(self: RenderingServer; light: RID; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -839,7 +839,7 @@ proc reflectionProbeCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc reflectionProbeSetUpdateMode*(self: RenderingServer; probe: RID; mode: RenderingServer_ReflectionProbeUpdateMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -945,7 +945,7 @@ proc decalCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc decalSetSize*(self: RenderingServer; decal: RID; size: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1030,7 +1030,7 @@ proc voxelGiCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc voxelGiAllocateData*(self: RenderingServer; voxelGi: RID; toCellXform: Transform3D; aabb: AABB; octreeSize: Vector3i; octreeCells: PackedByteArray; dataCells: PackedByteArray; distanceField: PackedByteArray; levelCounts: PackedInt32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1046,7 +1046,7 @@ proc voxelGiGetOctreeSize*(self: RenderingServer; voxelGi: RID): Vector3i =
   var `?param` = [getPtr voxelGi]
   var ret: encoded Vector3i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3i)
+  (addr ret).decode_result(Vector3i)
 proc voxelGiGetOctreeCells*(self: RenderingServer; voxelGi: RID): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1055,7 +1055,7 @@ proc voxelGiGetOctreeCells*(self: RenderingServer; voxelGi: RID): PackedByteArra
   var `?param` = [getPtr voxelGi]
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)
 proc voxelGiGetDataCells*(self: RenderingServer; voxelGi: RID): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1064,7 +1064,7 @@ proc voxelGiGetDataCells*(self: RenderingServer; voxelGi: RID): PackedByteArray 
   var `?param` = [getPtr voxelGi]
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)
 proc voxelGiGetDistanceField*(self: RenderingServer; voxelGi: RID): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1073,7 +1073,7 @@ proc voxelGiGetDistanceField*(self: RenderingServer; voxelGi: RID): PackedByteAr
   var `?param` = [getPtr voxelGi]
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)
 proc voxelGiGetLevelCounts*(self: RenderingServer; voxelGi: RID): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1082,7 +1082,7 @@ proc voxelGiGetLevelCounts*(self: RenderingServer; voxelGi: RID): PackedInt32Arr
   var `?param` = [getPtr voxelGi]
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc voxelGiGetToCellXform*(self: RenderingServer; voxelGi: RID): Transform3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1091,7 +1091,7 @@ proc voxelGiGetToCellXform*(self: RenderingServer; voxelGi: RID): Transform3D =
   var `?param` = [getPtr voxelGi]
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc voxelGiSetDynamicRange*(self: RenderingServer; voxelGi: RID; range: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1162,7 +1162,7 @@ proc lightmapCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc lightmapSetTextures*(self: RenderingServer; lightmap: RID; light: RID; usesSh: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1199,7 +1199,7 @@ proc lightmapGetProbeCapturePoints*(self: RenderingServer; lightmap: RID): Packe
   var `?param` = [getPtr lightmap]
   var ret: encoded PackedVector3Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedVector3Array)
+  (addr ret).decode_result(PackedVector3Array)
 proc lightmapGetProbeCaptureSh*(self: RenderingServer; lightmap: RID): PackedColorArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1208,7 +1208,7 @@ proc lightmapGetProbeCaptureSh*(self: RenderingServer; lightmap: RID): PackedCol
   var `?param` = [getPtr lightmap]
   var ret: encoded PackedColorArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedColorArray)
+  (addr ret).decode_result(PackedColorArray)
 proc lightmapGetProbeCaptureTetrahedra*(self: RenderingServer; lightmap: RID): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1217,7 +1217,7 @@ proc lightmapGetProbeCaptureTetrahedra*(self: RenderingServer; lightmap: RID): P
   var `?param` = [getPtr lightmap]
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc lightmapGetProbeCaptureBspTree*(self: RenderingServer; lightmap: RID): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1226,7 +1226,7 @@ proc lightmapGetProbeCaptureBspTree*(self: RenderingServer; lightmap: RID): Pack
   var `?param` = [getPtr lightmap]
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc lightmapSetBakedExposureNormalization*(self: RenderingServer; lightmap: RID; bakedExposure: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1248,7 +1248,7 @@ proc particlesCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc particlesSetMode*(self: RenderingServer; particles: RID; mode: RenderingServer_ParticlesMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1271,7 +1271,7 @@ proc particlesGetEmitting*(self: RenderingServer; particles: RID): Bool =
   var `?param` = [getPtr particles]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc particlesSetAmount*(self: RenderingServer; particles: RID; amount: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1399,7 +1399,7 @@ proc particlesIsInactive*(self: RenderingServer; particles: RID): Bool =
   var `?param` = [getPtr particles]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc particlesRequestProcess*(self: RenderingServer; particles: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1457,7 +1457,7 @@ proc particlesGetCurrentAabb*(self: RenderingServer; particles: RID): AABB =
   var `?param` = [getPtr particles]
   var ret: encoded AABB
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(AABB)
+  (addr ret).decode_result(AABB)
 proc particlesSetEmissionTransform*(self: RenderingServer; particles: RID; transform: Transform3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1472,7 +1472,7 @@ proc particlesCollisionCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc particlesCollisionSetCollisionType*(self: RenderingServer; particlesCollision: RID; `type`: RenderingServer_ParticlesCollisionType) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1550,7 +1550,7 @@ proc fogVolumeCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc fogVolumeSetShape*(self: RenderingServer; fogVolume: RID; shape: RenderingServer_FogVolumeShape) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1579,7 +1579,7 @@ proc visibilityNotifierCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc visibilityNotifierSetAabb*(self: RenderingServer; notifier: RID; aabb: AABB) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1601,7 +1601,7 @@ proc occluderCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc occluderSetMesh*(self: RenderingServer; occluder: RID; vertices: PackedVector3Array; indices: PackedInt32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1616,7 +1616,7 @@ proc cameraCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc cameraSetPerspective*(self: RenderingServer; camera: RID; fovyDegrees: Float; zNear: Float; zFar: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1680,7 +1680,7 @@ proc viewportCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc viewportSetUseXr*(self: RenderingServer; viewport: RID; useXr: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1780,7 +1780,7 @@ proc viewportGetRenderTarget*(self: RenderingServer; viewport: RID): RID =
   var `?param` = [getPtr viewport]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc viewportGetTexture*(self: RenderingServer; viewport: RID): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1789,7 +1789,7 @@ proc viewportGetTexture*(self: RenderingServer; viewport: RID): RID =
   var `?param` = [getPtr viewport]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc viewportSetDisable3d*(self: RenderingServer; viewport: RID; disable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1980,7 +1980,7 @@ proc viewportGetRenderInfo*(self: RenderingServer; viewport: RID; `type`: Render
   var `?param` = [getPtr viewport, getPtr `type`, getPtr info]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc viewportSetDebugDraw*(self: RenderingServer; viewport: RID; draw: RenderingServer_ViewportDebugDraw) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -2003,7 +2003,7 @@ proc viewportGetMeasuredRenderTimeCpu*(self: RenderingServer; viewport: RID): fl
   var `?param` = [getPtr viewport]
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc viewportGetMeasuredRenderTimeGpu*(self: RenderingServer; viewport: RID): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -2012,7 +2012,7 @@ proc viewportGetMeasuredRenderTimeGpu*(self: RenderingServer; viewport: RID): fl
   var `?param` = [getPtr viewport]
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc viewportSetVrsMode*(self: RenderingServer; viewport: RID; mode: RenderingServer_ViewportVRSMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -2034,7 +2034,7 @@ proc skyCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc skySetRadianceSize*(self: RenderingServer; sky: RID; radianceSize: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -2064,7 +2064,7 @@ proc skyBakePanorama*(self: RenderingServer; sky: RID; energy: Float; bakeIrradi
   var `?param` = [getPtr sky, getPtr energy, getPtr bakeIrradiance, getPtr size]
   var ret: encoded Image
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Image)
+  (addr ret).decode_result(Image)
 proc environmentCreate*(self: RenderingServer): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -2072,7 +2072,7 @@ proc environmentCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc environmentSetBackground*(self: RenderingServer; env: RID; bg: RenderingServer_EnvironmentBG) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -2256,7 +2256,7 @@ proc environmentBakePanorama*(self: RenderingServer; environment: RID; bakeIrrad
   var `?param` = [getPtr environment, getPtr bakeIrradiance, getPtr size]
   var ret: encoded Image
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Image)
+  (addr ret).decode_result(Image)
 proc screenSpaceRoughnessLimiterSetActive*(self: RenderingServer; enable: Bool; amount: Float; limit: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -2285,7 +2285,7 @@ proc cameraAttributesCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc cameraAttributesSetDofBlurQuality*(self: RenderingServer; quality: RenderingServer_DOFBlurQuality; useJitter: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -2328,7 +2328,7 @@ proc scenarioCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc scenarioSetEnvironment*(self: RenderingServer; scenario: RID; environment: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -2358,7 +2358,7 @@ proc instanceCreate2*(self: RenderingServer; base: RID; scenario: RID): RID =
   var `?param` = [getPtr base, getPtr scenario]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc instanceCreate*(self: RenderingServer): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -2366,7 +2366,7 @@ proc instanceCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc instanceSetBase*(self: RenderingServer; instance: RID; base: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -2536,7 +2536,7 @@ proc instanceGeometryGetShaderParameter*(self: RenderingServer; instance: RID; p
   var `?param` = [getPtr instance, getPtr parameter]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc instanceGeometryGetShaderParameterDefaultValue*(self: RenderingServer; instance: RID; parameter: StringName): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -2545,7 +2545,7 @@ proc instanceGeometryGetShaderParameterDefaultValue*(self: RenderingServer; inst
   var `?param` = [getPtr instance, getPtr parameter]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc instanceGeometryGetShaderParameterList*(self: RenderingServer; instance: RID): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -2554,7 +2554,7 @@ proc instanceGeometryGetShaderParameterList*(self: RenderingServer; instance: RI
   var `?param` = [getPtr instance]
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[Dictionary])
+  (addr ret).decode_result(TypedArray[Dictionary])
 proc instancesCullAabb*(self: RenderingServer; aabb: AABB; scenario: RID = RID()): PackedInt64Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -2563,7 +2563,7 @@ proc instancesCullAabb*(self: RenderingServer; aabb: AABB; scenario: RID = RID()
   var `?param` = [getPtr aabb, getPtr scenario]
   var ret: encoded PackedInt64Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedInt64Array)
+  (addr ret).decode_result(PackedInt64Array)
 proc instancesCullRay*(self: RenderingServer; `from`: Vector3; to: Vector3; scenario: RID = RID()): PackedInt64Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -2572,7 +2572,7 @@ proc instancesCullRay*(self: RenderingServer; `from`: Vector3; to: Vector3; scen
   var `?param` = [getPtr `from`, getPtr to, getPtr scenario]
   var ret: encoded PackedInt64Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedInt64Array)
+  (addr ret).decode_result(PackedInt64Array)
 proc instancesCullConvex*(self: RenderingServer; convex: TypedArray[Plane]; scenario: RID = RID()): PackedInt64Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -2581,7 +2581,7 @@ proc instancesCullConvex*(self: RenderingServer; convex: TypedArray[Plane]; scen
   var `?param` = [getPtr convex, getPtr scenario]
   var ret: encoded PackedInt64Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedInt64Array)
+  (addr ret).decode_result(PackedInt64Array)
 proc bakeRenderUv2*(self: RenderingServer; base: RID; materialOverrides: TypedArray[RID]; imageSize: Vector2i): TypedArray[Image] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -2590,7 +2590,7 @@ proc bakeRenderUv2*(self: RenderingServer; base: RID; materialOverrides: TypedAr
   var `?param` = [getPtr base, getPtr materialOverrides, getPtr imageSize]
   var ret: encoded TypedArray[Image]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[Image])
+  (addr ret).decode_result(TypedArray[Image])
 proc canvasCreate*(self: RenderingServer): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -2598,7 +2598,7 @@ proc canvasCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc canvasSetItemMirroring*(self: RenderingServer; canvas: RID; item: RID; mirroring: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -2627,7 +2627,7 @@ proc canvasTextureCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc canvasTextureSetChannel*(self: RenderingServer; canvasTexture: RID; channel: RenderingServer_CanvasTextureChannel; texture: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -2663,7 +2663,7 @@ proc canvasItemCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc canvasItemSetParent*(self: RenderingServer; item: RID; parent: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -2965,7 +2965,7 @@ proc canvasLightCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc canvasLightAttachToCanvas*(self: RenderingServer; light: RID; canvas: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -3106,7 +3106,7 @@ proc canvasLightOccluderCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc canvasLightOccluderAttachToCanvas*(self: RenderingServer; occluder: RID; canvas: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -3156,7 +3156,7 @@ proc canvasOccluderPolygonCreate*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc canvasOccluderPolygonSetShape*(self: RenderingServer; occluderPolygon: RID; shape: PackedVector2Array; closed: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -3199,7 +3199,7 @@ proc globalShaderParameterGetList*(self: RenderingServer): TypedArray[StringName
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 3995934104)
   var ret: encoded TypedArray[StringName]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[StringName])
+  (addr ret).decode_result(TypedArray[StringName])
 proc globalShaderParameterSet*(self: RenderingServer; name: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -3222,7 +3222,7 @@ proc globalShaderParameterGet*(self: RenderingServer; name: StringName): Variant
   var `?param` = [getPtr name]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc globalShaderParameterGetType*(self: RenderingServer; name: StringName): RenderingServer_GlobalShaderParameterType =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -3231,7 +3231,7 @@ proc globalShaderParameterGetType*(self: RenderingServer; name: StringName): Ren
   var `?param` = [getPtr name]
   var ret: encoded RenderingServer_GlobalShaderParameterType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RenderingServer_GlobalShaderParameterType)
+  (addr ret).decode_result(RenderingServer_GlobalShaderParameterType)
 proc freeRid*(self: RenderingServer; rid: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -3253,7 +3253,7 @@ proc hasChanged*(self: RenderingServer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getRenderingInfo*(self: RenderingServer; info: RenderingServer_RenderingInfo): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -3262,7 +3262,7 @@ proc getRenderingInfo*(self: RenderingServer; info: RenderingServer_RenderingInf
   var `?param` = [getPtr info]
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)
 proc getVideoAdapterName*(self: RenderingServer): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -3270,7 +3270,7 @@ proc getVideoAdapterName*(self: RenderingServer): String =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getVideoAdapterVendor*(self: RenderingServer): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -3278,7 +3278,7 @@ proc getVideoAdapterVendor*(self: RenderingServer): String =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getVideoAdapterType*(self: RenderingServer): RenderingDevice_DeviceType =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -3286,7 +3286,7 @@ proc getVideoAdapterType*(self: RenderingServer): RenderingDevice_DeviceType =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 3099547011)
   var ret: encoded RenderingDevice_DeviceType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_DeviceType)
+  (addr ret).decode_result(RenderingDevice_DeviceType)
 proc getVideoAdapterApiVersion*(self: RenderingServer): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -3294,7 +3294,7 @@ proc getVideoAdapterApiVersion*(self: RenderingServer): String =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc makeSphereMesh*(self: RenderingServer; latitudes: int32; longitudes: int32; radius: Float): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -3303,7 +3303,7 @@ proc makeSphereMesh*(self: RenderingServer; latitudes: int32; longitudes: int32;
   var `?param` = [getPtr latitudes, getPtr longitudes, getPtr radius]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc getTestCube*(self: RenderingServer): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -3311,7 +3311,7 @@ proc getTestCube*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc getTestTexture*(self: RenderingServer): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -3319,7 +3319,7 @@ proc getTestTexture*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc getWhiteTexture*(self: RenderingServer): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -3327,7 +3327,7 @@ proc getWhiteTexture*(self: RenderingServer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc setBootImage*(self: RenderingServer; image: Image; color: Color; scale: Bool; useFilter: Bool = true) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -3342,7 +3342,7 @@ proc getDefaultClearColor*(self: RenderingServer): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 3200896285)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc setDefaultClearColor*(self: RenderingServer; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -3358,7 +3358,7 @@ proc hasFeature*(self: RenderingServer; feature: RenderingServer_Features): Bool
   var `?param` = [getPtr feature]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc hasOsFeature*(self: RenderingServer; feature: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -3367,7 +3367,7 @@ proc hasOsFeature*(self: RenderingServer; feature: String): Bool =
   var `?param` = [getPtr feature]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setDebugGenerateWireframes*(self: RenderingServer; generate: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -3382,7 +3382,7 @@ proc isRenderLoopEnabled*(self: RenderingServer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `renderLoopEnabled=`*(self: RenderingServer; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -3397,7 +3397,7 @@ proc getFrameSetupTimeCpu*(self: RenderingServer): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc forceSync*(self: RenderingServer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -3418,7 +3418,7 @@ proc getRenderingDevice*(self: RenderingServer): RenderingDevice =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 1405107940)
   var ret: encoded RenderingDevice
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice)
+  (addr ret).decode_result(RenderingDevice)
 proc createLocalRenderingDevice*(self: RenderingServer): RenderingDevice =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -3426,4 +3426,4 @@ proc createLocalRenderingDevice*(self: RenderingServer): RenderingDevice =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingServer, addr name, 1405107940)
   var ret: encoded RenderingDevice
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice)
+  (addr ret).decode_result(RenderingDevice)

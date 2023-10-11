@@ -13,7 +13,7 @@ proc resolveHostname*(self: IP; host: String; ipType: IP_Type = typeAny): String
   var `?param` = [getPtr host, getPtr ipType]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc resolveHostnameAddresses*(self: IP; host: String; ipType: IP_Type = typeAny): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc resolveHostnameAddresses*(self: IP; host: String; ipType: IP_Type = typeAny
   var `?param` = [getPtr host, getPtr ipType]
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc resolveHostnameQueueItem*(self: IP; host: String; ipType: IP_Type = typeAny): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -31,7 +31,7 @@ proc resolveHostnameQueueItem*(self: IP; host: String; ipType: IP_Type = typeAny
   var `?param` = [getPtr host, getPtr ipType]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getResolveItemStatus*(self: IP; id: int32): IP_ResolverStatus =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -40,7 +40,7 @@ proc getResolveItemStatus*(self: IP; id: int32): IP_ResolverStatus =
   var `?param` = [getPtr id]
   var ret: encoded IP_ResolverStatus
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(IP_ResolverStatus)
+  (addr ret).decode_result(IP_ResolverStatus)
 proc getResolveItemAddress*(self: IP; id: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc getResolveItemAddress*(self: IP; id: int32): String =
   var `?param` = [getPtr id]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getResolveItemAddresses*(self: IP; id: int32): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -58,7 +58,7 @@ proc getResolveItemAddresses*(self: IP; id: int32): Array =
   var `?param` = [getPtr id]
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)
 proc eraseResolveItem*(self: IP; id: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -73,7 +73,7 @@ proc getLocalAddresses*(self: IP): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className IP, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc getLocalInterfaces*(self: IP): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -81,7 +81,7 @@ proc getLocalInterfaces*(self: IP): TypedArray[Dictionary] =
     methodbind = interface_ClassDB_getMethodBind(addr className IP, addr name, 3995934104)
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Dictionary])
+  (addr ret).decode_result(TypedArray[Dictionary])
 proc clearCache*(self: IP; hostname: String = "") =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

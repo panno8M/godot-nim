@@ -12,7 +12,7 @@ proc root*(self: SceneTree): Window =
     methodbind = interface_ClassDB_getMethodBind(addr className SceneTree, addr name, 1757182445)
   var ret: encoded Window
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Window)
+  (addr ret).decode_result(Window)
 proc hasGroup*(self: SceneTree; name: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -21,7 +21,7 @@ proc hasGroup*(self: SceneTree; name: StringName): Bool =
   var `?param` = [getPtr name]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isAutoAcceptQuit*(self: SceneTree): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -29,7 +29,7 @@ proc isAutoAcceptQuit*(self: SceneTree): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SceneTree, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `autoAcceptQuit=`*(self: SceneTree; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -44,7 +44,7 @@ proc isQuitOnGoBack*(self: SceneTree): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SceneTree, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `quitOnGoBack=`*(self: SceneTree; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -66,7 +66,7 @@ proc isDebuggingCollisionsHint*(self: SceneTree): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SceneTree, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `debugPathsHint=`*(self: SceneTree; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -81,7 +81,7 @@ proc isDebuggingPathsHint*(self: SceneTree): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SceneTree, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `debugNavigationHint=`*(self: SceneTree; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -96,7 +96,7 @@ proc isDebuggingNavigationHint*(self: SceneTree): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SceneTree, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `editedSceneRoot=`*(self: SceneTree; scene: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -111,7 +111,7 @@ proc editedSceneRoot*(self: SceneTree): Node =
     methodbind = interface_ClassDB_getMethodBind(addr className SceneTree, addr name, 3160264692)
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Node)
+  (addr ret).decode_result(Node)
 proc `pause=`*(self: SceneTree; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -126,7 +126,7 @@ proc isPaused*(self: SceneTree): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SceneTree, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc createTimer*(self: SceneTree; timeSec: float64; processAlways: Bool = true; processInPhysics: Bool = false; ignoreTimeScale: Bool = false): SceneTreeTimer =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -135,7 +135,7 @@ proc createTimer*(self: SceneTree; timeSec: float64; processAlways: Bool = true;
   var `?param` = [getPtr timeSec, getPtr processAlways, getPtr processInPhysics, getPtr ignoreTimeScale]
   var ret: encoded SceneTreeTimer
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(SceneTreeTimer)
+  (addr ret).decode_result(SceneTreeTimer)
 proc createTween*(self: SceneTree): Tween =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -143,7 +143,7 @@ proc createTween*(self: SceneTree): Tween =
     methodbind = interface_ClassDB_getMethodBind(addr className SceneTree, addr name, 3426978995)
   var ret: encoded Tween
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Tween)
+  (addr ret).decode_result(Tween)
 proc getProcessedTweens*(self: SceneTree): TypedArray[Tween] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -151,7 +151,7 @@ proc getProcessedTweens*(self: SceneTree): TypedArray[Tween] =
     methodbind = interface_ClassDB_getMethodBind(addr className SceneTree, addr name, 2915620761)
   var ret: encoded TypedArray[Tween]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Tween])
+  (addr ret).decode_result(TypedArray[Tween])
 proc getNodeCount*(self: SceneTree): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -159,7 +159,7 @@ proc getNodeCount*(self: SceneTree): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className SceneTree, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getFrame*(self: SceneTree): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -167,7 +167,7 @@ proc getFrame*(self: SceneTree): int64 =
     methodbind = interface_ClassDB_getMethodBind(addr className SceneTree, addr name, 3905245786)
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int64)
+  (addr ret).decode_result(int64)
 proc quit*(self: SceneTree; exitCode: int32 = 0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -232,7 +232,7 @@ proc getNodesInGroup*(self: SceneTree; group: StringName): TypedArray[Node] =
   var `?param` = [getPtr group]
   var ret: encoded TypedArray[Node]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[Node])
+  (addr ret).decode_result(TypedArray[Node])
 proc getFirstNodeInGroup*(self: SceneTree; group: StringName): Node =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -241,7 +241,7 @@ proc getFirstNodeInGroup*(self: SceneTree; group: StringName): Node =
   var `?param` = [getPtr group]
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Node)
+  (addr ret).decode_result(Node)
 proc `currentScene=`*(self: SceneTree; childNode: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -256,7 +256,7 @@ proc currentScene*(self: SceneTree): Node =
     methodbind = interface_ClassDB_getMethodBind(addr className SceneTree, addr name, 3160264692)
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Node)
+  (addr ret).decode_result(Node)
 proc changeSceneToFile*(self: SceneTree; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -265,7 +265,7 @@ proc changeSceneToFile*(self: SceneTree; path: String): Error =
   var `?param` = [getPtr path]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc changeSceneToPacked*(self: SceneTree; packedScene: PackedScene): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -274,7 +274,7 @@ proc changeSceneToPacked*(self: SceneTree; packedScene: PackedScene): Error =
   var `?param` = [getPtr packedScene]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc reloadCurrentScene*(self: SceneTree): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -282,7 +282,7 @@ proc reloadCurrentScene*(self: SceneTree): Error =
     methodbind = interface_ClassDB_getMethodBind(addr className SceneTree, addr name, 166280745)
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc unloadCurrentScene*(self: SceneTree) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -304,7 +304,7 @@ proc getMultiplayer*(self: SceneTree; forPath: NodePath = init_NodePath()): Mult
   var `?param` = [getPtr forPath]
   var ret: encoded MultiplayerAPI
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(MultiplayerAPI)
+  (addr ret).decode_result(MultiplayerAPI)
 proc `multiplayerPollEnabled=`*(self: SceneTree; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -319,4 +319,4 @@ proc isMultiplayerPollEnabled*(self: SceneTree): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SceneTree, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

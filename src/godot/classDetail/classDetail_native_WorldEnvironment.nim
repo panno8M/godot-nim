@@ -19,7 +19,7 @@ proc environment*(self: WorldEnvironment): Environment =
     methodbind = interface_ClassDB_getMethodBind(addr className WorldEnvironment, addr name, 3082064660)
   var ret: encoded Environment
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Environment)
+  (addr ret).decode_result(Environment)
 proc `cameraAttributes=`*(self: WorldEnvironment; cameraAttributes: CameraAttributes) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,4 +34,4 @@ proc cameraAttributes*(self: WorldEnvironment): CameraAttributes =
     methodbind = interface_ClassDB_getMethodBind(addr className WorldEnvironment, addr name, 3921283215)
   var ret: encoded CameraAttributes
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(CameraAttributes)
+  (addr ret).decode_result(CameraAttributes)

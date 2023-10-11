@@ -20,7 +20,7 @@ proc initialize*(self: WebRTCPeerConnection; configuration: Dictionary = init_Di
   var `?param` = [getPtr configuration]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc createDataChannel*(self: WebRTCPeerConnection; label: String; options: Dictionary = init_Dictionary()): WebRTCDataChannel =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -29,7 +29,7 @@ proc createDataChannel*(self: WebRTCPeerConnection; label: String; options: Dict
   var `?param` = [getPtr label, getPtr options]
   var ret: encoded WebRTCDataChannel
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(WebRTCDataChannel)
+  (addr ret).decode_result(WebRTCDataChannel)
 proc createOffer*(self: WebRTCPeerConnection): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -37,7 +37,7 @@ proc createOffer*(self: WebRTCPeerConnection): Error =
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCPeerConnection, addr name, 166280745)
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc setLocalDescription*(self: WebRTCPeerConnection; `type`: String; sdp: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -46,7 +46,7 @@ proc setLocalDescription*(self: WebRTCPeerConnection; `type`: String; sdp: Strin
   var `?param` = [getPtr `type`, getPtr sdp]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc setRemoteDescription*(self: WebRTCPeerConnection; `type`: String; sdp: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -55,7 +55,7 @@ proc setRemoteDescription*(self: WebRTCPeerConnection; `type`: String; sdp: Stri
   var `?param` = [getPtr `type`, getPtr sdp]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc addIceCandidate*(self: WebRTCPeerConnection; media: String; index: int32; name: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc addIceCandidate*(self: WebRTCPeerConnection; media: String; index: int32; n
   var `?param` = [getPtr media, getPtr index, getPtr name]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc poll*(self: WebRTCPeerConnection): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -72,7 +72,7 @@ proc poll*(self: WebRTCPeerConnection): Error =
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCPeerConnection, addr name, 166280745)
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc close*(self: WebRTCPeerConnection) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -86,7 +86,7 @@ proc getConnectionState*(self: WebRTCPeerConnection): WebRTCPeerConnection_Conne
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCPeerConnection, addr name, 2275710506)
   var ret: encoded WebRTCPeerConnection_ConnectionState
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(WebRTCPeerConnection_ConnectionState)
+  (addr ret).decode_result(WebRTCPeerConnection_ConnectionState)
 proc getGatheringState*(self: WebRTCPeerConnection): WebRTCPeerConnection_GatheringState =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc getGatheringState*(self: WebRTCPeerConnection): WebRTCPeerConnection_Gather
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCPeerConnection, addr name, 4262591401)
   var ret: encoded WebRTCPeerConnection_GatheringState
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(WebRTCPeerConnection_GatheringState)
+  (addr ret).decode_result(WebRTCPeerConnection_GatheringState)
 proc getSignalingState*(self: WebRTCPeerConnection): WebRTCPeerConnection_SignalingState =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -102,4 +102,4 @@ proc getSignalingState*(self: WebRTCPeerConnection): WebRTCPeerConnection_Signal
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCPeerConnection, addr name, 3342956226)
   var ret: encoded WebRTCPeerConnection_SignalingState
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(WebRTCPeerConnection_SignalingState)
+  (addr ret).decode_result(WebRTCPeerConnection_SignalingState)

@@ -13,7 +13,7 @@ proc create*(_: typedesc[PhysicsRayQueryParameters2D]; `from`: Vector2; to: Vect
   var `?param` = [getPtr `from`, getPtr to, getPtr collisionMask, getPtr exclude]
   var ret: encoded PhysicsRayQueryParameters2D
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(PhysicsRayQueryParameters2D)
+  (addr ret).decode_result(PhysicsRayQueryParameters2D)
 proc `from=`*(self: PhysicsRayQueryParameters2D; `from`: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -28,7 +28,7 @@ proc `from`*(self: PhysicsRayQueryParameters2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsRayQueryParameters2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `to=`*(self: PhysicsRayQueryParameters2D; to: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -43,7 +43,7 @@ proc to*(self: PhysicsRayQueryParameters2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsRayQueryParameters2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `collisionMask=`*(self: PhysicsRayQueryParameters2D; collisionMask: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -58,7 +58,7 @@ proc collisionMask*(self: PhysicsRayQueryParameters2D): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsRayQueryParameters2D, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `exclude=`*(self: PhysicsRayQueryParameters2D; exclude: TypedArray[RID]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -73,7 +73,7 @@ proc exclude*(self: PhysicsRayQueryParameters2D): TypedArray[RID] =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsRayQueryParameters2D, addr name, 3995934104)
   var ret: encoded TypedArray[RID]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[RID])
+  (addr ret).decode_result(TypedArray[RID])
 proc `collideWithBodies=`*(self: PhysicsRayQueryParameters2D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -88,7 +88,7 @@ proc isCollideWithBodiesEnabled*(self: PhysicsRayQueryParameters2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsRayQueryParameters2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `collideWithAreas=`*(self: PhysicsRayQueryParameters2D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -103,7 +103,7 @@ proc isCollideWithAreasEnabled*(self: PhysicsRayQueryParameters2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsRayQueryParameters2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `hitFromInside=`*(self: PhysicsRayQueryParameters2D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -118,4 +118,4 @@ proc isHitFromInsideEnabled*(self: PhysicsRayQueryParameters2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsRayQueryParameters2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

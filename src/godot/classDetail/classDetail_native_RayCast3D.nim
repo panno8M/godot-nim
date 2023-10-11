@@ -19,7 +19,7 @@ proc isEnabled*(self: RayCast3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RayCast3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `targetPosition=`*(self: RayCast3D; localPoint: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc tarposition*(self: RayCast3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className RayCast3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc isColliding*(self: RayCast3D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc isColliding*(self: RayCast3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RayCast3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc forceRaycastUpdate*(self: RayCast3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -56,7 +56,7 @@ proc getCollider*(self: RayCast3D): Object =
     methodbind = interface_ClassDB_getMethodBind(addr className RayCast3D, addr name, 1981248198)
   var ret: encoded Object
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Object)
+  (addr ret).decode_result(Object)
 proc getColliderRid*(self: RayCast3D): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc getColliderRid*(self: RayCast3D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className RayCast3D, addr name, 2944877500)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc getColliderShape*(self: RayCast3D): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -72,7 +72,7 @@ proc getColliderShape*(self: RayCast3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RayCast3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getCollisionPoint*(self: RayCast3D): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -80,7 +80,7 @@ proc getCollisionPoint*(self: RayCast3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className RayCast3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc getCollisionNormal*(self: RayCast3D): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -88,7 +88,7 @@ proc getCollisionNormal*(self: RayCast3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className RayCast3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc addExceptionRid*(self: RayCast3D; rid: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -137,7 +137,7 @@ proc collisionMask*(self: RayCast3D): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RayCast3D, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc setCollisionMaskValue*(self: RayCast3D; layerNumber: int32; value: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -153,7 +153,7 @@ proc getCollisionMaskValue*(self: RayCast3D; layerNumber: int32): Bool =
   var `?param` = [getPtr layerNumber]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `excludeParentBody=`*(self: RayCast3D; mask: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -168,7 +168,7 @@ proc excludeParentBody*(self: RayCast3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RayCast3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `collideWithAreas=`*(self: RayCast3D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -183,7 +183,7 @@ proc isCollideWithAreasEnabled*(self: RayCast3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RayCast3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `collideWithBodies=`*(self: RayCast3D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -198,7 +198,7 @@ proc isCollideWithBodiesEnabled*(self: RayCast3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RayCast3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `hitFromInside=`*(self: RayCast3D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -213,7 +213,7 @@ proc isHitFromInsideEnabled*(self: RayCast3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RayCast3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `debugShapeCustomColor=`*(self: RayCast3D; debugShapeCustomColor: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -228,7 +228,7 @@ proc debugShapeCustomColor*(self: RayCast3D): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className RayCast3D, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `debugShapeThickness=`*(self: RayCast3D; debugShapeThickness: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -243,4 +243,4 @@ proc debugShapeThickness*(self: RayCast3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RayCast3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)

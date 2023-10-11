@@ -12,7 +12,7 @@ proc loop*(self: GLTFAnimation): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFAnimation, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `loop=`*(self: GLTFAnimation; loop: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

@@ -19,7 +19,7 @@ proc gravitySpaceOverrideMode*(self: Area2D): Area2D_SpaceOverride =
     methodbind = interface_ClassDB_getMethodBind(addr className Area2D, addr name, 3990256304)
   var ret: encoded Area2D_SpaceOverride
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Area2D_SpaceOverride)
+  (addr ret).decode_result(Area2D_SpaceOverride)
 proc `gravityIsPoint=`*(self: Area2D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc isGravityAPoint*(self: Area2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Area2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `gravityPointUnitDistance=`*(self: Area2D; distanceScale: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc gravityPointUnitDistance*(self: Area2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Area2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `gravityPointCenter=`*(self: Area2D; center: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc gravityPointCenter*(self: Area2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Area2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `gravityDirection=`*(self: Area2D; direction: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc gravityDirection*(self: Area2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Area2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `gravity=`*(self: Area2D; gravity: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc gravity*(self: Area2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Area2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `linearDampSpaceOverrideMode=`*(self: Area2D; spaceOverrideMode: Area2D_SpaceOverride) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc linearDampSpaceOverrideMode*(self: Area2D): Area2D_SpaceOverride =
     methodbind = interface_ClassDB_getMethodBind(addr className Area2D, addr name, 3990256304)
   var ret: encoded Area2D_SpaceOverride
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Area2D_SpaceOverride)
+  (addr ret).decode_result(Area2D_SpaceOverride)
 proc `angularDampSpaceOverrideMode=`*(self: Area2D; spaceOverrideMode: Area2D_SpaceOverride) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc angularDampSpaceOverrideMode*(self: Area2D): Area2D_SpaceOverride =
     methodbind = interface_ClassDB_getMethodBind(addr className Area2D, addr name, 3990256304)
   var ret: encoded Area2D_SpaceOverride
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Area2D_SpaceOverride)
+  (addr ret).decode_result(Area2D_SpaceOverride)
 proc `linearDamp=`*(self: Area2D; linearDamp: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc linearDamp*(self: Area2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Area2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `angularDamp=`*(self: Area2D; angularDamp: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -154,7 +154,7 @@ proc angularDamp*(self: Area2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Area2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `priority=`*(self: Area2D; priority: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -169,7 +169,7 @@ proc priority*(self: Area2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Area2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `monitoring=`*(self: Area2D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -184,7 +184,7 @@ proc isMonitoring*(self: Area2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Area2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `monitorable=`*(self: Area2D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -199,7 +199,7 @@ proc isMonitorable*(self: Area2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Area2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getOverlappingBodies*(self: Area2D): TypedArray[Node2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -207,7 +207,7 @@ proc getOverlappingBodies*(self: Area2D): TypedArray[Node2D] =
     methodbind = interface_ClassDB_getMethodBind(addr className Area2D, addr name, 3995934104)
   var ret: encoded TypedArray[Node2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Node2D])
+  (addr ret).decode_result(TypedArray[Node2D])
 proc getOverlappingAreas*(self: Area2D): TypedArray[Area2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -215,7 +215,7 @@ proc getOverlappingAreas*(self: Area2D): TypedArray[Area2D] =
     methodbind = interface_ClassDB_getMethodBind(addr className Area2D, addr name, 3995934104)
   var ret: encoded TypedArray[Area2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Area2D])
+  (addr ret).decode_result(TypedArray[Area2D])
 proc hasOverlappingBodies*(self: Area2D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -223,7 +223,7 @@ proc hasOverlappingBodies*(self: Area2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Area2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc hasOverlappingAreas*(self: Area2D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -231,7 +231,7 @@ proc hasOverlappingAreas*(self: Area2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Area2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc overlapsBody*(self: Area2D; body: Node): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -240,7 +240,7 @@ proc overlapsBody*(self: Area2D; body: Node): Bool =
   var `?param` = [getPtr body]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc overlapsArea*(self: Area2D; area: Node): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -249,7 +249,7 @@ proc overlapsArea*(self: Area2D; area: Node): Bool =
   var `?param` = [getPtr area]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `audioBusName=`*(self: Area2D; name: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -264,7 +264,7 @@ proc audioBusName*(self: Area2D): StringName =
     methodbind = interface_ClassDB_getMethodBind(addr className Area2D, addr name, 2002593661)
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc `audioBusOverride=`*(self: Area2D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -279,4 +279,4 @@ proc isOverridingAudioBus*(self: Area2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Area2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

@@ -19,7 +19,7 @@ proc radius*(self: SphereMesh): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className SphereMesh, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `height=`*(self: SphereMesh; height: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc height*(self: SphereMesh): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className SphereMesh, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `radialSegments=`*(self: SphereMesh; radialSegments: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc radialSegments*(self: SphereMesh): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className SphereMesh, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `rings=`*(self: SphereMesh; rings: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc rings*(self: SphereMesh): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className SphereMesh, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `isHemisphere=`*(self: SphereMesh; isHemisphere: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,4 +79,4 @@ proc isHemisphere*(self: SphereMesh): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SphereMesh, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

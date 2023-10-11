@@ -19,7 +19,7 @@ proc isCommandOrControlAutoremap*(self: InputEventWithModifiers): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventWithModifiers, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isCommandOrControlPressed*(self: InputEventWithModifiers): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc isCommandOrControlPressed*(self: InputEventWithModifiers): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventWithModifiers, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `altPressed=`*(self: InputEventWithModifiers; pressed: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc isAltPressed*(self: InputEventWithModifiers): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventWithModifiers, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `shiftPressed=`*(self: InputEventWithModifiers; pressed: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc isShiftPressed*(self: InputEventWithModifiers): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventWithModifiers, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `ctrlPressed=`*(self: InputEventWithModifiers; pressed: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -72,7 +72,7 @@ proc isCtrlPressed*(self: InputEventWithModifiers): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventWithModifiers, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `metaPressed=`*(self: InputEventWithModifiers; pressed: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -87,7 +87,7 @@ proc isMetaPressed*(self: InputEventWithModifiers): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventWithModifiers, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getModifiersMask*(self: InputEventWithModifiers): set[KeyModifierMask] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -95,4 +95,4 @@ proc getModifiersMask*(self: InputEventWithModifiers): set[KeyModifierMask] =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventWithModifiers, addr name, 1258259499)
   var ret: encoded set[KeyModifierMask]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(set[KeyModifierMask])
+  (addr ret).decode_result(set[KeyModifierMask])

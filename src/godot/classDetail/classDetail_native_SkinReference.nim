@@ -12,7 +12,7 @@ proc getSkeleton*(self: SkinReference): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className SkinReference, addr name, 2944877500)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc getSkin*(self: SkinReference): Skin =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -20,4 +20,4 @@ proc getSkin*(self: SkinReference): Skin =
     methodbind = interface_ClassDB_getMethodBind(addr className SkinReference, addr name, 2074563878)
   var ret: encoded Skin
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Skin)
+  (addr ret).decode_result(Skin)

@@ -13,7 +13,7 @@ proc listen*(self: UDPServer; port: uint16; bindAddress: String = "*"): Error =
   var `?param` = [getPtr port, getPtr bindAddress]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc poll*(self: UDPServer): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -21,7 +21,7 @@ proc poll*(self: UDPServer): Error =
     methodbind = interface_ClassDB_getMethodBind(addr className UDPServer, addr name, 166280745)
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc isConnectionAvailable*(self: UDPServer): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -29,7 +29,7 @@ proc isConnectionAvailable*(self: UDPServer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className UDPServer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getLocalPort*(self: UDPServer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -37,7 +37,7 @@ proc getLocalPort*(self: UDPServer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className UDPServer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc isListening*(self: UDPServer): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -45,7 +45,7 @@ proc isListening*(self: UDPServer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className UDPServer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc takeConnection*(self: UDPServer): PacketPeerUDP =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -53,7 +53,7 @@ proc takeConnection*(self: UDPServer): PacketPeerUDP =
     methodbind = interface_ClassDB_getMethodBind(addr className UDPServer, addr name, 808734560)
   var ret: encoded PacketPeerUDP
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PacketPeerUDP)
+  (addr ret).decode_result(PacketPeerUDP)
 proc stop*(self: UDPServer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -74,4 +74,4 @@ proc maxPendingConnections*(self: UDPServer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className UDPServer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)

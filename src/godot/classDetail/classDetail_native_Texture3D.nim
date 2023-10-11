@@ -12,7 +12,7 @@ proc getFormat*(self: Texture3D): Image_Format =
     methodbind = interface_ClassDB_getMethodBind(addr className Texture3D, addr name, 3847873762)
   var ret: encoded Image_Format
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Image_Format)
+  (addr ret).decode_result(Image_Format)
 proc getWidth*(self: Texture3D): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -20,7 +20,7 @@ proc getWidth*(self: Texture3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Texture3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getHeight*(self: Texture3D): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -28,7 +28,7 @@ proc getHeight*(self: Texture3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Texture3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getDepth*(self: Texture3D): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -36,7 +36,7 @@ proc getDepth*(self: Texture3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Texture3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc hasMipmaps*(self: Texture3D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -44,7 +44,7 @@ proc hasMipmaps*(self: Texture3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Texture3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getData*(self: Texture3D): TypedArray[Image] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -52,7 +52,7 @@ proc getData*(self: Texture3D): TypedArray[Image] =
     methodbind = interface_ClassDB_getMethodBind(addr className Texture3D, addr name, 3995934104)
   var ret: encoded TypedArray[Image]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Image])
+  (addr ret).decode_result(TypedArray[Image])
 proc createPlaceholder*(self: Texture3D): Resource =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -60,4 +60,4 @@ proc createPlaceholder*(self: Texture3D): Resource =
     methodbind = interface_ClassDB_getMethodBind(addr className Texture3D, addr name, 121922552)
   var ret: encoded Resource
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Resource)
+  (addr ret).decode_result(Resource)

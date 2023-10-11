@@ -20,7 +20,7 @@ proc hasAnimation*(self: SpriteFrames; anim: StringName): Bool =
   var `?param` = [getPtr anim]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc removeAnimation*(self: SpriteFrames; anim: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc getAnimationNames*(self: SpriteFrames): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className SpriteFrames, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc setAnimationSpeed*(self: SpriteFrames; anim: StringName; fps: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -58,7 +58,7 @@ proc getAnimationSpeed*(self: SpriteFrames; anim: StringName): float64 =
   var `?param` = [getPtr anim]
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc setAnimationLoop*(self: SpriteFrames; anim: StringName; loop: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -74,7 +74,7 @@ proc getAnimationLoop*(self: SpriteFrames; anim: StringName): Bool =
   var `?param` = [getPtr anim]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc addFrame*(self: SpriteFrames; anim: StringName; texture: Texture2D; duration: Float = 1.0; atPosition: int32 = -1) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -104,7 +104,7 @@ proc getFrameCount*(self: SpriteFrames; anim: StringName): int32 =
   var `?param` = [getPtr anim]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getFrameTexture*(self: SpriteFrames; anim: StringName; idx: int32): Texture2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -113,7 +113,7 @@ proc getFrameTexture*(self: SpriteFrames; anim: StringName; idx: int32): Texture
   var `?param` = [getPtr anim, getPtr idx]
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc getFrameDuration*(self: SpriteFrames; anim: StringName; idx: int32): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -122,7 +122,7 @@ proc getFrameDuration*(self: SpriteFrames; anim: StringName; idx: int32): Float 
   var `?param` = [getPtr anim, getPtr idx]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc clear*(self: SpriteFrames; anim: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

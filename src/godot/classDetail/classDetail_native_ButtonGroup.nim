@@ -12,7 +12,7 @@ proc getPressedButton*(self: ButtonGroup): BaseButton =
     methodbind = interface_ClassDB_getMethodBind(addr className ButtonGroup, addr name, 3886434893)
   var ret: encoded BaseButton
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(BaseButton)
+  (addr ret).decode_result(BaseButton)
 proc getButtons*(self: ButtonGroup): TypedArray[BaseButton] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -20,7 +20,7 @@ proc getButtons*(self: ButtonGroup): TypedArray[BaseButton] =
     methodbind = interface_ClassDB_getMethodBind(addr className ButtonGroup, addr name, 2915620761)
   var ret: encoded TypedArray[BaseButton]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[BaseButton])
+  (addr ret).decode_result(TypedArray[BaseButton])
 proc `allowUnpress=`*(self: ButtonGroup; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -35,4 +35,4 @@ proc isAllowUnpress*(self: ButtonGroup): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ButtonGroup, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

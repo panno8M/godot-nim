@@ -12,7 +12,7 @@ proc getPopup*(self: MenuButton): PopupMenu =
     methodbind = interface_ClassDB_getMethodBind(addr className MenuButton, addr name, 229722558)
   var ret: encoded PopupMenu
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PopupMenu)
+  (addr ret).decode_result(PopupMenu)
 proc showPopup*(self: MenuButton) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -33,7 +33,7 @@ proc isSwitchOnHover*(self: MenuButton): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className MenuButton, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setDisableShortcuts*(self: MenuButton; disabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -55,4 +55,4 @@ proc itemCount*(self: MenuButton): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className MenuButton, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)

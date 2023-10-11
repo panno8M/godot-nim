@@ -19,7 +19,7 @@ proc isRecordingActive*(self: AudioEffectRecord): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectRecord, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `format=`*(self: AudioEffectRecord; format: AudioStreamWAV_Format) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc format*(self: AudioEffectRecord): AudioStreamWAV_Format =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectRecord, addr name, 3151724922)
   var ret: encoded AudioStreamWAV_Format
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AudioStreamWAV_Format)
+  (addr ret).decode_result(AudioStreamWAV_Format)
 proc getRecording*(self: AudioEffectRecord): AudioStreamWAV =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,4 +42,4 @@ proc getRecording*(self: AudioEffectRecord): AudioStreamWAV =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectRecord, addr name, 2964110865)
   var ret: encoded AudioStreamWAV
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AudioStreamWAV)
+  (addr ret).decode_result(AudioStreamWAV)

@@ -12,7 +12,7 @@ proc moveAndSlide*(self: CharacterBody2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc applyFloorSnap*(self: CharacterBody2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -33,7 +33,7 @@ proc velocity*(self: CharacterBody2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `safeMargin=`*(self: CharacterBody2D; margin: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -48,7 +48,7 @@ proc safeMargin*(self: CharacterBody2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc isFloorStopOnSlopeEnabled*(self: CharacterBody2D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -56,7 +56,7 @@ proc isFloorStopOnSlopeEnabled*(self: CharacterBody2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `floorStopOnSlopeEnabled=`*(self: CharacterBody2D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -78,7 +78,7 @@ proc isFloorConstantSpeedEnabled*(self: CharacterBody2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `floorBlockOnWallEnabled=`*(self: CharacterBody2D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -93,7 +93,7 @@ proc isFloorBlockOnWallEnabled*(self: CharacterBody2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `slideOnCeilingEnabled=`*(self: CharacterBody2D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -108,7 +108,7 @@ proc isSlideOnCeilingEnabled*(self: CharacterBody2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `platformFloorLayers=`*(self: CharacterBody2D; excludeLayer: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -123,7 +123,7 @@ proc platformFloorLayers*(self: CharacterBody2D): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `platformWallLayers=`*(self: CharacterBody2D; excludeLayer: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -138,7 +138,7 @@ proc platformWallLayers*(self: CharacterBody2D): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc maxSlides*(self: CharacterBody2D): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -146,7 +146,7 @@ proc maxSlides*(self: CharacterBody2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `maxSlides=`*(self: CharacterBody2D; maxSlides: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -161,7 +161,7 @@ proc floorMaxAngle*(self: CharacterBody2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `floorMaxAngle=`*(self: CharacterBody2D; radians: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -176,7 +176,7 @@ proc floorSnapLength*(self: CharacterBody2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 191475506)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `floorSnapLength=`*(self: CharacterBody2D; floorSnapLength: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -191,7 +191,7 @@ proc wallMinSlideAngle*(self: CharacterBody2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `wallMinSlideAngle=`*(self: CharacterBody2D; radians: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -206,7 +206,7 @@ proc upDirection*(self: CharacterBody2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `upDirection=`*(self: CharacterBody2D; upDirection: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -228,7 +228,7 @@ proc motionMode*(self: CharacterBody2D): CharacterBody2D_MotionMode =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 1160151236)
   var ret: encoded CharacterBody2D_MotionMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(CharacterBody2D_MotionMode)
+  (addr ret).decode_result(CharacterBody2D_MotionMode)
 proc `platformOnLeave=`*(self: CharacterBody2D; onLeaveApplyVelocity: CharacterBody2D_PlatformOnLeave) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -243,7 +243,7 @@ proc platformOnLeave*(self: CharacterBody2D): CharacterBody2D_PlatformOnLeave =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 4054324341)
   var ret: encoded CharacterBody2D_PlatformOnLeave
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(CharacterBody2D_PlatformOnLeave)
+  (addr ret).decode_result(CharacterBody2D_PlatformOnLeave)
 proc isOnFloor*(self: CharacterBody2D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -251,7 +251,7 @@ proc isOnFloor*(self: CharacterBody2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isOnFloorOnly*(self: CharacterBody2D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -259,7 +259,7 @@ proc isOnFloorOnly*(self: CharacterBody2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isOnCeiling*(self: CharacterBody2D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -267,7 +267,7 @@ proc isOnCeiling*(self: CharacterBody2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isOnCeilingOnly*(self: CharacterBody2D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -275,7 +275,7 @@ proc isOnCeilingOnly*(self: CharacterBody2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isOnWall*(self: CharacterBody2D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -283,7 +283,7 @@ proc isOnWall*(self: CharacterBody2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isOnWallOnly*(self: CharacterBody2D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -291,7 +291,7 @@ proc isOnWallOnly*(self: CharacterBody2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getFloorNormal*(self: CharacterBody2D): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -299,7 +299,7 @@ proc getFloorNormal*(self: CharacterBody2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getWallNormal*(self: CharacterBody2D): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -307,7 +307,7 @@ proc getWallNormal*(self: CharacterBody2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getLastMotion*(self: CharacterBody2D): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -315,7 +315,7 @@ proc getLastMotion*(self: CharacterBody2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getPositionDelta*(self: CharacterBody2D): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -323,7 +323,7 @@ proc getPositionDelta*(self: CharacterBody2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getRealVelocity*(self: CharacterBody2D): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -331,7 +331,7 @@ proc getRealVelocity*(self: CharacterBody2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getFloorAngle*(self: CharacterBody2D; upDirection: Vector2 = gdvec(0, -1)): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -340,7 +340,7 @@ proc getFloorAngle*(self: CharacterBody2D; upDirection: Vector2 = gdvec(0, -1)):
   var `?param` = [getPtr upDirection]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getPlatformVelocity*(self: CharacterBody2D): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -348,7 +348,7 @@ proc getPlatformVelocity*(self: CharacterBody2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getSlideCollisionCount*(self: CharacterBody2D): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -356,7 +356,7 @@ proc getSlideCollisionCount*(self: CharacterBody2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getSlideCollision*(self: CharacterBody2D; slideIdx: int32): KinematicCollision2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -365,7 +365,7 @@ proc getSlideCollision*(self: CharacterBody2D; slideIdx: int32): KinematicCollis
   var `?param` = [getPtr slideIdx]
   var ret: encoded KinematicCollision2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(KinematicCollision2D)
+  (addr ret).decode_result(KinematicCollision2D)
 proc getLastSlideCollision*(self: CharacterBody2D): KinematicCollision2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -373,4 +373,4 @@ proc getLastSlideCollision*(self: CharacterBody2D): KinematicCollision2D =
     methodbind = interface_ClassDB_getMethodBind(addr className CharacterBody2D, addr name, 2161834755)
   var ret: encoded KinematicCollision2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(KinematicCollision2D)
+  (addr ret).decode_result(KinematicCollision2D)

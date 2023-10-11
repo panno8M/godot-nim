@@ -19,7 +19,7 @@ proc rect*(self: VisibleOnScreenNotifier2D): Rect2 =
     methodbind = interface_ClassDB_getMethodBind(addr className VisibleOnScreenNotifier2D, addr name, 1639390495)
   var ret: encoded Rect2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Rect2)
+  (addr ret).decode_result(Rect2)
 proc isOnScreen*(self: VisibleOnScreenNotifier2D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,4 +27,4 @@ proc isOnScreen*(self: VisibleOnScreenNotifier2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className VisibleOnScreenNotifier2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

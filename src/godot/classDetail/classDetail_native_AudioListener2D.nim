@@ -24,4 +24,4 @@ proc isCurrent*(self: AudioListener2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioListener2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

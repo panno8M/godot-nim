@@ -265,7 +265,7 @@ proc getItemText*(self: PopupMenu; index: int32): String =
   var `?param` = [getPtr index]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getItemTextDirection*(self: PopupMenu; index: int32): Control_TextDirection =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -274,7 +274,7 @@ proc getItemTextDirection*(self: PopupMenu; index: int32): Control_TextDirection
   var `?param` = [getPtr index]
   var ret: encoded Control_TextDirection
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Control_TextDirection)
+  (addr ret).decode_result(Control_TextDirection)
 proc getItemLanguage*(self: PopupMenu; index: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -283,7 +283,7 @@ proc getItemLanguage*(self: PopupMenu; index: int32): String =
   var `?param` = [getPtr index]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getItemIcon*(self: PopupMenu; index: int32): Texture2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -292,7 +292,7 @@ proc getItemIcon*(self: PopupMenu; index: int32): Texture2D =
   var `?param` = [getPtr index]
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc getItemIconMaxWidth*(self: PopupMenu; index: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -301,7 +301,7 @@ proc getItemIconMaxWidth*(self: PopupMenu; index: int32): int32 =
   var `?param` = [getPtr index]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getItemIconModulate*(self: PopupMenu; index: int32): Color =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -310,7 +310,7 @@ proc getItemIconModulate*(self: PopupMenu; index: int32): Color =
   var `?param` = [getPtr index]
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc isItemChecked*(self: PopupMenu; index: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -319,7 +319,7 @@ proc isItemChecked*(self: PopupMenu; index: int32): Bool =
   var `?param` = [getPtr index]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getItemId*(self: PopupMenu; index: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -328,7 +328,7 @@ proc getItemId*(self: PopupMenu; index: int32): int32 =
   var `?param` = [getPtr index]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getItemIndex*(self: PopupMenu; id: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -337,7 +337,7 @@ proc getItemIndex*(self: PopupMenu; id: int32): int32 =
   var `?param` = [getPtr id]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getItemAccelerator*(self: PopupMenu; index: int32): Key =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -346,7 +346,7 @@ proc getItemAccelerator*(self: PopupMenu; index: int32): Key =
   var `?param` = [getPtr index]
   var ret: encoded Key
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Key)
+  (addr ret).decode_result(Key)
 proc getItemMetadata*(self: PopupMenu; index: int32): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -355,7 +355,7 @@ proc getItemMetadata*(self: PopupMenu; index: int32): Variant =
   var `?param` = [getPtr index]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc isItemDisabled*(self: PopupMenu; index: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -364,7 +364,7 @@ proc isItemDisabled*(self: PopupMenu; index: int32): Bool =
   var `?param` = [getPtr index]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getItemSubmenu*(self: PopupMenu; index: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -373,7 +373,7 @@ proc getItemSubmenu*(self: PopupMenu; index: int32): String =
   var `?param` = [getPtr index]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc isItemSeparator*(self: PopupMenu; index: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -382,7 +382,7 @@ proc isItemSeparator*(self: PopupMenu; index: int32): Bool =
   var `?param` = [getPtr index]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isItemCheckable*(self: PopupMenu; index: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -391,7 +391,7 @@ proc isItemCheckable*(self: PopupMenu; index: int32): Bool =
   var `?param` = [getPtr index]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isItemRadioCheckable*(self: PopupMenu; index: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -400,7 +400,7 @@ proc isItemRadioCheckable*(self: PopupMenu; index: int32): Bool =
   var `?param` = [getPtr index]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isItemShortcutDisabled*(self: PopupMenu; index: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -409,7 +409,7 @@ proc isItemShortcutDisabled*(self: PopupMenu; index: int32): Bool =
   var `?param` = [getPtr index]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getItemTooltip*(self: PopupMenu; index: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -418,7 +418,7 @@ proc getItemTooltip*(self: PopupMenu; index: int32): String =
   var `?param` = [getPtr index]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getItemShortcut*(self: PopupMenu; index: int32): Shortcut =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -427,7 +427,7 @@ proc getItemShortcut*(self: PopupMenu; index: int32): Shortcut =
   var `?param` = [getPtr index]
   var ret: encoded Shortcut
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Shortcut)
+  (addr ret).decode_result(Shortcut)
 proc getItemIndent*(self: PopupMenu; index: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -436,7 +436,7 @@ proc getItemIndent*(self: PopupMenu; index: int32): int32 =
   var `?param` = [getPtr index]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setFocusedItem*(self: PopupMenu; index: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -451,7 +451,7 @@ proc getFocusedItem*(self: PopupMenu): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className PopupMenu, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `itemCount=`*(self: PopupMenu; count: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -466,7 +466,7 @@ proc itemCount*(self: PopupMenu): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className PopupMenu, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc scrollToItem*(self: PopupMenu; index: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -508,7 +508,7 @@ proc isHideOnItemSelection*(self: PopupMenu): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PopupMenu, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `hideOnCheckableItemSelection=`*(self: PopupMenu; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -523,7 +523,7 @@ proc isHideOnCheckableItemSelection*(self: PopupMenu): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PopupMenu, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `hideOnStateItemSelection=`*(self: PopupMenu; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -538,7 +538,7 @@ proc isHideOnStateItemSelection*(self: PopupMenu): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PopupMenu, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `submenuPopupDelay=`*(self: PopupMenu; seconds: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -553,7 +553,7 @@ proc submenuPopupDelay*(self: PopupMenu): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className PopupMenu, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `allowSearch=`*(self: PopupMenu; allow: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -568,4 +568,4 @@ proc allowSearch*(self: PopupMenu): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PopupMenu, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

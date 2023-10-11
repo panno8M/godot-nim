@@ -13,7 +13,7 @@ proc getVar*(self: PacketPeer; allowObjects: Bool = false): Variant =
   var `?param` = [getPtr allowObjects]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc putVar*(self: PacketPeer; `var`: Variant; fullObjects: Bool = false): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc putVar*(self: PacketPeer; `var`: Variant; fullObjects: Bool = false): Error
   var `?param` = [getPtr `var`, getPtr fullObjects]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc getPacket*(self: PacketPeer): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -30,7 +30,7 @@ proc getPacket*(self: PacketPeer): PackedByteArray =
     methodbind = interface_ClassDB_getMethodBind(addr className PacketPeer, addr name, 2115431945)
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)
 proc putPacket*(self: PacketPeer; buffer: PackedByteArray): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -39,7 +39,7 @@ proc putPacket*(self: PacketPeer; buffer: PackedByteArray): Error =
   var `?param` = [getPtr buffer]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc getPacketError*(self: PacketPeer): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -47,7 +47,7 @@ proc getPacketError*(self: PacketPeer): Error =
     methodbind = interface_ClassDB_getMethodBind(addr className PacketPeer, addr name, 3185525595)
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc getAvailablePacketCount*(self: PacketPeer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -55,7 +55,7 @@ proc getAvailablePacketCount*(self: PacketPeer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className PacketPeer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc encodeBufferMaxSize*(self: PacketPeer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -63,7 +63,7 @@ proc encodeBufferMaxSize*(self: PacketPeer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className PacketPeer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `encodeBufferMaxSize=`*(self: PacketPeer; maxSize: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

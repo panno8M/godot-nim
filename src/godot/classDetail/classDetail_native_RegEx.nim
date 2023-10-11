@@ -13,7 +13,7 @@ proc createFromString*(_: typedesc[RegEx]; pattern: String): RegEx =
   var `?param` = [getPtr pattern]
   var ret: encoded RegEx
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(RegEx)
+  (addr ret).decode_result(RegEx)
 proc clear*(self: RegEx) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -28,7 +28,7 @@ proc compile*(self: RegEx; pattern: String): Error =
   var `?param` = [getPtr pattern]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc search*(self: RegEx; subject: String; offset: int32 = 0; `end`: int32 = -1): RegExMatch =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -37,7 +37,7 @@ proc search*(self: RegEx; subject: String; offset: int32 = 0; `end`: int32 = -1)
   var `?param` = [getPtr subject, getPtr offset, getPtr `end`]
   var ret: encoded RegExMatch
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RegExMatch)
+  (addr ret).decode_result(RegExMatch)
 proc searchAll*(self: RegEx; subject: String; offset: int32 = 0; `end`: int32 = -1): TypedArray[RegExMatch] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -46,7 +46,7 @@ proc searchAll*(self: RegEx; subject: String; offset: int32 = 0; `end`: int32 = 
   var `?param` = [getPtr subject, getPtr offset, getPtr `end`]
   var ret: encoded TypedArray[RegExMatch]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[RegExMatch])
+  (addr ret).decode_result(TypedArray[RegExMatch])
 proc sub*(self: RegEx; subject: String; replacement: String; all: Bool = false; offset: int32 = 0; `end`: int32 = -1): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -55,7 +55,7 @@ proc sub*(self: RegEx; subject: String; replacement: String; all: Bool = false; 
   var `?param` = [getPtr subject, getPtr replacement, getPtr all, getPtr offset, getPtr `end`]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc isValid*(self: RegEx): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -63,7 +63,7 @@ proc isValid*(self: RegEx): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RegEx, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getPattern*(self: RegEx): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -71,7 +71,7 @@ proc getPattern*(self: RegEx): String =
     methodbind = interface_ClassDB_getMethodBind(addr className RegEx, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getGroupCount*(self: RegEx): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc getGroupCount*(self: RegEx): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RegEx, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getNames*(self: RegEx): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -87,4 +87,4 @@ proc getNames*(self: RegEx): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className RegEx, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)

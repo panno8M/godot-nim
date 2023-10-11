@@ -12,7 +12,7 @@ proc isRootShape*(self: CSGShape3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGShape3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `operation=`*(self: CSGShape3D; operation: CSGShape3D_Operation) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc operation*(self: CSGShape3D): CSGShape3D_Operation =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGShape3D, addr name, 2662425879)
   var ret: encoded CSGShape3D_Operation
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(CSGShape3D_Operation)
+  (addr ret).decode_result(CSGShape3D_Operation)
 proc `snap=`*(self: CSGShape3D; snap: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc snap*(self: CSGShape3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGShape3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `useCollision=`*(self: CSGShape3D; operation: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc isUsingCollision*(self: CSGShape3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGShape3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `collisionLayer=`*(self: CSGShape3D; layer: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -72,7 +72,7 @@ proc collisionLayer*(self: CSGShape3D): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGShape3D, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `collisionMask=`*(self: CSGShape3D; mask: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -87,7 +87,7 @@ proc collisionMask*(self: CSGShape3D): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGShape3D, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc setCollisionMaskValue*(self: CSGShape3D; layerNumber: int32; value: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -103,7 +103,7 @@ proc getCollisionMaskValue*(self: CSGShape3D; layerNumber: int32): Bool =
   var `?param` = [getPtr layerNumber]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setCollisionLayerValue*(self: CSGShape3D; layerNumber: int32; value: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -119,7 +119,7 @@ proc getCollisionLayerValue*(self: CSGShape3D; layerNumber: int32): Bool =
   var `?param` = [getPtr layerNumber]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `collisionPriority=`*(self: CSGShape3D; priority: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -134,7 +134,7 @@ proc collisionPriority*(self: CSGShape3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGShape3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `calculateTangents=`*(self: CSGShape3D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -149,7 +149,7 @@ proc isCalculatingTangents*(self: CSGShape3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGShape3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getMeshes*(self: CSGShape3D): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -157,4 +157,4 @@ proc getMeshes*(self: CSGShape3D): Array =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGShape3D, addr name, 3995934104)
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)

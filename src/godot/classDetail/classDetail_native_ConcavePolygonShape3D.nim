@@ -19,7 +19,7 @@ proc faces*(self: ConcavePolygonShape3D): PackedVector3Array =
     methodbind = interface_ClassDB_getMethodBind(addr className ConcavePolygonShape3D, addr name, 497664490)
   var ret: encoded PackedVector3Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedVector3Array)
+  (addr ret).decode_result(PackedVector3Array)
 proc `backfaceCollisionEnabled=`*(self: ConcavePolygonShape3D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,4 +34,4 @@ proc isBackfaceCollisionEnabled*(self: ConcavePolygonShape3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ConcavePolygonShape3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

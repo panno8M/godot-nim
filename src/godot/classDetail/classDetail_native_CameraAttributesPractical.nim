@@ -19,7 +19,7 @@ proc isDofBlurFarEnabled*(self: CameraAttributesPractical): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPractical, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `dofBlurFarDistance=`*(self: CameraAttributesPractical; distance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc dofBlurFarDistance*(self: CameraAttributesPractical): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPractical, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `dofBlurFarTransition=`*(self: CameraAttributesPractical; distance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc dofBlurFarTransition*(self: CameraAttributesPractical): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPractical, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `dofBlurNearEnabled=`*(self: CameraAttributesPractical; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc isDofBlurNearEnabled*(self: CameraAttributesPractical): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPractical, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `dofBlurNearDistance=`*(self: CameraAttributesPractical; distance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc dofBlurNearDistance*(self: CameraAttributesPractical): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPractical, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `dofBlurNearTransition=`*(self: CameraAttributesPractical; distance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc dofBlurNearTransition*(self: CameraAttributesPractical): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPractical, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `dofBlurAmount=`*(self: CameraAttributesPractical; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc dofBlurAmount*(self: CameraAttributesPractical): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPractical, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `autoExposureMaxSensitivity=`*(self: CameraAttributesPractical; maxSensitivity: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc autoExposureMaxSensitivity*(self: CameraAttributesPractical): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPractical, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `autoExposureMinSensitivity=`*(self: CameraAttributesPractical; minSensitivity: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,4 +139,4 @@ proc autoExposureMinSensitivity*(self: CameraAttributesPractical): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPractical, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

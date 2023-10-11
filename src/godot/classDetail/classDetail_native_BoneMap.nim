@@ -12,7 +12,7 @@ proc profile*(self: BoneMap): SkeletonProfile =
     methodbind = interface_ClassDB_getMethodBind(addr className BoneMap, addr name, 4291782652)
   var ret: encoded SkeletonProfile
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(SkeletonProfile)
+  (addr ret).decode_result(SkeletonProfile)
 proc `profile=`*(self: BoneMap; profile: SkeletonProfile) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -28,7 +28,7 @@ proc getSkeletonBoneName*(self: BoneMap; profileBoneName: StringName): StringNam
   var `?param` = [getPtr profileBoneName]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc setSkeletonBoneName*(self: BoneMap; profileBoneName: StringName; skeletonBoneName: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -44,4 +44,4 @@ proc findProfileBoneName*(self: BoneMap; skeletonBoneName: StringName): StringNa
   var `?param` = [getPtr skeletonBoneName]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)

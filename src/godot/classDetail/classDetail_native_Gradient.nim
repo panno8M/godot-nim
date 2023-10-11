@@ -34,7 +34,7 @@ proc getOffset*(self: Gradient; point: int32): Float =
   var `?param` = [getPtr point]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc reverse*(self: Gradient) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -56,7 +56,7 @@ proc getColor*(self: Gradient; point: int32): Color =
   var `?param` = [getPtr point]
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc sample*(self: Gradient; offset: Float): Color =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -65,7 +65,7 @@ proc sample*(self: Gradient; offset: Float): Color =
   var `?param` = [getPtr offset]
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc getPointCount*(self: Gradient): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -73,7 +73,7 @@ proc getPointCount*(self: Gradient): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Gradient, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `offsets=`*(self: Gradient; offsets: PackedFloat32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -88,7 +88,7 @@ proc offsets*(self: Gradient): PackedFloat32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className Gradient, addr name, 675695659)
   var ret: encoded PackedFloat32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedFloat32Array)
+  (addr ret).decode_result(PackedFloat32Array)
 proc `colors=`*(self: Gradient; colors: PackedColorArray) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -103,7 +103,7 @@ proc colors*(self: Gradient): PackedColorArray =
     methodbind = interface_ClassDB_getMethodBind(addr className Gradient, addr name, 1392750486)
   var ret: encoded PackedColorArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedColorArray)
+  (addr ret).decode_result(PackedColorArray)
 proc `interpolationMode=`*(self: Gradient; interpolationMode: Gradient_InterpolationMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -118,7 +118,7 @@ proc interpolationMode*(self: Gradient): Gradient_InterpolationMode =
     methodbind = interface_ClassDB_getMethodBind(addr className Gradient, addr name, 3674172981)
   var ret: encoded Gradient_InterpolationMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Gradient_InterpolationMode)
+  (addr ret).decode_result(Gradient_InterpolationMode)
 proc `interpolationColorSpace=`*(self: Gradient; interpolationColorSpace: Gradient_ColorSpace) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -133,4 +133,4 @@ proc interpolationColorSpace*(self: Gradient): Gradient_ColorSpace =
     methodbind = interface_ClassDB_getMethodBind(addr className Gradient, addr name, 1538296000)
   var ret: encoded Gradient_ColorSpace
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Gradient_ColorSpace)
+  (addr ret).decode_result(Gradient_ColorSpace)

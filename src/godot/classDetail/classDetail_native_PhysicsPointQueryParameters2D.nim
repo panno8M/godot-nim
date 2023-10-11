@@ -19,7 +19,7 @@ proc position*(self: PhysicsPointQueryParameters2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsPointQueryParameters2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `canvasInstanceId=`*(self: PhysicsPointQueryParameters2D; canvasInstanceId: uint64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc canvasInstanceId*(self: PhysicsPointQueryParameters2D): uint64 =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsPointQueryParameters2D, addr name, 3905245786)
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)
 proc `collisionMask=`*(self: PhysicsPointQueryParameters2D; collisionMask: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc collisionMask*(self: PhysicsPointQueryParameters2D): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsPointQueryParameters2D, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `exclude=`*(self: PhysicsPointQueryParameters2D; exclude: TypedArray[RID]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc exclude*(self: PhysicsPointQueryParameters2D): TypedArray[RID] =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsPointQueryParameters2D, addr name, 3995934104)
   var ret: encoded TypedArray[RID]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[RID])
+  (addr ret).decode_result(TypedArray[RID])
 proc `collideWithBodies=`*(self: PhysicsPointQueryParameters2D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc isCollideWithBodiesEnabled*(self: PhysicsPointQueryParameters2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsPointQueryParameters2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `collideWithAreas=`*(self: PhysicsPointQueryParameters2D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,4 +94,4 @@ proc isCollideWithAreasEnabled*(self: PhysicsPointQueryParameters2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsPointQueryParameters2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

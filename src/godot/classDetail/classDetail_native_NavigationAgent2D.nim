@@ -12,7 +12,7 @@ proc getRid*(self: NavigationAgent2D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 2944877500)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc `avoidanceEnabled=`*(self: NavigationAgent2D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc avoidanceEnabled*(self: NavigationAgent2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `pathDesiredDistance=`*(self: NavigationAgent2D; desiredDistance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc pathDesiredDistance*(self: NavigationAgent2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `targetDesiredDistance=`*(self: NavigationAgent2D; desiredDistance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc tardesiredDistance*(self: NavigationAgent2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `radius=`*(self: NavigationAgent2D; radius: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -72,7 +72,7 @@ proc radius*(self: NavigationAgent2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `neighborDistance=`*(self: NavigationAgent2D; neighborDistance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -87,7 +87,7 @@ proc neighborDistance*(self: NavigationAgent2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `maxNeighbors=`*(self: NavigationAgent2D; maxNeighbors: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -102,7 +102,7 @@ proc maxNeighbors*(self: NavigationAgent2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `timeHorizonAgents=`*(self: NavigationAgent2D; timeHorizon: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -117,7 +117,7 @@ proc timeHorizonAgents*(self: NavigationAgent2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `timeHorizonObstacles=`*(self: NavigationAgent2D; timeHorizon: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -132,7 +132,7 @@ proc timeHorizonObstacles*(self: NavigationAgent2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `maxSpeed=`*(self: NavigationAgent2D; maxSpeed: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -147,7 +147,7 @@ proc maxSpeed*(self: NavigationAgent2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `pathMaxDistance=`*(self: NavigationAgent2D; maxSpeed: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -162,7 +162,7 @@ proc pathMaxDistance*(self: NavigationAgent2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 191475506)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `navigationLayers=`*(self: NavigationAgent2D; navigationLayers: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -177,7 +177,7 @@ proc navigationLayers*(self: NavigationAgent2D): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc setNavigationLayerValue*(self: NavigationAgent2D; layerNumber: int32; value: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -193,7 +193,7 @@ proc getNavigationLayerValue*(self: NavigationAgent2D; layerNumber: int32): Bool
   var `?param` = [getPtr layerNumber]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `pathfindingAlgorithm=`*(self: NavigationAgent2D; pathfindingAlgorithm: NavigationPathQueryParameters2D_PathfindingAlgorithm) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -208,7 +208,7 @@ proc pathfindingAlgorithm*(self: NavigationAgent2D): NavigationPathQueryParamete
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 3000421146)
   var ret: encoded NavigationPathQueryParameters2D_PathfindingAlgorithm
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NavigationPathQueryParameters2D_PathfindingAlgorithm)
+  (addr ret).decode_result(NavigationPathQueryParameters2D_PathfindingAlgorithm)
 proc `pathPostprocessing=`*(self: NavigationAgent2D; pathPostprocessing: NavigationPathQueryParameters2D_PathPostProcessing) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -223,7 +223,7 @@ proc pathPostprocessing*(self: NavigationAgent2D): NavigationPathQueryParameters
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 3798118993)
   var ret: encoded NavigationPathQueryParameters2D_PathPostProcessing
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NavigationPathQueryParameters2D_PathPostProcessing)
+  (addr ret).decode_result(NavigationPathQueryParameters2D_PathPostProcessing)
 proc `pathMetadataFlags=`*(self: NavigationAgent2D; flags: set[NavigationPathQueryParameters2D_PathMetadataFlags]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -238,7 +238,7 @@ proc pathMetadataFlags*(self: NavigationAgent2D): set[NavigationPathQueryParamet
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 488152976)
   var ret: encoded set[NavigationPathQueryParameters2D_PathMetadataFlags]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(set[NavigationPathQueryParameters2D_PathMetadataFlags])
+  (addr ret).decode_result(set[NavigationPathQueryParameters2D_PathMetadataFlags])
 proc setNavigationMap*(self: NavigationAgent2D; navigationMap: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -253,7 +253,7 @@ proc getNavigationMap*(self: NavigationAgent2D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 2944877500)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc `targetPosition=`*(self: NavigationAgent2D; position: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -268,7 +268,7 @@ proc tarposition*(self: NavigationAgent2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getNextPathPosition*(self: NavigationAgent2D): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -276,7 +276,7 @@ proc getNextPathPosition*(self: NavigationAgent2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 1497962370)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc setVelocityForced*(self: NavigationAgent2D; velocity: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -298,7 +298,7 @@ proc velocity*(self: NavigationAgent2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 1497962370)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc distanceToTarget*(self: NavigationAgent2D): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -306,7 +306,7 @@ proc distanceToTarget*(self: NavigationAgent2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getCurrentNavigationResult*(self: NavigationAgent2D): NavigationPathQueryResult2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -314,7 +314,7 @@ proc getCurrentNavigationResult*(self: NavigationAgent2D): NavigationPathQueryRe
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 166799483)
   var ret: encoded NavigationPathQueryResult2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NavigationPathQueryResult2D)
+  (addr ret).decode_result(NavigationPathQueryResult2D)
 proc getCurrentNavigationPath*(self: NavigationAgent2D): PackedVector2Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -322,7 +322,7 @@ proc getCurrentNavigationPath*(self: NavigationAgent2D): PackedVector2Array =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 2961356807)
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedVector2Array)
+  (addr ret).decode_result(PackedVector2Array)
 proc getCurrentNavigationPathIndex*(self: NavigationAgent2D): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -330,7 +330,7 @@ proc getCurrentNavigationPathIndex*(self: NavigationAgent2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc isTargetReached*(self: NavigationAgent2D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -338,7 +338,7 @@ proc isTargetReached*(self: NavigationAgent2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isTargetReachable*(self: NavigationAgent2D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -346,7 +346,7 @@ proc isTargetReachable*(self: NavigationAgent2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isNavigationFinished*(self: NavigationAgent2D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -354,7 +354,7 @@ proc isNavigationFinished*(self: NavigationAgent2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getFinalPosition*(self: NavigationAgent2D): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -362,7 +362,7 @@ proc getFinalPosition*(self: NavigationAgent2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 1497962370)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `avoidanceLayers=`*(self: NavigationAgent2D; layers: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -377,7 +377,7 @@ proc avoidanceLayers*(self: NavigationAgent2D): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `avoidanceMask=`*(self: NavigationAgent2D; mask: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -392,7 +392,7 @@ proc avoidanceMask*(self: NavigationAgent2D): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc setAvoidanceLayerValue*(self: NavigationAgent2D; layerNumber: int32; value: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -408,7 +408,7 @@ proc getAvoidanceLayerValue*(self: NavigationAgent2D; layerNumber: int32): Bool 
   var `?param` = [getPtr layerNumber]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setAvoidanceMaskValue*(self: NavigationAgent2D; maskNumber: int32; value: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -424,7 +424,7 @@ proc getAvoidanceMaskValue*(self: NavigationAgent2D; maskNumber: int32): Bool =
   var `?param` = [getPtr maskNumber]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `avoidancePriority=`*(self: NavigationAgent2D; priority: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -439,7 +439,7 @@ proc avoidancePriority*(self: NavigationAgent2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `debugEnabled=`*(self: NavigationAgent2D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -454,7 +454,7 @@ proc debugEnabled*(self: NavigationAgent2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `debugUseCustom=`*(self: NavigationAgent2D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -469,7 +469,7 @@ proc debugUseCustom*(self: NavigationAgent2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `debugPathCustomColor=`*(self: NavigationAgent2D; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -484,7 +484,7 @@ proc debugPathCustomColor*(self: NavigationAgent2D): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `debugPathCustomPointSize=`*(self: NavigationAgent2D; pointSize: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -499,7 +499,7 @@ proc debugPathCustomPointSize*(self: NavigationAgent2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `debugPathCustomLineWidth=`*(self: NavigationAgent2D; lineWidth: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -514,4 +514,4 @@ proc debugPathCustomLineWidth*(self: NavigationAgent2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationAgent2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

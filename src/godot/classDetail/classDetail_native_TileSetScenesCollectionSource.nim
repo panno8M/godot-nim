@@ -12,7 +12,7 @@ proc getSceneTilesCount*(self: TileSetScenesCollectionSource): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TileSetScenesCollectionSource, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getSceneTileId*(self: TileSetScenesCollectionSource; index: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -21,7 +21,7 @@ proc getSceneTileId*(self: TileSetScenesCollectionSource; index: int32): int32 =
   var `?param` = [getPtr index]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc hasSceneTileId*(self: TileSetScenesCollectionSource; id: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -30,7 +30,7 @@ proc hasSceneTileId*(self: TileSetScenesCollectionSource; id: int32): Bool =
   var `?param` = [getPtr id]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc createSceneTile*(self: TileSetScenesCollectionSource; packedScene: PackedScene; idOverride: int32 = -1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -39,7 +39,7 @@ proc createSceneTile*(self: TileSetScenesCollectionSource; packedScene: PackedSc
   var `?param` = [getPtr packedScene, getPtr idOverride]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setSceneTileId*(self: TileSetScenesCollectionSource; id: int32; newId: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -62,7 +62,7 @@ proc getSceneTileScene*(self: TileSetScenesCollectionSource; id: int32): PackedS
   var `?param` = [getPtr id]
   var ret: encoded PackedScene
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedScene)
+  (addr ret).decode_result(PackedScene)
 proc setSceneTileDisplayPlaceholder*(self: TileSetScenesCollectionSource; id: int32; displayPlaceholder: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -78,7 +78,7 @@ proc getSceneTileDisplayPlaceholder*(self: TileSetScenesCollectionSource; id: in
   var `?param` = [getPtr id]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc removeSceneTile*(self: TileSetScenesCollectionSource; id: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -93,4 +93,4 @@ proc getNextSceneTileId*(self: TileSetScenesCollectionSource): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TileSetScenesCollectionSource, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)

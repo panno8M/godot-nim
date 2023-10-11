@@ -13,7 +13,7 @@ proc connectNode*(self: GraphEdit; fromNode: StringName; fromPort: int32; toNode
   var `?param` = [getPtr fromNode, getPtr fromPort, getPtr toNode, getPtr toPort]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc isNodeConnected*(self: GraphEdit; fromNode: StringName; fromPort: int32; toNode: StringName; toPort: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc isNodeConnected*(self: GraphEdit; fromNode: StringName; fromPort: int32; to
   var `?param` = [getPtr fromNode, getPtr fromPort, getPtr toNode, getPtr toPort]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc disconnectNode*(self: GraphEdit; fromNode: StringName; fromPort: int32; toNode: StringName; toPort: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -44,7 +44,7 @@ proc getConnectionList*(self: GraphEdit): TypedArray[Dictionary] =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 3995934104)
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Dictionary])
+  (addr ret).decode_result(TypedArray[Dictionary])
 proc clearConnections*(self: GraphEdit) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc scrollOfs*(self: GraphEdit): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `scrollOfs=`*(self: GraphEdit; offset: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -122,7 +122,7 @@ proc isValidConnectionType*(self: GraphEdit; fromType: int32; toType: int32): Bo
   var `?param` = [getPtr fromType, getPtr toType]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getConnectionLine*(self: GraphEdit; fromNode: Vector2; toNode: Vector2): PackedVector2Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -131,7 +131,7 @@ proc getConnectionLine*(self: GraphEdit; fromNode: Vector2; toNode: Vector2): Pa
   var `?param` = [getPtr fromNode, getPtr toNode]
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedVector2Array)
+  (addr ret).decode_result(PackedVector2Array)
 proc `panningScheme=`*(self: GraphEdit; scheme: GraphEdit_PanningScheme) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -146,7 +146,7 @@ proc panningScheme*(self: GraphEdit): GraphEdit_PanningScheme =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 549924446)
   var ret: encoded GraphEdit_PanningScheme
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(GraphEdit_PanningScheme)
+  (addr ret).decode_result(GraphEdit_PanningScheme)
 proc `zoom=`*(self: GraphEdit; zoom: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -161,7 +161,7 @@ proc zoom*(self: GraphEdit): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `zoomMin=`*(self: GraphEdit; zoomMin: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -176,7 +176,7 @@ proc zoomMin*(self: GraphEdit): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `zoomMax=`*(self: GraphEdit; zoomMax: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -191,7 +191,7 @@ proc zoomMax*(self: GraphEdit): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `zoomStep=`*(self: GraphEdit; zoomStep: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -206,7 +206,7 @@ proc zoomStep*(self: GraphEdit): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `showZoomLabel=`*(self: GraphEdit; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -221,7 +221,7 @@ proc isShowingZoomLabel*(self: GraphEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `snap=`*(self: GraphEdit; pixels: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -236,7 +236,7 @@ proc snap*(self: GraphEdit): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `useSnap=`*(self: GraphEdit; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -251,7 +251,7 @@ proc isUsingSnap*(self: GraphEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `connectionLinesCurvature=`*(self: GraphEdit; curvature: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -266,7 +266,7 @@ proc connectionLinesCurvature*(self: GraphEdit): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `connectionLinesThickness=`*(self: GraphEdit; pixels: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -281,7 +281,7 @@ proc connectionLinesThickness*(self: GraphEdit): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `connectionLinesAntialiased=`*(self: GraphEdit; pixels: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -296,7 +296,7 @@ proc isConnectionLinesAntialiased*(self: GraphEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `minimapSize=`*(self: GraphEdit; size: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -311,7 +311,7 @@ proc minimapSize*(self: GraphEdit): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `minimapOpacity=`*(self: GraphEdit; opacity: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -326,7 +326,7 @@ proc minimapOpacity*(self: GraphEdit): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `minimapEnabled=`*(self: GraphEdit; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -341,7 +341,7 @@ proc isMinimapEnabled*(self: GraphEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `arrangeNodesButtonHidden=`*(self: GraphEdit; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -356,7 +356,7 @@ proc isArrangeNodesButtonHidden*(self: GraphEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `rightDisconnects=`*(self: GraphEdit; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -371,7 +371,7 @@ proc isRightDisconnectsEnabled*(self: GraphEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getZoomHbox*(self: GraphEdit): HBoxContainer =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -379,7 +379,7 @@ proc getZoomHbox*(self: GraphEdit): HBoxContainer =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphEdit, addr name, 3590609951)
   var ret: encoded HBoxContainer
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(HBoxContainer)
+  (addr ret).decode_result(HBoxContainer)
 proc arrangeNodes*(self: GraphEdit) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

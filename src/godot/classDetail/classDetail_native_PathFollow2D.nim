@@ -19,7 +19,7 @@ proc progress*(self: PathFollow2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className PathFollow2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `hOffset=`*(self: PathFollow2D; hOffset: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc hOffset*(self: PathFollow2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className PathFollow2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `vOffset=`*(self: PathFollow2D; vOffset: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc vOffset*(self: PathFollow2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className PathFollow2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `progressRatio=`*(self: PathFollow2D; ratio: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc progressRatio*(self: PathFollow2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className PathFollow2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `rotates=`*(self: PathFollow2D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc isRotating*(self: PathFollow2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PathFollow2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `cubicInterpolation=`*(self: PathFollow2D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc cubicInterpolation*(self: PathFollow2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PathFollow2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `loop=`*(self: PathFollow2D; loop: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,4 +109,4 @@ proc hasLoop*(self: PathFollow2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PathFollow2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

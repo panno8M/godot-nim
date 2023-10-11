@@ -12,7 +12,7 @@ proc getBaseEditor*(self: ScriptEditorBase): Control =
     methodbind = interface_ClassDB_getMethodBind(addr className ScriptEditorBase, addr name, 2783021301)
   var ret: encoded Control
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Control)
+  (addr ret).decode_result(Control)
 proc addSyntaxHighlighter*(self: ScriptEditorBase; highlighter: EditorSyntaxHighlighter) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

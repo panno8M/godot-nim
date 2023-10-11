@@ -19,7 +19,7 @@ proc tarnode*(self: SkeletonModification2DJiggle): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DJiggle, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc `jiggleDataChainLength=`*(self: SkeletonModification2DJiggle; length: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc jiggleDataChainLength*(self: SkeletonModification2DJiggle): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DJiggle, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `stiffness=`*(self: SkeletonModification2DJiggle; stiffness: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc stiffness*(self: SkeletonModification2DJiggle): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DJiggle, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `mass=`*(self: SkeletonModification2DJiggle; mass: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc mass*(self: SkeletonModification2DJiggle): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DJiggle, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `damping=`*(self: SkeletonModification2DJiggle; damping: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc damping*(self: SkeletonModification2DJiggle): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DJiggle, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `useGravity=`*(self: SkeletonModification2DJiggle; useGravity: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc useGravity*(self: SkeletonModification2DJiggle): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DJiggle, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `gravity=`*(self: SkeletonModification2DJiggle; gravity: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc gravity*(self: SkeletonModification2DJiggle): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DJiggle, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc setUseColliders*(self: SkeletonModification2DJiggle; useColliders: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc getUseColliders*(self: SkeletonModification2DJiggle): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DJiggle, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setCollisionMask*(self: SkeletonModification2DJiggle; collisionMask: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc getCollisionMask*(self: SkeletonModification2DJiggle): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DJiggle, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setJiggleJointBone2dNode*(self: SkeletonModification2DJiggle; jointIdx: int32; bone2dNode: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -155,7 +155,7 @@ proc getJiggleJointBone2dNode*(self: SkeletonModification2DJiggle; jointIdx: int
   var `?param` = [getPtr jointIdx]
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc setJiggleJointBoneIndex*(self: SkeletonModification2DJiggle; jointIdx: int32; boneIdx: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -171,7 +171,7 @@ proc getJiggleJointBoneIndex*(self: SkeletonModification2DJiggle; jointIdx: int3
   var `?param` = [getPtr jointIdx]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setJiggleJointOverride*(self: SkeletonModification2DJiggle; jointIdx: int32; override: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -187,7 +187,7 @@ proc getJiggleJointOverride*(self: SkeletonModification2DJiggle; jointIdx: int32
   var `?param` = [getPtr jointIdx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setJiggleJointStiffness*(self: SkeletonModification2DJiggle; jointIdx: int32; stiffness: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -203,7 +203,7 @@ proc getJiggleJointStiffness*(self: SkeletonModification2DJiggle; jointIdx: int3
   var `?param` = [getPtr jointIdx]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc setJiggleJointMass*(self: SkeletonModification2DJiggle; jointIdx: int32; mass: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -219,7 +219,7 @@ proc getJiggleJointMass*(self: SkeletonModification2DJiggle; jointIdx: int32): F
   var `?param` = [getPtr jointIdx]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc setJiggleJointDamping*(self: SkeletonModification2DJiggle; jointIdx: int32; damping: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -235,7 +235,7 @@ proc getJiggleJointDamping*(self: SkeletonModification2DJiggle; jointIdx: int32)
   var `?param` = [getPtr jointIdx]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc setJiggleJointUseGravity*(self: SkeletonModification2DJiggle; jointIdx: int32; useGravity: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -251,7 +251,7 @@ proc getJiggleJointUseGravity*(self: SkeletonModification2DJiggle; jointIdx: int
   var `?param` = [getPtr jointIdx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setJiggleJointGravity*(self: SkeletonModification2DJiggle; jointIdx: int32; gravity: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -267,4 +267,4 @@ proc getJiggleJointGravity*(self: SkeletonModification2DJiggle; jointIdx: int32)
   var `?param` = [getPtr jointIdx]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)

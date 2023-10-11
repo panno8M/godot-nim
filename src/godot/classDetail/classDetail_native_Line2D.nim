@@ -19,7 +19,7 @@ proc points*(self: Line2D): PackedVector2Array =
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 2961356807)
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedVector2Array)
+  (addr ret).decode_result(PackedVector2Array)
 proc setPointPosition*(self: Line2D; index: int32; position: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -35,7 +35,7 @@ proc getPointPosition*(self: Line2D; index: int32): Vector2 =
   var `?param` = [getPtr index]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getPointCount*(self: Line2D): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -43,7 +43,7 @@ proc getPointCount*(self: Line2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc addPoint*(self: Line2D; position: Vector2; index: int32 = -1) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -78,7 +78,7 @@ proc width*(self: Line2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `curve=`*(self: Line2D; curve: Curve) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -93,7 +93,7 @@ proc curve*(self: Line2D): Curve =
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 2460114913)
   var ret: encoded Curve
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Curve)
+  (addr ret).decode_result(Curve)
 proc `defaultColor=`*(self: Line2D; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -108,7 +108,7 @@ proc defaultColor*(self: Line2D): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `gradient=`*(self: Line2D; color: Gradient) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -123,7 +123,7 @@ proc gradient*(self: Line2D): Gradient =
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 132272999)
   var ret: encoded Gradient
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Gradient)
+  (addr ret).decode_result(Gradient)
 proc `texture=`*(self: Line2D; texture: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -138,7 +138,7 @@ proc texture*(self: Line2D): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc `textureMode=`*(self: Line2D; mode: Line2D_LineTextureMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -153,7 +153,7 @@ proc textureMode*(self: Line2D): Line2D_LineTextureMode =
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 2341040722)
   var ret: encoded Line2D_LineTextureMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Line2D_LineTextureMode)
+  (addr ret).decode_result(Line2D_LineTextureMode)
 proc `jointMode=`*(self: Line2D; mode: Line2D_LineJointMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -168,7 +168,7 @@ proc jointMode*(self: Line2D): Line2D_LineJointMode =
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 2546544037)
   var ret: encoded Line2D_LineJointMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Line2D_LineJointMode)
+  (addr ret).decode_result(Line2D_LineJointMode)
 proc `beginCapMode=`*(self: Line2D; mode: Line2D_LineCapMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -183,7 +183,7 @@ proc beginCapMode*(self: Line2D): Line2D_LineCapMode =
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 1107511441)
   var ret: encoded Line2D_LineCapMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Line2D_LineCapMode)
+  (addr ret).decode_result(Line2D_LineCapMode)
 proc `endCapMode=`*(self: Line2D; mode: Line2D_LineCapMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -198,7 +198,7 @@ proc endCapMode*(self: Line2D): Line2D_LineCapMode =
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 1107511441)
   var ret: encoded Line2D_LineCapMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Line2D_LineCapMode)
+  (addr ret).decode_result(Line2D_LineCapMode)
 proc `sharpLimit=`*(self: Line2D; limit: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -213,7 +213,7 @@ proc sharpLimit*(self: Line2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `roundPrecision=`*(self: Line2D; precision: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -228,7 +228,7 @@ proc roundPrecision*(self: Line2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `antialiased=`*(self: Line2D; antialiased: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -243,4 +243,4 @@ proc antialiased*(self: Line2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

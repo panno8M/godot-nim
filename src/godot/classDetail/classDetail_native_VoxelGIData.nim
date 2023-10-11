@@ -19,7 +19,7 @@ proc getBounds*(self: VoxelGIData): AABB =
     methodbind = interface_ClassDB_getMethodBind(addr className VoxelGIData, addr name, 1068685055)
   var ret: encoded AABB
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AABB)
+  (addr ret).decode_result(AABB)
 proc getOctreeSize*(self: VoxelGIData): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc getOctreeSize*(self: VoxelGIData): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className VoxelGIData, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc getToCellXform*(self: VoxelGIData): Transform3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -35,7 +35,7 @@ proc getToCellXform*(self: VoxelGIData): Transform3D =
     methodbind = interface_ClassDB_getMethodBind(addr className VoxelGIData, addr name, 3229777777)
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc getOctreeCells*(self: VoxelGIData): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -43,7 +43,7 @@ proc getOctreeCells*(self: VoxelGIData): PackedByteArray =
     methodbind = interface_ClassDB_getMethodBind(addr className VoxelGIData, addr name, 2362200018)
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)
 proc getDataCells*(self: VoxelGIData): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -51,7 +51,7 @@ proc getDataCells*(self: VoxelGIData): PackedByteArray =
     methodbind = interface_ClassDB_getMethodBind(addr className VoxelGIData, addr name, 2362200018)
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)
 proc getLevelCounts*(self: VoxelGIData): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -59,7 +59,7 @@ proc getLevelCounts*(self: VoxelGIData): PackedInt32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className VoxelGIData, addr name, 1930428628)
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc `dynamicRange=`*(self: VoxelGIData; dynamicRange: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -74,7 +74,7 @@ proc dynamicRange*(self: VoxelGIData): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className VoxelGIData, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `energy=`*(self: VoxelGIData; energy: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -89,7 +89,7 @@ proc energy*(self: VoxelGIData): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className VoxelGIData, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `bias=`*(self: VoxelGIData; bias: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -104,7 +104,7 @@ proc bias*(self: VoxelGIData): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className VoxelGIData, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `normalBias=`*(self: VoxelGIData; bias: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -119,7 +119,7 @@ proc normalBias*(self: VoxelGIData): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className VoxelGIData, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `propagation=`*(self: VoxelGIData; propagation: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -134,7 +134,7 @@ proc propagation*(self: VoxelGIData): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className VoxelGIData, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `interior=`*(self: VoxelGIData; interior: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -149,7 +149,7 @@ proc isInterior*(self: VoxelGIData): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className VoxelGIData, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `useTwoBounces=`*(self: VoxelGIData; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -164,4 +164,4 @@ proc isUsingTwoBounces*(self: VoxelGIData): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className VoxelGIData, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

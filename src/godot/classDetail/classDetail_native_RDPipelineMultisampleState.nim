@@ -19,7 +19,7 @@ proc sampleCount*(self: RDPipelineMultisampleState): RenderingDevice_TextureSamp
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineMultisampleState, addr name, 407791724)
   var ret: encoded RenderingDevice_TextureSamples
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_TextureSamples)
+  (addr ret).decode_result(RenderingDevice_TextureSamples)
 proc `enableSampleShading=`*(self: RDPipelineMultisampleState; pMember: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc enableSampleShading*(self: RDPipelineMultisampleState): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineMultisampleState, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `minSampleShading=`*(self: RDPipelineMultisampleState; pMember: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc minSampleShading*(self: RDPipelineMultisampleState): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineMultisampleState, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `enableAlphaToCoverage=`*(self: RDPipelineMultisampleState; pMember: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc enableAlphaToCoverage*(self: RDPipelineMultisampleState): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineMultisampleState, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `enableAlphaToOne=`*(self: RDPipelineMultisampleState; pMember: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc enableAlphaToOne*(self: RDPipelineMultisampleState): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineMultisampleState, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `sampleMasks=`*(self: RDPipelineMultisampleState; masks: TypedArray[Int]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,4 +94,4 @@ proc sampleMasks*(self: RDPipelineMultisampleState): TypedArray[Int] =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineMultisampleState, addr name, 3995934104)
   var ret: encoded TypedArray[Int]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Int])
+  (addr ret).decode_result(TypedArray[Int])

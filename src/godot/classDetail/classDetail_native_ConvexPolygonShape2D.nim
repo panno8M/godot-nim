@@ -26,4 +26,4 @@ proc points*(self: ConvexPolygonShape2D): PackedVector2Array =
     methodbind = interface_ClassDB_getMethodBind(addr className ConvexPolygonShape2D, addr name, 2961356807)
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedVector2Array)
+  (addr ret).decode_result(PackedVector2Array)

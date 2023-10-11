@@ -27,7 +27,7 @@ proc getNode*(self: AnimationNodeStateMachine; name: StringName): AnimationNode 
   var `?param` = [getPtr name]
   var ret: encoded AnimationNode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(AnimationNode)
+  (addr ret).decode_result(AnimationNode)
 proc removeNode*(self: AnimationNodeStateMachine; name: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -50,7 +50,7 @@ proc hasNode*(self: AnimationNodeStateMachine; name: StringName): Bool =
   var `?param` = [getPtr name]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getNodeName*(self: AnimationNodeStateMachine; node: AnimationNode): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -59,7 +59,7 @@ proc getNodeName*(self: AnimationNodeStateMachine; node: AnimationNode): StringN
   var `?param` = [getPtr node]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc setNodePosition*(self: AnimationNodeStateMachine; name: StringName; position: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -75,7 +75,7 @@ proc getNodePosition*(self: AnimationNodeStateMachine; name: StringName): Vector
   var `?param` = [getPtr name]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc hasTransition*(self: AnimationNodeStateMachine; `from`: StringName; to: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -84,7 +84,7 @@ proc hasTransition*(self: AnimationNodeStateMachine; `from`: StringName; to: Str
   var `?param` = [getPtr `from`, getPtr to]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc addTransition*(self: AnimationNodeStateMachine; `from`: StringName; to: StringName; transition: AnimationNodeStateMachineTransition) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -100,7 +100,7 @@ proc getTransition*(self: AnimationNodeStateMachine; idx: int32): AnimationNodeS
   var `?param` = [getPtr idx]
   var ret: encoded AnimationNodeStateMachineTransition
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(AnimationNodeStateMachineTransition)
+  (addr ret).decode_result(AnimationNodeStateMachineTransition)
 proc getTransitionFrom*(self: AnimationNodeStateMachine; idx: int32): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc getTransitionFrom*(self: AnimationNodeStateMachine; idx: int32): StringName
   var `?param` = [getPtr idx]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc getTransitionTo*(self: AnimationNodeStateMachine; idx: int32): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -118,7 +118,7 @@ proc getTransitionTo*(self: AnimationNodeStateMachine; idx: int32): StringName =
   var `?param` = [getPtr idx]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc getTransitionCount*(self: AnimationNodeStateMachine): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -126,7 +126,7 @@ proc getTransitionCount*(self: AnimationNodeStateMachine): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachine, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc removeTransitionByIndex*(self: AnimationNodeStateMachine; idx: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -155,7 +155,7 @@ proc getGraphOffset*(self: AnimationNodeStateMachine): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachine, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `stateMachineType=`*(self: AnimationNodeStateMachine; stateMachineType: AnimationNodeStateMachine_StateMachineType) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -170,7 +170,7 @@ proc stateMachineType*(self: AnimationNodeStateMachine): AnimationNodeStateMachi
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachine, addr name, 1140726469)
   var ret: encoded AnimationNodeStateMachine_StateMachineType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AnimationNodeStateMachine_StateMachineType)
+  (addr ret).decode_result(AnimationNodeStateMachine_StateMachineType)
 proc `allowTransitionToSelf=`*(self: AnimationNodeStateMachine; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -185,7 +185,7 @@ proc isAllowTransitionToSelf*(self: AnimationNodeStateMachine): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachine, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `reends=`*(self: AnimationNodeStateMachine; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -200,4 +200,4 @@ proc areEndsReset*(self: AnimationNodeStateMachine): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachine, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

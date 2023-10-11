@@ -20,7 +20,7 @@ proc getCellMode*(self: TreeItem; column: int32): TreeItem_TreeCellMode =
   var `?param` = [getPtr column]
   var ret: encoded TreeItem_TreeCellMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TreeItem_TreeCellMode)
+  (addr ret).decode_result(TreeItem_TreeCellMode)
 proc setEditMultiline*(self: TreeItem; column: int32; multiline: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -36,7 +36,7 @@ proc isEditMultiline*(self: TreeItem; column: int32): Bool =
   var `?param` = [getPtr column]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setChecked*(self: TreeItem; column: int32; checked: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -59,7 +59,7 @@ proc isChecked*(self: TreeItem; column: int32): Bool =
   var `?param` = [getPtr column]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isIndeterminate*(self: TreeItem; column: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -68,7 +68,7 @@ proc isIndeterminate*(self: TreeItem; column: int32): Bool =
   var `?param` = [getPtr column]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc propagateCheck*(self: TreeItem; column: int32; emitSignal: Bool = true) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -91,7 +91,7 @@ proc getText*(self: TreeItem; column: int32): String =
   var `?param` = [getPtr column]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc setTextDirection*(self: TreeItem; column: int32; direction: Control_TextDirection) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -107,7 +107,7 @@ proc getTextDirection*(self: TreeItem; column: int32): Control_TextDirection =
   var `?param` = [getPtr column]
   var ret: encoded Control_TextDirection
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Control_TextDirection)
+  (addr ret).decode_result(Control_TextDirection)
 proc setAutowrapMode*(self: TreeItem; column: int32; autowrapMode: TextServer_AutowrapMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -123,7 +123,7 @@ proc getAutowrapMode*(self: TreeItem; column: int32): TextServer_AutowrapMode =
   var `?param` = [getPtr column]
   var ret: encoded TextServer_AutowrapMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TextServer_AutowrapMode)
+  (addr ret).decode_result(TextServer_AutowrapMode)
 proc setStructuredTextBidiOverride*(self: TreeItem; column: int32; parser: TextServer_StructuredTextParser) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc getStructuredTextBidiOverride*(self: TreeItem; column: int32): TextServer_S
   var `?param` = [getPtr column]
   var ret: encoded TextServer_StructuredTextParser
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TextServer_StructuredTextParser)
+  (addr ret).decode_result(TextServer_StructuredTextParser)
 proc setStructuredTextBidiOverrideOptions*(self: TreeItem; column: int32; args: Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -155,7 +155,7 @@ proc getStructuredTextBidiOverrideOptions*(self: TreeItem; column: int32): Array
   var `?param` = [getPtr column]
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)
 proc setLanguage*(self: TreeItem; column: int32; language: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -171,7 +171,7 @@ proc getLanguage*(self: TreeItem; column: int32): String =
   var `?param` = [getPtr column]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc setSuffix*(self: TreeItem; column: int32; text: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -187,7 +187,7 @@ proc getSuffix*(self: TreeItem; column: int32): String =
   var `?param` = [getPtr column]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc setIcon*(self: TreeItem; column: int32; texture: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -203,7 +203,7 @@ proc getIcon*(self: TreeItem; column: int32): Texture2D =
   var `?param` = [getPtr column]
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc setIconRegion*(self: TreeItem; column: int32; region: Rect2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -219,7 +219,7 @@ proc getIconRegion*(self: TreeItem; column: int32): Rect2 =
   var `?param` = [getPtr column]
   var ret: encoded Rect2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Rect2)
+  (addr ret).decode_result(Rect2)
 proc setIconMaxWidth*(self: TreeItem; column: int32; width: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -235,7 +235,7 @@ proc getIconMaxWidth*(self: TreeItem; column: int32): int32 =
   var `?param` = [getPtr column]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setIconModulate*(self: TreeItem; column: int32; modulate: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -251,7 +251,7 @@ proc getIconModulate*(self: TreeItem; column: int32): Color =
   var `?param` = [getPtr column]
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc setRange*(self: TreeItem; column: int32; value: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -267,7 +267,7 @@ proc getRange*(self: TreeItem; column: int32): float64 =
   var `?param` = [getPtr column]
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc setRangeConfig*(self: TreeItem; column: int32; min: float64; max: float64; step: float64; expr: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -283,7 +283,7 @@ proc getRangeConfig*(self: TreeItem; column: int32): Dictionary =
   var `?param` = [getPtr column]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc setMetadata*(self: TreeItem; column: int32; meta: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -299,7 +299,7 @@ proc getMetadata*(self: TreeItem; column: int32): Variant =
   var `?param` = [getPtr column]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc setCustomDraw*(self: TreeItem; column: int32; `object`: Object; callback: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -321,7 +321,7 @@ proc isCollapsed*(self: TreeItem): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TreeItem, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setCollapsedRecursive*(self: TreeItem; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -337,7 +337,7 @@ proc isAnyCollapsed*(self: TreeItem; onlyVisible: Bool = false): Bool =
   var `?param` = [getPtr onlyVisible]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `visible=`*(self: TreeItem; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -352,7 +352,7 @@ proc isVisible*(self: TreeItem): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TreeItem, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc uncollapseTree*(self: TreeItem) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -373,7 +373,7 @@ proc customMinimumHeight*(self: TreeItem): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TreeItem, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setSelectable*(self: TreeItem; column: int32; selectable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -389,7 +389,7 @@ proc isSelectable*(self: TreeItem; column: int32): Bool =
   var `?param` = [getPtr column]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isSelected*(self: TreeItem; column: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -398,7 +398,7 @@ proc isSelected*(self: TreeItem; column: int32): Bool =
   var `?param` = [getPtr column]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc select*(self: TreeItem; column: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -428,7 +428,7 @@ proc isEditable*(self: TreeItem; column: int32): Bool =
   var `?param` = [getPtr column]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setCustomColor*(self: TreeItem; column: int32; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -444,7 +444,7 @@ proc getCustomColor*(self: TreeItem; column: int32): Color =
   var `?param` = [getPtr column]
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc clearCustomColor*(self: TreeItem; column: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -467,7 +467,7 @@ proc getCustomFont*(self: TreeItem; column: int32): Font =
   var `?param` = [getPtr column]
   var ret: encoded Font
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Font)
+  (addr ret).decode_result(Font)
 proc setCustomFontSize*(self: TreeItem; column: int32; fontSize: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -483,7 +483,7 @@ proc getCustomFontSize*(self: TreeItem; column: int32): int32 =
   var `?param` = [getPtr column]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setCustomBgColor*(self: TreeItem; column: int32; color: Color; justOutline: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -506,7 +506,7 @@ proc getCustomBgColor*(self: TreeItem; column: int32): Color =
   var `?param` = [getPtr column]
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc setCustomAsButton*(self: TreeItem; column: int32; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -522,7 +522,7 @@ proc isCustomSetAsButton*(self: TreeItem; column: int32): Bool =
   var `?param` = [getPtr column]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc addButton*(self: TreeItem; column: int32; button: Texture2D; id: int32 = -1; disabled: Bool = false; tooltipText: String = "") =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -538,7 +538,7 @@ proc getButtonCount*(self: TreeItem; column: int32): int32 =
   var `?param` = [getPtr column]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getButtonTooltipText*(self: TreeItem; column: int32; buttonIndex: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -547,7 +547,7 @@ proc getButtonTooltipText*(self: TreeItem; column: int32; buttonIndex: int32): S
   var `?param` = [getPtr column, getPtr buttonIndex]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getButtonId*(self: TreeItem; column: int32; buttonIndex: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -556,7 +556,7 @@ proc getButtonId*(self: TreeItem; column: int32; buttonIndex: int32): int32 =
   var `?param` = [getPtr column, getPtr buttonIndex]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getButtonById*(self: TreeItem; column: int32; id: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -565,7 +565,7 @@ proc getButtonById*(self: TreeItem; column: int32; id: int32): int32 =
   var `?param` = [getPtr column, getPtr id]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getButton*(self: TreeItem; column: int32; buttonIndex: int32): Texture2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -574,7 +574,7 @@ proc getButton*(self: TreeItem; column: int32; buttonIndex: int32): Texture2D =
   var `?param` = [getPtr column, getPtr buttonIndex]
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc setButton*(self: TreeItem; column: int32; buttonIndex: int32; button: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -611,7 +611,7 @@ proc isButtonDisabled*(self: TreeItem; column: int32; buttonIndex: int32): Bool 
   var `?param` = [getPtr column, getPtr buttonIndex]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setTooltipText*(self: TreeItem; column: int32; tooltip: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -627,7 +627,7 @@ proc getTooltipText*(self: TreeItem; column: int32): String =
   var `?param` = [getPtr column]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc setTextAlignment*(self: TreeItem; column: int32; textAlignment: HorizontalAlignment) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -643,7 +643,7 @@ proc getTextAlignment*(self: TreeItem; column: int32): HorizontalAlignment =
   var `?param` = [getPtr column]
   var ret: encoded HorizontalAlignment
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(HorizontalAlignment)
+  (addr ret).decode_result(HorizontalAlignment)
 proc setExpandRight*(self: TreeItem; column: int32; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -659,7 +659,7 @@ proc getExpandRight*(self: TreeItem; column: int32): Bool =
   var `?param` = [getPtr column]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `disableFolding=`*(self: TreeItem; disable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -674,7 +674,7 @@ proc isFoldingDisabled*(self: TreeItem): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TreeItem, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc createChild*(self: TreeItem; index: int32 = -1): TreeItem =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -683,7 +683,7 @@ proc createChild*(self: TreeItem; index: int32 = -1): TreeItem =
   var `?param` = [getPtr index]
   var ret: encoded TreeItem
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TreeItem)
+  (addr ret).decode_result(TreeItem)
 proc addChild*(self: TreeItem; child: TreeItem) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -705,7 +705,7 @@ proc getTree*(self: TreeItem): Tree =
     methodbind = interface_ClassDB_getMethodBind(addr className TreeItem, addr name, 2243340556)
   var ret: encoded Tree
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Tree)
+  (addr ret).decode_result(Tree)
 proc getNext*(self: TreeItem): TreeItem =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -713,7 +713,7 @@ proc getNext*(self: TreeItem): TreeItem =
     methodbind = interface_ClassDB_getMethodBind(addr className TreeItem, addr name, 1514277247)
   var ret: encoded TreeItem
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TreeItem)
+  (addr ret).decode_result(TreeItem)
 proc getPrev*(self: TreeItem): TreeItem =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -721,7 +721,7 @@ proc getPrev*(self: TreeItem): TreeItem =
     methodbind = interface_ClassDB_getMethodBind(addr className TreeItem, addr name, 2768121250)
   var ret: encoded TreeItem
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TreeItem)
+  (addr ret).decode_result(TreeItem)
 proc getParent*(self: TreeItem): TreeItem =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -729,7 +729,7 @@ proc getParent*(self: TreeItem): TreeItem =
     methodbind = interface_ClassDB_getMethodBind(addr className TreeItem, addr name, 1514277247)
   var ret: encoded TreeItem
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TreeItem)
+  (addr ret).decode_result(TreeItem)
 proc getFirstChild*(self: TreeItem): TreeItem =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -737,7 +737,7 @@ proc getFirstChild*(self: TreeItem): TreeItem =
     methodbind = interface_ClassDB_getMethodBind(addr className TreeItem, addr name, 1514277247)
   var ret: encoded TreeItem
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TreeItem)
+  (addr ret).decode_result(TreeItem)
 proc getNextInTree*(self: TreeItem; wrap: Bool = false): TreeItem =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -746,7 +746,7 @@ proc getNextInTree*(self: TreeItem; wrap: Bool = false): TreeItem =
   var `?param` = [getPtr wrap]
   var ret: encoded TreeItem
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TreeItem)
+  (addr ret).decode_result(TreeItem)
 proc getPrevInTree*(self: TreeItem; wrap: Bool = false): TreeItem =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -755,7 +755,7 @@ proc getPrevInTree*(self: TreeItem; wrap: Bool = false): TreeItem =
   var `?param` = [getPtr wrap]
   var ret: encoded TreeItem
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TreeItem)
+  (addr ret).decode_result(TreeItem)
 proc getNextVisible*(self: TreeItem; wrap: Bool = false): TreeItem =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -764,7 +764,7 @@ proc getNextVisible*(self: TreeItem; wrap: Bool = false): TreeItem =
   var `?param` = [getPtr wrap]
   var ret: encoded TreeItem
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TreeItem)
+  (addr ret).decode_result(TreeItem)
 proc getPrevVisible*(self: TreeItem; wrap: Bool = false): TreeItem =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -773,7 +773,7 @@ proc getPrevVisible*(self: TreeItem; wrap: Bool = false): TreeItem =
   var `?param` = [getPtr wrap]
   var ret: encoded TreeItem
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TreeItem)
+  (addr ret).decode_result(TreeItem)
 proc getChild*(self: TreeItem; index: int32): TreeItem =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -782,7 +782,7 @@ proc getChild*(self: TreeItem; index: int32): TreeItem =
   var `?param` = [getPtr index]
   var ret: encoded TreeItem
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TreeItem)
+  (addr ret).decode_result(TreeItem)
 proc getChildCount*(self: TreeItem): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -790,7 +790,7 @@ proc getChildCount*(self: TreeItem): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TreeItem, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getChildren*(self: TreeItem): TypedArray[TreeItem] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -798,7 +798,7 @@ proc getChildren*(self: TreeItem): TypedArray[TreeItem] =
     methodbind = interface_ClassDB_getMethodBind(addr className TreeItem, addr name, 2915620761)
   var ret: encoded TypedArray[TreeItem]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[TreeItem])
+  (addr ret).decode_result(TypedArray[TreeItem])
 proc getIndex*(self: TreeItem): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -806,7 +806,7 @@ proc getIndex*(self: TreeItem): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TreeItem, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc moveBefore*(self: TreeItem; item: TreeItem) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

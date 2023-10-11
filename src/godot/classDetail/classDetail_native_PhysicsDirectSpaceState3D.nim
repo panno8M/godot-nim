@@ -13,7 +13,7 @@ proc intersectPoint*(self: PhysicsDirectSpaceState3D; parameters: PhysicsPointQu
   var `?param` = [getPtr parameters, getPtr maxRetvals]
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[Dictionary])
+  (addr ret).decode_result(TypedArray[Dictionary])
 proc intersectRay*(self: PhysicsDirectSpaceState3D; parameters: PhysicsRayQueryParameters3D): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc intersectRay*(self: PhysicsDirectSpaceState3D; parameters: PhysicsRayQueryP
   var `?param` = [getPtr parameters]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc intersectShape*(self: PhysicsDirectSpaceState3D; parameters: PhysicsShapeQueryParameters3D; maxRetvals: int32 = 32): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -31,7 +31,7 @@ proc intersectShape*(self: PhysicsDirectSpaceState3D; parameters: PhysicsShapeQu
   var `?param` = [getPtr parameters, getPtr maxRetvals]
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[Dictionary])
+  (addr ret).decode_result(TypedArray[Dictionary])
 proc castMotion*(self: PhysicsDirectSpaceState3D; parameters: PhysicsShapeQueryParameters3D): PackedFloat32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -40,7 +40,7 @@ proc castMotion*(self: PhysicsDirectSpaceState3D; parameters: PhysicsShapeQueryP
   var `?param` = [getPtr parameters]
   var ret: encoded PackedFloat32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedFloat32Array)
+  (addr ret).decode_result(PackedFloat32Array)
 proc collideShape*(self: PhysicsDirectSpaceState3D; parameters: PhysicsShapeQueryParameters3D; maxRetvals: int32 = 32): TypedArray[Vector3] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc collideShape*(self: PhysicsDirectSpaceState3D; parameters: PhysicsShapeQuer
   var `?param` = [getPtr parameters, getPtr maxRetvals]
   var ret: encoded TypedArray[Vector3]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[Vector3])
+  (addr ret).decode_result(TypedArray[Vector3])
 proc getRestInfo*(self: PhysicsDirectSpaceState3D; parameters: PhysicsShapeQueryParameters3D): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -58,4 +58,4 @@ proc getRestInfo*(self: PhysicsDirectSpaceState3D; parameters: PhysicsShapeQuery
   var `?param` = [getPtr parameters]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)

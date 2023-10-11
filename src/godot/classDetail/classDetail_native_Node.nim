@@ -32,7 +32,7 @@ proc name*(self: Node): StringName =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 2002593661)
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc addChild*(self: Node; node: Node; forceReadableName: Bool = false; internal: Node_InternalMode = internalModeDisabled) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -62,7 +62,7 @@ proc getChildCount*(self: Node; includeInternal: Bool = false): int32 =
   var `?param` = [getPtr includeInternal]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getChildren*(self: Node; includeInternal: Bool = false): TypedArray[Node] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -71,7 +71,7 @@ proc getChildren*(self: Node; includeInternal: Bool = false): TypedArray[Node] =
   var `?param` = [getPtr includeInternal]
   var ret: encoded TypedArray[Node]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[Node])
+  (addr ret).decode_result(TypedArray[Node])
 proc getChild*(self: Node; idx: int32; includeInternal: Bool = false): Node =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -80,7 +80,7 @@ proc getChild*(self: Node; idx: int32; includeInternal: Bool = false): Node =
   var `?param` = [getPtr idx, getPtr includeInternal]
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Node)
+  (addr ret).decode_result(Node)
 proc hasNode*(self: Node; path: NodePath): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -89,7 +89,7 @@ proc hasNode*(self: Node; path: NodePath): Bool =
   var `?param` = [getPtr path]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getNode*(self: Node; path: NodePath): Node =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -98,7 +98,7 @@ proc getNode*(self: Node; path: NodePath): Node =
   var `?param` = [getPtr path]
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Node)
+  (addr ret).decode_result(Node)
 proc getNodeOrNull*(self: Node; path: NodePath): Node =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -107,7 +107,7 @@ proc getNodeOrNull*(self: Node; path: NodePath): Node =
   var `?param` = [getPtr path]
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Node)
+  (addr ret).decode_result(Node)
 proc getParent*(self: Node): Node =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -115,7 +115,7 @@ proc getParent*(self: Node): Node =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 3160264692)
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Node)
+  (addr ret).decode_result(Node)
 proc findChild*(self: Node; pattern: String; recursive: Bool = true; owned: Bool = true): Node =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc findChild*(self: Node; pattern: String; recursive: Bool = true; owned: Bool
   var `?param` = [getPtr pattern, getPtr recursive, getPtr owned]
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Node)
+  (addr ret).decode_result(Node)
 proc findChildren*(self: Node; pattern: String; `type`: String = ""; recursive: Bool = true; owned: Bool = true): TypedArray[Node] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -133,7 +133,7 @@ proc findChildren*(self: Node; pattern: String; `type`: String = ""; recursive: 
   var `?param` = [getPtr pattern, getPtr `type`, getPtr recursive, getPtr owned]
   var ret: encoded TypedArray[Node]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[Node])
+  (addr ret).decode_result(TypedArray[Node])
 proc findParent*(self: Node; pattern: String): Node =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -142,7 +142,7 @@ proc findParent*(self: Node; pattern: String): Node =
   var `?param` = [getPtr pattern]
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Node)
+  (addr ret).decode_result(Node)
 proc hasNodeAndResource*(self: Node; path: NodePath): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -151,7 +151,7 @@ proc hasNodeAndResource*(self: Node; path: NodePath): Bool =
   var `?param` = [getPtr path]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getNodeAndResource*(self: Node; path: NodePath): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -160,7 +160,7 @@ proc getNodeAndResource*(self: Node; path: NodePath): Array =
   var `?param` = [getPtr path]
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)
 proc isInsideTree*(self: Node): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -168,7 +168,7 @@ proc isInsideTree*(self: Node): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isAncestorOf*(self: Node; node: Node): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -177,7 +177,7 @@ proc isAncestorOf*(self: Node; node: Node): Bool =
   var `?param` = [getPtr node]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isGreaterThan*(self: Node; node: Node): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -186,7 +186,7 @@ proc isGreaterThan*(self: Node; node: Node): Bool =
   var `?param` = [getPtr node]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getPath*(self: Node): NodePath =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -194,7 +194,7 @@ proc getPath*(self: Node): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc getPathTo*(self: Node; node: Node; useUniquePath: Bool = false): NodePath =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -203,7 +203,7 @@ proc getPathTo*(self: Node; node: Node; useUniquePath: Bool = false): NodePath =
   var `?param` = [getPtr node, getPtr useUniquePath]
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc addToGroup*(self: Node; group: StringName; persistent: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -226,7 +226,7 @@ proc isInGroup*(self: Node; group: StringName): Bool =
   var `?param` = [getPtr group]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc moveChild*(self: Node; childNode: Node; toIndex: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -241,7 +241,7 @@ proc getGroups*(self: Node): TypedArray[StringName] =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 3995934104)
   var ret: encoded TypedArray[StringName]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[StringName])
+  (addr ret).decode_result(TypedArray[StringName])
 proc `owner=`*(self: Node; owner: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -256,7 +256,7 @@ proc owner*(self: Node): Node =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 3160264692)
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Node)
+  (addr ret).decode_result(Node)
 proc getIndex*(self: Node; includeInternal: Bool = false): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -265,7 +265,7 @@ proc getIndex*(self: Node; includeInternal: Bool = false): int32 =
   var `?param` = [getPtr includeInternal]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc printTree*(self: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -292,7 +292,7 @@ proc sceneFilePath*(self: Node): String =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc propagateNotification*(self: Node; what: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -321,7 +321,7 @@ proc getPhysicsProcessDeltaTime*(self: Node): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc isPhysicsProcessing*(self: Node): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -329,7 +329,7 @@ proc isPhysicsProcessing*(self: Node): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getProcessDeltaTime*(self: Node): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -337,7 +337,7 @@ proc getProcessDeltaTime*(self: Node): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc setProcess*(self: Node; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -359,7 +359,7 @@ proc processPriority*(self: Node): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `physicsProcessPriority=`*(self: Node; priority: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -374,7 +374,7 @@ proc physicsProcessPriority*(self: Node): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc isProcessing*(self: Node): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -382,7 +382,7 @@ proc isProcessing*(self: Node): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setProcessInput*(self: Node; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -397,7 +397,7 @@ proc isProcessingInput*(self: Node): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setProcessShortcutInput*(self: Node; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -412,7 +412,7 @@ proc isProcessingShortcutInput*(self: Node): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setProcessUnhandledInput*(self: Node; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -427,7 +427,7 @@ proc isProcessingUnhandledInput*(self: Node): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setProcessUnhandledKeyInput*(self: Node; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -442,7 +442,7 @@ proc isProcessingUnhandledKeyInput*(self: Node): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `processMode=`*(self: Node; mode: Node_ProcessMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -457,7 +457,7 @@ proc processMode*(self: Node): Node_ProcessMode =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 739966102)
   var ret: encoded Node_ProcessMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Node_ProcessMode)
+  (addr ret).decode_result(Node_ProcessMode)
 proc canProcess*(self: Node): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -465,7 +465,7 @@ proc canProcess*(self: Node): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `processThreadGroup=`*(self: Node; mode: Node_ProcessThreadGroup) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -480,7 +480,7 @@ proc processThreadGroup*(self: Node): Node_ProcessThreadGroup =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 1866404740)
   var ret: encoded Node_ProcessThreadGroup
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Node_ProcessThreadGroup)
+  (addr ret).decode_result(Node_ProcessThreadGroup)
 proc `processThreadMessages=`*(self: Node; flags: set[Node_ProcessThreadMessages]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -495,7 +495,7 @@ proc processThreadMessages*(self: Node): set[Node_ProcessThreadMessages] =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 4228993612)
   var ret: encoded set[Node_ProcessThreadMessages]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(set[Node_ProcessThreadMessages])
+  (addr ret).decode_result(set[Node_ProcessThreadMessages])
 proc `processThreadGroupOrder=`*(self: Node; order: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -510,7 +510,7 @@ proc processThreadGroupOrder*(self: Node): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setDisplayFolded*(self: Node; fold: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -525,7 +525,7 @@ proc isDisplayedFolded*(self: Node): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setProcessInternal*(self: Node; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -540,7 +540,7 @@ proc isProcessingInternal*(self: Node): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setPhysicsProcessInternal*(self: Node; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -555,7 +555,7 @@ proc isPhysicsProcessingInternal*(self: Node): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getWindow*(self: Node): Window =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -563,7 +563,7 @@ proc getWindow*(self: Node): Window =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 1757182445)
   var ret: encoded Window
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Window)
+  (addr ret).decode_result(Window)
 proc getLastExclusiveWindow*(self: Node): Window =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -571,7 +571,7 @@ proc getLastExclusiveWindow*(self: Node): Window =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 1757182445)
   var ret: encoded Window
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Window)
+  (addr ret).decode_result(Window)
 proc getTree*(self: Node): SceneTree =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -579,7 +579,7 @@ proc getTree*(self: Node): SceneTree =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 2958820483)
   var ret: encoded SceneTree
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(SceneTree)
+  (addr ret).decode_result(SceneTree)
 proc createTween*(self: Node): Tween =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -587,7 +587,7 @@ proc createTween*(self: Node): Tween =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 3426978995)
   var ret: encoded Tween
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Tween)
+  (addr ret).decode_result(Tween)
 proc duplicate*(self: Node; flags: int32 = 15): Node =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -596,7 +596,7 @@ proc duplicate*(self: Node; flags: int32 = 15): Node =
   var `?param` = [getPtr flags]
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Node)
+  (addr ret).decode_result(Node)
 proc replaceBy*(self: Node; node: Node; keepGroups: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -618,7 +618,7 @@ proc getSceneInstanceLoadPlaceholder*(self: Node): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setEditableInstance*(self: Node; node: Node; isEditable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -634,7 +634,7 @@ proc isEditableInstance*(self: Node; node: Node): Bool =
   var `?param` = [getPtr node]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getViewport*(self: Node): Viewport =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -642,7 +642,7 @@ proc getViewport*(self: Node): Viewport =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 3596683776)
   var ret: encoded Viewport
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Viewport)
+  (addr ret).decode_result(Viewport)
 proc queueFree*(self: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -662,7 +662,7 @@ proc isNodeReady*(self: Node): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setMultiplayerAuthority*(self: Node; id: int32; recursive: Bool = true) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -677,7 +677,7 @@ proc getMultiplayerAuthority*(self: Node): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc isMultiplayerAuthority*(self: Node): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -685,7 +685,7 @@ proc isMultiplayerAuthority*(self: Node): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc multiplayer*(self: Node): MultiplayerAPI =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -693,7 +693,7 @@ proc multiplayer*(self: Node): MultiplayerAPI =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 406750475)
   var ret: encoded MultiplayerAPI
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(MultiplayerAPI)
+  (addr ret).decode_result(MultiplayerAPI)
 proc rpcConfig*(self: Node; `method`: StringName; config: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -715,7 +715,7 @@ proc editorDescription*(self: Node): String =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `uniqueNameInOwner=`*(self: Node; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -730,7 +730,7 @@ proc isUniqueNameInOwner*(self: Node): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc rpc*(self: Node; `method`: StringName): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -739,7 +739,7 @@ proc rpc*(self: Node; `method`: StringName): Error =
   var `?param` = [getPtr `method`]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc rpcId*(self: Node; peerId: Int; `method`: StringName): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -748,7 +748,7 @@ proc rpcId*(self: Node; peerId: Int; `method`: StringName): Error =
   var `?param` = [getPtr peerId, getPtr `method`]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc updateConfigurationWarnings*(self: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -763,7 +763,7 @@ proc callDeferredThreadGroup*(self: Node; `method`: StringName): Variant =
   var `?param` = [getPtr `method`]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc setDeferredThreadGroup*(self: Node; property: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -786,7 +786,7 @@ proc callThreadSafe*(self: Node; `method`: StringName): Variant =
   var `?param` = [getPtr `method`]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc setThreadSafe*(self: Node; property: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

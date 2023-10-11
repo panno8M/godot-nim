@@ -19,7 +19,7 @@ proc tileset*(self: TileMap): TileSet =
     methodbind = interface_ClassDB_getMethodBind(addr className TileMap, addr name, 2678226422)
   var ret: encoded TileSet
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TileSet)
+  (addr ret).decode_result(TileSet)
 proc `quadrantSize=`*(self: TileMap; size: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc quadrantSize*(self: TileMap): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TileMap, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getLayersCount*(self: TileMap): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc getLayersCount*(self: TileMap): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TileMap, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc addLayer*(self: TileMap; toPosition: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc getLayerName*(self: TileMap; layer: int32): String =
   var `?param` = [getPtr layer]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc setLayerEnabled*(self: TileMap; layer: int32; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -95,7 +95,7 @@ proc isLayerEnabled*(self: TileMap; layer: int32): Bool =
   var `?param` = [getPtr layer]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setLayerModulate*(self: TileMap; layer: int32; modulate: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -111,7 +111,7 @@ proc getLayerModulate*(self: TileMap; layer: int32): Color =
   var `?param` = [getPtr layer]
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc setLayerYSortEnabled*(self: TileMap; layer: int32; ySortEnabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -127,7 +127,7 @@ proc isLayerYSortEnabled*(self: TileMap; layer: int32): Bool =
   var `?param` = [getPtr layer]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setLayerYSortOrigin*(self: TileMap; layer: int32; ySortOrigin: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -143,7 +143,7 @@ proc getLayerYSortOrigin*(self: TileMap; layer: int32): int32 =
   var `?param` = [getPtr layer]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setLayerZIndex*(self: TileMap; layer: int32; zIndex: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -159,7 +159,7 @@ proc getLayerZIndex*(self: TileMap; layer: int32): int32 =
   var `?param` = [getPtr layer]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `collisionAnimatable=`*(self: TileMap; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -174,7 +174,7 @@ proc isCollisionAnimatable*(self: TileMap): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TileMap, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `collisionVisibilityMode=`*(self: TileMap; collisionVisibilityMode: TileMap_VisibilityMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -189,7 +189,7 @@ proc collisionVisibilityMode*(self: TileMap): TileMap_VisibilityMode =
     methodbind = interface_ClassDB_getMethodBind(addr className TileMap, addr name, 2026313073)
   var ret: encoded TileMap_VisibilityMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TileMap_VisibilityMode)
+  (addr ret).decode_result(TileMap_VisibilityMode)
 proc `navigationVisibilityMode=`*(self: TileMap; navigationVisibilityMode: TileMap_VisibilityMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -204,7 +204,7 @@ proc navigationVisibilityMode*(self: TileMap): TileMap_VisibilityMode =
     methodbind = interface_ClassDB_getMethodBind(addr className TileMap, addr name, 2026313073)
   var ret: encoded TileMap_VisibilityMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TileMap_VisibilityMode)
+  (addr ret).decode_result(TileMap_VisibilityMode)
 proc setNavigationMap*(self: TileMap; layer: int32; map: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -220,7 +220,7 @@ proc getNavigationMap*(self: TileMap; layer: int32): RID =
   var `?param` = [getPtr layer]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc setCell*(self: TileMap; layer: int32; coords: Vector2i; sourceId: int32 = -1; atlasCoords: Vector2i = gdveci(-1, -1); alternativeTile: int32 = 0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -243,7 +243,7 @@ proc getCellSourceId*(self: TileMap; layer: int32; coords: Vector2i; useProxies:
   var `?param` = [getPtr layer, getPtr coords, getPtr useProxies]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getCellAtlasCoords*(self: TileMap; layer: int32; coords: Vector2i; useProxies: Bool = false): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -252,7 +252,7 @@ proc getCellAtlasCoords*(self: TileMap; layer: int32; coords: Vector2i; useProxi
   var `?param` = [getPtr layer, getPtr coords, getPtr useProxies]
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc getCellAlternativeTile*(self: TileMap; layer: int32; coords: Vector2i; useProxies: Bool = false): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -261,7 +261,7 @@ proc getCellAlternativeTile*(self: TileMap; layer: int32; coords: Vector2i; useP
   var `?param` = [getPtr layer, getPtr coords, getPtr useProxies]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getCellTileData*(self: TileMap; layer: int32; coords: Vector2i; useProxies: Bool = false): TileData =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -270,7 +270,7 @@ proc getCellTileData*(self: TileMap; layer: int32; coords: Vector2i; useProxies:
   var `?param` = [getPtr layer, getPtr coords, getPtr useProxies]
   var ret: encoded TileData
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TileData)
+  (addr ret).decode_result(TileData)
 proc getCoordsForBodyRid*(self: TileMap; body: RID): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -279,7 +279,7 @@ proc getCoordsForBodyRid*(self: TileMap; body: RID): Vector2i =
   var `?param` = [getPtr body]
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc getLayerForBodyRid*(self: TileMap; body: RID): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -288,7 +288,7 @@ proc getLayerForBodyRid*(self: TileMap; body: RID): int32 =
   var `?param` = [getPtr body]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getPattern*(self: TileMap; layer: int32; coordsArray: TypedArray[Vector2i]): TileMapPattern =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -297,7 +297,7 @@ proc getPattern*(self: TileMap; layer: int32; coordsArray: TypedArray[Vector2i])
   var `?param` = [getPtr layer, getPtr coordsArray]
   var ret: encoded TileMapPattern
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TileMapPattern)
+  (addr ret).decode_result(TileMapPattern)
 proc mapPattern*(self: TileMap; positionInTilemap: Vector2i; coordsInPattern: Vector2i; pattern: TileMapPattern): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -306,7 +306,7 @@ proc mapPattern*(self: TileMap; positionInTilemap: Vector2i; coordsInPattern: Ve
   var `?param` = [getPtr positionInTilemap, getPtr coordsInPattern, getPtr pattern]
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc setPattern*(self: TileMap; layer: int32; position: Vector2i; pattern: TileMapPattern) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -362,7 +362,7 @@ proc getSurroundingCells*(self: TileMap; coords: Vector2i): TypedArray[Vector2i]
   var `?param` = [getPtr coords]
   var ret: encoded TypedArray[Vector2i]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[Vector2i])
+  (addr ret).decode_result(TypedArray[Vector2i])
 proc getUsedCells*(self: TileMap; layer: int32): TypedArray[Vector2i] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -371,7 +371,7 @@ proc getUsedCells*(self: TileMap; layer: int32): TypedArray[Vector2i] =
   var `?param` = [getPtr layer]
   var ret: encoded TypedArray[Vector2i]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[Vector2i])
+  (addr ret).decode_result(TypedArray[Vector2i])
 proc getUsedCellsById*(self: TileMap; layer: int32; sourceId: int32 = -1; atlasCoords: Vector2i = gdveci(-1, -1); alternativeTile: int32 = -1): TypedArray[Vector2i] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -380,7 +380,7 @@ proc getUsedCellsById*(self: TileMap; layer: int32; sourceId: int32 = -1; atlasC
   var `?param` = [getPtr layer, getPtr sourceId, getPtr atlasCoords, getPtr alternativeTile]
   var ret: encoded TypedArray[Vector2i]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[Vector2i])
+  (addr ret).decode_result(TypedArray[Vector2i])
 proc getUsedRect*(self: TileMap): Rect2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -388,7 +388,7 @@ proc getUsedRect*(self: TileMap): Rect2i =
     methodbind = interface_ClassDB_getMethodBind(addr className TileMap, addr name, 2024035737)
   var ret: encoded Rect2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Rect2i)
+  (addr ret).decode_result(Rect2i)
 proc mapToLocal*(self: TileMap; mapPosition: Vector2i): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -397,7 +397,7 @@ proc mapToLocal*(self: TileMap; mapPosition: Vector2i): Vector2 =
   var `?param` = [getPtr mapPosition]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc localToMap*(self: TileMap; localPosition: Vector2): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -406,7 +406,7 @@ proc localToMap*(self: TileMap; localPosition: Vector2): Vector2i =
   var `?param` = [getPtr localPosition]
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc getNeighborCell*(self: TileMap; coords: Vector2i; neighbor: TileSet_CellNeighbor): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -415,4 +415,4 @@ proc getNeighborCell*(self: TileMap; coords: Vector2i; neighbor: TileSet_CellNei
   var `?param` = [getPtr coords, getPtr neighbor]
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)

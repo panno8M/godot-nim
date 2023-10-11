@@ -13,7 +13,7 @@ proc addInput*(self: AnimationNode; name: String): Bool =
   var `?param` = [getPtr name]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc removeInput*(self: AnimationNode; index: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -29,7 +29,7 @@ proc setInputName*(self: AnimationNode; input: int32; name: String): Bool =
   var `?param` = [getPtr input, getPtr name]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getInputName*(self: AnimationNode; input: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -38,7 +38,7 @@ proc getInputName*(self: AnimationNode; input: int32): String =
   var `?param` = [getPtr input]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getInputCount*(self: AnimationNode): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -46,7 +46,7 @@ proc getInputCount*(self: AnimationNode): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNode, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc findInput*(self: AnimationNode; name: String): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -55,7 +55,7 @@ proc findInput*(self: AnimationNode; name: String): int32 =
   var `?param` = [getPtr name]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setFilterPath*(self: AnimationNode; path: NodePath; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -71,7 +71,7 @@ proc isPathFiltered*(self: AnimationNode; path: NodePath): Bool =
   var `?param` = [getPtr path]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `filterEnabled=`*(self: AnimationNode; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -86,7 +86,7 @@ proc isFilterEnabled*(self: AnimationNode): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNode, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc blendAnimation*(self: AnimationNode; animation: StringName; time: float64; delta: float64; seeked: Bool; isExternalSeeking: Bool; blend: Float; loopedFlag: Animation_LoopedFlag = loopedFlagNone) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -102,7 +102,7 @@ proc blendNode*(self: AnimationNode; name: StringName; node: AnimationNode; time
   var `?param` = [getPtr name, getPtr node, getPtr time, getPtr seek, getPtr isExternalSeeking, getPtr blend, getPtr filter, getPtr sync, getPtr testOnly]
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc blendInput*(self: AnimationNode; inputIndex: int32; time: float64; seek: Bool; isExternalSeeking: Bool; blend: Float; filter: AnimationNode_FilterAction = filterIgnore; sync: Bool = true; testOnly: Bool = false): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -111,7 +111,7 @@ proc blendInput*(self: AnimationNode; inputIndex: int32; time: float64; seek: Bo
   var `?param` = [getPtr inputIndex, getPtr time, getPtr seek, getPtr isExternalSeeking, getPtr blend, getPtr filter, getPtr sync, getPtr testOnly]
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc setParameter*(self: AnimationNode; name: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -127,4 +127,4 @@ proc getParameter*(self: AnimationNode; name: StringName): Variant =
   var `?param` = [getPtr name]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)

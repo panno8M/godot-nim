@@ -19,7 +19,7 @@ proc isDefaultValueEnabled*(self: VisualShaderNodeColorParameter): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeColorParameter, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `defaultValue=`*(self: VisualShaderNodeColorParameter; value: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,4 +34,4 @@ proc defaultValue*(self: VisualShaderNodeColorParameter): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeColorParameter, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)

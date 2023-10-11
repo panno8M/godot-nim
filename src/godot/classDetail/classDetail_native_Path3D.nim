@@ -19,4 +19,4 @@ proc curve*(self: Path3D): Curve3D =
     methodbind = interface_ClassDB_getMethodBind(addr className Path3D, addr name, 4244715212)
   var ret: encoded Curve3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Curve3D)
+  (addr ret).decode_result(Curve3D)

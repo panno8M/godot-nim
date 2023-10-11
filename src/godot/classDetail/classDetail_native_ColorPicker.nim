@@ -19,7 +19,7 @@ proc pickColor*(self: ColorPicker): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPicker, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `deferredMode=`*(self: ColorPicker; mode: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc isDeferredMode*(self: ColorPicker): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPicker, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `colorMode=`*(self: ColorPicker; colorMode: ColorPicker_ColorModeType) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc colorMode*(self: ColorPicker): ColorPicker_ColorModeType =
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPicker, addr name, 392907674)
   var ret: encoded ColorPicker_ColorModeType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(ColorPicker_ColorModeType)
+  (addr ret).decode_result(ColorPicker_ColorModeType)
 proc `editAlpha=`*(self: ColorPicker; show: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc isEditingAlpha*(self: ColorPicker): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPicker, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `canAddSwatches=`*(self: ColorPicker; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc areSwatchesEnabled*(self: ColorPicker): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPicker, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `presetsVisible=`*(self: ColorPicker; visible: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc arePresetsVisible*(self: ColorPicker): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPicker, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `modesVisible=`*(self: ColorPicker; visible: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc areModesVisible*(self: ColorPicker): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPicker, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `samplerVisible=`*(self: ColorPicker; visible: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc isSamplerVisible*(self: ColorPicker): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPicker, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `slidersVisible=`*(self: ColorPicker; visible: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc areSlidersVisible*(self: ColorPicker): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPicker, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `hexVisible=`*(self: ColorPicker; visible: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -154,7 +154,7 @@ proc isHexVisible*(self: ColorPicker): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPicker, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc addPreset*(self: ColorPicker; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -176,7 +176,7 @@ proc getPresets*(self: ColorPicker): PackedColorArray =
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPicker, addr name, 1392750486)
   var ret: encoded PackedColorArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedColorArray)
+  (addr ret).decode_result(PackedColorArray)
 proc addRecentPreset*(self: ColorPicker; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -198,7 +198,7 @@ proc getRecentPresets*(self: ColorPicker): PackedColorArray =
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPicker, addr name, 1392750486)
   var ret: encoded PackedColorArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedColorArray)
+  (addr ret).decode_result(PackedColorArray)
 proc `pickerShape=`*(self: ColorPicker; shape: ColorPicker_PickerShapeType) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -213,4 +213,4 @@ proc pickerShape*(self: ColorPicker): ColorPicker_PickerShapeType =
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPicker, addr name, 1143229889)
   var ret: encoded ColorPicker_PickerShapeType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(ColorPicker_PickerShapeType)
+  (addr ret).decode_result(ColorPicker_PickerShapeType)

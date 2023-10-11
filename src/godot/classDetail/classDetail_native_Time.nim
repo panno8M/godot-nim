@@ -13,7 +13,7 @@ proc getDatetimeDictFromUnixTime*(self: Time; unixTimeVal: int64): Dictionary =
   var `?param` = [getPtr unixTimeVal]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc getDateDictFromUnixTime*(self: Time; unixTimeVal: int64): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc getDateDictFromUnixTime*(self: Time; unixTimeVal: int64): Dictionary =
   var `?param` = [getPtr unixTimeVal]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc getTimeDictFromUnixTime*(self: Time; unixTimeVal: int64): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -31,7 +31,7 @@ proc getTimeDictFromUnixTime*(self: Time; unixTimeVal: int64): Dictionary =
   var `?param` = [getPtr unixTimeVal]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc getDatetimeStringFromUnixTime*(self: Time; unixTimeVal: int64; useSpace: Bool = false): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -40,7 +40,7 @@ proc getDatetimeStringFromUnixTime*(self: Time; unixTimeVal: int64; useSpace: Bo
   var `?param` = [getPtr unixTimeVal, getPtr useSpace]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getDateStringFromUnixTime*(self: Time; unixTimeVal: int64): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc getDateStringFromUnixTime*(self: Time; unixTimeVal: int64): String =
   var `?param` = [getPtr unixTimeVal]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getTimeStringFromUnixTime*(self: Time; unixTimeVal: int64): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -58,7 +58,7 @@ proc getTimeStringFromUnixTime*(self: Time; unixTimeVal: int64): String =
   var `?param` = [getPtr unixTimeVal]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getDatetimeDictFromDatetimeString*(self: Time; datetime: String; weekday: Bool): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -67,7 +67,7 @@ proc getDatetimeDictFromDatetimeString*(self: Time; datetime: String; weekday: B
   var `?param` = [getPtr datetime, getPtr weekday]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc getDatetimeStringFromDatetimeDict*(self: Time; datetime: Dictionary; useSpace: Bool): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -76,7 +76,7 @@ proc getDatetimeStringFromDatetimeDict*(self: Time; datetime: Dictionary; useSpa
   var `?param` = [getPtr datetime, getPtr useSpace]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getUnixTimeFromDatetimeDict*(self: Time; datetime: Dictionary): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -85,7 +85,7 @@ proc getUnixTimeFromDatetimeDict*(self: Time; datetime: Dictionary): int64 =
   var `?param` = [getPtr datetime]
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int64)
+  (addr ret).decode_result(int64)
 proc getUnixTimeFromDatetimeString*(self: Time; datetime: String): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc getUnixTimeFromDatetimeString*(self: Time; datetime: String): int64 =
   var `?param` = [getPtr datetime]
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int64)
+  (addr ret).decode_result(int64)
 proc getOffsetStringFromOffsetMinutes*(self: Time; offsetMinutes: int64): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -103,7 +103,7 @@ proc getOffsetStringFromOffsetMinutes*(self: Time; offsetMinutes: int64): String
   var `?param` = [getPtr offsetMinutes]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getDatetimeDictFromSystem*(self: Time; utc: Bool = false): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -112,7 +112,7 @@ proc getDatetimeDictFromSystem*(self: Time; utc: Bool = false): Dictionary =
   var `?param` = [getPtr utc]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc getDateDictFromSystem*(self: Time; utc: Bool = false): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -121,7 +121,7 @@ proc getDateDictFromSystem*(self: Time; utc: Bool = false): Dictionary =
   var `?param` = [getPtr utc]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc getTimeDictFromSystem*(self: Time; utc: Bool = false): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -130,7 +130,7 @@ proc getTimeDictFromSystem*(self: Time; utc: Bool = false): Dictionary =
   var `?param` = [getPtr utc]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc getDatetimeStringFromSystem*(self: Time; utc: Bool = false; useSpace: Bool = false): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc getDatetimeStringFromSystem*(self: Time; utc: Bool = false; useSpace: Bool 
   var `?param` = [getPtr utc, getPtr useSpace]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getDateStringFromSystem*(self: Time; utc: Bool = false): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -148,7 +148,7 @@ proc getDateStringFromSystem*(self: Time; utc: Bool = false): String =
   var `?param` = [getPtr utc]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getTimeStringFromSystem*(self: Time; utc: Bool = false): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -157,7 +157,7 @@ proc getTimeStringFromSystem*(self: Time; utc: Bool = false): String =
   var `?param` = [getPtr utc]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getTimeZoneFromSystem*(self: Time): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -165,7 +165,7 @@ proc getTimeZoneFromSystem*(self: Time): Dictionary =
     methodbind = interface_ClassDB_getMethodBind(addr className Time, addr name, 3102165223)
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc getUnixTimeFromSystem*(self: Time): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -173,7 +173,7 @@ proc getUnixTimeFromSystem*(self: Time): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className Time, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc getTicksMsec*(self: Time): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -181,7 +181,7 @@ proc getTicksMsec*(self: Time): uint64 =
     methodbind = interface_ClassDB_getMethodBind(addr className Time, addr name, 3905245786)
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)
 proc getTicksUsec*(self: Time): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -189,4 +189,4 @@ proc getTicksUsec*(self: Time): uint64 =
     methodbind = interface_ClassDB_getMethodBind(addr className Time, addr name, 3905245786)
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)

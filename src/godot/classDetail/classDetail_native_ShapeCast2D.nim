@@ -19,7 +19,7 @@ proc isEnabled*(self: ShapeCast2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `shape=`*(self: ShapeCast2D; shape: Shape2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc shape*(self: ShapeCast2D): Shape2D =
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 522005891)
   var ret: encoded Shape2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Shape2D)
+  (addr ret).decode_result(Shape2D)
 proc `targetPosition=`*(self: ShapeCast2D; localPoint: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc tarposition*(self: ShapeCast2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `margin=`*(self: ShapeCast2D; margin: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc margin*(self: ShapeCast2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `maxResults=`*(self: ShapeCast2D; maxRetvals: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc maxResults*(self: ShapeCast2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc isColliding*(self: ShapeCast2D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -87,7 +87,7 @@ proc isColliding*(self: ShapeCast2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getCollisionCount*(self: ShapeCast2D): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -95,7 +95,7 @@ proc getCollisionCount*(self: ShapeCast2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc forceShapecastUpdate*(self: ShapeCast2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -110,7 +110,7 @@ proc getCollider*(self: ShapeCast2D; index: int32): Object =
   var `?param` = [getPtr index]
   var ret: encoded Object
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Object)
+  (addr ret).decode_result(Object)
 proc getColliderRid*(self: ShapeCast2D; index: int32): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -119,7 +119,7 @@ proc getColliderRid*(self: ShapeCast2D; index: int32): RID =
   var `?param` = [getPtr index]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc getColliderShape*(self: ShapeCast2D; index: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -128,7 +128,7 @@ proc getColliderShape*(self: ShapeCast2D; index: int32): int32 =
   var `?param` = [getPtr index]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getCollisionPoint*(self: ShapeCast2D; index: int32): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -137,7 +137,7 @@ proc getCollisionPoint*(self: ShapeCast2D; index: int32): Vector2 =
   var `?param` = [getPtr index]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getCollisionNormal*(self: ShapeCast2D; index: int32): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -146,7 +146,7 @@ proc getCollisionNormal*(self: ShapeCast2D; index: int32): Vector2 =
   var `?param` = [getPtr index]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getClosestCollisionSafeFraction*(self: ShapeCast2D): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -154,7 +154,7 @@ proc getClosestCollisionSafeFraction*(self: ShapeCast2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getClosestCollisionUnsafeFraction*(self: ShapeCast2D): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -162,7 +162,7 @@ proc getClosestCollisionUnsafeFraction*(self: ShapeCast2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc addExceptionRid*(self: ShapeCast2D; rid: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -211,7 +211,7 @@ proc collisionMask*(self: ShapeCast2D): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc setCollisionMaskValue*(self: ShapeCast2D; layerNumber: int32; value: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -227,7 +227,7 @@ proc getCollisionMaskValue*(self: ShapeCast2D; layerNumber: int32): Bool =
   var `?param` = [getPtr layerNumber]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `excludeParentBody=`*(self: ShapeCast2D; mask: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -242,7 +242,7 @@ proc excludeParentBody*(self: ShapeCast2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `collideWithAreas=`*(self: ShapeCast2D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -257,7 +257,7 @@ proc isCollideWithAreasEnabled*(self: ShapeCast2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `collideWithBodies=`*(self: ShapeCast2D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -272,4 +272,4 @@ proc isCollideWithBodiesEnabled*(self: ShapeCast2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

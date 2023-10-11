@@ -12,7 +12,7 @@ proc trackerType*(self: XRPositionalTracker): XRServer_TrackerType =
     methodbind = interface_ClassDB_getMethodBind(addr className XRPositionalTracker, addr name, 2784508102)
   var ret: encoded XRServer_TrackerType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(XRServer_TrackerType)
+  (addr ret).decode_result(XRServer_TrackerType)
 proc `trackerType=`*(self: XRPositionalTracker; `type`: XRServer_TrackerType) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc trackerName*(self: XRPositionalTracker): StringName =
     methodbind = interface_ClassDB_getMethodBind(addr className XRPositionalTracker, addr name, 2002593661)
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc `trackerName=`*(self: XRPositionalTracker; name: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc trackerDesc*(self: XRPositionalTracker): String =
     methodbind = interface_ClassDB_getMethodBind(addr className XRPositionalTracker, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `trackerDesc=`*(self: XRPositionalTracker; description: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc trackerProfile*(self: XRPositionalTracker): String =
     methodbind = interface_ClassDB_getMethodBind(addr className XRPositionalTracker, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `trackerProfile=`*(self: XRPositionalTracker; profile: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -72,7 +72,7 @@ proc trackerHand*(self: XRPositionalTracker): XRPositionalTracker_TrackerHand =
     methodbind = interface_ClassDB_getMethodBind(addr className XRPositionalTracker, addr name, 4181770860)
   var ret: encoded XRPositionalTracker_TrackerHand
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(XRPositionalTracker_TrackerHand)
+  (addr ret).decode_result(XRPositionalTracker_TrackerHand)
 proc `trackerHand=`*(self: XRPositionalTracker; hand: XRPositionalTracker_TrackerHand) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -88,7 +88,7 @@ proc hasPose*(self: XRPositionalTracker; name: StringName): Bool =
   var `?param` = [getPtr name]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getPose*(self: XRPositionalTracker; name: StringName): XRPose =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -97,7 +97,7 @@ proc getPose*(self: XRPositionalTracker; name: StringName): XRPose =
   var `?param` = [getPtr name]
   var ret: encoded XRPose
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(XRPose)
+  (addr ret).decode_result(XRPose)
 proc invalidatePose*(self: XRPositionalTracker; name: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -120,7 +120,7 @@ proc getInput*(self: XRPositionalTracker; name: StringName): Variant =
   var `?param` = [getPtr name]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc setInput*(self: XRPositionalTracker; name: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

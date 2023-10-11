@@ -19,4 +19,4 @@ proc file*(self: VideoStream): String =
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStream, addr name, 2841200299)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)

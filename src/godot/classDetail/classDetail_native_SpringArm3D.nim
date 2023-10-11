@@ -12,7 +12,7 @@ proc getHitLength*(self: SpringArm3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className SpringArm3D, addr name, 191475506)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `length=`*(self: SpringArm3D; length: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc length*(self: SpringArm3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className SpringArm3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `shape=`*(self: SpringArm3D; shape: Shape3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc shape*(self: SpringArm3D): Shape3D =
     methodbind = interface_ClassDB_getMethodBind(addr className SpringArm3D, addr name, 3214262478)
   var ret: encoded Shape3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Shape3D)
+  (addr ret).decode_result(Shape3D)
 proc addExcludedObject*(self: SpringArm3D; rid: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -58,7 +58,7 @@ proc removeExcludedObject*(self: SpringArm3D; rid: RID): Bool =
   var `?param` = [getPtr rid]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc clearExcludedObjects*(self: SpringArm3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc collisionMask*(self: SpringArm3D): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className SpringArm3D, addr name, 2455072627)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `margin=`*(self: SpringArm3D; margin: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,4 +94,4 @@ proc margin*(self: SpringArm3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className SpringArm3D, addr name, 191475506)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

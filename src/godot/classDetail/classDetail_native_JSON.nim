@@ -13,7 +13,7 @@ proc stringify*(_: typedesc[JSON]; data: Variant; indent: String = ""; sortKeys:
   var `?param` = [getPtr data, getPtr indent, getPtr sortKeys, getPtr fullPrecision]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc parseString*(_: typedesc[JSON]; jsonString: String): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc parseString*(_: typedesc[JSON]; jsonString: String): Variant =
   var `?param` = [getPtr jsonString]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc parse*(self: JSON; jsonText: String; keepText: Bool = false): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -31,7 +31,7 @@ proc parse*(self: JSON; jsonText: String; keepText: Bool = false): Error =
   var `?param` = [getPtr jsonText, getPtr keepText]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc data*(self: JSON): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -39,7 +39,7 @@ proc data*(self: JSON): Variant =
     methodbind = interface_ClassDB_getMethodBind(addr className JSON, addr name, 1214101251)
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc `data=`*(self: JSON; data: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -54,7 +54,7 @@ proc getParsedText*(self: JSON): String =
     methodbind = interface_ClassDB_getMethodBind(addr className JSON, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getErrorLine*(self: JSON): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -62,7 +62,7 @@ proc getErrorLine*(self: JSON): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className JSON, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getErrorMessage*(self: JSON): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -70,4 +70,4 @@ proc getErrorMessage*(self: JSON): String =
     methodbind = interface_ClassDB_getMethodBind(addr className JSON, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)

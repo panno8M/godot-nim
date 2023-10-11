@@ -19,7 +19,7 @@ proc isDefaultValueEnabled*(self: VisualShaderNodeUIntParameter): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeUIntParameter, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `defaultValue=`*(self: VisualShaderNodeUIntParameter; value: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,4 +34,4 @@ proc defaultValue*(self: VisualShaderNodeUIntParameter): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeUIntParameter, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)

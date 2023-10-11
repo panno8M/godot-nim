@@ -24,7 +24,7 @@ proc isCurrent*(self: AudioListener3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioListener3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getListenerTransform*(self: AudioListener3D): Transform3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -32,4 +32,4 @@ proc getListenerTransform*(self: AudioListener3D): Transform3D =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioListener3D, addr name, 3229777777)
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)

@@ -19,7 +19,7 @@ proc texture*(self: Sprite2D): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className Sprite2D, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc `centered=`*(self: Sprite2D; centered: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc isCentered*(self: Sprite2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Sprite2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `offset=`*(self: Sprite2D; offset: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc offset*(self: Sprite2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Sprite2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `flipH=`*(self: Sprite2D; flipH: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc isFlippedH*(self: Sprite2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Sprite2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `flipV=`*(self: Sprite2D; flipV: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc isFlippedV*(self: Sprite2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Sprite2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `regionEnabled=`*(self: Sprite2D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc isRegionEnabled*(self: Sprite2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Sprite2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isPixelOpaque*(self: Sprite2D; pos: Vector2): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -103,7 +103,7 @@ proc isPixelOpaque*(self: Sprite2D; pos: Vector2): Bool =
   var `?param` = [getPtr pos]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `regionRect=`*(self: Sprite2D; rect: Rect2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -118,7 +118,7 @@ proc regionRect*(self: Sprite2D): Rect2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Sprite2D, addr name, 1639390495)
   var ret: encoded Rect2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Rect2)
+  (addr ret).decode_result(Rect2)
 proc `regionFilterClipEnabled=`*(self: Sprite2D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -133,7 +133,7 @@ proc isRegionFilterClipEnabled*(self: Sprite2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Sprite2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `frame=`*(self: Sprite2D; frame: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -148,7 +148,7 @@ proc frame*(self: Sprite2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Sprite2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `frameCoords=`*(self: Sprite2D; coords: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -163,7 +163,7 @@ proc frameCoords*(self: Sprite2D): Vector2i =
     methodbind = interface_ClassDB_getMethodBind(addr className Sprite2D, addr name, 3690982128)
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc `vframes=`*(self: Sprite2D; vframes: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -178,7 +178,7 @@ proc vframes*(self: Sprite2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Sprite2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `hframes=`*(self: Sprite2D; hframes: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -193,7 +193,7 @@ proc hframes*(self: Sprite2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Sprite2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getRect*(self: Sprite2D): Rect2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -201,4 +201,4 @@ proc getRect*(self: Sprite2D): Rect2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Sprite2D, addr name, 1639390495)
   var ret: encoded Rect2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Rect2)
+  (addr ret).decode_result(Rect2)

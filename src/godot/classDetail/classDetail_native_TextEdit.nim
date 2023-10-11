@@ -12,7 +12,7 @@ proc hasImeText*(self: TextEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `editable=`*(self: TextEdit; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc isEditable*(self: TextEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `textDirection=`*(self: TextEdit; direction: Control_TextDirection) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc textDirection*(self: TextEdit): Control_TextDirection =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 797257663)
   var ret: encoded Control_TextDirection
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Control_TextDirection)
+  (addr ret).decode_result(Control_TextDirection)
 proc `language=`*(self: TextEdit; language: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc language*(self: TextEdit): String =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `structuredTextBidiOverride=`*(self: TextEdit; parser: TextServer_StructuredTextParser) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -72,7 +72,7 @@ proc structuredTextBidiOverride*(self: TextEdit): TextServer_StructuredTextParse
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 3385126229)
   var ret: encoded TextServer_StructuredTextParser
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextServer_StructuredTextParser)
+  (addr ret).decode_result(TextServer_StructuredTextParser)
 proc `structuredTextBidiOverrideOptions=`*(self: TextEdit; args: Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -87,7 +87,7 @@ proc structuredTextBidiOverrideOptions*(self: TextEdit): Array =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 3995934104)
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)
 proc setTabSize*(self: TextEdit; size: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -102,7 +102,7 @@ proc getTabSize*(self: TextEdit): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setOvertypeModeEnabled*(self: TextEdit; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -117,7 +117,7 @@ proc isOvertypeModeEnabled*(self: TextEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `contextMenuEnabled=`*(self: TextEdit; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -132,7 +132,7 @@ proc isContextMenuEnabled*(self: TextEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `shortcutKeysEnabled=`*(self: TextEdit; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -147,7 +147,7 @@ proc isShortcutKeysEnabled*(self: TextEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `virtualKeyboardEnabled=`*(self: TextEdit; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -162,7 +162,7 @@ proc isVirtualKeyboardEnabled*(self: TextEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `middleMousePasteEnabled=`*(self: TextEdit; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -177,7 +177,7 @@ proc isMiddleMousePasteEnabled*(self: TextEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc clear*(self: TextEdit) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -198,7 +198,7 @@ proc text*(self: TextEdit): String =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getLineCount*(self: TextEdit): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -206,7 +206,7 @@ proc getLineCount*(self: TextEdit): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `placeholder=`*(self: TextEdit; text: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -221,7 +221,7 @@ proc placeholder*(self: TextEdit): String =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc setLine*(self: TextEdit; line: int32; newText: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -237,7 +237,7 @@ proc getLine*(self: TextEdit; line: int32): String =
   var `?param` = [getPtr line]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getLineWidth*(self: TextEdit; line: int32; wrapIndex: int32 = -1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -246,7 +246,7 @@ proc getLineWidth*(self: TextEdit; line: int32; wrapIndex: int32 = -1): int32 =
   var `?param` = [getPtr line, getPtr wrapIndex]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getLineHeight*(self: TextEdit): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -254,7 +254,7 @@ proc getLineHeight*(self: TextEdit): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getIndentLevel*(self: TextEdit; line: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -263,7 +263,7 @@ proc getIndentLevel*(self: TextEdit; line: int32): int32 =
   var `?param` = [getPtr line]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getFirstNonWhitespaceColumn*(self: TextEdit; line: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -272,7 +272,7 @@ proc getFirstNonWhitespaceColumn*(self: TextEdit; line: int32): int32 =
   var `?param` = [getPtr line]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc swapLines*(self: TextEdit; fromLine: int32; toLine: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -308,7 +308,7 @@ proc getLastUnhiddenLine*(self: TextEdit): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getNextVisibleLineOffsetFrom*(self: TextEdit; line: int32; visibleAmount: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -317,7 +317,7 @@ proc getNextVisibleLineOffsetFrom*(self: TextEdit; line: int32; visibleAmount: i
   var `?param` = [getPtr line, getPtr visibleAmount]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getNextVisibleLineIndexOffsetFrom*(self: TextEdit; line: int32; wrapIndex: int32; visibleAmount: int32): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -326,7 +326,7 @@ proc getNextVisibleLineIndexOffsetFrom*(self: TextEdit; line: int32; wrapIndex: 
   var `?param` = [getPtr line, getPtr wrapIndex, getPtr visibleAmount]
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc backspace*(self: TextEdit; caretIndex: int32 = -1) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -394,7 +394,7 @@ proc hasUndo*(self: TextEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc hasRedo*(self: TextEdit): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -402,7 +402,7 @@ proc hasRedo*(self: TextEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc undo*(self: TextEdit) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -434,7 +434,7 @@ proc getVersion*(self: TextEdit): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc getSavedVersion*(self: TextEdit): uint32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -442,7 +442,7 @@ proc getSavedVersion*(self: TextEdit): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc setSearchText*(self: TextEdit; searchText: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -465,7 +465,7 @@ proc search*(self: TextEdit; text: String; flags: uint32; fromLine: int32; fromC
   var `?param` = [getPtr text, getPtr flags, getPtr fromLine, getPtr fromColum]
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc setTooltipRequestFunc*(self: TextEdit; callback: Callable) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -480,7 +480,7 @@ proc getLocalMousePos*(self: TextEdit): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getWordAtPos*(self: TextEdit; position: Vector2): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -489,7 +489,7 @@ proc getWordAtPos*(self: TextEdit; position: Vector2): String =
   var `?param` = [getPtr position]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getLineColumnAtPos*(self: TextEdit; position: Vector2i; allowOutOfBounds: Bool = true): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -498,7 +498,7 @@ proc getLineColumnAtPos*(self: TextEdit; position: Vector2i; allowOutOfBounds: B
   var `?param` = [getPtr position, getPtr allowOutOfBounds]
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc getPosAtLineColumn*(self: TextEdit; line: int32; column: int32): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -507,7 +507,7 @@ proc getPosAtLineColumn*(self: TextEdit; line: int32; column: int32): Vector2i =
   var `?param` = [getPtr line, getPtr column]
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc getRectAtLineColumn*(self: TextEdit; line: int32; column: int32): Rect2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -516,7 +516,7 @@ proc getRectAtLineColumn*(self: TextEdit; line: int32; column: int32): Rect2i =
   var `?param` = [getPtr line, getPtr column]
   var ret: encoded Rect2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Rect2i)
+  (addr ret).decode_result(Rect2i)
 proc getMinimapLineAtPos*(self: TextEdit; position: Vector2i): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -525,7 +525,7 @@ proc getMinimapLineAtPos*(self: TextEdit; position: Vector2i): int32 =
   var `?param` = [getPtr position]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc isDraggingCursor*(self: TextEdit): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -533,7 +533,7 @@ proc isDraggingCursor*(self: TextEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isMouseOverSelection*(self: TextEdit; edges: Bool; caretIndex: int32 = -1): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -542,7 +542,7 @@ proc isMouseOverSelection*(self: TextEdit; edges: Bool; caretIndex: int32 = -1):
   var `?param` = [getPtr edges, getPtr caretIndex]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `caretType=`*(self: TextEdit; `type`: TextEdit_CaretType) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -557,7 +557,7 @@ proc caretType*(self: TextEdit): TextEdit_CaretType =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 2830252959)
   var ret: encoded TextEdit_CaretType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextEdit_CaretType)
+  (addr ret).decode_result(TextEdit_CaretType)
 proc `caretBlinkEnabled=`*(self: TextEdit; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -572,7 +572,7 @@ proc isCaretBlinkEnabled*(self: TextEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `caretBlinkInterval=`*(self: TextEdit; interval: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -587,7 +587,7 @@ proc caretBlinkInterval*(self: TextEdit): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `drawCaretWhenEditableDisabled=`*(self: TextEdit; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -602,7 +602,7 @@ proc isDrawingCaretWhenEditableDisabled*(self: TextEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `moveCaretOnRightClickEnabled=`*(self: TextEdit; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -617,7 +617,7 @@ proc isMoveCaretOnRightClickEnabled*(self: TextEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `caretMidGraphemeEnabled=`*(self: TextEdit; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -632,7 +632,7 @@ proc isCaretMidGraphemeEnabled*(self: TextEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `multipleCaretsEnabled=`*(self: TextEdit; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -647,7 +647,7 @@ proc isMultipleCaretsEnabled*(self: TextEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc addCaret*(self: TextEdit; line: int32; col: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -656,7 +656,7 @@ proc addCaret*(self: TextEdit; line: int32; col: int32): int32 =
   var `?param` = [getPtr line, getPtr col]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc removeCaret*(self: TextEdit; caret: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -683,7 +683,7 @@ proc getCaretCount*(self: TextEdit): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc addCaretAtCarets*(self: TextEdit; below: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -698,7 +698,7 @@ proc getCaretIndexEditOrder*(self: TextEdit): PackedInt32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 969006518)
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc adjustCaretsAfterEdit*(self: TextEdit; caret: int32; fromLine: int32; fromCol: int32; toLine: int32; toCol: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -714,7 +714,7 @@ proc isCaretVisible*(self: TextEdit; caretIndex: int32 = 0): Bool =
   var `?param` = [getPtr caretIndex]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getCaretDrawPos*(self: TextEdit; caretIndex: int32 = 0): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -723,7 +723,7 @@ proc getCaretDrawPos*(self: TextEdit; caretIndex: int32 = 0): Vector2 =
   var `?param` = [getPtr caretIndex]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc setCaretLine*(self: TextEdit; line: int32; adjustViewport: Bool = true; canBeHidden: Bool = true; wrapIndex: int32 = 0; caretIndex: int32 = 0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -739,7 +739,7 @@ proc getCaretLine*(self: TextEdit; caretIndex: int32 = 0): int32 =
   var `?param` = [getPtr caretIndex]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setCaretColumn*(self: TextEdit; column: int32; adjustViewport: Bool = true; caretIndex: int32 = 0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -755,7 +755,7 @@ proc getCaretColumn*(self: TextEdit; caretIndex: int32 = 0): int32 =
   var `?param` = [getPtr caretIndex]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getCaretWrapIndex*(self: TextEdit; caretIndex: int32 = 0): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -764,7 +764,7 @@ proc getCaretWrapIndex*(self: TextEdit; caretIndex: int32 = 0): int32 =
   var `?param` = [getPtr caretIndex]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getWordUnderCaret*(self: TextEdit; caretIndex: int32 = -1): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -773,7 +773,7 @@ proc getWordUnderCaret*(self: TextEdit; caretIndex: int32 = -1): String =
   var `?param` = [getPtr caretIndex]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `selectingEnabled=`*(self: TextEdit; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -788,7 +788,7 @@ proc isSelectingEnabled*(self: TextEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `deselectOnFocusLossEnabled=`*(self: TextEdit; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -803,7 +803,7 @@ proc isDeselectOnFocusLossEnabled*(self: TextEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `dragAndDropSelectionEnabled=`*(self: TextEdit; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -818,7 +818,7 @@ proc isDragAndDropSelectionEnabled*(self: TextEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setSelectionMode*(self: TextEdit; mode: TextEdit_SelectionMode; line: int32 = -1; column: int32 = -1; caretIndex: int32 = 0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -833,7 +833,7 @@ proc getSelectionMode*(self: TextEdit): TextEdit_SelectionMode =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 3750106938)
   var ret: encoded TextEdit_SelectionMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextEdit_SelectionMode)
+  (addr ret).decode_result(TextEdit_SelectionMode)
 proc selectAll*(self: TextEdit) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -868,7 +868,7 @@ proc hasSelection*(self: TextEdit; caretIndex: int32 = -1): Bool =
   var `?param` = [getPtr caretIndex]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getSelectedText*(self: TextEdit; caretIndex: int32 = -1): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -877,7 +877,7 @@ proc getSelectedText*(self: TextEdit; caretIndex: int32 = -1): String =
   var `?param` = [getPtr caretIndex]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getSelectionLine*(self: TextEdit; caretIndex: int32 = 0): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -886,7 +886,7 @@ proc getSelectionLine*(self: TextEdit; caretIndex: int32 = 0): int32 =
   var `?param` = [getPtr caretIndex]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getSelectionColumn*(self: TextEdit; caretIndex: int32 = 0): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -895,7 +895,7 @@ proc getSelectionColumn*(self: TextEdit; caretIndex: int32 = 0): int32 =
   var `?param` = [getPtr caretIndex]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getSelectionFromLine*(self: TextEdit; caretIndex: int32 = 0): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -904,7 +904,7 @@ proc getSelectionFromLine*(self: TextEdit; caretIndex: int32 = 0): int32 =
   var `?param` = [getPtr caretIndex]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getSelectionFromColumn*(self: TextEdit; caretIndex: int32 = 0): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -913,7 +913,7 @@ proc getSelectionFromColumn*(self: TextEdit; caretIndex: int32 = 0): int32 =
   var `?param` = [getPtr caretIndex]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getSelectionToLine*(self: TextEdit; caretIndex: int32 = 0): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -922,7 +922,7 @@ proc getSelectionToLine*(self: TextEdit; caretIndex: int32 = 0): int32 =
   var `?param` = [getPtr caretIndex]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getSelectionToColumn*(self: TextEdit; caretIndex: int32 = 0): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -931,7 +931,7 @@ proc getSelectionToColumn*(self: TextEdit; caretIndex: int32 = 0): int32 =
   var `?param` = [getPtr caretIndex]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc deselect*(self: TextEdit; caretIndex: int32 = -1) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -960,7 +960,7 @@ proc lineWrappingMode*(self: TextEdit): TextEdit_LineWrappingMode =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 3562716114)
   var ret: encoded TextEdit_LineWrappingMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextEdit_LineWrappingMode)
+  (addr ret).decode_result(TextEdit_LineWrappingMode)
 proc `autowrapMode=`*(self: TextEdit; autowrapMode: TextServer_AutowrapMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -975,7 +975,7 @@ proc autowrapMode*(self: TextEdit): TextServer_AutowrapMode =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 1549071663)
   var ret: encoded TextServer_AutowrapMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextServer_AutowrapMode)
+  (addr ret).decode_result(TextServer_AutowrapMode)
 proc isLineWrapped*(self: TextEdit; line: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -984,7 +984,7 @@ proc isLineWrapped*(self: TextEdit; line: int32): Bool =
   var `?param` = [getPtr line]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getLineWrapCount*(self: TextEdit; line: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -993,7 +993,7 @@ proc getLineWrapCount*(self: TextEdit; line: int32): int32 =
   var `?param` = [getPtr line]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getLineWrapIndexAtColumn*(self: TextEdit; line: int32; column: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1002,7 +1002,7 @@ proc getLineWrapIndexAtColumn*(self: TextEdit; line: int32; column: int32): int3
   var `?param` = [getPtr line, getPtr column]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getLineWrappedText*(self: TextEdit; line: int32): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1011,7 +1011,7 @@ proc getLineWrappedText*(self: TextEdit; line: int32): PackedStringArray =
   var `?param` = [getPtr line]
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc `smoothScrollEnabled=`*(self: TextEdit; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1026,7 +1026,7 @@ proc isSmoothScrollEnabled*(self: TextEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getVScrollBar*(self: TextEdit): VScrollBar =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1034,7 +1034,7 @@ proc getVScrollBar*(self: TextEdit): VScrollBar =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 3226026593)
   var ret: encoded VScrollBar
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VScrollBar)
+  (addr ret).decode_result(VScrollBar)
 proc getHScrollBar*(self: TextEdit): HScrollBar =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1042,7 +1042,7 @@ proc getHScrollBar*(self: TextEdit): HScrollBar =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 3774687988)
   var ret: encoded HScrollBar
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(HScrollBar)
+  (addr ret).decode_result(HScrollBar)
 proc `vScroll=`*(self: TextEdit; value: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1057,7 +1057,7 @@ proc vScroll*(self: TextEdit): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc `hScroll=`*(self: TextEdit; value: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1072,7 +1072,7 @@ proc hScroll*(self: TextEdit): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `scrollPastEndOfFileEnabled=`*(self: TextEdit; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1087,7 +1087,7 @@ proc isScrollPastEndOfFileEnabled*(self: TextEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `vScrollSpeed=`*(self: TextEdit; speed: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1102,7 +1102,7 @@ proc vScrollSpeed*(self: TextEdit): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `fitContentHeightEnabled=`*(self: TextEdit; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1117,7 +1117,7 @@ proc isFitContentHeightEnabled*(self: TextEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getScrollPosForLine*(self: TextEdit; line: int32; wrapIndex: int32 = 0): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1126,7 +1126,7 @@ proc getScrollPosForLine*(self: TextEdit; line: int32; wrapIndex: int32 = 0): fl
   var `?param` = [getPtr line, getPtr wrapIndex]
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc setLineAsFirstVisible*(self: TextEdit; line: int32; wrapIndex: int32 = 0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1141,7 +1141,7 @@ proc getFirstVisibleLine*(self: TextEdit): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setLineAsCenterVisible*(self: TextEdit; line: int32; wrapIndex: int32 = 0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1163,7 +1163,7 @@ proc getLastFullVisibleLine*(self: TextEdit): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getLastFullVisibleLineWrapIndex*(self: TextEdit): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1171,7 +1171,7 @@ proc getLastFullVisibleLineWrapIndex*(self: TextEdit): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getVisibleLineCount*(self: TextEdit): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1179,7 +1179,7 @@ proc getVisibleLineCount*(self: TextEdit): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getVisibleLineCountInRange*(self: TextEdit; fromLine: int32; toLine: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1188,7 +1188,7 @@ proc getVisibleLineCountInRange*(self: TextEdit; fromLine: int32; toLine: int32)
   var `?param` = [getPtr fromLine, getPtr toLine]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getTotalVisibleLineCount*(self: TextEdit): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1196,7 +1196,7 @@ proc getTotalVisibleLineCount*(self: TextEdit): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc adjustViewportToCaret*(self: TextEdit; caretIndex: int32 = 0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1225,7 +1225,7 @@ proc isDrawingMinimap*(self: TextEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `minimapWidth=`*(self: TextEdit; width: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1240,7 +1240,7 @@ proc minimapWidth*(self: TextEdit): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getMinimapVisibleLines*(self: TextEdit): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1248,7 +1248,7 @@ proc getMinimapVisibleLines*(self: TextEdit): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc addGutter*(self: TextEdit; at: int32 = -1) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1270,7 +1270,7 @@ proc getGutterCount*(self: TextEdit): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setGutterName*(self: TextEdit; gutter: int32; name: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1286,7 +1286,7 @@ proc getGutterName*(self: TextEdit; gutter: int32): String =
   var `?param` = [getPtr gutter]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc setGutterType*(self: TextEdit; gutter: int32; `type`: TextEdit_GutterType) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1302,7 +1302,7 @@ proc getGutterType*(self: TextEdit; gutter: int32): TextEdit_GutterType =
   var `?param` = [getPtr gutter]
   var ret: encoded TextEdit_GutterType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TextEdit_GutterType)
+  (addr ret).decode_result(TextEdit_GutterType)
 proc setGutterWidth*(self: TextEdit; gutter: int32; width: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1318,7 +1318,7 @@ proc getGutterWidth*(self: TextEdit; gutter: int32): int32 =
   var `?param` = [getPtr gutter]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setGutterDraw*(self: TextEdit; gutter: int32; draw: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1334,7 +1334,7 @@ proc isGutterDrawn*(self: TextEdit; gutter: int32): Bool =
   var `?param` = [getPtr gutter]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setGutterClickable*(self: TextEdit; gutter: int32; clickable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1350,7 +1350,7 @@ proc isGutterClickable*(self: TextEdit; gutter: int32): Bool =
   var `?param` = [getPtr gutter]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setGutterOverwritable*(self: TextEdit; gutter: int32; overwritable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1366,7 +1366,7 @@ proc isGutterOverwritable*(self: TextEdit; gutter: int32): Bool =
   var `?param` = [getPtr gutter]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc mergeGutters*(self: TextEdit; fromLine: int32; toLine: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1388,7 +1388,7 @@ proc getTotalGutterWidth*(self: TextEdit): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setLineGutterMetadata*(self: TextEdit; line: int32; gutter: int32; metadata: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1404,7 +1404,7 @@ proc getLineGutterMetadata*(self: TextEdit; line: int32; gutter: int32): Variant
   var `?param` = [getPtr line, getPtr gutter]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc setLineGutterText*(self: TextEdit; line: int32; gutter: int32; text: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1420,7 +1420,7 @@ proc getLineGutterText*(self: TextEdit; line: int32; gutter: int32): String =
   var `?param` = [getPtr line, getPtr gutter]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc setLineGutterIcon*(self: TextEdit; line: int32; gutter: int32; icon: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1436,7 +1436,7 @@ proc getLineGutterIcon*(self: TextEdit; line: int32; gutter: int32): Texture2D =
   var `?param` = [getPtr line, getPtr gutter]
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc setLineGutterItemColor*(self: TextEdit; line: int32; gutter: int32; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1452,7 +1452,7 @@ proc getLineGutterItemColor*(self: TextEdit; line: int32; gutter: int32): Color 
   var `?param` = [getPtr line, getPtr gutter]
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc setLineGutterClickable*(self: TextEdit; line: int32; gutter: int32; clickable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1468,7 +1468,7 @@ proc isLineGutterClickable*(self: TextEdit; line: int32; gutter: int32): Bool =
   var `?param` = [getPtr line, getPtr gutter]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setLineBackgroundColor*(self: TextEdit; line: int32; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1484,7 +1484,7 @@ proc getLineBackgroundColor*(self: TextEdit; line: int32): Color =
   var `?param` = [getPtr line]
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `syntaxHighlighter=`*(self: TextEdit; syntaxHighlighter: SyntaxHighlighter) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1499,7 +1499,7 @@ proc syntaxHighlighter*(self: TextEdit): SyntaxHighlighter =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 2721131626)
   var ret: encoded SyntaxHighlighter
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(SyntaxHighlighter)
+  (addr ret).decode_result(SyntaxHighlighter)
 proc `highlightCurrentLine=`*(self: TextEdit; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1514,7 +1514,7 @@ proc isHighlightCurrentLineEnabled*(self: TextEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `highlightAllOccurrences=`*(self: TextEdit; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1529,7 +1529,7 @@ proc isHighlightAllOccurrencesEnabled*(self: TextEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc drawControlChars*(self: TextEdit): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1537,7 +1537,7 @@ proc drawControlChars*(self: TextEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `drawControlChars=`*(self: TextEdit; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1559,7 +1559,7 @@ proc isDrawingTabs*(self: TextEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `drawSpaces=`*(self: TextEdit; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1574,7 +1574,7 @@ proc isDrawingSpaces*(self: TextEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getMenu*(self: TextEdit): PopupMenu =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1582,7 +1582,7 @@ proc getMenu*(self: TextEdit): PopupMenu =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 229722558)
   var ret: encoded PopupMenu
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PopupMenu)
+  (addr ret).decode_result(PopupMenu)
 proc isMenuVisible*(self: TextEdit): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1590,7 +1590,7 @@ proc isMenuVisible*(self: TextEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc menuOption*(self: TextEdit; option: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

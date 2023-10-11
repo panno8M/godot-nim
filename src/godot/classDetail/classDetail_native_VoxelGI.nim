@@ -19,7 +19,7 @@ proc probeData*(self: VoxelGI): VoxelGIData =
     methodbind = interface_ClassDB_getMethodBind(addr className VoxelGI, addr name, 1730645405)
   var ret: encoded VoxelGIData
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VoxelGIData)
+  (addr ret).decode_result(VoxelGIData)
 proc `subdiv=`*(self: VoxelGI; subdiv: VoxelGI_Subdiv) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc subdiv*(self: VoxelGI): VoxelGI_Subdiv =
     methodbind = interface_ClassDB_getMethodBind(addr className VoxelGI, addr name, 4261647950)
   var ret: encoded VoxelGI_Subdiv
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VoxelGI_Subdiv)
+  (addr ret).decode_result(VoxelGI_Subdiv)
 proc `size=`*(self: VoxelGI; size: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc size*(self: VoxelGI): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className VoxelGI, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `cameraAttributes=`*(self: VoxelGI; cameraAttributes: CameraAttributes) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc cameraAttributes*(self: VoxelGI): CameraAttributes =
     methodbind = interface_ClassDB_getMethodBind(addr className VoxelGI, addr name, 3921283215)
   var ret: encoded CameraAttributes
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(CameraAttributes)
+  (addr ret).decode_result(CameraAttributes)
 proc bake*(self: VoxelGI; fromNode: Node = nil; createVisualDebug: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

@@ -12,7 +12,7 @@ proc initRef*(self: RefCounted): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RefCounted, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc reference*(self: RefCounted): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -20,7 +20,7 @@ proc reference*(self: RefCounted): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RefCounted, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc unreference*(self: RefCounted): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -28,7 +28,7 @@ proc unreference*(self: RefCounted): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RefCounted, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getReferenceCount*(self: RefCounted): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -36,4 +36,4 @@ proc getReferenceCount*(self: RefCounted): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RefCounted, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)

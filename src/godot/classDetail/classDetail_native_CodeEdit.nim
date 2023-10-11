@@ -19,7 +19,7 @@ proc indentSize*(self: CodeEdit): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className CodeEdit, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `indentUsingSpaces=`*(self: CodeEdit; useSpaces: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc isIndentUsingSpaces*(self: CodeEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CodeEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `autoIndentEnabled=`*(self: CodeEdit; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc isAutoIndentEnabled*(self: CodeEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CodeEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `autoIndentPrefixes=`*(self: CodeEdit; prefixes: TypedArray[String]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc autoIndentPrefixes*(self: CodeEdit): TypedArray[String] =
     methodbind = interface_ClassDB_getMethodBind(addr className CodeEdit, addr name, 3995934104)
   var ret: encoded TypedArray[String]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[String])
+  (addr ret).decode_result(TypedArray[String])
 proc doIndent*(self: CodeEdit) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -104,7 +104,7 @@ proc isAutoBraceCompletionEnabled*(self: CodeEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CodeEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `highlightMatchingBracesEnabled=`*(self: CodeEdit; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -119,7 +119,7 @@ proc isHighlightMatchingBracesEnabled*(self: CodeEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CodeEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc addAutoBraceCompletionPair*(self: CodeEdit; startKey: String; endKey: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -141,7 +141,7 @@ proc autoBraceCompletionPairs*(self: CodeEdit): Dictionary =
     methodbind = interface_ClassDB_getMethodBind(addr className CodeEdit, addr name, 3102165223)
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc hasAutoBraceCompletionOpenKey*(self: CodeEdit; openKey: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -150,7 +150,7 @@ proc hasAutoBraceCompletionOpenKey*(self: CodeEdit; openKey: String): Bool =
   var `?param` = [getPtr openKey]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc hasAutoBraceCompletionCloseKey*(self: CodeEdit; closeKey: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -159,7 +159,7 @@ proc hasAutoBraceCompletionCloseKey*(self: CodeEdit; closeKey: String): Bool =
   var `?param` = [getPtr closeKey]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getAutoBraceCompletionCloseKey*(self: CodeEdit; openKey: String): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -168,7 +168,7 @@ proc getAutoBraceCompletionCloseKey*(self: CodeEdit; openKey: String): String =
   var `?param` = [getPtr openKey]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `drawBreakpointsGutter=`*(self: CodeEdit; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -183,7 +183,7 @@ proc isDrawingBreakpointsGutter*(self: CodeEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CodeEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `drawBookmarksGutter=`*(self: CodeEdit; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -198,7 +198,7 @@ proc isDrawingBookmarksGutter*(self: CodeEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CodeEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `drawExecutingLinesGutter=`*(self: CodeEdit; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -213,7 +213,7 @@ proc isDrawingExecutingLinesGutter*(self: CodeEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CodeEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setLineAsBreakpoint*(self: CodeEdit; line: int32; breakpointed: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -229,7 +229,7 @@ proc isLineBreakpointed*(self: CodeEdit; line: int32): Bool =
   var `?param` = [getPtr line]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc clearBreakpointedLines*(self: CodeEdit) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -243,7 +243,7 @@ proc getBreakpointedLines*(self: CodeEdit): PackedInt32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className CodeEdit, addr name, 1930428628)
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc setLineAsBookmarked*(self: CodeEdit; line: int32; bookmarked: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -259,7 +259,7 @@ proc isLineBookmarked*(self: CodeEdit; line: int32): Bool =
   var `?param` = [getPtr line]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc clearBookmarkedLines*(self: CodeEdit) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -273,7 +273,7 @@ proc getBookmarkedLines*(self: CodeEdit): PackedInt32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className CodeEdit, addr name, 1930428628)
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc setLineAsExecuting*(self: CodeEdit; line: int32; executing: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -289,7 +289,7 @@ proc isLineExecuting*(self: CodeEdit; line: int32): Bool =
   var `?param` = [getPtr line]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc clearExecutingLines*(self: CodeEdit) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -303,7 +303,7 @@ proc getExecutingLines*(self: CodeEdit): PackedInt32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className CodeEdit, addr name, 1930428628)
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc `drawLineNumbers=`*(self: CodeEdit; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -318,7 +318,7 @@ proc isDrawLineNumbersEnabled*(self: CodeEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CodeEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `lineNumbersZeroPadded=`*(self: CodeEdit; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -333,7 +333,7 @@ proc isLineNumbersZeroPadded*(self: CodeEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CodeEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `drawFoldGutter=`*(self: CodeEdit; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -348,7 +348,7 @@ proc isDrawingFoldGutter*(self: CodeEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CodeEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `lineFoldingEnabled=`*(self: CodeEdit; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -363,7 +363,7 @@ proc isLineFoldingEnabled*(self: CodeEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CodeEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc canFoldLine*(self: CodeEdit; line: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -372,7 +372,7 @@ proc canFoldLine*(self: CodeEdit; line: int32): Bool =
   var `?param` = [getPtr line]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc foldLine*(self: CodeEdit; line: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -414,7 +414,7 @@ proc isLineFolded*(self: CodeEdit; line: int32): Bool =
   var `?param` = [getPtr line]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getFoldedLines*(self: CodeEdit): TypedArray[Int] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -422,7 +422,7 @@ proc getFoldedLines*(self: CodeEdit): TypedArray[Int] =
     methodbind = interface_ClassDB_getMethodBind(addr className CodeEdit, addr name, 3995934104)
   var ret: encoded TypedArray[Int]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Int])
+  (addr ret).decode_result(TypedArray[Int])
 proc addStringDelimiter*(self: CodeEdit; startKey: String; endKey: String; lineOnly: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -445,7 +445,7 @@ proc hasStringDelimiter*(self: CodeEdit; startKey: String): Bool =
   var `?param` = [getPtr startKey]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `stringDelimiters=`*(self: CodeEdit; stringDelimiters: TypedArray[String]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -466,7 +466,7 @@ proc stringDelimiters*(self: CodeEdit): TypedArray[String] =
     methodbind = interface_ClassDB_getMethodBind(addr className CodeEdit, addr name, 3995934104)
   var ret: encoded TypedArray[String]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[String])
+  (addr ret).decode_result(TypedArray[String])
 proc isInString*(self: CodeEdit; line: int32; column: int32 = -1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -475,7 +475,7 @@ proc isInString*(self: CodeEdit; line: int32; column: int32 = -1): int32 =
   var `?param` = [getPtr line, getPtr column]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc addCommentDelimiter*(self: CodeEdit; startKey: String; endKey: String; lineOnly: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -498,7 +498,7 @@ proc hasCommentDelimiter*(self: CodeEdit; startKey: String): Bool =
   var `?param` = [getPtr startKey]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `commentDelimiters=`*(self: CodeEdit; commentDelimiters: TypedArray[String]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -519,7 +519,7 @@ proc commentDelimiters*(self: CodeEdit): TypedArray[String] =
     methodbind = interface_ClassDB_getMethodBind(addr className CodeEdit, addr name, 3995934104)
   var ret: encoded TypedArray[String]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[String])
+  (addr ret).decode_result(TypedArray[String])
 proc isInComment*(self: CodeEdit; line: int32; column: int32 = -1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -528,7 +528,7 @@ proc isInComment*(self: CodeEdit; line: int32; column: int32 = -1): int32 =
   var `?param` = [getPtr line, getPtr column]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getDelimiterStartKey*(self: CodeEdit; delimiterIndex: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -537,7 +537,7 @@ proc getDelimiterStartKey*(self: CodeEdit; delimiterIndex: int32): String =
   var `?param` = [getPtr delimiterIndex]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getDelimiterEndKey*(self: CodeEdit; delimiterIndex: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -546,7 +546,7 @@ proc getDelimiterEndKey*(self: CodeEdit; delimiterIndex: int32): String =
   var `?param` = [getPtr delimiterIndex]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getDelimiterStartPosition*(self: CodeEdit; line: int32; column: int32): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -555,7 +555,7 @@ proc getDelimiterStartPosition*(self: CodeEdit; line: int32; column: int32): Vec
   var `?param` = [getPtr line, getPtr column]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getDelimiterEndPosition*(self: CodeEdit; line: int32; column: int32): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -564,7 +564,7 @@ proc getDelimiterEndPosition*(self: CodeEdit; line: int32; column: int32): Vecto
   var `?param` = [getPtr line, getPtr column]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc setCodeHint*(self: CodeEdit; codeHint: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -586,7 +586,7 @@ proc getTextForCodeCompletion*(self: CodeEdit): String =
     methodbind = interface_ClassDB_getMethodBind(addr className CodeEdit, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc requestCodeCompletion*(self: CodeEdit; force: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -615,7 +615,7 @@ proc getCodeCompletionOptions*(self: CodeEdit): TypedArray[Dictionary] =
     methodbind = interface_ClassDB_getMethodBind(addr className CodeEdit, addr name, 3995934104)
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Dictionary])
+  (addr ret).decode_result(TypedArray[Dictionary])
 proc getCodeCompletionOption*(self: CodeEdit; index: int32): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -624,7 +624,7 @@ proc getCodeCompletionOption*(self: CodeEdit; index: int32): Dictionary =
   var `?param` = [getPtr index]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc getCodeCompletionSelectedIndex*(self: CodeEdit): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -632,7 +632,7 @@ proc getCodeCompletionSelectedIndex*(self: CodeEdit): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className CodeEdit, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setCodeCompletionSelectedIndex*(self: CodeEdit; index: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -667,7 +667,7 @@ proc isCodeCompletionEnabled*(self: CodeEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CodeEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `codeCompletionPrefixes=`*(self: CodeEdit; prefixes: TypedArray[String]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -682,7 +682,7 @@ proc codeCompletionPrefixes*(self: CodeEdit): TypedArray[String] =
     methodbind = interface_ClassDB_getMethodBind(addr className CodeEdit, addr name, 3995934104)
   var ret: encoded TypedArray[String]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[String])
+  (addr ret).decode_result(TypedArray[String])
 proc `lineLengthGuidelines=`*(self: CodeEdit; guidelineColumns: TypedArray[Int]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -697,7 +697,7 @@ proc lineLengthGuidelines*(self: CodeEdit): TypedArray[Int] =
     methodbind = interface_ClassDB_getMethodBind(addr className CodeEdit, addr name, 3995934104)
   var ret: encoded TypedArray[Int]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Int])
+  (addr ret).decode_result(TypedArray[Int])
 proc `symbolLookupOnClickEnabled=`*(self: CodeEdit; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -712,7 +712,7 @@ proc isSymbolLookupOnClickEnabled*(self: CodeEdit): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CodeEdit, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getTextForSymbolLookup*(self: CodeEdit): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -720,7 +720,7 @@ proc getTextForSymbolLookup*(self: CodeEdit): String =
     methodbind = interface_ClassDB_getMethodBind(addr className CodeEdit, addr name, 2841200299)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc setSymbolLookupWordAsValid*(self: CodeEdit; valid: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

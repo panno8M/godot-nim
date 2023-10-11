@@ -19,7 +19,7 @@ proc length*(self: DampedSpringJoint2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className DampedSpringJoint2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `restLength=`*(self: DampedSpringJoint2D; restLength: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc restLength*(self: DampedSpringJoint2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className DampedSpringJoint2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `stiffness=`*(self: DampedSpringJoint2D; stiffness: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc stiffness*(self: DampedSpringJoint2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className DampedSpringJoint2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `damping=`*(self: DampedSpringJoint2D; damping: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,4 +64,4 @@ proc damping*(self: DampedSpringJoint2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className DampedSpringJoint2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

@@ -19,7 +19,7 @@ proc size*(self: GPUParticlesCollisionSDF3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesCollisionSDF3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `resolution=`*(self: GPUParticlesCollisionSDF3D; resolution: GPUParticlesCollisionSDF3D_Resolution) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc resolution*(self: GPUParticlesCollisionSDF3D): GPUParticlesCollisionSDF3D_R
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesCollisionSDF3D, addr name, 2919555867)
   var ret: encoded GPUParticlesCollisionSDF3D_Resolution
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(GPUParticlesCollisionSDF3D_Resolution)
+  (addr ret).decode_result(GPUParticlesCollisionSDF3D_Resolution)
 proc `texture=`*(self: GPUParticlesCollisionSDF3D; texture: Texture3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc texture*(self: GPUParticlesCollisionSDF3D): Texture3D =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesCollisionSDF3D, addr name, 373985333)
   var ret: encoded Texture3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture3D)
+  (addr ret).decode_result(Texture3D)
 proc `thickness=`*(self: GPUParticlesCollisionSDF3D; thickness: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc thickness*(self: GPUParticlesCollisionSDF3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesCollisionSDF3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `bakeMask=`*(self: GPUParticlesCollisionSDF3D; mask: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc bakeMask*(self: GPUParticlesCollisionSDF3D): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesCollisionSDF3D, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc setBakeMaskValue*(self: GPUParticlesCollisionSDF3D; layerNumber: int32; value: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -95,4 +95,4 @@ proc getBakeMaskValue*(self: GPUParticlesCollisionSDF3D; layerNumber: int32): Bo
   var `?param` = [getPtr layerNumber]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

@@ -13,7 +13,7 @@ proc openLibrary*(self: GDExtension; path: String; entrySymbol: String): Error =
   var `?param` = [getPtr path, getPtr entrySymbol]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc closeLibrary*(self: GDExtension) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc isLibraryOpen*(self: GDExtension): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GDExtension, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getMinimumLibraryInitializationLevel*(self: GDExtension): GDExtension_InitializationLevel =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -35,7 +35,7 @@ proc getMinimumLibraryInitializationLevel*(self: GDExtension): GDExtension_Initi
     methodbind = interface_ClassDB_getMethodBind(addr className GDExtension, addr name, 964858755)
   var ret: encoded GDExtension_InitializationLevel
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(GDExtension_InitializationLevel)
+  (addr ret).decode_result(GDExtension_InitializationLevel)
 proc initializeLibrary*(self: GDExtension; level: GDExtension_InitializationLevel) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

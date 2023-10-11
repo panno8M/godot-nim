@@ -34,7 +34,7 @@ proc hasResource*(self: ResourcePreloader; name: StringName): Bool =
   var `?param` = [getPtr name]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getResource*(self: ResourcePreloader; name: StringName): Resource =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -43,7 +43,7 @@ proc getResource*(self: ResourcePreloader; name: StringName): Resource =
   var `?param` = [getPtr name]
   var ret: encoded Resource
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Resource)
+  (addr ret).decode_result(Resource)
 proc getResourceList*(self: ResourcePreloader): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -51,4 +51,4 @@ proc getResourceList*(self: ResourcePreloader): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className ResourcePreloader, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)

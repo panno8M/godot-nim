@@ -19,7 +19,7 @@ proc format*(self: RDTextureFormat): RenderingDevice_DataFormat =
     methodbind = interface_ClassDB_getMethodBind(addr className RDTextureFormat, addr name, 2235804183)
   var ret: encoded RenderingDevice_DataFormat
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_DataFormat)
+  (addr ret).decode_result(RenderingDevice_DataFormat)
 proc `width=`*(self: RDTextureFormat; pMember: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc width*(self: RDTextureFormat): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RDTextureFormat, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `height=`*(self: RDTextureFormat; pMember: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc height*(self: RDTextureFormat): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RDTextureFormat, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `depth=`*(self: RDTextureFormat; pMember: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc depth*(self: RDTextureFormat): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RDTextureFormat, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `arrayLayers=`*(self: RDTextureFormat; pMember: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc arrayLayers*(self: RDTextureFormat): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RDTextureFormat, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `mipmaps=`*(self: RDTextureFormat; pMember: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc mipmaps*(self: RDTextureFormat): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RDTextureFormat, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `textureType=`*(self: RDTextureFormat; pMember: RenderingDevice_TextureType) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc textureType*(self: RDTextureFormat): RenderingDevice_TextureType =
     methodbind = interface_ClassDB_getMethodBind(addr className RDTextureFormat, addr name, 4036357416)
   var ret: encoded RenderingDevice_TextureType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_TextureType)
+  (addr ret).decode_result(RenderingDevice_TextureType)
 proc `samples=`*(self: RDTextureFormat; pMember: RenderingDevice_TextureSamples) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc samples*(self: RDTextureFormat): RenderingDevice_TextureSamples =
     methodbind = interface_ClassDB_getMethodBind(addr className RDTextureFormat, addr name, 407791724)
   var ret: encoded RenderingDevice_TextureSamples
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_TextureSamples)
+  (addr ret).decode_result(RenderingDevice_TextureSamples)
 proc `usageBits=`*(self: RDTextureFormat; pMember: set[RenderingDevice_TextureUsageBits]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc usageBits*(self: RDTextureFormat): set[RenderingDevice_TextureUsageBits] =
     methodbind = interface_ClassDB_getMethodBind(addr className RDTextureFormat, addr name, 1313398998)
   var ret: encoded set[RenderingDevice_TextureUsageBits]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(set[RenderingDevice_TextureUsageBits])
+  (addr ret).decode_result(set[RenderingDevice_TextureUsageBits])
 proc addShareableFormat*(self: RDTextureFormat; format: RenderingDevice_DataFormat) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

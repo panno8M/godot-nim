@@ -19,4 +19,4 @@ proc opType*(self: VisualShaderNodeStep): VisualShaderNodeStep_OpType =
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeStep, addr name, 3274022781)
   var ret: encoded VisualShaderNodeStep_OpType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VisualShaderNodeStep_OpType)
+  (addr ret).decode_result(VisualShaderNodeStep_OpType)

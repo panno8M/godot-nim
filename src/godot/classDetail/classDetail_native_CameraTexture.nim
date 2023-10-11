@@ -19,7 +19,7 @@ proc cameraFeedId*(self: CameraTexture): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className CameraTexture, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `whichFeed=`*(self: CameraTexture; whichFeed: CameraServer_FeedImage) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc whichFeed*(self: CameraTexture): CameraServer_FeedImage =
     methodbind = interface_ClassDB_getMethodBind(addr className CameraTexture, addr name, 91039457)
   var ret: encoded CameraServer_FeedImage
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(CameraServer_FeedImage)
+  (addr ret).decode_result(CameraServer_FeedImage)
 proc `cameraActive=`*(self: CameraTexture; active: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,4 +49,4 @@ proc cameraActive*(self: CameraTexture): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CameraTexture, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

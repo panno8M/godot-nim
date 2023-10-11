@@ -19,7 +19,7 @@ proc rect*(self: BackBufferCopy): Rect2 =
     methodbind = interface_ClassDB_getMethodBind(addr className BackBufferCopy, addr name, 1639390495)
   var ret: encoded Rect2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Rect2)
+  (addr ret).decode_result(Rect2)
 proc `copyMode=`*(self: BackBufferCopy; copyMode: BackBufferCopy_CopyMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,4 +34,4 @@ proc copyMode*(self: BackBufferCopy): BackBufferCopy_CopyMode =
     methodbind = interface_ClassDB_getMethodBind(addr className BackBufferCopy, addr name, 3271169440)
   var ret: encoded BackBufferCopy_CopyMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(BackBufferCopy_CopyMode)
+  (addr ret).decode_result(BackBufferCopy_CopyMode)

@@ -19,7 +19,7 @@ proc size*(self: PlaceholderTextureLayered): Vector2i =
     methodbind = interface_ClassDB_getMethodBind(addr className PlaceholderTextureLayered, addr name, 3690982128)
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc `layers=`*(self: PlaceholderTextureLayered; layers: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

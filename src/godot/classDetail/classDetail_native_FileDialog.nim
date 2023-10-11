@@ -32,7 +32,7 @@ proc filters*(self: FileDialog): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className FileDialog, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc currentDir*(self: FileDialog): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -40,7 +40,7 @@ proc currentDir*(self: FileDialog): String =
     methodbind = interface_ClassDB_getMethodBind(addr className FileDialog, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc currentFile*(self: FileDialog): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -48,7 +48,7 @@ proc currentFile*(self: FileDialog): String =
     methodbind = interface_ClassDB_getMethodBind(addr className FileDialog, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc currentPath*(self: FileDialog): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -56,7 +56,7 @@ proc currentPath*(self: FileDialog): String =
     methodbind = interface_ClassDB_getMethodBind(addr className FileDialog, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `currentDir=`*(self: FileDialog; dir: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -92,7 +92,7 @@ proc isModeOverridingTitle*(self: FileDialog): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className FileDialog, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `fileMode=`*(self: FileDialog; mode: FileDialog_FileMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -107,7 +107,7 @@ proc fileMode*(self: FileDialog): FileDialog_FileMode =
     methodbind = interface_ClassDB_getMethodBind(addr className FileDialog, addr name, 4074825319)
   var ret: encoded FileDialog_FileMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(FileDialog_FileMode)
+  (addr ret).decode_result(FileDialog_FileMode)
 proc getVbox*(self: FileDialog): VBoxContainer =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -115,7 +115,7 @@ proc getVbox*(self: FileDialog): VBoxContainer =
     methodbind = interface_ClassDB_getMethodBind(addr className FileDialog, addr name, 915758477)
   var ret: encoded VBoxContainer
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VBoxContainer)
+  (addr ret).decode_result(VBoxContainer)
 proc getLineEdit*(self: FileDialog): LineEdit =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -123,7 +123,7 @@ proc getLineEdit*(self: FileDialog): LineEdit =
     methodbind = interface_ClassDB_getMethodBind(addr className FileDialog, addr name, 4071694264)
   var ret: encoded LineEdit
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(LineEdit)
+  (addr ret).decode_result(LineEdit)
 proc `access=`*(self: FileDialog; access: FileDialog_Access) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -138,7 +138,7 @@ proc access*(self: FileDialog): FileDialog_Access =
     methodbind = interface_ClassDB_getMethodBind(addr className FileDialog, addr name, 3344081076)
   var ret: encoded FileDialog_Access
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(FileDialog_Access)
+  (addr ret).decode_result(FileDialog_Access)
 proc `rootSubfolder=`*(self: FileDialog; dir: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -153,7 +153,7 @@ proc rootSubfolder*(self: FileDialog): String =
     methodbind = interface_ClassDB_getMethodBind(addr className FileDialog, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `showHiddenFiles=`*(self: FileDialog; show: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -168,7 +168,7 @@ proc isShowingHiddenFiles*(self: FileDialog): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className FileDialog, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc deselectAll*(self: FileDialog) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

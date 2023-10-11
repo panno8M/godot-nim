@@ -13,7 +13,7 @@ proc fromNode*(_: typedesc[GLTFPhysicsShape]; shapeNode: CollisionShape3D): GLTF
   var `?param` = [getPtr shapeNode]
   var ret: encoded GLTFPhysicsShape
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(GLTFPhysicsShape)
+  (addr ret).decode_result(GLTFPhysicsShape)
 proc toNode*(self: GLTFPhysicsShape; cacheShapes: Bool = false): CollisionShape3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc toNode*(self: GLTFPhysicsShape; cacheShapes: Bool = false): CollisionShape3
   var `?param` = [getPtr cacheShapes]
   var ret: encoded CollisionShape3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(CollisionShape3D)
+  (addr ret).decode_result(CollisionShape3D)
 proc fromDictionary*(_: typedesc[GLTFPhysicsShape]; dictionary: Dictionary): GLTFPhysicsShape =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -31,7 +31,7 @@ proc fromDictionary*(_: typedesc[GLTFPhysicsShape]; dictionary: Dictionary): GLT
   var `?param` = [getPtr dictionary]
   var ret: encoded GLTFPhysicsShape
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(GLTFPhysicsShape)
+  (addr ret).decode_result(GLTFPhysicsShape)
 proc toDictionary*(self: GLTFPhysicsShape): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -39,7 +39,7 @@ proc toDictionary*(self: GLTFPhysicsShape): Dictionary =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFPhysicsShape, addr name, 3102165223)
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc shapeType*(self: GLTFPhysicsShape): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -47,7 +47,7 @@ proc shapeType*(self: GLTFPhysicsShape): String =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFPhysicsShape, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `shapeType=`*(self: GLTFPhysicsShape; shapeType: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -62,7 +62,7 @@ proc size*(self: GLTFPhysicsShape): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFPhysicsShape, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `size=`*(self: GLTFPhysicsShape; size: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -77,7 +77,7 @@ proc radius*(self: GLTFPhysicsShape): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFPhysicsShape, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `radius=`*(self: GLTFPhysicsShape; radius: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -92,7 +92,7 @@ proc height*(self: GLTFPhysicsShape): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFPhysicsShape, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `height=`*(self: GLTFPhysicsShape; height: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -107,7 +107,7 @@ proc isTrigger*(self: GLTFPhysicsShape): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFPhysicsShape, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `isTrigger=`*(self: GLTFPhysicsShape; isTrigger: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -122,7 +122,7 @@ proc meshIndex*(self: GLTFPhysicsShape): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFPhysicsShape, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `meshIndex=`*(self: GLTFPhysicsShape; meshIndex: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -137,7 +137,7 @@ proc importerMesh*(self: GLTFPhysicsShape): ImporterMesh =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFPhysicsShape, addr name, 3161779525)
   var ret: encoded ImporterMesh
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(ImporterMesh)
+  (addr ret).decode_result(ImporterMesh)
 proc `importerMesh=`*(self: GLTFPhysicsShape; importerMesh: ImporterMesh) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

@@ -26,7 +26,7 @@ proc isBreaked*(self: EditorDebuggerSession): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorDebuggerSession, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isDebuggable*(self: EditorDebuggerSession): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc isDebuggable*(self: EditorDebuggerSession): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorDebuggerSession, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isActive*(self: EditorDebuggerSession): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc isActive*(self: EditorDebuggerSession): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorDebuggerSession, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc addSessionTab*(self: EditorDebuggerSession; control: Control) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

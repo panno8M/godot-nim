@@ -19,7 +19,7 @@ proc stream*(self: VideoStreamPlayer): VideoStream =
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayer, addr name, 438621487)
   var ret: encoded VideoStream
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VideoStream)
+  (addr ret).decode_result(VideoStream)
 proc play*(self: VideoStreamPlayer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -39,7 +39,7 @@ proc isPlaying*(self: VideoStreamPlayer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `paused=`*(self: VideoStreamPlayer; paused: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -54,7 +54,7 @@ proc isPaused*(self: VideoStreamPlayer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `volume=`*(self: VideoStreamPlayer; volume: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -69,7 +69,7 @@ proc volume*(self: VideoStreamPlayer): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayer, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `volumeDb=`*(self: VideoStreamPlayer; db: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -84,7 +84,7 @@ proc volumeDb*(self: VideoStreamPlayer): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayer, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `audioTrack=`*(self: VideoStreamPlayer; track: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -99,7 +99,7 @@ proc audioTrack*(self: VideoStreamPlayer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getStreamName*(self: VideoStreamPlayer): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -107,7 +107,7 @@ proc getStreamName*(self: VideoStreamPlayer): String =
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayer, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `streamPosition=`*(self: VideoStreamPlayer; position: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -122,7 +122,7 @@ proc streamPosition*(self: VideoStreamPlayer): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayer, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc `autoplay=`*(self: VideoStreamPlayer; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -137,7 +137,7 @@ proc hasAutoplay*(self: VideoStreamPlayer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `expand=`*(self: VideoStreamPlayer; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -152,7 +152,7 @@ proc hasExpand*(self: VideoStreamPlayer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `bufferingMsec=`*(self: VideoStreamPlayer; msec: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -167,7 +167,7 @@ proc bufferingMsec*(self: VideoStreamPlayer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `bus=`*(self: VideoStreamPlayer; bus: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -182,7 +182,7 @@ proc bus*(self: VideoStreamPlayer): StringName =
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayer, addr name, 2002593661)
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc getVideoTexture*(self: VideoStreamPlayer): Texture2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -190,4 +190,4 @@ proc getVideoTexture*(self: VideoStreamPlayer): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayer, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)

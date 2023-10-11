@@ -12,7 +12,7 @@ proc getSize*(self: XRAnchor3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className XRAnchor3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc getPlane*(self: XRAnchor3D): Plane =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -20,4 +20,4 @@ proc getPlane*(self: XRAnchor3D): Plane =
     methodbind = interface_ClassDB_getMethodBind(addr className XRAnchor3D, addr name, 2753500971)
   var ret: encoded Plane
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Plane)
+  (addr ret).decode_result(Plane)

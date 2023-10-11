@@ -19,7 +19,7 @@ proc mesh*(self: MeshInstance3D): Mesh =
     methodbind = interface_ClassDB_getMethodBind(addr className MeshInstance3D, addr name, 1808005922)
   var ret: encoded Mesh
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Mesh)
+  (addr ret).decode_result(Mesh)
 proc `skeletonPath=`*(self: MeshInstance3D; skeletonPath: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc skeletonPath*(self: MeshInstance3D): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className MeshInstance3D, addr name, 277076166)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc `skin=`*(self: MeshInstance3D; skin: Skin) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc skin*(self: MeshInstance3D): Skin =
     methodbind = interface_ClassDB_getMethodBind(addr className MeshInstance3D, addr name, 2074563878)
   var ret: encoded Skin
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Skin)
+  (addr ret).decode_result(Skin)
 proc getSurfaceOverrideMaterialCount*(self: MeshInstance3D): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc getSurfaceOverrideMaterialCount*(self: MeshInstance3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className MeshInstance3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setSurfaceOverrideMaterial*(self: MeshInstance3D; surface: int32; material: Material) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -73,7 +73,7 @@ proc getSurfaceOverrideMaterial*(self: MeshInstance3D; surface: int32): Material
   var `?param` = [getPtr surface]
   var ret: encoded Material
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Material)
+  (addr ret).decode_result(Material)
 proc getActiveMaterial*(self: MeshInstance3D; surface: int32): Material =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -82,7 +82,7 @@ proc getActiveMaterial*(self: MeshInstance3D; surface: int32): Material =
   var `?param` = [getPtr surface]
   var ret: encoded Material
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Material)
+  (addr ret).decode_result(Material)
 proc createTrimeshCollision*(self: MeshInstance3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -110,7 +110,7 @@ proc getBlendShapeCount*(self: MeshInstance3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className MeshInstance3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc findBlendShapeByName*(self: MeshInstance3D; name: StringName): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -119,7 +119,7 @@ proc findBlendShapeByName*(self: MeshInstance3D; name: StringName): int32 =
   var `?param` = [getPtr name]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getBlendShapeValue*(self: MeshInstance3D; blendShapeIdx: int32): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -128,7 +128,7 @@ proc getBlendShapeValue*(self: MeshInstance3D; blendShapeIdx: int32): Float =
   var `?param` = [getPtr blendShapeIdx]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc setBlendShapeValue*(self: MeshInstance3D; blendShapeIdx: int32; value: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

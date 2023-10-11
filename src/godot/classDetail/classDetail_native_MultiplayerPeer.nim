@@ -19,7 +19,7 @@ proc transferChannel*(self: MultiplayerPeer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerPeer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `transferMode=`*(self: MultiplayerPeer; mode: MultiplayerPeer_TransferMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc transferMode*(self: MultiplayerPeer): MultiplayerPeer_TransferMode =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerPeer, addr name, 3369852622)
   var ret: encoded MultiplayerPeer_TransferMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(MultiplayerPeer_TransferMode)
+  (addr ret).decode_result(MultiplayerPeer_TransferMode)
 proc setTargetPeer*(self: MultiplayerPeer; id: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc getPacketPeer*(self: MultiplayerPeer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerPeer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getPacketChannel*(self: MultiplayerPeer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc getPacketChannel*(self: MultiplayerPeer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerPeer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getPacketMode*(self: MultiplayerPeer): MultiplayerPeer_TransferMode =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -65,7 +65,7 @@ proc getPacketMode*(self: MultiplayerPeer): MultiplayerPeer_TransferMode =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerPeer, addr name, 3369852622)
   var ret: encoded MultiplayerPeer_TransferMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(MultiplayerPeer_TransferMode)
+  (addr ret).decode_result(MultiplayerPeer_TransferMode)
 proc poll*(self: MultiplayerPeer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -92,7 +92,7 @@ proc getConnectionStatus*(self: MultiplayerPeer): MultiplayerPeer_ConnectionStat
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerPeer, addr name, 2147374275)
   var ret: encoded MultiplayerPeer_ConnectionStatus
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(MultiplayerPeer_ConnectionStatus)
+  (addr ret).decode_result(MultiplayerPeer_ConnectionStatus)
 proc getUniqueId*(self: MultiplayerPeer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -100,7 +100,7 @@ proc getUniqueId*(self: MultiplayerPeer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerPeer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc generateUniqueId*(self: MultiplayerPeer): uint32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -108,7 +108,7 @@ proc generateUniqueId*(self: MultiplayerPeer): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerPeer, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `refuseNewConnections=`*(self: MultiplayerPeer; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -123,7 +123,7 @@ proc isRefusingNewConnections*(self: MultiplayerPeer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerPeer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isServerRelaySupported*(self: MultiplayerPeer): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -131,4 +131,4 @@ proc isServerRelaySupported*(self: MultiplayerPeer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerPeer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

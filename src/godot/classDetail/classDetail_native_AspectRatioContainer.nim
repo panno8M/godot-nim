@@ -19,7 +19,7 @@ proc ratio*(self: AspectRatioContainer): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AspectRatioContainer, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `stretchMode=`*(self: AspectRatioContainer; stretchMode: AspectRatioContainer_StretchMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc stretchMode*(self: AspectRatioContainer): AspectRatioContainer_StretchMode 
     methodbind = interface_ClassDB_getMethodBind(addr className AspectRatioContainer, addr name, 3416449033)
   var ret: encoded AspectRatioContainer_StretchMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AspectRatioContainer_StretchMode)
+  (addr ret).decode_result(AspectRatioContainer_StretchMode)
 proc `alignmentHorizontal=`*(self: AspectRatioContainer; alignmentHorizontal: AspectRatioContainer_AlignmentMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc alignmentHorizontal*(self: AspectRatioContainer): AspectRatioContainer_Alig
     methodbind = interface_ClassDB_getMethodBind(addr className AspectRatioContainer, addr name, 3838875429)
   var ret: encoded AspectRatioContainer_AlignmentMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AspectRatioContainer_AlignmentMode)
+  (addr ret).decode_result(AspectRatioContainer_AlignmentMode)
 proc `alignmentVertical=`*(self: AspectRatioContainer; alignmentVertical: AspectRatioContainer_AlignmentMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,4 +64,4 @@ proc alignmentVertical*(self: AspectRatioContainer): AspectRatioContainer_Alignm
     methodbind = interface_ClassDB_getMethodBind(addr className AspectRatioContainer, addr name, 3838875429)
   var ret: encoded AspectRatioContainer_AlignmentMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AspectRatioContainer_AlignmentMode)
+  (addr ret).decode_result(AspectRatioContainer_AlignmentMode)

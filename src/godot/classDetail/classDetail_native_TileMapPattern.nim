@@ -20,7 +20,7 @@ proc hasCell*(self: TileMapPattern; coords: Vector2i): Bool =
   var `?param` = [getPtr coords]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc removeCell*(self: TileMapPattern; coords: Vector2i; updateSize: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -36,7 +36,7 @@ proc getCellSourceId*(self: TileMapPattern; coords: Vector2i): int32 =
   var `?param` = [getPtr coords]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getCellAtlasCoords*(self: TileMapPattern; coords: Vector2i): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -45,7 +45,7 @@ proc getCellAtlasCoords*(self: TileMapPattern; coords: Vector2i): Vector2i =
   var `?param` = [getPtr coords]
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc getCellAlternativeTile*(self: TileMapPattern; coords: Vector2i): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -54,7 +54,7 @@ proc getCellAlternativeTile*(self: TileMapPattern; coords: Vector2i): int32 =
   var `?param` = [getPtr coords]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getUsedCells*(self: TileMapPattern): TypedArray[Vector2i] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -62,7 +62,7 @@ proc getUsedCells*(self: TileMapPattern): TypedArray[Vector2i] =
     methodbind = interface_ClassDB_getMethodBind(addr className TileMapPattern, addr name, 3995934104)
   var ret: encoded TypedArray[Vector2i]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Vector2i])
+  (addr ret).decode_result(TypedArray[Vector2i])
 proc getSize*(self: TileMapPattern): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -70,7 +70,7 @@ proc getSize*(self: TileMapPattern): Vector2i =
     methodbind = interface_ClassDB_getMethodBind(addr className TileMapPattern, addr name, 3690982128)
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc setSize*(self: TileMapPattern; size: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -85,4 +85,4 @@ proc isEmpty*(self: TileMapPattern): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TileMapPattern, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

@@ -12,7 +12,7 @@ proc getClassList*(self: ClassDB): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className ClassDB, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc getInheritersFromClass*(self: ClassDB; class: StringName): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -21,7 +21,7 @@ proc getInheritersFromClass*(self: ClassDB; class: StringName): PackedStringArra
   var `?param` = [getPtr class]
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc getParentClass*(self: ClassDB; class: StringName): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -30,7 +30,7 @@ proc getParentClass*(self: ClassDB; class: StringName): StringName =
   var `?param` = [getPtr class]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc classExists*(self: ClassDB; class: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -39,7 +39,7 @@ proc classExists*(self: ClassDB; class: StringName): Bool =
   var `?param` = [getPtr class]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isParentClass*(self: ClassDB; class: StringName; inherits: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -48,7 +48,7 @@ proc isParentClass*(self: ClassDB; class: StringName; inherits: StringName): Boo
   var `?param` = [getPtr class, getPtr inherits]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc canInstantiate*(self: ClassDB; class: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc canInstantiate*(self: ClassDB; class: StringName): Bool =
   var `?param` = [getPtr class]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc instantiate*(self: ClassDB; class: StringName): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -66,7 +66,7 @@ proc instantiate*(self: ClassDB; class: StringName): Variant =
   var `?param` = [getPtr class]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc classHasSignal*(self: ClassDB; class: StringName; signal: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -75,7 +75,7 @@ proc classHasSignal*(self: ClassDB; class: StringName; signal: StringName): Bool
   var `?param` = [getPtr class, getPtr signal]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc classGetSignal*(self: ClassDB; class: StringName; signal: StringName): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -84,7 +84,7 @@ proc classGetSignal*(self: ClassDB; class: StringName; signal: StringName): Dict
   var `?param` = [getPtr class, getPtr signal]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc classGetSignalList*(self: ClassDB; class: StringName; noInheritance: Bool = false): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -93,7 +93,7 @@ proc classGetSignalList*(self: ClassDB; class: StringName; noInheritance: Bool =
   var `?param` = [getPtr class, getPtr noInheritance]
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[Dictionary])
+  (addr ret).decode_result(TypedArray[Dictionary])
 proc classGetPropertyList*(self: ClassDB; class: StringName; noInheritance: Bool = false): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -102,7 +102,7 @@ proc classGetPropertyList*(self: ClassDB; class: StringName; noInheritance: Bool
   var `?param` = [getPtr class, getPtr noInheritance]
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[Dictionary])
+  (addr ret).decode_result(TypedArray[Dictionary])
 proc classGetProperty*(self: ClassDB; `object`: Object; property: StringName): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -111,7 +111,7 @@ proc classGetProperty*(self: ClassDB; `object`: Object; property: StringName): V
   var `?param` = [getPtr `object`, getPtr property]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc classSetProperty*(self: ClassDB; `object`: Object; property: StringName; value: Variant): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -120,7 +120,7 @@ proc classSetProperty*(self: ClassDB; `object`: Object; property: StringName; va
   var `?param` = [getPtr `object`, getPtr property, getPtr value]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc classHasMethod*(self: ClassDB; class: StringName; `method`: StringName; noInheritance: Bool = false): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -129,7 +129,7 @@ proc classHasMethod*(self: ClassDB; class: StringName; `method`: StringName; noI
   var `?param` = [getPtr class, getPtr `method`, getPtr noInheritance]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc classGetMethodList*(self: ClassDB; class: StringName; noInheritance: Bool = false): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -138,7 +138,7 @@ proc classGetMethodList*(self: ClassDB; class: StringName; noInheritance: Bool =
   var `?param` = [getPtr class, getPtr noInheritance]
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[Dictionary])
+  (addr ret).decode_result(TypedArray[Dictionary])
 proc classGetIntegerConstantList*(self: ClassDB; class: StringName; noInheritance: Bool = false): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -147,7 +147,7 @@ proc classGetIntegerConstantList*(self: ClassDB; class: StringName; noInheritanc
   var `?param` = [getPtr class, getPtr noInheritance]
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc classHasIntegerConstant*(self: ClassDB; class: StringName; name: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -156,7 +156,7 @@ proc classHasIntegerConstant*(self: ClassDB; class: StringName; name: StringName
   var `?param` = [getPtr class, getPtr name]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc classGetIntegerConstant*(self: ClassDB; class: StringName; name: StringName): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -165,7 +165,7 @@ proc classGetIntegerConstant*(self: ClassDB; class: StringName; name: StringName
   var `?param` = [getPtr class, getPtr name]
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int64)
+  (addr ret).decode_result(int64)
 proc classHasEnum*(self: ClassDB; class: StringName; name: StringName; noInheritance: Bool = false): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -174,7 +174,7 @@ proc classHasEnum*(self: ClassDB; class: StringName; name: StringName; noInherit
   var `?param` = [getPtr class, getPtr name, getPtr noInheritance]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc classGetEnumList*(self: ClassDB; class: StringName; noInheritance: Bool = false): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -183,7 +183,7 @@ proc classGetEnumList*(self: ClassDB; class: StringName; noInheritance: Bool = f
   var `?param` = [getPtr class, getPtr noInheritance]
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc classGetEnumConstants*(self: ClassDB; class: StringName; `enum`: StringName; noInheritance: Bool = false): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -192,7 +192,7 @@ proc classGetEnumConstants*(self: ClassDB; class: StringName; `enum`: StringName
   var `?param` = [getPtr class, getPtr `enum`, getPtr noInheritance]
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc classGetIntegerConstantEnum*(self: ClassDB; class: StringName; name: StringName; noInheritance: Bool = false): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -201,7 +201,7 @@ proc classGetIntegerConstantEnum*(self: ClassDB; class: StringName; name: String
   var `?param` = [getPtr class, getPtr name, getPtr noInheritance]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc isClassEnabled*(self: ClassDB; class: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -210,4 +210,4 @@ proc isClassEnabled*(self: ClassDB; class: StringName): Bool =
   var `?param` = [getPtr class]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

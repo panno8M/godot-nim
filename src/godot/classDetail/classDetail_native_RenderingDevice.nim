@@ -13,7 +13,7 @@ proc textureCreate*(self: RenderingDevice; format: RDTextureFormat; view: RDText
   var `?param` = [getPtr format, getPtr view, getPtr data]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc textureCreateShared*(self: RenderingDevice; view: RDTextureView; withTexture: RID): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc textureCreateShared*(self: RenderingDevice; view: RDTextureView; withTextur
   var `?param` = [getPtr view, getPtr withTexture]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc textureCreateSharedFromSlice*(self: RenderingDevice; view: RDTextureView; withTexture: RID; layer: uint32; mipmap: uint32; mipmaps: uint32 = 1'u32; sliceType: RenderingDevice_TextureSliceType = textureSlice2d): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -31,7 +31,7 @@ proc textureCreateSharedFromSlice*(self: RenderingDevice; view: RDTextureView; w
   var `?param` = [getPtr view, getPtr withTexture, getPtr layer, getPtr mipmap, getPtr mipmaps, getPtr sliceType]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc textureUpdate*(self: RenderingDevice; texture: RID; layer: uint32; data: PackedByteArray; postBarrier: set[RenderingDevice_BarrierMask] = (RenderingDevice_BarrierMask).barrierMaskAllBarriers): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -40,7 +40,7 @@ proc textureUpdate*(self: RenderingDevice; texture: RID; layer: uint32; data: Pa
   var `?param` = [getPtr texture, getPtr layer, getPtr data, getPtr postBarrier]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc textureGetData*(self: RenderingDevice; texture: RID; layer: uint32): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc textureGetData*(self: RenderingDevice; texture: RID; layer: uint32): Packed
   var `?param` = [getPtr texture, getPtr layer]
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)
 proc textureIsFormatSupportedForUsage*(self: RenderingDevice; format: RenderingDevice_DataFormat; usageFlags: set[RenderingDevice_TextureUsageBits]): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -58,7 +58,7 @@ proc textureIsFormatSupportedForUsage*(self: RenderingDevice; format: RenderingD
   var `?param` = [getPtr format, getPtr usageFlags]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc textureIsShared*(self: RenderingDevice; texture: RID): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -67,7 +67,7 @@ proc textureIsShared*(self: RenderingDevice; texture: RID): Bool =
   var `?param` = [getPtr texture]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc textureIsValid*(self: RenderingDevice; texture: RID): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -76,7 +76,7 @@ proc textureIsValid*(self: RenderingDevice; texture: RID): Bool =
   var `?param` = [getPtr texture]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc textureCopy*(self: RenderingDevice; fromTexture: RID; toTexture: RID; fromPos: Vector3; toPos: Vector3; size: Vector3; srcMipmap: uint32; dstMipmap: uint32; srcLayer: uint32; dstLayer: uint32; postBarrier: set[RenderingDevice_BarrierMask] = (RenderingDevice_BarrierMask).barrierMaskAllBarriers): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -85,7 +85,7 @@ proc textureCopy*(self: RenderingDevice; fromTexture: RID; toTexture: RID; fromP
   var `?param` = [getPtr fromTexture, getPtr toTexture, getPtr fromPos, getPtr toPos, getPtr size, getPtr srcMipmap, getPtr dstMipmap, getPtr srcLayer, getPtr dstLayer, getPtr postBarrier]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc textureClear*(self: RenderingDevice; texture: RID; color: Color; baseMipmap: uint32; mipmapCount: uint32; baseLayer: uint32; layerCount: uint32; postBarrier: set[RenderingDevice_BarrierMask] = (RenderingDevice_BarrierMask).barrierMaskAllBarriers): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc textureClear*(self: RenderingDevice; texture: RID; color: Color; baseMipmap
   var `?param` = [getPtr texture, getPtr color, getPtr baseMipmap, getPtr mipmapCount, getPtr baseLayer, getPtr layerCount, getPtr postBarrier]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc textureResolveMultisample*(self: RenderingDevice; fromTexture: RID; toTexture: RID; postBarrier: set[RenderingDevice_BarrierMask] = (RenderingDevice_BarrierMask).barrierMaskAllBarriers): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -103,7 +103,7 @@ proc textureResolveMultisample*(self: RenderingDevice; fromTexture: RID; toTextu
   var `?param` = [getPtr fromTexture, getPtr toTexture, getPtr postBarrier]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc textureGetNativeHandle*(self: RenderingDevice; texture: RID): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -112,7 +112,7 @@ proc textureGetNativeHandle*(self: RenderingDevice; texture: RID): uint64 =
   var `?param` = [getPtr texture]
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)
 proc framebufferFormatCreate*(self: RenderingDevice; attachments: TypedArray[RDAttachmentFormat]; viewCount: uint32 = 1'u32): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -121,7 +121,7 @@ proc framebufferFormatCreate*(self: RenderingDevice; attachments: TypedArray[RDA
   var `?param` = [getPtr attachments, getPtr viewCount]
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int64)
+  (addr ret).decode_result(int64)
 proc framebufferFormatCreateMultipass*(self: RenderingDevice; attachments: TypedArray[RDAttachmentFormat]; passes: TypedArray[RDFramebufferPass]; viewCount: uint32 = 1'u32): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -130,7 +130,7 @@ proc framebufferFormatCreateMultipass*(self: RenderingDevice; attachments: Typed
   var `?param` = [getPtr attachments, getPtr passes, getPtr viewCount]
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int64)
+  (addr ret).decode_result(int64)
 proc framebufferFormatCreateEmpty*(self: RenderingDevice; samples: RenderingDevice_TextureSamples = textureSamples1): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc framebufferFormatCreateEmpty*(self: RenderingDevice; samples: RenderingDevi
   var `?param` = [getPtr samples]
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int64)
+  (addr ret).decode_result(int64)
 proc framebufferFormatGetTextureSamples*(self: RenderingDevice; format: int64; renderPass: uint32 = 0'u32): RenderingDevice_TextureSamples =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -148,7 +148,7 @@ proc framebufferFormatGetTextureSamples*(self: RenderingDevice; format: int64; r
   var `?param` = [getPtr format, getPtr renderPass]
   var ret: encoded RenderingDevice_TextureSamples
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RenderingDevice_TextureSamples)
+  (addr ret).decode_result(RenderingDevice_TextureSamples)
 proc framebufferCreate*(self: RenderingDevice; textures: TypedArray[RID]; validateWithFormat: int64 = -1; viewCount: uint32 = 1'u32): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -157,7 +157,7 @@ proc framebufferCreate*(self: RenderingDevice; textures: TypedArray[RID]; valida
   var `?param` = [getPtr textures, getPtr validateWithFormat, getPtr viewCount]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc framebufferCreateMultipass*(self: RenderingDevice; textures: TypedArray[RID]; passes: TypedArray[RDFramebufferPass]; validateWithFormat: int64 = -1; viewCount: uint32 = 1'u32): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -166,7 +166,7 @@ proc framebufferCreateMultipass*(self: RenderingDevice; textures: TypedArray[RID
   var `?param` = [getPtr textures, getPtr passes, getPtr validateWithFormat, getPtr viewCount]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc framebufferCreateEmpty*(self: RenderingDevice; size: Vector2i; samples: RenderingDevice_TextureSamples = textureSamples1; validateWithFormat: int64 = -1): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -175,7 +175,7 @@ proc framebufferCreateEmpty*(self: RenderingDevice; size: Vector2i; samples: Ren
   var `?param` = [getPtr size, getPtr samples, getPtr validateWithFormat]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc framebufferGetFormat*(self: RenderingDevice; framebuffer: RID): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -184,7 +184,7 @@ proc framebufferGetFormat*(self: RenderingDevice; framebuffer: RID): int64 =
   var `?param` = [getPtr framebuffer]
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int64)
+  (addr ret).decode_result(int64)
 proc framebufferIsValid*(self: RenderingDevice; framebuffer: RID): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -193,7 +193,7 @@ proc framebufferIsValid*(self: RenderingDevice; framebuffer: RID): Bool =
   var `?param` = [getPtr framebuffer]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc samplerCreate*(self: RenderingDevice; state: RDSamplerState): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -202,7 +202,7 @@ proc samplerCreate*(self: RenderingDevice; state: RDSamplerState): RID =
   var `?param` = [getPtr state]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc samplerIsFormatSupportedForFilter*(self: RenderingDevice; format: RenderingDevice_DataFormat; samplerFilter: RenderingDevice_SamplerFilter): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -211,7 +211,7 @@ proc samplerIsFormatSupportedForFilter*(self: RenderingDevice; format: Rendering
   var `?param` = [getPtr format, getPtr samplerFilter]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc vertexBufferCreate*(self: RenderingDevice; sizeBytes: uint32; data: PackedByteArray = PackedByteArray(); useAsStorage: Bool = false): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -220,7 +220,7 @@ proc vertexBufferCreate*(self: RenderingDevice; sizeBytes: uint32; data: PackedB
   var `?param` = [getPtr sizeBytes, getPtr data, getPtr useAsStorage]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc vertexFormatCreate*(self: RenderingDevice; vertexDescriptions: TypedArray[RDVertexAttribute]): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -229,7 +229,7 @@ proc vertexFormatCreate*(self: RenderingDevice; vertexDescriptions: TypedArray[R
   var `?param` = [getPtr vertexDescriptions]
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int64)
+  (addr ret).decode_result(int64)
 proc vertexArrayCreate*(self: RenderingDevice; vertexCount: uint32; vertexFormat: int64; srcBuffers: TypedArray[RID]; offsets: PackedInt64Array = PackedInt64Array()): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -238,7 +238,7 @@ proc vertexArrayCreate*(self: RenderingDevice; vertexCount: uint32; vertexFormat
   var `?param` = [getPtr vertexCount, getPtr vertexFormat, getPtr srcBuffers, getPtr offsets]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc indexBufferCreate*(self: RenderingDevice; sizeIndices: uint32; format: RenderingDevice_IndexBufferFormat; data: PackedByteArray = PackedByteArray(); useRestartIndices: Bool = false): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -247,7 +247,7 @@ proc indexBufferCreate*(self: RenderingDevice; sizeIndices: uint32; format: Rend
   var `?param` = [getPtr sizeIndices, getPtr format, getPtr data, getPtr useRestartIndices]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc indexArrayCreate*(self: RenderingDevice; indexBuffer: RID; indexOffset: uint32; indexCount: uint32): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -256,7 +256,7 @@ proc indexArrayCreate*(self: RenderingDevice; indexBuffer: RID; indexOffset: uin
   var `?param` = [getPtr indexBuffer, getPtr indexOffset, getPtr indexCount]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc shaderCompileSpirvFromSource*(self: RenderingDevice; shaderSource: RDShaderSource; allowCache: Bool = true): RDShaderSPIRV =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -265,7 +265,7 @@ proc shaderCompileSpirvFromSource*(self: RenderingDevice; shaderSource: RDShader
   var `?param` = [getPtr shaderSource, getPtr allowCache]
   var ret: encoded RDShaderSPIRV
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RDShaderSPIRV)
+  (addr ret).decode_result(RDShaderSPIRV)
 proc shaderCompileBinaryFromSpirv*(self: RenderingDevice; spirvData: RDShaderSPIRV; name: String = ""): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -274,7 +274,7 @@ proc shaderCompileBinaryFromSpirv*(self: RenderingDevice; spirvData: RDShaderSPI
   var `?param` = [getPtr spirvData, getPtr name]
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)
 proc shaderCreateFromSpirv*(self: RenderingDevice; spirvData: RDShaderSPIRV; name: String = ""): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -283,7 +283,7 @@ proc shaderCreateFromSpirv*(self: RenderingDevice; spirvData: RDShaderSPIRV; nam
   var `?param` = [getPtr spirvData, getPtr name]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc shaderCreateFromBytecode*(self: RenderingDevice; binaryData: PackedByteArray): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -292,7 +292,7 @@ proc shaderCreateFromBytecode*(self: RenderingDevice; binaryData: PackedByteArra
   var `?param` = [getPtr binaryData]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc shaderGetVertexInputAttributeMask*(self: RenderingDevice; shader: RID): uint32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -301,7 +301,7 @@ proc shaderGetVertexInputAttributeMask*(self: RenderingDevice; shader: RID): uin
   var `?param` = [getPtr shader]
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc uniformBufferCreate*(self: RenderingDevice; sizeBytes: uint32; data: PackedByteArray = PackedByteArray()): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -310,7 +310,7 @@ proc uniformBufferCreate*(self: RenderingDevice; sizeBytes: uint32; data: Packed
   var `?param` = [getPtr sizeBytes, getPtr data]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc storageBufferCreate*(self: RenderingDevice; sizeBytes: uint32; data: PackedByteArray = PackedByteArray(); usage: set[RenderingDevice_StorageBufferUsage] = {}): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -319,7 +319,7 @@ proc storageBufferCreate*(self: RenderingDevice; sizeBytes: uint32; data: Packed
   var `?param` = [getPtr sizeBytes, getPtr data, getPtr usage]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc textureBufferCreate*(self: RenderingDevice; sizeBytes: uint32; format: RenderingDevice_DataFormat; data: PackedByteArray = PackedByteArray()): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -328,7 +328,7 @@ proc textureBufferCreate*(self: RenderingDevice; sizeBytes: uint32; format: Rend
   var `?param` = [getPtr sizeBytes, getPtr format, getPtr data]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc uniformSetCreate*(self: RenderingDevice; uniforms: TypedArray[RDUniform]; shader: RID; shaderSet: uint32): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -337,7 +337,7 @@ proc uniformSetCreate*(self: RenderingDevice; uniforms: TypedArray[RDUniform]; s
   var `?param` = [getPtr uniforms, getPtr shader, getPtr shaderSet]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc uniformSetIsValid*(self: RenderingDevice; uniformSet: RID): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -346,7 +346,7 @@ proc uniformSetIsValid*(self: RenderingDevice; uniformSet: RID): Bool =
   var `?param` = [getPtr uniformSet]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc bufferUpdate*(self: RenderingDevice; buffer: RID; offset: uint32; sizeBytes: uint32; data: PackedByteArray; postBarrier: set[RenderingDevice_BarrierMask] = (RenderingDevice_BarrierMask).barrierMaskAllBarriers): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -355,7 +355,7 @@ proc bufferUpdate*(self: RenderingDevice; buffer: RID; offset: uint32; sizeBytes
   var `?param` = [getPtr buffer, getPtr offset, getPtr sizeBytes, getPtr data, getPtr postBarrier]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc bufferClear*(self: RenderingDevice; buffer: RID; offset: uint32; sizeBytes: uint32; postBarrier: set[RenderingDevice_BarrierMask] = (RenderingDevice_BarrierMask).barrierMaskAllBarriers): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -364,7 +364,7 @@ proc bufferClear*(self: RenderingDevice; buffer: RID; offset: uint32; sizeBytes:
   var `?param` = [getPtr buffer, getPtr offset, getPtr sizeBytes, getPtr postBarrier]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc bufferGetData*(self: RenderingDevice; buffer: RID; offsetBytes: uint32 = 0'u32; sizeBytes: uint32 = 0'u32): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -373,7 +373,7 @@ proc bufferGetData*(self: RenderingDevice; buffer: RID; offsetBytes: uint32 = 0'
   var `?param` = [getPtr buffer, getPtr offsetBytes, getPtr sizeBytes]
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)
 proc renderPipelineCreate*(self: RenderingDevice; shader: RID; framebufferFormat: int64; vertexFormat: int64; primitive: RenderingDevice_RenderPrimitive; rasterizationState: RDPipelineRasterizationState; multisampleState: RDPipelineMultisampleState; stencilState: RDPipelineDepthStencilState; colorBlendState: RDPipelineColorBlendState; dynamicStateFlags: set[RenderingDevice_PipelineDynamicStateFlags] = {}; forRenderPass: uint32 = 0'u32; specializationConstants: TypedArray[RDPipelineSpecializationConstant] = init_TypedArray[RDPipelineSpecializationConstant]()): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -382,7 +382,7 @@ proc renderPipelineCreate*(self: RenderingDevice; shader: RID; framebufferFormat
   var `?param` = [getPtr shader, getPtr framebufferFormat, getPtr vertexFormat, getPtr primitive, getPtr rasterizationState, getPtr multisampleState, getPtr stencilState, getPtr colorBlendState, getPtr dynamicStateFlags, getPtr forRenderPass, getPtr specializationConstants]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc renderPipelineIsValid*(self: RenderingDevice; renderPipeline: RID): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -391,7 +391,7 @@ proc renderPipelineIsValid*(self: RenderingDevice; renderPipeline: RID): Bool =
   var `?param` = [getPtr renderPipeline]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc computePipelineCreate*(self: RenderingDevice; shader: RID; specializationConstants: TypedArray[RDPipelineSpecializationConstant] = init_TypedArray[RDPipelineSpecializationConstant]()): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -400,7 +400,7 @@ proc computePipelineCreate*(self: RenderingDevice; shader: RID; specializationCo
   var `?param` = [getPtr shader, getPtr specializationConstants]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc computePipelineIsValid*(self: RenderingDevice; computePipeline: RID): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -409,7 +409,7 @@ proc computePipelineIsValid*(self: RenderingDevice; computePipeline: RID): Bool 
   var `?param` = [getPtr computePipeline]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc screenGetWidth*(self: RenderingDevice; screen: int32 = 0): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -418,7 +418,7 @@ proc screenGetWidth*(self: RenderingDevice; screen: int32 = 0): int32 =
   var `?param` = [getPtr screen]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc screenGetHeight*(self: RenderingDevice; screen: int32 = 0): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -427,7 +427,7 @@ proc screenGetHeight*(self: RenderingDevice; screen: int32 = 0): int32 =
   var `?param` = [getPtr screen]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc screenGetFramebufferFormat*(self: RenderingDevice): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -435,7 +435,7 @@ proc screenGetFramebufferFormat*(self: RenderingDevice): int64 =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingDevice, addr name, 3905245786)
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int64)
+  (addr ret).decode_result(int64)
 proc drawListBeginForScreen*(self: RenderingDevice; screen: int32 = 0; clearColor: Color = init_Color(0, 0, 0, 1)): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -444,7 +444,7 @@ proc drawListBeginForScreen*(self: RenderingDevice; screen: int32 = 0; clearColo
   var `?param` = [getPtr screen, getPtr clearColor]
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int64)
+  (addr ret).decode_result(int64)
 proc drawListBegin*(self: RenderingDevice; framebuffer: RID; initialColorAction: RenderingDevice_InitialAction; finalColorAction: RenderingDevice_FinalAction; initialDepthAction: RenderingDevice_InitialAction; finalDepthAction: RenderingDevice_FinalAction; clearColorValues: PackedColorArray = PackedColorArray(); clearDepth: Float = 1.0; clearStencil: uint32 = 0'u32; region: Rect2 = init_Rect2(0, 0, 0, 0); storageTextures: TypedArray[RID] = init_TypedArray[RID]()): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -453,7 +453,7 @@ proc drawListBegin*(self: RenderingDevice; framebuffer: RID; initialColorAction:
   var `?param` = [getPtr framebuffer, getPtr initialColorAction, getPtr finalColorAction, getPtr initialDepthAction, getPtr finalDepthAction, getPtr clearColorValues, getPtr clearDepth, getPtr clearStencil, getPtr region, getPtr storageTextures]
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int64)
+  (addr ret).decode_result(int64)
 proc drawListBeginSplit*(self: RenderingDevice; framebuffer: RID; splits: uint32; initialColorAction: RenderingDevice_InitialAction; finalColorAction: RenderingDevice_FinalAction; initialDepthAction: RenderingDevice_InitialAction; finalDepthAction: RenderingDevice_FinalAction; clearColorValues: PackedColorArray = PackedColorArray(); clearDepth: Float = 1.0; clearStencil: uint32 = 0'u32; region: Rect2 = init_Rect2(0, 0, 0, 0); storageTextures: TypedArray[RID] = init_TypedArray[RID]()): PackedInt64Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -462,7 +462,7 @@ proc drawListBeginSplit*(self: RenderingDevice; framebuffer: RID; splits: uint32
   var `?param` = [getPtr framebuffer, getPtr splits, getPtr initialColorAction, getPtr finalColorAction, getPtr initialDepthAction, getPtr finalDepthAction, getPtr clearColorValues, getPtr clearDepth, getPtr clearStencil, getPtr region, getPtr storageTextures]
   var ret: encoded PackedInt64Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedInt64Array)
+  (addr ret).decode_result(PackedInt64Array)
 proc drawListSetBlendConstants*(self: RenderingDevice; drawList: int64; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -533,7 +533,7 @@ proc drawListSwitchToNextPass*(self: RenderingDevice): int64 =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingDevice, addr name, 2455072627)
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int64)
+  (addr ret).decode_result(int64)
 proc drawListSwitchToNextPassSplit*(self: RenderingDevice; splits: uint32): PackedInt64Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -542,7 +542,7 @@ proc drawListSwitchToNextPassSplit*(self: RenderingDevice; splits: uint32): Pack
   var `?param` = [getPtr splits]
   var ret: encoded PackedInt64Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedInt64Array)
+  (addr ret).decode_result(PackedInt64Array)
 proc drawListEnd*(self: RenderingDevice; postBarrier: set[RenderingDevice_BarrierMask] = (RenderingDevice_BarrierMask).barrierMaskAllBarriers) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -558,7 +558,7 @@ proc computeListBegin*(self: RenderingDevice; allowDrawOverlap: Bool = false): i
   var `?param` = [getPtr allowDrawOverlap]
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int64)
+  (addr ret).decode_result(int64)
 proc computeListBindComputePipeline*(self: RenderingDevice; computeList: int64; computePipeline: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -622,7 +622,7 @@ proc getCapturedTimestampsCount*(self: RenderingDevice): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingDevice, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc getCapturedTimestampsFrame*(self: RenderingDevice): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -630,7 +630,7 @@ proc getCapturedTimestampsFrame*(self: RenderingDevice): uint64 =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingDevice, addr name, 3905245786)
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)
 proc getCapturedTimestampGpuTime*(self: RenderingDevice; index: uint32): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -639,7 +639,7 @@ proc getCapturedTimestampGpuTime*(self: RenderingDevice; index: uint32): uint64 
   var `?param` = [getPtr index]
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)
 proc getCapturedTimestampCpuTime*(self: RenderingDevice; index: uint32): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -648,7 +648,7 @@ proc getCapturedTimestampCpuTime*(self: RenderingDevice; index: uint32): uint64 
   var `?param` = [getPtr index]
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)
 proc getCapturedTimestampName*(self: RenderingDevice; index: uint32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -657,7 +657,7 @@ proc getCapturedTimestampName*(self: RenderingDevice; index: uint32): String =
   var `?param` = [getPtr index]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc limitGet*(self: RenderingDevice; limit: RenderingDevice_Limit): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -666,7 +666,7 @@ proc limitGet*(self: RenderingDevice; limit: RenderingDevice_Limit): uint64 =
   var `?param` = [getPtr limit]
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)
 proc getFrameDelay*(self: RenderingDevice): uint32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -674,7 +674,7 @@ proc getFrameDelay*(self: RenderingDevice): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingDevice, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc submit*(self: RenderingDevice) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -707,7 +707,7 @@ proc createLocalDevice*(self: RenderingDevice): RenderingDevice =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingDevice, addr name, 2846302423)
   var ret: encoded RenderingDevice
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice)
+  (addr ret).decode_result(RenderingDevice)
 proc setResourceName*(self: RenderingDevice; id: RID; name: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -742,7 +742,7 @@ proc getDeviceVendorName*(self: RenderingDevice): String =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingDevice, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getDeviceName*(self: RenderingDevice): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -750,7 +750,7 @@ proc getDeviceName*(self: RenderingDevice): String =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingDevice, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getDevicePipelineCacheUuid*(self: RenderingDevice): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -758,7 +758,7 @@ proc getDevicePipelineCacheUuid*(self: RenderingDevice): String =
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingDevice, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getMemoryUsage*(self: RenderingDevice; `type`: RenderingDevice_MemoryType): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -767,7 +767,7 @@ proc getMemoryUsage*(self: RenderingDevice; `type`: RenderingDevice_MemoryType):
   var `?param` = [getPtr `type`]
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)
 proc getDriverResource*(self: RenderingDevice; resource: RenderingDevice_DriverResource; rid: RID; index: uint64): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -776,4 +776,4 @@ proc getDriverResource*(self: RenderingDevice; resource: RenderingDevice_DriverR
   var `?param` = [getPtr resource, getPtr rid, getPtr index]
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)

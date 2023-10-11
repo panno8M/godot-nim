@@ -19,7 +19,7 @@ proc tarnode*(self: SkeletonModification2DTwoBoneIK): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DTwoBoneIK, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc `targetMinimumDistance=`*(self: SkeletonModification2DTwoBoneIK; minimumDistance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc tarminimumDistance*(self: SkeletonModification2DTwoBoneIK): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DTwoBoneIK, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `targetMaximumDistance=`*(self: SkeletonModification2DTwoBoneIK; maximumDistance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc tarmaximumDistance*(self: SkeletonModification2DTwoBoneIK): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DTwoBoneIK, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `flipBendDirection=`*(self: SkeletonModification2DTwoBoneIK; flipDirection: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc flipBendDirection*(self: SkeletonModification2DTwoBoneIK): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DTwoBoneIK, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setJointOneBone2dNode*(self: SkeletonModification2DTwoBoneIK; bone2dNode: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc getJointOneBone2dNode*(self: SkeletonModification2DTwoBoneIK): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DTwoBoneIK, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc setJointOneBoneIdx*(self: SkeletonModification2DTwoBoneIK; boneIdx: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc getJointOneBoneIdx*(self: SkeletonModification2DTwoBoneIK): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DTwoBoneIK, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setJointTwoBone2dNode*(self: SkeletonModification2DTwoBoneIK; bone2dNode: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc getJointTwoBone2dNode*(self: SkeletonModification2DTwoBoneIK): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DTwoBoneIK, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc setJointTwoBoneIdx*(self: SkeletonModification2DTwoBoneIK; boneIdx: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,4 +124,4 @@ proc getJointTwoBoneIdx*(self: SkeletonModification2DTwoBoneIK): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DTwoBoneIK, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)

@@ -38,7 +38,7 @@ proc isPlaying*(self: AnimationNodeStateMachinePlayback): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachinePlayback, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getCurrentNode*(self: AnimationNodeStateMachinePlayback): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -46,7 +46,7 @@ proc getCurrentNode*(self: AnimationNodeStateMachinePlayback): StringName =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachinePlayback, addr name, 2002593661)
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc getCurrentPlayPosition*(self: AnimationNodeStateMachinePlayback): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -54,7 +54,7 @@ proc getCurrentPlayPosition*(self: AnimationNodeStateMachinePlayback): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachinePlayback, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getCurrentLength*(self: AnimationNodeStateMachinePlayback): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -62,7 +62,7 @@ proc getCurrentLength*(self: AnimationNodeStateMachinePlayback): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachinePlayback, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getFadingFromNode*(self: AnimationNodeStateMachinePlayback): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -70,7 +70,7 @@ proc getFadingFromNode*(self: AnimationNodeStateMachinePlayback): StringName =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachinePlayback, addr name, 2002593661)
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc getTravelPath*(self: AnimationNodeStateMachinePlayback): TypedArray[StringName] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -78,4 +78,4 @@ proc getTravelPath*(self: AnimationNodeStateMachinePlayback): TypedArray[StringN
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachinePlayback, addr name, 3995934104)
   var ret: encoded TypedArray[StringName]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[StringName])
+  (addr ret).decode_result(TypedArray[StringName])

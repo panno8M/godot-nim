@@ -12,7 +12,7 @@ proc getCurrentEditor*(self: ScriptEditor): ScriptEditorBase =
     methodbind = interface_ClassDB_getMethodBind(addr className ScriptEditor, addr name, 1906266726)
   var ret: encoded ScriptEditorBase
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(ScriptEditorBase)
+  (addr ret).decode_result(ScriptEditorBase)
 proc getOpenScriptEditors*(self: ScriptEditor): TypedArray[ScriptEditorBase] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -20,7 +20,7 @@ proc getOpenScriptEditors*(self: ScriptEditor): TypedArray[ScriptEditorBase] =
     methodbind = interface_ClassDB_getMethodBind(addr className ScriptEditor, addr name, 3995934104)
   var ret: encoded TypedArray[ScriptEditorBase]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[ScriptEditorBase])
+  (addr ret).decode_result(TypedArray[ScriptEditorBase])
 proc registerSyntaxHighlighter*(self: ScriptEditor; syntaxHighlighter: EditorSyntaxHighlighter) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc getCurrentScript*(self: ScriptEditor): Script =
     methodbind = interface_ClassDB_getMethodBind(addr className ScriptEditor, addr name, 2146468882)
   var ret: encoded Script
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Script)
+  (addr ret).decode_result(Script)
 proc getOpenScripts*(self: ScriptEditor): TypedArray[Script] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc getOpenScripts*(self: ScriptEditor): TypedArray[Script] =
     methodbind = interface_ClassDB_getMethodBind(addr className ScriptEditor, addr name, 3995934104)
   var ret: encoded TypedArray[Script]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Script])
+  (addr ret).decode_result(TypedArray[Script])
 proc openScriptCreateDialog*(self: ScriptEditor; baseName: String; basePath: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

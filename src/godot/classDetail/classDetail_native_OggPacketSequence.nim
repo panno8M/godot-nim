@@ -19,7 +19,7 @@ proc packetData*(self: OggPacketSequence): TypedArray[Array] =
     methodbind = interface_ClassDB_getMethodBind(addr className OggPacketSequence, addr name, 3995934104)
   var ret: encoded TypedArray[Array]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Array])
+  (addr ret).decode_result(TypedArray[Array])
 proc `packetGranulePositions=`*(self: OggPacketSequence; granulePositions: PackedInt64Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc packetGranulePositions*(self: OggPacketSequence): PackedInt64Array =
     methodbind = interface_ClassDB_getMethodBind(addr className OggPacketSequence, addr name, 235988956)
   var ret: encoded PackedInt64Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt64Array)
+  (addr ret).decode_result(PackedInt64Array)
 proc `samplingRate=`*(self: OggPacketSequence; samplingRate: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc samplingRate*(self: OggPacketSequence): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className OggPacketSequence, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getLength*(self: OggPacketSequence): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,4 +57,4 @@ proc getLength*(self: OggPacketSequence): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className OggPacketSequence, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

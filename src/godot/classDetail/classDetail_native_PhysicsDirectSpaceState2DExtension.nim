@@ -13,4 +13,4 @@ proc isBodyExcludedFromQuery*(self: PhysicsDirectSpaceState2DExtension; body: RI
   var `?param` = [getPtr body]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

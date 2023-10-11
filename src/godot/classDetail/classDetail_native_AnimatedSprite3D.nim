@@ -19,7 +19,7 @@ proc spriteFrames*(self: AnimatedSprite3D): SpriteFrames =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedSprite3D, addr name, 3804851214)
   var ret: encoded SpriteFrames
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(SpriteFrames)
+  (addr ret).decode_result(SpriteFrames)
 proc `animation=`*(self: AnimatedSprite3D; name: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc animation*(self: AnimatedSprite3D): StringName =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedSprite3D, addr name, 2002593661)
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc `autoplay=`*(self: AnimatedSprite3D; name: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc autoplay*(self: AnimatedSprite3D): String =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedSprite3D, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc isPlaying*(self: AnimatedSprite3D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc isPlaying*(self: AnimatedSprite3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedSprite3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc play*(self: AnimatedSprite3D; name: StringName = ""; customSpeed: Float = 1.0; fromEnd: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -98,7 +98,7 @@ proc frame*(self: AnimatedSprite3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedSprite3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `frameProgress=`*(self: AnimatedSprite3D; progress: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -113,7 +113,7 @@ proc frameProgress*(self: AnimatedSprite3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedSprite3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc setFrameAndProgress*(self: AnimatedSprite3D; frame: int32; progress: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -135,7 +135,7 @@ proc speedScale*(self: AnimatedSprite3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedSprite3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getPlayingSpeed*(self: AnimatedSprite3D): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -143,4 +143,4 @@ proc getPlayingSpeed*(self: AnimatedSprite3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedSprite3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

@@ -19,7 +19,7 @@ proc shape*(self: CollisionShape2D): Shape2D =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionShape2D, addr name, 522005891)
   var ret: encoded Shape2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Shape2D)
+  (addr ret).decode_result(Shape2D)
 proc `disabled=`*(self: CollisionShape2D; disabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc isDisabled*(self: CollisionShape2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionShape2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `oneWayCollision=`*(self: CollisionShape2D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc isOneWayCollisionEnabled*(self: CollisionShape2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionShape2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `oneWayCollisionMargin=`*(self: CollisionShape2D; margin: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc oneWayCollisionMargin*(self: CollisionShape2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionShape2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `debugColor=`*(self: CollisionShape2D; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,4 +79,4 @@ proc debugColor*(self: CollisionShape2D): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionShape2D, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)

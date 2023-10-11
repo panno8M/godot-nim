@@ -19,7 +19,7 @@ proc ceilingDb*(self: AudioEffectLimiter): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectLimiter, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `thresholdDb=`*(self: AudioEffectLimiter; threshold: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc thresholdDb*(self: AudioEffectLimiter): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectLimiter, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `softClipDb=`*(self: AudioEffectLimiter; softClip: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc softClipDb*(self: AudioEffectLimiter): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectLimiter, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `softClipRatio=`*(self: AudioEffectLimiter; softClip: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,4 +64,4 @@ proc softClipRatio*(self: AudioEffectLimiter): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectLimiter, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

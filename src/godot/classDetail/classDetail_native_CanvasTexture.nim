@@ -19,7 +19,7 @@ proc diffuseTexture*(self: CanvasTexture): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasTexture, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc `normalTexture=`*(self: CanvasTexture; texture: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc normalTexture*(self: CanvasTexture): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasTexture, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc `specularTexture=`*(self: CanvasTexture; texture: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc specularTexture*(self: CanvasTexture): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasTexture, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc `specularColor=`*(self: CanvasTexture; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc specularColor*(self: CanvasTexture): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasTexture, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `specularShininess=`*(self: CanvasTexture; shininess: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc specularShininess*(self: CanvasTexture): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasTexture, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `textureFilter=`*(self: CanvasTexture; filter: CanvasItem_TextureFilter) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc textureFilter*(self: CanvasTexture): CanvasItem_TextureFilter =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasTexture, addr name, 121960042)
   var ret: encoded CanvasItem_TextureFilter
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(CanvasItem_TextureFilter)
+  (addr ret).decode_result(CanvasItem_TextureFilter)
 proc `textureRepeat=`*(self: CanvasTexture; repeat: CanvasItem_TextureRepeat) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,4 +109,4 @@ proc textureRepeat*(self: CanvasTexture): CanvasItem_TextureRepeat =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasTexture, addr name, 2667158319)
   var ret: encoded CanvasItem_TextureRepeat
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(CanvasItem_TextureRepeat)
+  (addr ret).decode_result(CanvasItem_TextureRepeat)

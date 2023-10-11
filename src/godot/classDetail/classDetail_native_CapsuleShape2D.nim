@@ -19,7 +19,7 @@ proc radius*(self: CapsuleShape2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CapsuleShape2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `height=`*(self: CapsuleShape2D; height: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,4 +34,4 @@ proc height*(self: CapsuleShape2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CapsuleShape2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

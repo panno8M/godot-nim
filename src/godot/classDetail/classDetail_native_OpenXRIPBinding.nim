@@ -19,7 +19,7 @@ proc action*(self: OpenXRIPBinding): OpenXRAction =
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRIPBinding, addr name, 4072409085)
   var ret: encoded OpenXRAction
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(OpenXRAction)
+  (addr ret).decode_result(OpenXRAction)
 proc getPathCount*(self: OpenXRIPBinding): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc getPathCount*(self: OpenXRIPBinding): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRIPBinding, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `paths=`*(self: OpenXRIPBinding; paths: PackedStringArray) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc paths*(self: OpenXRIPBinding): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRIPBinding, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc hasPath*(self: OpenXRIPBinding; path: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -51,7 +51,7 @@ proc hasPath*(self: OpenXRIPBinding; path: String): Bool =
   var `?param` = [getPtr path]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc addPath*(self: OpenXRIPBinding; path: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

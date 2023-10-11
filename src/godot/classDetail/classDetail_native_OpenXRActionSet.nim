@@ -19,7 +19,7 @@ proc localizedName*(self: OpenXRActionSet): String =
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRActionSet, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `priority=`*(self: OpenXRActionSet; priority: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc priority*(self: OpenXRActionSet): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRActionSet, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getActionCount*(self: OpenXRActionSet): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc getActionCount*(self: OpenXRActionSet): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRActionSet, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `actions=`*(self: OpenXRActionSet; actions: Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc actions*(self: OpenXRActionSet): Array =
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRActionSet, addr name, 3995934104)
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)
 proc addAction*(self: OpenXRActionSet; action: OpenXRAction) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

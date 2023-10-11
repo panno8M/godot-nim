@@ -13,7 +13,7 @@ proc idToText*(self: ResourceUID; id: int64): String =
   var `?param` = [getPtr id]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc textToId*(self: ResourceUID; textId: String): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc textToId*(self: ResourceUID; textId: String): int64 =
   var `?param` = [getPtr textId]
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int64)
+  (addr ret).decode_result(int64)
 proc createId*(self: ResourceUID): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -30,7 +30,7 @@ proc createId*(self: ResourceUID): int64 =
     methodbind = interface_ClassDB_getMethodBind(addr className ResourceUID, addr name, 2455072627)
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int64)
+  (addr ret).decode_result(int64)
 proc hasId*(self: ResourceUID; id: int64): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -39,7 +39,7 @@ proc hasId*(self: ResourceUID; id: int64): Bool =
   var `?param` = [getPtr id]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc addId*(self: ResourceUID; id: int64; path: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -62,7 +62,7 @@ proc getIdPath*(self: ResourceUID; id: int64): String =
   var `?param` = [getPtr id]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc removeId*(self: ResourceUID; id: int64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

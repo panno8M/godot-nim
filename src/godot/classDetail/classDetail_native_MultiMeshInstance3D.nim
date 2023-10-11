@@ -19,4 +19,4 @@ proc multimesh*(self: MultiMeshInstance3D): MultiMesh =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiMeshInstance3D, addr name, 1385450523)
   var ret: encoded MultiMesh
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(MultiMesh)
+  (addr ret).decode_result(MultiMesh)

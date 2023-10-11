@@ -20,7 +20,7 @@ proc getSpirv*(self: RDShaderFile; version: StringName = ""): RDShaderSPIRV =
   var `?param` = [getPtr version]
   var ret: encoded RDShaderSPIRV
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RDShaderSPIRV)
+  (addr ret).decode_result(RDShaderSPIRV)
 proc getVersionList*(self: RDShaderFile): TypedArray[StringName] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -28,7 +28,7 @@ proc getVersionList*(self: RDShaderFile): TypedArray[StringName] =
     methodbind = interface_ClassDB_getMethodBind(addr className RDShaderFile, addr name, 3995934104)
   var ret: encoded TypedArray[StringName]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[StringName])
+  (addr ret).decode_result(TypedArray[StringName])
 proc `baseError=`*(self: RDShaderFile; error: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -43,4 +43,4 @@ proc baseError*(self: RDShaderFile): String =
     methodbind = interface_ClassDB_getMethodBind(addr className RDShaderFile, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)

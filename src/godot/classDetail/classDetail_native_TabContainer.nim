@@ -12,7 +12,7 @@ proc getTabCount*(self: TabContainer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `currentTab=`*(self: TabContainer; tabIdx: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc currentTab*(self: TabContainer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getPreviousTab*(self: TabContainer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -35,7 +35,7 @@ proc getPreviousTab*(self: TabContainer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getCurrentTabControl*(self: TabContainer): Control =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -43,7 +43,7 @@ proc getCurrentTabControl*(self: TabContainer): Control =
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 2783021301)
   var ret: encoded Control
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Control)
+  (addr ret).decode_result(Control)
 proc getTabControl*(self: TabContainer; tabIdx: int32): Control =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -52,7 +52,7 @@ proc getTabControl*(self: TabContainer; tabIdx: int32): Control =
   var `?param` = [getPtr tabIdx]
   var ret: encoded Control
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Control)
+  (addr ret).decode_result(Control)
 proc `tabAlignment=`*(self: TabContainer; alignment: TabBar_AlignmentMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -67,7 +67,7 @@ proc tabAlignment*(self: TabContainer): TabBar_AlignmentMode =
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 2178122193)
   var ret: encoded TabBar_AlignmentMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TabBar_AlignmentMode)
+  (addr ret).decode_result(TabBar_AlignmentMode)
 proc `clipTabs=`*(self: TabContainer; clipTabs: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -82,7 +82,7 @@ proc clipTabs*(self: TabContainer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `tabsVisible=`*(self: TabContainer; visible: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -97,7 +97,7 @@ proc areTabsVisible*(self: TabContainer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `allTabsInFront=`*(self: TabContainer; isFront: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -112,7 +112,7 @@ proc isAllTabsInFront*(self: TabContainer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setTabTitle*(self: TabContainer; tabIdx: int32; title: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -128,7 +128,7 @@ proc getTabTitle*(self: TabContainer; tabIdx: int32): String =
   var `?param` = [getPtr tabIdx]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc setTabIcon*(self: TabContainer; tabIdx: int32; icon: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -144,7 +144,7 @@ proc getTabIcon*(self: TabContainer; tabIdx: int32): Texture2D =
   var `?param` = [getPtr tabIdx]
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc setTabDisabled*(self: TabContainer; tabIdx: int32; disabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -160,7 +160,7 @@ proc isTabDisabled*(self: TabContainer; tabIdx: int32): Bool =
   var `?param` = [getPtr tabIdx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setTabHidden*(self: TabContainer; tabIdx: int32; hidden: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -176,7 +176,7 @@ proc isTabHidden*(self: TabContainer; tabIdx: int32): Bool =
   var `?param` = [getPtr tabIdx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setTabMetadata*(self: TabContainer; tabIdx: int32; metadata: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -192,7 +192,7 @@ proc getTabMetadata*(self: TabContainer; tabIdx: int32): Variant =
   var `?param` = [getPtr tabIdx]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc setTabButtonIcon*(self: TabContainer; tabIdx: int32; icon: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -208,7 +208,7 @@ proc getTabButtonIcon*(self: TabContainer; tabIdx: int32): Texture2D =
   var `?param` = [getPtr tabIdx]
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc getTabIdxAtPoint*(self: TabContainer; point: Vector2): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -217,7 +217,7 @@ proc getTabIdxAtPoint*(self: TabContainer; point: Vector2): int32 =
   var `?param` = [getPtr point]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getTabIdxFromControl*(self: TabContainer; control: Control): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -226,7 +226,7 @@ proc getTabIdxFromControl*(self: TabContainer; control: Control): int32 =
   var `?param` = [getPtr control]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setPopup*(self: TabContainer; popup: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -241,7 +241,7 @@ proc getPopup*(self: TabContainer): Popup =
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 111095082)
   var ret: encoded Popup
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Popup)
+  (addr ret).decode_result(Popup)
 proc `dragToRearrangeEnabled=`*(self: TabContainer; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -256,7 +256,7 @@ proc dragToRearrangeEnabled*(self: TabContainer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `tabsRearrangeGroup=`*(self: TabContainer; groupId: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -271,7 +271,7 @@ proc tabsRearrangeGroup*(self: TabContainer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `useHiddenTabsForMinSize=`*(self: TabContainer; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -286,4 +286,4 @@ proc useHiddenTabsForMinSize*(self: TabContainer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

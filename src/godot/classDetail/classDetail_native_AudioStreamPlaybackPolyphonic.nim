@@ -13,7 +13,7 @@ proc playStream*(self: AudioStreamPlaybackPolyphonic; stream: AudioStream; fromO
   var `?param` = [getPtr stream, getPtr fromOffset, getPtr volumeDb, getPtr pitchScale]
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int64)
+  (addr ret).decode_result(int64)
 proc setStreamVolume*(self: AudioStreamPlaybackPolyphonic; stream: int64; volumeDb: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -36,7 +36,7 @@ proc isStreamPlaying*(self: AudioStreamPlaybackPolyphonic; stream: int64): Bool 
   var `?param` = [getPtr stream]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc stopStream*(self: AudioStreamPlaybackPolyphonic; stream: int64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

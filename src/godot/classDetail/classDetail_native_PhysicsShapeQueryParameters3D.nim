@@ -19,7 +19,7 @@ proc shape*(self: PhysicsShapeQueryParameters3D): Resource =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsShapeQueryParameters3D, addr name, 121922552)
   var ret: encoded Resource
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Resource)
+  (addr ret).decode_result(Resource)
 proc `shapeRid=`*(self: PhysicsShapeQueryParameters3D; shape: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc shapeRid*(self: PhysicsShapeQueryParameters3D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsShapeQueryParameters3D, addr name, 2944877500)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc `transform=`*(self: PhysicsShapeQueryParameters3D; transform: Transform3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc transform*(self: PhysicsShapeQueryParameters3D): Transform3D =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsShapeQueryParameters3D, addr name, 3229777777)
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc `motion=`*(self: PhysicsShapeQueryParameters3D; motion: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc motion*(self: PhysicsShapeQueryParameters3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsShapeQueryParameters3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `margin=`*(self: PhysicsShapeQueryParameters3D; margin: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc margin*(self: PhysicsShapeQueryParameters3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsShapeQueryParameters3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `collisionMask=`*(self: PhysicsShapeQueryParameters3D; collisionMask: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc collisionMask*(self: PhysicsShapeQueryParameters3D): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsShapeQueryParameters3D, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `exclude=`*(self: PhysicsShapeQueryParameters3D; exclude: TypedArray[RID]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc exclude*(self: PhysicsShapeQueryParameters3D): TypedArray[RID] =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsShapeQueryParameters3D, addr name, 3995934104)
   var ret: encoded TypedArray[RID]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[RID])
+  (addr ret).decode_result(TypedArray[RID])
 proc `collideWithBodies=`*(self: PhysicsShapeQueryParameters3D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc isCollideWithBodiesEnabled*(self: PhysicsShapeQueryParameters3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsShapeQueryParameters3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `collideWithAreas=`*(self: PhysicsShapeQueryParameters3D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,4 +139,4 @@ proc isCollideWithAreasEnabled*(self: PhysicsShapeQueryParameters3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsShapeQueryParameters3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

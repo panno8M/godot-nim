@@ -19,7 +19,7 @@ proc size*(self: PlaneMesh): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className PlaneMesh, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `subdivideWidth=`*(self: PlaneMesh; subdivide: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc subdivideWidth*(self: PlaneMesh): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className PlaneMesh, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `subdivideDepth=`*(self: PlaneMesh; subdivide: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc subdivideDepth*(self: PlaneMesh): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className PlaneMesh, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `centerOffset=`*(self: PlaneMesh; offset: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc centerOffset*(self: PlaneMesh): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className PlaneMesh, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `orientation=`*(self: PlaneMesh; orientation: PlaneMesh_Orientation) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,4 +79,4 @@ proc orientation*(self: PlaneMesh): PlaneMesh_Orientation =
     methodbind = interface_ClassDB_getMethodBind(addr className PlaneMesh, addr name, 3227599250)
   var ret: encoded PlaneMesh_Orientation
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PlaneMesh_Orientation)
+  (addr ret).decode_result(PlaneMesh_Orientation)

@@ -19,7 +19,7 @@ proc blendMode*(self: CanvasItemMaterial): CanvasItemMaterial_BlendMode =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItemMaterial, addr name, 3318684035)
   var ret: encoded CanvasItemMaterial_BlendMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(CanvasItemMaterial_BlendMode)
+  (addr ret).decode_result(CanvasItemMaterial_BlendMode)
 proc `lightMode=`*(self: CanvasItemMaterial; lightMode: CanvasItemMaterial_LightMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc lightMode*(self: CanvasItemMaterial): CanvasItemMaterial_LightMode =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItemMaterial, addr name, 3863292382)
   var ret: encoded CanvasItemMaterial_LightMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(CanvasItemMaterial_LightMode)
+  (addr ret).decode_result(CanvasItemMaterial_LightMode)
 proc `particlesAnimation=`*(self: CanvasItemMaterial; particlesAnim: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc particlesAnimation*(self: CanvasItemMaterial): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItemMaterial, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `particlesAnimHFrames=`*(self: CanvasItemMaterial; frames: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc particlesAnimHFrames*(self: CanvasItemMaterial): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItemMaterial, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `particlesAnimVFrames=`*(self: CanvasItemMaterial; frames: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc particlesAnimVFrames*(self: CanvasItemMaterial): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItemMaterial, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `particlesAnimLoop=`*(self: CanvasItemMaterial; loop: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,4 +94,4 @@ proc particlesAnimLoop*(self: CanvasItemMaterial): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItemMaterial, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

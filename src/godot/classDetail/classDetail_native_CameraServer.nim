@@ -13,7 +13,7 @@ proc getFeed*(self: CameraServer; index: int32): CameraFeed =
   var `?param` = [getPtr index]
   var ret: encoded CameraFeed
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(CameraFeed)
+  (addr ret).decode_result(CameraFeed)
 proc getFeedCount*(self: CameraServer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -21,7 +21,7 @@ proc getFeedCount*(self: CameraServer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className CameraServer, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc feeds*(self: CameraServer): TypedArray[CameraFeed] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -29,7 +29,7 @@ proc feeds*(self: CameraServer): TypedArray[CameraFeed] =
     methodbind = interface_ClassDB_getMethodBind(addr className CameraServer, addr name, 2915620761)
   var ret: encoded TypedArray[CameraFeed]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[CameraFeed])
+  (addr ret).decode_result(TypedArray[CameraFeed])
 proc addFeed*(self: CameraServer; feed: CameraFeed) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

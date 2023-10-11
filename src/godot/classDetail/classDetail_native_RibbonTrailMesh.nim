@@ -19,7 +19,7 @@ proc size*(self: RibbonTrailMesh): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className RibbonTrailMesh, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `sections=`*(self: RibbonTrailMesh; sections: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc sections*(self: RibbonTrailMesh): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RibbonTrailMesh, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `sectionLength=`*(self: RibbonTrailMesh; sectionLength: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc sectionLength*(self: RibbonTrailMesh): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className RibbonTrailMesh, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `sectionSegments=`*(self: RibbonTrailMesh; sectionSegments: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc sectionSegments*(self: RibbonTrailMesh): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RibbonTrailMesh, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `curve=`*(self: RibbonTrailMesh; curve: Curve) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc curve*(self: RibbonTrailMesh): Curve =
     methodbind = interface_ClassDB_getMethodBind(addr className RibbonTrailMesh, addr name, 2460114913)
   var ret: encoded Curve
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Curve)
+  (addr ret).decode_result(Curve)
 proc `shape=`*(self: RibbonTrailMesh; shape: RibbonTrailMesh_Shape) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,4 +94,4 @@ proc shape*(self: RibbonTrailMesh): RibbonTrailMesh_Shape =
     methodbind = interface_ClassDB_getMethodBind(addr className RibbonTrailMesh, addr name, 1317484155)
   var ret: encoded RibbonTrailMesh_Shape
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RibbonTrailMesh_Shape)
+  (addr ret).decode_result(RibbonTrailMesh_Shape)

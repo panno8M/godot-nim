@@ -20,7 +20,7 @@ proc getParam*(self: HingeJoint3D; param: HingeJoint3D_Param): Float =
   var `?param` = [getPtr param]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc setFlag*(self: HingeJoint3D; flag: HingeJoint3D_Flag; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -36,4 +36,4 @@ proc getFlag*(self: HingeJoint3D; flag: HingeJoint3D_Flag): Bool =
   var `?param` = [getPtr flag]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

@@ -13,7 +13,7 @@ proc canGetBuffer*(self: AudioEffectCapture; frames: int32): Bool =
   var `?param` = [getPtr frames]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getBuffer*(self: AudioEffectCapture; frames: int32): PackedVector2Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc getBuffer*(self: AudioEffectCapture; frames: int32): PackedVector2Array =
   var `?param` = [getPtr frames]
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedVector2Array)
+  (addr ret).decode_result(PackedVector2Array)
 proc clearBuffer*(self: AudioEffectCapture) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -43,7 +43,7 @@ proc bufferLength*(self: AudioEffectCapture): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectCapture, addr name, 191475506)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getFramesAvailable*(self: AudioEffectCapture): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -51,7 +51,7 @@ proc getFramesAvailable*(self: AudioEffectCapture): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectCapture, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getDiscardedFrames*(self: AudioEffectCapture): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -59,7 +59,7 @@ proc getDiscardedFrames*(self: AudioEffectCapture): int64 =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectCapture, addr name, 3905245786)
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int64)
+  (addr ret).decode_result(int64)
 proc getBufferLengthFrames*(self: AudioEffectCapture): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -67,7 +67,7 @@ proc getBufferLengthFrames*(self: AudioEffectCapture): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectCapture, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getPushedFrames*(self: AudioEffectCapture): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -75,4 +75,4 @@ proc getPushedFrames*(self: AudioEffectCapture): int64 =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectCapture, addr name, 3905245786)
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int64)
+  (addr ret).decode_result(int64)

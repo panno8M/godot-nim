@@ -13,7 +13,7 @@ proc client*(_: typedesc[TLSOptions]; trustedChain: X509Certificate = default X5
   var `?param` = [getPtr trustedChain, getPtr commonNameOverride]
   var ret: encoded TLSOptions
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(TLSOptions)
+  (addr ret).decode_result(TLSOptions)
 proc clientUnsafe*(_: typedesc[TLSOptions]; trustedChain: X509Certificate = default X509Certificate): TLSOptions =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc clientUnsafe*(_: typedesc[TLSOptions]; trustedChain: X509Certificate = defa
   var `?param` = [getPtr trustedChain]
   var ret: encoded TLSOptions
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(TLSOptions)
+  (addr ret).decode_result(TLSOptions)
 proc server*(_: typedesc[TLSOptions]; key: CryptoKey; certificate: X509Certificate): TLSOptions =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -31,4 +31,4 @@ proc server*(_: typedesc[TLSOptions]; key: CryptoKey; certificate: X509Certifica
   var `?param` = [getPtr key, getPtr certificate]
   var ret: encoded TLSOptions
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(TLSOptions)
+  (addr ret).decode_result(TLSOptions)

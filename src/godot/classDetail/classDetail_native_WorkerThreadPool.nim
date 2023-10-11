@@ -13,7 +13,7 @@ proc addTask*(self: WorkerThreadPool; action: Callable; highPriority: Bool = fal
   var `?param` = [getPtr action, getPtr highPriority, getPtr description]
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int64)
+  (addr ret).decode_result(int64)
 proc isTaskCompleted*(self: WorkerThreadPool; taskId: int64): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc isTaskCompleted*(self: WorkerThreadPool; taskId: int64): Bool =
   var `?param` = [getPtr taskId]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc waitForTaskCompletion*(self: WorkerThreadPool; taskId: int64): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -31,7 +31,7 @@ proc waitForTaskCompletion*(self: WorkerThreadPool; taskId: int64): Error =
   var `?param` = [getPtr taskId]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc addGroupTask*(self: WorkerThreadPool; action: Callable; elements: int32; tasksNeeded: int32 = -1; highPriority: Bool = false; description: String = ""): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -40,7 +40,7 @@ proc addGroupTask*(self: WorkerThreadPool; action: Callable; elements: int32; ta
   var `?param` = [getPtr action, getPtr elements, getPtr tasksNeeded, getPtr highPriority, getPtr description]
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int64)
+  (addr ret).decode_result(int64)
 proc isGroupTaskCompleted*(self: WorkerThreadPool; groupId: int64): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc isGroupTaskCompleted*(self: WorkerThreadPool; groupId: int64): Bool =
   var `?param` = [getPtr groupId]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getGroupProcessedElementCount*(self: WorkerThreadPool; groupId: int64): uint32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -58,7 +58,7 @@ proc getGroupProcessedElementCount*(self: WorkerThreadPool; groupId: int64): uin
   var `?param` = [getPtr groupId]
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc waitForGroupTaskCompletion*(self: WorkerThreadPool; groupId: int64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

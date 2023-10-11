@@ -19,7 +19,7 @@ proc isEnabled*(self: Light2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Light2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `editorOnly=`*(self: Light2D; editorOnly: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc isEditorOnly*(self: Light2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Light2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `color=`*(self: Light2D; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc color*(self: Light2D): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className Light2D, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `energy=`*(self: Light2D; energy: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc energy*(self: Light2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Light2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `zRangeMin=`*(self: Light2D; z: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc zRangeMin*(self: Light2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Light2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `zRangeMax=`*(self: Light2D; z: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc zRangeMax*(self: Light2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Light2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `layerRangeMin=`*(self: Light2D; layer: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc layerRangeMin*(self: Light2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Light2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `layerRangeMax=`*(self: Light2D; layer: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc layerRangeMax*(self: Light2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Light2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `itemCullMask=`*(self: Light2D; itemCullMask: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc itemCullMask*(self: Light2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Light2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `itemShadowCullMask=`*(self: Light2D; itemShadowCullMask: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -154,7 +154,7 @@ proc itemShadowCullMask*(self: Light2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Light2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `shadowEnabled=`*(self: Light2D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -169,7 +169,7 @@ proc isShadowEnabled*(self: Light2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Light2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `shadowSmooth=`*(self: Light2D; smooth: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -184,7 +184,7 @@ proc shadowSmooth*(self: Light2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Light2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `shadowFilter=`*(self: Light2D; filter: Light2D_ShadowFilter) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -199,7 +199,7 @@ proc shadowFilter*(self: Light2D): Light2D_ShadowFilter =
     methodbind = interface_ClassDB_getMethodBind(addr className Light2D, addr name, 1973619177)
   var ret: encoded Light2D_ShadowFilter
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Light2D_ShadowFilter)
+  (addr ret).decode_result(Light2D_ShadowFilter)
 proc `shadowColor=`*(self: Light2D; shadowColor: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -214,7 +214,7 @@ proc shadowColor*(self: Light2D): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className Light2D, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `blendMode=`*(self: Light2D; mode: Light2D_BlendMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -229,7 +229,7 @@ proc blendMode*(self: Light2D): Light2D_BlendMode =
     methodbind = interface_ClassDB_getMethodBind(addr className Light2D, addr name, 936255250)
   var ret: encoded Light2D_BlendMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Light2D_BlendMode)
+  (addr ret).decode_result(Light2D_BlendMode)
 proc setHeight*(self: Light2D; height: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -244,4 +244,4 @@ proc getHeight*(self: Light2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Light2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

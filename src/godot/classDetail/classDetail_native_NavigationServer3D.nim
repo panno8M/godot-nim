@@ -12,7 +12,7 @@ proc getMaps*(self: NavigationServer3D): TypedArray[RID] =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationServer3D, addr name, 3995934104)
   var ret: encoded TypedArray[RID]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[RID])
+  (addr ret).decode_result(TypedArray[RID])
 proc mapCreate*(self: NavigationServer3D): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -20,7 +20,7 @@ proc mapCreate*(self: NavigationServer3D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationServer3D, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc mapSetActive*(self: NavigationServer3D; map: RID; active: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -36,7 +36,7 @@ proc mapIsActive*(self: NavigationServer3D; map: RID): Bool =
   var `?param` = [getPtr map]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc mapSetUp*(self: NavigationServer3D; map: RID; up: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -52,7 +52,7 @@ proc mapGetUp*(self: NavigationServer3D; map: RID): Vector3 =
   var `?param` = [getPtr map]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc mapSetCellSize*(self: NavigationServer3D; map: RID; cellSize: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -68,7 +68,7 @@ proc mapGetCellSize*(self: NavigationServer3D; map: RID): Float =
   var `?param` = [getPtr map]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc mapSetCellHeight*(self: NavigationServer3D; map: RID; cellHeight: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -84,7 +84,7 @@ proc mapGetCellHeight*(self: NavigationServer3D; map: RID): Float =
   var `?param` = [getPtr map]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc mapSetUseEdgeConnections*(self: NavigationServer3D; map: RID; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -100,7 +100,7 @@ proc mapGetUseEdgeConnections*(self: NavigationServer3D; map: RID): Bool =
   var `?param` = [getPtr map]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc mapSetEdgeConnectionMargin*(self: NavigationServer3D; map: RID; margin: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -116,7 +116,7 @@ proc mapGetEdgeConnectionMargin*(self: NavigationServer3D; map: RID): Float =
   var `?param` = [getPtr map]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc mapSetLinkConnectionRadius*(self: NavigationServer3D; map: RID; radius: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -132,7 +132,7 @@ proc mapGetLinkConnectionRadius*(self: NavigationServer3D; map: RID): Float =
   var `?param` = [getPtr map]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc mapGetPath*(self: NavigationServer3D; map: RID; origin: Vector3; destination: Vector3; optimize: Bool; navigationLayers: uint32 = 1'u32): PackedVector3Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -141,7 +141,7 @@ proc mapGetPath*(self: NavigationServer3D; map: RID; origin: Vector3; destinatio
   var `?param` = [getPtr map, getPtr origin, getPtr destination, getPtr optimize, getPtr navigationLayers]
   var ret: encoded PackedVector3Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedVector3Array)
+  (addr ret).decode_result(PackedVector3Array)
 proc mapGetClosestPointToSegment*(self: NavigationServer3D; map: RID; start: Vector3; `end`: Vector3; useCollision: Bool = false): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -150,7 +150,7 @@ proc mapGetClosestPointToSegment*(self: NavigationServer3D; map: RID; start: Vec
   var `?param` = [getPtr map, getPtr start, getPtr `end`, getPtr useCollision]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc mapGetClosestPoint*(self: NavigationServer3D; map: RID; toPoint: Vector3): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -159,7 +159,7 @@ proc mapGetClosestPoint*(self: NavigationServer3D; map: RID; toPoint: Vector3): 
   var `?param` = [getPtr map, getPtr toPoint]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc mapGetClosestPointNormal*(self: NavigationServer3D; map: RID; toPoint: Vector3): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -168,7 +168,7 @@ proc mapGetClosestPointNormal*(self: NavigationServer3D; map: RID; toPoint: Vect
   var `?param` = [getPtr map, getPtr toPoint]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc mapGetClosestPointOwner*(self: NavigationServer3D; map: RID; toPoint: Vector3): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -177,7 +177,7 @@ proc mapGetClosestPointOwner*(self: NavigationServer3D; map: RID; toPoint: Vecto
   var `?param` = [getPtr map, getPtr toPoint]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc mapGetLinks*(self: NavigationServer3D; map: RID): TypedArray[RID] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -186,7 +186,7 @@ proc mapGetLinks*(self: NavigationServer3D; map: RID): TypedArray[RID] =
   var `?param` = [getPtr map]
   var ret: encoded TypedArray[RID]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[RID])
+  (addr ret).decode_result(TypedArray[RID])
 proc mapGetRegions*(self: NavigationServer3D; map: RID): TypedArray[RID] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -195,7 +195,7 @@ proc mapGetRegions*(self: NavigationServer3D; map: RID): TypedArray[RID] =
   var `?param` = [getPtr map]
   var ret: encoded TypedArray[RID]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[RID])
+  (addr ret).decode_result(TypedArray[RID])
 proc mapGetAgents*(self: NavigationServer3D; map: RID): TypedArray[RID] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -204,7 +204,7 @@ proc mapGetAgents*(self: NavigationServer3D; map: RID): TypedArray[RID] =
   var `?param` = [getPtr map]
   var ret: encoded TypedArray[RID]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[RID])
+  (addr ret).decode_result(TypedArray[RID])
 proc mapGetObstacles*(self: NavigationServer3D; map: RID): TypedArray[RID] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -213,7 +213,7 @@ proc mapGetObstacles*(self: NavigationServer3D; map: RID): TypedArray[RID] =
   var `?param` = [getPtr map]
   var ret: encoded TypedArray[RID]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[RID])
+  (addr ret).decode_result(TypedArray[RID])
 proc mapForceUpdate*(self: NavigationServer3D; map: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -235,7 +235,7 @@ proc regionCreate*(self: NavigationServer3D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationServer3D, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc regionSetUseEdgeConnections*(self: NavigationServer3D; region: RID; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -251,7 +251,7 @@ proc regionGetUseEdgeConnections*(self: NavigationServer3D; region: RID): Bool =
   var `?param` = [getPtr region]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc regionSetEnterCost*(self: NavigationServer3D; region: RID; enterCost: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -267,7 +267,7 @@ proc regionGetEnterCost*(self: NavigationServer3D; region: RID): Float =
   var `?param` = [getPtr region]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc regionSetTravelCost*(self: NavigationServer3D; region: RID; travelCost: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -283,7 +283,7 @@ proc regionGetTravelCost*(self: NavigationServer3D; region: RID): Float =
   var `?param` = [getPtr region]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc regionSetOwnerId*(self: NavigationServer3D; region: RID; ownerId: uint64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -299,7 +299,7 @@ proc regionGetOwnerId*(self: NavigationServer3D; region: RID): uint64 =
   var `?param` = [getPtr region]
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)
 proc regionOwnsPoint*(self: NavigationServer3D; region: RID; point: Vector3): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -308,7 +308,7 @@ proc regionOwnsPoint*(self: NavigationServer3D; region: RID; point: Vector3): Bo
   var `?param` = [getPtr region, getPtr point]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc regionSetMap*(self: NavigationServer3D; region: RID; map: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -324,7 +324,7 @@ proc regionGetMap*(self: NavigationServer3D; region: RID): RID =
   var `?param` = [getPtr region]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc regionSetNavigationLayers*(self: NavigationServer3D; region: RID; navigationLayers: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -340,7 +340,7 @@ proc regionGetNavigationLayers*(self: NavigationServer3D; region: RID): uint32 =
   var `?param` = [getPtr region]
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc regionSetTransform*(self: NavigationServer3D; region: RID; transform: Transform3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -370,7 +370,7 @@ proc regionGetConnectionsCount*(self: NavigationServer3D; region: RID): int32 =
   var `?param` = [getPtr region]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc regionGetConnectionPathwayStart*(self: NavigationServer3D; region: RID; connection: int32): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -379,7 +379,7 @@ proc regionGetConnectionPathwayStart*(self: NavigationServer3D; region: RID; con
   var `?param` = [getPtr region, getPtr connection]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc regionGetConnectionPathwayEnd*(self: NavigationServer3D; region: RID; connection: int32): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -388,7 +388,7 @@ proc regionGetConnectionPathwayEnd*(self: NavigationServer3D; region: RID; conne
   var `?param` = [getPtr region, getPtr connection]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc linkCreate*(self: NavigationServer3D): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -396,7 +396,7 @@ proc linkCreate*(self: NavigationServer3D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationServer3D, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc linkSetMap*(self: NavigationServer3D; link: RID; map: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -412,7 +412,7 @@ proc linkGetMap*(self: NavigationServer3D; link: RID): RID =
   var `?param` = [getPtr link]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc linkSetBidirectional*(self: NavigationServer3D; link: RID; bidirectional: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -428,7 +428,7 @@ proc linkIsBidirectional*(self: NavigationServer3D; link: RID): Bool =
   var `?param` = [getPtr link]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc linkSetNavigationLayers*(self: NavigationServer3D; link: RID; navigationLayers: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -444,7 +444,7 @@ proc linkGetNavigationLayers*(self: NavigationServer3D; link: RID): uint32 =
   var `?param` = [getPtr link]
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc linkSetStartPosition*(self: NavigationServer3D; link: RID; position: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -460,7 +460,7 @@ proc linkGetStartPosition*(self: NavigationServer3D; link: RID): Vector3 =
   var `?param` = [getPtr link]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc linkSetEndPosition*(self: NavigationServer3D; link: RID; position: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -476,7 +476,7 @@ proc linkGetEndPosition*(self: NavigationServer3D; link: RID): Vector3 =
   var `?param` = [getPtr link]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc linkSetEnterCost*(self: NavigationServer3D; link: RID; enterCost: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -492,7 +492,7 @@ proc linkGetEnterCost*(self: NavigationServer3D; link: RID): Float =
   var `?param` = [getPtr link]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc linkSetTravelCost*(self: NavigationServer3D; link: RID; travelCost: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -508,7 +508,7 @@ proc linkGetTravelCost*(self: NavigationServer3D; link: RID): Float =
   var `?param` = [getPtr link]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc linkSetOwnerId*(self: NavigationServer3D; link: RID; ownerId: uint64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -524,7 +524,7 @@ proc linkGetOwnerId*(self: NavigationServer3D; link: RID): uint64 =
   var `?param` = [getPtr link]
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)
 proc agentCreate*(self: NavigationServer3D): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -532,7 +532,7 @@ proc agentCreate*(self: NavigationServer3D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationServer3D, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc agentSetAvoidanceEnabled*(self: NavigationServer3D; agent: RID; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -548,7 +548,7 @@ proc agentGetAvoidanceEnabled*(self: NavigationServer3D; agent: RID): Bool =
   var `?param` = [getPtr agent]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc agentSetUse3dAvoidance*(self: NavigationServer3D; agent: RID; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -564,7 +564,7 @@ proc agentGetUse3dAvoidance*(self: NavigationServer3D; agent: RID): Bool =
   var `?param` = [getPtr agent]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc agentSetMap*(self: NavigationServer3D; agent: RID; map: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -580,7 +580,7 @@ proc agentGetMap*(self: NavigationServer3D; agent: RID): RID =
   var `?param` = [getPtr agent]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc agentSetPaused*(self: NavigationServer3D; agent: RID; paused: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -596,7 +596,7 @@ proc agentGetPaused*(self: NavigationServer3D; agent: RID): Bool =
   var `?param` = [getPtr agent]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc agentSetNeighborDistance*(self: NavigationServer3D; agent: RID; distance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -675,7 +675,7 @@ proc agentIsMapChanged*(self: NavigationServer3D; agent: RID): Bool =
   var `?param` = [getPtr agent]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc agentSetAvoidanceCallback*(self: NavigationServer3D; agent: RID; callback: Callable) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -711,7 +711,7 @@ proc obstacleCreate*(self: NavigationServer3D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationServer3D, addr name, 529393457)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc obstacleSetAvoidanceEnabled*(self: NavigationServer3D; obstacle: RID; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -727,7 +727,7 @@ proc obstacleGetAvoidanceEnabled*(self: NavigationServer3D; obstacle: RID): Bool
   var `?param` = [getPtr obstacle]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc obstacleSetUse3dAvoidance*(self: NavigationServer3D; obstacle: RID; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -743,7 +743,7 @@ proc obstacleGetUse3dAvoidance*(self: NavigationServer3D; obstacle: RID): Bool =
   var `?param` = [getPtr obstacle]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc obstacleSetMap*(self: NavigationServer3D; obstacle: RID; map: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -759,7 +759,7 @@ proc obstacleGetMap*(self: NavigationServer3D; obstacle: RID): RID =
   var `?param` = [getPtr obstacle]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc obstacleSetPaused*(self: NavigationServer3D; obstacle: RID; paused: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -775,7 +775,7 @@ proc obstacleGetPaused*(self: NavigationServer3D; obstacle: RID): Bool =
   var `?param` = [getPtr obstacle]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc obstacleSetRadius*(self: NavigationServer3D; obstacle: RID; radius: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -860,7 +860,7 @@ proc getDebugEnabled*(self: NavigationServer3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationServer3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getProcessInfo*(self: NavigationServer3D; processInfo: NavigationServer3D_ProcessInfo): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -869,4 +869,4 @@ proc getProcessInfo*(self: NavigationServer3D; processInfo: NavigationServer3D_P
   var `?param` = [getPtr processInfo]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)

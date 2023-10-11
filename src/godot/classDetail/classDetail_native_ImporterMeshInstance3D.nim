@@ -19,7 +19,7 @@ proc mesh*(self: ImporterMeshInstance3D): ImporterMesh =
     methodbind = interface_ClassDB_getMethodBind(addr className ImporterMeshInstance3D, addr name, 3161779525)
   var ret: encoded ImporterMesh
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(ImporterMesh)
+  (addr ret).decode_result(ImporterMesh)
 proc `skin=`*(self: ImporterMeshInstance3D; skin: Skin) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc skin*(self: ImporterMeshInstance3D): Skin =
     methodbind = interface_ClassDB_getMethodBind(addr className ImporterMeshInstance3D, addr name, 2074563878)
   var ret: encoded Skin
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Skin)
+  (addr ret).decode_result(Skin)
 proc `skeletonPath=`*(self: ImporterMeshInstance3D; skeletonPath: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,4 +49,4 @@ proc skeletonPath*(self: ImporterMeshInstance3D): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className ImporterMeshInstance3D, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)

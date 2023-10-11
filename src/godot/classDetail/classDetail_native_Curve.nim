@@ -12,7 +12,7 @@ proc pointCount*(self: Curve): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Curve, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `pointCount=`*(self: Curve; count: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -28,7 +28,7 @@ proc addPoint*(self: Curve; position: Vector2; leftTangent: Float = 0; rightTang
   var `?param` = [getPtr position, getPtr leftTangent, getPtr rightTangent, getPtr leftMode, getPtr rightMode]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc removePoint*(self: Curve; index: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -50,7 +50,7 @@ proc getPointPosition*(self: Curve; index: int32): Vector2 =
   var `?param` = [getPtr index]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc setPointValue*(self: Curve; index: int32; y: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -66,7 +66,7 @@ proc setPointOffset*(self: Curve; index: int32; offset: Float): int32 =
   var `?param` = [getPtr index, getPtr offset]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc sample*(self: Curve; offset: Float): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -75,7 +75,7 @@ proc sample*(self: Curve; offset: Float): Float =
   var `?param` = [getPtr offset]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc sampleBaked*(self: Curve; offset: Float): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -84,7 +84,7 @@ proc sampleBaked*(self: Curve; offset: Float): Float =
   var `?param` = [getPtr offset]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getPointLeftTangent*(self: Curve; index: int32): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -93,7 +93,7 @@ proc getPointLeftTangent*(self: Curve; index: int32): Float =
   var `?param` = [getPtr index]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getPointRightTangent*(self: Curve; index: int32): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -102,7 +102,7 @@ proc getPointRightTangent*(self: Curve; index: int32): Float =
   var `?param` = [getPtr index]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getPointLeftMode*(self: Curve; index: int32): Curve_TangentMode =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -111,7 +111,7 @@ proc getPointLeftMode*(self: Curve; index: int32): Curve_TangentMode =
   var `?param` = [getPtr index]
   var ret: encoded Curve_TangentMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Curve_TangentMode)
+  (addr ret).decode_result(Curve_TangentMode)
 proc getPointRightMode*(self: Curve; index: int32): Curve_TangentMode =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -120,7 +120,7 @@ proc getPointRightMode*(self: Curve; index: int32): Curve_TangentMode =
   var `?param` = [getPtr index]
   var ret: encoded Curve_TangentMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Curve_TangentMode)
+  (addr ret).decode_result(Curve_TangentMode)
 proc setPointLeftTangent*(self: Curve; index: int32; tangent: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -156,7 +156,7 @@ proc minValue*(self: Curve): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Curve, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `minValue=`*(self: Curve; min: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -171,7 +171,7 @@ proc maxValue*(self: Curve): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Curve, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `maxValue=`*(self: Curve; max: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -198,7 +198,7 @@ proc bakeResolution*(self: Curve): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Curve, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `bakeResolution=`*(self: Curve; resolution: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

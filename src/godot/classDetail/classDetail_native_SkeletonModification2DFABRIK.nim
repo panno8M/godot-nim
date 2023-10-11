@@ -19,7 +19,7 @@ proc tarnode*(self: SkeletonModification2DFABRIK): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DFABRIK, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc `fabrikDataChainLength=`*(self: SkeletonModification2DFABRIK; length: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc fabrikDataChainLength*(self: SkeletonModification2DFABRIK): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DFABRIK, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setFabrikJointBone2dNode*(self: SkeletonModification2DFABRIK; jointIdx: int32; bone2dNodepath: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -50,7 +50,7 @@ proc getFabrikJointBone2dNode*(self: SkeletonModification2DFABRIK; jointIdx: int
   var `?param` = [getPtr jointIdx]
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc setFabrikJointBoneIndex*(self: SkeletonModification2DFABRIK; jointIdx: int32; boneIdx: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -66,7 +66,7 @@ proc getFabrikJointBoneIndex*(self: SkeletonModification2DFABRIK; jointIdx: int3
   var `?param` = [getPtr jointIdx]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setFabrikJointMagnetPosition*(self: SkeletonModification2DFABRIK; jointIdx: int32; magnetPosition: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -82,7 +82,7 @@ proc getFabrikJointMagnetPosition*(self: SkeletonModification2DFABRIK; jointIdx:
   var `?param` = [getPtr jointIdx]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc setFabrikJointUseTargetRotation*(self: SkeletonModification2DFABRIK; jointIdx: int32; useTargetRotation: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -98,4 +98,4 @@ proc getFabrikJointUseTargetRotation*(self: SkeletonModification2DFABRIK; jointI
   var `?param` = [getPtr jointIdx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

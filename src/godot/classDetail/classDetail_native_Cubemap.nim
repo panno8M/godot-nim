@@ -12,4 +12,4 @@ proc createPlaceholder*(self: Cubemap): Resource =
     methodbind = interface_ClassDB_getMethodBind(addr className Cubemap, addr name, 121922552)
   var ret: encoded Resource
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Resource)
+  (addr ret).decode_result(Resource)

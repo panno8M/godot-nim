@@ -12,7 +12,7 @@ proc getLength*(self: AudioStream): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStream, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc isMonophonic*(self: AudioStream): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -20,7 +20,7 @@ proc isMonophonic*(self: AudioStream): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStream, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc instantiatePlayback*(self: AudioStream): AudioStreamPlayback =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -28,4 +28,4 @@ proc instantiatePlayback*(self: AudioStream): AudioStreamPlayback =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStream, addr name, 210135309)
   var ret: encoded AudioStreamPlayback
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AudioStreamPlayback)
+  (addr ret).decode_result(AudioStreamPlayback)

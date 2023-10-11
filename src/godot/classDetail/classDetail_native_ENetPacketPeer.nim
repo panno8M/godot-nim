@@ -53,7 +53,7 @@ proc send*(self: ENetPacketPeer; channel: int32; packet: PackedByteArray; flags:
   var `?param` = [getPtr channel, getPtr packet, getPtr flags]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc throttleConfigure*(self: ENetPacketPeer; interval: int32; acceleration: int32; deceleration: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -75,7 +75,7 @@ proc getRemoteAddress*(self: ENetPacketPeer): String =
     methodbind = interface_ClassDB_getMethodBind(addr className ENetPacketPeer, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getRemotePort*(self: ENetPacketPeer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -83,7 +83,7 @@ proc getRemotePort*(self: ENetPacketPeer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className ENetPacketPeer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getStatistic*(self: ENetPacketPeer; statistic: ENetPacketPeer_PeerStatistic): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -92,7 +92,7 @@ proc getStatistic*(self: ENetPacketPeer; statistic: ENetPacketPeer_PeerStatistic
   var `?param` = [getPtr statistic]
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc getState*(self: ENetPacketPeer): ENetPacketPeer_PeerState =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -100,7 +100,7 @@ proc getState*(self: ENetPacketPeer): ENetPacketPeer_PeerState =
     methodbind = interface_ClassDB_getMethodBind(addr className ENetPacketPeer, addr name, 711068532)
   var ret: encoded ENetPacketPeer_PeerState
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(ENetPacketPeer_PeerState)
+  (addr ret).decode_result(ENetPacketPeer_PeerState)
 proc getChannels*(self: ENetPacketPeer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -108,7 +108,7 @@ proc getChannels*(self: ENetPacketPeer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className ENetPacketPeer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc isActive*(self: ENetPacketPeer): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -116,4 +116,4 @@ proc isActive*(self: ENetPacketPeer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ENetPacketPeer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

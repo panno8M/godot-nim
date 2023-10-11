@@ -19,4 +19,4 @@ proc scriptOwner*(self: EditorScriptPicker): Node =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorScriptPicker, addr name, 3160264692)
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Node)
+  (addr ret).decode_result(Node)

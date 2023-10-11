@@ -20,7 +20,7 @@ proc isClassDisabled*(self: EditorFeatureProfile; className: StringName): Bool =
   var `?param` = [getPtr className]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setDisableClassEditor*(self: EditorFeatureProfile; className: StringName; disable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -36,7 +36,7 @@ proc isClassEditorDisabled*(self: EditorFeatureProfile; className: StringName): 
   var `?param` = [getPtr className]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setDisableClassProperty*(self: EditorFeatureProfile; className: StringName; property: StringName; disable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -52,7 +52,7 @@ proc isClassPropertyDisabled*(self: EditorFeatureProfile; className: StringName;
   var `?param` = [getPtr className, getPtr property]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setDisableFeature*(self: EditorFeatureProfile; feature: EditorFeatureProfile_Feature; disable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -68,7 +68,7 @@ proc isFeatureDisabled*(self: EditorFeatureProfile; feature: EditorFeatureProfil
   var `?param` = [getPtr feature]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getFeatureName*(self: EditorFeatureProfile; feature: EditorFeatureProfile_Feature): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -77,7 +77,7 @@ proc getFeatureName*(self: EditorFeatureProfile; feature: EditorFeatureProfile_F
   var `?param` = [getPtr feature]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc saveToFile*(self: EditorFeatureProfile; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -86,7 +86,7 @@ proc saveToFile*(self: EditorFeatureProfile; path: String): Error =
   var `?param` = [getPtr path]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc loadFromFile*(self: EditorFeatureProfile; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -95,4 +95,4 @@ proc loadFromFile*(self: EditorFeatureProfile; path: String): Error =
   var `?param` = [getPtr path]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)

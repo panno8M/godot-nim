@@ -19,7 +19,7 @@ proc billboardType*(self: VisualShaderNodeBillboard): VisualShaderNodeBillboard_
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeBillboard, addr name, 3724188517)
   var ret: encoded VisualShaderNodeBillboard_BillboardType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VisualShaderNodeBillboard_BillboardType)
+  (addr ret).decode_result(VisualShaderNodeBillboard_BillboardType)
 proc `keepScaleEnabled=`*(self: VisualShaderNodeBillboard; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,4 +34,4 @@ proc isKeepScaleEnabled*(self: VisualShaderNodeBillboard): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeBillboard, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

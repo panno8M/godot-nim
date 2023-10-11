@@ -19,7 +19,7 @@ proc horizontalAlignment*(self: SpinBox): HorizontalAlignment =
     methodbind = interface_ClassDB_getMethodBind(addr className SpinBox, addr name, 341400642)
   var ret: encoded HorizontalAlignment
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(HorizontalAlignment)
+  (addr ret).decode_result(HorizontalAlignment)
 proc `suffix=`*(self: SpinBox; suffix: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc suffix*(self: SpinBox): String =
     methodbind = interface_ClassDB_getMethodBind(addr className SpinBox, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `prefix=`*(self: SpinBox; prefix: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc prefix*(self: SpinBox): String =
     methodbind = interface_ClassDB_getMethodBind(addr className SpinBox, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `editable=`*(self: SpinBox; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -71,7 +71,7 @@ proc customArrowStep*(self: SpinBox): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className SpinBox, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc isEditable*(self: SpinBox): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc isEditable*(self: SpinBox): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SpinBox, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `updateOnTextChanged=`*(self: SpinBox; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc updateOnTextChanged*(self: SpinBox): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SpinBox, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `selectAllOnFocus=`*(self: SpinBox; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc isSelectAllOnFocus*(self: SpinBox): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SpinBox, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc apply*(self: SpinBox) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -123,4 +123,4 @@ proc getLineEdit*(self: SpinBox): LineEdit =
     methodbind = interface_ClassDB_getMethodBind(addr className SpinBox, addr name, 4071694264)
   var ret: encoded LineEdit
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(LineEdit)
+  (addr ret).decode_result(LineEdit)

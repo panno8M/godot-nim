@@ -27,7 +27,7 @@ proc isInputSetAsAutoAdvance*(self: AnimationNodeTransition; input: int32): Bool
   var `?param` = [getPtr input]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setInputReset*(self: AnimationNodeTransition; input: int32; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -43,7 +43,7 @@ proc isInputReset*(self: AnimationNodeTransition; input: int32): Bool =
   var `?param` = [getPtr input]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `xfadeTime=`*(self: AnimationNodeTransition; time: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -58,7 +58,7 @@ proc xfadeTime*(self: AnimationNodeTransition): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeTransition, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc `xfadeCurve=`*(self: AnimationNodeTransition; curve: Curve) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -73,7 +73,7 @@ proc xfadeCurve*(self: AnimationNodeTransition): Curve =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeTransition, addr name, 2460114913)
   var ret: encoded Curve
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Curve)
+  (addr ret).decode_result(Curve)
 proc `allowTransitionToSelf=`*(self: AnimationNodeTransition; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -88,4 +88,4 @@ proc isAllowTransitionToSelf*(self: AnimationNodeTransition): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeTransition, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

@@ -19,7 +19,7 @@ proc color*(self: StyleBoxLine): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxLine, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `thickness=`*(self: StyleBoxLine; thickness: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc thickness*(self: StyleBoxLine): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxLine, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `growBegin=`*(self: StyleBoxLine; offset: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc growBegin*(self: StyleBoxLine): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxLine, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `growEnd=`*(self: StyleBoxLine; offset: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc growEnd*(self: StyleBoxLine): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxLine, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `vertical=`*(self: StyleBoxLine; vertical: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,4 +79,4 @@ proc isVertical*(self: StyleBoxLine): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBoxLine, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

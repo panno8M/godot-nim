@@ -19,7 +19,7 @@ proc skyTopColor*(self: ProceduralSkyMaterial): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className ProceduralSkyMaterial, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `skyHorizonColor=`*(self: ProceduralSkyMaterial; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc skyHorizonColor*(self: ProceduralSkyMaterial): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className ProceduralSkyMaterial, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `skyCurve=`*(self: ProceduralSkyMaterial; curve: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc skyCurve*(self: ProceduralSkyMaterial): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className ProceduralSkyMaterial, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `skyEnergyMultiplier=`*(self: ProceduralSkyMaterial; multiplier: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc skyEnergyMultiplier*(self: ProceduralSkyMaterial): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className ProceduralSkyMaterial, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `skyCover=`*(self: ProceduralSkyMaterial; skyCover: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc skyCover*(self: ProceduralSkyMaterial): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className ProceduralSkyMaterial, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc `skyCoverModulate=`*(self: ProceduralSkyMaterial; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc skyCoverModulate*(self: ProceduralSkyMaterial): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className ProceduralSkyMaterial, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `groundBottomColor=`*(self: ProceduralSkyMaterial; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc groundBottomColor*(self: ProceduralSkyMaterial): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className ProceduralSkyMaterial, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `groundHorizonColor=`*(self: ProceduralSkyMaterial; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc groundHorizonColor*(self: ProceduralSkyMaterial): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className ProceduralSkyMaterial, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `groundCurve=`*(self: ProceduralSkyMaterial; curve: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc groundCurve*(self: ProceduralSkyMaterial): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className ProceduralSkyMaterial, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `groundEnergyMultiplier=`*(self: ProceduralSkyMaterial; energy: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -154,7 +154,7 @@ proc groundEnergyMultiplier*(self: ProceduralSkyMaterial): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className ProceduralSkyMaterial, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `sunAngleMax=`*(self: ProceduralSkyMaterial; degrees: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -169,7 +169,7 @@ proc sunAngleMax*(self: ProceduralSkyMaterial): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className ProceduralSkyMaterial, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `sunCurve=`*(self: ProceduralSkyMaterial; curve: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -184,7 +184,7 @@ proc sunCurve*(self: ProceduralSkyMaterial): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className ProceduralSkyMaterial, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `useDebanding=`*(self: ProceduralSkyMaterial; useDebanding: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -199,4 +199,4 @@ proc useDebanding*(self: ProceduralSkyMaterial): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ProceduralSkyMaterial, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

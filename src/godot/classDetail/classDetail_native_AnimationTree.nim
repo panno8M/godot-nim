@@ -19,7 +19,7 @@ proc isActive*(self: AnimationTree): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationTree, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `treeRoot=`*(self: AnimationTree; root: AnimationNode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc treeRoot*(self: AnimationTree): AnimationNode =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationTree, addr name, 1462070895)
   var ret: encoded AnimationNode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AnimationNode)
+  (addr ret).decode_result(AnimationNode)
 proc `processCallback=`*(self: AnimationTree; mode: AnimationTree_AnimationProcessCallback) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc processCallback*(self: AnimationTree): AnimationTree_AnimationProcessCallba
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationTree, addr name, 891317132)
   var ret: encoded AnimationTree_AnimationProcessCallback
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AnimationTree_AnimationProcessCallback)
+  (addr ret).decode_result(AnimationTree_AnimationProcessCallback)
 proc `animationPlayer=`*(self: AnimationTree; root: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc animationPlayer*(self: AnimationTree): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationTree, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc `advanceExpressionBaseNode=`*(self: AnimationTree; node: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc advanceExpressionBaseNode*(self: AnimationTree): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationTree, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc `rootMotionTrack=`*(self: AnimationTree; path: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc rootMotionTrack*(self: AnimationTree): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationTree, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc `audioMaxPolyphony=`*(self: AnimationTree; maxPolyphony: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc audioMaxPolyphony*(self: AnimationTree): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationTree, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getRootMotionPosition*(self: AnimationTree): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -117,7 +117,7 @@ proc getRootMotionPosition*(self: AnimationTree): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationTree, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc getRootMotionRotation*(self: AnimationTree): Quaternion =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -125,7 +125,7 @@ proc getRootMotionRotation*(self: AnimationTree): Quaternion =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationTree, addr name, 1222331677)
   var ret: encoded Quaternion
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Quaternion)
+  (addr ret).decode_result(Quaternion)
 proc getRootMotionScale*(self: AnimationTree): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -133,7 +133,7 @@ proc getRootMotionScale*(self: AnimationTree): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationTree, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc getRootMotionPositionAccumulator*(self: AnimationTree): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -141,7 +141,7 @@ proc getRootMotionPositionAccumulator*(self: AnimationTree): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationTree, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc getRootMotionRotationAccumulator*(self: AnimationTree): Quaternion =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -149,7 +149,7 @@ proc getRootMotionRotationAccumulator*(self: AnimationTree): Quaternion =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationTree, addr name, 1222331677)
   var ret: encoded Quaternion
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Quaternion)
+  (addr ret).decode_result(Quaternion)
 proc getRootMotionScaleAccumulator*(self: AnimationTree): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -157,7 +157,7 @@ proc getRootMotionScaleAccumulator*(self: AnimationTree): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationTree, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc advance*(self: AnimationTree; delta: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

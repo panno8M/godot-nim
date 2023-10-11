@@ -19,7 +19,7 @@ proc bakeMask*(self: OccluderInstance3D): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className OccluderInstance3D, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc setBakeMaskValue*(self: OccluderInstance3D; layerNumber: int32; value: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -35,7 +35,7 @@ proc getBakeMaskValue*(self: OccluderInstance3D; layerNumber: int32): Bool =
   var `?param` = [getPtr layerNumber]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `bakeSimplificationDistance=`*(self: OccluderInstance3D; simplificationDistance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -50,7 +50,7 @@ proc bakeSimplificationDistance*(self: OccluderInstance3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className OccluderInstance3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `occluder=`*(self: OccluderInstance3D; occluder: Occluder3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -65,4 +65,4 @@ proc occluder*(self: OccluderInstance3D): Occluder3D =
     methodbind = interface_ClassDB_getMethodBind(addr className OccluderInstance3D, addr name, 1696836198)
   var ret: encoded Occluder3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Occluder3D)
+  (addr ret).decode_result(Occluder3D)

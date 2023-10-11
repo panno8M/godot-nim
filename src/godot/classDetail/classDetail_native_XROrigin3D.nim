@@ -19,7 +19,7 @@ proc worldScale*(self: XROrigin3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className XROrigin3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `current=`*(self: XROrigin3D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,4 +34,4 @@ proc isCurrent*(self: XROrigin3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className XROrigin3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

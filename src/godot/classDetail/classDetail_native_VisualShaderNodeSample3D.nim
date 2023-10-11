@@ -19,4 +19,4 @@ proc source*(self: VisualShaderNodeSample3D): VisualShaderNodeSample3D_Source =
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeSample3D, addr name, 1079494121)
   var ret: encoded VisualShaderNodeSample3D_Source
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VisualShaderNodeSample3D_Source)
+  (addr ret).decode_result(VisualShaderNodeSample3D_Source)

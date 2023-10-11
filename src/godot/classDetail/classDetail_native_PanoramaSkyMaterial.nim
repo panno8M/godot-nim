@@ -19,7 +19,7 @@ proc panorama*(self: PanoramaSkyMaterial): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className PanoramaSkyMaterial, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc `filteringEnabled=`*(self: PanoramaSkyMaterial; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,4 +34,4 @@ proc isFilteringEnabled*(self: PanoramaSkyMaterial): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PanoramaSkyMaterial, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

@@ -19,7 +19,7 @@ proc textureNormal*(self: TouchScreenButton): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className TouchScreenButton, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc `texturePressed=`*(self: TouchScreenButton; texture: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc texturePressed*(self: TouchScreenButton): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className TouchScreenButton, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc `bitmask=`*(self: TouchScreenButton; bitmask: BitMap) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc bitmask*(self: TouchScreenButton): BitMap =
     methodbind = interface_ClassDB_getMethodBind(addr className TouchScreenButton, addr name, 2459671998)
   var ret: encoded BitMap
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(BitMap)
+  (addr ret).decode_result(BitMap)
 proc `shape=`*(self: TouchScreenButton; shape: Shape2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc shape*(self: TouchScreenButton): Shape2D =
     methodbind = interface_ClassDB_getMethodBind(addr className TouchScreenButton, addr name, 522005891)
   var ret: encoded Shape2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Shape2D)
+  (addr ret).decode_result(Shape2D)
 proc `shapeCentered=`*(self: TouchScreenButton; bool: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc isShapeCentered*(self: TouchScreenButton): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TouchScreenButton, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `shapeVisible=`*(self: TouchScreenButton; bool: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc isShapeVisible*(self: TouchScreenButton): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TouchScreenButton, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `action=`*(self: TouchScreenButton; action: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc action*(self: TouchScreenButton): String =
     methodbind = interface_ClassDB_getMethodBind(addr className TouchScreenButton, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `visibilityMode=`*(self: TouchScreenButton; mode: TouchScreenButton_VisibilityMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc visibilityMode*(self: TouchScreenButton): TouchScreenButton_VisibilityMode 
     methodbind = interface_ClassDB_getMethodBind(addr className TouchScreenButton, addr name, 2558996468)
   var ret: encoded TouchScreenButton_VisibilityMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TouchScreenButton_VisibilityMode)
+  (addr ret).decode_result(TouchScreenButton_VisibilityMode)
 proc `passbyPress=`*(self: TouchScreenButton; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc isPassbyPressEnabled*(self: TouchScreenButton): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TouchScreenButton, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isPressed*(self: TouchScreenButton): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -147,4 +147,4 @@ proc isPressed*(self: TouchScreenButton): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TouchScreenButton, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

@@ -19,7 +19,7 @@ proc locale*(self: Translation): String =
     methodbind = interface_ClassDB_getMethodBind(addr className Translation, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc addMessage*(self: Translation; srcMessage: StringName; xlatedMessage: StringName; context: StringName = "") =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc getMessage*(self: Translation; srcMessage: StringName; context: StringName 
   var `?param` = [getPtr srcMessage, getPtr context]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc getPluralMessage*(self: Translation; srcMessage: StringName; srcPluralMessage: StringName; n: int32; context: StringName = ""): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -51,7 +51,7 @@ proc getPluralMessage*(self: Translation; srcMessage: StringName; srcPluralMessa
   var `?param` = [getPtr srcMessage, getPtr srcPluralMessage, getPtr n, getPtr context]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc eraseMessage*(self: Translation; srcMessage: StringName; context: StringName = "") =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -66,7 +66,7 @@ proc getMessageList*(self: Translation): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className Translation, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc getTranslatedMessageList*(self: Translation): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -74,7 +74,7 @@ proc getTranslatedMessageList*(self: Translation): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className Translation, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc getMessageCount*(self: Translation): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -82,4 +82,4 @@ proc getMessageCount*(self: Translation): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Translation, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)

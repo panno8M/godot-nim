@@ -19,7 +19,7 @@ proc bone2dNode*(self: SkeletonModification2DLookAt): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DLookAt, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc `boneIndex=`*(self: SkeletonModification2DLookAt; boneIdx: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc boneIndex*(self: SkeletonModification2DLookAt): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DLookAt, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `targetNode=`*(self: SkeletonModification2DLookAt; targetNodepath: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc tarnode*(self: SkeletonModification2DLookAt): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DLookAt, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc setAdditionalRotation*(self: SkeletonModification2DLookAt; rotation: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc getAdditionalRotation*(self: SkeletonModification2DLookAt): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DLookAt, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc setEnableConstraint*(self: SkeletonModification2DLookAt; enableConstraint: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc getEnableConstraint*(self: SkeletonModification2DLookAt): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DLookAt, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setConstraintAngleMin*(self: SkeletonModification2DLookAt; angleMin: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc getConstraintAngleMin*(self: SkeletonModification2DLookAt): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DLookAt, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc setConstraintAngleMax*(self: SkeletonModification2DLookAt; angleMax: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc getConstraintAngleMax*(self: SkeletonModification2DLookAt): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DLookAt, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc setConstraintAngleInvert*(self: SkeletonModification2DLookAt; invert: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,4 +124,4 @@ proc getConstraintAngleInvert*(self: SkeletonModification2DLookAt): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DLookAt, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

@@ -13,7 +13,7 @@ proc createHostBound*(self: ENetConnection; bindAddress: String; bindPort: int32
   var `?param` = [getPtr bindAddress, getPtr bindPort, getPtr maxPeers, getPtr maxChannels, getPtr inBandwidth, getPtr outBandwidth]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc createHost*(self: ENetConnection; maxPeers: int32 = 32; maxChannels: int32 = 0; inBandwidth: int32 = 0; outBandwidth: int32 = 0): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc createHost*(self: ENetConnection; maxPeers: int32 = 32; maxChannels: int32 
   var `?param` = [getPtr maxPeers, getPtr maxChannels, getPtr inBandwidth, getPtr outBandwidth]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc destroy*(self: ENetConnection) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -37,7 +37,7 @@ proc connectToHost*(self: ENetConnection; address: String; port: int32; channels
   var `?param` = [getPtr address, getPtr port, getPtr channels, getPtr data]
   var ret: encoded ENetPacketPeer
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(ENetPacketPeer)
+  (addr ret).decode_result(ENetPacketPeer)
 proc service*(self: ENetConnection; timeout: int32 = 0): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -46,7 +46,7 @@ proc service*(self: ENetConnection; timeout: int32 = 0): Array =
   var `?param` = [getPtr timeout]
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)
 proc flush*(self: ENetConnection) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -89,7 +89,7 @@ proc dtlsServerSetup*(self: ENetConnection; serverOptions: TLSOptions): Error =
   var `?param` = [getPtr serverOptions]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc dtlsClientSetup*(self: ENetConnection; hostname: String; clientOptions: TLSOptions = default TLSOptions): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -98,7 +98,7 @@ proc dtlsClientSetup*(self: ENetConnection; hostname: String; clientOptions: TLS
   var `?param` = [getPtr hostname, getPtr clientOptions]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc refuseNewConnections*(self: ENetConnection; refuse: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -114,7 +114,7 @@ proc popStatistic*(self: ENetConnection; statistic: ENetConnection_HostStatistic
   var `?param` = [getPtr statistic]
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc getMaxChannels*(self: ENetConnection): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -122,7 +122,7 @@ proc getMaxChannels*(self: ENetConnection): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className ENetConnection, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getLocalPort*(self: ENetConnection): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -130,7 +130,7 @@ proc getLocalPort*(self: ENetConnection): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className ENetConnection, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getPeers*(self: ENetConnection): TypedArray[ENetPacketPeer] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -138,7 +138,7 @@ proc getPeers*(self: ENetConnection): TypedArray[ENetPacketPeer] =
     methodbind = interface_ClassDB_getMethodBind(addr className ENetConnection, addr name, 2915620761)
   var ret: encoded TypedArray[ENetPacketPeer]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[ENetPacketPeer])
+  (addr ret).decode_result(TypedArray[ENetPacketPeer])
 proc socketSend*(self: ENetConnection; destinationAddress: String; destinationPort: int32; packet: PackedByteArray) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

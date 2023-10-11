@@ -19,7 +19,7 @@ proc navigationMesh*(self: NavigationRegion3D): NavigationMesh =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationRegion3D, addr name, 1468720886)
   var ret: encoded NavigationMesh
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NavigationMesh)
+  (addr ret).decode_result(NavigationMesh)
 proc `enabled=`*(self: NavigationRegion3D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc isEnabled*(self: NavigationRegion3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationRegion3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `useEdgeConnections=`*(self: NavigationRegion3D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc useEdgeConnections*(self: NavigationRegion3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationRegion3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `navigationLayers=`*(self: NavigationRegion3D; navigationLayers: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc navigationLayers*(self: NavigationRegion3D): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationRegion3D, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc setNavigationLayerValue*(self: NavigationRegion3D; layerNumber: int32; value: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -80,7 +80,7 @@ proc getNavigationLayerValue*(self: NavigationRegion3D; layerNumber: int32): Boo
   var `?param` = [getPtr layerNumber]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getRegionRid*(self: NavigationRegion3D): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -88,7 +88,7 @@ proc getRegionRid*(self: NavigationRegion3D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationRegion3D, addr name, 2944877500)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc `enterCost=`*(self: NavigationRegion3D; enterCost: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -103,7 +103,7 @@ proc enterCost*(self: NavigationRegion3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationRegion3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `travelCost=`*(self: NavigationRegion3D; travelCost: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -118,7 +118,7 @@ proc travelCost*(self: NavigationRegion3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationRegion3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc bakeNavigationMesh*(self: NavigationRegion3D; onThread: Bool = true) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

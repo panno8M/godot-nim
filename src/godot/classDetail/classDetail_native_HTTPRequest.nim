@@ -13,7 +13,7 @@ proc request*(self: HTTPRequest; url: String; customHeaders: PackedStringArray =
   var `?param` = [getPtr url, getPtr customHeaders, getPtr `method`, getPtr requestData]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc requestRaw*(self: HTTPRequest; url: String; customHeaders: PackedStringArray = PackedStringArray(); `method`: HTTPClient_Method = methodGet; requestDataRaw: PackedByteArray = PackedByteArray()): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc requestRaw*(self: HTTPRequest; url: String; customHeaders: PackedStringArra
   var `?param` = [getPtr url, getPtr customHeaders, getPtr `method`, getPtr requestDataRaw]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc cancelRequest*(self: HTTPRequest) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -43,7 +43,7 @@ proc getHttpClientStatus*(self: HTTPRequest): HTTPClient_Status =
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 1426656811)
   var ret: encoded HTTPClient_Status
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(HTTPClient_Status)
+  (addr ret).decode_result(HTTPClient_Status)
 proc `useThreads=`*(self: HTTPRequest; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -58,7 +58,7 @@ proc isUsingThreads*(self: HTTPRequest): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `acceptGzip=`*(self: HTTPRequest; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -73,7 +73,7 @@ proc isAcceptingGzip*(self: HTTPRequest): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `bodySizeLimit=`*(self: HTTPRequest; bytes: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -88,7 +88,7 @@ proc bodySizeLimit*(self: HTTPRequest): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `maxRedirects=`*(self: HTTPRequest; amount: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -103,7 +103,7 @@ proc maxRedirects*(self: HTTPRequest): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `downloadFile=`*(self: HTTPRequest; path: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -118,7 +118,7 @@ proc downloadFile*(self: HTTPRequest): String =
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getDownloadedBytes*(self: HTTPRequest): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -126,7 +126,7 @@ proc getDownloadedBytes*(self: HTTPRequest): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getBodySize*(self: HTTPRequest): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -134,7 +134,7 @@ proc getBodySize*(self: HTTPRequest): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `timeout=`*(self: HTTPRequest; timeout: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -149,7 +149,7 @@ proc timeout*(self: HTTPRequest): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 191475506)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc `downloadChunkSize=`*(self: HTTPRequest; chunkSize: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -164,7 +164,7 @@ proc downloadChunkSize*(self: HTTPRequest): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setHttpProxy*(self: HTTPRequest; host: String; port: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

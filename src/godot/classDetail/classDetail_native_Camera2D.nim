@@ -19,7 +19,7 @@ proc offset*(self: Camera2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `anchorMode=`*(self: Camera2D; anchorMode: Camera2D_AnchorMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc anchorMode*(self: Camera2D): Camera2D_AnchorMode =
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 155978067)
   var ret: encoded Camera2D_AnchorMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Camera2D_AnchorMode)
+  (addr ret).decode_result(Camera2D_AnchorMode)
 proc `ignoreRotation=`*(self: Camera2D; ignore: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc isIgnoringRotation*(self: Camera2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `processCallback=`*(self: Camera2D; mode: Camera2D_Camera2DProcessCallback) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc processCallback*(self: Camera2D): Camera2D_Camera2DProcessCallback =
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 2325344499)
   var ret: encoded Camera2D_Camera2DProcessCallback
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Camera2D_Camera2DProcessCallback)
+  (addr ret).decode_result(Camera2D_Camera2DProcessCallback)
 proc `enabled=`*(self: Camera2D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc isEnabled*(self: Camera2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc makeCurrent*(self: Camera2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -93,7 +93,7 @@ proc isCurrent*(self: Camera2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `limit=`*(self: Camera2D; margin: Side; limit: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc limit*(self: Camera2D; margin: Side): int32 =
   var `?param` = [getPtr margin]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `limitSmoothingEnabled=`*(self: Camera2D; limitSmoothingEnabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc isLimitSmoothingEnabled*(self: Camera2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `dragVerticalEnabled=`*(self: Camera2D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc isDragVerticalEnabled*(self: Camera2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `dragHorizontalEnabled=`*(self: Camera2D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -154,7 +154,7 @@ proc isDragHorizontalEnabled*(self: Camera2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `dragVerticalOffset=`*(self: Camera2D; offset: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -169,7 +169,7 @@ proc dragVerticalOffset*(self: Camera2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `dragHorizontalOffset=`*(self: Camera2D; offset: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -184,7 +184,7 @@ proc dragHorizontalOffset*(self: Camera2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `dragMargin=`*(self: Camera2D; margin: Side; dragMargin: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -200,7 +200,7 @@ proc dragMargin*(self: Camera2D; margin: Side): Float =
   var `?param` = [getPtr margin]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getTargetPosition*(self: Camera2D): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -208,7 +208,7 @@ proc getTargetPosition*(self: Camera2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getScreenCenterPosition*(self: Camera2D): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -216,7 +216,7 @@ proc getScreenCenterPosition*(self: Camera2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `zoom=`*(self: Camera2D; zoom: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -231,7 +231,7 @@ proc zoom*(self: Camera2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `customViewport=`*(self: Camera2D; viewport: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -246,7 +246,7 @@ proc customViewport*(self: Camera2D): Node =
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 3160264692)
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Node)
+  (addr ret).decode_result(Node)
 proc `positionSmoothingSpeed=`*(self: Camera2D; positionSmoothingSpeed: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -261,7 +261,7 @@ proc positionSmoothingSpeed*(self: Camera2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `positionSmoothingEnabled=`*(self: Camera2D; positionSmoothingSpeed: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -276,7 +276,7 @@ proc isPositionSmoothingEnabled*(self: Camera2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `rotationSmoothingEnabled=`*(self: Camera2D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -291,7 +291,7 @@ proc isRotationSmoothingEnabled*(self: Camera2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `rotationSmoothingSpeed=`*(self: Camera2D; speed: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -306,7 +306,7 @@ proc rotationSmoothingSpeed*(self: Camera2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc forceUpdateScroll*(self: Camera2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -339,7 +339,7 @@ proc isScreenDrawingEnabled*(self: Camera2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `limitDrawingEnabled=`*(self: Camera2D; limitDrawingEnabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -354,7 +354,7 @@ proc isLimitDrawingEnabled*(self: Camera2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `marginDrawingEnabled=`*(self: Camera2D; marginDrawingEnabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -369,4 +369,4 @@ proc isMarginDrawingEnabled*(self: Camera2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Camera2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

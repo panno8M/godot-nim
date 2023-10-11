@@ -12,7 +12,7 @@ proc pointCount*(self: Curve2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Curve2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `pointCount=`*(self: Curve2D; count: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc getPointPosition*(self: Curve2D; idx: int32): Vector2 =
   var `?param` = [getPtr idx]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc setPointIn*(self: Curve2D; idx: int32; position: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -58,7 +58,7 @@ proc getPointIn*(self: Curve2D; idx: int32): Vector2 =
   var `?param` = [getPtr idx]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc setPointOut*(self: Curve2D; idx: int32; position: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -74,7 +74,7 @@ proc getPointOut*(self: Curve2D; idx: int32): Vector2 =
   var `?param` = [getPtr idx]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc removePoint*(self: Curve2D; idx: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -96,7 +96,7 @@ proc sample*(self: Curve2D; idx: int32; t: Float): Vector2 =
   var `?param` = [getPtr idx, getPtr t]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc samplef*(self: Curve2D; fofs: Float): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -105,7 +105,7 @@ proc samplef*(self: Curve2D; fofs: Float): Vector2 =
   var `?param` = [getPtr fofs]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `bakeInterval=`*(self: Curve2D; distance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -120,7 +120,7 @@ proc bakeInterval*(self: Curve2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Curve2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getBakedLength*(self: Curve2D): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -128,7 +128,7 @@ proc getBakedLength*(self: Curve2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Curve2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc sampleBaked*(self: Curve2D; offset: Float = 0.0; cubic: Bool = false): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -137,7 +137,7 @@ proc sampleBaked*(self: Curve2D; offset: Float = 0.0; cubic: Bool = false): Vect
   var `?param` = [getPtr offset, getPtr cubic]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc sampleBakedWithRotation*(self: Curve2D; offset: Float = 0.0; cubic: Bool = false): Transform2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -146,7 +146,7 @@ proc sampleBakedWithRotation*(self: Curve2D; offset: Float = 0.0; cubic: Bool = 
   var `?param` = [getPtr offset, getPtr cubic]
   var ret: encoded Transform2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Transform2D)
+  (addr ret).decode_result(Transform2D)
 proc getBakedPoints*(self: Curve2D): PackedVector2Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -154,7 +154,7 @@ proc getBakedPoints*(self: Curve2D): PackedVector2Array =
     methodbind = interface_ClassDB_getMethodBind(addr className Curve2D, addr name, 2961356807)
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedVector2Array)
+  (addr ret).decode_result(PackedVector2Array)
 proc getClosestPoint*(self: Curve2D; toPoint: Vector2): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -163,7 +163,7 @@ proc getClosestPoint*(self: Curve2D; toPoint: Vector2): Vector2 =
   var `?param` = [getPtr toPoint]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getClosestOffset*(self: Curve2D; toPoint: Vector2): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -172,7 +172,7 @@ proc getClosestOffset*(self: Curve2D; toPoint: Vector2): Float =
   var `?param` = [getPtr toPoint]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc tessellate*(self: Curve2D; maxStages: int32 = 5; toleranceDegrees: Float = 4): PackedVector2Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -181,7 +181,7 @@ proc tessellate*(self: Curve2D; maxStages: int32 = 5; toleranceDegrees: Float = 
   var `?param` = [getPtr maxStages, getPtr toleranceDegrees]
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedVector2Array)
+  (addr ret).decode_result(PackedVector2Array)
 proc tessellateEvenLength*(self: Curve2D; maxStages: int32 = 5; toleranceLength: Float = 20.0): PackedVector2Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -190,4 +190,4 @@ proc tessellateEvenLength*(self: Curve2D; maxStages: int32 = 5; toleranceLength:
   var `?param` = [getPtr maxStages, getPtr toleranceLength]
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedVector2Array)
+  (addr ret).decode_result(PackedVector2Array)

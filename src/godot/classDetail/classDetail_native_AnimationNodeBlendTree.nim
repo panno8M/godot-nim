@@ -20,7 +20,7 @@ proc getNode*(self: AnimationNodeBlendTree; name: StringName): AnimationNode =
   var `?param` = [getPtr name]
   var ret: encoded AnimationNode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(AnimationNode)
+  (addr ret).decode_result(AnimationNode)
 proc removeNode*(self: AnimationNodeBlendTree; name: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -43,7 +43,7 @@ proc hasNode*(self: AnimationNodeBlendTree; name: StringName): Bool =
   var `?param` = [getPtr name]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc connectNode*(self: AnimationNodeBlendTree; inputNode: StringName; inputIndex: int32; outputNode: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -73,7 +73,7 @@ proc getNodePosition*(self: AnimationNodeBlendTree; name: StringName): Vector2 =
   var `?param` = [getPtr name]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `graphOffset=`*(self: AnimationNodeBlendTree; offset: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -88,4 +88,4 @@ proc graphOffset*(self: AnimationNodeBlendTree): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendTree, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)

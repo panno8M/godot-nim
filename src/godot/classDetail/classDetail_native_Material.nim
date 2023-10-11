@@ -19,7 +19,7 @@ proc nextPass*(self: Material): Material =
     methodbind = interface_ClassDB_getMethodBind(addr className Material, addr name, 5934680)
   var ret: encoded Material
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Material)
+  (addr ret).decode_result(Material)
 proc `renderPriority=`*(self: Material; priority: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc renderPriority*(self: Material): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Material, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc inspectNativeShaderCode*(self: Material) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -48,4 +48,4 @@ proc createPlaceholder*(self: Material): Resource =
     methodbind = interface_ClassDB_getMethodBind(addr className Material, addr name, 121922552)
   var ret: encoded Resource
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Resource)
+  (addr ret).decode_result(Resource)

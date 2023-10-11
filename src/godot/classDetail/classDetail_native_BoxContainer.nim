@@ -13,7 +13,7 @@ proc addSpacer*(self: BoxContainer; begin: Bool): Control =
   var `?param` = [getPtr begin]
   var ret: encoded Control
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Control)
+  (addr ret).decode_result(Control)
 proc `alignment=`*(self: BoxContainer; alignment: BoxContainer_AlignmentMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -28,7 +28,7 @@ proc alignment*(self: BoxContainer): BoxContainer_AlignmentMode =
     methodbind = interface_ClassDB_getMethodBind(addr className BoxContainer, addr name, 1915476527)
   var ret: encoded BoxContainer_AlignmentMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(BoxContainer_AlignmentMode)
+  (addr ret).decode_result(BoxContainer_AlignmentMode)
 proc `vertical=`*(self: BoxContainer; vertical: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -43,4 +43,4 @@ proc isVertical*(self: BoxContainer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className BoxContainer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

@@ -18,7 +18,7 @@ proc getMinimumSize*(self: Control): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getCombinedMinimumSize*(self: Control): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -26,7 +26,7 @@ proc getCombinedMinimumSize*(self: Control): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc setAnchorsPreset*(self: Control; preset: Control_LayoutPreset; keepOffsets: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -63,7 +63,7 @@ proc anchor*(self: Control; side: Side): Float =
   var `?param` = [getPtr side]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `offset=`*(self: Control; side: Side; offset: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc offset*(self: Control; offset: Side): Float =
   var `?param` = [getPtr offset]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc setAnchorAndOffset*(self: Control; side: Side; anchor: Float; offset: Float; pushOppositeAnchor: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -170,7 +170,7 @@ proc getBegin*(self: Control): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getEnd*(self: Control): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -178,7 +178,7 @@ proc getEnd*(self: Control): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc position*(self: Control): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -186,7 +186,7 @@ proc position*(self: Control): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc size*(self: Control): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -194,7 +194,7 @@ proc size*(self: Control): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc rotation*(self: Control): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -202,7 +202,7 @@ proc rotation*(self: Control): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc rotationDegrees*(self: Control): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -210,7 +210,7 @@ proc rotationDegrees*(self: Control): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc scale*(self: Control): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -218,7 +218,7 @@ proc scale*(self: Control): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc pivotOffset*(self: Control): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -226,7 +226,7 @@ proc pivotOffset*(self: Control): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc customMinimumSize*(self: Control): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -234,7 +234,7 @@ proc customMinimumSize*(self: Control): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getParentAreaSize*(self: Control): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -242,7 +242,7 @@ proc getParentAreaSize*(self: Control): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc globalPosition*(self: Control): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -250,7 +250,7 @@ proc globalPosition*(self: Control): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getScreenPosition*(self: Control): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -258,7 +258,7 @@ proc getScreenPosition*(self: Control): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getRect*(self: Control): Rect2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -266,7 +266,7 @@ proc getRect*(self: Control): Rect2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 1639390495)
   var ret: encoded Rect2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Rect2)
+  (addr ret).decode_result(Rect2)
 proc getGlobalRect*(self: Control): Rect2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -274,7 +274,7 @@ proc getGlobalRect*(self: Control): Rect2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 1639390495)
   var ret: encoded Rect2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Rect2)
+  (addr ret).decode_result(Rect2)
 proc `focusMode=`*(self: Control; mode: Control_FocusMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -289,7 +289,7 @@ proc focusMode*(self: Control): Control_FocusMode =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 2132829277)
   var ret: encoded Control_FocusMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Control_FocusMode)
+  (addr ret).decode_result(Control_FocusMode)
 proc hasFocus*(self: Control): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -297,7 +297,7 @@ proc hasFocus*(self: Control): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc grabFocus*(self: Control) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -317,7 +317,7 @@ proc findPrevValidFocus*(self: Control): Control =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 2783021301)
   var ret: encoded Control
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Control)
+  (addr ret).decode_result(Control)
 proc findNextValidFocus*(self: Control): Control =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -325,7 +325,7 @@ proc findNextValidFocus*(self: Control): Control =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 2783021301)
   var ret: encoded Control
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Control)
+  (addr ret).decode_result(Control)
 proc `hSizeFlags=`*(self: Control; flags: set[Control_SizeFlags]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -340,7 +340,7 @@ proc hSizeFlags*(self: Control): set[Control_SizeFlags] =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 3781367401)
   var ret: encoded set[Control_SizeFlags]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(set[Control_SizeFlags])
+  (addr ret).decode_result(set[Control_SizeFlags])
 proc `stretchRatio=`*(self: Control; ratio: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -355,7 +355,7 @@ proc stretchRatio*(self: Control): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `vSizeFlags=`*(self: Control; flags: set[Control_SizeFlags]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -370,7 +370,7 @@ proc vSizeFlags*(self: Control): set[Control_SizeFlags] =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 3781367401)
   var ret: encoded set[Control_SizeFlags]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(set[Control_SizeFlags])
+  (addr ret).decode_result(set[Control_SizeFlags])
 proc `theme=`*(self: Control; theme: Theme) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -385,7 +385,7 @@ proc theme*(self: Control): Theme =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 3846893731)
   var ret: encoded Theme
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Theme)
+  (addr ret).decode_result(Theme)
 proc `themeTypeVariation=`*(self: Control; themeType: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -400,7 +400,7 @@ proc themeTypeVariation*(self: Control): StringName =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 2002593661)
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc beginBulkThemeOverride*(self: Control) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -505,7 +505,7 @@ proc getThemeIcon*(self: Control; name: StringName; themeType: StringName = ""):
   var `?param` = [getPtr name, getPtr themeType]
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc getThemeStylebox*(self: Control; name: StringName; themeType: StringName = ""): StyleBox =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -514,7 +514,7 @@ proc getThemeStylebox*(self: Control; name: StringName; themeType: StringName = 
   var `?param` = [getPtr name, getPtr themeType]
   var ret: encoded StyleBox
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StyleBox)
+  (addr ret).decode_result(StyleBox)
 proc getThemeFont*(self: Control; name: StringName; themeType: StringName = ""): Font =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -523,7 +523,7 @@ proc getThemeFont*(self: Control; name: StringName; themeType: StringName = ""):
   var `?param` = [getPtr name, getPtr themeType]
   var ret: encoded Font
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Font)
+  (addr ret).decode_result(Font)
 proc getThemeFontSize*(self: Control; name: StringName; themeType: StringName = ""): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -532,7 +532,7 @@ proc getThemeFontSize*(self: Control; name: StringName; themeType: StringName = 
   var `?param` = [getPtr name, getPtr themeType]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getThemeColor*(self: Control; name: StringName; themeType: StringName = ""): Color =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -541,7 +541,7 @@ proc getThemeColor*(self: Control; name: StringName; themeType: StringName = "")
   var `?param` = [getPtr name, getPtr themeType]
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc getThemeConstant*(self: Control; name: StringName; themeType: StringName = ""): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -550,7 +550,7 @@ proc getThemeConstant*(self: Control; name: StringName; themeType: StringName = 
   var `?param` = [getPtr name, getPtr themeType]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc hasThemeIconOverride*(self: Control; name: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -559,7 +559,7 @@ proc hasThemeIconOverride*(self: Control; name: StringName): Bool =
   var `?param` = [getPtr name]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc hasThemeStyleboxOverride*(self: Control; name: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -568,7 +568,7 @@ proc hasThemeStyleboxOverride*(self: Control; name: StringName): Bool =
   var `?param` = [getPtr name]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc hasThemeFontOverride*(self: Control; name: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -577,7 +577,7 @@ proc hasThemeFontOverride*(self: Control; name: StringName): Bool =
   var `?param` = [getPtr name]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc hasThemeFontSizeOverride*(self: Control; name: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -586,7 +586,7 @@ proc hasThemeFontSizeOverride*(self: Control; name: StringName): Bool =
   var `?param` = [getPtr name]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc hasThemeColorOverride*(self: Control; name: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -595,7 +595,7 @@ proc hasThemeColorOverride*(self: Control; name: StringName): Bool =
   var `?param` = [getPtr name]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc hasThemeConstantOverride*(self: Control; name: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -604,7 +604,7 @@ proc hasThemeConstantOverride*(self: Control; name: StringName): Bool =
   var `?param` = [getPtr name]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc hasThemeIcon*(self: Control; name: StringName; themeType: StringName = ""): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -613,7 +613,7 @@ proc hasThemeIcon*(self: Control; name: StringName; themeType: StringName = ""):
   var `?param` = [getPtr name, getPtr themeType]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc hasThemeStylebox*(self: Control; name: StringName; themeType: StringName = ""): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -622,7 +622,7 @@ proc hasThemeStylebox*(self: Control; name: StringName; themeType: StringName = 
   var `?param` = [getPtr name, getPtr themeType]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc hasThemeFont*(self: Control; name: StringName; themeType: StringName = ""): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -631,7 +631,7 @@ proc hasThemeFont*(self: Control; name: StringName; themeType: StringName = ""):
   var `?param` = [getPtr name, getPtr themeType]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc hasThemeFontSize*(self: Control; name: StringName; themeType: StringName = ""): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -640,7 +640,7 @@ proc hasThemeFontSize*(self: Control; name: StringName; themeType: StringName = 
   var `?param` = [getPtr name, getPtr themeType]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc hasThemeColor*(self: Control; name: StringName; themeType: StringName = ""): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -649,7 +649,7 @@ proc hasThemeColor*(self: Control; name: StringName; themeType: StringName = "")
   var `?param` = [getPtr name, getPtr themeType]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc hasThemeConstant*(self: Control; name: StringName; themeType: StringName = ""): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -658,7 +658,7 @@ proc hasThemeConstant*(self: Control; name: StringName; themeType: StringName = 
   var `?param` = [getPtr name, getPtr themeType]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getThemeDefaultBaseScale*(self: Control): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -666,7 +666,7 @@ proc getThemeDefaultBaseScale*(self: Control): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getThemeDefaultFont*(self: Control): Font =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -674,7 +674,7 @@ proc getThemeDefaultFont*(self: Control): Font =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 3229501585)
   var ret: encoded Font
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Font)
+  (addr ret).decode_result(Font)
 proc getThemeDefaultFontSize*(self: Control): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -682,7 +682,7 @@ proc getThemeDefaultFontSize*(self: Control): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getParentControl*(self: Control): Control =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -690,7 +690,7 @@ proc getParentControl*(self: Control): Control =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 2783021301)
   var ret: encoded Control
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Control)
+  (addr ret).decode_result(Control)
 proc `hGrowDirection=`*(self: Control; direction: Control_GrowDirection) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -705,7 +705,7 @@ proc hGrowDirection*(self: Control): Control_GrowDirection =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 3635610155)
   var ret: encoded Control_GrowDirection
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Control_GrowDirection)
+  (addr ret).decode_result(Control_GrowDirection)
 proc `vGrowDirection=`*(self: Control; direction: Control_GrowDirection) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -720,7 +720,7 @@ proc vGrowDirection*(self: Control): Control_GrowDirection =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 3635610155)
   var ret: encoded Control_GrowDirection
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Control_GrowDirection)
+  (addr ret).decode_result(Control_GrowDirection)
 proc `tooltipText=`*(self: Control; hint: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -735,7 +735,7 @@ proc tooltipText*(self: Control): String =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getTooltip*(self: Control; atPosition: Vector2 = gdvec(0, 0)): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -744,7 +744,7 @@ proc getTooltip*(self: Control; atPosition: Vector2 = gdvec(0, 0)): String =
   var `?param` = [getPtr atPosition]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `defaultCursorShape=`*(self: Control; shape: Control_CursorShape) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -759,7 +759,7 @@ proc defaultCursorShape*(self: Control): Control_CursorShape =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 2359535750)
   var ret: encoded Control_CursorShape
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Control_CursorShape)
+  (addr ret).decode_result(Control_CursorShape)
 proc getCursorShape*(self: Control; position: Vector2 = gdvec(0, 0)): Control_CursorShape =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -768,7 +768,7 @@ proc getCursorShape*(self: Control; position: Vector2 = gdvec(0, 0)): Control_Cu
   var `?param` = [getPtr position]
   var ret: encoded Control_CursorShape
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Control_CursorShape)
+  (addr ret).decode_result(Control_CursorShape)
 proc `focusNeighbor=`*(self: Control; side: Side; neighbor: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -784,7 +784,7 @@ proc focusNeighbor*(self: Control; side: Side): NodePath =
   var `?param` = [getPtr side]
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc `focusNext=`*(self: Control; next: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -799,7 +799,7 @@ proc focusNext*(self: Control): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc `focusPrevious=`*(self: Control; previous: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -814,7 +814,7 @@ proc focusPrevious*(self: Control): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc forceDrag*(self: Control; data: Variant; preview: Control) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -836,7 +836,7 @@ proc mouseFilter*(self: Control): Control_MouseFilter =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 1572545674)
   var ret: encoded Control_MouseFilter
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Control_MouseFilter)
+  (addr ret).decode_result(Control_MouseFilter)
 proc `forcePassScrollEvents=`*(self: Control; forcePassScrollEvents: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -851,7 +851,7 @@ proc isForcePassScrollEvents*(self: Control): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `clipContents=`*(self: Control; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -866,7 +866,7 @@ proc isClippingContents*(self: Control): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc grabClickFocus*(self: Control) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -894,7 +894,7 @@ proc isDragSuccessful*(self: Control): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc warpMouse*(self: Control; position: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -916,7 +916,7 @@ proc shortcutContext*(self: Control): Node =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 3160264692)
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Node)
+  (addr ret).decode_result(Node)
 proc updateMinimumSize*(self: Control) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -937,7 +937,7 @@ proc layoutDirection*(self: Control): Control_LayoutDirection =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 1546772008)
   var ret: encoded Control_LayoutDirection
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Control_LayoutDirection)
+  (addr ret).decode_result(Control_LayoutDirection)
 proc isLayoutRtl*(self: Control): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -945,7 +945,7 @@ proc isLayoutRtl*(self: Control): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `autoTranslate=`*(self: Control; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -960,7 +960,7 @@ proc isAutoTranslating*(self: Control): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `localizeNumeralSystem=`*(self: Control; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -975,4 +975,4 @@ proc isLocalizingNumeralSystem*(self: Control): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

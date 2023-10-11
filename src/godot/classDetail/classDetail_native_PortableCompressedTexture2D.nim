@@ -19,7 +19,7 @@ proc getFormat*(self: PortableCompressedTexture2D): Image_Format =
     methodbind = interface_ClassDB_getMethodBind(addr className PortableCompressedTexture2D, addr name, 3847873762)
   var ret: encoded Image_Format
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Image_Format)
+  (addr ret).decode_result(Image_Format)
 proc getCompressionMode*(self: PortableCompressedTexture2D): PortableCompressedTexture2D_CompressionMode =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc getCompressionMode*(self: PortableCompressedTexture2D): PortableCompressedT
     methodbind = interface_ClassDB_getMethodBind(addr className PortableCompressedTexture2D, addr name, 3265612739)
   var ret: encoded PortableCompressedTexture2D_CompressionMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PortableCompressedTexture2D_CompressionMode)
+  (addr ret).decode_result(PortableCompressedTexture2D_CompressionMode)
 proc `sizeOverride=`*(self: PortableCompressedTexture2D; size: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc sizeOverride*(self: PortableCompressedTexture2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className PortableCompressedTexture2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `keepCompressedBuffer=`*(self: PortableCompressedTexture2D; keep: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc isKeepingCompressedBuffer*(self: PortableCompressedTexture2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PortableCompressedTexture2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setKeepAllCompressedBuffers*(_: typedesc[PortableCompressedTexture2D]; keep: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -72,4 +72,4 @@ proc isKeepingAllCompressedBuffers*(_: typedesc[PortableCompressedTexture2D]): B
     methodbind = interface_ClassDB_getMethodBind(addr className PortableCompressedTexture2D, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, nil, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

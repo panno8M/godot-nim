@@ -19,7 +19,7 @@ proc isStretchEnabled*(self: SubViewportContainer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SubViewportContainer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `stretchShrink=`*(self: SubViewportContainer; amount: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,4 +34,4 @@ proc stretchShrink*(self: SubViewportContainer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className SubViewportContainer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)

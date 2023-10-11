@@ -19,7 +19,7 @@ proc varyingName*(self: VisualShaderNodeVarying): String =
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeVarying, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `varyingType=`*(self: VisualShaderNodeVarying; `type`: VisualShader_VaryingType) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,4 +34,4 @@ proc varyingType*(self: VisualShaderNodeVarying): VisualShader_VaryingType =
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeVarying, addr name, 523183580)
   var ret: encoded VisualShader_VaryingType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VisualShader_VaryingType)
+  (addr ret).decode_result(VisualShader_VaryingType)

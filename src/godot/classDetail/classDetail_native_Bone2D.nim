@@ -19,7 +19,7 @@ proc rest*(self: Bone2D): Transform2D =
     methodbind = interface_ClassDB_getMethodBind(addr className Bone2D, addr name, 3814499831)
   var ret: encoded Transform2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform2D)
+  (addr ret).decode_result(Transform2D)
 proc applyRest*(self: Bone2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -33,7 +33,7 @@ proc getSkeletonRest*(self: Bone2D): Transform2D =
     methodbind = interface_ClassDB_getMethodBind(addr className Bone2D, addr name, 3814499831)
   var ret: encoded Transform2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform2D)
+  (addr ret).decode_result(Transform2D)
 proc getIndexInSkeleton*(self: Bone2D): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -41,7 +41,7 @@ proc getIndexInSkeleton*(self: Bone2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Bone2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setAutocalculateLengthAndAngle*(self: Bone2D; autoCalculate: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -56,7 +56,7 @@ proc getAutocalculateLengthAndAngle*(self: Bone2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Bone2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setLength*(self: Bone2D; length: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -71,7 +71,7 @@ proc getLength*(self: Bone2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Bone2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc setBoneAngle*(self: Bone2D; angle: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -86,4 +86,4 @@ proc getBoneAngle*(self: Bone2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Bone2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

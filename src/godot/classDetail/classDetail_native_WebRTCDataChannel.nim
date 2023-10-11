@@ -12,7 +12,7 @@ proc poll*(self: WebRTCDataChannel): Error =
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCDataChannel, addr name, 166280745)
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc close*(self: WebRTCDataChannel) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -26,7 +26,7 @@ proc wasStringPacket*(self: WebRTCDataChannel): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCDataChannel, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `writeMode=`*(self: WebRTCDataChannel; writeMode: WebRTCDataChannel_WriteMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -41,7 +41,7 @@ proc writeMode*(self: WebRTCDataChannel): WebRTCDataChannel_WriteMode =
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCDataChannel, addr name, 2848495172)
   var ret: encoded WebRTCDataChannel_WriteMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(WebRTCDataChannel_WriteMode)
+  (addr ret).decode_result(WebRTCDataChannel_WriteMode)
 proc getReadyState*(self: WebRTCDataChannel): WebRTCDataChannel_ChannelState =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc getReadyState*(self: WebRTCDataChannel): WebRTCDataChannel_ChannelState =
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCDataChannel, addr name, 3501143017)
   var ret: encoded WebRTCDataChannel_ChannelState
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(WebRTCDataChannel_ChannelState)
+  (addr ret).decode_result(WebRTCDataChannel_ChannelState)
 proc getLabel*(self: WebRTCDataChannel): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc getLabel*(self: WebRTCDataChannel): String =
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCDataChannel, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc isOrdered*(self: WebRTCDataChannel): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -65,7 +65,7 @@ proc isOrdered*(self: WebRTCDataChannel): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCDataChannel, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getId*(self: WebRTCDataChannel): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -73,7 +73,7 @@ proc getId*(self: WebRTCDataChannel): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCDataChannel, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getMaxPacketLifeTime*(self: WebRTCDataChannel): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -81,7 +81,7 @@ proc getMaxPacketLifeTime*(self: WebRTCDataChannel): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCDataChannel, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getMaxRetransmits*(self: WebRTCDataChannel): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -89,7 +89,7 @@ proc getMaxRetransmits*(self: WebRTCDataChannel): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCDataChannel, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getProtocol*(self: WebRTCDataChannel): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -97,7 +97,7 @@ proc getProtocol*(self: WebRTCDataChannel): String =
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCDataChannel, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc isNegotiated*(self: WebRTCDataChannel): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -105,7 +105,7 @@ proc isNegotiated*(self: WebRTCDataChannel): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCDataChannel, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getBufferedAmount*(self: WebRTCDataChannel): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -113,4 +113,4 @@ proc getBufferedAmount*(self: WebRTCDataChannel): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCDataChannel, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)

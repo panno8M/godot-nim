@@ -26,7 +26,7 @@ proc sessionMode*(self: WebXRInterface): String =
     methodbind = interface_ClassDB_getMethodBind(addr className WebXRInterface, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `requiredFeatures=`*(self: WebXRInterface; requiredFeatures: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -41,7 +41,7 @@ proc requiredFeatures*(self: WebXRInterface): String =
     methodbind = interface_ClassDB_getMethodBind(addr className WebXRInterface, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `optionalFeatures=`*(self: WebXRInterface; optionalFeatures: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -56,7 +56,7 @@ proc optionalFeatures*(self: WebXRInterface): String =
     methodbind = interface_ClassDB_getMethodBind(addr className WebXRInterface, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc referenceSpaceType*(self: WebXRInterface): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc referenceSpaceType*(self: WebXRInterface): String =
     methodbind = interface_ClassDB_getMethodBind(addr className WebXRInterface, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `requestedReferenceSpaceTypes=`*(self: WebXRInterface; requestedReferenceSpaceTypes: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc requestedReferenceSpaceTypes*(self: WebXRInterface): String =
     methodbind = interface_ClassDB_getMethodBind(addr className WebXRInterface, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc isInputSourceActive*(self: WebXRInterface; inputSourceId: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -88,7 +88,7 @@ proc isInputSourceActive*(self: WebXRInterface; inputSourceId: int32): Bool =
   var `?param` = [getPtr inputSourceId]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getInputSourceTracker*(self: WebXRInterface; inputSourceId: int32): XRPositionalTracker =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -97,7 +97,7 @@ proc getInputSourceTracker*(self: WebXRInterface; inputSourceId: int32): XRPosit
   var `?param` = [getPtr inputSourceId]
   var ret: encoded XRPositionalTracker
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(XRPositionalTracker)
+  (addr ret).decode_result(XRPositionalTracker)
 proc getInputSourceTargetRayMode*(self: WebXRInterface; inputSourceId: int32): WebXRInterface_TargetRayMode =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -106,7 +106,7 @@ proc getInputSourceTargetRayMode*(self: WebXRInterface; inputSourceId: int32): W
   var `?param` = [getPtr inputSourceId]
   var ret: encoded WebXRInterface_TargetRayMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(WebXRInterface_TargetRayMode)
+  (addr ret).decode_result(WebXRInterface_TargetRayMode)
 proc visibilityState*(self: WebXRInterface): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -114,7 +114,7 @@ proc visibilityState*(self: WebXRInterface): String =
     methodbind = interface_ClassDB_getMethodBind(addr className WebXRInterface, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getDisplayRefreshRate*(self: WebXRInterface): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -122,7 +122,7 @@ proc getDisplayRefreshRate*(self: WebXRInterface): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className WebXRInterface, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc setDisplayRefreshRate*(self: WebXRInterface; refreshRate: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -137,4 +137,4 @@ proc getAvailableDisplayRefreshRates*(self: WebXRInterface): Array =
     methodbind = interface_ClassDB_getMethodBind(addr className WebXRInterface, addr name, 3995934104)
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)

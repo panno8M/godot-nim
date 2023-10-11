@@ -19,7 +19,7 @@ proc isPressed*(self: BaseButton): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseButton, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setPressedNoSignal*(self: BaseButton; pressed: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc isHovered*(self: BaseButton): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseButton, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `toggleMode=`*(self: BaseButton; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc isToggleMode*(self: BaseButton): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseButton, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `shortcutInTooltip=`*(self: BaseButton; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc isShortcutInTooltipEnabled*(self: BaseButton): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseButton, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `disabled=`*(self: BaseButton; disabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc isDisabled*(self: BaseButton): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseButton, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `actionMode=`*(self: BaseButton; mode: BaseButton_ActionMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc actionMode*(self: BaseButton): BaseButton_ActionMode =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseButton, addr name, 2589712189)
   var ret: encoded BaseButton_ActionMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(BaseButton_ActionMode)
+  (addr ret).decode_result(BaseButton_ActionMode)
 proc `buttonMask=`*(self: BaseButton; mask: set[MouseButtonMask]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc buttonMask*(self: BaseButton): set[MouseButtonMask] =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseButton, addr name, 2512161324)
   var ret: encoded set[MouseButtonMask]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(set[MouseButtonMask])
+  (addr ret).decode_result(set[MouseButtonMask])
 proc getDrawMode*(self: BaseButton): BaseButton_DrawMode =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -117,7 +117,7 @@ proc getDrawMode*(self: BaseButton): BaseButton_DrawMode =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseButton, addr name, 2492721305)
   var ret: encoded BaseButton_DrawMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(BaseButton_DrawMode)
+  (addr ret).decode_result(BaseButton_DrawMode)
 proc `keepPressedOutside=`*(self: BaseButton; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -132,7 +132,7 @@ proc isKeepPressedOutside*(self: BaseButton): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseButton, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `shortcutFeedback=`*(self: BaseButton; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -147,7 +147,7 @@ proc isShortcutFeedback*(self: BaseButton): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseButton, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `shortcut=`*(self: BaseButton; shortcut: Shortcut) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -162,7 +162,7 @@ proc shortcut*(self: BaseButton): Shortcut =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseButton, addr name, 3415666916)
   var ret: encoded Shortcut
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Shortcut)
+  (addr ret).decode_result(Shortcut)
 proc `buttonGroup=`*(self: BaseButton; buttonGroup: ButtonGroup) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -177,4 +177,4 @@ proc buttonGroup*(self: BaseButton): ButtonGroup =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseButton, addr name, 281644053)
   var ret: encoded ButtonGroup
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(ButtonGroup)
+  (addr ret).decode_result(ButtonGroup)

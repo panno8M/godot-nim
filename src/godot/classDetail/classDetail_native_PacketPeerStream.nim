@@ -19,7 +19,7 @@ proc streamPeer*(self: PacketPeerStream): StreamPeer =
     methodbind = interface_ClassDB_getMethodBind(addr className PacketPeerStream, addr name, 2741655269)
   var ret: encoded StreamPeer
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(StreamPeer)
+  (addr ret).decode_result(StreamPeer)
 proc `inputBufferMaxSize=`*(self: PacketPeerStream; maxSizeBytes: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -41,7 +41,7 @@ proc inputBufferMaxSize*(self: PacketPeerStream): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className PacketPeerStream, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc outputBufferMaxSize*(self: PacketPeerStream): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,4 +49,4 @@ proc outputBufferMaxSize*(self: PacketPeerStream): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className PacketPeerStream, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)

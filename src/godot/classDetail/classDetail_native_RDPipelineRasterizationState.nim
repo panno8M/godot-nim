@@ -19,7 +19,7 @@ proc enableDepthClamp*(self: RDPipelineRasterizationState): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineRasterizationState, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `discardPrimitives=`*(self: RDPipelineRasterizationState; pMember: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc discardPrimitives*(self: RDPipelineRasterizationState): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineRasterizationState, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `wireframe=`*(self: RDPipelineRasterizationState; pMember: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc wireframe*(self: RDPipelineRasterizationState): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineRasterizationState, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `cullMode=`*(self: RDPipelineRasterizationState; pMember: RenderingDevice_PolygonCullMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc cullMode*(self: RDPipelineRasterizationState): RenderingDevice_PolygonCullM
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineRasterizationState, addr name, 2192484313)
   var ret: encoded RenderingDevice_PolygonCullMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_PolygonCullMode)
+  (addr ret).decode_result(RenderingDevice_PolygonCullMode)
 proc `frontFace=`*(self: RDPipelineRasterizationState; pMember: RenderingDevice_PolygonFrontFace) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc frontFace*(self: RDPipelineRasterizationState): RenderingDevice_PolygonFron
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineRasterizationState, addr name, 708793786)
   var ret: encoded RenderingDevice_PolygonFrontFace
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_PolygonFrontFace)
+  (addr ret).decode_result(RenderingDevice_PolygonFrontFace)
 proc `depthBiasEnabled=`*(self: RDPipelineRasterizationState; pMember: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc depthBiasEnabled*(self: RDPipelineRasterizationState): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineRasterizationState, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `depthBiasConstantFactor=`*(self: RDPipelineRasterizationState; pMember: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc depthBiasConstantFactor*(self: RDPipelineRasterizationState): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineRasterizationState, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `depthBiasClamp=`*(self: RDPipelineRasterizationState; pMember: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc depthBiasClamp*(self: RDPipelineRasterizationState): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineRasterizationState, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `depthBiasSlopeFactor=`*(self: RDPipelineRasterizationState; pMember: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc depthBiasSlopeFactor*(self: RDPipelineRasterizationState): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineRasterizationState, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `lineWidth=`*(self: RDPipelineRasterizationState; pMember: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -154,7 +154,7 @@ proc lineWidth*(self: RDPipelineRasterizationState): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineRasterizationState, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `patchControlPoints=`*(self: RDPipelineRasterizationState; pMember: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -169,4 +169,4 @@ proc patchControlPoints*(self: RDPipelineRasterizationState): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineRasterizationState, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)

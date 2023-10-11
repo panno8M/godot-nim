@@ -19,7 +19,7 @@ proc axis*(self: InputEventJoypadMotion): JoyAxis =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventJoypadMotion, addr name, 4019121683)
   var ret: encoded JoyAxis
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(JoyAxis)
+  (addr ret).decode_result(JoyAxis)
 proc `axisValue=`*(self: InputEventJoypadMotion; axisValue: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,4 +34,4 @@ proc axisValue*(self: InputEventJoypadMotion): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventJoypadMotion, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

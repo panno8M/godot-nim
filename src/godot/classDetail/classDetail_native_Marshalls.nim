@@ -13,7 +13,7 @@ proc variantToBase64*(self: Marshalls; variant: Variant; fullObjects: Bool = fal
   var `?param` = [getPtr variant, getPtr fullObjects]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc base64ToVariant*(self: Marshalls; base64Str: String; allowObjects: Bool = false): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc base64ToVariant*(self: Marshalls; base64Str: String; allowObjects: Bool = f
   var `?param` = [getPtr base64Str, getPtr allowObjects]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc rawToBase64*(self: Marshalls; array: PackedByteArray): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -31,7 +31,7 @@ proc rawToBase64*(self: Marshalls; array: PackedByteArray): String =
   var `?param` = [getPtr array]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc base64ToRaw*(self: Marshalls; base64Str: String): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -40,7 +40,7 @@ proc base64ToRaw*(self: Marshalls; base64Str: String): PackedByteArray =
   var `?param` = [getPtr base64Str]
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)
 proc utf8ToBase64*(self: Marshalls; utf8Str: String): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc utf8ToBase64*(self: Marshalls; utf8Str: String): String =
   var `?param` = [getPtr utf8Str]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc base64ToUtf8*(self: Marshalls; base64Str: String): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -58,4 +58,4 @@ proc base64ToUtf8*(self: Marshalls; base64Str: String): String =
   var `?param` = [getPtr base64Str]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)

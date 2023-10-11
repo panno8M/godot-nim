@@ -13,7 +13,7 @@ proc moveAndCollide*(self: PhysicsBody2D; motion: Vector2; testOnly: Bool = fals
   var `?param` = [getPtr motion, getPtr testOnly, getPtr safeMargin, getPtr recoveryAsCollision]
   var ret: encoded KinematicCollision2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(KinematicCollision2D)
+  (addr ret).decode_result(KinematicCollision2D)
 proc testMove*(self: PhysicsBody2D; `from`: Transform2D; motion: Vector2; collision: KinematicCollision2D = default KinematicCollision2D; safeMargin: Float = 0.08; recoveryAsCollision: Bool = false): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc testMove*(self: PhysicsBody2D; `from`: Transform2D; motion: Vector2; collis
   var `?param` = [getPtr `from`, getPtr motion, getPtr collision, getPtr safeMargin, getPtr recoveryAsCollision]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getCollisionExceptions*(self: PhysicsBody2D): TypedArray[PhysicsBody2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -30,7 +30,7 @@ proc getCollisionExceptions*(self: PhysicsBody2D): TypedArray[PhysicsBody2D] =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsBody2D, addr name, 2915620761)
   var ret: encoded TypedArray[PhysicsBody2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[PhysicsBody2D])
+  (addr ret).decode_result(TypedArray[PhysicsBody2D])
 proc addCollisionExceptionWith*(self: PhysicsBody2D; body: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

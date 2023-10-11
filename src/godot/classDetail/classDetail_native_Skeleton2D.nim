@@ -12,7 +12,7 @@ proc getBoneCount*(self: Skeleton2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Skeleton2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getBone*(self: Skeleton2D; idx: int32): Bone2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -21,7 +21,7 @@ proc getBone*(self: Skeleton2D; idx: int32): Bone2D =
   var `?param` = [getPtr idx]
   var ret: encoded Bone2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bone2D)
+  (addr ret).decode_result(Bone2D)
 proc getSkeleton*(self: Skeleton2D): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -29,7 +29,7 @@ proc getSkeleton*(self: Skeleton2D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className Skeleton2D, addr name, 2944877500)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc setModificationStack*(self: Skeleton2D; modificationStack: SkeletonModificationStack2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -44,7 +44,7 @@ proc getModificationStack*(self: Skeleton2D): SkeletonModificationStack2D =
     methodbind = interface_ClassDB_getMethodBind(addr className Skeleton2D, addr name, 2107508396)
   var ret: encoded SkeletonModificationStack2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(SkeletonModificationStack2D)
+  (addr ret).decode_result(SkeletonModificationStack2D)
 proc executeModifications*(self: Skeleton2D; delta: Float; executionMode: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -67,4 +67,4 @@ proc getBoneLocalPoseOverride*(self: Skeleton2D; boneIdx: int32): Transform2D =
   var `?param` = [getPtr boneIdx]
   var ret: encoded Transform2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Transform2D)
+  (addr ret).decode_result(Transform2D)

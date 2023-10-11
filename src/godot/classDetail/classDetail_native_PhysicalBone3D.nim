@@ -33,7 +33,7 @@ proc jointType*(self: PhysicalBone3D): PhysicalBone3D_JointType =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 931347320)
   var ret: encoded PhysicalBone3D_JointType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PhysicalBone3D_JointType)
+  (addr ret).decode_result(PhysicalBone3D_JointType)
 proc `jointOffset=`*(self: PhysicalBone3D; offset: Transform3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -48,7 +48,7 @@ proc jointOffset*(self: PhysicalBone3D): Transform3D =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 3229777777)
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc `jointRotation=`*(self: PhysicalBone3D; euler: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -63,7 +63,7 @@ proc jointRotation*(self: PhysicalBone3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `bodyOffset=`*(self: PhysicalBone3D; offset: Transform3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -78,7 +78,7 @@ proc bodyOffset*(self: PhysicalBone3D): Transform3D =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 3229777777)
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc getSimulatePhysics*(self: PhysicalBone3D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -86,7 +86,7 @@ proc getSimulatePhysics*(self: PhysicalBone3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isSimulatingPhysics*(self: PhysicalBone3D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc isSimulatingPhysics*(self: PhysicalBone3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getBoneId*(self: PhysicalBone3D): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -102,7 +102,7 @@ proc getBoneId*(self: PhysicalBone3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `mass=`*(self: PhysicalBone3D; mass: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -117,7 +117,7 @@ proc mass*(self: PhysicalBone3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `friction=`*(self: PhysicalBone3D; friction: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -132,7 +132,7 @@ proc friction*(self: PhysicalBone3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `bounce=`*(self: PhysicalBone3D; bounce: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -147,7 +147,7 @@ proc bounce*(self: PhysicalBone3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `gravityScale=`*(self: PhysicalBone3D; gravityScale: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -162,7 +162,7 @@ proc gravityScale*(self: PhysicalBone3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `linearDampMode=`*(self: PhysicalBone3D; linearDampMode: PhysicalBone3D_DampMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -177,7 +177,7 @@ proc linearDampMode*(self: PhysicalBone3D): PhysicalBone3D_DampMode =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 205884699)
   var ret: encoded PhysicalBone3D_DampMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PhysicalBone3D_DampMode)
+  (addr ret).decode_result(PhysicalBone3D_DampMode)
 proc `angularDampMode=`*(self: PhysicalBone3D; angularDampMode: PhysicalBone3D_DampMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -192,7 +192,7 @@ proc angularDampMode*(self: PhysicalBone3D): PhysicalBone3D_DampMode =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 205884699)
   var ret: encoded PhysicalBone3D_DampMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PhysicalBone3D_DampMode)
+  (addr ret).decode_result(PhysicalBone3D_DampMode)
 proc `linearDamp=`*(self: PhysicalBone3D; linearDamp: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -207,7 +207,7 @@ proc linearDamp*(self: PhysicalBone3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `angularDamp=`*(self: PhysicalBone3D; angularDamp: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -222,7 +222,7 @@ proc angularDamp*(self: PhysicalBone3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `linearVelocity=`*(self: PhysicalBone3D; linearVelocity: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -237,7 +237,7 @@ proc linearVelocity*(self: PhysicalBone3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `angularVelocity=`*(self: PhysicalBone3D; angularVelocity: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -252,7 +252,7 @@ proc angularVelocity*(self: PhysicalBone3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `useCustomIntegrator=`*(self: PhysicalBone3D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -267,7 +267,7 @@ proc isUsingCustomIntegrator*(self: PhysicalBone3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `canSleep=`*(self: PhysicalBone3D; ableToSleep: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -282,4 +282,4 @@ proc isAbleToSleep*(self: PhysicalBone3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

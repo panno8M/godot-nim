@@ -19,7 +19,7 @@ proc hScroll*(self: ScrollContainer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className ScrollContainer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `vScroll=`*(self: ScrollContainer; value: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc vScroll*(self: ScrollContainer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className ScrollContainer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `horizontalCustomStep=`*(self: ScrollContainer; value: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc horizontalCustomStep*(self: ScrollContainer): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className ScrollContainer, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `verticalCustomStep=`*(self: ScrollContainer; value: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc verticalCustomStep*(self: ScrollContainer): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className ScrollContainer, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `horizontalScrollMode=`*(self: ScrollContainer; enable: ScrollContainer_ScrollMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc horizontalScrollMode*(self: ScrollContainer): ScrollContainer_ScrollMode =
     methodbind = interface_ClassDB_getMethodBind(addr className ScrollContainer, addr name, 3987985145)
   var ret: encoded ScrollContainer_ScrollMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(ScrollContainer_ScrollMode)
+  (addr ret).decode_result(ScrollContainer_ScrollMode)
 proc `verticalScrollMode=`*(self: ScrollContainer; enable: ScrollContainer_ScrollMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc verticalScrollMode*(self: ScrollContainer): ScrollContainer_ScrollMode =
     methodbind = interface_ClassDB_getMethodBind(addr className ScrollContainer, addr name, 3987985145)
   var ret: encoded ScrollContainer_ScrollMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(ScrollContainer_ScrollMode)
+  (addr ret).decode_result(ScrollContainer_ScrollMode)
 proc `deadzone=`*(self: ScrollContainer; deadzone: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc deadzone*(self: ScrollContainer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className ScrollContainer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `followFocus=`*(self: ScrollContainer; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc isFollowingFocus*(self: ScrollContainer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ScrollContainer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getHScrollBar*(self: ScrollContainer): HScrollBar =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -132,7 +132,7 @@ proc getHScrollBar*(self: ScrollContainer): HScrollBar =
     methodbind = interface_ClassDB_getMethodBind(addr className ScrollContainer, addr name, 4004517983)
   var ret: encoded HScrollBar
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(HScrollBar)
+  (addr ret).decode_result(HScrollBar)
 proc getVScrollBar*(self: ScrollContainer): VScrollBar =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -140,7 +140,7 @@ proc getVScrollBar*(self: ScrollContainer): VScrollBar =
     methodbind = interface_ClassDB_getMethodBind(addr className ScrollContainer, addr name, 2630340773)
   var ret: encoded VScrollBar
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VScrollBar)
+  (addr ret).decode_result(VScrollBar)
 proc ensureControlVisible*(self: ScrollContainer; control: Control) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

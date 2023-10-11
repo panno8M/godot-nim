@@ -19,7 +19,7 @@ proc collisionLayer*(self: GridMap): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GridMap, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `collisionMask=`*(self: GridMap; mask: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc collisionMask*(self: GridMap): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GridMap, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc setCollisionMaskValue*(self: GridMap; layerNumber: int32; value: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -50,7 +50,7 @@ proc getCollisionMaskValue*(self: GridMap; layerNumber: int32): Bool =
   var `?param` = [getPtr layerNumber]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setCollisionLayerValue*(self: GridMap; layerNumber: int32; value: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -66,7 +66,7 @@ proc getCollisionLayerValue*(self: GridMap; layerNumber: int32): Bool =
   var `?param` = [getPtr layerNumber]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `collisionPriority=`*(self: GridMap; priority: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -81,7 +81,7 @@ proc collisionPriority*(self: GridMap): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className GridMap, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `physicsMaterial=`*(self: GridMap; material: PhysicsMaterial) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -96,7 +96,7 @@ proc physicsMaterial*(self: GridMap): PhysicsMaterial =
     methodbind = interface_ClassDB_getMethodBind(addr className GridMap, addr name, 2521850424)
   var ret: encoded PhysicsMaterial
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PhysicsMaterial)
+  (addr ret).decode_result(PhysicsMaterial)
 proc `bakeNavigation=`*(self: GridMap; bakeNavigation: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -111,7 +111,7 @@ proc isBakingNavigation*(self: GridMap): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GridMap, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setNavigationMap*(self: GridMap; navigationMap: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -126,7 +126,7 @@ proc getNavigationMap*(self: GridMap): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className GridMap, addr name, 2944877500)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc `meshLibrary=`*(self: GridMap; meshLibrary: MeshLibrary) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -141,7 +141,7 @@ proc meshLibrary*(self: GridMap): MeshLibrary =
     methodbind = interface_ClassDB_getMethodBind(addr className GridMap, addr name, 3350993772)
   var ret: encoded MeshLibrary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(MeshLibrary)
+  (addr ret).decode_result(MeshLibrary)
 proc `cellSize=`*(self: GridMap; size: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -156,7 +156,7 @@ proc cellSize*(self: GridMap): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className GridMap, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `cellScale=`*(self: GridMap; scale: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -171,7 +171,7 @@ proc cellScale*(self: GridMap): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className GridMap, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `octantSize=`*(self: GridMap; size: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -186,7 +186,7 @@ proc octantSize*(self: GridMap): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GridMap, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setCellItem*(self: GridMap; position: Vector3i; item: int32; orientation: int32 = 0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -202,7 +202,7 @@ proc getCellItem*(self: GridMap; position: Vector3i): int32 =
   var `?param` = [getPtr position]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getCellItemOrientation*(self: GridMap; position: Vector3i): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -211,7 +211,7 @@ proc getCellItemOrientation*(self: GridMap; position: Vector3i): int32 =
   var `?param` = [getPtr position]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getCellItemBasis*(self: GridMap; position: Vector3i): Basis =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -220,7 +220,7 @@ proc getCellItemBasis*(self: GridMap; position: Vector3i): Basis =
   var `?param` = [getPtr position]
   var ret: encoded Basis
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Basis)
+  (addr ret).decode_result(Basis)
 proc getBasisWithOrthogonalIndex*(self: GridMap; index: int32): Basis =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -229,7 +229,7 @@ proc getBasisWithOrthogonalIndex*(self: GridMap; index: int32): Basis =
   var `?param` = [getPtr index]
   var ret: encoded Basis
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Basis)
+  (addr ret).decode_result(Basis)
 proc getOrthogonalIndexFromBasis*(self: GridMap; basis: Basis): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -238,7 +238,7 @@ proc getOrthogonalIndexFromBasis*(self: GridMap; basis: Basis): int32 =
   var `?param` = [getPtr basis]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc localToMap*(self: GridMap; localPosition: Vector3): Vector3i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -247,7 +247,7 @@ proc localToMap*(self: GridMap; localPosition: Vector3): Vector3i =
   var `?param` = [getPtr localPosition]
   var ret: encoded Vector3i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3i)
+  (addr ret).decode_result(Vector3i)
 proc mapToLocal*(self: GridMap; mapPosition: Vector3i): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -256,7 +256,7 @@ proc mapToLocal*(self: GridMap; mapPosition: Vector3i): Vector3 =
   var `?param` = [getPtr mapPosition]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc resourceChanged*(self: GridMap; resource: Resource) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -278,7 +278,7 @@ proc centerX*(self: GridMap): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GridMap, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `centerY=`*(self: GridMap; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -293,7 +293,7 @@ proc centerY*(self: GridMap): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GridMap, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `centerZ=`*(self: GridMap; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -308,7 +308,7 @@ proc centerZ*(self: GridMap): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GridMap, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc clear*(self: GridMap) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -322,7 +322,7 @@ proc getUsedCells*(self: GridMap): TypedArray[Vector3i] =
     methodbind = interface_ClassDB_getMethodBind(addr className GridMap, addr name, 3995934104)
   var ret: encoded TypedArray[Vector3i]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Vector3i])
+  (addr ret).decode_result(TypedArray[Vector3i])
 proc getUsedCellsByItem*(self: GridMap; item: int32): TypedArray[Vector3i] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -331,7 +331,7 @@ proc getUsedCellsByItem*(self: GridMap; item: int32): TypedArray[Vector3i] =
   var `?param` = [getPtr item]
   var ret: encoded TypedArray[Vector3i]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[Vector3i])
+  (addr ret).decode_result(TypedArray[Vector3i])
 proc getMeshes*(self: GridMap): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -339,7 +339,7 @@ proc getMeshes*(self: GridMap): Array =
     methodbind = interface_ClassDB_getMethodBind(addr className GridMap, addr name, 3995934104)
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)
 proc getBakeMeshes*(self: GridMap): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -347,7 +347,7 @@ proc getBakeMeshes*(self: GridMap): Array =
     methodbind = interface_ClassDB_getMethodBind(addr className GridMap, addr name, 2915620761)
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)
 proc getBakeMeshInstance*(self: GridMap; idx: int32): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -356,7 +356,7 @@ proc getBakeMeshInstance*(self: GridMap; idx: int32): RID =
   var `?param` = [getPtr idx]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc clearBakedMeshes*(self: GridMap) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

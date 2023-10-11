@@ -19,7 +19,7 @@ proc getScene*(self: EditorScript): Node =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorScript, addr name, 3160264692)
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Node)
+  (addr ret).decode_result(Node)
 proc getEditorInterface*(self: EditorScript): EditorInterface =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,4 +27,4 @@ proc getEditorInterface*(self: EditorScript): EditorInterface =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorScript, addr name, 1976662476)
   var ret: encoded EditorInterface
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(EditorInterface)
+  (addr ret).decode_result(EditorInterface)

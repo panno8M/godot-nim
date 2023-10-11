@@ -19,7 +19,7 @@ proc title*(self: VisualShaderNodeComment): String =
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeComment, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `description=`*(self: VisualShaderNodeComment; description: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,4 +34,4 @@ proc description*(self: VisualShaderNodeComment): String =
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeComment, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)

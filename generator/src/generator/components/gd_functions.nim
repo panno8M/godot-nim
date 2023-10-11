@@ -121,7 +121,7 @@ proc prerender_classMethod*(self: JsonMethod; self_type: SelfType; attr: ClassMe
     retDef
     &"interface_Object_methodBindPtrCall(methodbind, {selfptr}, {paramptr}, {retptr})"
   if result.result.isSome:
-      result.children.add &"(addr ret).decode({get result.result})"
+      result.children.add &"(addr ret).decode_result({get result.result})"
 
 proc prerender_virtual*(self: JsonMethod; self_type: SelfType): GodotProcSt =
   result = GodotProcSt(

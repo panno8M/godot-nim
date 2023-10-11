@@ -33,7 +33,7 @@ proc invert*(self: NoiseTexture2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className NoiseTexture2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `in3dSpace=`*(self: NoiseTexture2D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -48,7 +48,7 @@ proc isIn3dSpace*(self: NoiseTexture2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className NoiseTexture2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `generateMipmaps=`*(self: NoiseTexture2D; invert: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -63,7 +63,7 @@ proc isGeneratingMipmaps*(self: NoiseTexture2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className NoiseTexture2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `seamless=`*(self: NoiseTexture2D; seamless: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -78,7 +78,7 @@ proc seamless*(self: NoiseTexture2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className NoiseTexture2D, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `seamlessBlendSkirt=`*(self: NoiseTexture2D; seamlessBlendSkirt: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -93,7 +93,7 @@ proc seamlessBlendSkirt*(self: NoiseTexture2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className NoiseTexture2D, addr name, 191475506)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `asNormalMap=`*(self: NoiseTexture2D; asNormalMap: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -108,7 +108,7 @@ proc isNormalMap*(self: NoiseTexture2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className NoiseTexture2D, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `bumpStrength=`*(self: NoiseTexture2D; bumpStrength: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -123,7 +123,7 @@ proc bumpStrength*(self: NoiseTexture2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className NoiseTexture2D, addr name, 191475506)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `normalize=`*(self: NoiseTexture2D; normalize: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -138,7 +138,7 @@ proc isNormalized*(self: NoiseTexture2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className NoiseTexture2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `colorRamp=`*(self: NoiseTexture2D; gradient: Gradient) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -153,7 +153,7 @@ proc colorRamp*(self: NoiseTexture2D): Gradient =
     methodbind = interface_ClassDB_getMethodBind(addr className NoiseTexture2D, addr name, 132272999)
   var ret: encoded Gradient
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Gradient)
+  (addr ret).decode_result(Gradient)
 proc `noise=`*(self: NoiseTexture2D; noise: Noise) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -168,4 +168,4 @@ proc noise*(self: NoiseTexture2D): Noise =
     methodbind = interface_ClassDB_getMethodBind(addr className NoiseTexture2D, addr name, 185851837)
   var ret: encoded Noise
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Noise)
+  (addr ret).decode_result(Noise)

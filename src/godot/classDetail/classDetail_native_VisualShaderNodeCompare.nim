@@ -19,7 +19,7 @@ proc comparisonType*(self: VisualShaderNodeCompare): VisualShaderNodeCompare_Com
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeCompare, addr name, 3495315961)
   var ret: encoded VisualShaderNodeCompare_ComparisonType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VisualShaderNodeCompare_ComparisonType)
+  (addr ret).decode_result(VisualShaderNodeCompare_ComparisonType)
 proc `function=`*(self: VisualShaderNodeCompare; `func`: VisualShaderNodeCompare_Function) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc function*(self: VisualShaderNodeCompare): VisualShaderNodeCompare_Function 
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeCompare, addr name, 4089164265)
   var ret: encoded VisualShaderNodeCompare_Function
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VisualShaderNodeCompare_Function)
+  (addr ret).decode_result(VisualShaderNodeCompare_Function)
 proc `condition=`*(self: VisualShaderNodeCompare; condition: VisualShaderNodeCompare_Condition) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,4 +49,4 @@ proc condition*(self: VisualShaderNodeCompare): VisualShaderNodeCompare_Conditio
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeCompare, addr name, 3281078941)
   var ret: encoded VisualShaderNodeCompare_Condition
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VisualShaderNodeCompare_Condition)
+  (addr ret).decode_result(VisualShaderNodeCompare_Condition)

@@ -18,7 +18,7 @@ proc tryLock*(self: Mutex): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Mutex, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc unlock*(self: Mutex) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

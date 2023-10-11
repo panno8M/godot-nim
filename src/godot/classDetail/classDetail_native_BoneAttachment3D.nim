@@ -19,7 +19,7 @@ proc boneName*(self: BoneAttachment3D): String =
     methodbind = interface_ClassDB_getMethodBind(addr className BoneAttachment3D, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `boneIdx=`*(self: BoneAttachment3D; boneIdx: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc boneIdx*(self: BoneAttachment3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className BoneAttachment3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc onBonePoseUpdate*(self: BoneAttachment3D; boneIndex: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -56,7 +56,7 @@ proc overridePose*(self: BoneAttachment3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className BoneAttachment3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setUseExternalSkeleton*(self: BoneAttachment3D; useExternalSkeleton: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -71,7 +71,7 @@ proc getUseExternalSkeleton*(self: BoneAttachment3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className BoneAttachment3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setExternalSkeleton*(self: BoneAttachment3D; externalSkeleton: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -86,4 +86,4 @@ proc getExternalSkeleton*(self: BoneAttachment3D): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className BoneAttachment3D, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)

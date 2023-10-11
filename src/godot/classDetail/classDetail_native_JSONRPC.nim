@@ -20,7 +20,7 @@ proc processAction*(self: JSONRPC; action: Variant; recurse: Bool = false): Vari
   var `?param` = [getPtr action, getPtr recurse]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc processString*(self: JSONRPC; action: String): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -29,7 +29,7 @@ proc processString*(self: JSONRPC; action: String): String =
   var `?param` = [getPtr action]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc makeRequest*(self: JSONRPC; `method`: String; params: Variant; id: Variant): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -38,7 +38,7 @@ proc makeRequest*(self: JSONRPC; `method`: String; params: Variant; id: Variant)
   var `?param` = [getPtr `method`, getPtr params, getPtr id]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc makeResponse*(self: JSONRPC; retval: Variant; id: Variant): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -47,7 +47,7 @@ proc makeResponse*(self: JSONRPC; retval: Variant; id: Variant): Dictionary =
   var `?param` = [getPtr retval, getPtr id]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc makeNotification*(self: JSONRPC; `method`: String; params: Variant): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -56,7 +56,7 @@ proc makeNotification*(self: JSONRPC; `method`: String; params: Variant): Dictio
   var `?param` = [getPtr `method`, getPtr params]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc makeResponseError*(self: JSONRPC; code: int32; message: String; id: Variant = default(Variant)): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -65,4 +65,4 @@ proc makeResponseError*(self: JSONRPC; code: int32; message: String; id: Variant
   var `?param` = [getPtr code, getPtr message, getPtr id]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)

@@ -19,7 +19,7 @@ proc fitMargin*(self: CanvasGroup): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasGroup, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `clearMargin=`*(self: CanvasGroup; clearMargin: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc clearMargin*(self: CanvasGroup): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasGroup, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `useMipmaps=`*(self: CanvasGroup; useMipmaps: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,4 +49,4 @@ proc isUsingMipmaps*(self: CanvasGroup): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasGroup, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

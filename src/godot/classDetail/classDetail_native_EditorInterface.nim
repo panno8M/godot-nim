@@ -19,7 +19,7 @@ proc getCommandPalette*(self: EditorInterface): EditorCommandPalette =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 2471163807)
   var ret: encoded EditorCommandPalette
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(EditorCommandPalette)
+  (addr ret).decode_result(EditorCommandPalette)
 proc getResourceFilesystem*(self: EditorInterface): EditorFileSystem =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc getResourceFilesystem*(self: EditorInterface): EditorFileSystem =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 780151678)
   var ret: encoded EditorFileSystem
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(EditorFileSystem)
+  (addr ret).decode_result(EditorFileSystem)
 proc getEditorPaths*(self: EditorInterface): EditorPaths =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -35,7 +35,7 @@ proc getEditorPaths*(self: EditorInterface): EditorPaths =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 1595760068)
   var ret: encoded EditorPaths
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(EditorPaths)
+  (addr ret).decode_result(EditorPaths)
 proc getResourcePreviewer*(self: EditorInterface): EditorResourcePreview =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -43,7 +43,7 @@ proc getResourcePreviewer*(self: EditorInterface): EditorResourcePreview =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 943486957)
   var ret: encoded EditorResourcePreview
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(EditorResourcePreview)
+  (addr ret).decode_result(EditorResourcePreview)
 proc getSelection*(self: EditorInterface): EditorSelection =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -51,7 +51,7 @@ proc getSelection*(self: EditorInterface): EditorSelection =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 2690272531)
   var ret: encoded EditorSelection
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(EditorSelection)
+  (addr ret).decode_result(EditorSelection)
 proc getEditorSettings*(self: EditorInterface): EditorSettings =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -59,7 +59,7 @@ proc getEditorSettings*(self: EditorInterface): EditorSettings =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 4086932459)
   var ret: encoded EditorSettings
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(EditorSettings)
+  (addr ret).decode_result(EditorSettings)
 proc makeMeshPreviews*(self: EditorInterface; meshes: TypedArray[Mesh]; previewSize: int32): TypedArray[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -68,7 +68,7 @@ proc makeMeshPreviews*(self: EditorInterface; meshes: TypedArray[Mesh]; previewS
   var `?param` = [getPtr meshes, getPtr previewSize]
   var ret: encoded TypedArray[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[Texture2D])
+  (addr ret).decode_result(TypedArray[Texture2D])
 proc setPluginEnabled*(self: EditorInterface; plugin: String; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -84,7 +84,7 @@ proc isPluginEnabled*(self: EditorInterface; plugin: String): Bool =
   var `?param` = [getPtr plugin]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getBaseControl*(self: EditorInterface): Control =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -92,7 +92,7 @@ proc getBaseControl*(self: EditorInterface): Control =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 2783021301)
   var ret: encoded Control
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Control)
+  (addr ret).decode_result(Control)
 proc getEditorMainScreen*(self: EditorInterface): VBoxContainer =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -100,7 +100,7 @@ proc getEditorMainScreen*(self: EditorInterface): VBoxContainer =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 1706218421)
   var ret: encoded VBoxContainer
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VBoxContainer)
+  (addr ret).decode_result(VBoxContainer)
 proc getScriptEditor*(self: EditorInterface): ScriptEditor =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -108,7 +108,7 @@ proc getScriptEditor*(self: EditorInterface): ScriptEditor =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 90868003)
   var ret: encoded ScriptEditor
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(ScriptEditor)
+  (addr ret).decode_result(ScriptEditor)
 proc setMainScreenEditor*(self: EditorInterface; name: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -130,7 +130,7 @@ proc isDistractionFreeModeEnabled*(self: EditorInterface): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getEditorScale*(self: EditorInterface): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -138,7 +138,7 @@ proc getEditorScale*(self: EditorInterface): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc popupDialog*(self: EditorInterface; dialog: Window; rect: Rect2i = init_Rect2i(0, 0, 0, 0)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -174,7 +174,7 @@ proc getFileSystemDock*(self: EditorInterface): FileSystemDock =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 3751012327)
   var ret: encoded FileSystemDock
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(FileSystemDock)
+  (addr ret).decode_result(FileSystemDock)
 proc selectFile*(self: EditorInterface; file: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -189,7 +189,7 @@ proc getSelectedPaths*(self: EditorInterface): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc getCurrentPath*(self: EditorInterface): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -197,7 +197,7 @@ proc getCurrentPath*(self: EditorInterface): String =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getCurrentDirectory*(self: EditorInterface): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -205,7 +205,7 @@ proc getCurrentDirectory*(self: EditorInterface): String =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getInspector*(self: EditorInterface): EditorInspector =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -213,7 +213,7 @@ proc getInspector*(self: EditorInterface): EditorInspector =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 3517113938)
   var ret: encoded EditorInspector
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(EditorInspector)
+  (addr ret).decode_result(EditorInspector)
 proc inspectObject*(self: EditorInterface; `object`: Object; forProperty: String = ""; inspectorOnly: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -263,7 +263,7 @@ proc getOpenScenes*(self: EditorInterface): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc getEditedSceneRoot*(self: EditorInterface): Node =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -271,7 +271,7 @@ proc getEditedSceneRoot*(self: EditorInterface): Node =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 3160264692)
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Node)
+  (addr ret).decode_result(Node)
 proc saveScene*(self: EditorInterface): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -279,7 +279,7 @@ proc saveScene*(self: EditorInterface): Error =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 166280745)
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc saveSceneAs*(self: EditorInterface; path: String; withPreview: Bool = true) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -325,7 +325,7 @@ proc isPlayingScene*(self: EditorInterface): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getPlayingScene*(self: EditorInterface): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -333,7 +333,7 @@ proc getPlayingScene*(self: EditorInterface): String =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `movieMakerEnabled=`*(self: EditorInterface; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -348,4 +348,4 @@ proc isMovieMakerEnabled*(self: EditorInterface): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

@@ -19,7 +19,7 @@ proc mesh*(self: VisualShaderNodeParticleMeshEmitter): Mesh =
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeParticleMeshEmitter, addr name, 1808005922)
   var ret: encoded Mesh
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Mesh)
+  (addr ret).decode_result(Mesh)
 proc `useAllSurfaces=`*(self: VisualShaderNodeParticleMeshEmitter; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc isUseAllSurfaces*(self: VisualShaderNodeParticleMeshEmitter): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeParticleMeshEmitter, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `surfaceIndex=`*(self: VisualShaderNodeParticleMeshEmitter; surfaceIndex: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,4 +49,4 @@ proc surfaceIndex*(self: VisualShaderNodeParticleMeshEmitter): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeParticleMeshEmitter, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)

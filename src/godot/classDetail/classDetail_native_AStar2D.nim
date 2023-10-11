@@ -12,7 +12,7 @@ proc getAvailablePointId*(self: AStar2D): int64 =
     methodbind = interface_ClassDB_getMethodBind(addr className AStar2D, addr name, 3905245786)
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int64)
+  (addr ret).decode_result(int64)
 proc addPoint*(self: AStar2D; id: int64; position: Vector2; weightScale: Float = 1.0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -28,7 +28,7 @@ proc getPointPosition*(self: AStar2D; id: int64): Vector2 =
   var `?param` = [getPtr id]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc setPointPosition*(self: AStar2D; id: int64; position: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -44,7 +44,7 @@ proc getPointWeightScale*(self: AStar2D; id: int64): Float =
   var `?param` = [getPtr id]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc setPointWeightScale*(self: AStar2D; id: int64; weightScale: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -67,7 +67,7 @@ proc hasPoint*(self: AStar2D; id: int64): Bool =
   var `?param` = [getPtr id]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getPointConnections*(self: AStar2D; id: int64): PackedInt64Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -76,7 +76,7 @@ proc getPointConnections*(self: AStar2D; id: int64): PackedInt64Array =
   var `?param` = [getPtr id]
   var ret: encoded PackedInt64Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedInt64Array)
+  (addr ret).decode_result(PackedInt64Array)
 proc getPointIds*(self: AStar2D): PackedInt64Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -84,7 +84,7 @@ proc getPointIds*(self: AStar2D): PackedInt64Array =
     methodbind = interface_ClassDB_getMethodBind(addr className AStar2D, addr name, 3851388692)
   var ret: encoded PackedInt64Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt64Array)
+  (addr ret).decode_result(PackedInt64Array)
 proc setPointDisabled*(self: AStar2D; id: int64; disabled: Bool = true) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -100,7 +100,7 @@ proc isPointDisabled*(self: AStar2D; id: int64): Bool =
   var `?param` = [getPtr id]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc connectPoints*(self: AStar2D; id: int64; toId: int64; bidirectional: Bool = true) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -123,7 +123,7 @@ proc arePointsConnected*(self: AStar2D; id: int64; toId: int64; bidirectional: B
   var `?param` = [getPtr id, getPtr toId, getPtr bidirectional]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getPointCount*(self: AStar2D): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -131,7 +131,7 @@ proc getPointCount*(self: AStar2D): int64 =
     methodbind = interface_ClassDB_getMethodBind(addr className AStar2D, addr name, 3905245786)
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int64)
+  (addr ret).decode_result(int64)
 proc getPointCapacity*(self: AStar2D): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc getPointCapacity*(self: AStar2D): int64 =
     methodbind = interface_ClassDB_getMethodBind(addr className AStar2D, addr name, 3905245786)
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int64)
+  (addr ret).decode_result(int64)
 proc reserveSpace*(self: AStar2D; numNodes: int64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -161,7 +161,7 @@ proc getClosestPoint*(self: AStar2D; toPosition: Vector2; includeDisabled: Bool 
   var `?param` = [getPtr toPosition, getPtr includeDisabled]
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int64)
+  (addr ret).decode_result(int64)
 proc getClosestPositionInSegment*(self: AStar2D; toPosition: Vector2): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -170,7 +170,7 @@ proc getClosestPositionInSegment*(self: AStar2D; toPosition: Vector2): Vector2 =
   var `?param` = [getPtr toPosition]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getPointPath*(self: AStar2D; fromId: int64; toId: int64): PackedVector2Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -179,7 +179,7 @@ proc getPointPath*(self: AStar2D; fromId: int64; toId: int64): PackedVector2Arra
   var `?param` = [getPtr fromId, getPtr toId]
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedVector2Array)
+  (addr ret).decode_result(PackedVector2Array)
 proc getIdPath*(self: AStar2D; fromId: int64; toId: int64): PackedInt64Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -188,4 +188,4 @@ proc getIdPath*(self: AStar2D; fromId: int64; toId: int64): PackedInt64Array =
   var `?param` = [getPtr fromId, getPtr toId]
   var ret: encoded PackedInt64Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedInt64Array)
+  (addr ret).decode_result(PackedInt64Array)

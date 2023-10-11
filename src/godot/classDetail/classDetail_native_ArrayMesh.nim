@@ -19,7 +19,7 @@ proc getBlendShapeCount*(self: ArrayMesh): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className ArrayMesh, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getBlendShapeName*(self: ArrayMesh; index: int32): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -28,7 +28,7 @@ proc getBlendShapeName*(self: ArrayMesh; index: int32): StringName =
   var `?param` = [getPtr index]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc setBlendShapeName*(self: ArrayMesh; index: int32; name: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -56,7 +56,7 @@ proc blendShapeMode*(self: ArrayMesh): Mesh_BlendShapeMode =
     methodbind = interface_ClassDB_getMethodBind(addr className ArrayMesh, addr name, 836485024)
   var ret: encoded Mesh_BlendShapeMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Mesh_BlendShapeMode)
+  (addr ret).decode_result(Mesh_BlendShapeMode)
 proc addSurfaceFromArrays*(self: ArrayMesh; primitive: Mesh_PrimitiveType; arrays: Array; blendShapes: TypedArray[Array] = init_TypedArray[Array](); lods: Dictionary = init_Dictionary(); flags: set[Mesh_ArrayFormat] = {}) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -99,7 +99,7 @@ proc surfaceGetArrayLen*(self: ArrayMesh; surfIdx: int32): int32 =
   var `?param` = [getPtr surfIdx]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc surfaceGetArrayIndexLen*(self: ArrayMesh; surfIdx: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -108,7 +108,7 @@ proc surfaceGetArrayIndexLen*(self: ArrayMesh; surfIdx: int32): int32 =
   var `?param` = [getPtr surfIdx]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc surfaceGetFormat*(self: ArrayMesh; surfIdx: int32): set[Mesh_ArrayFormat] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -117,7 +117,7 @@ proc surfaceGetFormat*(self: ArrayMesh; surfIdx: int32): set[Mesh_ArrayFormat] =
   var `?param` = [getPtr surfIdx]
   var ret: encoded set[Mesh_ArrayFormat]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(set[Mesh_ArrayFormat])
+  (addr ret).decode_result(set[Mesh_ArrayFormat])
 proc surfaceGetPrimitiveType*(self: ArrayMesh; surfIdx: int32): Mesh_PrimitiveType =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -126,7 +126,7 @@ proc surfaceGetPrimitiveType*(self: ArrayMesh; surfIdx: int32): Mesh_PrimitiveTy
   var `?param` = [getPtr surfIdx]
   var ret: encoded Mesh_PrimitiveType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Mesh_PrimitiveType)
+  (addr ret).decode_result(Mesh_PrimitiveType)
 proc surfaceFindByName*(self: ArrayMesh; name: String): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -135,7 +135,7 @@ proc surfaceFindByName*(self: ArrayMesh; name: String): int32 =
   var `?param` = [getPtr name]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc surfaceSetName*(self: ArrayMesh; surfIdx: int32; name: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -151,7 +151,7 @@ proc surfaceGetName*(self: ArrayMesh; surfIdx: int32): String =
   var `?param` = [getPtr surfIdx]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc regenNormalMaps*(self: ArrayMesh) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -166,7 +166,7 @@ proc lightmapUnwrap*(self: ArrayMesh; transform: Transform3D; texelSize: Float):
   var `?param` = [getPtr transform, getPtr texelSize]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc `customAabb=`*(self: ArrayMesh; aabb: AABB) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -181,7 +181,7 @@ proc customAabb*(self: ArrayMesh): AABB =
     methodbind = interface_ClassDB_getMethodBind(addr className ArrayMesh, addr name, 1068685055)
   var ret: encoded AABB
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AABB)
+  (addr ret).decode_result(AABB)
 proc `shadowMesh=`*(self: ArrayMesh; mesh: ArrayMesh) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -196,4 +196,4 @@ proc shadowMesh*(self: ArrayMesh): ArrayMesh =
     methodbind = interface_ClassDB_getMethodBind(addr className ArrayMesh, addr name, 3206942465)
   var ret: encoded ArrayMesh
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(ArrayMesh)
+  (addr ret).decode_result(ArrayMesh)

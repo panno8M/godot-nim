@@ -12,7 +12,7 @@ proc borderColor*(self: ReferenceRect): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className ReferenceRect, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `borderColor=`*(self: ReferenceRect; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc borderWidth*(self: ReferenceRect): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className ReferenceRect, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `borderWidth=`*(self: ReferenceRect; width: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc editorOnly*(self: ReferenceRect): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ReferenceRect, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `editorOnly=`*(self: ReferenceRect; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

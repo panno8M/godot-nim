@@ -19,7 +19,7 @@ proc value*(self: RDPipelineSpecializationConstant): Variant =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineSpecializationConstant, addr name, 1214101251)
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc `constantId=`*(self: RDPipelineSpecializationConstant; constantId: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,4 +34,4 @@ proc constantId*(self: RDPipelineSpecializationConstant): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineSpecializationConstant, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)

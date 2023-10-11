@@ -33,7 +33,7 @@ proc getModification*(self: SkeletonModificationStack2D; modIdx: int32): Skeleto
   var `?param` = [getPtr modIdx]
   var ret: encoded SkeletonModification2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(SkeletonModification2D)
+  (addr ret).decode_result(SkeletonModification2D)
 proc addModification*(self: SkeletonModificationStack2D; modification: SkeletonModification2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -69,7 +69,7 @@ proc modificationCount*(self: SkeletonModificationStack2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModificationStack2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getIsSetup*(self: SkeletonModificationStack2D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -77,7 +77,7 @@ proc getIsSetup*(self: SkeletonModificationStack2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModificationStack2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `enabled=`*(self: SkeletonModificationStack2D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -92,7 +92,7 @@ proc enabled*(self: SkeletonModificationStack2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModificationStack2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `strength=`*(self: SkeletonModificationStack2D; strength: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -107,7 +107,7 @@ proc strength*(self: SkeletonModificationStack2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModificationStack2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getSkeleton*(self: SkeletonModificationStack2D): Skeleton2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -115,4 +115,4 @@ proc getSkeleton*(self: SkeletonModificationStack2D): Skeleton2D =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModificationStack2D, addr name, 1697361217)
   var ret: encoded Skeleton2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Skeleton2D)
+  (addr ret).decode_result(Skeleton2D)

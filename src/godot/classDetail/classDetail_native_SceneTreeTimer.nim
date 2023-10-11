@@ -19,4 +19,4 @@ proc timeLeft*(self: SceneTreeTimer): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className SceneTreeTimer, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)

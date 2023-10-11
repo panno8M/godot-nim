@@ -19,7 +19,7 @@ proc seed*(self: RandomNumberGenerator): uint64 =
     methodbind = interface_ClassDB_getMethodBind(addr className RandomNumberGenerator, addr name, 2455072627)
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)
 proc `state=`*(self: RandomNumberGenerator; state: uint64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc state*(self: RandomNumberGenerator): uint64 =
     methodbind = interface_ClassDB_getMethodBind(addr className RandomNumberGenerator, addr name, 3905245786)
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)
 proc randi*(self: RandomNumberGenerator): uint32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc randi*(self: RandomNumberGenerator): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RandomNumberGenerator, addr name, 2455072627)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc randf*(self: RandomNumberGenerator): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -50,7 +50,7 @@ proc randf*(self: RandomNumberGenerator): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className RandomNumberGenerator, addr name, 191475506)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc randfn*(self: RandomNumberGenerator; mean: Float = 0.0; deviation: Float = 1.0): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -59,7 +59,7 @@ proc randfn*(self: RandomNumberGenerator; mean: Float = 0.0; deviation: Float = 
   var `?param` = [getPtr mean, getPtr deviation]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc randfRange*(self: RandomNumberGenerator; `from`: Float; to: Float): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -68,7 +68,7 @@ proc randfRange*(self: RandomNumberGenerator; `from`: Float; to: Float): Float =
   var `?param` = [getPtr `from`, getPtr to]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc randiRange*(self: RandomNumberGenerator; `from`: int32; to: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -77,7 +77,7 @@ proc randiRange*(self: RandomNumberGenerator; `from`: int32; to: int32): int32 =
   var `?param` = [getPtr `from`, getPtr to]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc randomize*(self: RandomNumberGenerator) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

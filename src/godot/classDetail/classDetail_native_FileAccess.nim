@@ -13,7 +13,7 @@ proc open*(_: typedesc[FileAccess]; path: String; flags: FileAccess_ModeFlags): 
   var `?param` = [getPtr path, getPtr flags]
   var ret: encoded FileAccess
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(FileAccess)
+  (addr ret).decode_result(FileAccess)
 proc openEncrypted*(_: typedesc[FileAccess]; path: String; modeFlags: FileAccess_ModeFlags; key: PackedByteArray): FileAccess =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc openEncrypted*(_: typedesc[FileAccess]; path: String; modeFlags: FileAccess
   var `?param` = [getPtr path, getPtr modeFlags, getPtr key]
   var ret: encoded FileAccess
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(FileAccess)
+  (addr ret).decode_result(FileAccess)
 proc openEncryptedWithPass*(_: typedesc[FileAccess]; path: String; modeFlags: FileAccess_ModeFlags; pass: String): FileAccess =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -31,7 +31,7 @@ proc openEncryptedWithPass*(_: typedesc[FileAccess]; path: String; modeFlags: Fi
   var `?param` = [getPtr path, getPtr modeFlags, getPtr pass]
   var ret: encoded FileAccess
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(FileAccess)
+  (addr ret).decode_result(FileAccess)
 proc openCompressed*(_: typedesc[FileAccess]; path: String; modeFlags: FileAccess_ModeFlags; compressionMode: FileAccess_CompressionMode = compressionFastlz): FileAccess =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -40,7 +40,7 @@ proc openCompressed*(_: typedesc[FileAccess]; path: String; modeFlags: FileAcces
   var `?param` = [getPtr path, getPtr modeFlags, getPtr compressionMode]
   var ret: encoded FileAccess
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(FileAccess)
+  (addr ret).decode_result(FileAccess)
 proc getOpenError*(_: typedesc[FileAccess]): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -48,7 +48,7 @@ proc getOpenError*(_: typedesc[FileAccess]): Error =
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 166280745)
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, nil, nil, addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc getFileAsBytes*(_: typedesc[FileAccess]; path: String): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc getFileAsBytes*(_: typedesc[FileAccess]; path: String): PackedByteArray =
   var `?param` = [getPtr path]
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)
 proc getFileAsString*(_: typedesc[FileAccess]; path: String): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -66,7 +66,7 @@ proc getFileAsString*(_: typedesc[FileAccess]; path: String): String =
   var `?param` = [getPtr path]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc flush*(self: FileAccess) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -80,7 +80,7 @@ proc getPath*(self: FileAccess): String =
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getPathAbsolute*(self: FileAccess): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -88,7 +88,7 @@ proc getPathAbsolute*(self: FileAccess): String =
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc isOpen*(self: FileAccess): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -96,7 +96,7 @@ proc isOpen*(self: FileAccess): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc seek*(self: FileAccess; position: uint64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -118,7 +118,7 @@ proc getPosition*(self: FileAccess): uint64 =
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 3905245786)
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)
 proc getLength*(self: FileAccess): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -126,7 +126,7 @@ proc getLength*(self: FileAccess): uint64 =
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 3905245786)
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)
 proc eofReached*(self: FileAccess): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -134,7 +134,7 @@ proc eofReached*(self: FileAccess): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc get8*(self: FileAccess): uint8 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -142,7 +142,7 @@ proc get8*(self: FileAccess): uint8 =
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 3905245786)
   var ret: encoded uint8
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint8)
+  (addr ret).decode_result(uint8)
 proc get16*(self: FileAccess): uint16 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -150,7 +150,7 @@ proc get16*(self: FileAccess): uint16 =
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 3905245786)
   var ret: encoded uint16
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint16)
+  (addr ret).decode_result(uint16)
 proc get32*(self: FileAccess): uint32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -158,7 +158,7 @@ proc get32*(self: FileAccess): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc get64*(self: FileAccess): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -166,7 +166,7 @@ proc get64*(self: FileAccess): uint64 =
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 3905245786)
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)
 proc getFloat*(self: FileAccess): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -174,7 +174,7 @@ proc getFloat*(self: FileAccess): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getDouble*(self: FileAccess): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -182,7 +182,7 @@ proc getDouble*(self: FileAccess): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc getReal*(self: FileAccess): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -190,7 +190,7 @@ proc getReal*(self: FileAccess): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getBuffer*(self: FileAccess; length: int64): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -199,7 +199,7 @@ proc getBuffer*(self: FileAccess; length: int64): PackedByteArray =
   var `?param` = [getPtr length]
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)
 proc getLine*(self: FileAccess): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -207,7 +207,7 @@ proc getLine*(self: FileAccess): String =
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getCsvLine*(self: FileAccess; delim: String = ","): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -216,7 +216,7 @@ proc getCsvLine*(self: FileAccess; delim: String = ","): PackedStringArray =
   var `?param` = [getPtr delim]
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc getAsText*(self: FileAccess; skipCr: Bool = false): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -225,7 +225,7 @@ proc getAsText*(self: FileAccess; skipCr: Bool = false): String =
   var `?param` = [getPtr skipCr]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getMd5*(_: typedesc[FileAccess]; path: String): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -234,7 +234,7 @@ proc getMd5*(_: typedesc[FileAccess]; path: String): String =
   var `?param` = [getPtr path]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getSha256*(_: typedesc[FileAccess]; path: String): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -243,7 +243,7 @@ proc getSha256*(_: typedesc[FileAccess]; path: String): String =
   var `?param` = [getPtr path]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc isBigEndian*(self: FileAccess): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -251,7 +251,7 @@ proc isBigEndian*(self: FileAccess): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `bigEndian=`*(self: FileAccess; bigEndian: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -266,7 +266,7 @@ proc getError*(self: FileAccess): Error =
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 3185525595)
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc getVar*(self: FileAccess; allowObjects: Bool = false): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -275,7 +275,7 @@ proc getVar*(self: FileAccess; allowObjects: Bool = false): Variant =
   var `?param` = [getPtr allowObjects]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc store8*(self: FileAccess; value: uint8) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -374,7 +374,7 @@ proc getPascalString*(self: FileAccess): String =
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 2841200299)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc close*(self: FileAccess) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -389,7 +389,7 @@ proc fileExists*(_: typedesc[FileAccess]; path: String): Bool =
   var `?param` = [getPtr path]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getModifiedTime*(_: typedesc[FileAccess]; file: String): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -398,4 +398,4 @@ proc getModifiedTime*(_: typedesc[FileAccess]; file: String): uint64 =
   var `?param` = [getPtr file]
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)

@@ -19,7 +19,7 @@ proc eyeHeight*(self: MobileVRInterface): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className MobileVRInterface, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc `iod=`*(self: MobileVRInterface; iod: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc iod*(self: MobileVRInterface): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className MobileVRInterface, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc `displayWidth=`*(self: MobileVRInterface; displayWidth: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc displayWidth*(self: MobileVRInterface): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className MobileVRInterface, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc `displayToLens=`*(self: MobileVRInterface; displayToLens: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc displayToLens*(self: MobileVRInterface): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className MobileVRInterface, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc `oversample=`*(self: MobileVRInterface; oversample: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc oversample*(self: MobileVRInterface): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className MobileVRInterface, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc `k1=`*(self: MobileVRInterface; k: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc k1*(self: MobileVRInterface): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className MobileVRInterface, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc `k2=`*(self: MobileVRInterface; k: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,4 +109,4 @@ proc k2*(self: MobileVRInterface): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className MobileVRInterface, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)

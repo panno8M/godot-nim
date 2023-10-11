@@ -19,7 +19,7 @@ proc texture*(self: PointLight2D): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className PointLight2D, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc `textureOffset=`*(self: PointLight2D; textureOffset: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc textureOffset*(self: PointLight2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className PointLight2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `textureScale=`*(self: PointLight2D; textureScale: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,4 +49,4 @@ proc textureScale*(self: PointLight2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className PointLight2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

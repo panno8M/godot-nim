@@ -19,7 +19,7 @@ proc size*(self: GPUParticlesCollisionHeightField3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesCollisionHeightField3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `resolution=`*(self: GPUParticlesCollisionHeightField3D; resolution: GPUParticlesCollisionHeightField3D_Resolution) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc resolution*(self: GPUParticlesCollisionHeightField3D): GPUParticlesCollisio
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesCollisionHeightField3D, addr name, 1156065644)
   var ret: encoded GPUParticlesCollisionHeightField3D_Resolution
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(GPUParticlesCollisionHeightField3D_Resolution)
+  (addr ret).decode_result(GPUParticlesCollisionHeightField3D_Resolution)
 proc `updateMode=`*(self: GPUParticlesCollisionHeightField3D; updateMode: GPUParticlesCollisionHeightField3D_UpdateMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc updateMode*(self: GPUParticlesCollisionHeightField3D): GPUParticlesCollisio
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesCollisionHeightField3D, addr name, 1998141380)
   var ret: encoded GPUParticlesCollisionHeightField3D_UpdateMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(GPUParticlesCollisionHeightField3D_UpdateMode)
+  (addr ret).decode_result(GPUParticlesCollisionHeightField3D_UpdateMode)
 proc `followCameraEnabled=`*(self: GPUParticlesCollisionHeightField3D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,4 +64,4 @@ proc isFollowCameraEnabled*(self: GPUParticlesCollisionHeightField3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesCollisionHeightField3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

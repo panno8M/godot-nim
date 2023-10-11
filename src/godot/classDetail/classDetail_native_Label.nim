@@ -19,7 +19,7 @@ proc horizontalAlignment*(self: Label): HorizontalAlignment =
     methodbind = interface_ClassDB_getMethodBind(addr className Label, addr name, 341400642)
   var ret: encoded HorizontalAlignment
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(HorizontalAlignment)
+  (addr ret).decode_result(HorizontalAlignment)
 proc `verticalAlignment=`*(self: Label; alignment: VerticalAlignment) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc verticalAlignment*(self: Label): VerticalAlignment =
     methodbind = interface_ClassDB_getMethodBind(addr className Label, addr name, 3274884059)
   var ret: encoded VerticalAlignment
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VerticalAlignment)
+  (addr ret).decode_result(VerticalAlignment)
 proc `text=`*(self: Label; text: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc text*(self: Label): String =
     methodbind = interface_ClassDB_getMethodBind(addr className Label, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `labelSettings=`*(self: Label; settings: LabelSettings) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc labelSettings*(self: Label): LabelSettings =
     methodbind = interface_ClassDB_getMethodBind(addr className Label, addr name, 826676056)
   var ret: encoded LabelSettings
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(LabelSettings)
+  (addr ret).decode_result(LabelSettings)
 proc `textDirection=`*(self: Label; direction: Control_TextDirection) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc textDirection*(self: Label): Control_TextDirection =
     methodbind = interface_ClassDB_getMethodBind(addr className Label, addr name, 797257663)
   var ret: encoded Control_TextDirection
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Control_TextDirection)
+  (addr ret).decode_result(Control_TextDirection)
 proc `language=`*(self: Label; language: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc language*(self: Label): String =
     methodbind = interface_ClassDB_getMethodBind(addr className Label, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `autowrapMode=`*(self: Label; autowrapMode: TextServer_AutowrapMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc autowrapMode*(self: Label): TextServer_AutowrapMode =
     methodbind = interface_ClassDB_getMethodBind(addr className Label, addr name, 1549071663)
   var ret: encoded TextServer_AutowrapMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextServer_AutowrapMode)
+  (addr ret).decode_result(TextServer_AutowrapMode)
 proc `justificationFlags=`*(self: Label; justificationFlags: set[TextServer_JustificationFlag]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc justificationFlags*(self: Label): set[TextServer_JustificationFlag] =
     methodbind = interface_ClassDB_getMethodBind(addr className Label, addr name, 1583363614)
   var ret: encoded set[TextServer_JustificationFlag]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(set[TextServer_JustificationFlag])
+  (addr ret).decode_result(set[TextServer_JustificationFlag])
 proc `clipText=`*(self: Label; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc isClippingText*(self: Label): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Label, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `tabStops=`*(self: Label; tabStops: PackedFloat32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -154,7 +154,7 @@ proc tabStops*(self: Label): PackedFloat32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className Label, addr name, 675695659)
   var ret: encoded PackedFloat32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedFloat32Array)
+  (addr ret).decode_result(PackedFloat32Array)
 proc `textOverrunBehavior=`*(self: Label; overrunBehavior: TextServer_OverrunBehavior) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -169,7 +169,7 @@ proc textOverrunBehavior*(self: Label): TextServer_OverrunBehavior =
     methodbind = interface_ClassDB_getMethodBind(addr className Label, addr name, 3779142101)
   var ret: encoded TextServer_OverrunBehavior
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextServer_OverrunBehavior)
+  (addr ret).decode_result(TextServer_OverrunBehavior)
 proc `uppercase=`*(self: Label; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -184,7 +184,7 @@ proc isUppercase*(self: Label): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Label, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getLineHeight*(self: Label; line: int32 = -1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -193,7 +193,7 @@ proc getLineHeight*(self: Label; line: int32 = -1): int32 =
   var `?param` = [getPtr line]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getLineCount*(self: Label): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -201,7 +201,7 @@ proc getLineCount*(self: Label): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Label, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getVisibleLineCount*(self: Label): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -209,7 +209,7 @@ proc getVisibleLineCount*(self: Label): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Label, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getTotalCharacterCount*(self: Label): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -217,7 +217,7 @@ proc getTotalCharacterCount*(self: Label): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Label, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `visibleCharacters=`*(self: Label; amount: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -232,7 +232,7 @@ proc visibleCharacters*(self: Label): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Label, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc visibleCharactersBehavior*(self: Label): TextServer_VisibleCharactersBehavior =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -240,7 +240,7 @@ proc visibleCharactersBehavior*(self: Label): TextServer_VisibleCharactersBehavi
     methodbind = interface_ClassDB_getMethodBind(addr className Label, addr name, 258789322)
   var ret: encoded TextServer_VisibleCharactersBehavior
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextServer_VisibleCharactersBehavior)
+  (addr ret).decode_result(TextServer_VisibleCharactersBehavior)
 proc `visibleCharactersBehavior=`*(self: Label; behavior: TextServer_VisibleCharactersBehavior) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -262,7 +262,7 @@ proc visibleRatio*(self: Label): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Label, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `linesSkipped=`*(self: Label; linesSkipped: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -277,7 +277,7 @@ proc linesSkipped*(self: Label): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Label, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `maxLinesVisible=`*(self: Label; linesVisible: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -292,7 +292,7 @@ proc maxLinesVisible*(self: Label): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Label, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `structuredTextBidiOverride=`*(self: Label; parser: TextServer_StructuredTextParser) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -307,7 +307,7 @@ proc structuredTextBidiOverride*(self: Label): TextServer_StructuredTextParser =
     methodbind = interface_ClassDB_getMethodBind(addr className Label, addr name, 3385126229)
   var ret: encoded TextServer_StructuredTextParser
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextServer_StructuredTextParser)
+  (addr ret).decode_result(TextServer_StructuredTextParser)
 proc `structuredTextBidiOverrideOptions=`*(self: Label; args: Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -322,4 +322,4 @@ proc structuredTextBidiOverrideOptions*(self: Label): Array =
     methodbind = interface_ClassDB_getMethodBind(addr className Label, addr name, 3995934104)
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)

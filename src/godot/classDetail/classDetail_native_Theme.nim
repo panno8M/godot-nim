@@ -20,7 +20,7 @@ proc getIcon*(self: Theme; name: StringName; themeType: StringName): Texture2D =
   var `?param` = [getPtr name, getPtr themeType]
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc hasIcon*(self: Theme; name: StringName; themeType: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -29,7 +29,7 @@ proc hasIcon*(self: Theme; name: StringName; themeType: StringName): Bool =
   var `?param` = [getPtr name, getPtr themeType]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc renameIcon*(self: Theme; oldName: StringName; name: StringName; themeType: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -52,7 +52,7 @@ proc getIconList*(self: Theme; themeType: String): PackedStringArray =
   var `?param` = [getPtr themeType]
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc getIconTypeList*(self: Theme): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -60,7 +60,7 @@ proc getIconTypeList*(self: Theme): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className Theme, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc setStylebox*(self: Theme; name: StringName; themeType: StringName; texture: StyleBox) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -76,7 +76,7 @@ proc getStylebox*(self: Theme; name: StringName; themeType: StringName): StyleBo
   var `?param` = [getPtr name, getPtr themeType]
   var ret: encoded StyleBox
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StyleBox)
+  (addr ret).decode_result(StyleBox)
 proc hasStylebox*(self: Theme; name: StringName; themeType: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -85,7 +85,7 @@ proc hasStylebox*(self: Theme; name: StringName; themeType: StringName): Bool =
   var `?param` = [getPtr name, getPtr themeType]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc renameStylebox*(self: Theme; oldName: StringName; name: StringName; themeType: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -108,7 +108,7 @@ proc getStyleboxList*(self: Theme; themeType: String): PackedStringArray =
   var `?param` = [getPtr themeType]
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc getStyleboxTypeList*(self: Theme): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -116,7 +116,7 @@ proc getStyleboxTypeList*(self: Theme): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className Theme, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc setFont*(self: Theme; name: StringName; themeType: StringName; font: Font) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -132,7 +132,7 @@ proc getFont*(self: Theme; name: StringName; themeType: StringName): Font =
   var `?param` = [getPtr name, getPtr themeType]
   var ret: encoded Font
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Font)
+  (addr ret).decode_result(Font)
 proc hasFont*(self: Theme; name: StringName; themeType: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -141,7 +141,7 @@ proc hasFont*(self: Theme; name: StringName; themeType: StringName): Bool =
   var `?param` = [getPtr name, getPtr themeType]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc renameFont*(self: Theme; oldName: StringName; name: StringName; themeType: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -164,7 +164,7 @@ proc getFontList*(self: Theme; themeType: String): PackedStringArray =
   var `?param` = [getPtr themeType]
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc getFontTypeList*(self: Theme): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -172,7 +172,7 @@ proc getFontTypeList*(self: Theme): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className Theme, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc setFontSize*(self: Theme; name: StringName; themeType: StringName; fontSize: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -188,7 +188,7 @@ proc getFontSize*(self: Theme; name: StringName; themeType: StringName): int32 =
   var `?param` = [getPtr name, getPtr themeType]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc hasFontSize*(self: Theme; name: StringName; themeType: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -197,7 +197,7 @@ proc hasFontSize*(self: Theme; name: StringName; themeType: StringName): Bool =
   var `?param` = [getPtr name, getPtr themeType]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc renameFontSize*(self: Theme; oldName: StringName; name: StringName; themeType: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -220,7 +220,7 @@ proc getFontSizeList*(self: Theme; themeType: String): PackedStringArray =
   var `?param` = [getPtr themeType]
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc getFontSizeTypeList*(self: Theme): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -228,7 +228,7 @@ proc getFontSizeTypeList*(self: Theme): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className Theme, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc setColor*(self: Theme; name: StringName; themeType: StringName; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -244,7 +244,7 @@ proc getColor*(self: Theme; name: StringName; themeType: StringName): Color =
   var `?param` = [getPtr name, getPtr themeType]
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc hasColor*(self: Theme; name: StringName; themeType: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -253,7 +253,7 @@ proc hasColor*(self: Theme; name: StringName; themeType: StringName): Bool =
   var `?param` = [getPtr name, getPtr themeType]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc renameColor*(self: Theme; oldName: StringName; name: StringName; themeType: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -276,7 +276,7 @@ proc getColorList*(self: Theme; themeType: String): PackedStringArray =
   var `?param` = [getPtr themeType]
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc getColorTypeList*(self: Theme): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -284,7 +284,7 @@ proc getColorTypeList*(self: Theme): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className Theme, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc setConstant*(self: Theme; name: StringName; themeType: StringName; constant: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -300,7 +300,7 @@ proc getConstant*(self: Theme; name: StringName; themeType: StringName): int32 =
   var `?param` = [getPtr name, getPtr themeType]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc hasConstant*(self: Theme; name: StringName; themeType: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -309,7 +309,7 @@ proc hasConstant*(self: Theme; name: StringName; themeType: StringName): Bool =
   var `?param` = [getPtr name, getPtr themeType]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc renameConstant*(self: Theme; oldName: StringName; name: StringName; themeType: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -332,7 +332,7 @@ proc getConstantList*(self: Theme; themeType: String): PackedStringArray =
   var `?param` = [getPtr themeType]
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc getConstantTypeList*(self: Theme): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -340,7 +340,7 @@ proc getConstantTypeList*(self: Theme): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className Theme, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc `defaultBaseScale=`*(self: Theme; baseScale: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -355,7 +355,7 @@ proc defaultBaseScale*(self: Theme): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Theme, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc hasDefaultBaseScale*(self: Theme): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -363,7 +363,7 @@ proc hasDefaultBaseScale*(self: Theme): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Theme, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `defaultFont=`*(self: Theme; font: Font) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -378,7 +378,7 @@ proc defaultFont*(self: Theme): Font =
     methodbind = interface_ClassDB_getMethodBind(addr className Theme, addr name, 3229501585)
   var ret: encoded Font
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Font)
+  (addr ret).decode_result(Font)
 proc hasDefaultFont*(self: Theme): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -386,7 +386,7 @@ proc hasDefaultFont*(self: Theme): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Theme, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `defaultFontSize=`*(self: Theme; fontSize: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -401,7 +401,7 @@ proc defaultFontSize*(self: Theme): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Theme, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc hasDefaultFontSize*(self: Theme): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -409,7 +409,7 @@ proc hasDefaultFontSize*(self: Theme): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Theme, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setThemeItem*(self: Theme; dataType: Theme_DataType; name: StringName; themeType: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -425,7 +425,7 @@ proc getThemeItem*(self: Theme; dataType: Theme_DataType; name: StringName; them
   var `?param` = [getPtr dataType, getPtr name, getPtr themeType]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc hasThemeItem*(self: Theme; dataType: Theme_DataType; name: StringName; themeType: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -434,7 +434,7 @@ proc hasThemeItem*(self: Theme; dataType: Theme_DataType; name: StringName; them
   var `?param` = [getPtr dataType, getPtr name, getPtr themeType]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc renameThemeItem*(self: Theme; dataType: Theme_DataType; oldName: StringName; name: StringName; themeType: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -457,7 +457,7 @@ proc getThemeItemList*(self: Theme; dataType: Theme_DataType; themeType: String)
   var `?param` = [getPtr dataType, getPtr themeType]
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc getThemeItemTypeList*(self: Theme; dataType: Theme_DataType): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -466,7 +466,7 @@ proc getThemeItemTypeList*(self: Theme; dataType: Theme_DataType): PackedStringA
   var `?param` = [getPtr dataType]
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc setTypeVariation*(self: Theme; themeType: StringName; baseType: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -482,7 +482,7 @@ proc isTypeVariation*(self: Theme; themeType: StringName; baseType: StringName):
   var `?param` = [getPtr themeType, getPtr baseType]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc clearTypeVariation*(self: Theme; themeType: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -498,7 +498,7 @@ proc getTypeVariationBase*(self: Theme; themeType: StringName): StringName =
   var `?param` = [getPtr themeType]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc getTypeVariationList*(self: Theme; baseType: StringName): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -507,7 +507,7 @@ proc getTypeVariationList*(self: Theme; baseType: StringName): PackedStringArray
   var `?param` = [getPtr baseType]
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc addType*(self: Theme; themeType: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -529,7 +529,7 @@ proc getTypeList*(self: Theme): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className Theme, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc mergeWith*(self: Theme; other: Theme) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

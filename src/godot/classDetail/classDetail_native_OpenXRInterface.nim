@@ -12,7 +12,7 @@ proc displayRefreshRate*(self: OpenXRInterface): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRInterface, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `displayRefreshRate=`*(self: OpenXRInterface; refreshRate: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc renderTarsizeMultiplier*(self: OpenXRInterface): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRInterface, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc `renderTargetSizeMultiplier=`*(self: OpenXRInterface; multiplier: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -43,7 +43,7 @@ proc isActionSetActive*(self: OpenXRInterface; name: String): Bool =
   var `?param` = [getPtr name]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setActionSetActive*(self: OpenXRInterface; name: String; active: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -58,7 +58,7 @@ proc getActionSets*(self: OpenXRInterface): Array =
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRInterface, addr name, 3995934104)
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)
 proc getAvailableDisplayRefreshRates*(self: OpenXRInterface): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -66,4 +66,4 @@ proc getAvailableDisplayRefreshRates*(self: OpenXRInterface): Array =
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRInterface, addr name, 3995934104)
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)

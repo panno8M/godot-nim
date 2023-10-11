@@ -19,7 +19,7 @@ proc isEnabled*(self: NavigationLink3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationLink3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `bidirectional=`*(self: NavigationLink3D; bidirectional: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc isBidirectional*(self: NavigationLink3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationLink3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `navigationLayers=`*(self: NavigationLink3D; navigationLayers: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc navigationLayers*(self: NavigationLink3D): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationLink3D, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc setNavigationLayerValue*(self: NavigationLink3D; layerNumber: int32; value: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -65,7 +65,7 @@ proc getNavigationLayerValue*(self: NavigationLink3D; layerNumber: int32): Bool 
   var `?param` = [getPtr layerNumber]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `startPosition=`*(self: NavigationLink3D; position: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -80,7 +80,7 @@ proc startPosition*(self: NavigationLink3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationLink3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `endPosition=`*(self: NavigationLink3D; position: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -95,7 +95,7 @@ proc endPosition*(self: NavigationLink3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationLink3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc setGlobalStartPosition*(self: NavigationLink3D; position: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -110,7 +110,7 @@ proc getGlobalStartPosition*(self: NavigationLink3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationLink3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc setGlobalEndPosition*(self: NavigationLink3D; position: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -125,7 +125,7 @@ proc getGlobalEndPosition*(self: NavigationLink3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationLink3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `enterCost=`*(self: NavigationLink3D; enterCost: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -140,7 +140,7 @@ proc enterCost*(self: NavigationLink3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationLink3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `travelCost=`*(self: NavigationLink3D; travelCost: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -155,4 +155,4 @@ proc travelCost*(self: NavigationLink3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationLink3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

@@ -19,7 +19,7 @@ proc textureType*(self: VisualShaderNodeTextureParameter): VisualShaderNodeTextu
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeTextureParameter, addr name, 367922070)
   var ret: encoded VisualShaderNodeTextureParameter_TextureType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VisualShaderNodeTextureParameter_TextureType)
+  (addr ret).decode_result(VisualShaderNodeTextureParameter_TextureType)
 proc `colorDefault=`*(self: VisualShaderNodeTextureParameter; color: VisualShaderNodeTextureParameter_ColorDefault) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc colorDefault*(self: VisualShaderNodeTextureParameter): VisualShaderNodeText
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeTextureParameter, addr name, 3837060134)
   var ret: encoded VisualShaderNodeTextureParameter_ColorDefault
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VisualShaderNodeTextureParameter_ColorDefault)
+  (addr ret).decode_result(VisualShaderNodeTextureParameter_ColorDefault)
 proc `textureFilter=`*(self: VisualShaderNodeTextureParameter; filter: VisualShaderNodeTextureParameter_TextureFilter) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc textureFilter*(self: VisualShaderNodeTextureParameter): VisualShaderNodeTex
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeTextureParameter, addr name, 4184490817)
   var ret: encoded VisualShaderNodeTextureParameter_TextureFilter
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VisualShaderNodeTextureParameter_TextureFilter)
+  (addr ret).decode_result(VisualShaderNodeTextureParameter_TextureFilter)
 proc `textureRepeat=`*(self: VisualShaderNodeTextureParameter; repeat: VisualShaderNodeTextureParameter_TextureRepeat) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc textureRepeat*(self: VisualShaderNodeTextureParameter): VisualShaderNodeTex
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeTextureParameter, addr name, 1690132794)
   var ret: encoded VisualShaderNodeTextureParameter_TextureRepeat
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VisualShaderNodeTextureParameter_TextureRepeat)
+  (addr ret).decode_result(VisualShaderNodeTextureParameter_TextureRepeat)
 proc `textureSource=`*(self: VisualShaderNodeTextureParameter; source: VisualShaderNodeTextureParameter_TextureSource) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,4 +79,4 @@ proc textureSource*(self: VisualShaderNodeTextureParameter): VisualShaderNodeTex
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeTextureParameter, addr name, 2039092262)
   var ret: encoded VisualShaderNodeTextureParameter_TextureSource
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VisualShaderNodeTextureParameter_TextureSource)
+  (addr ret).decode_result(VisualShaderNodeTextureParameter_TextureSource)

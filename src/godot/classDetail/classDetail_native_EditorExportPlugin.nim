@@ -89,4 +89,4 @@ proc getOption*(self: EditorExportPlugin; name: StringName): Variant =
   var `?param` = [getPtr name]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)

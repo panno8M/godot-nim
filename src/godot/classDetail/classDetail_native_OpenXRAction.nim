@@ -19,7 +19,7 @@ proc localizedName*(self: OpenXRAction): String =
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRAction, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `actionType=`*(self: OpenXRAction; actionType: OpenXRAction_ActionType) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc actionType*(self: OpenXRAction): OpenXRAction_ActionType =
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRAction, addr name, 3536542431)
   var ret: encoded OpenXRAction_ActionType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(OpenXRAction_ActionType)
+  (addr ret).decode_result(OpenXRAction_ActionType)
 proc `toplevelPaths=`*(self: OpenXRAction; toplevelPaths: PackedStringArray) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,4 +49,4 @@ proc toplevelPaths*(self: OpenXRAction): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRAction, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)

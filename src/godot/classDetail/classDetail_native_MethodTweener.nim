@@ -13,7 +13,7 @@ proc setDelay*(self: MethodTweener; delay: float64): MethodTweener =
   var `?param` = [getPtr delay]
   var ret: encoded MethodTweener
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(MethodTweener)
+  (addr ret).decode_result(MethodTweener)
 proc setTrans*(self: MethodTweener; trans: Tween_TransitionType): MethodTweener =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc setTrans*(self: MethodTweener; trans: Tween_TransitionType): MethodTweener 
   var `?param` = [getPtr trans]
   var ret: encoded MethodTweener
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(MethodTweener)
+  (addr ret).decode_result(MethodTweener)
 proc setEase*(self: MethodTweener; ease: Tween_EaseType): MethodTweener =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -31,4 +31,4 @@ proc setEase*(self: MethodTweener; ease: Tween_EaseType): MethodTweener =
   var `?param` = [getPtr ease]
   var ret: encoded MethodTweener
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(MethodTweener)
+  (addr ret).decode_result(MethodTweener)

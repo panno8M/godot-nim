@@ -12,7 +12,7 @@ proc getRid*(self: CollisionObject2D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionObject2D, addr name, 2944877500)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc `collisionLayer=`*(self: CollisionObject2D; layer: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc collisionLayer*(self: CollisionObject2D): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionObject2D, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `collisionMask=`*(self: CollisionObject2D; mask: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc collisionMask*(self: CollisionObject2D): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionObject2D, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc setCollisionLayerValue*(self: CollisionObject2D; layerNumber: int32; value: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -58,7 +58,7 @@ proc getCollisionLayerValue*(self: CollisionObject2D; layerNumber: int32): Bool 
   var `?param` = [getPtr layerNumber]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setCollisionMaskValue*(self: CollisionObject2D; layerNumber: int32; value: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -74,7 +74,7 @@ proc getCollisionMaskValue*(self: CollisionObject2D; layerNumber: int32): Bool =
   var `?param` = [getPtr layerNumber]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `collisionPriority=`*(self: CollisionObject2D; priority: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -89,7 +89,7 @@ proc collisionPriority*(self: CollisionObject2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionObject2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `disableMode=`*(self: CollisionObject2D; mode: CollisionObject2D_DisableMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -104,7 +104,7 @@ proc disableMode*(self: CollisionObject2D): CollisionObject2D_DisableMode =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionObject2D, addr name, 3172846349)
   var ret: encoded CollisionObject2D_DisableMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(CollisionObject2D_DisableMode)
+  (addr ret).decode_result(CollisionObject2D_DisableMode)
 proc `pickable=`*(self: CollisionObject2D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -119,7 +119,7 @@ proc isPickable*(self: CollisionObject2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionObject2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc createShapeOwner*(self: CollisionObject2D; owner: Object): uint32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -128,7 +128,7 @@ proc createShapeOwner*(self: CollisionObject2D; owner: Object): uint32 =
   var `?param` = [getPtr owner]
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc removeShapeOwner*(self: CollisionObject2D; ownerId: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -143,7 +143,7 @@ proc getShapeOwners*(self: CollisionObject2D): PackedInt32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionObject2D, addr name, 969006518)
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc shapeOwnerSetTransform*(self: CollisionObject2D; ownerId: uint32; transform: Transform2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -159,7 +159,7 @@ proc shapeOwnerGetTransform*(self: CollisionObject2D; ownerId: uint32): Transfor
   var `?param` = [getPtr ownerId]
   var ret: encoded Transform2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Transform2D)
+  (addr ret).decode_result(Transform2D)
 proc shapeOwnerGetOwner*(self: CollisionObject2D; ownerId: uint32): Object =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -168,7 +168,7 @@ proc shapeOwnerGetOwner*(self: CollisionObject2D; ownerId: uint32): Object =
   var `?param` = [getPtr ownerId]
   var ret: encoded Object
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Object)
+  (addr ret).decode_result(Object)
 proc shapeOwnerSetDisabled*(self: CollisionObject2D; ownerId: uint32; disabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -184,7 +184,7 @@ proc isShapeOwnerDisabled*(self: CollisionObject2D; ownerId: uint32): Bool =
   var `?param` = [getPtr ownerId]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc shapeOwnerSetOneWayCollision*(self: CollisionObject2D; ownerId: uint32; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -200,7 +200,7 @@ proc isShapeOwnerOneWayCollisionEnabled*(self: CollisionObject2D; ownerId: uint3
   var `?param` = [getPtr ownerId]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc shapeOwnerSetOneWayCollisionMargin*(self: CollisionObject2D; ownerId: uint32; margin: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -216,7 +216,7 @@ proc getShapeOwnerOneWayCollisionMargin*(self: CollisionObject2D; ownerId: uint3
   var `?param` = [getPtr ownerId]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc shapeOwnerAddShape*(self: CollisionObject2D; ownerId: uint32; shape: Shape2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -232,7 +232,7 @@ proc shapeOwnerGetShapeCount*(self: CollisionObject2D; ownerId: uint32): int32 =
   var `?param` = [getPtr ownerId]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc shapeOwnerGetShape*(self: CollisionObject2D; ownerId: uint32; shapeId: int32): Shape2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -241,7 +241,7 @@ proc shapeOwnerGetShape*(self: CollisionObject2D; ownerId: uint32; shapeId: int3
   var `?param` = [getPtr ownerId, getPtr shapeId]
   var ret: encoded Shape2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Shape2D)
+  (addr ret).decode_result(Shape2D)
 proc shapeOwnerGetShapeIndex*(self: CollisionObject2D; ownerId: uint32; shapeId: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -250,7 +250,7 @@ proc shapeOwnerGetShapeIndex*(self: CollisionObject2D; ownerId: uint32; shapeId:
   var `?param` = [getPtr ownerId, getPtr shapeId]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc shapeOwnerRemoveShape*(self: CollisionObject2D; ownerId: uint32; shapeId: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -273,4 +273,4 @@ proc shapeFindOwner*(self: CollisionObject2D; shapeIndex: int32): uint32 =
   var `?param` = [getPtr shapeIndex]
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)

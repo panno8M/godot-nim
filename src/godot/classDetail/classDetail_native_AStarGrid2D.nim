@@ -19,7 +19,7 @@ proc region*(self: AStarGrid2D): Rect2i =
     methodbind = interface_ClassDB_getMethodBind(addr className AStarGrid2D, addr name, 410525958)
   var ret: encoded Rect2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Rect2i)
+  (addr ret).decode_result(Rect2i)
 proc `size=`*(self: AStarGrid2D; size: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc size*(self: AStarGrid2D): Vector2i =
     methodbind = interface_ClassDB_getMethodBind(addr className AStarGrid2D, addr name, 3690982128)
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc `offset=`*(self: AStarGrid2D; offset: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc offset*(self: AStarGrid2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className AStarGrid2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `cellSize=`*(self: AStarGrid2D; cellSize: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc cellSize*(self: AStarGrid2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className AStarGrid2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc isInBounds*(self: AStarGrid2D; x: int32; y: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -73,7 +73,7 @@ proc isInBounds*(self: AStarGrid2D; x: int32; y: int32): Bool =
   var `?param` = [getPtr x, getPtr y]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isInBoundsv*(self: AStarGrid2D; id: Vector2i): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -82,7 +82,7 @@ proc isInBoundsv*(self: AStarGrid2D; id: Vector2i): Bool =
   var `?param` = [getPtr id]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isDirty*(self: AStarGrid2D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -90,7 +90,7 @@ proc isDirty*(self: AStarGrid2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AStarGrid2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc update*(self: AStarGrid2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -111,7 +111,7 @@ proc isJumpingEnabled*(self: AStarGrid2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AStarGrid2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `diagonalMode=`*(self: AStarGrid2D; mode: AStarGrid2D_DiagonalMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -126,7 +126,7 @@ proc diagonalMode*(self: AStarGrid2D): AStarGrid2D_DiagonalMode =
     methodbind = interface_ClassDB_getMethodBind(addr className AStarGrid2D, addr name, 3129282674)
   var ret: encoded AStarGrid2D_DiagonalMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AStarGrid2D_DiagonalMode)
+  (addr ret).decode_result(AStarGrid2D_DiagonalMode)
 proc `defaultComputeHeuristic=`*(self: AStarGrid2D; heuristic: AStarGrid2D_Heuristic) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -141,7 +141,7 @@ proc defaultComputeHeuristic*(self: AStarGrid2D): AStarGrid2D_Heuristic =
     methodbind = interface_ClassDB_getMethodBind(addr className AStarGrid2D, addr name, 2074731422)
   var ret: encoded AStarGrid2D_Heuristic
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AStarGrid2D_Heuristic)
+  (addr ret).decode_result(AStarGrid2D_Heuristic)
 proc `defaultEstimateHeuristic=`*(self: AStarGrid2D; heuristic: AStarGrid2D_Heuristic) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -156,7 +156,7 @@ proc defaultEstimateHeuristic*(self: AStarGrid2D): AStarGrid2D_Heuristic =
     methodbind = interface_ClassDB_getMethodBind(addr className AStarGrid2D, addr name, 2074731422)
   var ret: encoded AStarGrid2D_Heuristic
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AStarGrid2D_Heuristic)
+  (addr ret).decode_result(AStarGrid2D_Heuristic)
 proc setPointSolid*(self: AStarGrid2D; id: Vector2i; solid: Bool = true) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -172,7 +172,7 @@ proc isPointSolid*(self: AStarGrid2D; id: Vector2i): Bool =
   var `?param` = [getPtr id]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setPointWeightScale*(self: AStarGrid2D; id: Vector2i; weightScale: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -188,7 +188,7 @@ proc getPointWeightScale*(self: AStarGrid2D; id: Vector2i): Float =
   var `?param` = [getPtr id]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc clear*(self: AStarGrid2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -203,7 +203,7 @@ proc getPointPosition*(self: AStarGrid2D; id: Vector2i): Vector2 =
   var `?param` = [getPtr id]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getPointPath*(self: AStarGrid2D; fromId: Vector2i; toId: Vector2i): PackedVector2Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -212,7 +212,7 @@ proc getPointPath*(self: AStarGrid2D; fromId: Vector2i; toId: Vector2i): PackedV
   var `?param` = [getPtr fromId, getPtr toId]
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedVector2Array)
+  (addr ret).decode_result(PackedVector2Array)
 proc getIdPath*(self: AStarGrid2D; fromId: Vector2i; toId: Vector2i): TypedArray[Vector2i] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -221,4 +221,4 @@ proc getIdPath*(self: AStarGrid2D; fromId: Vector2i; toId: Vector2i): TypedArray
   var `?param` = [getPtr fromId, getPtr toId]
   var ret: encoded TypedArray[Vector2i]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[Vector2i])
+  (addr ret).decode_result(TypedArray[Vector2i])

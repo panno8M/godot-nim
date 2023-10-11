@@ -19,7 +19,7 @@ proc vertices*(self: NavigationPolygon): PackedVector2Array =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPolygon, addr name, 2961356807)
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedVector2Array)
+  (addr ret).decode_result(PackedVector2Array)
 proc addPolygon*(self: NavigationPolygon; polygon: PackedInt32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc getPolygonCount*(self: NavigationPolygon): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPolygon, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getPolygon*(self: NavigationPolygon; idx: int32): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -43,7 +43,7 @@ proc getPolygon*(self: NavigationPolygon; idx: int32): PackedInt32Array =
   var `?param` = [getPtr idx]
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc clearPolygons*(self: NavigationPolygon) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc getNavigationMesh*(self: NavigationPolygon): NavigationMesh =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPolygon, addr name, 330232164)
   var ret: encoded NavigationMesh
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NavigationMesh)
+  (addr ret).decode_result(NavigationMesh)
 proc addOutline*(self: NavigationPolygon; outline: PackedVector2Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc getOutlineCount*(self: NavigationPolygon): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPolygon, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setOutline*(self: NavigationPolygon; idx: int32; outline: PackedVector2Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -95,7 +95,7 @@ proc getOutline*(self: NavigationPolygon; idx: int32): PackedVector2Array =
   var `?param` = [getPtr idx]
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedVector2Array)
+  (addr ret).decode_result(PackedVector2Array)
 proc removeOutline*(self: NavigationPolygon; idx: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -129,4 +129,4 @@ proc cellSize*(self: NavigationPolygon): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPolygon, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

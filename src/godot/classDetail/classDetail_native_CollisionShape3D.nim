@@ -26,7 +26,7 @@ proc shape*(self: CollisionShape3D): Shape3D =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionShape3D, addr name, 3214262478)
   var ret: encoded Shape3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Shape3D)
+  (addr ret).decode_result(Shape3D)
 proc `disabled=`*(self: CollisionShape3D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -41,7 +41,7 @@ proc isDisabled*(self: CollisionShape3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionShape3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc makeConvexFromSiblings*(self: CollisionShape3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

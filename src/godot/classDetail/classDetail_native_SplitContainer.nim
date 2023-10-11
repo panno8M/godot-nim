@@ -19,7 +19,7 @@ proc splitOffset*(self: SplitContainer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className SplitContainer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc clampSplitOffset*(self: SplitContainer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -40,7 +40,7 @@ proc isCollapsed*(self: SplitContainer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SplitContainer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `draggerVisibility=`*(self: SplitContainer; mode: SplitContainer_DraggerVisibility) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -55,7 +55,7 @@ proc draggerVisibility*(self: SplitContainer): SplitContainer_DraggerVisibility 
     methodbind = interface_ClassDB_getMethodBind(addr className SplitContainer, addr name, 967297479)
   var ret: encoded SplitContainer_DraggerVisibility
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(SplitContainer_DraggerVisibility)
+  (addr ret).decode_result(SplitContainer_DraggerVisibility)
 proc `vertical=`*(self: SplitContainer; vertical: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -70,4 +70,4 @@ proc isVertical*(self: SplitContainer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SplitContainer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

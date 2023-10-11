@@ -19,7 +19,7 @@ proc polygon*(self: CSGPolygon3D): PackedVector2Array =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGPolygon3D, addr name, 2961356807)
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedVector2Array)
+  (addr ret).decode_result(PackedVector2Array)
 proc `mode=`*(self: CSGPolygon3D; mode: CSGPolygon3D_Mode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc mode*(self: CSGPolygon3D): CSGPolygon3D_Mode =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGPolygon3D, addr name, 1201612222)
   var ret: encoded CSGPolygon3D_Mode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(CSGPolygon3D_Mode)
+  (addr ret).decode_result(CSGPolygon3D_Mode)
 proc `depth=`*(self: CSGPolygon3D; depth: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc depth*(self: CSGPolygon3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGPolygon3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `spinDegrees=`*(self: CSGPolygon3D; degrees: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc spinDegrees*(self: CSGPolygon3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGPolygon3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `spinSides=`*(self: CSGPolygon3D; spinSides: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc spinSides*(self: CSGPolygon3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGPolygon3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `pathNode=`*(self: CSGPolygon3D; path: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc pathNode*(self: CSGPolygon3D): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGPolygon3D, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc `pathIntervalType=`*(self: CSGPolygon3D; intervalType: CSGPolygon3D_PathIntervalType) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc pathIntervalType*(self: CSGPolygon3D): CSGPolygon3D_PathIntervalType =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGPolygon3D, addr name, 3434618397)
   var ret: encoded CSGPolygon3D_PathIntervalType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(CSGPolygon3D_PathIntervalType)
+  (addr ret).decode_result(CSGPolygon3D_PathIntervalType)
 proc `pathInterval=`*(self: CSGPolygon3D; interval: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc pathInterval*(self: CSGPolygon3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGPolygon3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `pathSimplifyAngle=`*(self: CSGPolygon3D; degrees: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc pathSimplifyAngle*(self: CSGPolygon3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGPolygon3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `pathRotation=`*(self: CSGPolygon3D; pathRotation: CSGPolygon3D_PathRotation) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -154,7 +154,7 @@ proc pathRotation*(self: CSGPolygon3D): CSGPolygon3D_PathRotation =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGPolygon3D, addr name, 647219346)
   var ret: encoded CSGPolygon3D_PathRotation
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(CSGPolygon3D_PathRotation)
+  (addr ret).decode_result(CSGPolygon3D_PathRotation)
 proc `pathLocal=`*(self: CSGPolygon3D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -169,7 +169,7 @@ proc isPathLocal*(self: CSGPolygon3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGPolygon3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `pathContinuousU=`*(self: CSGPolygon3D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -184,7 +184,7 @@ proc isPathContinuousU*(self: CSGPolygon3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGPolygon3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `pathUDistance=`*(self: CSGPolygon3D; distance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -199,7 +199,7 @@ proc pathUDistance*(self: CSGPolygon3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGPolygon3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `pathJoined=`*(self: CSGPolygon3D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -214,7 +214,7 @@ proc isPathJoined*(self: CSGPolygon3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGPolygon3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `material=`*(self: CSGPolygon3D; material: Material) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -229,7 +229,7 @@ proc material*(self: CSGPolygon3D): Material =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGPolygon3D, addr name, 5934680)
   var ret: encoded Material
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Material)
+  (addr ret).decode_result(Material)
 proc `smoothFaces=`*(self: CSGPolygon3D; smoothFaces: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -244,4 +244,4 @@ proc smoothFaces*(self: CSGPolygon3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGPolygon3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

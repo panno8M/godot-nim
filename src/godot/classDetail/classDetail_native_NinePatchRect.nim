@@ -19,7 +19,7 @@ proc texture*(self: NinePatchRect): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className NinePatchRect, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc `patchMargin=`*(self: NinePatchRect; margin: Side; value: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -35,7 +35,7 @@ proc patchMargin*(self: NinePatchRect; margin: Side): int32 =
   var `?param` = [getPtr margin]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `regionRect=`*(self: NinePatchRect; rect: Rect2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -50,7 +50,7 @@ proc regionRect*(self: NinePatchRect): Rect2 =
     methodbind = interface_ClassDB_getMethodBind(addr className NinePatchRect, addr name, 1639390495)
   var ret: encoded Rect2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Rect2)
+  (addr ret).decode_result(Rect2)
 proc `drawCenter=`*(self: NinePatchRect; drawCenter: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -65,7 +65,7 @@ proc isDrawCenterEnabled*(self: NinePatchRect): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className NinePatchRect, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `hAxisStretchMode=`*(self: NinePatchRect; mode: NinePatchRect_AxisStretchMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -80,7 +80,7 @@ proc hAxisStretchMode*(self: NinePatchRect): NinePatchRect_AxisStretchMode =
     methodbind = interface_ClassDB_getMethodBind(addr className NinePatchRect, addr name, 3317113799)
   var ret: encoded NinePatchRect_AxisStretchMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NinePatchRect_AxisStretchMode)
+  (addr ret).decode_result(NinePatchRect_AxisStretchMode)
 proc `vAxisStretchMode=`*(self: NinePatchRect; mode: NinePatchRect_AxisStretchMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -95,4 +95,4 @@ proc vAxisStretchMode*(self: NinePatchRect): NinePatchRect_AxisStretchMode =
     methodbind = interface_ClassDB_getMethodBind(addr className NinePatchRect, addr name, 3317113799)
   var ret: encoded NinePatchRect_AxisStretchMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NinePatchRect_AxisStretchMode)
+  (addr ret).decode_result(NinePatchRect_AxisStretchMode)

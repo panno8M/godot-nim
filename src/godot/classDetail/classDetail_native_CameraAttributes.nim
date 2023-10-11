@@ -19,7 +19,7 @@ proc exposureMultiplier*(self: CameraAttributes): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributes, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `exposureSensitivity=`*(self: CameraAttributes; sensitivity: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc exposureSensitivity*(self: CameraAttributes): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributes, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `autoExposureEnabled=`*(self: CameraAttributes; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc isAutoExposureEnabled*(self: CameraAttributes): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributes, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `autoExposureSpeed=`*(self: CameraAttributes; exposureSpeed: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc autoExposureSpeed*(self: CameraAttributes): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributes, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `autoExposureScale=`*(self: CameraAttributes; exposureGrey: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,4 +79,4 @@ proc autoExposureScale*(self: CameraAttributes): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributes, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

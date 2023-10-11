@@ -19,4 +19,4 @@ proc getHeldModificationStack*(self: SkeletonModification2DStackHolder): Skeleto
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DStackHolder, addr name, 2107508396)
   var ret: encoded SkeletonModificationStack2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(SkeletonModificationStack2D)
+  (addr ret).decode_result(SkeletonModificationStack2D)

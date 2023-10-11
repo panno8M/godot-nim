@@ -61,7 +61,7 @@ proc getNode3d*(self: EditorNode3DGizmo): Node3D =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorNode3DGizmo, addr name, 151077316)
   var ret: encoded Node3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Node3D)
+  (addr ret).decode_result(Node3D)
 proc getPlugin*(self: EditorNode3DGizmo): EditorNode3DGizmoPlugin =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -69,7 +69,7 @@ proc getPlugin*(self: EditorNode3DGizmo): EditorNode3DGizmoPlugin =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorNode3DGizmo, addr name, 4250544552)
   var ret: encoded EditorNode3DGizmoPlugin
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(EditorNode3DGizmoPlugin)
+  (addr ret).decode_result(EditorNode3DGizmoPlugin)
 proc clear*(self: EditorNode3DGizmo) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -91,7 +91,7 @@ proc isSubgizmoSelected*(self: EditorNode3DGizmo; id: int32): Bool =
   var `?param` = [getPtr id]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getSubgizmoSelection*(self: EditorNode3DGizmo): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -99,4 +99,4 @@ proc getSubgizmoSelection*(self: EditorNode3DGizmo): PackedInt32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorNode3DGizmo, addr name, 1930428628)
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)

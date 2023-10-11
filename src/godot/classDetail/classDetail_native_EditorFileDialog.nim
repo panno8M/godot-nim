@@ -32,7 +32,7 @@ proc filters*(self: EditorFileDialog): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFileDialog, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc currentDir*(self: EditorFileDialog): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -40,7 +40,7 @@ proc currentDir*(self: EditorFileDialog): String =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFileDialog, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc currentFile*(self: EditorFileDialog): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -48,7 +48,7 @@ proc currentFile*(self: EditorFileDialog): String =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFileDialog, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc currentPath*(self: EditorFileDialog): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -56,7 +56,7 @@ proc currentPath*(self: EditorFileDialog): String =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFileDialog, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `currentDir=`*(self: EditorFileDialog; dir: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -92,7 +92,7 @@ proc fileMode*(self: EditorFileDialog): EditorFileDialog_FileMode =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFileDialog, addr name, 2681044145)
   var ret: encoded EditorFileDialog_FileMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(EditorFileDialog_FileMode)
+  (addr ret).decode_result(EditorFileDialog_FileMode)
 proc getVbox*(self: EditorFileDialog): VBoxContainer =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -100,7 +100,7 @@ proc getVbox*(self: EditorFileDialog): VBoxContainer =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFileDialog, addr name, 915758477)
   var ret: encoded VBoxContainer
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VBoxContainer)
+  (addr ret).decode_result(VBoxContainer)
 proc getLineEdit*(self: EditorFileDialog): LineEdit =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -108,7 +108,7 @@ proc getLineEdit*(self: EditorFileDialog): LineEdit =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFileDialog, addr name, 4071694264)
   var ret: encoded LineEdit
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(LineEdit)
+  (addr ret).decode_result(LineEdit)
 proc `access=`*(self: EditorFileDialog; access: EditorFileDialog_Access) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -123,7 +123,7 @@ proc access*(self: EditorFileDialog): EditorFileDialog_Access =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFileDialog, addr name, 778734016)
   var ret: encoded EditorFileDialog_Access
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(EditorFileDialog_Access)
+  (addr ret).decode_result(EditorFileDialog_Access)
 proc `showHiddenFiles=`*(self: EditorFileDialog; show: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -138,7 +138,7 @@ proc isShowingHiddenFiles*(self: EditorFileDialog): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFileDialog, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `displayMode=`*(self: EditorFileDialog; mode: EditorFileDialog_DisplayMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -153,7 +153,7 @@ proc displayMode*(self: EditorFileDialog): EditorFileDialog_DisplayMode =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFileDialog, addr name, 3517174669)
   var ret: encoded EditorFileDialog_DisplayMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(EditorFileDialog_DisplayMode)
+  (addr ret).decode_result(EditorFileDialog_DisplayMode)
 proc `disableOverwriteWarning=`*(self: EditorFileDialog; disable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -168,7 +168,7 @@ proc isOverwriteWarningDisabled*(self: EditorFileDialog): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFileDialog, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc invalidate*(self: EditorFileDialog) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

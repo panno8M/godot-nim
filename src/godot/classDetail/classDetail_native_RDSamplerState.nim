@@ -19,7 +19,7 @@ proc magFilter*(self: RDSamplerState): RenderingDevice_SamplerFilter =
     methodbind = interface_ClassDB_getMethodBind(addr className RDSamplerState, addr name, 2209202801)
   var ret: encoded RenderingDevice_SamplerFilter
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_SamplerFilter)
+  (addr ret).decode_result(RenderingDevice_SamplerFilter)
 proc `minFilter=`*(self: RDSamplerState; pMember: RenderingDevice_SamplerFilter) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc minFilter*(self: RDSamplerState): RenderingDevice_SamplerFilter =
     methodbind = interface_ClassDB_getMethodBind(addr className RDSamplerState, addr name, 2209202801)
   var ret: encoded RenderingDevice_SamplerFilter
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_SamplerFilter)
+  (addr ret).decode_result(RenderingDevice_SamplerFilter)
 proc `mipFilter=`*(self: RDSamplerState; pMember: RenderingDevice_SamplerFilter) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc mipFilter*(self: RDSamplerState): RenderingDevice_SamplerFilter =
     methodbind = interface_ClassDB_getMethodBind(addr className RDSamplerState, addr name, 2209202801)
   var ret: encoded RenderingDevice_SamplerFilter
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_SamplerFilter)
+  (addr ret).decode_result(RenderingDevice_SamplerFilter)
 proc `repeatU=`*(self: RDSamplerState; pMember: RenderingDevice_SamplerRepeatMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc repeatU*(self: RDSamplerState): RenderingDevice_SamplerRepeatMode =
     methodbind = interface_ClassDB_getMethodBind(addr className RDSamplerState, addr name, 3227895872)
   var ret: encoded RenderingDevice_SamplerRepeatMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_SamplerRepeatMode)
+  (addr ret).decode_result(RenderingDevice_SamplerRepeatMode)
 proc `repeatV=`*(self: RDSamplerState; pMember: RenderingDevice_SamplerRepeatMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc repeatV*(self: RDSamplerState): RenderingDevice_SamplerRepeatMode =
     methodbind = interface_ClassDB_getMethodBind(addr className RDSamplerState, addr name, 3227895872)
   var ret: encoded RenderingDevice_SamplerRepeatMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_SamplerRepeatMode)
+  (addr ret).decode_result(RenderingDevice_SamplerRepeatMode)
 proc `repeatW=`*(self: RDSamplerState; pMember: RenderingDevice_SamplerRepeatMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc repeatW*(self: RDSamplerState): RenderingDevice_SamplerRepeatMode =
     methodbind = interface_ClassDB_getMethodBind(addr className RDSamplerState, addr name, 3227895872)
   var ret: encoded RenderingDevice_SamplerRepeatMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_SamplerRepeatMode)
+  (addr ret).decode_result(RenderingDevice_SamplerRepeatMode)
 proc `lodBias=`*(self: RDSamplerState; pMember: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc lodBias*(self: RDSamplerState): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className RDSamplerState, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `useAnisotropy=`*(self: RDSamplerState; pMember: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc useAnisotropy*(self: RDSamplerState): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RDSamplerState, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `anisotropyMax=`*(self: RDSamplerState; pMember: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc anisotropyMax*(self: RDSamplerState): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className RDSamplerState, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `enableCompare=`*(self: RDSamplerState; pMember: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -154,7 +154,7 @@ proc enableCompare*(self: RDSamplerState): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RDSamplerState, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `compareOp=`*(self: RDSamplerState; pMember: RenderingDevice_CompareOperator) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -169,7 +169,7 @@ proc compareOp*(self: RDSamplerState): RenderingDevice_CompareOperator =
     methodbind = interface_ClassDB_getMethodBind(addr className RDSamplerState, addr name, 269730778)
   var ret: encoded RenderingDevice_CompareOperator
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_CompareOperator)
+  (addr ret).decode_result(RenderingDevice_CompareOperator)
 proc `minLod=`*(self: RDSamplerState; pMember: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -184,7 +184,7 @@ proc minLod*(self: RDSamplerState): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className RDSamplerState, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `maxLod=`*(self: RDSamplerState; pMember: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -199,7 +199,7 @@ proc maxLod*(self: RDSamplerState): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className RDSamplerState, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `borderColor=`*(self: RDSamplerState; pMember: RenderingDevice_SamplerBorderColor) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -214,7 +214,7 @@ proc borderColor*(self: RDSamplerState): RenderingDevice_SamplerBorderColor =
     methodbind = interface_ClassDB_getMethodBind(addr className RDSamplerState, addr name, 3514246478)
   var ret: encoded RenderingDevice_SamplerBorderColor
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_SamplerBorderColor)
+  (addr ret).decode_result(RenderingDevice_SamplerBorderColor)
 proc `unnormalizedUvw=`*(self: RDSamplerState; pMember: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -229,4 +229,4 @@ proc unnormalizedUvw*(self: RDSamplerState): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RDSamplerState, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

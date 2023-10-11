@@ -13,7 +13,7 @@ proc hasAction*(self: InputMap; action: StringName): Bool =
   var `?param` = [getPtr action]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getActions*(self: InputMap): TypedArray[StringName] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -21,7 +21,7 @@ proc getActions*(self: InputMap): TypedArray[StringName] =
     methodbind = interface_ClassDB_getMethodBind(addr className InputMap, addr name, 2915620761)
   var ret: encoded TypedArray[StringName]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[StringName])
+  (addr ret).decode_result(TypedArray[StringName])
 proc addAction*(self: InputMap; action: StringName; deadzone: Float = 0.5) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -51,7 +51,7 @@ proc actionGetDeadzone*(self: InputMap; action: StringName): Float =
   var `?param` = [getPtr action]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc actionAddEvent*(self: InputMap; action: StringName; event: InputEvent) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -67,7 +67,7 @@ proc actionHasEvent*(self: InputMap; action: StringName; event: InputEvent): Boo
   var `?param` = [getPtr action, getPtr event]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc actionEraseEvent*(self: InputMap; action: StringName; event: InputEvent) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -90,7 +90,7 @@ proc actionGetEvents*(self: InputMap; action: StringName): TypedArray[InputEvent
   var `?param` = [getPtr action]
   var ret: encoded TypedArray[InputEvent]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[InputEvent])
+  (addr ret).decode_result(TypedArray[InputEvent])
 proc eventIsAction*(self: InputMap; event: InputEvent; action: StringName; exactMatch: Bool = false): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -99,7 +99,7 @@ proc eventIsAction*(self: InputMap; event: InputEvent; action: StringName; exact
   var `?param` = [getPtr event, getPtr action, getPtr exactMatch]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc loadFromProjectSettings*(self: InputMap) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

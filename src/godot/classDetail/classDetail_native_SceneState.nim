@@ -12,7 +12,7 @@ proc getNodeCount*(self: SceneState): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className SceneState, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getNodeType*(self: SceneState; idx: int32): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -21,7 +21,7 @@ proc getNodeType*(self: SceneState; idx: int32): StringName =
   var `?param` = [getPtr idx]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc getNodeName*(self: SceneState; idx: int32): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -30,7 +30,7 @@ proc getNodeName*(self: SceneState; idx: int32): StringName =
   var `?param` = [getPtr idx]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc getNodePath*(self: SceneState; idx: int32; forParent: Bool = false): NodePath =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -39,7 +39,7 @@ proc getNodePath*(self: SceneState; idx: int32; forParent: Bool = false): NodePa
   var `?param` = [getPtr idx, getPtr forParent]
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc getNodeOwnerPath*(self: SceneState; idx: int32): NodePath =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -48,7 +48,7 @@ proc getNodeOwnerPath*(self: SceneState; idx: int32): NodePath =
   var `?param` = [getPtr idx]
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc isNodeInstancePlaceholder*(self: SceneState; idx: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc isNodeInstancePlaceholder*(self: SceneState; idx: int32): Bool =
   var `?param` = [getPtr idx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getNodeInstancePlaceholder*(self: SceneState; idx: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -66,7 +66,7 @@ proc getNodeInstancePlaceholder*(self: SceneState; idx: int32): String =
   var `?param` = [getPtr idx]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getNodeInstance*(self: SceneState; idx: int32): PackedScene =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -75,7 +75,7 @@ proc getNodeInstance*(self: SceneState; idx: int32): PackedScene =
   var `?param` = [getPtr idx]
   var ret: encoded PackedScene
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedScene)
+  (addr ret).decode_result(PackedScene)
 proc getNodeGroups*(self: SceneState; idx: int32): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -84,7 +84,7 @@ proc getNodeGroups*(self: SceneState; idx: int32): PackedStringArray =
   var `?param` = [getPtr idx]
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc getNodeIndex*(self: SceneState; idx: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -93,7 +93,7 @@ proc getNodeIndex*(self: SceneState; idx: int32): int32 =
   var `?param` = [getPtr idx]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getNodePropertyCount*(self: SceneState; idx: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -102,7 +102,7 @@ proc getNodePropertyCount*(self: SceneState; idx: int32): int32 =
   var `?param` = [getPtr idx]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getNodePropertyName*(self: SceneState; idx: int32; propIdx: int32): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -111,7 +111,7 @@ proc getNodePropertyName*(self: SceneState; idx: int32; propIdx: int32): StringN
   var `?param` = [getPtr idx, getPtr propIdx]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc getNodePropertyValue*(self: SceneState; idx: int32; propIdx: int32): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -120,7 +120,7 @@ proc getNodePropertyValue*(self: SceneState; idx: int32; propIdx: int32): Varian
   var `?param` = [getPtr idx, getPtr propIdx]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc getConnectionCount*(self: SceneState): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -128,7 +128,7 @@ proc getConnectionCount*(self: SceneState): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className SceneState, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getConnectionSource*(self: SceneState; idx: int32): NodePath =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -137,7 +137,7 @@ proc getConnectionSource*(self: SceneState; idx: int32): NodePath =
   var `?param` = [getPtr idx]
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc getConnectionSignal*(self: SceneState; idx: int32): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -146,7 +146,7 @@ proc getConnectionSignal*(self: SceneState; idx: int32): StringName =
   var `?param` = [getPtr idx]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc getConnectionTarget*(self: SceneState; idx: int32): NodePath =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -155,7 +155,7 @@ proc getConnectionTarget*(self: SceneState; idx: int32): NodePath =
   var `?param` = [getPtr idx]
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc getConnectionMethod*(self: SceneState; idx: int32): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -164,7 +164,7 @@ proc getConnectionMethod*(self: SceneState; idx: int32): StringName =
   var `?param` = [getPtr idx]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc getConnectionFlags*(self: SceneState; idx: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -173,7 +173,7 @@ proc getConnectionFlags*(self: SceneState; idx: int32): int32 =
   var `?param` = [getPtr idx]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getConnectionBinds*(self: SceneState; idx: int32): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -182,7 +182,7 @@ proc getConnectionBinds*(self: SceneState; idx: int32): Array =
   var `?param` = [getPtr idx]
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)
 proc getConnectionUnbinds*(self: SceneState; idx: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -191,4 +191,4 @@ proc getConnectionUnbinds*(self: SceneState; idx: int32): int32 =
   var `?param` = [getPtr idx]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)

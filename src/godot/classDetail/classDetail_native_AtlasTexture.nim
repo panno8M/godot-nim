@@ -19,7 +19,7 @@ proc atlas*(self: AtlasTexture): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className AtlasTexture, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc `region=`*(self: AtlasTexture; region: Rect2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc region*(self: AtlasTexture): Rect2 =
     methodbind = interface_ClassDB_getMethodBind(addr className AtlasTexture, addr name, 1639390495)
   var ret: encoded Rect2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Rect2)
+  (addr ret).decode_result(Rect2)
 proc `margin=`*(self: AtlasTexture; margin: Rect2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc margin*(self: AtlasTexture): Rect2 =
     methodbind = interface_ClassDB_getMethodBind(addr className AtlasTexture, addr name, 1639390495)
   var ret: encoded Rect2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Rect2)
+  (addr ret).decode_result(Rect2)
 proc `filterClip=`*(self: AtlasTexture; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,4 +64,4 @@ proc hasFilterClip*(self: AtlasTexture): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AtlasTexture, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

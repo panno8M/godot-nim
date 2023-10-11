@@ -13,7 +13,7 @@ proc createFromImages*(self: ImageTextureLayered; images: TypedArray[Image]): Er
   var `?param` = [getPtr images]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc updateLayer*(self: ImageTextureLayered; image: Image; layer: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

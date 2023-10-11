@@ -13,7 +13,7 @@ proc save*(self: ResourceSaver; resource: Resource; path: String = ""; flags: se
   var `?param` = [getPtr resource, getPtr path, getPtr flags]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc getRecognizedExtensions*(self: ResourceSaver; `type`: Resource): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc getRecognizedExtensions*(self: ResourceSaver; `type`: Resource): PackedStri
   var `?param` = [getPtr `type`]
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc addResourceFormatSaver*(self: ResourceSaver; formatSaver: ResourceFormatSaver; atFront: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

@@ -19,7 +19,7 @@ proc nodeA*(self: Joint3D): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className Joint3D, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc `nodeB=`*(self: Joint3D; node: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc nodeB*(self: Joint3D): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className Joint3D, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc `solverPriority=`*(self: Joint3D; priority: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc solverPriority*(self: Joint3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Joint3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `excludeNodesFromCollision=`*(self: Joint3D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,4 +64,4 @@ proc excludeNodesFromCollision*(self: Joint3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Joint3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

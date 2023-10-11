@@ -19,7 +19,7 @@ proc remoteNode*(self: RemoteTransform3D): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className RemoteTransform3D, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc forceUpdateCache*(self: RemoteTransform3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -40,7 +40,7 @@ proc useGlobalCoordinates*(self: RemoteTransform3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RemoteTransform3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `updatePosition=`*(self: RemoteTransform3D; updateRemotePosition: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -55,7 +55,7 @@ proc updatePosition*(self: RemoteTransform3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RemoteTransform3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `updateRotation=`*(self: RemoteTransform3D; updateRemoteRotation: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -70,7 +70,7 @@ proc updateRotation*(self: RemoteTransform3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RemoteTransform3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `updateScale=`*(self: RemoteTransform3D; updateRemoteScale: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -85,4 +85,4 @@ proc updateScale*(self: RemoteTransform3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RemoteTransform3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

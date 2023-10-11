@@ -13,4 +13,4 @@ proc setDelay*(self: CallbackTweener; delay: float64): CallbackTweener =
   var `?param` = [getPtr delay]
   var ret: encoded CallbackTweener
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(CallbackTweener)
+  (addr ret).decode_result(CallbackTweener)

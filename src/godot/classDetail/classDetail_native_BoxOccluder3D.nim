@@ -19,4 +19,4 @@ proc size*(self: BoxOccluder3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className BoxOccluder3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)

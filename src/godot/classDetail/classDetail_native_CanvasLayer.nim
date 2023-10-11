@@ -19,7 +19,7 @@ proc layer*(self: CanvasLayer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasLayer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `visible=`*(self: CanvasLayer; visible: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc isVisible*(self: CanvasLayer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasLayer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc show*(self: CanvasLayer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -61,7 +61,7 @@ proc transform*(self: CanvasLayer): Transform2D =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasLayer, addr name, 3814499831)
   var ret: encoded Transform2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform2D)
+  (addr ret).decode_result(Transform2D)
 proc getFinalTransform*(self: CanvasLayer): Transform2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -69,7 +69,7 @@ proc getFinalTransform*(self: CanvasLayer): Transform2D =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasLayer, addr name, 3814499831)
   var ret: encoded Transform2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform2D)
+  (addr ret).decode_result(Transform2D)
 proc `offset=`*(self: CanvasLayer; offset: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -84,7 +84,7 @@ proc offset*(self: CanvasLayer): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasLayer, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `rotation=`*(self: CanvasLayer; radians: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -99,7 +99,7 @@ proc rotation*(self: CanvasLayer): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasLayer, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `scale=`*(self: CanvasLayer; scale: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -114,7 +114,7 @@ proc scale*(self: CanvasLayer): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasLayer, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `followViewport=`*(self: CanvasLayer; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -129,7 +129,7 @@ proc isFollowingViewport*(self: CanvasLayer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasLayer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `followViewportScale=`*(self: CanvasLayer; scale: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -144,7 +144,7 @@ proc followViewportScale*(self: CanvasLayer): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasLayer, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `customViewport=`*(self: CanvasLayer; viewport: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -159,7 +159,7 @@ proc customViewport*(self: CanvasLayer): Node =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasLayer, addr name, 3160264692)
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Node)
+  (addr ret).decode_result(Node)
 proc getCanvas*(self: CanvasLayer): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -167,4 +167,4 @@ proc getCanvas*(self: CanvasLayer): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasLayer, addr name, 2944877500)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)

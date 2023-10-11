@@ -19,7 +19,7 @@ proc getSkinWeightCount*(self: SurfaceTool): SurfaceTool_SkinWeightCount =
     methodbind = interface_ClassDB_getMethodBind(addr className SurfaceTool, addr name, 1072401130)
   var ret: encoded SurfaceTool_SkinWeightCount
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(SurfaceTool_SkinWeightCount)
+  (addr ret).decode_result(SurfaceTool_SkinWeightCount)
 proc setCustomFormat*(self: SurfaceTool; channelIndex: int32; format: SurfaceTool_CustomFormat) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -35,7 +35,7 @@ proc getCustomFormat*(self: SurfaceTool; channelIndex: int32): SurfaceTool_Custo
   var `?param` = [getPtr channelIndex]
   var ret: encoded SurfaceTool_CustomFormat
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(SurfaceTool_CustomFormat)
+  (addr ret).decode_result(SurfaceTool_CustomFormat)
 proc begin*(self: SurfaceTool; primitive: Mesh_PrimitiveType) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -165,7 +165,7 @@ proc getAabb*(self: SurfaceTool): AABB =
     methodbind = interface_ClassDB_getMethodBind(addr className SurfaceTool, addr name, 1068685055)
   var ret: encoded AABB
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AABB)
+  (addr ret).decode_result(AABB)
 proc generateLod*(self: SurfaceTool; ndThreshold: Float; targetIndexCount: int32 = 3): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -174,7 +174,7 @@ proc generateLod*(self: SurfaceTool; ndThreshold: Float; targetIndexCount: int32
   var `?param` = [getPtr ndThreshold, getPtr targetIndexCount]
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc setMaterial*(self: SurfaceTool; material: Material) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -189,7 +189,7 @@ proc getPrimitiveType*(self: SurfaceTool): Mesh_PrimitiveType =
     methodbind = interface_ClassDB_getMethodBind(addr className SurfaceTool, addr name, 768822145)
   var ret: encoded Mesh_PrimitiveType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Mesh_PrimitiveType)
+  (addr ret).decode_result(Mesh_PrimitiveType)
 proc clear*(self: SurfaceTool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -225,7 +225,7 @@ proc commit*(self: SurfaceTool; existing: ArrayMesh = default ArrayMesh; flags: 
   var `?param` = [getPtr existing, getPtr flags]
   var ret: encoded ArrayMesh
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(ArrayMesh)
+  (addr ret).decode_result(ArrayMesh)
 proc commitToArrays*(self: SurfaceTool): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -233,4 +233,4 @@ proc commitToArrays*(self: SurfaceTool): Array =
     methodbind = interface_ClassDB_getMethodBind(addr className SurfaceTool, addr name, 2915620761)
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)

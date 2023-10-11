@@ -13,7 +13,7 @@ proc isButtonPressed*(self: XRController3D; name: StringName): Bool =
   var `?param` = [getPtr name]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getInput*(self: XRController3D; name: StringName): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc getInput*(self: XRController3D; name: StringName): Variant =
   var `?param` = [getPtr name]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc getFloat*(self: XRController3D; name: StringName): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -31,7 +31,7 @@ proc getFloat*(self: XRController3D; name: StringName): Float =
   var `?param` = [getPtr name]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getVector2*(self: XRController3D; name: StringName): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -40,7 +40,7 @@ proc getVector2*(self: XRController3D; name: StringName): Vector2 =
   var `?param` = [getPtr name]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getTrackerHand*(self: XRController3D): XRPositionalTracker_TrackerHand =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -48,4 +48,4 @@ proc getTrackerHand*(self: XRController3D): XRPositionalTracker_TrackerHand =
     methodbind = interface_ClassDB_getMethodBind(addr className XRController3D, addr name, 4181770860)
   var ret: encoded XRPositionalTracker_TrackerHand
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(XRPositionalTracker_TrackerHand)
+  (addr ret).decode_result(XRPositionalTracker_TrackerHand)

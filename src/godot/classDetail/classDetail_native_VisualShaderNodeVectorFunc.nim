@@ -19,4 +19,4 @@ proc function*(self: VisualShaderNodeVectorFunc): VisualShaderNodeVectorFunc_Fun
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeVectorFunc, addr name, 4047776843)
   var ret: encoded VisualShaderNodeVectorFunc_Function
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VisualShaderNodeVectorFunc_Function)
+  (addr ret).decode_result(VisualShaderNodeVectorFunc_Function)

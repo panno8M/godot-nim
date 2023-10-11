@@ -19,7 +19,7 @@ proc panPullout*(self: AudioEffectStereoEnhance): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectStereoEnhance, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `timePullout=`*(self: AudioEffectStereoEnhance; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc timePullout*(self: AudioEffectStereoEnhance): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectStereoEnhance, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `surround=`*(self: AudioEffectStereoEnhance; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,4 +49,4 @@ proc surround*(self: AudioEffectStereoEnhance): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectStereoEnhance, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

@@ -13,7 +13,7 @@ proc getMonitor*(self: Performance; monitor: Performance_Monitor): float64 =
   var `?param` = [getPtr monitor]
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc addCustomMonitor*(self: Performance; id: StringName; callable: Callable; arguments: Array = init_Array()) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -36,7 +36,7 @@ proc hasCustomMonitor*(self: Performance; id: StringName): Bool =
   var `?param` = [getPtr id]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getCustomMonitor*(self: Performance; id: StringName): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -45,7 +45,7 @@ proc getCustomMonitor*(self: Performance; id: StringName): Variant =
   var `?param` = [getPtr id]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc getMonitorModificationTime*(self: Performance): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -53,7 +53,7 @@ proc getMonitorModificationTime*(self: Performance): uint64 =
     methodbind = interface_ClassDB_getMethodBind(addr className Performance, addr name, 2455072627)
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)
 proc getCustomMonitorNames*(self: Performance): TypedArray[StringName] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -61,4 +61,4 @@ proc getCustomMonitorNames*(self: Performance): TypedArray[StringName] =
     methodbind = interface_ClassDB_getMethodBind(addr className Performance, addr name, 2915620761)
   var ret: encoded TypedArray[StringName]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[StringName])
+  (addr ret).decode_result(TypedArray[StringName])

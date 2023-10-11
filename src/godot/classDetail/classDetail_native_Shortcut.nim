@@ -19,7 +19,7 @@ proc events*(self: Shortcut): Array =
     methodbind = interface_ClassDB_getMethodBind(addr className Shortcut, addr name, 3995934104)
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)
 proc hasValidEvent*(self: Shortcut): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc hasValidEvent*(self: Shortcut): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Shortcut, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc matchesEvent*(self: Shortcut; event: InputEvent): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -36,7 +36,7 @@ proc matchesEvent*(self: Shortcut; event: InputEvent): Bool =
   var `?param` = [getPtr event]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getAsText*(self: Shortcut): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -44,4 +44,4 @@ proc getAsText*(self: Shortcut): String =
     methodbind = interface_ClassDB_getMethodBind(addr className Shortcut, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)

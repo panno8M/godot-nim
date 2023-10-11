@@ -19,7 +19,7 @@ proc cullMask*(self: GPUParticlesAttractor3D): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesAttractor3D, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `strength=`*(self: GPUParticlesAttractor3D; strength: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc strength*(self: GPUParticlesAttractor3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesAttractor3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `attenuation=`*(self: GPUParticlesAttractor3D; attenuation: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc attenuation*(self: GPUParticlesAttractor3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesAttractor3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `directionality=`*(self: GPUParticlesAttractor3D; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,4 +64,4 @@ proc directionality*(self: GPUParticlesAttractor3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesAttractor3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

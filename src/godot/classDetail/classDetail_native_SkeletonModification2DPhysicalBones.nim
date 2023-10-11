@@ -19,7 +19,7 @@ proc physicalBoneChainLength*(self: SkeletonModification2DPhysicalBones): int32 
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2DPhysicalBones, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setPhysicalBoneNode*(self: SkeletonModification2DPhysicalBones; jointIdx: int32; physicalbone2dNode: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -35,7 +35,7 @@ proc getPhysicalBoneNode*(self: SkeletonModification2DPhysicalBones; jointIdx: i
   var `?param` = [getPtr jointIdx]
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc fetchPhysicalBones*(self: SkeletonModification2DPhysicalBones) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

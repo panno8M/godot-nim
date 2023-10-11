@@ -19,4 +19,4 @@ proc shadowMode*(self: OmniLight3D): OmniLight3D_ShadowMode =
     methodbind = interface_ClassDB_getMethodBind(addr className OmniLight3D, addr name, 4181586331)
   var ret: encoded OmniLight3D_ShadowMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(OmniLight3D_ShadowMode)
+  (addr ret).decode_result(OmniLight3D_ShadowMode)

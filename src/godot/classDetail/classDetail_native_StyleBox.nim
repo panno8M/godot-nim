@@ -12,7 +12,7 @@ proc getMinimumSize*(self: StyleBox): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBox, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `contentMargin=`*(self: StyleBox; margin: Side; offset: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -35,7 +35,7 @@ proc contentMargin*(self: StyleBox; margin: Side): Float =
   var `?param` = [getPtr margin]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getMargin*(self: StyleBox; margin: Side): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -44,7 +44,7 @@ proc getMargin*(self: StyleBox; margin: Side): Float =
   var `?param` = [getPtr margin]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getOffset*(self: StyleBox): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -52,7 +52,7 @@ proc getOffset*(self: StyleBox): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBox, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc draw*(self: StyleBox; canvasItem: RID; rect: Rect2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -67,7 +67,7 @@ proc getCurrentItemDrawn*(self: StyleBox): CanvasItem =
     methodbind = interface_ClassDB_getMethodBind(addr className StyleBox, addr name, 3213695180)
   var ret: encoded CanvasItem
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(CanvasItem)
+  (addr ret).decode_result(CanvasItem)
 proc testMask*(self: StyleBox; point: Vector2; rect: Rect2): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -76,4 +76,4 @@ proc testMask*(self: StyleBox; point: Vector2; rect: Rect2): Bool =
   var `?param` = [getPtr point, getPtr rect]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

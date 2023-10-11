@@ -12,7 +12,7 @@ proc getDeviceCount*(self: UPNP): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className UPNP, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getDevice*(self: UPNP; index: int32): UPNPDevice =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -21,7 +21,7 @@ proc getDevice*(self: UPNP; index: int32): UPNPDevice =
   var `?param` = [getPtr index]
   var ret: encoded UPNPDevice
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(UPNPDevice)
+  (addr ret).decode_result(UPNPDevice)
 proc addDevice*(self: UPNP; device: UPNPDevice) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -56,7 +56,7 @@ proc getGateway*(self: UPNP): UPNPDevice =
     methodbind = interface_ClassDB_getMethodBind(addr className UPNP, addr name, 2276800779)
   var ret: encoded UPNPDevice
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(UPNPDevice)
+  (addr ret).decode_result(UPNPDevice)
 proc discover*(self: UPNP; timeout: int32 = 2000; ttl: int32 = 2; deviceFilter: String = "InternetGatewayDevice"): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -65,7 +65,7 @@ proc discover*(self: UPNP; timeout: int32 = 2000; ttl: int32 = 2; deviceFilter: 
   var `?param` = [getPtr timeout, getPtr ttl, getPtr deviceFilter]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc queryExternalAddress*(self: UPNP): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -73,7 +73,7 @@ proc queryExternalAddress*(self: UPNP): String =
     methodbind = interface_ClassDB_getMethodBind(addr className UPNP, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc addPortMapping*(self: UPNP; port: int32; portInternal: int32 = 0; desc: String = ""; proto: String = "UDP"; duration: int32 = 0): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -82,7 +82,7 @@ proc addPortMapping*(self: UPNP; port: int32; portInternal: int32 = 0; desc: Str
   var `?param` = [getPtr port, getPtr portInternal, getPtr desc, getPtr proto, getPtr duration]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc deletePortMapping*(self: UPNP; port: int32; proto: String = "UDP"): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -91,7 +91,7 @@ proc deletePortMapping*(self: UPNP; port: int32; proto: String = "UDP"): int32 =
   var `?param` = [getPtr port, getPtr proto]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `discoverMulticastIf=`*(self: UPNP; mIf: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -106,7 +106,7 @@ proc discoverMulticastIf*(self: UPNP): String =
     methodbind = interface_ClassDB_getMethodBind(addr className UPNP, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `discoverLocalPort=`*(self: UPNP; port: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -121,7 +121,7 @@ proc discoverLocalPort*(self: UPNP): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className UPNP, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `discoverIpv6=`*(self: UPNP; ipv6: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -136,4 +136,4 @@ proc isDiscoverIpv6*(self: UPNP): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className UPNP, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

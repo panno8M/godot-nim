@@ -25,7 +25,7 @@ proc direction*(self: TextParagraph): TextServer_Direction =
     methodbind = interface_ClassDB_getMethodBind(addr className TextParagraph, addr name, 2516697328)
   var ret: encoded TextServer_Direction
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextServer_Direction)
+  (addr ret).decode_result(TextServer_Direction)
 proc `customPunctuation=`*(self: TextParagraph; customPunctuation: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -40,7 +40,7 @@ proc customPunctuation*(self: TextParagraph): String =
     methodbind = interface_ClassDB_getMethodBind(addr className TextParagraph, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `orientation=`*(self: TextParagraph; orientation: TextServer_Orientation) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -55,7 +55,7 @@ proc orientation*(self: TextParagraph): TextServer_Orientation =
     methodbind = interface_ClassDB_getMethodBind(addr className TextParagraph, addr name, 175768116)
   var ret: encoded TextServer_Orientation
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextServer_Orientation)
+  (addr ret).decode_result(TextServer_Orientation)
 proc `preserveInvalid=`*(self: TextParagraph; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -70,7 +70,7 @@ proc preserveInvalid*(self: TextParagraph): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextParagraph, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `preserveControl=`*(self: TextParagraph; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -85,7 +85,7 @@ proc preserveControl*(self: TextParagraph): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextParagraph, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setBidiOverride*(self: TextParagraph; override: Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -101,7 +101,7 @@ proc setDropcap*(self: TextParagraph; text: String; font: Font; fontSize: int32;
   var `?param` = [getPtr text, getPtr font, getPtr fontSize, getPtr dropcapMargins, getPtr language]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc clearDropcap*(self: TextParagraph) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -116,7 +116,7 @@ proc addString*(self: TextParagraph; text: String; font: Font; fontSize: int32; 
   var `?param` = [getPtr text, getPtr font, getPtr fontSize, getPtr language, getPtr meta]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc addObject*(self: TextParagraph; key: Variant; size: Vector2; inlineAlign: InlineAlignment = inlineAlignmentCenter; length: int32 = 1; baseline: Float = 0.0): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -125,7 +125,7 @@ proc addObject*(self: TextParagraph; key: Variant; size: Vector2; inlineAlign: I
   var `?param` = [getPtr key, getPtr size, getPtr inlineAlign, getPtr length, getPtr baseline]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc resizeObject*(self: TextParagraph; key: Variant; size: Vector2; inlineAlign: InlineAlignment = inlineAlignmentCenter; baseline: Float = 0.0): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -134,7 +134,7 @@ proc resizeObject*(self: TextParagraph; key: Variant; size: Vector2; inlineAlign
   var `?param` = [getPtr key, getPtr size, getPtr inlineAlign, getPtr baseline]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `alignment=`*(self: TextParagraph; alignment: HorizontalAlignment) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -149,7 +149,7 @@ proc alignment*(self: TextParagraph): HorizontalAlignment =
     methodbind = interface_ClassDB_getMethodBind(addr className TextParagraph, addr name, 341400642)
   var ret: encoded HorizontalAlignment
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(HorizontalAlignment)
+  (addr ret).decode_result(HorizontalAlignment)
 proc tabAlign*(self: TextParagraph; tabStops: PackedFloat32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -171,7 +171,7 @@ proc breakFlags*(self: TextParagraph): set[TextServer_LineBreakFlag] =
     methodbind = interface_ClassDB_getMethodBind(addr className TextParagraph, addr name, 2340632602)
   var ret: encoded set[TextServer_LineBreakFlag]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(set[TextServer_LineBreakFlag])
+  (addr ret).decode_result(set[TextServer_LineBreakFlag])
 proc `justificationFlags=`*(self: TextParagraph; flags: set[TextServer_JustificationFlag]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -186,7 +186,7 @@ proc justificationFlags*(self: TextParagraph): set[TextServer_JustificationFlag]
     methodbind = interface_ClassDB_getMethodBind(addr className TextParagraph, addr name, 1583363614)
   var ret: encoded set[TextServer_JustificationFlag]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(set[TextServer_JustificationFlag])
+  (addr ret).decode_result(set[TextServer_JustificationFlag])
 proc `textOverrunBehavior=`*(self: TextParagraph; overrunBehavior: TextServer_OverrunBehavior) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -201,7 +201,7 @@ proc textOverrunBehavior*(self: TextParagraph): TextServer_OverrunBehavior =
     methodbind = interface_ClassDB_getMethodBind(addr className TextParagraph, addr name, 3779142101)
   var ret: encoded TextServer_OverrunBehavior
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextServer_OverrunBehavior)
+  (addr ret).decode_result(TextServer_OverrunBehavior)
 proc `width=`*(self: TextParagraph; width: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -216,7 +216,7 @@ proc width*(self: TextParagraph): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className TextParagraph, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getNonWrappedSize*(self: TextParagraph): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -224,7 +224,7 @@ proc getNonWrappedSize*(self: TextParagraph): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextParagraph, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getSize*(self: TextParagraph): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -232,7 +232,7 @@ proc getSize*(self: TextParagraph): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextParagraph, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getRid*(self: TextParagraph): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -240,7 +240,7 @@ proc getRid*(self: TextParagraph): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className TextParagraph, addr name, 2944877500)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc getLineRid*(self: TextParagraph; line: int32): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -249,7 +249,7 @@ proc getLineRid*(self: TextParagraph; line: int32): RID =
   var `?param` = [getPtr line]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc getDropcapRid*(self: TextParagraph): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -257,7 +257,7 @@ proc getDropcapRid*(self: TextParagraph): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className TextParagraph, addr name, 2944877500)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc getLineCount*(self: TextParagraph): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -265,7 +265,7 @@ proc getLineCount*(self: TextParagraph): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextParagraph, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `maxLinesVisible=`*(self: TextParagraph; maxLinesVisible: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -280,7 +280,7 @@ proc maxLinesVisible*(self: TextParagraph): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextParagraph, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getLineObjects*(self: TextParagraph; line: int32): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -289,7 +289,7 @@ proc getLineObjects*(self: TextParagraph; line: int32): Array =
   var `?param` = [getPtr line]
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)
 proc getLineObjectRect*(self: TextParagraph; line: int32; key: Variant): Rect2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -298,7 +298,7 @@ proc getLineObjectRect*(self: TextParagraph; line: int32; key: Variant): Rect2 =
   var `?param` = [getPtr line, getPtr key]
   var ret: encoded Rect2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Rect2)
+  (addr ret).decode_result(Rect2)
 proc getLineSize*(self: TextParagraph; line: int32): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -307,7 +307,7 @@ proc getLineSize*(self: TextParagraph; line: int32): Vector2 =
   var `?param` = [getPtr line]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getLineRange*(self: TextParagraph; line: int32): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -316,7 +316,7 @@ proc getLineRange*(self: TextParagraph; line: int32): Vector2i =
   var `?param` = [getPtr line]
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc getLineAscent*(self: TextParagraph; line: int32): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -325,7 +325,7 @@ proc getLineAscent*(self: TextParagraph; line: int32): Float =
   var `?param` = [getPtr line]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getLineDescent*(self: TextParagraph; line: int32): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -334,7 +334,7 @@ proc getLineDescent*(self: TextParagraph; line: int32): Float =
   var `?param` = [getPtr line]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getLineWidth*(self: TextParagraph; line: int32): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -343,7 +343,7 @@ proc getLineWidth*(self: TextParagraph; line: int32): Float =
   var `?param` = [getPtr line]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getLineUnderlinePosition*(self: TextParagraph; line: int32): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -352,7 +352,7 @@ proc getLineUnderlinePosition*(self: TextParagraph; line: int32): Float =
   var `?param` = [getPtr line]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getLineUnderlineThickness*(self: TextParagraph; line: int32): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -361,7 +361,7 @@ proc getLineUnderlineThickness*(self: TextParagraph; line: int32): Float =
   var `?param` = [getPtr line]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getDropcapSize*(self: TextParagraph): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -369,7 +369,7 @@ proc getDropcapSize*(self: TextParagraph): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextParagraph, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getDropcapLines*(self: TextParagraph): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -377,7 +377,7 @@ proc getDropcapLines*(self: TextParagraph): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextParagraph, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc draw*(self: TextParagraph; canvas: RID; pos: Vector2; color: Color = init_Color(1, 1, 1, 1); dcColor: Color = init_Color(1, 1, 1, 1)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -428,4 +428,4 @@ proc hitTest*(self: TextParagraph; coords: Vector2): int32 =
   var `?param` = [getPtr coords]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)

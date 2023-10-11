@@ -12,7 +12,7 @@ proc canInstantiate*(self: Script): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Script, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc instanceHas*(self: Script; baseObject: Object): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -21,7 +21,7 @@ proc instanceHas*(self: Script; baseObject: Object): Bool =
   var `?param` = [getPtr baseObject]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc hasSourceCode*(self: Script): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -29,7 +29,7 @@ proc hasSourceCode*(self: Script): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Script, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc sourceCode*(self: Script): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -37,7 +37,7 @@ proc sourceCode*(self: Script): String =
     methodbind = interface_ClassDB_getMethodBind(addr className Script, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `sourceCode=`*(self: Script; source: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -53,7 +53,7 @@ proc reload*(self: Script; keepState: Bool = false): Error =
   var `?param` = [getPtr keepState]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc getBaseScript*(self: Script): Script =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -61,7 +61,7 @@ proc getBaseScript*(self: Script): Script =
     methodbind = interface_ClassDB_getMethodBind(addr className Script, addr name, 278624046)
   var ret: encoded Script
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Script)
+  (addr ret).decode_result(Script)
 proc getInstanceBaseType*(self: Script): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -69,7 +69,7 @@ proc getInstanceBaseType*(self: Script): StringName =
     methodbind = interface_ClassDB_getMethodBind(addr className Script, addr name, 2002593661)
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc hasScriptSignal*(self: Script; signalName: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -78,7 +78,7 @@ proc hasScriptSignal*(self: Script; signalName: StringName): Bool =
   var `?param` = [getPtr signalName]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getScriptPropertyList*(self: Script): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -86,7 +86,7 @@ proc getScriptPropertyList*(self: Script): TypedArray[Dictionary] =
     methodbind = interface_ClassDB_getMethodBind(addr className Script, addr name, 2915620761)
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Dictionary])
+  (addr ret).decode_result(TypedArray[Dictionary])
 proc getScriptMethodList*(self: Script): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc getScriptMethodList*(self: Script): TypedArray[Dictionary] =
     methodbind = interface_ClassDB_getMethodBind(addr className Script, addr name, 2915620761)
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Dictionary])
+  (addr ret).decode_result(TypedArray[Dictionary])
 proc getScriptSignalList*(self: Script): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -102,7 +102,7 @@ proc getScriptSignalList*(self: Script): TypedArray[Dictionary] =
     methodbind = interface_ClassDB_getMethodBind(addr className Script, addr name, 2915620761)
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Dictionary])
+  (addr ret).decode_result(TypedArray[Dictionary])
 proc getScriptConstantMap*(self: Script): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -110,7 +110,7 @@ proc getScriptConstantMap*(self: Script): Dictionary =
     methodbind = interface_ClassDB_getMethodBind(addr className Script, addr name, 2382534195)
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc getPropertyDefaultValue*(self: Script; property: StringName): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -119,7 +119,7 @@ proc getPropertyDefaultValue*(self: Script; property: StringName): Variant =
   var `?param` = [getPtr property]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc isTool*(self: Script): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -127,4 +127,4 @@ proc isTool*(self: Script): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Script, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

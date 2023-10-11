@@ -19,7 +19,7 @@ proc enableMode*(self: VisibleOnScreenEnabler2D): VisibleOnScreenEnabler2D_Enabl
     methodbind = interface_ClassDB_getMethodBind(addr className VisibleOnScreenEnabler2D, addr name, 2650445576)
   var ret: encoded VisibleOnScreenEnabler2D_EnableMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VisibleOnScreenEnabler2D_EnableMode)
+  (addr ret).decode_result(VisibleOnScreenEnabler2D_EnableMode)
 proc `enableNodePath=`*(self: VisibleOnScreenEnabler2D; path: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,4 +34,4 @@ proc enableNodePath*(self: VisibleOnScreenEnabler2D): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className VisibleOnScreenEnabler2D, addr name, 277076166)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)

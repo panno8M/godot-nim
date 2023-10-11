@@ -13,7 +13,7 @@ proc generateRandomBytes*(self: Crypto; size: int32): PackedByteArray =
   var `?param` = [getPtr size]
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)
 proc generateRsa*(self: Crypto; size: int32): CryptoKey =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc generateRsa*(self: Crypto; size: int32): CryptoKey =
   var `?param` = [getPtr size]
   var ret: encoded CryptoKey
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(CryptoKey)
+  (addr ret).decode_result(CryptoKey)
 proc generateSelfSignedCertificate*(self: Crypto; key: CryptoKey; issuerName: String = "CN=myserver,O=myorganisation,C=IT"; notBefore: String = "20140101000000"; notAfter: String = "20340101000000"): X509Certificate =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -31,7 +31,7 @@ proc generateSelfSignedCertificate*(self: Crypto; key: CryptoKey; issuerName: St
   var `?param` = [getPtr key, getPtr issuerName, getPtr notBefore, getPtr notAfter]
   var ret: encoded X509Certificate
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(X509Certificate)
+  (addr ret).decode_result(X509Certificate)
 proc sign*(self: Crypto; hashType: HashingContext_HashType; hash: PackedByteArray; key: CryptoKey): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -40,7 +40,7 @@ proc sign*(self: Crypto; hashType: HashingContext_HashType; hash: PackedByteArra
   var `?param` = [getPtr hashType, getPtr hash, getPtr key]
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)
 proc verify*(self: Crypto; hashType: HashingContext_HashType; hash: PackedByteArray; signature: PackedByteArray; key: CryptoKey): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc verify*(self: Crypto; hashType: HashingContext_HashType; hash: PackedByteAr
   var `?param` = [getPtr hashType, getPtr hash, getPtr signature, getPtr key]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc encrypt*(self: Crypto; key: CryptoKey; plaintext: PackedByteArray): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -58,7 +58,7 @@ proc encrypt*(self: Crypto; key: CryptoKey; plaintext: PackedByteArray): PackedB
   var `?param` = [getPtr key, getPtr plaintext]
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)
 proc decrypt*(self: Crypto; key: CryptoKey; ciphertext: PackedByteArray): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -67,7 +67,7 @@ proc decrypt*(self: Crypto; key: CryptoKey; ciphertext: PackedByteArray): Packed
   var `?param` = [getPtr key, getPtr ciphertext]
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)
 proc hmacDigest*(self: Crypto; hashType: HashingContext_HashType; key: PackedByteArray; msg: PackedByteArray): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -76,7 +76,7 @@ proc hmacDigest*(self: Crypto; hashType: HashingContext_HashType; key: PackedByt
   var `?param` = [getPtr hashType, getPtr key, getPtr msg]
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)
 proc constantTimeCompare*(self: Crypto; trusted: PackedByteArray; received: PackedByteArray): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -85,4 +85,4 @@ proc constantTimeCompare*(self: Crypto; trusted: PackedByteArray; received: Pack
   var `?param` = [getPtr trusted, getPtr received]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

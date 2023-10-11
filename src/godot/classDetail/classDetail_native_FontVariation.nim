@@ -19,7 +19,7 @@ proc baseFont*(self: FontVariation): Font =
     methodbind = interface_ClassDB_getMethodBind(addr className FontVariation, addr name, 3229501585)
   var ret: encoded Font
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Font)
+  (addr ret).decode_result(Font)
 proc `variationOpentype=`*(self: FontVariation; coords: Dictionary) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc variationOpentype*(self: FontVariation): Dictionary =
     methodbind = interface_ClassDB_getMethodBind(addr className FontVariation, addr name, 3102165223)
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc `variationEmbolden=`*(self: FontVariation; strength: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc variationEmbolden*(self: FontVariation): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className FontVariation, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `variationFaceIndex=`*(self: FontVariation; faceIndex: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc variationFaceIndex*(self: FontVariation): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className FontVariation, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `variationTransform=`*(self: FontVariation; transform: Transform2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc variationTransform*(self: FontVariation): Transform2D =
     methodbind = interface_ClassDB_getMethodBind(addr className FontVariation, addr name, 3814499831)
   var ret: encoded Transform2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform2D)
+  (addr ret).decode_result(Transform2D)
 proc `opentypeFeatures=`*(self: FontVariation; features: Dictionary) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

@@ -13,7 +13,7 @@ proc addTrack*(self: Animation; `type`: Animation_TrackType; atPosition: int32 =
   var `?param` = [getPtr `type`, getPtr atPosition]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc removeTrack*(self: Animation; trackIdx: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -28,7 +28,7 @@ proc getTrackCount*(self: Animation): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Animation, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc trackGetType*(self: Animation; trackIdx: int32): Animation_TrackType =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -37,7 +37,7 @@ proc trackGetType*(self: Animation; trackIdx: int32): Animation_TrackType =
   var `?param` = [getPtr trackIdx]
   var ret: encoded Animation_TrackType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Animation_TrackType)
+  (addr ret).decode_result(Animation_TrackType)
 proc trackGetPath*(self: Animation; trackIdx: int32): NodePath =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -46,7 +46,7 @@ proc trackGetPath*(self: Animation; trackIdx: int32): NodePath =
   var `?param` = [getPtr trackIdx]
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc trackSetPath*(self: Animation; trackIdx: int32; path: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -62,7 +62,7 @@ proc findTrack*(self: Animation; path: NodePath; `type`: Animation_TrackType): i
   var `?param` = [getPtr path, getPtr `type`]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc trackMoveUp*(self: Animation; trackIdx: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -106,7 +106,7 @@ proc trackIsImported*(self: Animation; trackIdx: int32): Bool =
   var `?param` = [getPtr trackIdx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc trackSetEnabled*(self: Animation; trackIdx: int32; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -122,7 +122,7 @@ proc trackIsEnabled*(self: Animation; trackIdx: int32): Bool =
   var `?param` = [getPtr trackIdx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc positionTrackInsertKey*(self: Animation; trackIdx: int32; time: float64; position: Vector3): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -131,7 +131,7 @@ proc positionTrackInsertKey*(self: Animation; trackIdx: int32; time: float64; po
   var `?param` = [getPtr trackIdx, getPtr time, getPtr position]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc rotationTrackInsertKey*(self: Animation; trackIdx: int32; time: float64; rotation: Quaternion): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -140,7 +140,7 @@ proc rotationTrackInsertKey*(self: Animation; trackIdx: int32; time: float64; ro
   var `?param` = [getPtr trackIdx, getPtr time, getPtr rotation]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc scaleTrackInsertKey*(self: Animation; trackIdx: int32; time: float64; scale: Vector3): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -149,7 +149,7 @@ proc scaleTrackInsertKey*(self: Animation; trackIdx: int32; time: float64; scale
   var `?param` = [getPtr trackIdx, getPtr time, getPtr scale]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc blendShapeTrackInsertKey*(self: Animation; trackIdx: int32; time: float64; amount: Float): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -158,7 +158,7 @@ proc blendShapeTrackInsertKey*(self: Animation; trackIdx: int32; time: float64; 
   var `?param` = [getPtr trackIdx, getPtr time, getPtr amount]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc positionTrackInterpolate*(self: Animation; trackIdx: int32; timeSec: float64): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -167,7 +167,7 @@ proc positionTrackInterpolate*(self: Animation; trackIdx: int32; timeSec: float6
   var `?param` = [getPtr trackIdx, getPtr timeSec]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc rotationTrackInterpolate*(self: Animation; trackIdx: int32; timeSec: float64): Quaternion =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -176,7 +176,7 @@ proc rotationTrackInterpolate*(self: Animation; trackIdx: int32; timeSec: float6
   var `?param` = [getPtr trackIdx, getPtr timeSec]
   var ret: encoded Quaternion
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Quaternion)
+  (addr ret).decode_result(Quaternion)
 proc scaleTrackInterpolate*(self: Animation; trackIdx: int32; timeSec: float64): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -185,7 +185,7 @@ proc scaleTrackInterpolate*(self: Animation; trackIdx: int32; timeSec: float64):
   var `?param` = [getPtr trackIdx, getPtr timeSec]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc blendShapeTrackInterpolate*(self: Animation; trackIdx: int32; timeSec: float64): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -194,7 +194,7 @@ proc blendShapeTrackInterpolate*(self: Animation; trackIdx: int32; timeSec: floa
   var `?param` = [getPtr trackIdx, getPtr timeSec]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc trackInsertKey*(self: Animation; trackIdx: int32; time: float64; key: Variant; transition: Float = 1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -203,7 +203,7 @@ proc trackInsertKey*(self: Animation; trackIdx: int32; time: float64; key: Varia
   var `?param` = [getPtr trackIdx, getPtr time, getPtr key, getPtr transition]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc trackRemoveKey*(self: Animation; trackIdx: int32; keyIdx: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -247,7 +247,7 @@ proc trackGetKeyTransition*(self: Animation; trackIdx: int32; keyIdx: int32): Fl
   var `?param` = [getPtr trackIdx, getPtr keyIdx]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc trackGetKeyCount*(self: Animation; trackIdx: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -256,7 +256,7 @@ proc trackGetKeyCount*(self: Animation; trackIdx: int32): int32 =
   var `?param` = [getPtr trackIdx]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc trackGetKeyValue*(self: Animation; trackIdx: int32; keyIdx: int32): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -265,7 +265,7 @@ proc trackGetKeyValue*(self: Animation; trackIdx: int32; keyIdx: int32): Variant
   var `?param` = [getPtr trackIdx, getPtr keyIdx]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc trackGetKeyTime*(self: Animation; trackIdx: int32; keyIdx: int32): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -274,7 +274,7 @@ proc trackGetKeyTime*(self: Animation; trackIdx: int32; keyIdx: int32): float64 
   var `?param` = [getPtr trackIdx, getPtr keyIdx]
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc trackFindKey*(self: Animation; trackIdx: int32; time: float64; findMode: Animation_FindMode = findModeNearest): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -283,7 +283,7 @@ proc trackFindKey*(self: Animation; trackIdx: int32; time: float64; findMode: An
   var `?param` = [getPtr trackIdx, getPtr time, getPtr findMode]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc trackSetInterpolationType*(self: Animation; trackIdx: int32; interpolation: Animation_InterpolationType) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -299,7 +299,7 @@ proc trackGetInterpolationType*(self: Animation; trackIdx: int32): Animation_Int
   var `?param` = [getPtr trackIdx]
   var ret: encoded Animation_InterpolationType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Animation_InterpolationType)
+  (addr ret).decode_result(Animation_InterpolationType)
 proc trackSetInterpolationLoopWrap*(self: Animation; trackIdx: int32; interpolation: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -315,7 +315,7 @@ proc trackGetInterpolationLoopWrap*(self: Animation; trackIdx: int32): Bool =
   var `?param` = [getPtr trackIdx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc trackIsCompressed*(self: Animation; trackIdx: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -324,7 +324,7 @@ proc trackIsCompressed*(self: Animation; trackIdx: int32): Bool =
   var `?param` = [getPtr trackIdx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc valueTrackSetUpdateMode*(self: Animation; trackIdx: int32; mode: Animation_UpdateMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -340,7 +340,7 @@ proc valueTrackGetUpdateMode*(self: Animation; trackIdx: int32): Animation_Updat
   var `?param` = [getPtr trackIdx]
   var ret: encoded Animation_UpdateMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Animation_UpdateMode)
+  (addr ret).decode_result(Animation_UpdateMode)
 proc valueTrackInterpolate*(self: Animation; trackIdx: int32; timeSec: float64): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -349,7 +349,7 @@ proc valueTrackInterpolate*(self: Animation; trackIdx: int32; timeSec: float64):
   var `?param` = [getPtr trackIdx, getPtr timeSec]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc methodTrackGetName*(self: Animation; trackIdx: int32; keyIdx: int32): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -358,7 +358,7 @@ proc methodTrackGetName*(self: Animation; trackIdx: int32; keyIdx: int32): Strin
   var `?param` = [getPtr trackIdx, getPtr keyIdx]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc methodTrackGetParams*(self: Animation; trackIdx: int32; keyIdx: int32): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -367,7 +367,7 @@ proc methodTrackGetParams*(self: Animation; trackIdx: int32; keyIdx: int32): Arr
   var `?param` = [getPtr trackIdx, getPtr keyIdx]
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)
 proc bezierTrackInsertKey*(self: Animation; trackIdx: int32; time: float64; value: Float; inHandle: Vector2 = gdvec(0, 0); outHandle: Vector2 = gdvec(0, 0)): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -376,7 +376,7 @@ proc bezierTrackInsertKey*(self: Animation; trackIdx: int32; time: float64; valu
   var `?param` = [getPtr trackIdx, getPtr time, getPtr value, getPtr inHandle, getPtr outHandle]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc bezierTrackSetKeyValue*(self: Animation; trackIdx: int32; keyIdx: int32; value: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -406,7 +406,7 @@ proc bezierTrackGetKeyValue*(self: Animation; trackIdx: int32; keyIdx: int32): F
   var `?param` = [getPtr trackIdx, getPtr keyIdx]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc bezierTrackGetKeyInHandle*(self: Animation; trackIdx: int32; keyIdx: int32): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -415,7 +415,7 @@ proc bezierTrackGetKeyInHandle*(self: Animation; trackIdx: int32; keyIdx: int32)
   var `?param` = [getPtr trackIdx, getPtr keyIdx]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc bezierTrackGetKeyOutHandle*(self: Animation; trackIdx: int32; keyIdx: int32): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -424,7 +424,7 @@ proc bezierTrackGetKeyOutHandle*(self: Animation; trackIdx: int32; keyIdx: int32
   var `?param` = [getPtr trackIdx, getPtr keyIdx]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc bezierTrackInterpolate*(self: Animation; trackIdx: int32; time: float64): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -433,7 +433,7 @@ proc bezierTrackInterpolate*(self: Animation; trackIdx: int32; time: float64): F
   var `?param` = [getPtr trackIdx, getPtr time]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc audioTrackInsertKey*(self: Animation; trackIdx: int32; time: float64; stream: Resource; startOffset: Float = 0; endOffset: Float = 0): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -442,7 +442,7 @@ proc audioTrackInsertKey*(self: Animation; trackIdx: int32; time: float64; strea
   var `?param` = [getPtr trackIdx, getPtr time, getPtr stream, getPtr startOffset, getPtr endOffset]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc audioTrackSetKeyStream*(self: Animation; trackIdx: int32; keyIdx: int32; stream: Resource) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -472,7 +472,7 @@ proc audioTrackGetKeyStream*(self: Animation; trackIdx: int32; keyIdx: int32): R
   var `?param` = [getPtr trackIdx, getPtr keyIdx]
   var ret: encoded Resource
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Resource)
+  (addr ret).decode_result(Resource)
 proc audioTrackGetKeyStartOffset*(self: Animation; trackIdx: int32; keyIdx: int32): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -481,7 +481,7 @@ proc audioTrackGetKeyStartOffset*(self: Animation; trackIdx: int32; keyIdx: int3
   var `?param` = [getPtr trackIdx, getPtr keyIdx]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc audioTrackGetKeyEndOffset*(self: Animation; trackIdx: int32; keyIdx: int32): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -490,7 +490,7 @@ proc audioTrackGetKeyEndOffset*(self: Animation; trackIdx: int32; keyIdx: int32)
   var `?param` = [getPtr trackIdx, getPtr keyIdx]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc audioTrackSetUseBlend*(self: Animation; trackIdx: int32; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -506,7 +506,7 @@ proc audioTrackIsUseBlend*(self: Animation; trackIdx: int32): Bool =
   var `?param` = [getPtr trackIdx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc animationTrackInsertKey*(self: Animation; trackIdx: int32; time: float64; animation: StringName): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -515,7 +515,7 @@ proc animationTrackInsertKey*(self: Animation; trackIdx: int32; time: float64; a
   var `?param` = [getPtr trackIdx, getPtr time, getPtr animation]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc animationTrackSetKeyAnimation*(self: Animation; trackIdx: int32; keyIdx: int32; animation: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -531,7 +531,7 @@ proc animationTrackGetKeyAnimation*(self: Animation; trackIdx: int32; keyIdx: in
   var `?param` = [getPtr trackIdx, getPtr keyIdx]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc `length=`*(self: Animation; timeSec: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -546,7 +546,7 @@ proc length*(self: Animation): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Animation, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `loopMode=`*(self: Animation; loopMode: Animation_LoopMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -561,7 +561,7 @@ proc loopMode*(self: Animation): Animation_LoopMode =
     methodbind = interface_ClassDB_getMethodBind(addr className Animation, addr name, 1988889481)
   var ret: encoded Animation_LoopMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Animation_LoopMode)
+  (addr ret).decode_result(Animation_LoopMode)
 proc `step=`*(self: Animation; sizeSec: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -576,7 +576,7 @@ proc step*(self: Animation): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Animation, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc clear*(self: Animation) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

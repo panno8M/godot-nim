@@ -19,4 +19,4 @@ proc radius*(self: GPUParticlesCollisionSphere3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesCollisionSphere3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

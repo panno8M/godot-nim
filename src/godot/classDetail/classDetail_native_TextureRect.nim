@@ -19,7 +19,7 @@ proc texture*(self: TextureRect): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className TextureRect, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc `expandMode=`*(self: TextureRect; expandMode: TextureRect_ExpandMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc expandMode*(self: TextureRect): TextureRect_ExpandMode =
     methodbind = interface_ClassDB_getMethodBind(addr className TextureRect, addr name, 3863824733)
   var ret: encoded TextureRect_ExpandMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextureRect_ExpandMode)
+  (addr ret).decode_result(TextureRect_ExpandMode)
 proc `flipH=`*(self: TextureRect; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc isFlippedH*(self: TextureRect): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextureRect, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `flipV=`*(self: TextureRect; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc isFlippedV*(self: TextureRect): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextureRect, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `stretchMode=`*(self: TextureRect; stretchMode: TextureRect_StretchMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,4 +79,4 @@ proc stretchMode*(self: TextureRect): TextureRect_StretchMode =
     methodbind = interface_ClassDB_getMethodBind(addr className TextureRect, addr name, 346396079)
   var ret: encoded TextureRect_StretchMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextureRect_StretchMode)
+  (addr ret).decode_result(TextureRect_StretchMode)

@@ -19,4 +19,4 @@ proc texture*(self: VisualShaderNodeTexture3D): Texture3D =
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeTexture3D, addr name, 373985333)
   var ret: encoded Texture3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture3D)
+  (addr ret).decode_result(Texture3D)

@@ -19,7 +19,7 @@ proc size*(self: FogVolume): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className FogVolume, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `shape=`*(self: FogVolume; shape: RenderingServer_FogVolumeShape) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc shape*(self: FogVolume): RenderingServer_FogVolumeShape =
     methodbind = interface_ClassDB_getMethodBind(addr className FogVolume, addr name, 3920334604)
   var ret: encoded RenderingServer_FogVolumeShape
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingServer_FogVolumeShape)
+  (addr ret).decode_result(RenderingServer_FogVolumeShape)
 proc `material=`*(self: FogVolume; material: Material) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,4 +49,4 @@ proc material*(self: FogVolume): Material =
     methodbind = interface_ClassDB_getMethodBind(addr className FogVolume, addr name, 5934680)
   var ret: encoded Material
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Material)
+  (addr ret).decode_result(Material)

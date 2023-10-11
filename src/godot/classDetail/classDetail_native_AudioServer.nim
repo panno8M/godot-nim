@@ -19,7 +19,7 @@ proc busCount*(self: AudioServer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioServer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc removeBus*(self: AudioServer; index: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -56,7 +56,7 @@ proc getBusName*(self: AudioServer; busIdx: int32): String =
   var `?param` = [getPtr busIdx]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getBusIndex*(self: AudioServer; busName: StringName): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -65,7 +65,7 @@ proc getBusIndex*(self: AudioServer; busName: StringName): int32 =
   var `?param` = [getPtr busName]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getBusChannels*(self: AudioServer; busIdx: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -74,7 +74,7 @@ proc getBusChannels*(self: AudioServer; busIdx: int32): int32 =
   var `?param` = [getPtr busIdx]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setBusVolumeDb*(self: AudioServer; busIdx: int32; volumeDb: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -90,7 +90,7 @@ proc getBusVolumeDb*(self: AudioServer; busIdx: int32): Float =
   var `?param` = [getPtr busIdx]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc setBusSend*(self: AudioServer; busIdx: int32; send: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -106,7 +106,7 @@ proc getBusSend*(self: AudioServer; busIdx: int32): StringName =
   var `?param` = [getPtr busIdx]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc setBusSolo*(self: AudioServer; busIdx: int32; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -122,7 +122,7 @@ proc isBusSolo*(self: AudioServer; busIdx: int32): Bool =
   var `?param` = [getPtr busIdx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setBusMute*(self: AudioServer; busIdx: int32; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -138,7 +138,7 @@ proc isBusMute*(self: AudioServer; busIdx: int32): Bool =
   var `?param` = [getPtr busIdx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setBusBypassEffects*(self: AudioServer; busIdx: int32; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -154,7 +154,7 @@ proc isBusBypassingEffects*(self: AudioServer; busIdx: int32): Bool =
   var `?param` = [getPtr busIdx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc addBusEffect*(self: AudioServer; busIdx: int32; effect: AudioEffect; atPosition: int32 = -1) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -177,7 +177,7 @@ proc getBusEffectCount*(self: AudioServer; busIdx: int32): int32 =
   var `?param` = [getPtr busIdx]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getBusEffect*(self: AudioServer; busIdx: int32; effectIdx: int32): AudioEffect =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -186,7 +186,7 @@ proc getBusEffect*(self: AudioServer; busIdx: int32; effectIdx: int32): AudioEff
   var `?param` = [getPtr busIdx, getPtr effectIdx]
   var ret: encoded AudioEffect
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(AudioEffect)
+  (addr ret).decode_result(AudioEffect)
 proc getBusEffectInstance*(self: AudioServer; busIdx: int32; effectIdx: int32; channel: int32 = 0): AudioEffectInstance =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -195,7 +195,7 @@ proc getBusEffectInstance*(self: AudioServer; busIdx: int32; effectIdx: int32; c
   var `?param` = [getPtr busIdx, getPtr effectIdx, getPtr channel]
   var ret: encoded AudioEffectInstance
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(AudioEffectInstance)
+  (addr ret).decode_result(AudioEffectInstance)
 proc swapBusEffects*(self: AudioServer; busIdx: int32; effectIdx: int32; byEffectIdx: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -218,7 +218,7 @@ proc isBusEffectEnabled*(self: AudioServer; busIdx: int32; effectIdx: int32): Bo
   var `?param` = [getPtr busIdx, getPtr effectIdx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getBusPeakVolumeLeftDb*(self: AudioServer; busIdx: int32; channel: int32): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -227,7 +227,7 @@ proc getBusPeakVolumeLeftDb*(self: AudioServer; busIdx: int32; channel: int32): 
   var `?param` = [getPtr busIdx, getPtr channel]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getBusPeakVolumeRightDb*(self: AudioServer; busIdx: int32; channel: int32): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -236,7 +236,7 @@ proc getBusPeakVolumeRightDb*(self: AudioServer; busIdx: int32; channel: int32):
   var `?param` = [getPtr busIdx, getPtr channel]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `playbackSpeedScale=`*(self: AudioServer; scale: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -251,7 +251,7 @@ proc playbackSpeedScale*(self: AudioServer): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioServer, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc lock*(self: AudioServer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -271,7 +271,7 @@ proc getSpeakerMode*(self: AudioServer): AudioServer_SpeakerMode =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioServer, addr name, 2549190337)
   var ret: encoded AudioServer_SpeakerMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AudioServer_SpeakerMode)
+  (addr ret).decode_result(AudioServer_SpeakerMode)
 proc getMixRate*(self: AudioServer): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -279,7 +279,7 @@ proc getMixRate*(self: AudioServer): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioServer, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getOutputDeviceList*(self: AudioServer): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -287,7 +287,7 @@ proc getOutputDeviceList*(self: AudioServer): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioServer, addr name, 2981934095)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc outputDevice*(self: AudioServer): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -295,7 +295,7 @@ proc outputDevice*(self: AudioServer): String =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioServer, addr name, 2841200299)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `outputDevice=`*(self: AudioServer; name: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -310,7 +310,7 @@ proc getTimeToNextMix*(self: AudioServer): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioServer, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc getTimeSinceLastMix*(self: AudioServer): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -318,7 +318,7 @@ proc getTimeSinceLastMix*(self: AudioServer): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioServer, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc getOutputLatency*(self: AudioServer): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -326,7 +326,7 @@ proc getOutputLatency*(self: AudioServer): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioServer, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc getInputDeviceList*(self: AudioServer): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -334,7 +334,7 @@ proc getInputDeviceList*(self: AudioServer): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioServer, addr name, 2981934095)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc inputDevice*(self: AudioServer): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -342,7 +342,7 @@ proc inputDevice*(self: AudioServer): String =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioServer, addr name, 2841200299)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `inputDevice=`*(self: AudioServer; name: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -364,7 +364,7 @@ proc generateBusLayout*(self: AudioServer): AudioBusLayout =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioServer, addr name, 3769973890)
   var ret: encoded AudioBusLayout
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AudioBusLayout)
+  (addr ret).decode_result(AudioBusLayout)
 proc setEnableTaggingUsedAudioStreams*(self: AudioServer; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

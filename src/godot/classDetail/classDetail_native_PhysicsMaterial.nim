@@ -19,7 +19,7 @@ proc friction*(self: PhysicsMaterial): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsMaterial, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `rough=`*(self: PhysicsMaterial; rough: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc isRough*(self: PhysicsMaterial): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsMaterial, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `bounce=`*(self: PhysicsMaterial; bounce: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc bounce*(self: PhysicsMaterial): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsMaterial, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `absorbent=`*(self: PhysicsMaterial; absorbent: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,4 +64,4 @@ proc isAbsorbent*(self: PhysicsMaterial): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsMaterial, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

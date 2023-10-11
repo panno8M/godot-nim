@@ -19,7 +19,7 @@ proc baseType*(self: EditorResourcePicker): String =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorResourcePicker, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getAllowedTypes*(self: EditorResourcePicker): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc getAllowedTypes*(self: EditorResourcePicker): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorResourcePicker, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc `editedResource=`*(self: EditorResourcePicker; resource: Resource) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc editedResource*(self: EditorResourcePicker): Resource =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorResourcePicker, addr name, 2674603643)
   var ret: encoded Resource
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Resource)
+  (addr ret).decode_result(Resource)
 proc `toggleMode=`*(self: EditorResourcePicker; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc isToggleMode*(self: EditorResourcePicker): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorResourcePicker, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setTogglePressed*(self: EditorResourcePicker; pressed: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,4 +79,4 @@ proc isEditable*(self: EditorResourcePicker): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorResourcePicker, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

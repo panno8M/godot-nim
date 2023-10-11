@@ -19,7 +19,7 @@ proc lightmapSizeHint*(self: Mesh): Vector2i =
     methodbind = interface_ClassDB_getMethodBind(addr className Mesh, addr name, 3690982128)
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc getAabb*(self: Mesh): AABB =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc getAabb*(self: Mesh): AABB =
     methodbind = interface_ClassDB_getMethodBind(addr className Mesh, addr name, 1068685055)
   var ret: encoded AABB
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AABB)
+  (addr ret).decode_result(AABB)
 proc getFaces*(self: Mesh): PackedVector3Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -35,7 +35,7 @@ proc getFaces*(self: Mesh): PackedVector3Array =
     methodbind = interface_ClassDB_getMethodBind(addr className Mesh, addr name, 497664490)
   var ret: encoded PackedVector3Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedVector3Array)
+  (addr ret).decode_result(PackedVector3Array)
 proc getSurfaceCount*(self: Mesh): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -43,7 +43,7 @@ proc getSurfaceCount*(self: Mesh): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Mesh, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc surfaceGetArrays*(self: Mesh; surfIdx: int32): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -52,7 +52,7 @@ proc surfaceGetArrays*(self: Mesh; surfIdx: int32): Array =
   var `?param` = [getPtr surfIdx]
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)
 proc surfaceGetBlendShapeArrays*(self: Mesh; surfIdx: int32): TypedArray[Array] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -61,7 +61,7 @@ proc surfaceGetBlendShapeArrays*(self: Mesh; surfIdx: int32): TypedArray[Array] 
   var `?param` = [getPtr surfIdx]
   var ret: encoded TypedArray[Array]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[Array])
+  (addr ret).decode_result(TypedArray[Array])
 proc surfaceSetMaterial*(self: Mesh; surfIdx: int32; material: Material) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -77,7 +77,7 @@ proc surfaceGetMaterial*(self: Mesh; surfIdx: int32): Material =
   var `?param` = [getPtr surfIdx]
   var ret: encoded Material
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Material)
+  (addr ret).decode_result(Material)
 proc createPlaceholder*(self: Mesh): Resource =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -85,7 +85,7 @@ proc createPlaceholder*(self: Mesh): Resource =
     methodbind = interface_ClassDB_getMethodBind(addr className Mesh, addr name, 121922552)
   var ret: encoded Resource
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Resource)
+  (addr ret).decode_result(Resource)
 proc createTrimeshShape*(self: Mesh): ConcavePolygonShape3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -93,7 +93,7 @@ proc createTrimeshShape*(self: Mesh): ConcavePolygonShape3D =
     methodbind = interface_ClassDB_getMethodBind(addr className Mesh, addr name, 4160111210)
   var ret: encoded ConcavePolygonShape3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(ConcavePolygonShape3D)
+  (addr ret).decode_result(ConcavePolygonShape3D)
 proc createConvexShape*(self: Mesh; clean: Bool = true; simplify: Bool = false): ConvexPolygonShape3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -102,7 +102,7 @@ proc createConvexShape*(self: Mesh; clean: Bool = true; simplify: Bool = false):
   var `?param` = [getPtr clean, getPtr simplify]
   var ret: encoded ConvexPolygonShape3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(ConvexPolygonShape3D)
+  (addr ret).decode_result(ConvexPolygonShape3D)
 proc createOutline*(self: Mesh; margin: Float): Mesh =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -111,7 +111,7 @@ proc createOutline*(self: Mesh; margin: Float): Mesh =
   var `?param` = [getPtr margin]
   var ret: encoded Mesh
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Mesh)
+  (addr ret).decode_result(Mesh)
 proc generateTriangleMesh*(self: Mesh): TriangleMesh =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -119,4 +119,4 @@ proc generateTriangleMesh*(self: Mesh): TriangleMesh =
     methodbind = interface_ClassDB_getMethodBind(addr className Mesh, addr name, 3476533166)
   var ret: encoded TriangleMesh
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TriangleMesh)
+  (addr ret).decode_result(TriangleMesh)

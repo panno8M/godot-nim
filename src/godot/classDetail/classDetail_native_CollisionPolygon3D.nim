@@ -19,7 +19,7 @@ proc depth*(self: CollisionPolygon3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionPolygon3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `polygon=`*(self: CollisionPolygon3D; polygon: PackedVector2Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc polygon*(self: CollisionPolygon3D): PackedVector2Array =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionPolygon3D, addr name, 2961356807)
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedVector2Array)
+  (addr ret).decode_result(PackedVector2Array)
 proc `disabled=`*(self: CollisionPolygon3D; disabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc isDisabled*(self: CollisionPolygon3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionPolygon3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `margin=`*(self: CollisionPolygon3D; margin: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,4 +64,4 @@ proc margin*(self: CollisionPolygon3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionPolygon3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

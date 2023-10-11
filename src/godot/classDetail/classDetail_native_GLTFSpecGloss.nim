@@ -12,7 +12,7 @@ proc diffuseImg*(self: GLTFSpecGloss): Image =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSpecGloss, addr name, 564927088)
   var ret: encoded Image
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Image)
+  (addr ret).decode_result(Image)
 proc `diffuseImg=`*(self: GLTFSpecGloss; diffuseImg: Image) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc diffuseFactor*(self: GLTFSpecGloss): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSpecGloss, addr name, 3200896285)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `diffuseFactor=`*(self: GLTFSpecGloss; diffuseFactor: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc glossFactor*(self: GLTFSpecGloss): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSpecGloss, addr name, 191475506)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `glossFactor=`*(self: GLTFSpecGloss; glossFactor: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc specularFactor*(self: GLTFSpecGloss): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSpecGloss, addr name, 3200896285)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `specularFactor=`*(self: GLTFSpecGloss; specularFactor: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -72,7 +72,7 @@ proc specGlossImg*(self: GLTFSpecGloss): Image =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSpecGloss, addr name, 564927088)
   var ret: encoded Image
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Image)
+  (addr ret).decode_result(Image)
 proc `specGlossImg=`*(self: GLTFSpecGloss; specGlossImg: Image) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

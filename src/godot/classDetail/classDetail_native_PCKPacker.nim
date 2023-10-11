@@ -13,7 +13,7 @@ proc pckStart*(self: PCKPacker; pckName: String; alignment: int32 = 32; key: Str
   var `?param` = [getPtr pckName, getPtr alignment, getPtr key, getPtr encryptDirectory]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc addFile*(self: PCKPacker; pckPath: String; sourcePath: String; encrypt: Bool = false): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc addFile*(self: PCKPacker; pckPath: String; sourcePath: String; encrypt: Boo
   var `?param` = [getPtr pckPath, getPtr sourcePath, getPtr encrypt]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc flush*(self: PCKPacker; verbose: Bool = false): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -31,4 +31,4 @@ proc flush*(self: PCKPacker; verbose: Bool = false): Error =
   var `?param` = [getPtr verbose]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)

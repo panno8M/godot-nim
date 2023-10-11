@@ -19,7 +19,7 @@ proc rangeMinHz*(self: AudioEffectPhaser): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectPhaser, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `rangeMaxHz=`*(self: AudioEffectPhaser; hz: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc rangeMaxHz*(self: AudioEffectPhaser): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectPhaser, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `rateHz=`*(self: AudioEffectPhaser; hz: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc rateHz*(self: AudioEffectPhaser): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectPhaser, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `feedback=`*(self: AudioEffectPhaser; fbk: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc feedback*(self: AudioEffectPhaser): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectPhaser, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `depth=`*(self: AudioEffectPhaser; depth: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,4 +79,4 @@ proc depth*(self: AudioEffectPhaser): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectPhaser, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

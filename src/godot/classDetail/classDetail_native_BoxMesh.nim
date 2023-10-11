@@ -19,7 +19,7 @@ proc size*(self: BoxMesh): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className BoxMesh, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `subdivideWidth=`*(self: BoxMesh; subdivide: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc subdivideWidth*(self: BoxMesh): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className BoxMesh, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `subdivideHeight=`*(self: BoxMesh; divisions: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc subdivideHeight*(self: BoxMesh): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className BoxMesh, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `subdivideDepth=`*(self: BoxMesh; divisions: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,4 +64,4 @@ proc subdivideDepth*(self: BoxMesh): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className BoxMesh, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)

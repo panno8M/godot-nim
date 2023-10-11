@@ -19,7 +19,7 @@ proc format*(self: RDAttachmentFormat): RenderingDevice_DataFormat =
     methodbind = interface_ClassDB_getMethodBind(addr className RDAttachmentFormat, addr name, 2235804183)
   var ret: encoded RenderingDevice_DataFormat
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_DataFormat)
+  (addr ret).decode_result(RenderingDevice_DataFormat)
 proc `samples=`*(self: RDAttachmentFormat; pMember: RenderingDevice_TextureSamples) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc samples*(self: RDAttachmentFormat): RenderingDevice_TextureSamples =
     methodbind = interface_ClassDB_getMethodBind(addr className RDAttachmentFormat, addr name, 407791724)
   var ret: encoded RenderingDevice_TextureSamples
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_TextureSamples)
+  (addr ret).decode_result(RenderingDevice_TextureSamples)
 proc `usageFlags=`*(self: RDAttachmentFormat; pMember: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,4 +49,4 @@ proc usageFlags*(self: RDAttachmentFormat): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RDAttachmentFormat, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)

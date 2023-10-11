@@ -19,7 +19,7 @@ proc material*(self: PrimitiveMesh): Material =
     methodbind = interface_ClassDB_getMethodBind(addr className PrimitiveMesh, addr name, 5934680)
   var ret: encoded Material
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Material)
+  (addr ret).decode_result(Material)
 proc getMeshArrays*(self: PrimitiveMesh): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc getMeshArrays*(self: PrimitiveMesh): Array =
     methodbind = interface_ClassDB_getMethodBind(addr className PrimitiveMesh, addr name, 3995934104)
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)
 proc `customAabb=`*(self: PrimitiveMesh; aabb: AABB) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc customAabb*(self: PrimitiveMesh): AABB =
     methodbind = interface_ClassDB_getMethodBind(addr className PrimitiveMesh, addr name, 1068685055)
   var ret: encoded AABB
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AABB)
+  (addr ret).decode_result(AABB)
 proc `flipFaces=`*(self: PrimitiveMesh; flipFaces: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc flipFaces*(self: PrimitiveMesh): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PrimitiveMesh, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `addUv2=`*(self: PrimitiveMesh; addUv2: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -72,7 +72,7 @@ proc addUv2*(self: PrimitiveMesh): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PrimitiveMesh, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `uv2Padding=`*(self: PrimitiveMesh; uv2Padding: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -87,4 +87,4 @@ proc uv2Padding*(self: PrimitiveMesh): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className PrimitiveMesh, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

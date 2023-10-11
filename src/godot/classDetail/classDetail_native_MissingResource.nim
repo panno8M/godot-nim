@@ -19,7 +19,7 @@ proc originalClass*(self: MissingResource): String =
     methodbind = interface_ClassDB_getMethodBind(addr className MissingResource, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `recordingProperties=`*(self: MissingResource; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,4 +34,4 @@ proc isRecordingProperties*(self: MissingResource): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className MissingResource, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

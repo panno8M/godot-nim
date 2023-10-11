@@ -19,4 +19,4 @@ proc constant*(self: VisualShaderNodeTransformConstant): Transform3D =
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeTransformConstant, addr name, 3229777777)
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)

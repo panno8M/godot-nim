@@ -19,7 +19,7 @@ proc rootBone*(self: SkeletonIK3D): StringName =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonIK3D, addr name, 2002593661)
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc `tipBone=`*(self: SkeletonIK3D; tipBone: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc tipBone*(self: SkeletonIK3D): StringName =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonIK3D, addr name, 2002593661)
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc `interpolation=`*(self: SkeletonIK3D; interpolation: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc interpolation*(self: SkeletonIK3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonIK3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `targetTransform=`*(self: SkeletonIK3D; target: Transform3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc tartransform*(self: SkeletonIK3D): Transform3D =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonIK3D, addr name, 3229777777)
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc `targetNode=`*(self: SkeletonIK3D; node: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc tarnode*(self: SkeletonIK3D): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonIK3D, addr name, 277076166)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc `overrideTipBasis=`*(self: SkeletonIK3D; override: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc isOverrideTipBasis*(self: SkeletonIK3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonIK3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `useMagnet=`*(self: SkeletonIK3D; use: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc isUsingMagnet*(self: SkeletonIK3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonIK3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `magnetPosition=`*(self: SkeletonIK3D; localPosition: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc magnetPosition*(self: SkeletonIK3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonIK3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc getParentSkeleton*(self: SkeletonIK3D): Skeleton3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -132,7 +132,7 @@ proc getParentSkeleton*(self: SkeletonIK3D): Skeleton3D =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonIK3D, addr name, 1488626673)
   var ret: encoded Skeleton3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Skeleton3D)
+  (addr ret).decode_result(Skeleton3D)
 proc isRunning*(self: SkeletonIK3D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -140,7 +140,7 @@ proc isRunning*(self: SkeletonIK3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonIK3D, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `minDistance=`*(self: SkeletonIK3D; minDistance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -155,7 +155,7 @@ proc minDistance*(self: SkeletonIK3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonIK3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `maxIterations=`*(self: SkeletonIK3D; iterations: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -170,7 +170,7 @@ proc maxIterations*(self: SkeletonIK3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonIK3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc start*(self: SkeletonIK3D; oneTime: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

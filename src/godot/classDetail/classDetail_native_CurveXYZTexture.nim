@@ -26,7 +26,7 @@ proc curveX*(self: CurveXYZTexture): Curve =
     methodbind = interface_ClassDB_getMethodBind(addr className CurveXYZTexture, addr name, 2460114913)
   var ret: encoded Curve
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Curve)
+  (addr ret).decode_result(Curve)
 proc `curveY=`*(self: CurveXYZTexture; curve: Curve) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -41,7 +41,7 @@ proc curveY*(self: CurveXYZTexture): Curve =
     methodbind = interface_ClassDB_getMethodBind(addr className CurveXYZTexture, addr name, 2460114913)
   var ret: encoded Curve
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Curve)
+  (addr ret).decode_result(Curve)
 proc `curveZ=`*(self: CurveXYZTexture; curve: Curve) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -56,4 +56,4 @@ proc curveZ*(self: CurveXYZTexture): Curve =
     methodbind = interface_ClassDB_getMethodBind(addr className CurveXYZTexture, addr name, 2460114913)
   var ret: encoded Curve
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Curve)
+  (addr ret).decode_result(Curve)

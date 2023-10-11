@@ -13,7 +13,7 @@ proc fromNode*(_: typedesc[GLTFPhysicsBody]; bodyNode: CollisionObject3D): GLTFP
   var `?param` = [getPtr bodyNode]
   var ret: encoded GLTFPhysicsBody
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(GLTFPhysicsBody)
+  (addr ret).decode_result(GLTFPhysicsBody)
 proc toNode*(self: GLTFPhysicsBody): CollisionObject3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -21,7 +21,7 @@ proc toNode*(self: GLTFPhysicsBody): CollisionObject3D =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFPhysicsBody, addr name, 3224013656)
   var ret: encoded CollisionObject3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(CollisionObject3D)
+  (addr ret).decode_result(CollisionObject3D)
 proc fromDictionary*(_: typedesc[GLTFPhysicsBody]; dictionary: Dictionary): GLTFPhysicsBody =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -30,7 +30,7 @@ proc fromDictionary*(_: typedesc[GLTFPhysicsBody]; dictionary: Dictionary): GLTF
   var `?param` = [getPtr dictionary]
   var ret: encoded GLTFPhysicsBody
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(GLTFPhysicsBody)
+  (addr ret).decode_result(GLTFPhysicsBody)
 proc toDictionary*(self: GLTFPhysicsBody): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -38,7 +38,7 @@ proc toDictionary*(self: GLTFPhysicsBody): Dictionary =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFPhysicsBody, addr name, 3102165223)
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc bodyType*(self: GLTFPhysicsBody): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -46,7 +46,7 @@ proc bodyType*(self: GLTFPhysicsBody): String =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFPhysicsBody, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `bodyType=`*(self: GLTFPhysicsBody; bodyType: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -61,7 +61,7 @@ proc mass*(self: GLTFPhysicsBody): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFPhysicsBody, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `mass=`*(self: GLTFPhysicsBody; mass: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -76,7 +76,7 @@ proc linearVelocity*(self: GLTFPhysicsBody): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFPhysicsBody, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `linearVelocity=`*(self: GLTFPhysicsBody; linearVelocity: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -91,7 +91,7 @@ proc angularVelocity*(self: GLTFPhysicsBody): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFPhysicsBody, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `angularVelocity=`*(self: GLTFPhysicsBody; angularVelocity: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -106,7 +106,7 @@ proc inertiaTensor*(self: GLTFPhysicsBody): Basis =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFPhysicsBody, addr name, 2716978435)
   var ret: encoded Basis
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Basis)
+  (addr ret).decode_result(Basis)
 proc `inertiaTensor=`*(self: GLTFPhysicsBody; inertiaTensor: Basis) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

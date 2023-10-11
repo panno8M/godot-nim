@@ -19,7 +19,7 @@ proc background*(self: Environment): Environment_BGMode =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1843210413)
   var ret: encoded Environment_BGMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Environment_BGMode)
+  (addr ret).decode_result(Environment_BGMode)
 proc `sky=`*(self: Environment; sky: Sky) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc sky*(self: Environment): Sky =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1177136966)
   var ret: encoded Sky
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Sky)
+  (addr ret).decode_result(Sky)
 proc `skyCustomFov=`*(self: Environment; scale: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc skyCustomFov*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `skyRotation=`*(self: Environment; eulerRadians: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc skyRotation*(self: Environment): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `bgColor=`*(self: Environment; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc bgColor*(self: Environment): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `bgEnergyMultiplier=`*(self: Environment; energy: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc bgEnergyMultiplier*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `bgIntensity=`*(self: Environment; energy: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc bgIntensity*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `canvasMaxLayer=`*(self: Environment; layer: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc canvasMaxLayer*(self: Environment): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `cameraFeedId=`*(self: Environment; id: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc cameraFeedId*(self: Environment): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `ambientLightColor=`*(self: Environment; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -154,7 +154,7 @@ proc ambientLightColor*(self: Environment): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `ambientSource=`*(self: Environment; source: Environment_AmbientSource) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -169,7 +169,7 @@ proc ambientSource*(self: Environment): Environment_AmbientSource =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 67453933)
   var ret: encoded Environment_AmbientSource
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Environment_AmbientSource)
+  (addr ret).decode_result(Environment_AmbientSource)
 proc `ambientLightEnergy=`*(self: Environment; energy: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -184,7 +184,7 @@ proc ambientLightEnergy*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `ambientLightSkyContribution=`*(self: Environment; ratio: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -199,7 +199,7 @@ proc ambientLightSkyContribution*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `reflectionSource=`*(self: Environment; source: Environment_ReflectionSource) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -214,7 +214,7 @@ proc reflectionSource*(self: Environment): Environment_ReflectionSource =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 777700713)
   var ret: encoded Environment_ReflectionSource
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Environment_ReflectionSource)
+  (addr ret).decode_result(Environment_ReflectionSource)
 proc `tonemapper=`*(self: Environment; mode: Environment_ToneMapper) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -229,7 +229,7 @@ proc tonemapper*(self: Environment): Environment_ToneMapper =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 2908408137)
   var ret: encoded Environment_ToneMapper
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Environment_ToneMapper)
+  (addr ret).decode_result(Environment_ToneMapper)
 proc `tonemapExposure=`*(self: Environment; exposure: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -244,7 +244,7 @@ proc tonemapExposure*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `tonemapWhite=`*(self: Environment; white: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -259,7 +259,7 @@ proc tonemapWhite*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `ssrEnabled=`*(self: Environment; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -274,7 +274,7 @@ proc isSsrEnabled*(self: Environment): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `ssrMaxSteps=`*(self: Environment; maxSteps: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -289,7 +289,7 @@ proc ssrMaxSteps*(self: Environment): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `ssrFadeIn=`*(self: Environment; fadeIn: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -304,7 +304,7 @@ proc ssrFadeIn*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `ssrFadeOut=`*(self: Environment; fadeOut: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -319,7 +319,7 @@ proc ssrFadeOut*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `ssrDepthTolerance=`*(self: Environment; depthTolerance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -334,7 +334,7 @@ proc ssrDepthTolerance*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `ssaoEnabled=`*(self: Environment; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -349,7 +349,7 @@ proc isSsaoEnabled*(self: Environment): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `ssaoRadius=`*(self: Environment; radius: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -364,7 +364,7 @@ proc ssaoRadius*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `ssaoIntensity=`*(self: Environment; intensity: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -379,7 +379,7 @@ proc ssaoIntensity*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `ssaoPower=`*(self: Environment; power: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -394,7 +394,7 @@ proc ssaoPower*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `ssaoDetail=`*(self: Environment; detail: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -409,7 +409,7 @@ proc ssaoDetail*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `ssaoHorizon=`*(self: Environment; horizon: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -424,7 +424,7 @@ proc ssaoHorizon*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `ssaoSharpness=`*(self: Environment; sharpness: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -439,7 +439,7 @@ proc ssaoSharpness*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `ssaoDirectLightAffect=`*(self: Environment; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -454,7 +454,7 @@ proc ssaoDirectLightAffect*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `ssaoAoChannelAffect=`*(self: Environment; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -469,7 +469,7 @@ proc ssaoAoChannelAffect*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `ssilEnabled=`*(self: Environment; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -484,7 +484,7 @@ proc isSsilEnabled*(self: Environment): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `ssilRadius=`*(self: Environment; radius: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -499,7 +499,7 @@ proc ssilRadius*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `ssilIntensity=`*(self: Environment; intensity: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -514,7 +514,7 @@ proc ssilIntensity*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `ssilSharpness=`*(self: Environment; sharpness: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -529,7 +529,7 @@ proc ssilSharpness*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `ssilNormalRejection=`*(self: Environment; normalRejection: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -544,7 +544,7 @@ proc ssilNormalRejection*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `sdfgiEnabled=`*(self: Environment; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -559,7 +559,7 @@ proc isSdfgiEnabled*(self: Environment): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `sdfgiCascades=`*(self: Environment; amount: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -574,7 +574,7 @@ proc sdfgiCascades*(self: Environment): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `sdfgiMinCellSize=`*(self: Environment; size: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -589,7 +589,7 @@ proc sdfgiMinCellSize*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `sdfgiMaxDistance=`*(self: Environment; distance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -604,7 +604,7 @@ proc sdfgiMaxDistance*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `sdfgiCascade0Distance=`*(self: Environment; distance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -619,7 +619,7 @@ proc sdfgiCascade0Distance*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `sdfgiYScale=`*(self: Environment; scale: Environment_SDFGIYScale) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -634,7 +634,7 @@ proc sdfgiYScale*(self: Environment): Environment_SDFGIYScale =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 2568002245)
   var ret: encoded Environment_SDFGIYScale
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Environment_SDFGIYScale)
+  (addr ret).decode_result(Environment_SDFGIYScale)
 proc `sdfgiUseOcclusion=`*(self: Environment; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -649,7 +649,7 @@ proc isSdfgiUsingOcclusion*(self: Environment): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `sdfgiBounceFeedback=`*(self: Environment; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -664,7 +664,7 @@ proc sdfgiBounceFeedback*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `sdfgiReadSkyLight=`*(self: Environment; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -679,7 +679,7 @@ proc isSdfgiReadingSkyLight*(self: Environment): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `sdfgiEnergy=`*(self: Environment; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -694,7 +694,7 @@ proc sdfgiEnergy*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `sdfgiNormalBias=`*(self: Environment; bias: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -709,7 +709,7 @@ proc sdfgiNormalBias*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `sdfgiProbeBias=`*(self: Environment; bias: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -724,7 +724,7 @@ proc sdfgiProbeBias*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `glowEnabled=`*(self: Environment; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -739,7 +739,7 @@ proc isGlowEnabled*(self: Environment): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setGlowLevel*(self: Environment; idx: int32; intensity: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -755,7 +755,7 @@ proc getGlowLevel*(self: Environment; idx: int32): Float =
   var `?param` = [getPtr idx]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `glowNormalized=`*(self: Environment; normalize: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -770,7 +770,7 @@ proc isGlowNormalized*(self: Environment): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `glowIntensity=`*(self: Environment; intensity: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -785,7 +785,7 @@ proc glowIntensity*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `glowStrength=`*(self: Environment; strength: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -800,7 +800,7 @@ proc glowStrength*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `glowMix=`*(self: Environment; mix: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -815,7 +815,7 @@ proc glowMix*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `glowBloom=`*(self: Environment; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -830,7 +830,7 @@ proc glowBloom*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `glowBlendMode=`*(self: Environment; mode: Environment_GlowBlendMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -845,7 +845,7 @@ proc glowBlendMode*(self: Environment): Environment_GlowBlendMode =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1529667332)
   var ret: encoded Environment_GlowBlendMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Environment_GlowBlendMode)
+  (addr ret).decode_result(Environment_GlowBlendMode)
 proc `glowHdrBleedThreshold=`*(self: Environment; threshold: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -860,7 +860,7 @@ proc glowHdrBleedThreshold*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `glowHdrBleedScale=`*(self: Environment; scale: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -875,7 +875,7 @@ proc glowHdrBleedScale*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `glowHdrLuminanceCap=`*(self: Environment; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -890,7 +890,7 @@ proc glowHdrLuminanceCap*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `glowMapStrength=`*(self: Environment; strength: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -905,7 +905,7 @@ proc glowMapStrength*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `glowMap=`*(self: Environment; mode: Texture) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -920,7 +920,7 @@ proc glowMap*(self: Environment): Texture =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 4037048985)
   var ret: encoded Texture
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture)
+  (addr ret).decode_result(Texture)
 proc `fogEnabled=`*(self: Environment; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -935,7 +935,7 @@ proc isFogEnabled*(self: Environment): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `fogLightColor=`*(self: Environment; lightColor: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -950,7 +950,7 @@ proc fogLightColor*(self: Environment): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `fogLightEnergy=`*(self: Environment; lightEnergy: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -965,7 +965,7 @@ proc fogLightEnergy*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `fogSunScatter=`*(self: Environment; sunScatter: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -980,7 +980,7 @@ proc fogSunScatter*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `fogDensity=`*(self: Environment; density: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -995,7 +995,7 @@ proc fogDensity*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `fogHeight=`*(self: Environment; height: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1010,7 +1010,7 @@ proc fogHeight*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `fogHeightDensity=`*(self: Environment; heightDensity: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1025,7 +1025,7 @@ proc fogHeightDensity*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `fogAerialPerspective=`*(self: Environment; aerialPerspective: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1040,7 +1040,7 @@ proc fogAerialPerspective*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `fogSkyAffect=`*(self: Environment; skyAffect: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1055,7 +1055,7 @@ proc fogSkyAffect*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `volumetricFogEnabled=`*(self: Environment; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1070,7 +1070,7 @@ proc isVolumetricFogEnabled*(self: Environment): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `volumetricFogEmission=`*(self: Environment; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1085,7 +1085,7 @@ proc volumetricFogEmission*(self: Environment): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `volumetricFogAlbedo=`*(self: Environment; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1100,7 +1100,7 @@ proc volumetricFogAlbedo*(self: Environment): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `volumetricFogDensity=`*(self: Environment; density: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1115,7 +1115,7 @@ proc volumetricFogDensity*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `volumetricFogEmissionEnergy=`*(self: Environment; begin: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1130,7 +1130,7 @@ proc volumetricFogEmissionEnergy*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `volumetricFogAnisotropy=`*(self: Environment; anisotropy: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1145,7 +1145,7 @@ proc volumetricFogAnisotropy*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `volumetricFogLength=`*(self: Environment; length: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1160,7 +1160,7 @@ proc volumetricFogLength*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `volumetricFogDetailSpread=`*(self: Environment; detailSpread: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1175,7 +1175,7 @@ proc volumetricFogDetailSpread*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `volumetricFogGiInject=`*(self: Environment; giInject: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1190,7 +1190,7 @@ proc volumetricFogGiInject*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `volumetricFogAmbientInject=`*(self: Environment; enabled: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1205,7 +1205,7 @@ proc volumetricFogAmbientInject*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `volumetricFogSkyAffect=`*(self: Environment; skyAffect: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1220,7 +1220,7 @@ proc volumetricFogSkyAffect*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `volumetricFogTemporalReprojectionEnabled=`*(self: Environment; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1235,7 +1235,7 @@ proc isVolumetricFogTemporalReprojectionEnabled*(self: Environment): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `volumetricFogTemporalReprojectionAmount=`*(self: Environment; temporalReprojectionAmount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1250,7 +1250,7 @@ proc volumetricFogTemporalReprojectionAmount*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `adjustmentEnabled=`*(self: Environment; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1265,7 +1265,7 @@ proc isAdjustmentEnabled*(self: Environment): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `adjustmentBrightness=`*(self: Environment; brightness: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1280,7 +1280,7 @@ proc adjustmentBrightness*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `adjustmentContrast=`*(self: Environment; contrast: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1295,7 +1295,7 @@ proc adjustmentContrast*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `adjustmentSaturation=`*(self: Environment; saturation: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1310,7 +1310,7 @@ proc adjustmentSaturation*(self: Environment): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `adjustmentColorCorrection=`*(self: Environment; colorCorrection: Texture) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1325,4 +1325,4 @@ proc adjustmentColorCorrection*(self: Environment): Texture =
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 4037048985)
   var ret: encoded Texture
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture)
+  (addr ret).decode_result(Texture)

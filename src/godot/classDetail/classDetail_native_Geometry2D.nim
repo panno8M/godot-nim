@@ -13,7 +13,7 @@ proc isPointInCircle*(self: Geometry2D; point: Vector2; circlePosition: Vector2;
   var `?param` = [getPtr point, getPtr circlePosition, getPtr circleRadius]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc segmentIntersectsCircle*(self: Geometry2D; segmentFrom: Vector2; segmentTo: Vector2; circlePosition: Vector2; circleRadius: Float): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc segmentIntersectsCircle*(self: Geometry2D; segmentFrom: Vector2; segmentTo:
   var `?param` = [getPtr segmentFrom, getPtr segmentTo, getPtr circlePosition, getPtr circleRadius]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc segmentIntersectsSegment*(self: Geometry2D; fromA: Vector2; toA: Vector2; fromB: Vector2; toB: Vector2): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -31,7 +31,7 @@ proc segmentIntersectsSegment*(self: Geometry2D; fromA: Vector2; toA: Vector2; f
   var `?param` = [getPtr fromA, getPtr toA, getPtr fromB, getPtr toB]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc lineIntersectsLine*(self: Geometry2D; fromA: Vector2; dirA: Vector2; fromB: Vector2; dirB: Vector2): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -40,7 +40,7 @@ proc lineIntersectsLine*(self: Geometry2D; fromA: Vector2; dirA: Vector2; fromB:
   var `?param` = [getPtr fromA, getPtr dirA, getPtr fromB, getPtr dirB]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc getClosestPointsBetweenSegments*(self: Geometry2D; p1: Vector2; q1: Vector2; p2: Vector2; q2: Vector2): PackedVector2Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc getClosestPointsBetweenSegments*(self: Geometry2D; p1: Vector2; q1: Vector2
   var `?param` = [getPtr p1, getPtr q1, getPtr p2, getPtr q2]
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedVector2Array)
+  (addr ret).decode_result(PackedVector2Array)
 proc getClosestPointToSegment*(self: Geometry2D; point: Vector2; s1: Vector2; s2: Vector2): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -58,7 +58,7 @@ proc getClosestPointToSegment*(self: Geometry2D; point: Vector2; s1: Vector2; s2
   var `?param` = [getPtr point, getPtr s1, getPtr s2]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getClosestPointToSegmentUncapped*(self: Geometry2D; point: Vector2; s1: Vector2; s2: Vector2): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -67,7 +67,7 @@ proc getClosestPointToSegmentUncapped*(self: Geometry2D; point: Vector2; s1: Vec
   var `?param` = [getPtr point, getPtr s1, getPtr s2]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc pointIsInsideTriangle*(self: Geometry2D; point: Vector2; a: Vector2; b: Vector2; c: Vector2): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -76,7 +76,7 @@ proc pointIsInsideTriangle*(self: Geometry2D; point: Vector2; a: Vector2; b: Vec
   var `?param` = [getPtr point, getPtr a, getPtr b, getPtr c]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isPolygonClockwise*(self: Geometry2D; polygon: PackedVector2Array): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -85,7 +85,7 @@ proc isPolygonClockwise*(self: Geometry2D; polygon: PackedVector2Array): Bool =
   var `?param` = [getPtr polygon]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isPointInPolygon*(self: Geometry2D; point: Vector2; polygon: PackedVector2Array): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc isPointInPolygon*(self: Geometry2D; point: Vector2; polygon: PackedVector2A
   var `?param` = [getPtr point, getPtr polygon]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc triangulatePolygon*(self: Geometry2D; polygon: PackedVector2Array): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -103,7 +103,7 @@ proc triangulatePolygon*(self: Geometry2D; polygon: PackedVector2Array): PackedI
   var `?param` = [getPtr polygon]
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc triangulateDelaunay*(self: Geometry2D; points: PackedVector2Array): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -112,7 +112,7 @@ proc triangulateDelaunay*(self: Geometry2D; points: PackedVector2Array): PackedI
   var `?param` = [getPtr points]
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc convexHull*(self: Geometry2D; points: PackedVector2Array): PackedVector2Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -121,7 +121,7 @@ proc convexHull*(self: Geometry2D; points: PackedVector2Array): PackedVector2Arr
   var `?param` = [getPtr points]
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedVector2Array)
+  (addr ret).decode_result(PackedVector2Array)
 proc decomposePolygonInConvex*(self: Geometry2D; polygon: PackedVector2Array): TypedArray[PackedVector2Array] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -130,7 +130,7 @@ proc decomposePolygonInConvex*(self: Geometry2D; polygon: PackedVector2Array): T
   var `?param` = [getPtr polygon]
   var ret: encoded TypedArray[PackedVector2Array]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[PackedVector2Array])
+  (addr ret).decode_result(TypedArray[PackedVector2Array])
 proc mergePolygons*(self: Geometry2D; polygonA: PackedVector2Array; polygonB: PackedVector2Array): TypedArray[PackedVector2Array] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc mergePolygons*(self: Geometry2D; polygonA: PackedVector2Array; polygonB: Pa
   var `?param` = [getPtr polygonA, getPtr polygonB]
   var ret: encoded TypedArray[PackedVector2Array]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[PackedVector2Array])
+  (addr ret).decode_result(TypedArray[PackedVector2Array])
 proc clipPolygons*(self: Geometry2D; polygonA: PackedVector2Array; polygonB: PackedVector2Array): TypedArray[PackedVector2Array] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -148,7 +148,7 @@ proc clipPolygons*(self: Geometry2D; polygonA: PackedVector2Array; polygonB: Pac
   var `?param` = [getPtr polygonA, getPtr polygonB]
   var ret: encoded TypedArray[PackedVector2Array]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[PackedVector2Array])
+  (addr ret).decode_result(TypedArray[PackedVector2Array])
 proc intersectPolygons*(self: Geometry2D; polygonA: PackedVector2Array; polygonB: PackedVector2Array): TypedArray[PackedVector2Array] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -157,7 +157,7 @@ proc intersectPolygons*(self: Geometry2D; polygonA: PackedVector2Array; polygonB
   var `?param` = [getPtr polygonA, getPtr polygonB]
   var ret: encoded TypedArray[PackedVector2Array]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[PackedVector2Array])
+  (addr ret).decode_result(TypedArray[PackedVector2Array])
 proc excludePolygons*(self: Geometry2D; polygonA: PackedVector2Array; polygonB: PackedVector2Array): TypedArray[PackedVector2Array] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -166,7 +166,7 @@ proc excludePolygons*(self: Geometry2D; polygonA: PackedVector2Array; polygonB: 
   var `?param` = [getPtr polygonA, getPtr polygonB]
   var ret: encoded TypedArray[PackedVector2Array]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[PackedVector2Array])
+  (addr ret).decode_result(TypedArray[PackedVector2Array])
 proc clipPolylineWithPolygon*(self: Geometry2D; polyline: PackedVector2Array; polygon: PackedVector2Array): TypedArray[PackedVector2Array] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -175,7 +175,7 @@ proc clipPolylineWithPolygon*(self: Geometry2D; polyline: PackedVector2Array; po
   var `?param` = [getPtr polyline, getPtr polygon]
   var ret: encoded TypedArray[PackedVector2Array]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[PackedVector2Array])
+  (addr ret).decode_result(TypedArray[PackedVector2Array])
 proc intersectPolylineWithPolygon*(self: Geometry2D; polyline: PackedVector2Array; polygon: PackedVector2Array): TypedArray[PackedVector2Array] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -184,7 +184,7 @@ proc intersectPolylineWithPolygon*(self: Geometry2D; polyline: PackedVector2Arra
   var `?param` = [getPtr polyline, getPtr polygon]
   var ret: encoded TypedArray[PackedVector2Array]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[PackedVector2Array])
+  (addr ret).decode_result(TypedArray[PackedVector2Array])
 proc offsetPolygon*(self: Geometry2D; polygon: PackedVector2Array; delta: Float; joinType: Geometry2D_PolyJoinType = joinSquare): TypedArray[PackedVector2Array] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -193,7 +193,7 @@ proc offsetPolygon*(self: Geometry2D; polygon: PackedVector2Array; delta: Float;
   var `?param` = [getPtr polygon, getPtr delta, getPtr joinType]
   var ret: encoded TypedArray[PackedVector2Array]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[PackedVector2Array])
+  (addr ret).decode_result(TypedArray[PackedVector2Array])
 proc offsetPolyline*(self: Geometry2D; polyline: PackedVector2Array; delta: Float; joinType: Geometry2D_PolyJoinType = joinSquare; endType: Geometry2D_PolyEndType = endSquare): TypedArray[PackedVector2Array] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -202,7 +202,7 @@ proc offsetPolyline*(self: Geometry2D; polyline: PackedVector2Array; delta: Floa
   var `?param` = [getPtr polyline, getPtr delta, getPtr joinType, getPtr endType]
   var ret: encoded TypedArray[PackedVector2Array]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[PackedVector2Array])
+  (addr ret).decode_result(TypedArray[PackedVector2Array])
 proc makeAtlas*(self: Geometry2D; sizes: PackedVector2Array): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -211,4 +211,4 @@ proc makeAtlas*(self: Geometry2D; sizes: PackedVector2Array): Dictionary =
   var `?param` = [getPtr sizes]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)

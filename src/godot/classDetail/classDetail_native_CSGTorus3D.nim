@@ -19,7 +19,7 @@ proc innerRadius*(self: CSGTorus3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGTorus3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `outerRadius=`*(self: CSGTorus3D; radius: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc outerRadius*(self: CSGTorus3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGTorus3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `sides=`*(self: CSGTorus3D; sides: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc sides*(self: CSGTorus3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGTorus3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `ringSides=`*(self: CSGTorus3D; sides: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc ringSides*(self: CSGTorus3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGTorus3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `material=`*(self: CSGTorus3D; material: Material) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc material*(self: CSGTorus3D): Material =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGTorus3D, addr name, 5934680)
   var ret: encoded Material
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Material)
+  (addr ret).decode_result(Material)
 proc `smoothFaces=`*(self: CSGTorus3D; smoothFaces: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,4 +94,4 @@ proc smoothFaces*(self: CSGTorus3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGTorus3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

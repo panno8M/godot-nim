@@ -19,7 +19,7 @@ proc location*(self: RDVertexAttribute): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RDVertexAttribute, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `offset=`*(self: RDVertexAttribute; pMember: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc offset*(self: RDVertexAttribute): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RDVertexAttribute, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `format=`*(self: RDVertexAttribute; pMember: RenderingDevice_DataFormat) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc format*(self: RDVertexAttribute): RenderingDevice_DataFormat =
     methodbind = interface_ClassDB_getMethodBind(addr className RDVertexAttribute, addr name, 2235804183)
   var ret: encoded RenderingDevice_DataFormat
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_DataFormat)
+  (addr ret).decode_result(RenderingDevice_DataFormat)
 proc `stride=`*(self: RDVertexAttribute; pMember: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc stride*(self: RDVertexAttribute): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RDVertexAttribute, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `frequency=`*(self: RDVertexAttribute; pMember: RenderingDevice_VertexFrequency) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,4 +79,4 @@ proc frequency*(self: RDVertexAttribute): RenderingDevice_VertexFrequency =
     methodbind = interface_ClassDB_getMethodBind(addr className RDVertexAttribute, addr name, 4154106413)
   var ret: encoded RenderingDevice_VertexFrequency
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_VertexFrequency)
+  (addr ret).decode_result(RenderingDevice_VertexFrequency)

@@ -13,7 +13,7 @@ proc hasFeature*(self: DisplayServer; feature: DisplayServer_Feature): Bool =
   var `?param` = [getPtr feature]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getName*(self: DisplayServer): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -21,7 +21,7 @@ proc getName*(self: DisplayServer): String =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc globalMenuAddSubmenuItem*(self: DisplayServer; menuRoot: String; label: String; submenu: String; index: int32 = -1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -30,7 +30,7 @@ proc globalMenuAddSubmenuItem*(self: DisplayServer; menuRoot: String; label: Str
   var `?param` = [getPtr menuRoot, getPtr label, getPtr submenu, getPtr index]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc globalMenuAddItem*(self: DisplayServer; menuRoot: String; label: String; callback: Callable = init_Callable(); keyCallback: Callable = init_Callable(); tag: Variant = default(Variant); accelerator: Key = keyNone; index: int32 = -1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -39,7 +39,7 @@ proc globalMenuAddItem*(self: DisplayServer; menuRoot: String; label: String; ca
   var `?param` = [getPtr menuRoot, getPtr label, getPtr callback, getPtr keyCallback, getPtr tag, getPtr accelerator, getPtr index]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc globalMenuAddCheckItem*(self: DisplayServer; menuRoot: String; label: String; callback: Callable = init_Callable(); keyCallback: Callable = init_Callable(); tag: Variant = default(Variant); accelerator: Key = keyNone; index: int32 = -1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -48,7 +48,7 @@ proc globalMenuAddCheckItem*(self: DisplayServer; menuRoot: String; label: Strin
   var `?param` = [getPtr menuRoot, getPtr label, getPtr callback, getPtr keyCallback, getPtr tag, getPtr accelerator, getPtr index]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc globalMenuAddIconItem*(self: DisplayServer; menuRoot: String; icon: Texture2D; label: String; callback: Callable = init_Callable(); keyCallback: Callable = init_Callable(); tag: Variant = default(Variant); accelerator: Key = keyNone; index: int32 = -1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc globalMenuAddIconItem*(self: DisplayServer; menuRoot: String; icon: Texture
   var `?param` = [getPtr menuRoot, getPtr icon, getPtr label, getPtr callback, getPtr keyCallback, getPtr tag, getPtr accelerator, getPtr index]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc globalMenuAddIconCheckItem*(self: DisplayServer; menuRoot: String; icon: Texture2D; label: String; callback: Callable = init_Callable(); keyCallback: Callable = init_Callable(); tag: Variant = default(Variant); accelerator: Key = keyNone; index: int32 = -1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -66,7 +66,7 @@ proc globalMenuAddIconCheckItem*(self: DisplayServer; menuRoot: String; icon: Te
   var `?param` = [getPtr menuRoot, getPtr icon, getPtr label, getPtr callback, getPtr keyCallback, getPtr tag, getPtr accelerator, getPtr index]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc globalMenuAddRadioCheckItem*(self: DisplayServer; menuRoot: String; label: String; callback: Callable = init_Callable(); keyCallback: Callable = init_Callable(); tag: Variant = default(Variant); accelerator: Key = keyNone; index: int32 = -1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -75,7 +75,7 @@ proc globalMenuAddRadioCheckItem*(self: DisplayServer; menuRoot: String; label: 
   var `?param` = [getPtr menuRoot, getPtr label, getPtr callback, getPtr keyCallback, getPtr tag, getPtr accelerator, getPtr index]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc globalMenuAddIconRadioCheckItem*(self: DisplayServer; menuRoot: String; icon: Texture2D; label: String; callback: Callable = init_Callable(); keyCallback: Callable = init_Callable(); tag: Variant = default(Variant); accelerator: Key = keyNone; index: int32 = -1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -84,7 +84,7 @@ proc globalMenuAddIconRadioCheckItem*(self: DisplayServer; menuRoot: String; ico
   var `?param` = [getPtr menuRoot, getPtr icon, getPtr label, getPtr callback, getPtr keyCallback, getPtr tag, getPtr accelerator, getPtr index]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc globalMenuAddMultistateItem*(self: DisplayServer; menuRoot: String; label: String; maxStates: int32; defaultState: int32; callback: Callable = init_Callable(); keyCallback: Callable = init_Callable(); tag: Variant = default(Variant); accelerator: Key = keyNone; index: int32 = -1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -93,7 +93,7 @@ proc globalMenuAddMultistateItem*(self: DisplayServer; menuRoot: String; label: 
   var `?param` = [getPtr menuRoot, getPtr label, getPtr maxStates, getPtr defaultState, getPtr callback, getPtr keyCallback, getPtr tag, getPtr accelerator, getPtr index]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc globalMenuAddSeparator*(self: DisplayServer; menuRoot: String; index: int32 = -1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -102,7 +102,7 @@ proc globalMenuAddSeparator*(self: DisplayServer; menuRoot: String; index: int32
   var `?param` = [getPtr menuRoot, getPtr index]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc globalMenuGetItemIndexFromText*(self: DisplayServer; menuRoot: String; text: String): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -111,7 +111,7 @@ proc globalMenuGetItemIndexFromText*(self: DisplayServer; menuRoot: String; text
   var `?param` = [getPtr menuRoot, getPtr text]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc globalMenuGetItemIndexFromTag*(self: DisplayServer; menuRoot: String; tag: Variant): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -120,7 +120,7 @@ proc globalMenuGetItemIndexFromTag*(self: DisplayServer; menuRoot: String; tag: 
   var `?param` = [getPtr menuRoot, getPtr tag]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc globalMenuIsItemChecked*(self: DisplayServer; menuRoot: String; idx: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -129,7 +129,7 @@ proc globalMenuIsItemChecked*(self: DisplayServer; menuRoot: String; idx: int32)
   var `?param` = [getPtr menuRoot, getPtr idx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc globalMenuIsItemCheckable*(self: DisplayServer; menuRoot: String; idx: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -138,7 +138,7 @@ proc globalMenuIsItemCheckable*(self: DisplayServer; menuRoot: String; idx: int3
   var `?param` = [getPtr menuRoot, getPtr idx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc globalMenuIsItemRadioCheckable*(self: DisplayServer; menuRoot: String; idx: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -147,7 +147,7 @@ proc globalMenuIsItemRadioCheckable*(self: DisplayServer; menuRoot: String; idx:
   var `?param` = [getPtr menuRoot, getPtr idx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc globalMenuGetItemCallback*(self: DisplayServer; menuRoot: String; idx: int32): Callable =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -156,7 +156,7 @@ proc globalMenuGetItemCallback*(self: DisplayServer; menuRoot: String; idx: int3
   var `?param` = [getPtr menuRoot, getPtr idx]
   var ret: encoded Callable
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Callable)
+  (addr ret).decode_result(Callable)
 proc globalMenuGetItemKeyCallback*(self: DisplayServer; menuRoot: String; idx: int32): Callable =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -165,7 +165,7 @@ proc globalMenuGetItemKeyCallback*(self: DisplayServer; menuRoot: String; idx: i
   var `?param` = [getPtr menuRoot, getPtr idx]
   var ret: encoded Callable
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Callable)
+  (addr ret).decode_result(Callable)
 proc globalMenuGetItemTag*(self: DisplayServer; menuRoot: String; idx: int32): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -174,7 +174,7 @@ proc globalMenuGetItemTag*(self: DisplayServer; menuRoot: String; idx: int32): V
   var `?param` = [getPtr menuRoot, getPtr idx]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc globalMenuGetItemText*(self: DisplayServer; menuRoot: String; idx: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -183,7 +183,7 @@ proc globalMenuGetItemText*(self: DisplayServer; menuRoot: String; idx: int32): 
   var `?param` = [getPtr menuRoot, getPtr idx]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc globalMenuGetItemSubmenu*(self: DisplayServer; menuRoot: String; idx: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -192,7 +192,7 @@ proc globalMenuGetItemSubmenu*(self: DisplayServer; menuRoot: String; idx: int32
   var `?param` = [getPtr menuRoot, getPtr idx]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc globalMenuGetItemAccelerator*(self: DisplayServer; menuRoot: String; idx: int32): Key =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -201,7 +201,7 @@ proc globalMenuGetItemAccelerator*(self: DisplayServer; menuRoot: String; idx: i
   var `?param` = [getPtr menuRoot, getPtr idx]
   var ret: encoded Key
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Key)
+  (addr ret).decode_result(Key)
 proc globalMenuIsItemDisabled*(self: DisplayServer; menuRoot: String; idx: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -210,7 +210,7 @@ proc globalMenuIsItemDisabled*(self: DisplayServer; menuRoot: String; idx: int32
   var `?param` = [getPtr menuRoot, getPtr idx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc globalMenuGetItemTooltip*(self: DisplayServer; menuRoot: String; idx: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -219,7 +219,7 @@ proc globalMenuGetItemTooltip*(self: DisplayServer; menuRoot: String; idx: int32
   var `?param` = [getPtr menuRoot, getPtr idx]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc globalMenuGetItemState*(self: DisplayServer; menuRoot: String; idx: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -228,7 +228,7 @@ proc globalMenuGetItemState*(self: DisplayServer; menuRoot: String; idx: int32):
   var `?param` = [getPtr menuRoot, getPtr idx]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc globalMenuGetItemMaxStates*(self: DisplayServer; menuRoot: String; idx: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -237,7 +237,7 @@ proc globalMenuGetItemMaxStates*(self: DisplayServer; menuRoot: String; idx: int
   var `?param` = [getPtr menuRoot, getPtr idx]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc globalMenuGetItemIcon*(self: DisplayServer; menuRoot: String; idx: int32): Texture2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -246,7 +246,7 @@ proc globalMenuGetItemIcon*(self: DisplayServer; menuRoot: String; idx: int32): 
   var `?param` = [getPtr menuRoot, getPtr idx]
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc globalMenuGetItemIndentationLevel*(self: DisplayServer; menuRoot: String; idx: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -255,7 +255,7 @@ proc globalMenuGetItemIndentationLevel*(self: DisplayServer; menuRoot: String; i
   var `?param` = [getPtr menuRoot, getPtr idx]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc globalMenuSetItemChecked*(self: DisplayServer; menuRoot: String; idx: int32; checked: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -369,7 +369,7 @@ proc globalMenuGetItemCount*(self: DisplayServer; menuRoot: String): int32 =
   var `?param` = [getPtr menuRoot]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc globalMenuRemoveItem*(self: DisplayServer; menuRoot: String; idx: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -391,7 +391,7 @@ proc ttsIsSpeaking*(self: DisplayServer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc ttsIsPaused*(self: DisplayServer): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -399,7 +399,7 @@ proc ttsIsPaused*(self: DisplayServer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc ttsGetVoices*(self: DisplayServer): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -407,7 +407,7 @@ proc ttsGetVoices*(self: DisplayServer): TypedArray[Dictionary] =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 3995934104)
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Dictionary])
+  (addr ret).decode_result(TypedArray[Dictionary])
 proc ttsGetVoicesForLanguage*(self: DisplayServer; language: String): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -416,7 +416,7 @@ proc ttsGetVoicesForLanguage*(self: DisplayServer; language: String): PackedStri
   var `?param` = [getPtr language]
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc ttsSpeak*(self: DisplayServer; text: String; voice: String; volume: int32 = 50; pitch: Float = 1.0; rate: Float = 1.0; utteranceId: int32 = 0; interrupt: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -456,7 +456,7 @@ proc isDarkModeSupported*(self: DisplayServer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isDarkMode*(self: DisplayServer): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -464,7 +464,7 @@ proc isDarkMode*(self: DisplayServer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getAccentColor*(self: DisplayServer): Color =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -472,7 +472,7 @@ proc getAccentColor*(self: DisplayServer): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc mouseSetMode*(self: DisplayServer; mouseMode: DisplayServer_MouseMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -487,7 +487,7 @@ proc mouseGetMode*(self: DisplayServer): DisplayServer_MouseMode =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 1353961651)
   var ret: encoded DisplayServer_MouseMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(DisplayServer_MouseMode)
+  (addr ret).decode_result(DisplayServer_MouseMode)
 proc warpMouse*(self: DisplayServer; position: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -502,7 +502,7 @@ proc mouseGetPosition*(self: DisplayServer): Vector2i =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 3690982128)
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc mouseGetButtonState*(self: DisplayServer): set[MouseButtonMask] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -510,7 +510,7 @@ proc mouseGetButtonState*(self: DisplayServer): set[MouseButtonMask] =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 2512161324)
   var ret: encoded set[MouseButtonMask]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(set[MouseButtonMask])
+  (addr ret).decode_result(set[MouseButtonMask])
 proc clipboardSet*(self: DisplayServer; clipboard: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -525,7 +525,7 @@ proc clipboardGet*(self: DisplayServer): String =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc clipboardHas*(self: DisplayServer): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -533,7 +533,7 @@ proc clipboardHas*(self: DisplayServer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc clipboardSetPrimary*(self: DisplayServer; clipboardPrimary: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -548,7 +548,7 @@ proc clipboardGetPrimary*(self: DisplayServer): String =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getDisplayCutouts*(self: DisplayServer): TypedArray[Rect2] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -556,7 +556,7 @@ proc getDisplayCutouts*(self: DisplayServer): TypedArray[Rect2] =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 3995934104)
   var ret: encoded TypedArray[Rect2]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Rect2])
+  (addr ret).decode_result(TypedArray[Rect2])
 proc getDisplaySafeArea*(self: DisplayServer): Rect2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -564,7 +564,7 @@ proc getDisplaySafeArea*(self: DisplayServer): Rect2i =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 410525958)
   var ret: encoded Rect2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Rect2i)
+  (addr ret).decode_result(Rect2i)
 proc getScreenCount*(self: DisplayServer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -572,7 +572,7 @@ proc getScreenCount*(self: DisplayServer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getPrimaryScreen*(self: DisplayServer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -580,7 +580,7 @@ proc getPrimaryScreen*(self: DisplayServer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getKeyboardFocusScreen*(self: DisplayServer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -588,7 +588,7 @@ proc getKeyboardFocusScreen*(self: DisplayServer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getScreenFromRect*(self: DisplayServer; rect: Rect2): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -597,7 +597,7 @@ proc getScreenFromRect*(self: DisplayServer; rect: Rect2): int32 =
   var `?param` = [getPtr rect]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc screenGetPosition*(self: DisplayServer; screen: int32 = -1): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -606,7 +606,7 @@ proc screenGetPosition*(self: DisplayServer; screen: int32 = -1): Vector2i =
   var `?param` = [getPtr screen]
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc screenGetSize*(self: DisplayServer; screen: int32 = -1): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -615,7 +615,7 @@ proc screenGetSize*(self: DisplayServer; screen: int32 = -1): Vector2i =
   var `?param` = [getPtr screen]
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc screenGetUsableRect*(self: DisplayServer; screen: int32 = -1): Rect2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -624,7 +624,7 @@ proc screenGetUsableRect*(self: DisplayServer; screen: int32 = -1): Rect2i =
   var `?param` = [getPtr screen]
   var ret: encoded Rect2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Rect2i)
+  (addr ret).decode_result(Rect2i)
 proc screenGetDpi*(self: DisplayServer; screen: int32 = -1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -633,7 +633,7 @@ proc screenGetDpi*(self: DisplayServer; screen: int32 = -1): int32 =
   var `?param` = [getPtr screen]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc screenGetScale*(self: DisplayServer; screen: int32 = -1): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -642,7 +642,7 @@ proc screenGetScale*(self: DisplayServer; screen: int32 = -1): Float =
   var `?param` = [getPtr screen]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc isTouchscreenAvailable*(self: DisplayServer): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -650,7 +650,7 @@ proc isTouchscreenAvailable*(self: DisplayServer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 4162880507)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc screenGetMaxScale*(self: DisplayServer): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -658,7 +658,7 @@ proc screenGetMaxScale*(self: DisplayServer): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc screenGetRefreshRate*(self: DisplayServer; screen: int32 = -1): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -667,7 +667,7 @@ proc screenGetRefreshRate*(self: DisplayServer; screen: int32 = -1): Float =
   var `?param` = [getPtr screen]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc screenGetPixel*(self: DisplayServer; position: Vector2i): Color =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -676,7 +676,7 @@ proc screenGetPixel*(self: DisplayServer; position: Vector2i): Color =
   var `?param` = [getPtr position]
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc screenGetImage*(self: DisplayServer; screen: int32 = -1): Image =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -685,7 +685,7 @@ proc screenGetImage*(self: DisplayServer; screen: int32 = -1): Image =
   var `?param` = [getPtr screen]
   var ret: encoded Image
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Image)
+  (addr ret).decode_result(Image)
 proc screenSetOrientation*(self: DisplayServer; orientation: DisplayServer_ScreenOrientation; screen: int32 = -1) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -701,7 +701,7 @@ proc screenGetOrientation*(self: DisplayServer; screen: int32 = -1): DisplayServ
   var `?param` = [getPtr screen]
   var ret: encoded DisplayServer_ScreenOrientation
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(DisplayServer_ScreenOrientation)
+  (addr ret).decode_result(DisplayServer_ScreenOrientation)
 proc screenSetKeepOn*(self: DisplayServer; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -716,7 +716,7 @@ proc screenIsKeptOn*(self: DisplayServer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getWindowList*(self: DisplayServer): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -724,7 +724,7 @@ proc getWindowList*(self: DisplayServer): PackedInt32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 1930428628)
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc getWindowAtScreenPosition*(self: DisplayServer; position: Vector2i): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -733,7 +733,7 @@ proc getWindowAtScreenPosition*(self: DisplayServer; position: Vector2i): int32 
   var `?param` = [getPtr position]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc windowGetNativeHandle*(self: DisplayServer; handleType: DisplayServer_HandleType; windowId: int32 = 0): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -742,7 +742,7 @@ proc windowGetNativeHandle*(self: DisplayServer; handleType: DisplayServer_Handl
   var `?param` = [getPtr handleType, getPtr windowId]
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int64)
+  (addr ret).decode_result(int64)
 proc windowGetActivePopup*(self: DisplayServer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -750,7 +750,7 @@ proc windowGetActivePopup*(self: DisplayServer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc windowSetPopupSafeRect*(self: DisplayServer; window: int32; rect: Rect2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -766,7 +766,7 @@ proc windowGetPopupSafeRect*(self: DisplayServer; window: int32): Rect2i =
   var `?param` = [getPtr window]
   var ret: encoded Rect2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Rect2i)
+  (addr ret).decode_result(Rect2i)
 proc windowSetTitle*(self: DisplayServer; title: String; windowId: int32 = 0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -789,7 +789,7 @@ proc windowGetCurrentScreen*(self: DisplayServer; windowId: int32 = 0): int32 =
   var `?param` = [getPtr windowId]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc windowSetCurrentScreen*(self: DisplayServer; screen: int32; windowId: int32 = 0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -805,7 +805,7 @@ proc windowGetPosition*(self: DisplayServer; windowId: int32 = 0): Vector2i =
   var `?param` = [getPtr windowId]
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc windowGetPositionWithDecorations*(self: DisplayServer; windowId: int32 = 0): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -814,7 +814,7 @@ proc windowGetPositionWithDecorations*(self: DisplayServer; windowId: int32 = 0)
   var `?param` = [getPtr windowId]
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc windowSetPosition*(self: DisplayServer; position: Vector2i; windowId: int32 = 0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -830,7 +830,7 @@ proc windowGetSize*(self: DisplayServer; windowId: int32 = 0): Vector2i =
   var `?param` = [getPtr windowId]
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc windowSetSize*(self: DisplayServer; size: Vector2i; windowId: int32 = 0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -881,7 +881,7 @@ proc windowGetAttachedInstanceId*(self: DisplayServer; windowId: int32 = 0): uin
   var `?param` = [getPtr windowId]
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)
 proc windowGetMaxSize*(self: DisplayServer; windowId: int32 = 0): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -890,7 +890,7 @@ proc windowGetMaxSize*(self: DisplayServer; windowId: int32 = 0): Vector2i =
   var `?param` = [getPtr windowId]
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc windowSetMaxSize*(self: DisplayServer; maxSize: Vector2i; windowId: int32 = 0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -906,7 +906,7 @@ proc windowGetMinSize*(self: DisplayServer; windowId: int32 = 0): Vector2i =
   var `?param` = [getPtr windowId]
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc windowSetMinSize*(self: DisplayServer; minSize: Vector2i; windowId: int32 = 0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -922,7 +922,7 @@ proc windowGetSizeWithDecorations*(self: DisplayServer; windowId: int32 = 0): Ve
   var `?param` = [getPtr windowId]
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc windowGetMode*(self: DisplayServer; windowId: int32 = 0): DisplayServer_WindowMode =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -931,7 +931,7 @@ proc windowGetMode*(self: DisplayServer; windowId: int32 = 0): DisplayServer_Win
   var `?param` = [getPtr windowId]
   var ret: encoded DisplayServer_WindowMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(DisplayServer_WindowMode)
+  (addr ret).decode_result(DisplayServer_WindowMode)
 proc windowSetMode*(self: DisplayServer; mode: DisplayServer_WindowMode; windowId: int32 = 0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -954,7 +954,7 @@ proc windowGetFlag*(self: DisplayServer; flag: DisplayServer_WindowFlags; window
   var `?param` = [getPtr flag, getPtr windowId]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc windowSetWindowButtonsOffset*(self: DisplayServer; offset: Vector2i; windowId: int32 = 0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -970,7 +970,7 @@ proc windowGetSafeTitleMargins*(self: DisplayServer; windowId: int32 = 0): Vecto
   var `?param` = [getPtr windowId]
   var ret: encoded Vector3i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3i)
+  (addr ret).decode_result(Vector3i)
 proc windowRequestAttention*(self: DisplayServer; windowId: int32 = 0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -993,7 +993,7 @@ proc windowIsFocused*(self: DisplayServer; windowId: int32 = 0): Bool =
   var `?param` = [getPtr windowId]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc windowCanDraw*(self: DisplayServer; windowId: int32 = 0): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1002,7 +1002,7 @@ proc windowCanDraw*(self: DisplayServer; windowId: int32 = 0): Bool =
   var `?param` = [getPtr windowId]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc windowSetTransient*(self: DisplayServer; windowId: int32; parentWindowId: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1046,7 +1046,7 @@ proc windowGetVsyncMode*(self: DisplayServer; windowId: int32 = 0): DisplayServe
   var `?param` = [getPtr windowId]
   var ret: encoded DisplayServer_VSyncMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(DisplayServer_VSyncMode)
+  (addr ret).decode_result(DisplayServer_VSyncMode)
 proc windowIsMaximizeAllowed*(self: DisplayServer; windowId: int32 = 0): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1055,7 +1055,7 @@ proc windowIsMaximizeAllowed*(self: DisplayServer; windowId: int32 = 0): Bool =
   var `?param` = [getPtr windowId]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc windowMaximizeOnTitleDblClick*(self: DisplayServer): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1063,7 +1063,7 @@ proc windowMaximizeOnTitleDblClick*(self: DisplayServer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc windowMinimizeOnTitleDblClick*(self: DisplayServer): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1071,7 +1071,7 @@ proc windowMinimizeOnTitleDblClick*(self: DisplayServer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc imeGetSelection*(self: DisplayServer): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1079,7 +1079,7 @@ proc imeGetSelection*(self: DisplayServer): Vector2i =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 3690982128)
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc imeGetText*(self: DisplayServer): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1087,7 +1087,7 @@ proc imeGetText*(self: DisplayServer): String =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc virtualKeyboardShow*(self: DisplayServer; existingText: String; position: Rect2 = init_Rect2(0, 0, 0, 0); `type`: DisplayServer_VirtualKeyboardType = keyboardTypeDefault; maxLength: int32 = -1; cursorStart: int32 = -1; cursorEnd: int32 = -1) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1108,7 +1108,7 @@ proc virtualKeyboardGetHeight*(self: DisplayServer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc cursorSetShape*(self: DisplayServer; shape: DisplayServer_CursorShape) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1123,7 +1123,7 @@ proc cursorGetShape*(self: DisplayServer): DisplayServer_CursorShape =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 1087724927)
   var ret: encoded DisplayServer_CursorShape
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(DisplayServer_CursorShape)
+  (addr ret).decode_result(DisplayServer_CursorShape)
 proc cursorSetCustomImage*(self: DisplayServer; cursor: Resource; shape: DisplayServer_CursorShape = cursorArrow; hotspot: Vector2 = gdvec(0, 0)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1138,7 +1138,7 @@ proc getSwapCancelOk*(self: DisplayServer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc enableForStealingFocus*(self: DisplayServer; processId: int64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1154,7 +1154,7 @@ proc dialogShow*(self: DisplayServer; title: String; description: String; button
   var `?param` = [getPtr title, getPtr description, getPtr buttons, getPtr callback]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc dialogInputText*(self: DisplayServer; title: String; description: String; existingText: String; callback: Callable): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1163,7 +1163,7 @@ proc dialogInputText*(self: DisplayServer; title: String; description: String; e
   var `?param` = [getPtr title, getPtr description, getPtr existingText, getPtr callback]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc keyboardGetLayoutCount*(self: DisplayServer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1171,7 +1171,7 @@ proc keyboardGetLayoutCount*(self: DisplayServer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc keyboardGetCurrentLayout*(self: DisplayServer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1179,7 +1179,7 @@ proc keyboardGetCurrentLayout*(self: DisplayServer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc keyboardSetCurrentLayout*(self: DisplayServer; index: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1195,7 +1195,7 @@ proc keyboardGetLayoutLanguage*(self: DisplayServer; index: int32): String =
   var `?param` = [getPtr index]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc keyboardGetLayoutName*(self: DisplayServer; index: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1204,7 +1204,7 @@ proc keyboardGetLayoutName*(self: DisplayServer; index: int32): String =
   var `?param` = [getPtr index]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc keyboardGetKeycodeFromPhysical*(self: DisplayServer; keycode: Key): Key =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1213,7 +1213,7 @@ proc keyboardGetKeycodeFromPhysical*(self: DisplayServer; keycode: Key): Key =
   var `?param` = [getPtr keycode]
   var ret: encoded Key
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Key)
+  (addr ret).decode_result(Key)
 proc processEvents*(self: DisplayServer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1247,7 +1247,7 @@ proc tabletGetDriverCount*(self: DisplayServer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc tabletGetDriverName*(self: DisplayServer; idx: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1256,7 +1256,7 @@ proc tabletGetDriverName*(self: DisplayServer; idx: int32): String =
   var `?param` = [getPtr idx]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc tabletGetCurrentDriver*(self: DisplayServer): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1264,7 +1264,7 @@ proc tabletGetCurrentDriver*(self: DisplayServer): String =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc tabletSetCurrentDriver*(self: DisplayServer; name: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

@@ -19,7 +19,7 @@ proc animation*(self: AnimationNodeAnimation): StringName =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeAnimation, addr name, 2002593661)
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc `playMode=`*(self: AnimationNodeAnimation; mode: AnimationNodeAnimation_PlayMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,4 +34,4 @@ proc playMode*(self: AnimationNodeAnimation): AnimationNodeAnimation_PlayMode =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeAnimation, addr name, 2061244637)
   var ret: encoded AnimationNodeAnimation_PlayMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AnimationNodeAnimation_PlayMode)
+  (addr ret).decode_result(AnimationNodeAnimation_PlayMode)

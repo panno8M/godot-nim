@@ -19,7 +19,7 @@ proc world2d*(self: Viewport): World2D =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 2339128592)
   var ret: encoded World2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(World2D)
+  (addr ret).decode_result(World2D)
 proc findWorld2d*(self: Viewport): World2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc findWorld2d*(self: Viewport): World2D =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 2339128592)
   var ret: encoded World2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(World2D)
+  (addr ret).decode_result(World2D)
 proc `canvasTransform=`*(self: Viewport; xform: Transform2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc canvasTransform*(self: Viewport): Transform2D =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 3814499831)
   var ret: encoded Transform2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform2D)
+  (addr ret).decode_result(Transform2D)
 proc `globalCanvasTransform=`*(self: Viewport; xform: Transform2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc globalCanvasTransform*(self: Viewport): Transform2D =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 3814499831)
   var ret: encoded Transform2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform2D)
+  (addr ret).decode_result(Transform2D)
 proc getFinalTransform*(self: Viewport): Transform2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -65,7 +65,7 @@ proc getFinalTransform*(self: Viewport): Transform2D =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 3814499831)
   var ret: encoded Transform2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform2D)
+  (addr ret).decode_result(Transform2D)
 proc getScreenTransform*(self: Viewport): Transform2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -73,7 +73,7 @@ proc getScreenTransform*(self: Viewport): Transform2D =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 3814499831)
   var ret: encoded Transform2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform2D)
+  (addr ret).decode_result(Transform2D)
 proc getVisibleRect*(self: Viewport): Rect2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -81,7 +81,7 @@ proc getVisibleRect*(self: Viewport): Rect2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 1639390495)
   var ret: encoded Rect2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Rect2)
+  (addr ret).decode_result(Rect2)
 proc `transparentBackground=`*(self: Viewport; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -96,7 +96,7 @@ proc hasTransparentBackground*(self: Viewport): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `msaa2d=`*(self: Viewport; msaa: Viewport_MSAA) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -111,7 +111,7 @@ proc msaa2d*(self: Viewport): Viewport_MSAA =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 2542055527)
   var ret: encoded Viewport_MSAA
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Viewport_MSAA)
+  (addr ret).decode_result(Viewport_MSAA)
 proc `msaa3d=`*(self: Viewport; msaa: Viewport_MSAA) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -126,7 +126,7 @@ proc msaa3d*(self: Viewport): Viewport_MSAA =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 2542055527)
   var ret: encoded Viewport_MSAA
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Viewport_MSAA)
+  (addr ret).decode_result(Viewport_MSAA)
 proc `screenSpaceAa=`*(self: Viewport; screenSpaceAa: Viewport_ScreenSpaceAA) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -141,7 +141,7 @@ proc screenSpaceAa*(self: Viewport): Viewport_ScreenSpaceAA =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 1390814124)
   var ret: encoded Viewport_ScreenSpaceAA
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Viewport_ScreenSpaceAA)
+  (addr ret).decode_result(Viewport_ScreenSpaceAA)
 proc `useTaa=`*(self: Viewport; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -156,7 +156,7 @@ proc isUsingTaa*(self: Viewport): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `useDebanding=`*(self: Viewport; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -171,7 +171,7 @@ proc isUsingDebanding*(self: Viewport): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `useOcclusionCulling=`*(self: Viewport; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -186,7 +186,7 @@ proc isUsingOcclusionCulling*(self: Viewport): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `debugDraw=`*(self: Viewport; debugDraw: Viewport_DebugDraw) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -201,7 +201,7 @@ proc debugDraw*(self: Viewport): Viewport_DebugDraw =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 579191299)
   var ret: encoded Viewport_DebugDraw
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Viewport_DebugDraw)
+  (addr ret).decode_result(Viewport_DebugDraw)
 proc getRenderInfo*(self: Viewport; `type`: Viewport_RenderInfoType; info: Viewport_RenderInfo): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -210,7 +210,7 @@ proc getRenderInfo*(self: Viewport; `type`: Viewport_RenderInfoType; info: Viewp
   var `?param` = [getPtr `type`, getPtr info]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getTexture*(self: Viewport): ViewportTexture =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -218,7 +218,7 @@ proc getTexture*(self: Viewport): ViewportTexture =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 1746695840)
   var ret: encoded ViewportTexture
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(ViewportTexture)
+  (addr ret).decode_result(ViewportTexture)
 proc `physicsObjectPicking=`*(self: Viewport; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -233,7 +233,7 @@ proc physicsObjectPicking*(self: Viewport): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `physicsObjectPickingSort=`*(self: Viewport; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -248,7 +248,7 @@ proc physicsObjectPickingSort*(self: Viewport): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getViewportRid*(self: Viewport): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -256,7 +256,7 @@ proc getViewportRid*(self: Viewport): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 2944877500)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc pushTextInput*(self: Viewport; text: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -285,7 +285,7 @@ proc getCamera2d*(self: Viewport): Camera2D =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 3551466917)
   var ret: encoded Camera2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Camera2D)
+  (addr ret).decode_result(Camera2D)
 proc `asAudioListener2d=`*(self: Viewport; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -300,7 +300,7 @@ proc isAudioListener2d*(self: Viewport): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getMousePosition*(self: Viewport): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -308,7 +308,7 @@ proc getMousePosition*(self: Viewport): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc warpMouse*(self: Viewport; position: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -329,7 +329,7 @@ proc guiGetDragData*(self: Viewport): Variant =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 1214101251)
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc guiIsDragging*(self: Viewport): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -337,7 +337,7 @@ proc guiIsDragging*(self: Viewport): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc guiIsDragSuccessful*(self: Viewport): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -345,7 +345,7 @@ proc guiIsDragSuccessful*(self: Viewport): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc guiReleaseFocus*(self: Viewport) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -359,7 +359,7 @@ proc guiGetFocusOwner*(self: Viewport): Control =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 2783021301)
   var ret: encoded Control
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Control)
+  (addr ret).decode_result(Control)
 proc `disableInput=`*(self: Viewport; disable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -374,7 +374,7 @@ proc isInputDisabled*(self: Viewport): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `positionalShadowAtlasSize=`*(self: Viewport; size: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -389,7 +389,7 @@ proc positionalShadowAtlasSize*(self: Viewport): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `positionalShadowAtlas16Bits=`*(self: Viewport; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -404,7 +404,7 @@ proc positionalShadowAtlas16Bits*(self: Viewport): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `snapControlsToPixels=`*(self: Viewport; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -419,7 +419,7 @@ proc isSnapControlsToPixelsEnabled*(self: Viewport): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `snap2dTransformsToPixel=`*(self: Viewport; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -434,7 +434,7 @@ proc isSnap2dTransformsToPixelEnabled*(self: Viewport): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `snap2dVerticesToPixel=`*(self: Viewport; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -449,7 +449,7 @@ proc isSnap2dVerticesToPixelEnabled*(self: Viewport): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `positionalShadowAtlasQuadrantSubdiv=`*(self: Viewport; quadrant: int32; subdiv: Viewport_PositionalShadowAtlasQuadrantSubdiv) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -465,7 +465,7 @@ proc positionalShadowAtlasQuadrantSubdiv*(self: Viewport; quadrant: int32): View
   var `?param` = [getPtr quadrant]
   var ret: encoded Viewport_PositionalShadowAtlasQuadrantSubdiv
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Viewport_PositionalShadowAtlasQuadrantSubdiv)
+  (addr ret).decode_result(Viewport_PositionalShadowAtlasQuadrantSubdiv)
 proc setInputAsHandled*(self: Viewport) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -479,7 +479,7 @@ proc isInputHandled*(self: Viewport): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `handleInputLocally=`*(self: Viewport; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -494,7 +494,7 @@ proc isHandlingInputLocally*(self: Viewport): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `defaultCanvasItemTextureFilter=`*(self: Viewport; mode: Viewport_DefaultCanvasItemTextureFilter) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -509,7 +509,7 @@ proc defaultCanvasItemTextureFilter*(self: Viewport): Viewport_DefaultCanvasItem
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 896601198)
   var ret: encoded Viewport_DefaultCanvasItemTextureFilter
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Viewport_DefaultCanvasItemTextureFilter)
+  (addr ret).decode_result(Viewport_DefaultCanvasItemTextureFilter)
 proc `embeddingSubwindows=`*(self: Viewport; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -524,7 +524,7 @@ proc isEmbeddingSubwindows*(self: Viewport): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `canvasCullMask=`*(self: Viewport; mask: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -539,7 +539,7 @@ proc canvasCullMask*(self: Viewport): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc setCanvasCullMaskBit*(self: Viewport; layer: uint32; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -555,7 +555,7 @@ proc getCanvasCullMaskBit*(self: Viewport; layer: uint32): Bool =
   var `?param` = [getPtr layer]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `defaultCanvasItemTextureRepeat=`*(self: Viewport; mode: Viewport_DefaultCanvasItemTextureRepeat) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -570,7 +570,7 @@ proc defaultCanvasItemTextureRepeat*(self: Viewport): Viewport_DefaultCanvasItem
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 4049774160)
   var ret: encoded Viewport_DefaultCanvasItemTextureRepeat
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Viewport_DefaultCanvasItemTextureRepeat)
+  (addr ret).decode_result(Viewport_DefaultCanvasItemTextureRepeat)
 proc `sdfOversize=`*(self: Viewport; oversize: Viewport_SDFOversize) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -585,7 +585,7 @@ proc sdfOversize*(self: Viewport): Viewport_SDFOversize =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 2631427510)
   var ret: encoded Viewport_SDFOversize
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Viewport_SDFOversize)
+  (addr ret).decode_result(Viewport_SDFOversize)
 proc `sdfScale=`*(self: Viewport; scale: Viewport_SDFScale) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -600,7 +600,7 @@ proc sdfScale*(self: Viewport): Viewport_SDFScale =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 3162688184)
   var ret: encoded Viewport_SDFScale
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Viewport_SDFScale)
+  (addr ret).decode_result(Viewport_SDFScale)
 proc `meshLodThreshold=`*(self: Viewport; pixels: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -615,7 +615,7 @@ proc meshLodThreshold*(self: Viewport): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `world3d=`*(self: Viewport; world3d: World3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -630,7 +630,7 @@ proc world3d*(self: Viewport): World3D =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 317588385)
   var ret: encoded World3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(World3D)
+  (addr ret).decode_result(World3D)
 proc findWorld3d*(self: Viewport): World3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -638,7 +638,7 @@ proc findWorld3d*(self: Viewport): World3D =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 317588385)
   var ret: encoded World3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(World3D)
+  (addr ret).decode_result(World3D)
 proc `useOwnWorld3d=`*(self: Viewport; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -653,7 +653,7 @@ proc isUsingOwnWorld3d*(self: Viewport): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getCamera3d*(self: Viewport): Camera3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -661,7 +661,7 @@ proc getCamera3d*(self: Viewport): Camera3D =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 2285090890)
   var ret: encoded Camera3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Camera3D)
+  (addr ret).decode_result(Camera3D)
 proc `asAudioListener3d=`*(self: Viewport; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -676,7 +676,7 @@ proc isAudioListener3d*(self: Viewport): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `disable3d=`*(self: Viewport; disable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -691,7 +691,7 @@ proc is3dDisabled*(self: Viewport): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `useXr=`*(self: Viewport; use: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -706,7 +706,7 @@ proc isUsingXr*(self: Viewport): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `scaling3dMode=`*(self: Viewport; scaling3dMode: Viewport_Scaling3DMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -721,7 +721,7 @@ proc scaling3dMode*(self: Viewport): Viewport_Scaling3DMode =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 2597660574)
   var ret: encoded Viewport_Scaling3DMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Viewport_Scaling3DMode)
+  (addr ret).decode_result(Viewport_Scaling3DMode)
 proc `scaling3dScale=`*(self: Viewport; scale: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -736,7 +736,7 @@ proc scaling3dScale*(self: Viewport): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `fsrSharpness=`*(self: Viewport; fsrSharpness: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -751,7 +751,7 @@ proc fsrSharpness*(self: Viewport): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `textureMipmapBias=`*(self: Viewport; textureMipmapBias: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -766,7 +766,7 @@ proc textureMipmapBias*(self: Viewport): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `vrsMode=`*(self: Viewport; mode: Viewport_VRSMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -781,7 +781,7 @@ proc vrsMode*(self: Viewport): Viewport_VRSMode =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 349660525)
   var ret: encoded Viewport_VRSMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Viewport_VRSMode)
+  (addr ret).decode_result(Viewport_VRSMode)
 proc `vrsTexture=`*(self: Viewport; texture: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -796,4 +796,4 @@ proc vrsTexture*(self: Viewport): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)

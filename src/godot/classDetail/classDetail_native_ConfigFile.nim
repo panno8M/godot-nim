@@ -20,7 +20,7 @@ proc getValue*(self: ConfigFile; section: String; key: String; default: Variant 
   var `?param` = [getPtr section, getPtr key, getPtr default]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc hasSection*(self: ConfigFile; section: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -29,7 +29,7 @@ proc hasSection*(self: ConfigFile; section: String): Bool =
   var `?param` = [getPtr section]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc hasSectionKey*(self: ConfigFile; section: String; key: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -38,7 +38,7 @@ proc hasSectionKey*(self: ConfigFile; section: String; key: String): Bool =
   var `?param` = [getPtr section, getPtr key]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getSections*(self: ConfigFile): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -46,7 +46,7 @@ proc getSections*(self: ConfigFile): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className ConfigFile, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc getSectionKeys*(self: ConfigFile; section: String): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -55,7 +55,7 @@ proc getSectionKeys*(self: ConfigFile; section: String): PackedStringArray =
   var `?param` = [getPtr section]
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc eraseSection*(self: ConfigFile; section: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -78,7 +78,7 @@ proc load*(self: ConfigFile; path: String): Error =
   var `?param` = [getPtr path]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc parse*(self: ConfigFile; data: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -87,7 +87,7 @@ proc parse*(self: ConfigFile; data: String): Error =
   var `?param` = [getPtr data]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc save*(self: ConfigFile; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -96,7 +96,7 @@ proc save*(self: ConfigFile; path: String): Error =
   var `?param` = [getPtr path]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc encodeToText*(self: ConfigFile): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -104,7 +104,7 @@ proc encodeToText*(self: ConfigFile): String =
     methodbind = interface_ClassDB_getMethodBind(addr className ConfigFile, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc loadEncrypted*(self: ConfigFile; path: String; key: PackedByteArray): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -113,7 +113,7 @@ proc loadEncrypted*(self: ConfigFile; path: String; key: PackedByteArray): Error
   var `?param` = [getPtr path, getPtr key]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc loadEncryptedPass*(self: ConfigFile; path: String; password: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -122,7 +122,7 @@ proc loadEncryptedPass*(self: ConfigFile; path: String; password: String): Error
   var `?param` = [getPtr path, getPtr password]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc saveEncrypted*(self: ConfigFile; path: String; key: PackedByteArray): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -131,7 +131,7 @@ proc saveEncrypted*(self: ConfigFile; path: String; key: PackedByteArray): Error
   var `?param` = [getPtr path, getPtr key]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc saveEncryptedPass*(self: ConfigFile; path: String; password: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -140,7 +140,7 @@ proc saveEncryptedPass*(self: ConfigFile; path: String; password: String): Error
   var `?param` = [getPtr path, getPtr password]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc clear*(self: ConfigFile) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

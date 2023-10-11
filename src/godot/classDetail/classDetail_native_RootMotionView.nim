@@ -19,7 +19,7 @@ proc animationPath*(self: RootMotionView): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className RootMotionView, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc `color=`*(self: RootMotionView; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc color*(self: RootMotionView): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className RootMotionView, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `cellSize=`*(self: RootMotionView; size: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc cellSize*(self: RootMotionView): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className RootMotionView, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `radius=`*(self: RootMotionView; size: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc radius*(self: RootMotionView): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className RootMotionView, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `zeroY=`*(self: RootMotionView; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,4 +79,4 @@ proc zeroY*(self: RootMotionView): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RootMotionView, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

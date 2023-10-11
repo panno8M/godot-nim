@@ -13,7 +13,7 @@ proc addItem*(self: ItemList; text: String; icon: Texture2D = default Texture2D;
   var `?param` = [getPtr text, getPtr icon, getPtr selectable]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc addIconItem*(self: ItemList; icon: Texture2D; selectable: Bool = true): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc addIconItem*(self: ItemList; icon: Texture2D; selectable: Bool = true): int
   var `?param` = [getPtr icon, getPtr selectable]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setItemText*(self: ItemList; idx: int32; text: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -38,7 +38,7 @@ proc getItemText*(self: ItemList; idx: int32): String =
   var `?param` = [getPtr idx]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc setItemIcon*(self: ItemList; idx: int32; icon: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -54,7 +54,7 @@ proc getItemIcon*(self: ItemList; idx: int32): Texture2D =
   var `?param` = [getPtr idx]
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc setItemTextDirection*(self: ItemList; idx: int32; direction: Control_TextDirection) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -70,7 +70,7 @@ proc getItemTextDirection*(self: ItemList; idx: int32): Control_TextDirection =
   var `?param` = [getPtr idx]
   var ret: encoded Control_TextDirection
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Control_TextDirection)
+  (addr ret).decode_result(Control_TextDirection)
 proc setItemLanguage*(self: ItemList; idx: int32; language: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -86,7 +86,7 @@ proc getItemLanguage*(self: ItemList; idx: int32): String =
   var `?param` = [getPtr idx]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc setItemIconTransposed*(self: ItemList; idx: int32; transposed: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -102,7 +102,7 @@ proc isItemIconTransposed*(self: ItemList; idx: int32): Bool =
   var `?param` = [getPtr idx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setItemIconRegion*(self: ItemList; idx: int32; rect: Rect2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -118,7 +118,7 @@ proc getItemIconRegion*(self: ItemList; idx: int32): Rect2 =
   var `?param` = [getPtr idx]
   var ret: encoded Rect2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Rect2)
+  (addr ret).decode_result(Rect2)
 proc setItemIconModulate*(self: ItemList; idx: int32; modulate: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -134,7 +134,7 @@ proc getItemIconModulate*(self: ItemList; idx: int32): Color =
   var `?param` = [getPtr idx]
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc setItemSelectable*(self: ItemList; idx: int32; selectable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -150,7 +150,7 @@ proc isItemSelectable*(self: ItemList; idx: int32): Bool =
   var `?param` = [getPtr idx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setItemDisabled*(self: ItemList; idx: int32; disabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -166,7 +166,7 @@ proc isItemDisabled*(self: ItemList; idx: int32): Bool =
   var `?param` = [getPtr idx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setItemMetadata*(self: ItemList; idx: int32; metadata: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -182,7 +182,7 @@ proc getItemMetadata*(self: ItemList; idx: int32): Variant =
   var `?param` = [getPtr idx]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc setItemCustomBgColor*(self: ItemList; idx: int32; customBgColor: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -198,7 +198,7 @@ proc getItemCustomBgColor*(self: ItemList; idx: int32): Color =
   var `?param` = [getPtr idx]
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc setItemCustomFgColor*(self: ItemList; idx: int32; customFgColor: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -214,7 +214,7 @@ proc getItemCustomFgColor*(self: ItemList; idx: int32): Color =
   var `?param` = [getPtr idx]
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc getItemRect*(self: ItemList; idx: int32; expand: Bool = true): Rect2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -223,7 +223,7 @@ proc getItemRect*(self: ItemList; idx: int32; expand: Bool = true): Rect2 =
   var `?param` = [getPtr idx, getPtr expand]
   var ret: encoded Rect2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Rect2)
+  (addr ret).decode_result(Rect2)
 proc setItemTooltipEnabled*(self: ItemList; idx: int32; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -239,7 +239,7 @@ proc isItemTooltipEnabled*(self: ItemList; idx: int32): Bool =
   var `?param` = [getPtr idx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setItemTooltip*(self: ItemList; idx: int32; tooltip: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -255,7 +255,7 @@ proc getItemTooltip*(self: ItemList; idx: int32): String =
   var `?param` = [getPtr idx]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc select*(self: ItemList; idx: int32; single: Bool = true) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -284,7 +284,7 @@ proc isSelected*(self: ItemList; idx: int32): Bool =
   var `?param` = [getPtr idx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getSelectedItems*(self: ItemList): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -292,7 +292,7 @@ proc getSelectedItems*(self: ItemList): PackedInt32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className ItemList, addr name, 969006518)
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc moveItem*(self: ItemList; fromIdx: int32; toIdx: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -314,7 +314,7 @@ proc itemCount*(self: ItemList): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className ItemList, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc removeItem*(self: ItemList; idx: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -348,7 +348,7 @@ proc fixedColumnWidth*(self: ItemList): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className ItemList, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `sameColumnWidth=`*(self: ItemList; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -363,7 +363,7 @@ proc isSameColumnWidth*(self: ItemList): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ItemList, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `maxTextLines=`*(self: ItemList; lines: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -378,7 +378,7 @@ proc maxTextLines*(self: ItemList): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className ItemList, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `maxColumns=`*(self: ItemList; amount: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -393,7 +393,7 @@ proc maxColumns*(self: ItemList): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className ItemList, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `selectMode=`*(self: ItemList; mode: ItemList_SelectMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -408,7 +408,7 @@ proc selectMode*(self: ItemList): ItemList_SelectMode =
     methodbind = interface_ClassDB_getMethodBind(addr className ItemList, addr name, 1191945842)
   var ret: encoded ItemList_SelectMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(ItemList_SelectMode)
+  (addr ret).decode_result(ItemList_SelectMode)
 proc `iconMode=`*(self: ItemList; mode: ItemList_IconMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -423,7 +423,7 @@ proc iconMode*(self: ItemList): ItemList_IconMode =
     methodbind = interface_ClassDB_getMethodBind(addr className ItemList, addr name, 3353929232)
   var ret: encoded ItemList_IconMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(ItemList_IconMode)
+  (addr ret).decode_result(ItemList_IconMode)
 proc `fixedIconSize=`*(self: ItemList; size: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -438,7 +438,7 @@ proc fixedIconSize*(self: ItemList): Vector2i =
     methodbind = interface_ClassDB_getMethodBind(addr className ItemList, addr name, 3690982128)
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc `iconScale=`*(self: ItemList; scale: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -453,7 +453,7 @@ proc iconScale*(self: ItemList): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className ItemList, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `allowRmbSelect=`*(self: ItemList; allow: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -468,7 +468,7 @@ proc allowRmbSelect*(self: ItemList): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ItemList, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `allowReselect=`*(self: ItemList; allow: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -483,7 +483,7 @@ proc allowReselect*(self: ItemList): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ItemList, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `allowSearch=`*(self: ItemList; allow: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -498,7 +498,7 @@ proc allowSearch*(self: ItemList): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ItemList, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `autoHeight=`*(self: ItemList; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -513,7 +513,7 @@ proc hasAutoHeight*(self: ItemList): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ItemList, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isAnythingSelected*(self: ItemList): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -521,7 +521,7 @@ proc isAnythingSelected*(self: ItemList): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ItemList, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getItemAtPosition*(self: ItemList; position: Vector2; exact: Bool = false): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -530,7 +530,7 @@ proc getItemAtPosition*(self: ItemList; position: Vector2; exact: Bool = false):
   var `?param` = [getPtr position, getPtr exact]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc ensureCurrentIsVisible*(self: ItemList) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -544,7 +544,7 @@ proc getVScrollBar*(self: ItemList): VScrollBar =
     methodbind = interface_ClassDB_getMethodBind(addr className ItemList, addr name, 2630340773)
   var ret: encoded VScrollBar
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VScrollBar)
+  (addr ret).decode_result(VScrollBar)
 proc `textOverrunBehavior=`*(self: ItemList; overrunBehavior: TextServer_OverrunBehavior) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -559,4 +559,4 @@ proc textOverrunBehavior*(self: ItemList): TextServer_OverrunBehavior =
     methodbind = interface_ClassDB_getMethodBind(addr className ItemList, addr name, 3779142101)
   var ret: encoded TextServer_OverrunBehavior
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextServer_OverrunBehavior)
+  (addr ret).decode_result(TextServer_OverrunBehavior)

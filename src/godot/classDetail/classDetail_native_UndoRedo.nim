@@ -26,7 +26,7 @@ proc isCommittingAction*(self: UndoRedo): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className UndoRedo, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc addDoMethod*(self: UndoRedo; callable: Callable) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -88,7 +88,7 @@ proc getHistoryCount*(self: UndoRedo): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className UndoRedo, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getCurrentAction*(self: UndoRedo): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -96,7 +96,7 @@ proc getCurrentAction*(self: UndoRedo): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className UndoRedo, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getActionName*(self: UndoRedo; id: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -105,7 +105,7 @@ proc getActionName*(self: UndoRedo; id: int32): String =
   var `?param` = [getPtr id]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc clearHistory*(self: UndoRedo; increaseVersion: Bool = true) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -120,7 +120,7 @@ proc getCurrentActionName*(self: UndoRedo): String =
     methodbind = interface_ClassDB_getMethodBind(addr className UndoRedo, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc hasUndo*(self: UndoRedo): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -128,7 +128,7 @@ proc hasUndo*(self: UndoRedo): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className UndoRedo, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc hasRedo*(self: UndoRedo): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -136,7 +136,7 @@ proc hasRedo*(self: UndoRedo): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className UndoRedo, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getVersion*(self: UndoRedo): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -144,7 +144,7 @@ proc getVersion*(self: UndoRedo): uint64 =
     methodbind = interface_ClassDB_getMethodBind(addr className UndoRedo, addr name, 3905245786)
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)
 proc redo*(self: UndoRedo): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -152,7 +152,7 @@ proc redo*(self: UndoRedo): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className UndoRedo, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc undo*(self: UndoRedo): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -160,4 +160,4 @@ proc undo*(self: UndoRedo): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className UndoRedo, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

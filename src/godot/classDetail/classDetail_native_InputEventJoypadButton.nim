@@ -19,7 +19,7 @@ proc buttonIndex*(self: InputEventJoypadButton): JoyButton =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventJoypadButton, addr name, 595588182)
   var ret: encoded JoyButton
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(JoyButton)
+  (addr ret).decode_result(JoyButton)
 proc `pressure=`*(self: InputEventJoypadButton; pressure: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc pressure*(self: InputEventJoypadButton): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventJoypadButton, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `pressed=`*(self: InputEventJoypadButton; pressed: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

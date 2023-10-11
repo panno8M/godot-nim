@@ -19,7 +19,7 @@ proc aperture*(self: CameraAttributesPhysical): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPhysical, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `shutterSpeed=`*(self: CameraAttributesPhysical; shutterSpeed: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc shutterSpeed*(self: CameraAttributesPhysical): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPhysical, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `focalLength=`*(self: CameraAttributesPhysical; focalLength: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc focalLength*(self: CameraAttributesPhysical): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPhysical, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `focusDistance=`*(self: CameraAttributesPhysical; focusDistance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc focusDistance*(self: CameraAttributesPhysical): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPhysical, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `near=`*(self: CameraAttributesPhysical; near: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc near*(self: CameraAttributesPhysical): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPhysical, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `far=`*(self: CameraAttributesPhysical; far: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc far*(self: CameraAttributesPhysical): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPhysical, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getFov*(self: CameraAttributesPhysical): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -102,7 +102,7 @@ proc getFov*(self: CameraAttributesPhysical): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPhysical, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `autoExposureMaxExposureValue=`*(self: CameraAttributesPhysical; exposureValueMax: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -117,7 +117,7 @@ proc autoExposureMaxExposureValue*(self: CameraAttributesPhysical): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPhysical, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `autoExposureMinExposureValue=`*(self: CameraAttributesPhysical; exposureValueMin: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -132,4 +132,4 @@ proc autoExposureMinExposureValue*(self: CameraAttributesPhysical): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CameraAttributesPhysical, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

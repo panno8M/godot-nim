@@ -117,7 +117,7 @@ proc isEmitting*(self: GPUParticles3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc amount*(self: GPUParticles3D): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -125,7 +125,7 @@ proc amount*(self: GPUParticles3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc lifetime*(self: GPUParticles3D): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -133,7 +133,7 @@ proc lifetime*(self: GPUParticles3D): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc oneShot*(self: GPUParticles3D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -141,7 +141,7 @@ proc oneShot*(self: GPUParticles3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc preProcessTime*(self: GPUParticles3D): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -149,7 +149,7 @@ proc preProcessTime*(self: GPUParticles3D): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc explosivenessRatio*(self: GPUParticles3D): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -157,7 +157,7 @@ proc explosivenessRatio*(self: GPUParticles3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc randomnessRatio*(self: GPUParticles3D): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -165,7 +165,7 @@ proc randomnessRatio*(self: GPUParticles3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc visibilityAabb*(self: GPUParticles3D): AABB =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -173,7 +173,7 @@ proc visibilityAabb*(self: GPUParticles3D): AABB =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 1068685055)
   var ret: encoded AABB
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AABB)
+  (addr ret).decode_result(AABB)
 proc useLocalCoordinates*(self: GPUParticles3D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -181,7 +181,7 @@ proc useLocalCoordinates*(self: GPUParticles3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc fixedFps*(self: GPUParticles3D): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -189,7 +189,7 @@ proc fixedFps*(self: GPUParticles3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc fractionalDelta*(self: GPUParticles3D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -197,7 +197,7 @@ proc fractionalDelta*(self: GPUParticles3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc interpolate*(self: GPUParticles3D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -205,7 +205,7 @@ proc interpolate*(self: GPUParticles3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc processMaterial*(self: GPUParticles3D): Material =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -213,7 +213,7 @@ proc processMaterial*(self: GPUParticles3D): Material =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 5934680)
   var ret: encoded Material
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Material)
+  (addr ret).decode_result(Material)
 proc speedScale*(self: GPUParticles3D): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -221,7 +221,7 @@ proc speedScale*(self: GPUParticles3D): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc collisionBaseSize*(self: GPUParticles3D): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -229,7 +229,7 @@ proc collisionBaseSize*(self: GPUParticles3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `drawOrder=`*(self: GPUParticles3D; order: GPUParticles3D_DrawOrder) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -244,7 +244,7 @@ proc drawOrder*(self: GPUParticles3D): GPUParticles3D_DrawOrder =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 3770381780)
   var ret: encoded GPUParticles3D_DrawOrder
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(GPUParticles3D_DrawOrder)
+  (addr ret).decode_result(GPUParticles3D_DrawOrder)
 proc `drawPasses=`*(self: GPUParticles3D; passes: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -266,7 +266,7 @@ proc drawPasses*(self: GPUParticles3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc drawPassMesh*(self: GPUParticles3D; pass: int32): Mesh =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -275,7 +275,7 @@ proc drawPassMesh*(self: GPUParticles3D; pass: int32): Mesh =
   var `?param` = [getPtr pass]
   var ret: encoded Mesh
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Mesh)
+  (addr ret).decode_result(Mesh)
 proc `skin=`*(self: GPUParticles3D; skin: Skin) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -290,7 +290,7 @@ proc skin*(self: GPUParticles3D): Skin =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 2074563878)
   var ret: encoded Skin
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Skin)
+  (addr ret).decode_result(Skin)
 proc restart*(self: GPUParticles3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -304,7 +304,7 @@ proc captureAabb*(self: GPUParticles3D): AABB =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 1068685055)
   var ret: encoded AABB
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AABB)
+  (addr ret).decode_result(AABB)
 proc `subEmitter=`*(self: GPUParticles3D; path: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -319,7 +319,7 @@ proc subEmitter*(self: GPUParticles3D): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc emitParticle*(self: GPUParticles3D; xform: Transform3D; velocity: Vector3; color: Color; custom: Color; flags: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -348,7 +348,7 @@ proc isTrailEnabled*(self: GPUParticles3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc trailLifetime*(self: GPUParticles3D): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -356,7 +356,7 @@ proc trailLifetime*(self: GPUParticles3D): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc `transformAlign=`*(self: GPUParticles3D; align: GPUParticles3D_TransformAlign) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -371,4 +371,4 @@ proc transformAlign*(self: GPUParticles3D): GPUParticles3D_TransformAlign =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles3D, addr name, 2100992166)
   var ret: encoded GPUParticles3D_TransformAlign
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(GPUParticles3D_TransformAlign)
+  (addr ret).decode_result(GPUParticles3D_TransformAlign)

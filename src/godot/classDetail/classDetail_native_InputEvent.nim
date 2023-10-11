@@ -19,7 +19,7 @@ proc device*(self: InputEvent): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc isAction*(self: InputEvent; action: StringName; exactMatch: Bool = false): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -28,7 +28,7 @@ proc isAction*(self: InputEvent; action: StringName; exactMatch: Bool = false): 
   var `?param` = [getPtr action, getPtr exactMatch]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isActionPressed*(self: InputEvent; action: StringName; allowEcho: Bool = false; exactMatch: Bool = false): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -37,7 +37,7 @@ proc isActionPressed*(self: InputEvent; action: StringName; allowEcho: Bool = fa
   var `?param` = [getPtr action, getPtr allowEcho, getPtr exactMatch]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isActionReleased*(self: InputEvent; action: StringName; exactMatch: Bool = false): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -46,7 +46,7 @@ proc isActionReleased*(self: InputEvent; action: StringName; exactMatch: Bool = 
   var `?param` = [getPtr action, getPtr exactMatch]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getActionStrength*(self: InputEvent; action: StringName; exactMatch: Bool = false): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -55,7 +55,7 @@ proc getActionStrength*(self: InputEvent; action: StringName; exactMatch: Bool =
   var `?param` = [getPtr action, getPtr exactMatch]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc isCanceled*(self: InputEvent): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -63,7 +63,7 @@ proc isCanceled*(self: InputEvent): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isPressed*(self: InputEvent): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -71,7 +71,7 @@ proc isPressed*(self: InputEvent): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isReleased*(self: InputEvent): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc isReleased*(self: InputEvent): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isEcho*(self: InputEvent): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -87,7 +87,7 @@ proc isEcho*(self: InputEvent): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc asText*(self: InputEvent): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -95,7 +95,7 @@ proc asText*(self: InputEvent): String =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc isMatch*(self: InputEvent; event: InputEvent; exactMatch: Bool = true): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -104,7 +104,7 @@ proc isMatch*(self: InputEvent; event: InputEvent; exactMatch: Bool = true): Boo
   var `?param` = [getPtr event, getPtr exactMatch]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isActionType*(self: InputEvent): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -112,7 +112,7 @@ proc isActionType*(self: InputEvent): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc accumulate*(self: InputEvent; withEvent: InputEvent): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -121,7 +121,7 @@ proc accumulate*(self: InputEvent; withEvent: InputEvent): Bool =
   var `?param` = [getPtr withEvent]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc xformedBy*(self: InputEvent; xform: Transform2D; localOfs: Vector2 = gdvec(0, 0)): InputEvent =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -130,4 +130,4 @@ proc xformedBy*(self: InputEvent; xform: Transform2D; localOfs: Vector2 = gdvec(
   var `?param` = [getPtr xform, getPtr localOfs]
   var ret: encoded InputEvent
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(InputEvent)
+  (addr ret).decode_result(InputEvent)

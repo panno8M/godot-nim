@@ -12,7 +12,7 @@ proc skinRoot*(self: GLTFSkin): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkin, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `skinRoot=`*(self: GLTFSkin; skinRoot: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc jointsOriginal*(self: GLTFSkin): PackedInt32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkin, addr name, 969006518)
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc `jointsOriginal=`*(self: GLTFSkin; jointsOriginal: PackedInt32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc inverseBinds*(self: GLTFSkin): TypedArray[Transform3D] =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkin, addr name, 2915620761)
   var ret: encoded TypedArray[Transform3D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Transform3D])
+  (addr ret).decode_result(TypedArray[Transform3D])
 proc `inverseBinds=`*(self: GLTFSkin; inverseBinds: TypedArray[Transform3D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc joints*(self: GLTFSkin): PackedInt32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkin, addr name, 969006518)
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc `joints=`*(self: GLTFSkin; joints: PackedInt32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -72,7 +72,7 @@ proc nonJoints*(self: GLTFSkin): PackedInt32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkin, addr name, 969006518)
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc `nonJoints=`*(self: GLTFSkin; nonJoints: PackedInt32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -87,7 +87,7 @@ proc roots*(self: GLTFSkin): PackedInt32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkin, addr name, 969006518)
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc `roots=`*(self: GLTFSkin; roots: PackedInt32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -102,7 +102,7 @@ proc skeleton*(self: GLTFSkin): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkin, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `skeleton=`*(self: GLTFSkin; skeleton: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -117,7 +117,7 @@ proc jointIToBoneI*(self: GLTFSkin): Dictionary =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkin, addr name, 2382534195)
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc `jointIToBoneI=`*(self: GLTFSkin; jointIToBoneI: Dictionary) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -132,7 +132,7 @@ proc jointIToName*(self: GLTFSkin): Dictionary =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkin, addr name, 2382534195)
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc `jointIToName=`*(self: GLTFSkin; jointIToName: Dictionary) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -147,7 +147,7 @@ proc godotSkin*(self: GLTFSkin): Skin =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkin, addr name, 1032037385)
   var ret: encoded Skin
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Skin)
+  (addr ret).decode_result(Skin)
 proc `godotSkin=`*(self: GLTFSkin; godotSkin: Skin) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

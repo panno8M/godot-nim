@@ -19,7 +19,7 @@ proc action*(self: InputEventAction): StringName =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventAction, addr name, 2002593661)
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc `pressed=`*(self: InputEventAction; pressed: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -41,4 +41,4 @@ proc strength*(self: InputEventAction): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventAction, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

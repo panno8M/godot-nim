@@ -19,7 +19,7 @@ proc flipH*(self: TileData): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TileData, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `flipV=`*(self: TileData; flipV: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc flipV*(self: TileData): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TileData, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `transpose=`*(self: TileData; transpose: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc transpose*(self: TileData): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TileData, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `material=`*(self: TileData; material: Material) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc material*(self: TileData): Material =
     methodbind = interface_ClassDB_getMethodBind(addr className TileData, addr name, 5934680)
   var ret: encoded Material
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Material)
+  (addr ret).decode_result(Material)
 proc `textureOrigin=`*(self: TileData; textureOrigin: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc textureOrigin*(self: TileData): Vector2i =
     methodbind = interface_ClassDB_getMethodBind(addr className TileData, addr name, 3690982128)
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc `modulate=`*(self: TileData; modulate: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc modulate*(self: TileData): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className TileData, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `zIndex=`*(self: TileData; zIndex: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc zIndex*(self: TileData): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TileData, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `ySortOrigin=`*(self: TileData; ySortOrigin: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc ySortOrigin*(self: TileData): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TileData, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setOccluder*(self: TileData; layerId: int32; occluderPolygon: OccluderPolygon2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -140,7 +140,7 @@ proc getOccluder*(self: TileData; layerId: int32): OccluderPolygon2D =
   var `?param` = [getPtr layerId]
   var ret: encoded OccluderPolygon2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(OccluderPolygon2D)
+  (addr ret).decode_result(OccluderPolygon2D)
 proc setConstantLinearVelocity*(self: TileData; layerId: int32; velocity: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -156,7 +156,7 @@ proc getConstantLinearVelocity*(self: TileData; layerId: int32): Vector2 =
   var `?param` = [getPtr layerId]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc setConstantAngularVelocity*(self: TileData; layerId: int32; velocity: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -172,7 +172,7 @@ proc getConstantAngularVelocity*(self: TileData; layerId: int32): Float =
   var `?param` = [getPtr layerId]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc setCollisionPolygonsCount*(self: TileData; layerId: int32; polygonsCount: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -188,7 +188,7 @@ proc getCollisionPolygonsCount*(self: TileData; layerId: int32): int32 =
   var `?param` = [getPtr layerId]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc addCollisionPolygon*(self: TileData; layerId: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -218,7 +218,7 @@ proc getCollisionPolygonPoints*(self: TileData; layerId: int32; polygonIndex: in
   var `?param` = [getPtr layerId, getPtr polygonIndex]
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedVector2Array)
+  (addr ret).decode_result(PackedVector2Array)
 proc setCollisionPolygonOneWay*(self: TileData; layerId: int32; polygonIndex: int32; oneWay: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -234,7 +234,7 @@ proc isCollisionPolygonOneWay*(self: TileData; layerId: int32; polygonIndex: int
   var `?param` = [getPtr layerId, getPtr polygonIndex]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setCollisionPolygonOneWayMargin*(self: TileData; layerId: int32; polygonIndex: int32; oneWayMargin: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -250,7 +250,7 @@ proc getCollisionPolygonOneWayMargin*(self: TileData; layerId: int32; polygonInd
   var `?param` = [getPtr layerId, getPtr polygonIndex]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `terrainSet=`*(self: TileData; terrainSet: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -265,7 +265,7 @@ proc terrainSet*(self: TileData): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TileData, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `terrain=`*(self: TileData; terrain: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -280,7 +280,7 @@ proc terrain*(self: TileData): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TileData, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setTerrainPeeringBit*(self: TileData; peeringBit: TileSet_CellNeighbor; terrain: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -296,7 +296,7 @@ proc getTerrainPeeringBit*(self: TileData; peeringBit: TileSet_CellNeighbor): in
   var `?param` = [getPtr peeringBit]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setNavigationPolygon*(self: TileData; layerId: int32; navigationPolygon: NavigationPolygon) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -312,7 +312,7 @@ proc getNavigationPolygon*(self: TileData; layerId: int32): NavigationPolygon =
   var `?param` = [getPtr layerId]
   var ret: encoded NavigationPolygon
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(NavigationPolygon)
+  (addr ret).decode_result(NavigationPolygon)
 proc `probability=`*(self: TileData; probability: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -327,7 +327,7 @@ proc probability*(self: TileData): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className TileData, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc setCustomData*(self: TileData; layerName: String; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -343,7 +343,7 @@ proc getCustomData*(self: TileData; layerName: String): Variant =
   var `?param` = [getPtr layerName]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc setCustomDataByLayerId*(self: TileData; layerId: int32; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -359,4 +359,4 @@ proc getCustomDataByLayerId*(self: TileData; layerId: int32): Variant =
   var `?param` = [getPtr layerId]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)

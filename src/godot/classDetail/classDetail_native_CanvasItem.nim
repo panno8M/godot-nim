@@ -12,7 +12,7 @@ proc getCanvasItem*(self: CanvasItem): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 2944877500)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc `visible=`*(self: CanvasItem; visible: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc isVisible*(self: CanvasItem): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isVisibleInTree*(self: CanvasItem): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -35,7 +35,7 @@ proc isVisibleInTree*(self: CanvasItem): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc show*(self: CanvasItem) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -74,7 +74,7 @@ proc isSetAsTopLevel*(self: CanvasItem): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `lightMask=`*(self: CanvasItem; lightMask: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -89,7 +89,7 @@ proc lightMask*(self: CanvasItem): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `modulate=`*(self: CanvasItem; modulate: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -104,7 +104,7 @@ proc modulate*(self: CanvasItem): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `selfModulate=`*(self: CanvasItem; selfModulate: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -119,7 +119,7 @@ proc selfModulate*(self: CanvasItem): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `zIndex=`*(self: CanvasItem; zIndex: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -134,7 +134,7 @@ proc zIndex*(self: CanvasItem): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `zAsRelative=`*(self: CanvasItem; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -149,7 +149,7 @@ proc isZRelative*(self: CanvasItem): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `ySortEnabled=`*(self: CanvasItem; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -164,7 +164,7 @@ proc isYSortEnabled*(self: CanvasItem): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `drawBehindParent=`*(self: CanvasItem; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -179,7 +179,7 @@ proc isDrawBehindParentEnabled*(self: CanvasItem): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc drawLine*(self: CanvasItem; `from`: Vector2; to: Vector2; color: Color; width: Float = -1.0; antialiased: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -396,7 +396,7 @@ proc getTransform*(self: CanvasItem): Transform2D =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 3814499831)
   var ret: encoded Transform2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform2D)
+  (addr ret).decode_result(Transform2D)
 proc getGlobalTransform*(self: CanvasItem): Transform2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -404,7 +404,7 @@ proc getGlobalTransform*(self: CanvasItem): Transform2D =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 3814499831)
   var ret: encoded Transform2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform2D)
+  (addr ret).decode_result(Transform2D)
 proc getGlobalTransformWithCanvas*(self: CanvasItem): Transform2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -412,7 +412,7 @@ proc getGlobalTransformWithCanvas*(self: CanvasItem): Transform2D =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 3814499831)
   var ret: encoded Transform2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform2D)
+  (addr ret).decode_result(Transform2D)
 proc getViewportTransform*(self: CanvasItem): Transform2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -420,7 +420,7 @@ proc getViewportTransform*(self: CanvasItem): Transform2D =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 3814499831)
   var ret: encoded Transform2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform2D)
+  (addr ret).decode_result(Transform2D)
 proc getViewportRect*(self: CanvasItem): Rect2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -428,7 +428,7 @@ proc getViewportRect*(self: CanvasItem): Rect2 =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 1639390495)
   var ret: encoded Rect2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Rect2)
+  (addr ret).decode_result(Rect2)
 proc getCanvasTransform*(self: CanvasItem): Transform2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -436,7 +436,7 @@ proc getCanvasTransform*(self: CanvasItem): Transform2D =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 3814499831)
   var ret: encoded Transform2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform2D)
+  (addr ret).decode_result(Transform2D)
 proc getScreenTransform*(self: CanvasItem): Transform2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -444,7 +444,7 @@ proc getScreenTransform*(self: CanvasItem): Transform2D =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 3814499831)
   var ret: encoded Transform2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform2D)
+  (addr ret).decode_result(Transform2D)
 proc getLocalMousePosition*(self: CanvasItem): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -452,7 +452,7 @@ proc getLocalMousePosition*(self: CanvasItem): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getGlobalMousePosition*(self: CanvasItem): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -460,7 +460,7 @@ proc getGlobalMousePosition*(self: CanvasItem): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getCanvas*(self: CanvasItem): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -468,7 +468,7 @@ proc getCanvas*(self: CanvasItem): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 2944877500)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc getWorld2d*(self: CanvasItem): World2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -476,7 +476,7 @@ proc getWorld2d*(self: CanvasItem): World2D =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 2339128592)
   var ret: encoded World2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(World2D)
+  (addr ret).decode_result(World2D)
 proc `material=`*(self: CanvasItem; material: Material) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -491,7 +491,7 @@ proc material*(self: CanvasItem): Material =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 5934680)
   var ret: encoded Material
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Material)
+  (addr ret).decode_result(Material)
 proc `useParentMaterial=`*(self: CanvasItem; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -506,7 +506,7 @@ proc useParentMaterial*(self: CanvasItem): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setNotifyLocalTransform*(self: CanvasItem; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -521,7 +521,7 @@ proc isLocalTransformNotificationEnabled*(self: CanvasItem): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setNotifyTransform*(self: CanvasItem; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -536,7 +536,7 @@ proc isTransformNotificationEnabled*(self: CanvasItem): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc forceUpdateTransform*(self: CanvasItem) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -551,7 +551,7 @@ proc makeCanvasPositionLocal*(self: CanvasItem; screenPoint: Vector2): Vector2 =
   var `?param` = [getPtr screenPoint]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc makeInputLocal*(self: CanvasItem; event: InputEvent): InputEvent =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -560,7 +560,7 @@ proc makeInputLocal*(self: CanvasItem; event: InputEvent): InputEvent =
   var `?param` = [getPtr event]
   var ret: encoded InputEvent
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(InputEvent)
+  (addr ret).decode_result(InputEvent)
 proc `visibilityLayer=`*(self: CanvasItem; layer: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -575,7 +575,7 @@ proc visibilityLayer*(self: CanvasItem): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc setVisibilityLayerBit*(self: CanvasItem; layer: uint32; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -591,7 +591,7 @@ proc getVisibilityLayerBit*(self: CanvasItem; layer: uint32): Bool =
   var `?param` = [getPtr layer]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `textureFilter=`*(self: CanvasItem; mode: CanvasItem_TextureFilter) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -606,7 +606,7 @@ proc textureFilter*(self: CanvasItem): CanvasItem_TextureFilter =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 121960042)
   var ret: encoded CanvasItem_TextureFilter
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(CanvasItem_TextureFilter)
+  (addr ret).decode_result(CanvasItem_TextureFilter)
 proc `textureRepeat=`*(self: CanvasItem; mode: CanvasItem_TextureRepeat) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -621,7 +621,7 @@ proc textureRepeat*(self: CanvasItem): CanvasItem_TextureRepeat =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 2667158319)
   var ret: encoded CanvasItem_TextureRepeat
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(CanvasItem_TextureRepeat)
+  (addr ret).decode_result(CanvasItem_TextureRepeat)
 proc `clipChildrenMode=`*(self: CanvasItem; mode: CanvasItem_ClipChildrenMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -636,4 +636,4 @@ proc clipChildrenMode*(self: CanvasItem): CanvasItem_ClipChildrenMode =
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasItem, addr name, 3581808349)
   var ret: encoded CanvasItem_ClipChildrenMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(CanvasItem_ClipChildrenMode)
+  (addr ret).decode_result(CanvasItem_ClipChildrenMode)

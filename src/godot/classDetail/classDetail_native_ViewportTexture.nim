@@ -19,4 +19,4 @@ proc viewportPathInScene*(self: ViewportTexture): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className ViewportTexture, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)

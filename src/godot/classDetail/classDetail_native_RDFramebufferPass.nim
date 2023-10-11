@@ -19,7 +19,7 @@ proc colorAttachments*(self: RDFramebufferPass): PackedInt32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className RDFramebufferPass, addr name, 1930428628)
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc `inputAttachments=`*(self: RDFramebufferPass; pMember: PackedInt32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc inputAttachments*(self: RDFramebufferPass): PackedInt32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className RDFramebufferPass, addr name, 1930428628)
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc `resolveAttachments=`*(self: RDFramebufferPass; pMember: PackedInt32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc resolveAttachments*(self: RDFramebufferPass): PackedInt32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className RDFramebufferPass, addr name, 1930428628)
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc `preserveAttachments=`*(self: RDFramebufferPass; pMember: PackedInt32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc preserveAttachments*(self: RDFramebufferPass): PackedInt32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className RDFramebufferPass, addr name, 1930428628)
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc `depthAttachment=`*(self: RDFramebufferPass; pMember: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,4 +79,4 @@ proc depthAttachment*(self: RDFramebufferPass): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RDFramebufferPass, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)

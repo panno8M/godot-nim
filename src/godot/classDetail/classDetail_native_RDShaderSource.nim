@@ -20,7 +20,7 @@ proc stageSource*(self: RDShaderSource; stage: RenderingDevice_ShaderStage): Str
   var `?param` = [getPtr stage]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `language=`*(self: RDShaderSource; language: RenderingDevice_ShaderLanguage) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -35,4 +35,4 @@ proc language*(self: RDShaderSource): RenderingDevice_ShaderLanguage =
     methodbind = interface_ClassDB_getMethodBind(addr className RDShaderSource, addr name, 1063538261)
   var ret: encoded RenderingDevice_ShaderLanguage
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_ShaderLanguage)
+  (addr ret).decode_result(RenderingDevice_ShaderLanguage)

@@ -19,7 +19,7 @@ proc getInterfaceCount*(self: TextServerManager): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextServerManager, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc removeInterface*(self: TextServerManager; `interface`: TextServer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -35,7 +35,7 @@ proc getInterface*(self: TextServerManager; idx: int32): TextServer =
   var `?param` = [getPtr idx]
   var ret: encoded TextServer
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TextServer)
+  (addr ret).decode_result(TextServer)
 proc getInterfaces*(self: TextServerManager): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -43,7 +43,7 @@ proc getInterfaces*(self: TextServerManager): TypedArray[Dictionary] =
     methodbind = interface_ClassDB_getMethodBind(addr className TextServerManager, addr name, 3995934104)
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Dictionary])
+  (addr ret).decode_result(TypedArray[Dictionary])
 proc findInterface*(self: TextServerManager; name: String): TextServer =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -52,7 +52,7 @@ proc findInterface*(self: TextServerManager; name: String): TextServer =
   var `?param` = [getPtr name]
   var ret: encoded TextServer
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TextServer)
+  (addr ret).decode_result(TextServer)
 proc setPrimaryInterface*(self: TextServerManager; index: TextServer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -67,4 +67,4 @@ proc getPrimaryInterface*(self: TextServerManager): TextServer =
     methodbind = interface_ClassDB_getMethodBind(addr className TextServerManager, addr name, 905850878)
   var ret: encoded TextServer
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextServer)
+  (addr ret).decode_result(TextServer)

@@ -19,7 +19,7 @@ proc engineForce*(self: VehicleBody3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleBody3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `brake=`*(self: VehicleBody3D; brake: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc brake*(self: VehicleBody3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleBody3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `steering=`*(self: VehicleBody3D; steering: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,4 +49,4 @@ proc steering*(self: VehicleBody3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleBody3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

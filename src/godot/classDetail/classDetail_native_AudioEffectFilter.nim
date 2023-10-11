@@ -19,7 +19,7 @@ proc cutoff*(self: AudioEffectFilter): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectFilter, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `resonance=`*(self: AudioEffectFilter; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc resonance*(self: AudioEffectFilter): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectFilter, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `gain=`*(self: AudioEffectFilter; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc gain*(self: AudioEffectFilter): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectFilter, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `db=`*(self: AudioEffectFilter; amount: AudioEffectFilter_FilterDB) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,4 +64,4 @@ proc db*(self: AudioEffectFilter): AudioEffectFilter_FilterDB =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectFilter, addr name, 3981721890)
   var ret: encoded AudioEffectFilter_FilterDB
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AudioEffectFilter_FilterDB)
+  (addr ret).decode_result(AudioEffectFilter_FilterDB)

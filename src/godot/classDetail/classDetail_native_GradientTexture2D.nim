@@ -19,7 +19,7 @@ proc gradient*(self: GradientTexture2D): Gradient =
     methodbind = interface_ClassDB_getMethodBind(addr className GradientTexture2D, addr name, 132272999)
   var ret: encoded Gradient
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Gradient)
+  (addr ret).decode_result(Gradient)
 proc `width=`*(self: GradientTexture2D; width: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -48,7 +48,7 @@ proc isUsingHdr*(self: GradientTexture2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GradientTexture2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `fill=`*(self: GradientTexture2D; fill: GradientTexture2D_Fill) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -63,7 +63,7 @@ proc fill*(self: GradientTexture2D): GradientTexture2D_Fill =
     methodbind = interface_ClassDB_getMethodBind(addr className GradientTexture2D, addr name, 1876227217)
   var ret: encoded GradientTexture2D_Fill
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(GradientTexture2D_Fill)
+  (addr ret).decode_result(GradientTexture2D_Fill)
 proc `fillFrom=`*(self: GradientTexture2D; fillFrom: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -78,7 +78,7 @@ proc fillFrom*(self: GradientTexture2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className GradientTexture2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `fillTo=`*(self: GradientTexture2D; fillTo: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -93,7 +93,7 @@ proc fillTo*(self: GradientTexture2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className GradientTexture2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `repeat=`*(self: GradientTexture2D; repeat: GradientTexture2D_Repeat) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -108,4 +108,4 @@ proc repeat*(self: GradientTexture2D): GradientTexture2D_Repeat =
     methodbind = interface_ClassDB_getMethodBind(addr className GradientTexture2D, addr name, 3351758665)
   var ret: encoded GradientTexture2D_Repeat
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(GradientTexture2D_Repeat)
+  (addr ret).decode_result(GradientTexture2D_Repeat)

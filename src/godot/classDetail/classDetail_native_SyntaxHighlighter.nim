@@ -13,7 +13,7 @@ proc getLineSyntaxHighlighting*(self: SyntaxHighlighter; line: int32): Dictionar
   var `?param` = [getPtr line]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc updateCache*(self: SyntaxHighlighter) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -33,4 +33,4 @@ proc getTextEdit*(self: SyntaxHighlighter): TextEdit =
     methodbind = interface_ClassDB_getMethodBind(addr className SyntaxHighlighter, addr name, 1893027089)
   var ret: encoded TextEdit
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextEdit)
+  (addr ret).decode_result(TextEdit)

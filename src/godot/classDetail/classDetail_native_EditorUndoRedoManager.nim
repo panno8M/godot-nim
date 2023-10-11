@@ -26,7 +26,7 @@ proc isCommittingAction*(self: EditorUndoRedoManager): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorUndoRedoManager, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc addDoMethod*(self: EditorUndoRedoManager; `object`: Object; `method`: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -77,7 +77,7 @@ proc getObjectHistoryId*(self: EditorUndoRedoManager; `object`: Object): int32 =
   var `?param` = [getPtr `object`]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getHistoryUndoRedo*(self: EditorUndoRedoManager; id: int32): UndoRedo =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -86,4 +86,4 @@ proc getHistoryUndoRedo*(self: EditorUndoRedoManager; id: int32): UndoRedo =
   var `?param` = [getPtr id]
   var ret: encoded UndoRedo
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(UndoRedo)
+  (addr ret).decode_result(UndoRedo)

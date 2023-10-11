@@ -13,7 +13,7 @@ proc addAnimationLibrary*(self: AnimationPlayer; name: StringName; library: Anim
   var `?param` = [getPtr name, getPtr library]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc removeAnimationLibrary*(self: AnimationPlayer; name: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -36,7 +36,7 @@ proc hasAnimationLibrary*(self: AnimationPlayer; name: StringName): Bool =
   var `?param` = [getPtr name]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getAnimationLibrary*(self: AnimationPlayer; name: StringName): AnimationLibrary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -45,7 +45,7 @@ proc getAnimationLibrary*(self: AnimationPlayer; name: StringName): AnimationLib
   var `?param` = [getPtr name]
   var ret: encoded AnimationLibrary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(AnimationLibrary)
+  (addr ret).decode_result(AnimationLibrary)
 proc getAnimationLibraryList*(self: AnimationPlayer): TypedArray[StringName] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -53,7 +53,7 @@ proc getAnimationLibraryList*(self: AnimationPlayer): TypedArray[StringName] =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationPlayer, addr name, 3995934104)
   var ret: encoded TypedArray[StringName]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[StringName])
+  (addr ret).decode_result(TypedArray[StringName])
 proc hasAnimation*(self: AnimationPlayer; name: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -62,7 +62,7 @@ proc hasAnimation*(self: AnimationPlayer; name: StringName): Bool =
   var `?param` = [getPtr name]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getAnimation*(self: AnimationPlayer; name: StringName): Animation =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -71,7 +71,7 @@ proc getAnimation*(self: AnimationPlayer; name: StringName): Animation =
   var `?param` = [getPtr name]
   var ret: encoded Animation
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Animation)
+  (addr ret).decode_result(Animation)
 proc getAnimationList*(self: AnimationPlayer): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc getAnimationList*(self: AnimationPlayer): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationPlayer, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc animationSetNext*(self: AnimationPlayer; animFrom: StringName; animTo: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -95,7 +95,7 @@ proc animationGetNext*(self: AnimationPlayer; animFrom: StringName): StringName 
   var `?param` = [getPtr animFrom]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc setBlendTime*(self: AnimationPlayer; animFrom: StringName; animTo: StringName; sec: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -111,7 +111,7 @@ proc getBlendTime*(self: AnimationPlayer; animFrom: StringName; animTo: StringNa
   var `?param` = [getPtr animFrom, getPtr animTo]
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc `defaultBlendTime=`*(self: AnimationPlayer; sec: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -126,7 +126,7 @@ proc defaultBlendTime*(self: AnimationPlayer): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationPlayer, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc play*(self: AnimationPlayer; name: StringName = ""; customBlend: float64 = -1; customSpeed: Float = 1.0; fromEnd: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -161,7 +161,7 @@ proc isPlaying*(self: AnimationPlayer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationPlayer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `currentAnimation=`*(self: AnimationPlayer; anim: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -176,7 +176,7 @@ proc currentAnimation*(self: AnimationPlayer): String =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationPlayer, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `assignedAnimation=`*(self: AnimationPlayer; anim: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -191,7 +191,7 @@ proc assignedAnimation*(self: AnimationPlayer): String =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationPlayer, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc queue*(self: AnimationPlayer; name: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -206,7 +206,7 @@ proc getQueue*(self: AnimationPlayer): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationPlayer, addr name, 2981934095)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc clearQueue*(self: AnimationPlayer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -227,7 +227,7 @@ proc isActive*(self: AnimationPlayer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationPlayer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `speedScale=`*(self: AnimationPlayer; speed: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -242,7 +242,7 @@ proc speedScale*(self: AnimationPlayer): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationPlayer, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getPlayingSpeed*(self: AnimationPlayer): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -250,7 +250,7 @@ proc getPlayingSpeed*(self: AnimationPlayer): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationPlayer, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `autoplay=`*(self: AnimationPlayer; name: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -265,7 +265,7 @@ proc autoplay*(self: AnimationPlayer): String =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationPlayer, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `reonSaveEnabled=`*(self: AnimationPlayer; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -280,7 +280,7 @@ proc isResetOnSaveEnabled*(self: AnimationPlayer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationPlayer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `root=`*(self: AnimationPlayer; path: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -295,7 +295,7 @@ proc root*(self: AnimationPlayer): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationPlayer, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc findAnimation*(self: AnimationPlayer; animation: Animation): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -304,7 +304,7 @@ proc findAnimation*(self: AnimationPlayer; animation: Animation): StringName =
   var `?param` = [getPtr animation]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc findAnimationLibrary*(self: AnimationPlayer; animation: Animation): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -313,7 +313,7 @@ proc findAnimationLibrary*(self: AnimationPlayer; animation: Animation): StringN
   var `?param` = [getPtr animation]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc clearCaches*(self: AnimationPlayer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -334,7 +334,7 @@ proc processCallback*(self: AnimationPlayer): AnimationPlayer_AnimationProcessCa
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationPlayer, addr name, 4207496604)
   var ret: encoded AnimationPlayer_AnimationProcessCallback
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AnimationPlayer_AnimationProcessCallback)
+  (addr ret).decode_result(AnimationPlayer_AnimationProcessCallback)
 proc `methodCallMode=`*(self: AnimationPlayer; mode: AnimationPlayer_AnimationMethodCallMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -349,7 +349,7 @@ proc methodCallMode*(self: AnimationPlayer): AnimationPlayer_AnimationMethodCall
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationPlayer, addr name, 3583380054)
   var ret: encoded AnimationPlayer_AnimationMethodCallMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AnimationPlayer_AnimationMethodCallMode)
+  (addr ret).decode_result(AnimationPlayer_AnimationMethodCallMode)
 proc `audioMaxPolyphony=`*(self: AnimationPlayer; maxPolyphony: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -364,7 +364,7 @@ proc audioMaxPolyphony*(self: AnimationPlayer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationPlayer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `movieQuitOnFinishEnabled=`*(self: AnimationPlayer; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -379,7 +379,7 @@ proc isMovieQuitOnFinishEnabled*(self: AnimationPlayer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationPlayer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc currentAnimationPosition*(self: AnimationPlayer): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -387,7 +387,7 @@ proc currentAnimationPosition*(self: AnimationPlayer): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationPlayer, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc currentAnimationLength*(self: AnimationPlayer): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -395,7 +395,7 @@ proc currentAnimationLength*(self: AnimationPlayer): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationPlayer, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc seek*(self: AnimationPlayer; seconds: float64; update: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

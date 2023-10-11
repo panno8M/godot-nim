@@ -19,7 +19,7 @@ proc lineSpacing*(self: LabelSettings): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className LabelSettings, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `font=`*(self: LabelSettings; font: Font) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc font*(self: LabelSettings): Font =
     methodbind = interface_ClassDB_getMethodBind(addr className LabelSettings, addr name, 3229501585)
   var ret: encoded Font
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Font)
+  (addr ret).decode_result(Font)
 proc `fontSize=`*(self: LabelSettings; size: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc fontSize*(self: LabelSettings): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className LabelSettings, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `fontColor=`*(self: LabelSettings; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc fontColor*(self: LabelSettings): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className LabelSettings, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `outlineSize=`*(self: LabelSettings; size: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc outlineSize*(self: LabelSettings): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className LabelSettings, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `outlineColor=`*(self: LabelSettings; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc outlineColor*(self: LabelSettings): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className LabelSettings, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `shadowSize=`*(self: LabelSettings; size: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc shadowSize*(self: LabelSettings): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className LabelSettings, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `shadowColor=`*(self: LabelSettings; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc shadowColor*(self: LabelSettings): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className LabelSettings, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `shadowOffset=`*(self: LabelSettings; offset: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,4 +139,4 @@ proc shadowOffset*(self: LabelSettings): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className LabelSettings, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)

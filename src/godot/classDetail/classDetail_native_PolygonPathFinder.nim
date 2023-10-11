@@ -20,7 +20,7 @@ proc findPath*(self: PolygonPathFinder; `from`: Vector2; to: Vector2): PackedVec
   var `?param` = [getPtr `from`, getPtr to]
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedVector2Array)
+  (addr ret).decode_result(PackedVector2Array)
 proc getIntersections*(self: PolygonPathFinder; `from`: Vector2; to: Vector2): PackedVector2Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -29,7 +29,7 @@ proc getIntersections*(self: PolygonPathFinder; `from`: Vector2; to: Vector2): P
   var `?param` = [getPtr `from`, getPtr to]
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedVector2Array)
+  (addr ret).decode_result(PackedVector2Array)
 proc getClosestPoint*(self: PolygonPathFinder; point: Vector2): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -38,7 +38,7 @@ proc getClosestPoint*(self: PolygonPathFinder; point: Vector2): Vector2 =
   var `?param` = [getPtr point]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc isPointInside*(self: PolygonPathFinder; point: Vector2): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -47,7 +47,7 @@ proc isPointInside*(self: PolygonPathFinder; point: Vector2): Bool =
   var `?param` = [getPtr point]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setPointPenalty*(self: PolygonPathFinder; idx: int32; penalty: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -63,7 +63,7 @@ proc getPointPenalty*(self: PolygonPathFinder; idx: int32): Float =
   var `?param` = [getPtr idx]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getBounds*(self: PolygonPathFinder): Rect2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -71,4 +71,4 @@ proc getBounds*(self: PolygonPathFinder): Rect2 =
     methodbind = interface_ClassDB_getMethodBind(addr className PolygonPathFinder, addr name, 1639390495)
   var ret: encoded Rect2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Rect2)
+  (addr ret).decode_result(Rect2)

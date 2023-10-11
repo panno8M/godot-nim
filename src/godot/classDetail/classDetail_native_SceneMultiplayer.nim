@@ -19,7 +19,7 @@ proc rootPath*(self: SceneMultiplayer): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className SceneMultiplayer, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc clear*(self: SceneMultiplayer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -40,7 +40,7 @@ proc getAuthenticatingPeers*(self: SceneMultiplayer): PackedInt32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className SceneMultiplayer, addr name, 969006518)
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc sendAuth*(self: SceneMultiplayer; id: int32; data: PackedByteArray): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc sendAuth*(self: SceneMultiplayer; id: int32; data: PackedByteArray): Error 
   var `?param` = [getPtr id, getPtr data]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc completeAuth*(self: SceneMultiplayer; id: int32): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -58,7 +58,7 @@ proc completeAuth*(self: SceneMultiplayer; id: int32): Error =
   var `?param` = [getPtr id]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc `authCallback=`*(self: SceneMultiplayer; callback: Callable) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -73,7 +73,7 @@ proc authCallback*(self: SceneMultiplayer): Callable =
     methodbind = interface_ClassDB_getMethodBind(addr className SceneMultiplayer, addr name, 1307783378)
   var ret: encoded Callable
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Callable)
+  (addr ret).decode_result(Callable)
 proc `authTimeout=`*(self: SceneMultiplayer; timeout: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -88,7 +88,7 @@ proc authTimeout*(self: SceneMultiplayer): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className SceneMultiplayer, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc `refuseNewConnections=`*(self: SceneMultiplayer; refuse: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -103,7 +103,7 @@ proc isRefusingNewConnections*(self: SceneMultiplayer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SceneMultiplayer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `allowObjectDecoding=`*(self: SceneMultiplayer; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -118,7 +118,7 @@ proc isObjectDecodingAllowed*(self: SceneMultiplayer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SceneMultiplayer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `serverRelayEnabled=`*(self: SceneMultiplayer; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -133,7 +133,7 @@ proc isServerRelayEnabled*(self: SceneMultiplayer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SceneMultiplayer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc sendBytes*(self: SceneMultiplayer; bytes: PackedByteArray; id: int32 = 0; mode: MultiplayerPeer_TransferMode = transferModeReliable; channel: int32 = 0): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -142,7 +142,7 @@ proc sendBytes*(self: SceneMultiplayer; bytes: PackedByteArray; id: int32 = 0; m
   var `?param` = [getPtr bytes, getPtr id, getPtr mode, getPtr channel]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc maxSyncPacketSize*(self: SceneMultiplayer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -150,7 +150,7 @@ proc maxSyncPacketSize*(self: SceneMultiplayer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className SceneMultiplayer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `maxSyncPacketSize=`*(self: SceneMultiplayer; size: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -165,7 +165,7 @@ proc maxDeltaPacketSize*(self: SceneMultiplayer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className SceneMultiplayer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `maxDeltaPacketSize=`*(self: SceneMultiplayer; size: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

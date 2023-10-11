@@ -96,7 +96,7 @@ proc isEmitting*(self: CPUParticles3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc amount*(self: CPUParticles3D): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -104,7 +104,7 @@ proc amount*(self: CPUParticles3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc lifetime*(self: CPUParticles3D): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -112,7 +112,7 @@ proc lifetime*(self: CPUParticles3D): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc oneShot*(self: CPUParticles3D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -120,7 +120,7 @@ proc oneShot*(self: CPUParticles3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc preProcessTime*(self: CPUParticles3D): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -128,7 +128,7 @@ proc preProcessTime*(self: CPUParticles3D): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc explosivenessRatio*(self: CPUParticles3D): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -136,7 +136,7 @@ proc explosivenessRatio*(self: CPUParticles3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc randomnessRatio*(self: CPUParticles3D): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -144,7 +144,7 @@ proc randomnessRatio*(self: CPUParticles3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc lifetimeRandomness*(self: CPUParticles3D): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -152,7 +152,7 @@ proc lifetimeRandomness*(self: CPUParticles3D): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc useLocalCoordinates*(self: CPUParticles3D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -160,7 +160,7 @@ proc useLocalCoordinates*(self: CPUParticles3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc fixedFps*(self: CPUParticles3D): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -168,7 +168,7 @@ proc fixedFps*(self: CPUParticles3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc fractionalDelta*(self: CPUParticles3D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -176,7 +176,7 @@ proc fractionalDelta*(self: CPUParticles3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc speedScale*(self: CPUParticles3D): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -184,7 +184,7 @@ proc speedScale*(self: CPUParticles3D): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc `drawOrder=`*(self: CPUParticles3D; order: CPUParticles3D_DrawOrder) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -199,7 +199,7 @@ proc drawOrder*(self: CPUParticles3D): CPUParticles3D_DrawOrder =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 1321900776)
   var ret: encoded CPUParticles3D_DrawOrder
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(CPUParticles3D_DrawOrder)
+  (addr ret).decode_result(CPUParticles3D_DrawOrder)
 proc `mesh=`*(self: CPUParticles3D; mesh: Mesh) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -214,7 +214,7 @@ proc mesh*(self: CPUParticles3D): Mesh =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 1808005922)
   var ret: encoded Mesh
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Mesh)
+  (addr ret).decode_result(Mesh)
 proc restart*(self: CPUParticles3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -235,7 +235,7 @@ proc direction*(self: CPUParticles3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `spread=`*(self: CPUParticles3D; degrees: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -250,7 +250,7 @@ proc spread*(self: CPUParticles3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `flatness=`*(self: CPUParticles3D; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -265,7 +265,7 @@ proc flatness*(self: CPUParticles3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `paramMin=`*(self: CPUParticles3D; param: CPUParticles3D_Parameter; value: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -281,7 +281,7 @@ proc paramMin*(self: CPUParticles3D; param: CPUParticles3D_Parameter): Float =
   var `?param` = [getPtr param]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `paramMax=`*(self: CPUParticles3D; param: CPUParticles3D_Parameter; value: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -297,7 +297,7 @@ proc paramMax*(self: CPUParticles3D; param: CPUParticles3D_Parameter): Float =
   var `?param` = [getPtr param]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `paramCurve=`*(self: CPUParticles3D; param: CPUParticles3D_Parameter; curve: Curve) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -313,7 +313,7 @@ proc paramCurve*(self: CPUParticles3D; param: CPUParticles3D_Parameter): Curve =
   var `?param` = [getPtr param]
   var ret: encoded Curve
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Curve)
+  (addr ret).decode_result(Curve)
 proc `color=`*(self: CPUParticles3D; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -328,7 +328,7 @@ proc color*(self: CPUParticles3D): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `colorRamp=`*(self: CPUParticles3D; ramp: Gradient) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -343,7 +343,7 @@ proc colorRamp*(self: CPUParticles3D): Gradient =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 132272999)
   var ret: encoded Gradient
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Gradient)
+  (addr ret).decode_result(Gradient)
 proc `colorInitialRamp=`*(self: CPUParticles3D; ramp: Gradient) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -358,7 +358,7 @@ proc colorInitialRamp*(self: CPUParticles3D): Gradient =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 132272999)
   var ret: encoded Gradient
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Gradient)
+  (addr ret).decode_result(Gradient)
 proc `particleFlag=`*(self: CPUParticles3D; particleFlag: CPUParticles3D_ParticleFlags; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -374,7 +374,7 @@ proc particleFlag*(self: CPUParticles3D; particleFlag: CPUParticles3D_ParticleFl
   var `?param` = [getPtr particleFlag]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `emissionShape=`*(self: CPUParticles3D; shape: CPUParticles3D_EmissionShape) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -389,7 +389,7 @@ proc emissionShape*(self: CPUParticles3D): CPUParticles3D_EmissionShape =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 2961454842)
   var ret: encoded CPUParticles3D_EmissionShape
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(CPUParticles3D_EmissionShape)
+  (addr ret).decode_result(CPUParticles3D_EmissionShape)
 proc `emissionSphereRadius=`*(self: CPUParticles3D; radius: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -404,7 +404,7 @@ proc emissionSphereRadius*(self: CPUParticles3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `emissionBoxExtents=`*(self: CPUParticles3D; extents: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -419,7 +419,7 @@ proc emissionBoxExtents*(self: CPUParticles3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `emissionPoints=`*(self: CPUParticles3D; array: PackedVector3Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -434,7 +434,7 @@ proc emissionPoints*(self: CPUParticles3D): PackedVector3Array =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 497664490)
   var ret: encoded PackedVector3Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedVector3Array)
+  (addr ret).decode_result(PackedVector3Array)
 proc `emissionNormals=`*(self: CPUParticles3D; array: PackedVector3Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -449,7 +449,7 @@ proc emissionNormals*(self: CPUParticles3D): PackedVector3Array =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 497664490)
   var ret: encoded PackedVector3Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedVector3Array)
+  (addr ret).decode_result(PackedVector3Array)
 proc `emissionColors=`*(self: CPUParticles3D; array: PackedColorArray) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -464,7 +464,7 @@ proc emissionColors*(self: CPUParticles3D): PackedColorArray =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 1392750486)
   var ret: encoded PackedColorArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedColorArray)
+  (addr ret).decode_result(PackedColorArray)
 proc `emissionRingAxis=`*(self: CPUParticles3D; axis: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -479,7 +479,7 @@ proc emissionRingAxis*(self: CPUParticles3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `emissionRingHeight=`*(self: CPUParticles3D; height: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -494,7 +494,7 @@ proc emissionRingHeight*(self: CPUParticles3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `emissionRingRadius=`*(self: CPUParticles3D; radius: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -509,7 +509,7 @@ proc emissionRingRadius*(self: CPUParticles3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `emissionRingInnerRadius=`*(self: CPUParticles3D; innerRadius: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -524,7 +524,7 @@ proc emissionRingInnerRadius*(self: CPUParticles3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc gravity*(self: CPUParticles3D): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -532,7 +532,7 @@ proc gravity*(self: CPUParticles3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `gravity=`*(self: CPUParticles3D; accelVec: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -547,7 +547,7 @@ proc splitScale*(self: CPUParticles3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `splitScale=`*(self: CPUParticles3D; splitScale: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -562,7 +562,7 @@ proc scaleCurveX*(self: CPUParticles3D): Curve =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 2460114913)
   var ret: encoded Curve
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Curve)
+  (addr ret).decode_result(Curve)
 proc `scaleCurveX=`*(self: CPUParticles3D; scaleCurve: Curve) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -577,7 +577,7 @@ proc scaleCurveY*(self: CPUParticles3D): Curve =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 2460114913)
   var ret: encoded Curve
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Curve)
+  (addr ret).decode_result(Curve)
 proc `scaleCurveY=`*(self: CPUParticles3D; scaleCurve: Curve) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -592,7 +592,7 @@ proc scaleCurveZ*(self: CPUParticles3D): Curve =
     methodbind = interface_ClassDB_getMethodBind(addr className CPUParticles3D, addr name, 2460114913)
   var ret: encoded Curve
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Curve)
+  (addr ret).decode_result(Curve)
 proc `scaleCurveZ=`*(self: CPUParticles3D; scaleCurve: Curve) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

@@ -19,7 +19,7 @@ proc mixRate*(self: AudioStreamGenerator): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamGenerator, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `bufferLength=`*(self: AudioStreamGenerator; seconds: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,4 +34,4 @@ proc bufferLength*(self: AudioStreamGenerator): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamGenerator, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

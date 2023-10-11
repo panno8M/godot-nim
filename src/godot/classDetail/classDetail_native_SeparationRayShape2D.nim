@@ -19,7 +19,7 @@ proc length*(self: SeparationRayShape2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className SeparationRayShape2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `slideOnSlope=`*(self: SeparationRayShape2D; active: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,4 +34,4 @@ proc slideOnSlope*(self: SeparationRayShape2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SeparationRayShape2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

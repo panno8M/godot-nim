@@ -150,4 +150,12 @@ proc variant*[T: SomeClass](v: T): Variant =
 proc get*[T: SomeClass](v: Variant; _: typedesc[T]): T =
   v.get(ObjectPtr).getInstance(T)
 
+
+proc decode_result*[T: not RefCountedBase](p: pointer; _: typedesc[T]): T =
+  p.decode(T)
+proc decode_result*[T: RefCountedBase](p: pointer; _: typedesc[T]): T =
+  result = p.decode(T)
+  when T is RefCountedBase:
+    discard api.hook_unreference(GD_getObjectPtr result)
+
 {.pop.}

@@ -27,7 +27,7 @@ proc getBlendPointPosition*(self: AnimationNodeBlendSpace2D; point: int32): Vect
   var `?param` = [getPtr point]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc setBlendPointNode*(self: AnimationNodeBlendSpace2D; point: int32; node: AnimationRootNode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -43,7 +43,7 @@ proc getBlendPointNode*(self: AnimationNodeBlendSpace2D; point: int32): Animatio
   var `?param` = [getPtr point]
   var ret: encoded AnimationRootNode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(AnimationRootNode)
+  (addr ret).decode_result(AnimationRootNode)
 proc removeBlendPoint*(self: AnimationNodeBlendSpace2D; point: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -58,7 +58,7 @@ proc getBlendPointCount*(self: AnimationNodeBlendSpace2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendSpace2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc addTriangle*(self: AnimationNodeBlendSpace2D; x: int32; y: int32; z: int32; atIndex: int32 = -1) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -74,7 +74,7 @@ proc getTrianglePoint*(self: AnimationNodeBlendSpace2D; triangle: int32; point: 
   var `?param` = [getPtr triangle, getPtr point]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc removeTriangle*(self: AnimationNodeBlendSpace2D; triangle: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -89,7 +89,7 @@ proc getTriangleCount*(self: AnimationNodeBlendSpace2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendSpace2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `minSpace=`*(self: AnimationNodeBlendSpace2D; minSpace: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -104,7 +104,7 @@ proc minSpace*(self: AnimationNodeBlendSpace2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendSpace2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `maxSpace=`*(self: AnimationNodeBlendSpace2D; maxSpace: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -119,7 +119,7 @@ proc maxSpace*(self: AnimationNodeBlendSpace2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendSpace2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `snap=`*(self: AnimationNodeBlendSpace2D; snap: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -134,7 +134,7 @@ proc snap*(self: AnimationNodeBlendSpace2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendSpace2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `xLabel=`*(self: AnimationNodeBlendSpace2D; text: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -149,7 +149,7 @@ proc xLabel*(self: AnimationNodeBlendSpace2D): String =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendSpace2D, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `yLabel=`*(self: AnimationNodeBlendSpace2D; text: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -164,7 +164,7 @@ proc yLabel*(self: AnimationNodeBlendSpace2D): String =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendSpace2D, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `autoTriangles=`*(self: AnimationNodeBlendSpace2D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -179,7 +179,7 @@ proc autoTriangles*(self: AnimationNodeBlendSpace2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendSpace2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `blendMode=`*(self: AnimationNodeBlendSpace2D; mode: AnimationNodeBlendSpace2D_BlendMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -194,7 +194,7 @@ proc blendMode*(self: AnimationNodeBlendSpace2D): AnimationNodeBlendSpace2D_Blen
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendSpace2D, addr name, 1398433632)
   var ret: encoded AnimationNodeBlendSpace2D_BlendMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AnimationNodeBlendSpace2D_BlendMode)
+  (addr ret).decode_result(AnimationNodeBlendSpace2D_BlendMode)
 proc `useSync=`*(self: AnimationNodeBlendSpace2D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -209,4 +209,4 @@ proc isUsingSync*(self: AnimationNodeBlendSpace2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendSpace2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

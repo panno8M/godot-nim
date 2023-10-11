@@ -19,4 +19,4 @@ proc constant*(self: VisualShaderNodeFloatConstant): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeFloatConstant, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

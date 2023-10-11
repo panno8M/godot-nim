@@ -19,4 +19,4 @@ proc constant*(self: VisualShaderNodeVec4Constant): Quaternion =
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeVec4Constant, addr name, 1222331677)
   var ret: encoded Quaternion
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Quaternion)
+  (addr ret).decode_result(Quaternion)

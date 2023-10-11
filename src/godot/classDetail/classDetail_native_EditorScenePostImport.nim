@@ -12,4 +12,4 @@ proc getSourceFile*(self: EditorScenePostImport): String =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorScenePostImport, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)

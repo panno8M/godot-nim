@@ -12,7 +12,7 @@ proc bufferView*(self: GLTFAccessor): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFAccessor, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `bufferView=`*(self: GLTFAccessor; bufferView: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc byteOffset*(self: GLTFAccessor): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFAccessor, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `byteOffset=`*(self: GLTFAccessor; byteOffset: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc componentType*(self: GLTFAccessor): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFAccessor, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `componentType=`*(self: GLTFAccessor; componentType: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc normalized*(self: GLTFAccessor): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFAccessor, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `normalized=`*(self: GLTFAccessor; normalized: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -72,7 +72,7 @@ proc count*(self: GLTFAccessor): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFAccessor, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `count=`*(self: GLTFAccessor; count: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -87,7 +87,7 @@ proc `type`*(self: GLTFAccessor): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFAccessor, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `type=`*(self: GLTFAccessor; `type`: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -102,7 +102,7 @@ proc min*(self: GLTFAccessor): PackedFloat64Array =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFAccessor, addr name, 148677866)
   var ret: encoded PackedFloat64Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedFloat64Array)
+  (addr ret).decode_result(PackedFloat64Array)
 proc `min=`*(self: GLTFAccessor; min: PackedFloat64Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -117,7 +117,7 @@ proc max*(self: GLTFAccessor): PackedFloat64Array =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFAccessor, addr name, 148677866)
   var ret: encoded PackedFloat64Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedFloat64Array)
+  (addr ret).decode_result(PackedFloat64Array)
 proc `max=`*(self: GLTFAccessor; max: PackedFloat64Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -132,7 +132,7 @@ proc sparseCount*(self: GLTFAccessor): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFAccessor, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `sparseCount=`*(self: GLTFAccessor; sparseCount: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -147,7 +147,7 @@ proc sparseIndicesBufferView*(self: GLTFAccessor): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFAccessor, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `sparseIndicesBufferView=`*(self: GLTFAccessor; sparseIndicesBufferView: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -162,7 +162,7 @@ proc sparseIndicesByteOffset*(self: GLTFAccessor): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFAccessor, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `sparseIndicesByteOffset=`*(self: GLTFAccessor; sparseIndicesByteOffset: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -177,7 +177,7 @@ proc sparseIndicesComponentType*(self: GLTFAccessor): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFAccessor, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `sparseIndicesComponentType=`*(self: GLTFAccessor; sparseIndicesComponentType: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -192,7 +192,7 @@ proc sparseValuesBufferView*(self: GLTFAccessor): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFAccessor, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `sparseValuesBufferView=`*(self: GLTFAccessor; sparseValuesBufferView: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -207,7 +207,7 @@ proc sparseValuesByteOffset*(self: GLTFAccessor): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFAccessor, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `sparseValuesByteOffset=`*(self: GLTFAccessor; sparseValuesByteOffset: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

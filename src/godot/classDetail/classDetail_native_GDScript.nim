@@ -12,4 +12,4 @@ proc new*(self: GDScript): Variant =
     methodbind = interface_ClassDB_getMethodBind(addr className GDScript, addr name, 1545262638)
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)

@@ -19,7 +19,7 @@ proc json*(self: GLTFState): Dictionary =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFState, addr name, 2382534195)
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc `json=`*(self: GLTFState; json: Dictionary) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc majorVersion*(self: GLTFState): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFState, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `majorVersion=`*(self: GLTFState; majorVersion: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc minorVersion*(self: GLTFState): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFState, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `minorVersion=`*(self: GLTFState; minorVersion: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc glbData*(self: GLTFState): PackedByteArray =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFState, addr name, 2115431945)
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)
 proc `glbData=`*(self: GLTFState; glbData: PackedByteArray) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc useNamedSkinBinds*(self: GLTFState): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFState, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `useNamedSkinBinds=`*(self: GLTFState; useNamedSkinBinds: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc nodes*(self: GLTFState): TypedArray[GLTFNode] =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFState, addr name, 2915620761)
   var ret: encoded TypedArray[GLTFNode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[GLTFNode])
+  (addr ret).decode_result(TypedArray[GLTFNode])
 proc `nodes=`*(self: GLTFState; nodes: TypedArray[GLTFNode]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc buffers*(self: GLTFState): TypedArray[PackedByteArray] =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFState, addr name, 2915620761)
   var ret: encoded TypedArray[PackedByteArray]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[PackedByteArray])
+  (addr ret).decode_result(TypedArray[PackedByteArray])
 proc `buffers=`*(self: GLTFState; buffers: TypedArray[PackedByteArray]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc bufferViews*(self: GLTFState): TypedArray[GLTFBufferView] =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFState, addr name, 2915620761)
   var ret: encoded TypedArray[GLTFBufferView]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[GLTFBufferView])
+  (addr ret).decode_result(TypedArray[GLTFBufferView])
 proc `bufferViews=`*(self: GLTFState; bufferViews: TypedArray[GLTFBufferView]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc accessors*(self: GLTFState): TypedArray[GLTFAccessor] =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFState, addr name, 2915620761)
   var ret: encoded TypedArray[GLTFAccessor]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[GLTFAccessor])
+  (addr ret).decode_result(TypedArray[GLTFAccessor])
 proc `accessors=`*(self: GLTFState; accessors: TypedArray[GLTFAccessor]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -154,7 +154,7 @@ proc meshes*(self: GLTFState): TypedArray[GLTFMesh] =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFState, addr name, 2915620761)
   var ret: encoded TypedArray[GLTFMesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[GLTFMesh])
+  (addr ret).decode_result(TypedArray[GLTFMesh])
 proc `meshes=`*(self: GLTFState; meshes: TypedArray[GLTFMesh]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -170,7 +170,7 @@ proc getAnimationPlayersCount*(self: GLTFState; idx: int32): int32 =
   var `?param` = [getPtr idx]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getAnimationPlayer*(self: GLTFState; idx: int32): AnimationPlayer =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -179,7 +179,7 @@ proc getAnimationPlayer*(self: GLTFState; idx: int32): AnimationPlayer =
   var `?param` = [getPtr idx]
   var ret: encoded AnimationPlayer
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(AnimationPlayer)
+  (addr ret).decode_result(AnimationPlayer)
 proc materials*(self: GLTFState): TypedArray[Material] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -187,7 +187,7 @@ proc materials*(self: GLTFState): TypedArray[Material] =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFState, addr name, 2915620761)
   var ret: encoded TypedArray[Material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Material])
+  (addr ret).decode_result(TypedArray[Material])
 proc `materials=`*(self: GLTFState; materials: TypedArray[Material]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -202,7 +202,7 @@ proc sceneName*(self: GLTFState): String =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFState, addr name, 2841200299)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `sceneName=`*(self: GLTFState; sceneName: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -217,7 +217,7 @@ proc basePath*(self: GLTFState): String =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFState, addr name, 2841200299)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `basePath=`*(self: GLTFState; basePath: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -232,7 +232,7 @@ proc rootNodes*(self: GLTFState): PackedInt32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFState, addr name, 969006518)
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc `rootNodes=`*(self: GLTFState; rootNodes: PackedInt32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -247,7 +247,7 @@ proc textures*(self: GLTFState): TypedArray[GLTFTexture] =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFState, addr name, 2915620761)
   var ret: encoded TypedArray[GLTFTexture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[GLTFTexture])
+  (addr ret).decode_result(TypedArray[GLTFTexture])
 proc `textures=`*(self: GLTFState; textures: TypedArray[GLTFTexture]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -262,7 +262,7 @@ proc textureSamplers*(self: GLTFState): TypedArray[GLTFTextureSampler] =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFState, addr name, 2915620761)
   var ret: encoded TypedArray[GLTFTextureSampler]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[GLTFTextureSampler])
+  (addr ret).decode_result(TypedArray[GLTFTextureSampler])
 proc `textureSamplers=`*(self: GLTFState; textureSamplers: TypedArray[GLTFTextureSampler]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -277,7 +277,7 @@ proc images*(self: GLTFState): TypedArray[Texture2D] =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFState, addr name, 2915620761)
   var ret: encoded TypedArray[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Texture2D])
+  (addr ret).decode_result(TypedArray[Texture2D])
 proc `images=`*(self: GLTFState; images: TypedArray[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -292,7 +292,7 @@ proc skins*(self: GLTFState): TypedArray[GLTFSkin] =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFState, addr name, 2915620761)
   var ret: encoded TypedArray[GLTFSkin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[GLTFSkin])
+  (addr ret).decode_result(TypedArray[GLTFSkin])
 proc `skins=`*(self: GLTFState; skins: TypedArray[GLTFSkin]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -307,7 +307,7 @@ proc cameras*(self: GLTFState): TypedArray[GLTFCamera] =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFState, addr name, 2915620761)
   var ret: encoded TypedArray[GLTFCamera]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[GLTFCamera])
+  (addr ret).decode_result(TypedArray[GLTFCamera])
 proc `cameras=`*(self: GLTFState; cameras: TypedArray[GLTFCamera]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -322,7 +322,7 @@ proc lights*(self: GLTFState): TypedArray[GLTFLight] =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFState, addr name, 2915620761)
   var ret: encoded TypedArray[GLTFLight]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[GLTFLight])
+  (addr ret).decode_result(TypedArray[GLTFLight])
 proc `lights=`*(self: GLTFState; lights: TypedArray[GLTFLight]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -337,7 +337,7 @@ proc uniqueNames*(self: GLTFState): TypedArray[String] =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFState, addr name, 2915620761)
   var ret: encoded TypedArray[String]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[String])
+  (addr ret).decode_result(TypedArray[String])
 proc `uniqueNames=`*(self: GLTFState; uniqueNames: TypedArray[String]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -352,7 +352,7 @@ proc uniqueAnimationNames*(self: GLTFState): TypedArray[String] =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFState, addr name, 2915620761)
   var ret: encoded TypedArray[String]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[String])
+  (addr ret).decode_result(TypedArray[String])
 proc `uniqueAnimationNames=`*(self: GLTFState; uniqueAnimationNames: TypedArray[String]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -367,7 +367,7 @@ proc skeletons*(self: GLTFState): TypedArray[GLTFSkeleton] =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFState, addr name, 2915620761)
   var ret: encoded TypedArray[GLTFSkeleton]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[GLTFSkeleton])
+  (addr ret).decode_result(TypedArray[GLTFSkeleton])
 proc `skeletons=`*(self: GLTFState; skeletons: TypedArray[GLTFSkeleton]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -382,7 +382,7 @@ proc createAnimations*(self: GLTFState): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFState, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `createAnimations=`*(self: GLTFState; createAnimations: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -397,7 +397,7 @@ proc animations*(self: GLTFState): TypedArray[GLTFAnimation] =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFState, addr name, 2915620761)
   var ret: encoded TypedArray[GLTFAnimation]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[GLTFAnimation])
+  (addr ret).decode_result(TypedArray[GLTFAnimation])
 proc `animations=`*(self: GLTFState; animations: TypedArray[GLTFAnimation]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -413,7 +413,7 @@ proc getSceneNode*(self: GLTFState; idx: int32): Node =
   var `?param` = [getPtr idx]
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Node)
+  (addr ret).decode_result(Node)
 proc getNodeIndex*(self: GLTFState; sceneNode: Node): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -422,7 +422,7 @@ proc getNodeIndex*(self: GLTFState; sceneNode: Node): int32 =
   var `?param` = [getPtr sceneNode]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getAdditionalData*(self: GLTFState; extensionName: StringName): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -431,7 +431,7 @@ proc getAdditionalData*(self: GLTFState; extensionName: StringName): Variant =
   var `?param` = [getPtr extensionName]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc setAdditionalData*(self: GLTFState; extensionName: StringName; additionalData: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -446,7 +446,7 @@ proc handleBinaryImage*(self: GLTFState): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFState, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `handleBinaryImage=`*(self: GLTFState; `method`: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

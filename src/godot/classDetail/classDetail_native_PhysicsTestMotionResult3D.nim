@@ -12,7 +12,7 @@ proc getTravel*(self: PhysicsTestMotionResult3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionResult3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc getRemainder*(self: PhysicsTestMotionResult3D): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -20,7 +20,7 @@ proc getRemainder*(self: PhysicsTestMotionResult3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionResult3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc getCollisionSafeFraction*(self: PhysicsTestMotionResult3D): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -28,7 +28,7 @@ proc getCollisionSafeFraction*(self: PhysicsTestMotionResult3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionResult3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getCollisionUnsafeFraction*(self: PhysicsTestMotionResult3D): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -36,7 +36,7 @@ proc getCollisionUnsafeFraction*(self: PhysicsTestMotionResult3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionResult3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getCollisionCount*(self: PhysicsTestMotionResult3D): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -44,7 +44,7 @@ proc getCollisionCount*(self: PhysicsTestMotionResult3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionResult3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getCollisionPoint*(self: PhysicsTestMotionResult3D; collisionIndex: int32 = 0): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -53,7 +53,7 @@ proc getCollisionPoint*(self: PhysicsTestMotionResult3D; collisionIndex: int32 =
   var `?param` = [getPtr collisionIndex]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc getCollisionNormal*(self: PhysicsTestMotionResult3D; collisionIndex: int32 = 0): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -62,7 +62,7 @@ proc getCollisionNormal*(self: PhysicsTestMotionResult3D; collisionIndex: int32 
   var `?param` = [getPtr collisionIndex]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc getColliderVelocity*(self: PhysicsTestMotionResult3D; collisionIndex: int32 = 0): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -71,7 +71,7 @@ proc getColliderVelocity*(self: PhysicsTestMotionResult3D; collisionIndex: int32
   var `?param` = [getPtr collisionIndex]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc getColliderId*(self: PhysicsTestMotionResult3D; collisionIndex: int32 = 0): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -80,7 +80,7 @@ proc getColliderId*(self: PhysicsTestMotionResult3D; collisionIndex: int32 = 0):
   var `?param` = [getPtr collisionIndex]
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)
 proc getColliderRid*(self: PhysicsTestMotionResult3D; collisionIndex: int32 = 0): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -89,7 +89,7 @@ proc getColliderRid*(self: PhysicsTestMotionResult3D; collisionIndex: int32 = 0)
   var `?param` = [getPtr collisionIndex]
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc getCollider*(self: PhysicsTestMotionResult3D; collisionIndex: int32 = 0): Object =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -98,7 +98,7 @@ proc getCollider*(self: PhysicsTestMotionResult3D; collisionIndex: int32 = 0): O
   var `?param` = [getPtr collisionIndex]
   var ret: encoded Object
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Object)
+  (addr ret).decode_result(Object)
 proc getColliderShape*(self: PhysicsTestMotionResult3D; collisionIndex: int32 = 0): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -107,7 +107,7 @@ proc getColliderShape*(self: PhysicsTestMotionResult3D; collisionIndex: int32 = 
   var `?param` = [getPtr collisionIndex]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getCollisionLocalShape*(self: PhysicsTestMotionResult3D; collisionIndex: int32 = 0): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -116,7 +116,7 @@ proc getCollisionLocalShape*(self: PhysicsTestMotionResult3D; collisionIndex: in
   var `?param` = [getPtr collisionIndex]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getCollisionDepth*(self: PhysicsTestMotionResult3D; collisionIndex: int32 = 0): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -125,4 +125,4 @@ proc getCollisionDepth*(self: PhysicsTestMotionResult3D; collisionIndex: int32 =
   var `?param` = [getPtr collisionIndex]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

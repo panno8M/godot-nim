@@ -12,7 +12,7 @@ proc getLineCount*(self: FlowContainer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className FlowContainer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `alignment=`*(self: FlowContainer; alignment: FlowContainer_AlignmentMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc alignment*(self: FlowContainer): FlowContainer_AlignmentMode =
     methodbind = interface_ClassDB_getMethodBind(addr className FlowContainer, addr name, 3749743559)
   var ret: encoded FlowContainer_AlignmentMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(FlowContainer_AlignmentMode)
+  (addr ret).decode_result(FlowContainer_AlignmentMode)
 proc `vertical=`*(self: FlowContainer; vertical: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,4 +42,4 @@ proc isVertical*(self: FlowContainer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className FlowContainer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

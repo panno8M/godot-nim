@@ -19,7 +19,7 @@ proc switchMode*(self: AnimationNodeStateMachineTransition): AnimationNodeStateM
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachineTransition, addr name, 2138562085)
   var ret: encoded AnimationNodeStateMachineTransition_SwitchMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AnimationNodeStateMachineTransition_SwitchMode)
+  (addr ret).decode_result(AnimationNodeStateMachineTransition_SwitchMode)
 proc `advanceMode=`*(self: AnimationNodeStateMachineTransition; mode: AnimationNodeStateMachineTransition_AdvanceMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc advanceMode*(self: AnimationNodeStateMachineTransition): AnimationNodeState
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachineTransition, addr name, 61101689)
   var ret: encoded AnimationNodeStateMachineTransition_AdvanceMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AnimationNodeStateMachineTransition_AdvanceMode)
+  (addr ret).decode_result(AnimationNodeStateMachineTransition_AdvanceMode)
 proc `advanceCondition=`*(self: AnimationNodeStateMachineTransition; name: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc advanceCondition*(self: AnimationNodeStateMachineTransition): StringName =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachineTransition, addr name, 2002593661)
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc `xfadeTime=`*(self: AnimationNodeStateMachineTransition; secs: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc xfadeTime*(self: AnimationNodeStateMachineTransition): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachineTransition, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `xfadeCurve=`*(self: AnimationNodeStateMachineTransition; curve: Curve) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc xfadeCurve*(self: AnimationNodeStateMachineTransition): Curve =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachineTransition, addr name, 2460114913)
   var ret: encoded Curve
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Curve)
+  (addr ret).decode_result(Curve)
 proc `reset=`*(self: AnimationNodeStateMachineTransition; reset: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc isReset*(self: AnimationNodeStateMachineTransition): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachineTransition, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `priority=`*(self: AnimationNodeStateMachineTransition; priority: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc priority*(self: AnimationNodeStateMachineTransition): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachineTransition, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `advanceExpression=`*(self: AnimationNodeStateMachineTransition; text: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,4 +124,4 @@ proc advanceExpression*(self: AnimationNodeStateMachineTransition): String =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachineTransition, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)

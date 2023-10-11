@@ -19,4 +19,4 @@ proc plane*(self: WorldBoundaryShape3D): Plane =
     methodbind = interface_ClassDB_getMethodBind(addr className WorldBoundaryShape3D, addr name, 2753500971)
   var ret: encoded Plane
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Plane)
+  (addr ret).decode_result(Plane)

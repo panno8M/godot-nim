@@ -25,7 +25,7 @@ proc enableBlend*(self: RDPipelineColorBlendStateAttachment): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineColorBlendStateAttachment, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `srcColorBlendFactor=`*(self: RDPipelineColorBlendStateAttachment; pMember: RenderingDevice_BlendFactor) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -40,7 +40,7 @@ proc srcColorBlendFactor*(self: RDPipelineColorBlendStateAttachment): RenderingD
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineColorBlendStateAttachment, addr name, 3691288359)
   var ret: encoded RenderingDevice_BlendFactor
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_BlendFactor)
+  (addr ret).decode_result(RenderingDevice_BlendFactor)
 proc `dstColorBlendFactor=`*(self: RDPipelineColorBlendStateAttachment; pMember: RenderingDevice_BlendFactor) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -55,7 +55,7 @@ proc dstColorBlendFactor*(self: RDPipelineColorBlendStateAttachment): RenderingD
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineColorBlendStateAttachment, addr name, 3691288359)
   var ret: encoded RenderingDevice_BlendFactor
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_BlendFactor)
+  (addr ret).decode_result(RenderingDevice_BlendFactor)
 proc `colorBlendOp=`*(self: RDPipelineColorBlendStateAttachment; pMember: RenderingDevice_BlendOperation) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -70,7 +70,7 @@ proc colorBlendOp*(self: RDPipelineColorBlendStateAttachment): RenderingDevice_B
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineColorBlendStateAttachment, addr name, 1385093561)
   var ret: encoded RenderingDevice_BlendOperation
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_BlendOperation)
+  (addr ret).decode_result(RenderingDevice_BlendOperation)
 proc `srcAlphaBlendFactor=`*(self: RDPipelineColorBlendStateAttachment; pMember: RenderingDevice_BlendFactor) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -85,7 +85,7 @@ proc srcAlphaBlendFactor*(self: RDPipelineColorBlendStateAttachment): RenderingD
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineColorBlendStateAttachment, addr name, 3691288359)
   var ret: encoded RenderingDevice_BlendFactor
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_BlendFactor)
+  (addr ret).decode_result(RenderingDevice_BlendFactor)
 proc `dstAlphaBlendFactor=`*(self: RDPipelineColorBlendStateAttachment; pMember: RenderingDevice_BlendFactor) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -100,7 +100,7 @@ proc dstAlphaBlendFactor*(self: RDPipelineColorBlendStateAttachment): RenderingD
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineColorBlendStateAttachment, addr name, 3691288359)
   var ret: encoded RenderingDevice_BlendFactor
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_BlendFactor)
+  (addr ret).decode_result(RenderingDevice_BlendFactor)
 proc `alphaBlendOp=`*(self: RDPipelineColorBlendStateAttachment; pMember: RenderingDevice_BlendOperation) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -115,7 +115,7 @@ proc alphaBlendOp*(self: RDPipelineColorBlendStateAttachment): RenderingDevice_B
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineColorBlendStateAttachment, addr name, 1385093561)
   var ret: encoded RenderingDevice_BlendOperation
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_BlendOperation)
+  (addr ret).decode_result(RenderingDevice_BlendOperation)
 proc `writeR=`*(self: RDPipelineColorBlendStateAttachment; pMember: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -130,7 +130,7 @@ proc writeR*(self: RDPipelineColorBlendStateAttachment): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineColorBlendStateAttachment, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `writeG=`*(self: RDPipelineColorBlendStateAttachment; pMember: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -145,7 +145,7 @@ proc writeG*(self: RDPipelineColorBlendStateAttachment): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineColorBlendStateAttachment, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `writeB=`*(self: RDPipelineColorBlendStateAttachment; pMember: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -160,7 +160,7 @@ proc writeB*(self: RDPipelineColorBlendStateAttachment): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineColorBlendStateAttachment, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `writeA=`*(self: RDPipelineColorBlendStateAttachment; pMember: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -175,4 +175,4 @@ proc writeA*(self: RDPipelineColorBlendStateAttachment): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineColorBlendStateAttachment, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

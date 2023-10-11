@@ -19,7 +19,7 @@ proc polygon*(self: CollisionPolygon2D): PackedVector2Array =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionPolygon2D, addr name, 2961356807)
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedVector2Array)
+  (addr ret).decode_result(PackedVector2Array)
 proc `buildMode=`*(self: CollisionPolygon2D; buildMode: CollisionPolygon2D_BuildMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc buildMode*(self: CollisionPolygon2D): CollisionPolygon2D_BuildMode =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionPolygon2D, addr name, 3044948800)
   var ret: encoded CollisionPolygon2D_BuildMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(CollisionPolygon2D_BuildMode)
+  (addr ret).decode_result(CollisionPolygon2D_BuildMode)
 proc `disabled=`*(self: CollisionPolygon2D; disabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc isDisabled*(self: CollisionPolygon2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionPolygon2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `oneWayCollision=`*(self: CollisionPolygon2D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc isOneWayCollisionEnabled*(self: CollisionPolygon2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionPolygon2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `oneWayCollisionMargin=`*(self: CollisionPolygon2D; margin: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,4 +79,4 @@ proc oneWayCollisionMargin*(self: CollisionPolygon2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionPolygon2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

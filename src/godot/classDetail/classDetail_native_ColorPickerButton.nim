@@ -19,7 +19,7 @@ proc pickColor*(self: ColorPickerButton): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPickerButton, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc getPicker*(self: ColorPickerButton): ColorPicker =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc getPicker*(self: ColorPickerButton): ColorPicker =
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPickerButton, addr name, 331835996)
   var ret: encoded ColorPicker
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(ColorPicker)
+  (addr ret).decode_result(ColorPicker)
 proc getPopup*(self: ColorPickerButton): PopupPanel =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -35,7 +35,7 @@ proc getPopup*(self: ColorPickerButton): PopupPanel =
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPickerButton, addr name, 1322440207)
   var ret: encoded PopupPanel
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PopupPanel)
+  (addr ret).decode_result(PopupPanel)
 proc `editAlpha=`*(self: ColorPickerButton; show: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -50,4 +50,4 @@ proc isEditingAlpha*(self: ColorPickerButton): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ColorPickerButton, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

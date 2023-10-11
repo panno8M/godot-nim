@@ -13,4 +13,4 @@ proc getMagnitudeForFrequencyRange*(self: AudioEffectSpectrumAnalyzerInstance; f
   var `?param` = [getPtr fromHz, getPtr toHz, getPtr mode]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)

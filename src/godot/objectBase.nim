@@ -26,8 +26,6 @@ proc getInstance*[T: SomeClass](p_engine_object: ObjectPtr; _: typedesc[T]): T =
   if p_engine_object.isNil: return
 
   result = cast[T](interface_objectGetInstanceBinding(p_engine_object, token, addr T.callbacks))
-  when T is RefCountedBase:
-    discard api.hook_unreference(GD_getObjectPtr result)
 
 proc instanceID*(self: SomeClass): GDObjectInstanceID =
   interface_Object_getInstanceId GD_getObjectPtr self

@@ -19,7 +19,7 @@ proc enableDepthTest*(self: RDPipelineDepthStencilState): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineDepthStencilState, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `enableDepthWrite=`*(self: RDPipelineDepthStencilState; pMember: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc enableDepthWrite*(self: RDPipelineDepthStencilState): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineDepthStencilState, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `depthCompareOperator=`*(self: RDPipelineDepthStencilState; pMember: RenderingDevice_CompareOperator) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc depthCompareOperator*(self: RDPipelineDepthStencilState): RenderingDevice_C
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineDepthStencilState, addr name, 269730778)
   var ret: encoded RenderingDevice_CompareOperator
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_CompareOperator)
+  (addr ret).decode_result(RenderingDevice_CompareOperator)
 proc `enableDepthRange=`*(self: RDPipelineDepthStencilState; pMember: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc enableDepthRange*(self: RDPipelineDepthStencilState): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineDepthStencilState, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `depthRangeMin=`*(self: RDPipelineDepthStencilState; pMember: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc depthRangeMin*(self: RDPipelineDepthStencilState): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineDepthStencilState, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `depthRangeMax=`*(self: RDPipelineDepthStencilState; pMember: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc depthRangeMax*(self: RDPipelineDepthStencilState): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineDepthStencilState, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `enableStencil=`*(self: RDPipelineDepthStencilState; pMember: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc enableStencil*(self: RDPipelineDepthStencilState): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineDepthStencilState, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `frontOpFail=`*(self: RDPipelineDepthStencilState; pMember: RenderingDevice_StencilOperation) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc frontOpFail*(self: RDPipelineDepthStencilState): RenderingDevice_StencilOpe
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineDepthStencilState, addr name, 1714732389)
   var ret: encoded RenderingDevice_StencilOperation
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_StencilOperation)
+  (addr ret).decode_result(RenderingDevice_StencilOperation)
 proc `frontOpPass=`*(self: RDPipelineDepthStencilState; pMember: RenderingDevice_StencilOperation) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc frontOpPass*(self: RDPipelineDepthStencilState): RenderingDevice_StencilOpe
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineDepthStencilState, addr name, 1714732389)
   var ret: encoded RenderingDevice_StencilOperation
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_StencilOperation)
+  (addr ret).decode_result(RenderingDevice_StencilOperation)
 proc `frontOpDepthFail=`*(self: RDPipelineDepthStencilState; pMember: RenderingDevice_StencilOperation) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -154,7 +154,7 @@ proc frontOpDepthFail*(self: RDPipelineDepthStencilState): RenderingDevice_Stenc
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineDepthStencilState, addr name, 1714732389)
   var ret: encoded RenderingDevice_StencilOperation
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_StencilOperation)
+  (addr ret).decode_result(RenderingDevice_StencilOperation)
 proc `frontOpCompare=`*(self: RDPipelineDepthStencilState; pMember: RenderingDevice_CompareOperator) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -169,7 +169,7 @@ proc frontOpCompare*(self: RDPipelineDepthStencilState): RenderingDevice_Compare
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineDepthStencilState, addr name, 269730778)
   var ret: encoded RenderingDevice_CompareOperator
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_CompareOperator)
+  (addr ret).decode_result(RenderingDevice_CompareOperator)
 proc `frontOpCompareMask=`*(self: RDPipelineDepthStencilState; pMember: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -184,7 +184,7 @@ proc frontOpCompareMask*(self: RDPipelineDepthStencilState): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineDepthStencilState, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `frontOpWriteMask=`*(self: RDPipelineDepthStencilState; pMember: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -199,7 +199,7 @@ proc frontOpWriteMask*(self: RDPipelineDepthStencilState): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineDepthStencilState, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `frontOpReference=`*(self: RDPipelineDepthStencilState; pMember: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -214,7 +214,7 @@ proc frontOpReference*(self: RDPipelineDepthStencilState): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineDepthStencilState, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `backOpFail=`*(self: RDPipelineDepthStencilState; pMember: RenderingDevice_StencilOperation) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -229,7 +229,7 @@ proc backOpFail*(self: RDPipelineDepthStencilState): RenderingDevice_StencilOper
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineDepthStencilState, addr name, 1714732389)
   var ret: encoded RenderingDevice_StencilOperation
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_StencilOperation)
+  (addr ret).decode_result(RenderingDevice_StencilOperation)
 proc `backOpPass=`*(self: RDPipelineDepthStencilState; pMember: RenderingDevice_StencilOperation) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -244,7 +244,7 @@ proc backOpPass*(self: RDPipelineDepthStencilState): RenderingDevice_StencilOper
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineDepthStencilState, addr name, 1714732389)
   var ret: encoded RenderingDevice_StencilOperation
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_StencilOperation)
+  (addr ret).decode_result(RenderingDevice_StencilOperation)
 proc `backOpDepthFail=`*(self: RDPipelineDepthStencilState; pMember: RenderingDevice_StencilOperation) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -259,7 +259,7 @@ proc backOpDepthFail*(self: RDPipelineDepthStencilState): RenderingDevice_Stenci
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineDepthStencilState, addr name, 1714732389)
   var ret: encoded RenderingDevice_StencilOperation
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_StencilOperation)
+  (addr ret).decode_result(RenderingDevice_StencilOperation)
 proc `backOpCompare=`*(self: RDPipelineDepthStencilState; pMember: RenderingDevice_CompareOperator) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -274,7 +274,7 @@ proc backOpCompare*(self: RDPipelineDepthStencilState): RenderingDevice_CompareO
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineDepthStencilState, addr name, 269730778)
   var ret: encoded RenderingDevice_CompareOperator
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_CompareOperator)
+  (addr ret).decode_result(RenderingDevice_CompareOperator)
 proc `backOpCompareMask=`*(self: RDPipelineDepthStencilState; pMember: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -289,7 +289,7 @@ proc backOpCompareMask*(self: RDPipelineDepthStencilState): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineDepthStencilState, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `backOpWriteMask=`*(self: RDPipelineDepthStencilState; pMember: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -304,7 +304,7 @@ proc backOpWriteMask*(self: RDPipelineDepthStencilState): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineDepthStencilState, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `backOpReference=`*(self: RDPipelineDepthStencilState; pMember: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -319,4 +319,4 @@ proc backOpReference*(self: RDPipelineDepthStencilState): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineDepthStencilState, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)

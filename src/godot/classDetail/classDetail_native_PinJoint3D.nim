@@ -20,4 +20,4 @@ proc getParam*(self: PinJoint3D; param: PinJoint3D_Param): Float =
   var `?param` = [getPtr param]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

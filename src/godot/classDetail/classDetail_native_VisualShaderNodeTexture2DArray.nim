@@ -19,4 +19,4 @@ proc textureArray*(self: VisualShaderNodeTexture2DArray): Texture2DArray =
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeTexture2DArray, addr name, 146117123)
   var ret: encoded Texture2DArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2DArray)
+  (addr ret).decode_result(Texture2DArray)

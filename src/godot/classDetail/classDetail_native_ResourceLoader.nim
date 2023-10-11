@@ -13,7 +13,7 @@ proc loadThreadedRequest*(self: ResourceLoader; path: String; typeHint: String =
   var `?param` = [getPtr path, getPtr typeHint, getPtr useSubThreads, getPtr cacheMode]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc loadThreadedGetStatus*(self: ResourceLoader; path: String; progress: Array = init_Array()): ResourceLoader_ThreadLoadStatus =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc loadThreadedGetStatus*(self: ResourceLoader; path: String; progress: Array 
   var `?param` = [getPtr path, getPtr progress]
   var ret: encoded ResourceLoader_ThreadLoadStatus
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(ResourceLoader_ThreadLoadStatus)
+  (addr ret).decode_result(ResourceLoader_ThreadLoadStatus)
 proc loadThreadedGet*(self: ResourceLoader; path: String): Resource =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -31,7 +31,7 @@ proc loadThreadedGet*(self: ResourceLoader; path: String): Resource =
   var `?param` = [getPtr path]
   var ret: encoded Resource
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Resource)
+  (addr ret).decode_result(Resource)
 proc load*(self: ResourceLoader; path: String; typeHint: String = ""; cacheMode: ResourceLoader_CacheMode = cacheModeReuse): Resource =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -40,7 +40,7 @@ proc load*(self: ResourceLoader; path: String; typeHint: String = ""; cacheMode:
   var `?param` = [getPtr path, getPtr typeHint, getPtr cacheMode]
   var ret: encoded Resource
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Resource)
+  (addr ret).decode_result(Resource)
 proc getRecognizedExtensionsForType*(self: ResourceLoader; `type`: String): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc getRecognizedExtensionsForType*(self: ResourceLoader; `type`: String): Pack
   var `?param` = [getPtr `type`]
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc addResourceFormatLoader*(self: ResourceLoader; formatLoader: ResourceFormatLoader; atFront: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc getDependencies*(self: ResourceLoader; path: String): PackedStringArray =
   var `?param` = [getPtr path]
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc hasCached*(self: ResourceLoader; path: String): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -88,7 +88,7 @@ proc hasCached*(self: ResourceLoader; path: String): Bool =
   var `?param` = [getPtr path]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc exists*(self: ResourceLoader; path: String; typeHint: String = ""): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -97,7 +97,7 @@ proc exists*(self: ResourceLoader; path: String; typeHint: String = ""): Bool =
   var `?param` = [getPtr path, getPtr typeHint]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getResourceUid*(self: ResourceLoader; path: String): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -106,4 +106,4 @@ proc getResourceUid*(self: ResourceLoader; path: String): int64 =
   var `?param` = [getPtr path]
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int64)
+  (addr ret).decode_result(int64)

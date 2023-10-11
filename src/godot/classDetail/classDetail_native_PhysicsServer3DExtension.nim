@@ -13,7 +13,7 @@ proc bodyTestMotionIsExcludingBody*(self: PhysicsServer3DExtension; body: RID): 
   var `?param` = [getPtr body]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc bodyTestMotionIsExcludingObject*(self: PhysicsServer3DExtension; `object`: uint64): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,4 +22,4 @@ proc bodyTestMotionIsExcludingObject*(self: PhysicsServer3DExtension; `object`: 
   var `?param` = [getPtr `object`]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

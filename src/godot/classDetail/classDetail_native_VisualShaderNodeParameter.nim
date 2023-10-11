@@ -19,7 +19,7 @@ proc parameterName*(self: VisualShaderNodeParameter): String =
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeParameter, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `qualifier=`*(self: VisualShaderNodeParameter; qualifier: VisualShaderNodeParameter_Qualifier) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,4 +34,4 @@ proc qualifier*(self: VisualShaderNodeParameter): VisualShaderNodeParameter_Qual
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeParameter, addr name, 3558406205)
   var ret: encoded VisualShaderNodeParameter_Qualifier
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VisualShaderNodeParameter_Qualifier)
+  (addr ret).decode_result(VisualShaderNodeParameter_Qualifier)

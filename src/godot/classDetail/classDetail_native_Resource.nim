@@ -26,7 +26,7 @@ proc path*(self: Resource): String =
     methodbind = interface_ClassDB_getMethodBind(addr className Resource, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `name=`*(self: Resource; name: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -41,7 +41,7 @@ proc name*(self: Resource): String =
     methodbind = interface_ClassDB_getMethodBind(addr className Resource, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getRid*(self: Resource): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc getRid*(self: Resource): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className Resource, addr name, 2944877500)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc `localToScene=`*(self: Resource; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc isLocalToScene*(self: Resource): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Resource, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getLocalScene*(self: Resource): Node =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -72,7 +72,7 @@ proc getLocalScene*(self: Resource): Node =
     methodbind = interface_ClassDB_getMethodBind(addr className Resource, addr name, 3160264692)
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Node)
+  (addr ret).decode_result(Node)
 proc setupLocalToScene*(self: Resource) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -93,4 +93,4 @@ proc duplicate*(self: Resource; subresources: Bool = false): Resource =
   var `?param` = [getPtr subresources]
   var ret: encoded Resource
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Resource)
+  (addr ret).decode_result(Resource)

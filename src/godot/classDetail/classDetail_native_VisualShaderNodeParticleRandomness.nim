@@ -19,4 +19,4 @@ proc opType*(self: VisualShaderNodeParticleRandomness): VisualShaderNodeParticle
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeParticleRandomness, addr name, 3597061078)
   var ret: encoded VisualShaderNodeParticleRandomness_OpType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VisualShaderNodeParticleRandomness_OpType)
+  (addr ret).decode_result(VisualShaderNodeParticleRandomness_OpType)

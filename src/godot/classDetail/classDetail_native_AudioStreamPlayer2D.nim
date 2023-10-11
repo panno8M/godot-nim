@@ -19,7 +19,7 @@ proc stream*(self: AudioStreamPlayer2D): AudioStream =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer2D, addr name, 160907539)
   var ret: encoded AudioStream
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AudioStream)
+  (addr ret).decode_result(AudioStream)
 proc `volumeDb=`*(self: AudioStreamPlayer2D; volumeDb: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc volumeDb*(self: AudioStreamPlayer2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `pitchScale=`*(self: AudioStreamPlayer2D; pitchScale: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc pitchScale*(self: AudioStreamPlayer2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc play*(self: AudioStreamPlayer2D; fromPosition: Float = 0.0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -77,7 +77,7 @@ proc isPlaying*(self: AudioStreamPlayer2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getPlaybackPosition*(self: AudioStreamPlayer2D): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -85,7 +85,7 @@ proc getPlaybackPosition*(self: AudioStreamPlayer2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer2D, addr name, 191475506)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `bus=`*(self: AudioStreamPlayer2D; bus: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -100,7 +100,7 @@ proc bus*(self: AudioStreamPlayer2D): StringName =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer2D, addr name, 2002593661)
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc `autoplay=`*(self: AudioStreamPlayer2D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -115,7 +115,7 @@ proc isAutoplayEnabled*(self: AudioStreamPlayer2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer2D, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `maxDistance=`*(self: AudioStreamPlayer2D; pixels: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -130,7 +130,7 @@ proc maxDistance*(self: AudioStreamPlayer2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `attenuation=`*(self: AudioStreamPlayer2D; curve: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -145,7 +145,7 @@ proc attenuation*(self: AudioStreamPlayer2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `areaMask=`*(self: AudioStreamPlayer2D; mask: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -160,7 +160,7 @@ proc areaMask*(self: AudioStreamPlayer2D): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer2D, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `streamPaused=`*(self: AudioStreamPlayer2D; pause: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -175,7 +175,7 @@ proc streamPaused*(self: AudioStreamPlayer2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `maxPolyphony=`*(self: AudioStreamPlayer2D; maxPolyphony: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -190,7 +190,7 @@ proc maxPolyphony*(self: AudioStreamPlayer2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `panningStrength=`*(self: AudioStreamPlayer2D; panningStrength: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -205,7 +205,7 @@ proc panningStrength*(self: AudioStreamPlayer2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc hasStreamPlayback*(self: AudioStreamPlayer2D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -213,7 +213,7 @@ proc hasStreamPlayback*(self: AudioStreamPlayer2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer2D, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getStreamPlayback*(self: AudioStreamPlayer2D): AudioStreamPlayback =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -221,4 +221,4 @@ proc getStreamPlayback*(self: AudioStreamPlayer2D): AudioStreamPlayback =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer2D, addr name, 210135309)
   var ret: encoded AudioStreamPlayback
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AudioStreamPlayback)
+  (addr ret).decode_result(AudioStreamPlayback)

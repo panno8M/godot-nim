@@ -19,7 +19,7 @@ proc outputPortForPreview*(self: VisualShaderNode): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNode, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setInputPortDefaultValue*(self: VisualShaderNode; port: int32; value: Variant; prevValue: Variant = default(Variant)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -35,7 +35,7 @@ proc getInputPortDefaultValue*(self: VisualShaderNode; port: int32): Variant =
   var `?param` = [getPtr port]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc removeInputPortDefaultValue*(self: VisualShaderNode; port: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -63,4 +63,4 @@ proc defaultInputValues*(self: VisualShaderNode): Array =
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNode, addr name, 3995934104)
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)

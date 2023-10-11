@@ -13,7 +13,7 @@ proc setup*(self: DTLSServer; serverOptions: TLSOptions): Error =
   var `?param` = [getPtr serverOptions]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc takeConnection*(self: DTLSServer; udpPeer: PacketPeerUDP): PacketPeerDTLS =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,4 +22,4 @@ proc takeConnection*(self: DTLSServer; udpPeer: PacketPeerUDP): PacketPeerDTLS =
   var `?param` = [getPtr udpPeer]
   var ret: encoded PacketPeerDTLS
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PacketPeerDTLS)
+  (addr ret).decode_result(PacketPeerDTLS)

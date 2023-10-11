@@ -20,7 +20,7 @@ proc stageBytecode*(self: RDShaderSPIRV; stage: RenderingDevice_ShaderStage): Pa
   var `?param` = [getPtr stage]
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)
 proc `stageCompileError=`*(self: RDShaderSPIRV; stage: RenderingDevice_ShaderStage; compileError: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -36,4 +36,4 @@ proc stageCompileError*(self: RDShaderSPIRV; stage: RenderingDevice_ShaderStage)
   var `?param` = [getPtr stage]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)

@@ -32,7 +32,7 @@ proc getSelectedNodes*(self: EditorSelection): TypedArray[Node] =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorSelection, addr name, 2915620761)
   var ret: encoded TypedArray[Node]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Node])
+  (addr ret).decode_result(TypedArray[Node])
 proc getTransformableSelectedNodes*(self: EditorSelection): TypedArray[Node] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -40,4 +40,4 @@ proc getTransformableSelectedNodes*(self: EditorSelection): TypedArray[Node] =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorSelection, addr name, 2915620761)
   var ret: encoded TypedArray[Node]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Node])
+  (addr ret).decode_result(TypedArray[Node])

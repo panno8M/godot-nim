@@ -19,7 +19,7 @@ proc albedo*(self: BaseMaterial3D): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `transparency=`*(self: BaseMaterial3D; transparency: BaseMaterial3D_Transparency) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc transparency*(self: BaseMaterial3D): BaseMaterial3D_Transparency =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 990903061)
   var ret: encoded BaseMaterial3D_Transparency
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(BaseMaterial3D_Transparency)
+  (addr ret).decode_result(BaseMaterial3D_Transparency)
 proc `alphaAntialiasing=`*(self: BaseMaterial3D; alphaAa: BaseMaterial3D_AlphaAntiAliasing) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc alphaAntialiasing*(self: BaseMaterial3D): BaseMaterial3D_AlphaAntiAliasing 
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 2889939400)
   var ret: encoded BaseMaterial3D_AlphaAntiAliasing
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(BaseMaterial3D_AlphaAntiAliasing)
+  (addr ret).decode_result(BaseMaterial3D_AlphaAntiAliasing)
 proc `alphaAntialiasingEdge=`*(self: BaseMaterial3D; edge: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc alphaAntialiasingEdge*(self: BaseMaterial3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `shadingMode=`*(self: BaseMaterial3D; shadingMode: BaseMaterial3D_ShadingMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc shadingMode*(self: BaseMaterial3D): BaseMaterial3D_ShadingMode =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 2132070559)
   var ret: encoded BaseMaterial3D_ShadingMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(BaseMaterial3D_ShadingMode)
+  (addr ret).decode_result(BaseMaterial3D_ShadingMode)
 proc `specular=`*(self: BaseMaterial3D; specular: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc specular*(self: BaseMaterial3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `metallic=`*(self: BaseMaterial3D; metallic: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc metallic*(self: BaseMaterial3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `roughness=`*(self: BaseMaterial3D; roughness: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc roughness*(self: BaseMaterial3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `emission=`*(self: BaseMaterial3D; emission: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc emission*(self: BaseMaterial3D): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `emissionEnergyMultiplier=`*(self: BaseMaterial3D; emissionEnergyMultiplier: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -154,7 +154,7 @@ proc emissionEnergyMultiplier*(self: BaseMaterial3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `emissionIntensity=`*(self: BaseMaterial3D; emissionEnergyMultiplier: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -169,7 +169,7 @@ proc emissionIntensity*(self: BaseMaterial3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `normalScale=`*(self: BaseMaterial3D; normalScale: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -184,7 +184,7 @@ proc normalScale*(self: BaseMaterial3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `rim=`*(self: BaseMaterial3D; rim: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -199,7 +199,7 @@ proc rim*(self: BaseMaterial3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `rimTint=`*(self: BaseMaterial3D; rimTint: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -214,7 +214,7 @@ proc rimTint*(self: BaseMaterial3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `clearcoat=`*(self: BaseMaterial3D; clearcoat: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -229,7 +229,7 @@ proc clearcoat*(self: BaseMaterial3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `clearcoatRoughness=`*(self: BaseMaterial3D; clearcoatRoughness: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -244,7 +244,7 @@ proc clearcoatRoughness*(self: BaseMaterial3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `anisotropy=`*(self: BaseMaterial3D; anisotropy: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -259,7 +259,7 @@ proc anisotropy*(self: BaseMaterial3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `heightmapScale=`*(self: BaseMaterial3D; heightmapScale: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -274,7 +274,7 @@ proc heightmapScale*(self: BaseMaterial3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `subsurfaceScatteringStrength=`*(self: BaseMaterial3D; strength: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -289,7 +289,7 @@ proc subsurfaceScatteringStrength*(self: BaseMaterial3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `transmittanceColor=`*(self: BaseMaterial3D; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -304,7 +304,7 @@ proc transmittanceColor*(self: BaseMaterial3D): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `transmittanceDepth=`*(self: BaseMaterial3D; depth: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -319,7 +319,7 @@ proc transmittanceDepth*(self: BaseMaterial3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `transmittanceBoost=`*(self: BaseMaterial3D; boost: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -334,7 +334,7 @@ proc transmittanceBoost*(self: BaseMaterial3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `backlight=`*(self: BaseMaterial3D; backlight: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -349,7 +349,7 @@ proc backlight*(self: BaseMaterial3D): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `refraction=`*(self: BaseMaterial3D; refraction: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -364,7 +364,7 @@ proc refraction*(self: BaseMaterial3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `pointSize=`*(self: BaseMaterial3D; pointSize: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -379,7 +379,7 @@ proc pointSize*(self: BaseMaterial3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `detailUv=`*(self: BaseMaterial3D; detailUv: BaseMaterial3D_DetailUV) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -394,7 +394,7 @@ proc detailUv*(self: BaseMaterial3D): BaseMaterial3D_DetailUV =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 2306920512)
   var ret: encoded BaseMaterial3D_DetailUV
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(BaseMaterial3D_DetailUV)
+  (addr ret).decode_result(BaseMaterial3D_DetailUV)
 proc `blendMode=`*(self: BaseMaterial3D; blendMode: BaseMaterial3D_BlendMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -409,7 +409,7 @@ proc blendMode*(self: BaseMaterial3D): BaseMaterial3D_BlendMode =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 4022690962)
   var ret: encoded BaseMaterial3D_BlendMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(BaseMaterial3D_BlendMode)
+  (addr ret).decode_result(BaseMaterial3D_BlendMode)
 proc `depthDrawMode=`*(self: BaseMaterial3D; depthDrawMode: BaseMaterial3D_DepthDrawMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -424,7 +424,7 @@ proc depthDrawMode*(self: BaseMaterial3D): BaseMaterial3D_DepthDrawMode =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 2578197639)
   var ret: encoded BaseMaterial3D_DepthDrawMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(BaseMaterial3D_DepthDrawMode)
+  (addr ret).decode_result(BaseMaterial3D_DepthDrawMode)
 proc `cullMode=`*(self: BaseMaterial3D; cullMode: BaseMaterial3D_CullMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -439,7 +439,7 @@ proc cullMode*(self: BaseMaterial3D): BaseMaterial3D_CullMode =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1941499586)
   var ret: encoded BaseMaterial3D_CullMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(BaseMaterial3D_CullMode)
+  (addr ret).decode_result(BaseMaterial3D_CullMode)
 proc `diffuseMode=`*(self: BaseMaterial3D; diffuseMode: BaseMaterial3D_DiffuseMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -454,7 +454,7 @@ proc diffuseMode*(self: BaseMaterial3D): BaseMaterial3D_DiffuseMode =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 3973617136)
   var ret: encoded BaseMaterial3D_DiffuseMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(BaseMaterial3D_DiffuseMode)
+  (addr ret).decode_result(BaseMaterial3D_DiffuseMode)
 proc `specularMode=`*(self: BaseMaterial3D; specularMode: BaseMaterial3D_SpecularMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -469,7 +469,7 @@ proc specularMode*(self: BaseMaterial3D): BaseMaterial3D_SpecularMode =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 2569953298)
   var ret: encoded BaseMaterial3D_SpecularMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(BaseMaterial3D_SpecularMode)
+  (addr ret).decode_result(BaseMaterial3D_SpecularMode)
 proc `flag=`*(self: BaseMaterial3D; flag: BaseMaterial3D_Flags; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -485,7 +485,7 @@ proc flag*(self: BaseMaterial3D; flag: BaseMaterial3D_Flags): Bool =
   var `?param` = [getPtr flag]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `textureFilter=`*(self: BaseMaterial3D; mode: BaseMaterial3D_TextureFilter) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -500,7 +500,7 @@ proc textureFilter*(self: BaseMaterial3D): BaseMaterial3D_TextureFilter =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 3289213076)
   var ret: encoded BaseMaterial3D_TextureFilter
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(BaseMaterial3D_TextureFilter)
+  (addr ret).decode_result(BaseMaterial3D_TextureFilter)
 proc `feature=`*(self: BaseMaterial3D; feature: BaseMaterial3D_Feature; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -516,7 +516,7 @@ proc feature*(self: BaseMaterial3D; feature: BaseMaterial3D_Feature): Bool =
   var `?param` = [getPtr feature]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `texture=`*(self: BaseMaterial3D; param: BaseMaterial3D_TextureParam; texture: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -532,7 +532,7 @@ proc texture*(self: BaseMaterial3D; param: BaseMaterial3D_TextureParam): Texture
   var `?param` = [getPtr param]
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc `detailBlendMode=`*(self: BaseMaterial3D; detailBlendMode: BaseMaterial3D_BlendMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -547,7 +547,7 @@ proc detailBlendMode*(self: BaseMaterial3D): BaseMaterial3D_BlendMode =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 4022690962)
   var ret: encoded BaseMaterial3D_BlendMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(BaseMaterial3D_BlendMode)
+  (addr ret).decode_result(BaseMaterial3D_BlendMode)
 proc `uv1Scale=`*(self: BaseMaterial3D; scale: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -562,7 +562,7 @@ proc uv1Scale*(self: BaseMaterial3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `uv1Offset=`*(self: BaseMaterial3D; offset: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -577,7 +577,7 @@ proc uv1Offset*(self: BaseMaterial3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `uv1TriplanarBlendSharpness=`*(self: BaseMaterial3D; sharpness: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -592,7 +592,7 @@ proc uv1TriplanarBlendSharpness*(self: BaseMaterial3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `uv2Scale=`*(self: BaseMaterial3D; scale: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -607,7 +607,7 @@ proc uv2Scale*(self: BaseMaterial3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `uv2Offset=`*(self: BaseMaterial3D; offset: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -622,7 +622,7 @@ proc uv2Offset*(self: BaseMaterial3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `uv2TriplanarBlendSharpness=`*(self: BaseMaterial3D; sharpness: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -637,7 +637,7 @@ proc uv2TriplanarBlendSharpness*(self: BaseMaterial3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `billboardMode=`*(self: BaseMaterial3D; mode: BaseMaterial3D_BillboardMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -652,7 +652,7 @@ proc billboardMode*(self: BaseMaterial3D): BaseMaterial3D_BillboardMode =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1283840139)
   var ret: encoded BaseMaterial3D_BillboardMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(BaseMaterial3D_BillboardMode)
+  (addr ret).decode_result(BaseMaterial3D_BillboardMode)
 proc `particlesAnimHFrames=`*(self: BaseMaterial3D; frames: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -667,7 +667,7 @@ proc particlesAnimHFrames*(self: BaseMaterial3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `particlesAnimVFrames=`*(self: BaseMaterial3D; frames: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -682,7 +682,7 @@ proc particlesAnimVFrames*(self: BaseMaterial3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `particlesAnimLoop=`*(self: BaseMaterial3D; loop: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -697,7 +697,7 @@ proc particlesAnimLoop*(self: BaseMaterial3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `heightmapDeepParallax=`*(self: BaseMaterial3D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -712,7 +712,7 @@ proc isHeightmapDeepParallaxEnabled*(self: BaseMaterial3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `heightmapDeepParallaxMinLayers=`*(self: BaseMaterial3D; layer: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -727,7 +727,7 @@ proc heightmapDeepParallaxMinLayers*(self: BaseMaterial3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `heightmapDeepParallaxMaxLayers=`*(self: BaseMaterial3D; layer: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -742,7 +742,7 @@ proc heightmapDeepParallaxMaxLayers*(self: BaseMaterial3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `heightmapDeepParallaxFlipTangent=`*(self: BaseMaterial3D; flip: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -757,7 +757,7 @@ proc heightmapDeepParallaxFlipTangent*(self: BaseMaterial3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `heightmapDeepParallaxFlipBinormal=`*(self: BaseMaterial3D; flip: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -772,7 +772,7 @@ proc heightmapDeepParallaxFlipBinormal*(self: BaseMaterial3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `grow=`*(self: BaseMaterial3D; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -787,7 +787,7 @@ proc grow*(self: BaseMaterial3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `emissionOperator=`*(self: BaseMaterial3D; operator: BaseMaterial3D_EmissionOperator) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -802,7 +802,7 @@ proc emissionOperator*(self: BaseMaterial3D): BaseMaterial3D_EmissionOperator =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 974205018)
   var ret: encoded BaseMaterial3D_EmissionOperator
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(BaseMaterial3D_EmissionOperator)
+  (addr ret).decode_result(BaseMaterial3D_EmissionOperator)
 proc `aoLightAffect=`*(self: BaseMaterial3D; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -817,7 +817,7 @@ proc aoLightAffect*(self: BaseMaterial3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `alphaScissorThreshold=`*(self: BaseMaterial3D; threshold: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -832,7 +832,7 @@ proc alphaScissorThreshold*(self: BaseMaterial3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `alphaHashScale=`*(self: BaseMaterial3D; threshold: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -847,7 +847,7 @@ proc alphaHashScale*(self: BaseMaterial3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `growEnabled=`*(self: BaseMaterial3D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -862,7 +862,7 @@ proc isGrowEnabled*(self: BaseMaterial3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `metallicTextureChannel=`*(self: BaseMaterial3D; channel: BaseMaterial3D_TextureChannel) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -877,7 +877,7 @@ proc metallicTextureChannel*(self: BaseMaterial3D): BaseMaterial3D_TextureChanne
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 568133867)
   var ret: encoded BaseMaterial3D_TextureChannel
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(BaseMaterial3D_TextureChannel)
+  (addr ret).decode_result(BaseMaterial3D_TextureChannel)
 proc `roughnessTextureChannel=`*(self: BaseMaterial3D; channel: BaseMaterial3D_TextureChannel) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -892,7 +892,7 @@ proc roughnessTextureChannel*(self: BaseMaterial3D): BaseMaterial3D_TextureChann
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 568133867)
   var ret: encoded BaseMaterial3D_TextureChannel
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(BaseMaterial3D_TextureChannel)
+  (addr ret).decode_result(BaseMaterial3D_TextureChannel)
 proc `aoTextureChannel=`*(self: BaseMaterial3D; channel: BaseMaterial3D_TextureChannel) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -907,7 +907,7 @@ proc aoTextureChannel*(self: BaseMaterial3D): BaseMaterial3D_TextureChannel =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 568133867)
   var ret: encoded BaseMaterial3D_TextureChannel
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(BaseMaterial3D_TextureChannel)
+  (addr ret).decode_result(BaseMaterial3D_TextureChannel)
 proc `refractionTextureChannel=`*(self: BaseMaterial3D; channel: BaseMaterial3D_TextureChannel) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -922,7 +922,7 @@ proc refractionTextureChannel*(self: BaseMaterial3D): BaseMaterial3D_TextureChan
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 568133867)
   var ret: encoded BaseMaterial3D_TextureChannel
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(BaseMaterial3D_TextureChannel)
+  (addr ret).decode_result(BaseMaterial3D_TextureChannel)
 proc `proximityFadeEnabled=`*(self: BaseMaterial3D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -937,7 +937,7 @@ proc isProximityFadeEnabled*(self: BaseMaterial3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `proximityFadeDistance=`*(self: BaseMaterial3D; distance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -952,7 +952,7 @@ proc proximityFadeDistance*(self: BaseMaterial3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `msdfPixelRange=`*(self: BaseMaterial3D; range: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -967,7 +967,7 @@ proc msdfPixelRange*(self: BaseMaterial3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `msdfOutlineSize=`*(self: BaseMaterial3D; size: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -982,7 +982,7 @@ proc msdfOutlineSize*(self: BaseMaterial3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `distanceFade=`*(self: BaseMaterial3D; mode: BaseMaterial3D_DistanceFadeMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -997,7 +997,7 @@ proc distanceFade*(self: BaseMaterial3D): BaseMaterial3D_DistanceFadeMode =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 2694575734)
   var ret: encoded BaseMaterial3D_DistanceFadeMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(BaseMaterial3D_DistanceFadeMode)
+  (addr ret).decode_result(BaseMaterial3D_DistanceFadeMode)
 proc `distanceFadeMaxDistance=`*(self: BaseMaterial3D; distance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1012,7 +1012,7 @@ proc distanceFadeMaxDistance*(self: BaseMaterial3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `distanceFadeMinDistance=`*(self: BaseMaterial3D; distance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1027,4 +1027,4 @@ proc distanceFadeMinDistance*(self: BaseMaterial3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

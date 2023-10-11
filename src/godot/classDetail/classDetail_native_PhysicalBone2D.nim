@@ -12,7 +12,7 @@ proc getJoint*(self: PhysicalBone2D): Joint2D =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone2D, addr name, 3582132112)
   var ret: encoded Joint2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Joint2D)
+  (addr ret).decode_result(Joint2D)
 proc autoConfigureJoint*(self: PhysicalBone2D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -20,7 +20,7 @@ proc autoConfigureJoint*(self: PhysicalBone2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `autoConfigureJoint=`*(self: PhysicalBone2D; autoConfigureJoint: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc simulatePhysics*(self: PhysicalBone2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isSimulatingPhysics*(self: PhysicalBone2D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -50,7 +50,7 @@ proc isSimulatingPhysics*(self: PhysicalBone2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `bone2dNodepath=`*(self: PhysicalBone2D; nodepath: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -65,7 +65,7 @@ proc bone2dNodepath*(self: PhysicalBone2D): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone2D, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc `bone2dIndex=`*(self: PhysicalBone2D; boneIndex: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -80,7 +80,7 @@ proc bone2dIndex*(self: PhysicalBone2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `followBoneWhenSimulating=`*(self: PhysicalBone2D; followBone: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -95,4 +95,4 @@ proc followBoneWhenSimulating*(self: PhysicalBone2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalBone2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

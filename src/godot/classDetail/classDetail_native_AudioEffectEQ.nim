@@ -20,7 +20,7 @@ proc getBandGainDb*(self: AudioEffectEQ; bandIdx: int32): Float =
   var `?param` = [getPtr bandIdx]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getBandCount*(self: AudioEffectEQ): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -28,4 +28,4 @@ proc getBandCount*(self: AudioEffectEQ): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectEQ, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)

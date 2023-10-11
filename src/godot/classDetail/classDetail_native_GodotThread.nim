@@ -13,7 +13,7 @@ proc start*(self: GodotThread; callable: Callable; priority: GodotThread_Priorit
   var `?param` = [getPtr callable, getPtr priority]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc getId*(self: GodotThread): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -21,7 +21,7 @@ proc getId*(self: GodotThread): String =
     methodbind = interface_ClassDB_getMethodBind(addr className GodotThread, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc isStarted*(self: GodotThread): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -29,7 +29,7 @@ proc isStarted*(self: GodotThread): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GodotThread, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isAlive*(self: GodotThread): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -37,7 +37,7 @@ proc isAlive*(self: GodotThread): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GodotThread, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc waitToFinish*(self: GodotThread): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -45,7 +45,7 @@ proc waitToFinish*(self: GodotThread): Variant =
     methodbind = interface_ClassDB_getMethodBind(addr className GodotThread, addr name, 1460262497)
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc setThreadSafetyChecksEnabled*(_: typedesc[GodotThread]; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

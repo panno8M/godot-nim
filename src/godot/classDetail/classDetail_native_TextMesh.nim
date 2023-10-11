@@ -19,7 +19,7 @@ proc horizontalAlignment*(self: TextMesh): HorizontalAlignment =
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 341400642)
   var ret: encoded HorizontalAlignment
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(HorizontalAlignment)
+  (addr ret).decode_result(HorizontalAlignment)
 proc `verticalAlignment=`*(self: TextMesh; alignment: VerticalAlignment) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc verticalAlignment*(self: TextMesh): VerticalAlignment =
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 3274884059)
   var ret: encoded VerticalAlignment
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VerticalAlignment)
+  (addr ret).decode_result(VerticalAlignment)
 proc `text=`*(self: TextMesh; text: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc text*(self: TextMesh): String =
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `font=`*(self: TextMesh; font: Font) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc font*(self: TextMesh): Font =
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 3229501585)
   var ret: encoded Font
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Font)
+  (addr ret).decode_result(Font)
 proc `fontSize=`*(self: TextMesh; fontSize: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc fontSize*(self: TextMesh): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `lineSpacing=`*(self: TextMesh; lineSpacing: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc lineSpacing*(self: TextMesh): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `autowrapMode=`*(self: TextMesh; autowrapMode: TextServer_AutowrapMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc autowrapMode*(self: TextMesh): TextServer_AutowrapMode =
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 1549071663)
   var ret: encoded TextServer_AutowrapMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextServer_AutowrapMode)
+  (addr ret).decode_result(TextServer_AutowrapMode)
 proc `justificationFlags=`*(self: TextMesh; justificationFlags: set[TextServer_JustificationFlag]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc justificationFlags*(self: TextMesh): set[TextServer_JustificationFlag] =
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 1583363614)
   var ret: encoded set[TextServer_JustificationFlag]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(set[TextServer_JustificationFlag])
+  (addr ret).decode_result(set[TextServer_JustificationFlag])
 proc `depth=`*(self: TextMesh; depth: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc depth*(self: TextMesh): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `width=`*(self: TextMesh; width: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -154,7 +154,7 @@ proc width*(self: TextMesh): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `pixelSize=`*(self: TextMesh; pixelSize: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -169,7 +169,7 @@ proc pixelSize*(self: TextMesh): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `offset=`*(self: TextMesh; offset: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -184,7 +184,7 @@ proc offset*(self: TextMesh): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `curveStep=`*(self: TextMesh; curveStep: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -199,7 +199,7 @@ proc curveStep*(self: TextMesh): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `textDirection=`*(self: TextMesh; direction: TextServer_Direction) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -214,7 +214,7 @@ proc textDirection*(self: TextMesh): TextServer_Direction =
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 2516697328)
   var ret: encoded TextServer_Direction
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextServer_Direction)
+  (addr ret).decode_result(TextServer_Direction)
 proc `language=`*(self: TextMesh; language: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -229,7 +229,7 @@ proc language*(self: TextMesh): String =
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `structuredTextBidiOverride=`*(self: TextMesh; parser: TextServer_StructuredTextParser) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -244,7 +244,7 @@ proc structuredTextBidiOverride*(self: TextMesh): TextServer_StructuredTextParse
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 3385126229)
   var ret: encoded TextServer_StructuredTextParser
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextServer_StructuredTextParser)
+  (addr ret).decode_result(TextServer_StructuredTextParser)
 proc `structuredTextBidiOverrideOptions=`*(self: TextMesh; args: Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -259,7 +259,7 @@ proc structuredTextBidiOverrideOptions*(self: TextMesh): Array =
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 3995934104)
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)
 proc `uppercase=`*(self: TextMesh; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -274,4 +274,4 @@ proc isUppercase*(self: TextMesh): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

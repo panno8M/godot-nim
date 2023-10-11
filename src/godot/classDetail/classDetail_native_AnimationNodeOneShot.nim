@@ -19,7 +19,7 @@ proc fadeinTime*(self: AnimationNodeOneShot): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeOneShot, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc `fadeinCurve=`*(self: AnimationNodeOneShot; curve: Curve) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc fadeinCurve*(self: AnimationNodeOneShot): Curve =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeOneShot, addr name, 2460114913)
   var ret: encoded Curve
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Curve)
+  (addr ret).decode_result(Curve)
 proc `fadeoutTime=`*(self: AnimationNodeOneShot; time: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc fadeoutTime*(self: AnimationNodeOneShot): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeOneShot, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc `fadeoutCurve=`*(self: AnimationNodeOneShot; curve: Curve) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc fadeoutCurve*(self: AnimationNodeOneShot): Curve =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeOneShot, addr name, 2460114913)
   var ret: encoded Curve
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Curve)
+  (addr ret).decode_result(Curve)
 proc `autorestart=`*(self: AnimationNodeOneShot; active: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc hasAutorestart*(self: AnimationNodeOneShot): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeOneShot, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `autorestartDelay=`*(self: AnimationNodeOneShot; time: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc autorestartDelay*(self: AnimationNodeOneShot): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeOneShot, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc `autorestartRandomDelay=`*(self: AnimationNodeOneShot; time: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc autorestartRandomDelay*(self: AnimationNodeOneShot): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeOneShot, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc `mixMode=`*(self: AnimationNodeOneShot; mode: AnimationNodeOneShot_MixMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,4 +124,4 @@ proc mixMode*(self: AnimationNodeOneShot): AnimationNodeOneShot_MixMode =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeOneShot, addr name, 3076550526)
   var ret: encoded AnimationNodeOneShot_MixMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AnimationNodeOneShot_MixMode)
+  (addr ret).decode_result(AnimationNodeOneShot_MixMode)

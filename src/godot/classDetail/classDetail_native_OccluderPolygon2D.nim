@@ -19,7 +19,7 @@ proc isClosed*(self: OccluderPolygon2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className OccluderPolygon2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `cullMode=`*(self: OccluderPolygon2D; cullMode: OccluderPolygon2D_CullMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc cullMode*(self: OccluderPolygon2D): OccluderPolygon2D_CullMode =
     methodbind = interface_ClassDB_getMethodBind(addr className OccluderPolygon2D, addr name, 33931036)
   var ret: encoded OccluderPolygon2D_CullMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(OccluderPolygon2D_CullMode)
+  (addr ret).decode_result(OccluderPolygon2D_CullMode)
 proc `polygon=`*(self: OccluderPolygon2D; polygon: PackedVector2Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,4 +49,4 @@ proc polygon*(self: OccluderPolygon2D): PackedVector2Array =
     methodbind = interface_ClassDB_getMethodBind(addr className OccluderPolygon2D, addr name, 2961356807)
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedVector2Array)
+  (addr ret).decode_result(PackedVector2Array)

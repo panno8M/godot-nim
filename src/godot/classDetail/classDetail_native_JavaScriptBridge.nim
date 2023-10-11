@@ -13,7 +13,7 @@ proc eval*(self: JavaScriptBridge; code: String; useGlobalExecutionContext: Bool
   var `?param` = [getPtr code, getPtr useGlobalExecutionContext]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc getInterface*(self: JavaScriptBridge; `interface`: String): JavaScriptObject =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc getInterface*(self: JavaScriptBridge; `interface`: String): JavaScriptObjec
   var `?param` = [getPtr `interface`]
   var ret: encoded JavaScriptObject
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(JavaScriptObject)
+  (addr ret).decode_result(JavaScriptObject)
 proc createCallback*(self: JavaScriptBridge; callable: Callable): JavaScriptObject =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -31,7 +31,7 @@ proc createCallback*(self: JavaScriptBridge; callable: Callable): JavaScriptObje
   var `?param` = [getPtr callable]
   var ret: encoded JavaScriptObject
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(JavaScriptObject)
+  (addr ret).decode_result(JavaScriptObject)
 proc createObject*(self: JavaScriptBridge; `object`: String): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -40,7 +40,7 @@ proc createObject*(self: JavaScriptBridge; `object`: String): Variant =
   var `?param` = [getPtr `object`]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc downloadBuffer*(self: JavaScriptBridge; buffer: PackedByteArray; name: String; mime: String = "application/octet-stream") =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -55,7 +55,7 @@ proc pwaNeedsUpdate*(self: JavaScriptBridge): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className JavaScriptBridge, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc pwaUpdate*(self: JavaScriptBridge): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -63,7 +63,7 @@ proc pwaUpdate*(self: JavaScriptBridge): Error =
     methodbind = interface_ClassDB_getMethodBind(addr className JavaScriptBridge, addr name, 166280745)
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc forceFsSync*(self: JavaScriptBridge) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

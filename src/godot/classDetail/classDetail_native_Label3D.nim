@@ -19,7 +19,7 @@ proc horizontalAlignment*(self: Label3D): HorizontalAlignment =
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 341400642)
   var ret: encoded HorizontalAlignment
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(HorizontalAlignment)
+  (addr ret).decode_result(HorizontalAlignment)
 proc `verticalAlignment=`*(self: Label3D; alignment: VerticalAlignment) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc verticalAlignment*(self: Label3D): VerticalAlignment =
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 3274884059)
   var ret: encoded VerticalAlignment
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VerticalAlignment)
+  (addr ret).decode_result(VerticalAlignment)
 proc `modulate=`*(self: Label3D; modulate: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc modulate*(self: Label3D): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `outlineModulate=`*(self: Label3D; modulate: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc outlineModulate*(self: Label3D): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `text=`*(self: Label3D; text: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc text*(self: Label3D): String =
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `textDirection=`*(self: Label3D; direction: TextServer_Direction) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc textDirection*(self: Label3D): TextServer_Direction =
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 2516697328)
   var ret: encoded TextServer_Direction
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextServer_Direction)
+  (addr ret).decode_result(TextServer_Direction)
 proc `language=`*(self: Label3D; language: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc language*(self: Label3D): String =
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `structuredTextBidiOverride=`*(self: Label3D; parser: TextServer_StructuredTextParser) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc structuredTextBidiOverride*(self: Label3D): TextServer_StructuredTextParser
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 3385126229)
   var ret: encoded TextServer_StructuredTextParser
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextServer_StructuredTextParser)
+  (addr ret).decode_result(TextServer_StructuredTextParser)
 proc `structuredTextBidiOverrideOptions=`*(self: Label3D; args: Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc structuredTextBidiOverrideOptions*(self: Label3D): Array =
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 3995934104)
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)
 proc `uppercase=`*(self: Label3D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -154,7 +154,7 @@ proc isUppercase*(self: Label3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `renderPriority=`*(self: Label3D; priority: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -169,7 +169,7 @@ proc renderPriority*(self: Label3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `outlineRenderPriority=`*(self: Label3D; priority: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -184,7 +184,7 @@ proc outlineRenderPriority*(self: Label3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `font=`*(self: Label3D; font: Font) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -199,7 +199,7 @@ proc font*(self: Label3D): Font =
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 3229501585)
   var ret: encoded Font
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Font)
+  (addr ret).decode_result(Font)
 proc `fontSize=`*(self: Label3D; size: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -214,7 +214,7 @@ proc fontSize*(self: Label3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `outlineSize=`*(self: Label3D; outlineSize: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -229,7 +229,7 @@ proc outlineSize*(self: Label3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `lineSpacing=`*(self: Label3D; lineSpacing: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -244,7 +244,7 @@ proc lineSpacing*(self: Label3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `autowrapMode=`*(self: Label3D; autowrapMode: TextServer_AutowrapMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -259,7 +259,7 @@ proc autowrapMode*(self: Label3D): TextServer_AutowrapMode =
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 1549071663)
   var ret: encoded TextServer_AutowrapMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextServer_AutowrapMode)
+  (addr ret).decode_result(TextServer_AutowrapMode)
 proc `justificationFlags=`*(self: Label3D; justificationFlags: set[TextServer_JustificationFlag]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -274,7 +274,7 @@ proc justificationFlags*(self: Label3D): set[TextServer_JustificationFlag] =
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 1583363614)
   var ret: encoded set[TextServer_JustificationFlag]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(set[TextServer_JustificationFlag])
+  (addr ret).decode_result(set[TextServer_JustificationFlag])
 proc `width=`*(self: Label3D; width: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -289,7 +289,7 @@ proc width*(self: Label3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `pixelSize=`*(self: Label3D; pixelSize: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -304,7 +304,7 @@ proc pixelSize*(self: Label3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `offset=`*(self: Label3D; offset: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -319,7 +319,7 @@ proc offset*(self: Label3D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `drawFlag=`*(self: Label3D; flag: Label3D_DrawFlags; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -335,7 +335,7 @@ proc drawFlag*(self: Label3D; flag: Label3D_DrawFlags): Bool =
   var `?param` = [getPtr flag]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `billboardMode=`*(self: Label3D; mode: BaseMaterial3D_BillboardMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -350,7 +350,7 @@ proc billboardMode*(self: Label3D): BaseMaterial3D_BillboardMode =
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 1283840139)
   var ret: encoded BaseMaterial3D_BillboardMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(BaseMaterial3D_BillboardMode)
+  (addr ret).decode_result(BaseMaterial3D_BillboardMode)
 proc `alphaCutMode=`*(self: Label3D; mode: Label3D_AlphaCutMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -365,7 +365,7 @@ proc alphaCutMode*(self: Label3D): Label3D_AlphaCutMode =
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 219468601)
   var ret: encoded Label3D_AlphaCutMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Label3D_AlphaCutMode)
+  (addr ret).decode_result(Label3D_AlphaCutMode)
 proc `alphaScissorThreshold=`*(self: Label3D; threshold: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -380,7 +380,7 @@ proc alphaScissorThreshold*(self: Label3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `alphaHashScale=`*(self: Label3D; threshold: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -395,7 +395,7 @@ proc alphaHashScale*(self: Label3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `alphaAntialiasing=`*(self: Label3D; alphaAa: BaseMaterial3D_AlphaAntiAliasing) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -410,7 +410,7 @@ proc alphaAntialiasing*(self: Label3D): BaseMaterial3D_AlphaAntiAliasing =
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 2889939400)
   var ret: encoded BaseMaterial3D_AlphaAntiAliasing
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(BaseMaterial3D_AlphaAntiAliasing)
+  (addr ret).decode_result(BaseMaterial3D_AlphaAntiAliasing)
 proc `alphaAntialiasingEdge=`*(self: Label3D; edge: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -425,7 +425,7 @@ proc alphaAntialiasingEdge*(self: Label3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `textureFilter=`*(self: Label3D; mode: BaseMaterial3D_TextureFilter) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -440,7 +440,7 @@ proc textureFilter*(self: Label3D): BaseMaterial3D_TextureFilter =
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 3289213076)
   var ret: encoded BaseMaterial3D_TextureFilter
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(BaseMaterial3D_TextureFilter)
+  (addr ret).decode_result(BaseMaterial3D_TextureFilter)
 proc generateTriangleMesh*(self: Label3D): TriangleMesh =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -448,4 +448,4 @@ proc generateTriangleMesh*(self: Label3D): TriangleMesh =
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 3476533166)
   var ret: encoded TriangleMesh
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TriangleMesh)
+  (addr ret).decode_result(TriangleMesh)

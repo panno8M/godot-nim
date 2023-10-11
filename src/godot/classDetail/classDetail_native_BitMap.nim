@@ -41,7 +41,7 @@ proc getBitv*(self: BitMap; position: Vector2i): Bool =
   var `?param` = [getPtr position]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getBit*(self: BitMap; x: int32; y: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -50,7 +50,7 @@ proc getBit*(self: BitMap; x: int32; y: int32): Bool =
   var `?param` = [getPtr x, getPtr y]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setBitRect*(self: BitMap; rect: Rect2i; bit: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -65,7 +65,7 @@ proc getTrueBitCount*(self: BitMap): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className BitMap, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getSize*(self: BitMap): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -73,7 +73,7 @@ proc getSize*(self: BitMap): Vector2i =
     methodbind = interface_ClassDB_getMethodBind(addr className BitMap, addr name, 3690982128)
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc resize*(self: BitMap; newSize: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -95,7 +95,7 @@ proc convertToImage*(self: BitMap): Image =
     methodbind = interface_ClassDB_getMethodBind(addr className BitMap, addr name, 4190603485)
   var ret: encoded Image
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Image)
+  (addr ret).decode_result(Image)
 proc opaqueToPolygons*(self: BitMap; rect: Rect2i; epsilon: Float = 2.0): TypedArray[PackedVector2Array] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -104,4 +104,4 @@ proc opaqueToPolygons*(self: BitMap; rect: Rect2i; epsilon: Float = 2.0): TypedA
   var `?param` = [getPtr rect, getPtr epsilon]
   var ret: encoded TypedArray[PackedVector2Array]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[PackedVector2Array])
+  (addr ret).decode_result(TypedArray[PackedVector2Array])

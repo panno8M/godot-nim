@@ -19,7 +19,7 @@ proc mesh*(self: MultiMesh): Mesh =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiMesh, addr name, 1808005922)
   var ret: encoded Mesh
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Mesh)
+  (addr ret).decode_result(Mesh)
 proc `useColors=`*(self: MultiMesh; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc isUsingColors*(self: MultiMesh): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiMesh, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `useCustomData=`*(self: MultiMesh; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc isUsingCustomData*(self: MultiMesh): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiMesh, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `transformFormat=`*(self: MultiMesh; format: MultiMesh_TransformFormat) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc transformFormat*(self: MultiMesh): MultiMesh_TransformFormat =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiMesh, addr name, 2444156481)
   var ret: encoded MultiMesh_TransformFormat
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(MultiMesh_TransformFormat)
+  (addr ret).decode_result(MultiMesh_TransformFormat)
 proc `instanceCount=`*(self: MultiMesh; count: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc instanceCount*(self: MultiMesh): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiMesh, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `visibleInstanceCount=`*(self: MultiMesh; count: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc visibleInstanceCount*(self: MultiMesh): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiMesh, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setInstanceTransform*(self: MultiMesh; instance: int32; transform: Transform3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -117,7 +117,7 @@ proc getInstanceTransform*(self: MultiMesh; instance: int32): Transform3D =
   var `?param` = [getPtr instance]
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc getInstanceTransform2d*(self: MultiMesh; instance: int32): Transform2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -126,7 +126,7 @@ proc getInstanceTransform2d*(self: MultiMesh; instance: int32): Transform2D =
   var `?param` = [getPtr instance]
   var ret: encoded Transform2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Transform2D)
+  (addr ret).decode_result(Transform2D)
 proc setInstanceColor*(self: MultiMesh; instance: int32; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -142,7 +142,7 @@ proc getInstanceColor*(self: MultiMesh; instance: int32): Color =
   var `?param` = [getPtr instance]
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc setInstanceCustomData*(self: MultiMesh; instance: int32; customData: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -158,7 +158,7 @@ proc getInstanceCustomData*(self: MultiMesh; instance: int32): Color =
   var `?param` = [getPtr instance]
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc getAabb*(self: MultiMesh): AABB =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -166,7 +166,7 @@ proc getAabb*(self: MultiMesh): AABB =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiMesh, addr name, 1068685055)
   var ret: encoded AABB
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AABB)
+  (addr ret).decode_result(AABB)
 proc buffer*(self: MultiMesh): PackedFloat32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -174,7 +174,7 @@ proc buffer*(self: MultiMesh): PackedFloat32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiMesh, addr name, 675695659)
   var ret: encoded PackedFloat32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedFloat32Array)
+  (addr ret).decode_result(PackedFloat32Array)
 proc `buffer=`*(self: MultiMesh; buffer: PackedFloat32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

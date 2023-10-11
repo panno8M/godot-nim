@@ -19,7 +19,7 @@ proc source*(self: VisualShaderNodeCubemap): VisualShaderNodeCubemap_Source =
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeCubemap, addr name, 2222048781)
   var ret: encoded VisualShaderNodeCubemap_Source
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VisualShaderNodeCubemap_Source)
+  (addr ret).decode_result(VisualShaderNodeCubemap_Source)
 proc `cubeMap=`*(self: VisualShaderNodeCubemap; value: Cubemap) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc cubeMap*(self: VisualShaderNodeCubemap): Cubemap =
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeCubemap, addr name, 1772111058)
   var ret: encoded Cubemap
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Cubemap)
+  (addr ret).decode_result(Cubemap)
 proc `textureType=`*(self: VisualShaderNodeCubemap; value: VisualShaderNodeCubemap_TextureType) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,4 +49,4 @@ proc textureType*(self: VisualShaderNodeCubemap): VisualShaderNodeCubemap_Textur
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeCubemap, addr name, 3356498888)
   var ret: encoded VisualShaderNodeCubemap_TextureType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VisualShaderNodeCubemap_TextureType)
+  (addr ret).decode_result(VisualShaderNodeCubemap_TextureType)

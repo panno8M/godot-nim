@@ -13,7 +13,7 @@ proc `bind`*(self: PacketPeerUDP; port: int32; bindAddress: String = "*"; recvBu
   var `?param` = [getPtr port, getPtr bindAddress, getPtr recvBufSize]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc close*(self: PacketPeerUDP) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc wait*(self: PacketPeerUDP): Error =
     methodbind = interface_ClassDB_getMethodBind(addr className PacketPeerUDP, addr name, 166280745)
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc isBound*(self: PacketPeerUDP): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -35,7 +35,7 @@ proc isBound*(self: PacketPeerUDP): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PacketPeerUDP, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc connectToHost*(self: PacketPeerUDP; host: String; port: int32): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -44,7 +44,7 @@ proc connectToHost*(self: PacketPeerUDP; host: String; port: int32): Error =
   var `?param` = [getPtr host, getPtr port]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc isSocketConnected*(self: PacketPeerUDP): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -52,7 +52,7 @@ proc isSocketConnected*(self: PacketPeerUDP): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PacketPeerUDP, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getPacketIp*(self: PacketPeerUDP): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -60,7 +60,7 @@ proc getPacketIp*(self: PacketPeerUDP): String =
     methodbind = interface_ClassDB_getMethodBind(addr className PacketPeerUDP, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getPacketPort*(self: PacketPeerUDP): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -68,7 +68,7 @@ proc getPacketPort*(self: PacketPeerUDP): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className PacketPeerUDP, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getLocalPort*(self: PacketPeerUDP): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -76,7 +76,7 @@ proc getLocalPort*(self: PacketPeerUDP): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className PacketPeerUDP, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setDestAddress*(self: PacketPeerUDP; host: String; port: int32): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -85,7 +85,7 @@ proc setDestAddress*(self: PacketPeerUDP; host: String; port: int32): Error =
   var `?param` = [getPtr host, getPtr port]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc setBroadcastEnabled*(self: PacketPeerUDP; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -101,7 +101,7 @@ proc joinMulticastGroup*(self: PacketPeerUDP; multicastAddress: String; interfac
   var `?param` = [getPtr multicastAddress, getPtr interfaceName]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc leaveMulticastGroup*(self: PacketPeerUDP; multicastAddress: String; interfaceName: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -110,4 +110,4 @@ proc leaveMulticastGroup*(self: PacketPeerUDP; multicastAddress: String; interfa
   var `?param` = [getPtr multicastAddress, getPtr interfaceName]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)

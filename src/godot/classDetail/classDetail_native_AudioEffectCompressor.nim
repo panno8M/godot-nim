@@ -19,7 +19,7 @@ proc threshold*(self: AudioEffectCompressor): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectCompressor, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `ratio=`*(self: AudioEffectCompressor; ratio: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc ratio*(self: AudioEffectCompressor): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectCompressor, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `gain=`*(self: AudioEffectCompressor; gain: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc gain*(self: AudioEffectCompressor): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectCompressor, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `attackUs=`*(self: AudioEffectCompressor; attackUs: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc attackUs*(self: AudioEffectCompressor): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectCompressor, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `releaseMs=`*(self: AudioEffectCompressor; releaseMs: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc releaseMs*(self: AudioEffectCompressor): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectCompressor, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `mix=`*(self: AudioEffectCompressor; mix: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc mix*(self: AudioEffectCompressor): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectCompressor, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `sidechain=`*(self: AudioEffectCompressor; sidechain: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,4 +109,4 @@ proc sidechain*(self: AudioEffectCompressor): StringName =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectCompressor, addr name, 2002593661)
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)

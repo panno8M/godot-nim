@@ -19,7 +19,7 @@ proc lightData*(self: LightmapGI): LightmapGIData =
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGI, addr name, 290354153)
   var ret: encoded LightmapGIData
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(LightmapGIData)
+  (addr ret).decode_result(LightmapGIData)
 proc `bakeQuality=`*(self: LightmapGI; bakeQuality: LightmapGI_BakeQuality) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc bakeQuality*(self: LightmapGI): LightmapGI_BakeQuality =
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGI, addr name, 688832735)
   var ret: encoded LightmapGI_BakeQuality
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(LightmapGI_BakeQuality)
+  (addr ret).decode_result(LightmapGI_BakeQuality)
 proc `bounces=`*(self: LightmapGI; bounces: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc bounces*(self: LightmapGI): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGI, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `generateProbes=`*(self: LightmapGI; subdivision: LightmapGI_GenerateProbes) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc generateProbes*(self: LightmapGI): LightmapGI_GenerateProbes =
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGI, addr name, 3930596226)
   var ret: encoded LightmapGI_GenerateProbes
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(LightmapGI_GenerateProbes)
+  (addr ret).decode_result(LightmapGI_GenerateProbes)
 proc `bias=`*(self: LightmapGI; bias: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc bias*(self: LightmapGI): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGI, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `environmentMode=`*(self: LightmapGI; mode: LightmapGI_EnvironmentMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc environmentMode*(self: LightmapGI): LightmapGI_EnvironmentMode =
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGI, addr name, 4128646479)
   var ret: encoded LightmapGI_EnvironmentMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(LightmapGI_EnvironmentMode)
+  (addr ret).decode_result(LightmapGI_EnvironmentMode)
 proc `environmentCustomSky=`*(self: LightmapGI; sky: Sky) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc environmentCustomSky*(self: LightmapGI): Sky =
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGI, addr name, 1177136966)
   var ret: encoded Sky
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Sky)
+  (addr ret).decode_result(Sky)
 proc `environmentCustomColor=`*(self: LightmapGI; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc environmentCustomColor*(self: LightmapGI): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGI, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `environmentCustomEnergy=`*(self: LightmapGI; energy: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc environmentCustomEnergy*(self: LightmapGI): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGI, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `maxTextureSize=`*(self: LightmapGI; maxTextureSize: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -154,7 +154,7 @@ proc maxTextureSize*(self: LightmapGI): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGI, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `useDenoiser=`*(self: LightmapGI; useDenoiser: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -169,7 +169,7 @@ proc isUsingDenoiser*(self: LightmapGI): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGI, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `interior=`*(self: LightmapGI; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -184,7 +184,7 @@ proc isInterior*(self: LightmapGI): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGI, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `directional=`*(self: LightmapGI; directional: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -199,7 +199,7 @@ proc isDirectional*(self: LightmapGI): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGI, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `cameraAttributes=`*(self: LightmapGI; cameraAttributes: CameraAttributes) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -214,4 +214,4 @@ proc cameraAttributes*(self: LightmapGI): CameraAttributes =
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGI, addr name, 3921283215)
   var ret: encoded CameraAttributes
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(CameraAttributes)
+  (addr ret).decode_result(CameraAttributes)

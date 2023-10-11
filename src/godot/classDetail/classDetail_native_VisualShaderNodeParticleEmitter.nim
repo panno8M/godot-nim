@@ -19,4 +19,4 @@ proc isMode2d*(self: VisualShaderNodeParticleEmitter): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeParticleEmitter, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

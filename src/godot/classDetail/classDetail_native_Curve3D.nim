@@ -12,7 +12,7 @@ proc pointCount*(self: Curve3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Curve3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `pointCount=`*(self: Curve3D; count: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc getPointPosition*(self: Curve3D; idx: int32): Vector3 =
   var `?param` = [getPtr idx]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc setPointTilt*(self: Curve3D; idx: int32; tilt: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -58,7 +58,7 @@ proc getPointTilt*(self: Curve3D; idx: int32): Float =
   var `?param` = [getPtr idx]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc setPointIn*(self: Curve3D; idx: int32; position: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -74,7 +74,7 @@ proc getPointIn*(self: Curve3D; idx: int32): Vector3 =
   var `?param` = [getPtr idx]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc setPointOut*(self: Curve3D; idx: int32; position: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -90,7 +90,7 @@ proc getPointOut*(self: Curve3D; idx: int32): Vector3 =
   var `?param` = [getPtr idx]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc removePoint*(self: Curve3D; idx: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -112,7 +112,7 @@ proc sample*(self: Curve3D; idx: int32; t: Float): Vector3 =
   var `?param` = [getPtr idx, getPtr t]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc samplef*(self: Curve3D; fofs: Float): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -121,7 +121,7 @@ proc samplef*(self: Curve3D; fofs: Float): Vector3 =
   var `?param` = [getPtr fofs]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `bakeInterval=`*(self: Curve3D; distance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -136,7 +136,7 @@ proc bakeInterval*(self: Curve3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Curve3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `upVectorEnabled=`*(self: Curve3D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -151,7 +151,7 @@ proc isUpVectorEnabled*(self: Curve3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Curve3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getBakedLength*(self: Curve3D): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -159,7 +159,7 @@ proc getBakedLength*(self: Curve3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Curve3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc sampleBaked*(self: Curve3D; offset: Float = 0.0; cubic: Bool = false): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -168,7 +168,7 @@ proc sampleBaked*(self: Curve3D; offset: Float = 0.0; cubic: Bool = false): Vect
   var `?param` = [getPtr offset, getPtr cubic]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc sampleBakedWithRotation*(self: Curve3D; offset: Float = 0.0; cubic: Bool = false; applyTilt: Bool = false): Transform3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -177,7 +177,7 @@ proc sampleBakedWithRotation*(self: Curve3D; offset: Float = 0.0; cubic: Bool = 
   var `?param` = [getPtr offset, getPtr cubic, getPtr applyTilt]
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc sampleBakedUpVector*(self: Curve3D; offset: Float; applyTilt: Bool = false): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -186,7 +186,7 @@ proc sampleBakedUpVector*(self: Curve3D; offset: Float; applyTilt: Bool = false)
   var `?param` = [getPtr offset, getPtr applyTilt]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc getBakedPoints*(self: Curve3D): PackedVector3Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -194,7 +194,7 @@ proc getBakedPoints*(self: Curve3D): PackedVector3Array =
     methodbind = interface_ClassDB_getMethodBind(addr className Curve3D, addr name, 497664490)
   var ret: encoded PackedVector3Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedVector3Array)
+  (addr ret).decode_result(PackedVector3Array)
 proc getBakedTilts*(self: Curve3D): PackedFloat32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -202,7 +202,7 @@ proc getBakedTilts*(self: Curve3D): PackedFloat32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className Curve3D, addr name, 675695659)
   var ret: encoded PackedFloat32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedFloat32Array)
+  (addr ret).decode_result(PackedFloat32Array)
 proc getBakedUpVectors*(self: Curve3D): PackedVector3Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -210,7 +210,7 @@ proc getBakedUpVectors*(self: Curve3D): PackedVector3Array =
     methodbind = interface_ClassDB_getMethodBind(addr className Curve3D, addr name, 497664490)
   var ret: encoded PackedVector3Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedVector3Array)
+  (addr ret).decode_result(PackedVector3Array)
 proc getClosestPoint*(self: Curve3D; toPoint: Vector3): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -219,7 +219,7 @@ proc getClosestPoint*(self: Curve3D; toPoint: Vector3): Vector3 =
   var `?param` = [getPtr toPoint]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc getClosestOffset*(self: Curve3D; toPoint: Vector3): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -228,7 +228,7 @@ proc getClosestOffset*(self: Curve3D; toPoint: Vector3): Float =
   var `?param` = [getPtr toPoint]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc tessellate*(self: Curve3D; maxStages: int32 = 5; toleranceDegrees: Float = 4): PackedVector3Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -237,7 +237,7 @@ proc tessellate*(self: Curve3D; maxStages: int32 = 5; toleranceDegrees: Float = 
   var `?param` = [getPtr maxStages, getPtr toleranceDegrees]
   var ret: encoded PackedVector3Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedVector3Array)
+  (addr ret).decode_result(PackedVector3Array)
 proc tessellateEvenLength*(self: Curve3D; maxStages: int32 = 5; toleranceLength: Float = 0.2): PackedVector3Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -246,4 +246,4 @@ proc tessellateEvenLength*(self: Curve3D; maxStages: int32 = 5; toleranceLength:
   var `?param` = [getPtr maxStages, getPtr toleranceLength]
   var ret: encoded PackedVector3Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedVector3Array)
+  (addr ret).decode_result(PackedVector3Array)

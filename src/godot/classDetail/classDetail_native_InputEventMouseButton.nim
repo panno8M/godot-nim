@@ -19,7 +19,7 @@ proc factor*(self: InputEventMouseButton): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventMouseButton, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `buttonIndex=`*(self: InputEventMouseButton; buttonIndex: MouseButton) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc buttonIndex*(self: InputEventMouseButton): MouseButton =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventMouseButton, addr name, 1132662608)
   var ret: encoded MouseButton
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(MouseButton)
+  (addr ret).decode_result(MouseButton)
 proc `pressed=`*(self: InputEventMouseButton; pressed: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -63,4 +63,4 @@ proc isDoubleClick*(self: InputEventMouseButton): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventMouseButton, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

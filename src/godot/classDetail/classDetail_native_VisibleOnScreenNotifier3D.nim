@@ -19,4 +19,4 @@ proc isOnScreen*(self: VisibleOnScreenNotifier3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className VisibleOnScreenNotifier3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

@@ -19,7 +19,7 @@ proc text*(self: LinkButton): String =
     methodbind = interface_ClassDB_getMethodBind(addr className LinkButton, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `textDirection=`*(self: LinkButton; direction: Control_TextDirection) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc textDirection*(self: LinkButton): Control_TextDirection =
     methodbind = interface_ClassDB_getMethodBind(addr className LinkButton, addr name, 797257663)
   var ret: encoded Control_TextDirection
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Control_TextDirection)
+  (addr ret).decode_result(Control_TextDirection)
 proc `language=`*(self: LinkButton; language: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc language*(self: LinkButton): String =
     methodbind = interface_ClassDB_getMethodBind(addr className LinkButton, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `uri=`*(self: LinkButton; uri: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc uri*(self: LinkButton): String =
     methodbind = interface_ClassDB_getMethodBind(addr className LinkButton, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `underlineMode=`*(self: LinkButton; underlineMode: LinkButton_UnderlineMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc underlineMode*(self: LinkButton): LinkButton_UnderlineMode =
     methodbind = interface_ClassDB_getMethodBind(addr className LinkButton, addr name, 568343738)
   var ret: encoded LinkButton_UnderlineMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(LinkButton_UnderlineMode)
+  (addr ret).decode_result(LinkButton_UnderlineMode)
 proc `structuredTextBidiOverride=`*(self: LinkButton; parser: TextServer_StructuredTextParser) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc structuredTextBidiOverride*(self: LinkButton): TextServer_StructuredTextPar
     methodbind = interface_ClassDB_getMethodBind(addr className LinkButton, addr name, 3385126229)
   var ret: encoded TextServer_StructuredTextParser
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextServer_StructuredTextParser)
+  (addr ret).decode_result(TextServer_StructuredTextParser)
 proc `structuredTextBidiOverrideOptions=`*(self: LinkButton; args: Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,4 +109,4 @@ proc structuredTextBidiOverrideOptions*(self: LinkButton): Array =
     methodbind = interface_ClassDB_getMethodBind(addr className LinkButton, addr name, 3995934104)
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)

@@ -19,7 +19,7 @@ proc hasTrackingData*(self: XRPose): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className XRPose, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `name=`*(self: XRPose; name: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc name*(self: XRPose): StringName =
     methodbind = interface_ClassDB_getMethodBind(addr className XRPose, addr name, 2002593661)
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc `transform=`*(self: XRPose; transform: Transform3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc transform*(self: XRPose): Transform3D =
     methodbind = interface_ClassDB_getMethodBind(addr className XRPose, addr name, 3229777777)
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc getAdjustedTransform*(self: XRPose): Transform3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc getAdjustedTransform*(self: XRPose): Transform3D =
     methodbind = interface_ClassDB_getMethodBind(addr className XRPose, addr name, 3229777777)
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc `linearVelocity=`*(self: XRPose; velocity: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -72,7 +72,7 @@ proc linearVelocity*(self: XRPose): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className XRPose, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `angularVelocity=`*(self: XRPose; velocity: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -87,7 +87,7 @@ proc angularVelocity*(self: XRPose): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className XRPose, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `trackingConfidence=`*(self: XRPose; trackingConfidence: XRPose_TrackingConfidence) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -102,4 +102,4 @@ proc trackingConfidence*(self: XRPose): XRPose_TrackingConfidence =
     methodbind = interface_ClassDB_getMethodBind(addr className XRPose, addr name, 2064923680)
   var ret: encoded XRPose_TrackingConfidence
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(XRPose_TrackingConfidence)
+  (addr ret).decode_result(XRPose_TrackingConfidence)

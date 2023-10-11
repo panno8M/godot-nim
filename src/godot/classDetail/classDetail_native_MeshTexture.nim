@@ -19,7 +19,7 @@ proc mesh*(self: MeshTexture): Mesh =
     methodbind = interface_ClassDB_getMethodBind(addr className MeshTexture, addr name, 1808005922)
   var ret: encoded Mesh
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Mesh)
+  (addr ret).decode_result(Mesh)
 proc `imageSize=`*(self: MeshTexture; size: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc imageSize*(self: MeshTexture): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className MeshTexture, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `baseTexture=`*(self: MeshTexture; texture: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,4 +49,4 @@ proc baseTexture*(self: MeshTexture): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className MeshTexture, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)

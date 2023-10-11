@@ -19,7 +19,7 @@ proc intensity*(self: ReflectionProbe): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className ReflectionProbe, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `ambientMode=`*(self: ReflectionProbe; ambient: ReflectionProbe_AmbientMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc ambientMode*(self: ReflectionProbe): ReflectionProbe_AmbientMode =
     methodbind = interface_ClassDB_getMethodBind(addr className ReflectionProbe, addr name, 1014607621)
   var ret: encoded ReflectionProbe_AmbientMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(ReflectionProbe_AmbientMode)
+  (addr ret).decode_result(ReflectionProbe_AmbientMode)
 proc `ambientColor=`*(self: ReflectionProbe; ambient: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc ambientColor*(self: ReflectionProbe): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className ReflectionProbe, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `ambientColorEnergy=`*(self: ReflectionProbe; ambientEnergy: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc ambientColorEnergy*(self: ReflectionProbe): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className ReflectionProbe, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `maxDistance=`*(self: ReflectionProbe; maxDistance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc maxDistance*(self: ReflectionProbe): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className ReflectionProbe, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `meshLodThreshold=`*(self: ReflectionProbe; ratio: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc meshLodThreshold*(self: ReflectionProbe): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className ReflectionProbe, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `size=`*(self: ReflectionProbe; size: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc size*(self: ReflectionProbe): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className ReflectionProbe, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `originOffset=`*(self: ReflectionProbe; originOffset: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc originOffset*(self: ReflectionProbe): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className ReflectionProbe, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `asInterior=`*(self: ReflectionProbe; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc isSetAsInterior*(self: ReflectionProbe): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ReflectionProbe, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `enableBoxProjection=`*(self: ReflectionProbe; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -154,7 +154,7 @@ proc isBoxProjectionEnabled*(self: ReflectionProbe): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ReflectionProbe, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `enableShadows=`*(self: ReflectionProbe; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -169,7 +169,7 @@ proc areShadowsEnabled*(self: ReflectionProbe): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ReflectionProbe, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `cullMask=`*(self: ReflectionProbe; layers: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -184,7 +184,7 @@ proc cullMask*(self: ReflectionProbe): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className ReflectionProbe, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `updateMode=`*(self: ReflectionProbe; mode: ReflectionProbe_UpdateMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -199,4 +199,4 @@ proc updateMode*(self: ReflectionProbe): ReflectionProbe_UpdateMode =
     methodbind = interface_ClassDB_getMethodBind(addr className ReflectionProbe, addr name, 2367550552)
   var ret: encoded ReflectionProbe_UpdateMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(ReflectionProbe_UpdateMode)
+  (addr ret).decode_result(ReflectionProbe_UpdateMode)

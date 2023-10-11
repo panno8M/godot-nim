@@ -13,7 +13,7 @@ proc fromNode*(_: typedesc[GLTFLight]; lightNode: Light3D): GLTFLight =
   var `?param` = [getPtr lightNode]
   var ret: encoded GLTFLight
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(GLTFLight)
+  (addr ret).decode_result(GLTFLight)
 proc toNode*(self: GLTFLight): Light3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -21,7 +21,7 @@ proc toNode*(self: GLTFLight): Light3D =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFLight, addr name, 2040811672)
   var ret: encoded Light3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Light3D)
+  (addr ret).decode_result(Light3D)
 proc fromDictionary*(_: typedesc[GLTFLight]; dictionary: Dictionary): GLTFLight =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -30,7 +30,7 @@ proc fromDictionary*(_: typedesc[GLTFLight]; dictionary: Dictionary): GLTFLight 
   var `?param` = [getPtr dictionary]
   var ret: encoded GLTFLight
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(GLTFLight)
+  (addr ret).decode_result(GLTFLight)
 proc toDictionary*(self: GLTFLight): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -38,7 +38,7 @@ proc toDictionary*(self: GLTFLight): Dictionary =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFLight, addr name, 3102165223)
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc color*(self: GLTFLight): Color =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -46,7 +46,7 @@ proc color*(self: GLTFLight): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFLight, addr name, 3200896285)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `color=`*(self: GLTFLight; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -61,7 +61,7 @@ proc intensity*(self: GLTFLight): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFLight, addr name, 191475506)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `intensity=`*(self: GLTFLight; intensity: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -76,7 +76,7 @@ proc lightType*(self: GLTFLight): String =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFLight, addr name, 2841200299)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `lightType=`*(self: GLTFLight; lightType: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -91,7 +91,7 @@ proc range*(self: GLTFLight): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFLight, addr name, 191475506)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `range=`*(self: GLTFLight; range: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -106,7 +106,7 @@ proc innerConeAngle*(self: GLTFLight): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFLight, addr name, 191475506)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `innerConeAngle=`*(self: GLTFLight; innerConeAngle: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -121,7 +121,7 @@ proc outerConeAngle*(self: GLTFLight): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFLight, addr name, 191475506)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `outerConeAngle=`*(self: GLTFLight; outerConeAngle: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

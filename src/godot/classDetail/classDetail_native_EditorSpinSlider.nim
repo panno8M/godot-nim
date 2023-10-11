@@ -19,7 +19,7 @@ proc label*(self: EditorSpinSlider): String =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorSpinSlider, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `suffix=`*(self: EditorSpinSlider; suffix: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc suffix*(self: EditorSpinSlider): String =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorSpinSlider, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `readOnly=`*(self: EditorSpinSlider; readOnly: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc isReadOnly*(self: EditorSpinSlider): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorSpinSlider, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `flat=`*(self: EditorSpinSlider; flat: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc isFlat*(self: EditorSpinSlider): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorSpinSlider, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `hideSlider=`*(self: EditorSpinSlider; hideSlider: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,4 +79,4 @@ proc isHidingSlider*(self: EditorSpinSlider): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorSpinSlider, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

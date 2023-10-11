@@ -12,7 +12,7 @@ proc hasMultiplayerPeer*(self: MultiplayerAPI): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerAPI, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc multiplayerPeer*(self: MultiplayerAPI): MultiplayerPeer =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -20,7 +20,7 @@ proc multiplayerPeer*(self: MultiplayerAPI): MultiplayerPeer =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerAPI, addr name, 3223692825)
   var ret: encoded MultiplayerPeer
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(MultiplayerPeer)
+  (addr ret).decode_result(MultiplayerPeer)
 proc `multiplayerPeer=`*(self: MultiplayerAPI; peer: MultiplayerPeer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -35,7 +35,7 @@ proc getUniqueId*(self: MultiplayerAPI): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerAPI, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc isServer*(self: MultiplayerAPI): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -43,7 +43,7 @@ proc isServer*(self: MultiplayerAPI): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerAPI, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getRemoteSenderId*(self: MultiplayerAPI): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -51,7 +51,7 @@ proc getRemoteSenderId*(self: MultiplayerAPI): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerAPI, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc poll*(self: MultiplayerAPI): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -59,7 +59,7 @@ proc poll*(self: MultiplayerAPI): Error =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerAPI, addr name, 166280745)
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc rpc*(self: MultiplayerAPI; peer: int32; `object`: Object; `method`: StringName; arguments: Array = init_Array()): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -68,7 +68,7 @@ proc rpc*(self: MultiplayerAPI; peer: int32; `object`: Object; `method`: StringN
   var `?param` = [getPtr peer, getPtr `object`, getPtr `method`, getPtr arguments]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc objectConfigurationAdd*(self: MultiplayerAPI; `object`: Object; configuration: Variant): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -77,7 +77,7 @@ proc objectConfigurationAdd*(self: MultiplayerAPI; `object`: Object; configurati
   var `?param` = [getPtr `object`, getPtr configuration]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc objectConfigurationRemove*(self: MultiplayerAPI; `object`: Object; configuration: Variant): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -86,7 +86,7 @@ proc objectConfigurationRemove*(self: MultiplayerAPI; `object`: Object; configur
   var `?param` = [getPtr `object`, getPtr configuration]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc getPeers*(self: MultiplayerAPI): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc getPeers*(self: MultiplayerAPI): PackedInt32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerAPI, addr name, 969006518)
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc setDefaultInterface*(_: typedesc[MultiplayerAPI]; interfaceName: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc getDefaultInterface*(_: typedesc[MultiplayerAPI]): StringName =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerAPI, addr name, 2737447660)
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, nil, nil, addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc createDefaultInterface*(_: typedesc[MultiplayerAPI]): MultiplayerAPI =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -117,4 +117,4 @@ proc createDefaultInterface*(_: typedesc[MultiplayerAPI]): MultiplayerAPI =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerAPI, addr name, 3294156723)
   var ret: encoded MultiplayerAPI
   interface_Object_methodBindPtrCall(methodbind, nil, nil, addr ret)
-  (addr ret).decode(MultiplayerAPI)
+  (addr ret).decode_result(MultiplayerAPI)

@@ -13,7 +13,7 @@ proc start*(self: HashingContext; `type`: HashingContext_HashType): Error =
   var `?param` = [getPtr `type`]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc update*(self: HashingContext; chunk: PackedByteArray): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc update*(self: HashingContext; chunk: PackedByteArray): Error =
   var `?param` = [getPtr chunk]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc finish*(self: HashingContext): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -30,4 +30,4 @@ proc finish*(self: HashingContext): PackedByteArray =
     methodbind = interface_ClassDB_getMethodBind(addr className HashingContext, addr name, 2115431945)
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)

@@ -19,7 +19,7 @@ proc enableLogicOp*(self: RDPipelineColorBlendState): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineColorBlendState, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `logicOp=`*(self: RDPipelineColorBlendState; pMember: RenderingDevice_LogicOperation) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc logicOp*(self: RDPipelineColorBlendState): RenderingDevice_LogicOperation =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineColorBlendState, addr name, 988254690)
   var ret: encoded RenderingDevice_LogicOperation
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_LogicOperation)
+  (addr ret).decode_result(RenderingDevice_LogicOperation)
 proc `blendConstant=`*(self: RDPipelineColorBlendState; pMember: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc blendConstant*(self: RDPipelineColorBlendState): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineColorBlendState, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `attachments=`*(self: RDPipelineColorBlendState; attachments: TypedArray[RDPipelineColorBlendStateAttachment]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,4 +64,4 @@ proc attachments*(self: RDPipelineColorBlendState): TypedArray[RDPipelineColorBl
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineColorBlendState, addr name, 3995934104)
   var ret: encoded TypedArray[RDPipelineColorBlendStateAttachment]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[RDPipelineColorBlendStateAttachment])
+  (addr ret).decode_result(TypedArray[RDPipelineColorBlendStateAttachment])

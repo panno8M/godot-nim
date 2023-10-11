@@ -19,7 +19,7 @@ proc isEditorOnly*(self: Light3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Light3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `param=`*(self: Light3D; param: Light3D_Param; value: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -35,7 +35,7 @@ proc param*(self: Light3D; param: Light3D_Param): Float =
   var `?param` = [getPtr param]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `shadow=`*(self: Light3D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -50,7 +50,7 @@ proc hasShadow*(self: Light3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Light3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `negative=`*(self: Light3D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -65,7 +65,7 @@ proc isNegative*(self: Light3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Light3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `cullMask=`*(self: Light3D; cullMask: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -80,7 +80,7 @@ proc cullMask*(self: Light3D): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Light3D, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `enableDistanceFade=`*(self: Light3D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -95,7 +95,7 @@ proc isDistanceFadeEnabled*(self: Light3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Light3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `distanceFadeBegin=`*(self: Light3D; distance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -110,7 +110,7 @@ proc distanceFadeBegin*(self: Light3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Light3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `distanceFadeShadow=`*(self: Light3D; distance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -125,7 +125,7 @@ proc distanceFadeShadow*(self: Light3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Light3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `distanceFadeLength=`*(self: Light3D; distance: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -140,7 +140,7 @@ proc distanceFadeLength*(self: Light3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Light3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `color=`*(self: Light3D; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -155,7 +155,7 @@ proc color*(self: Light3D): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className Light3D, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `shadowReverseCullFace=`*(self: Light3D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -170,7 +170,7 @@ proc shadowReverseCullFace*(self: Light3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Light3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `bakeMode=`*(self: Light3D; bakeMode: Light3D_BakeMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -185,7 +185,7 @@ proc bakeMode*(self: Light3D): Light3D_BakeMode =
     methodbind = interface_ClassDB_getMethodBind(addr className Light3D, addr name, 371737608)
   var ret: encoded Light3D_BakeMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Light3D_BakeMode)
+  (addr ret).decode_result(Light3D_BakeMode)
 proc `projector=`*(self: Light3D; projector: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -200,7 +200,7 @@ proc projector*(self: Light3D): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className Light3D, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc `temperature=`*(self: Light3D; temperature: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -215,7 +215,7 @@ proc temperature*(self: Light3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Light3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getCorrelatedColor*(self: Light3D): Color =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -223,4 +223,4 @@ proc getCorrelatedColor*(self: Light3D): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className Light3D, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)

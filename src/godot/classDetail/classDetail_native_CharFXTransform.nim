@@ -12,7 +12,7 @@ proc range*(self: CharFXTransform): Vector2i =
     methodbind = interface_ClassDB_getMethodBind(addr className CharFXTransform, addr name, 2741790807)
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc `range=`*(self: CharFXTransform; range: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc elapsedTime*(self: CharFXTransform): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className CharFXTransform, addr name, 191475506)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc `elapsedTime=`*(self: CharFXTransform; time: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc isVisible*(self: CharFXTransform): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CharFXTransform, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `visibility=`*(self: CharFXTransform; visibility: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc isOutline*(self: CharFXTransform): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CharFXTransform, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `outline=`*(self: CharFXTransform; outline: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -72,7 +72,7 @@ proc offset*(self: CharFXTransform): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className CharFXTransform, addr name, 1497962370)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `offset=`*(self: CharFXTransform; offset: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -87,7 +87,7 @@ proc color*(self: CharFXTransform): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className CharFXTransform, addr name, 3200896285)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `color=`*(self: CharFXTransform; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -102,7 +102,7 @@ proc environment*(self: CharFXTransform): Dictionary =
     methodbind = interface_ClassDB_getMethodBind(addr className CharFXTransform, addr name, 2382534195)
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc `environment=`*(self: CharFXTransform; environment: Dictionary) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -117,7 +117,7 @@ proc glyphIndex*(self: CharFXTransform): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className CharFXTransform, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `glyphIndex=`*(self: CharFXTransform; glyphIndex: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -132,7 +132,7 @@ proc relativeIndex*(self: CharFXTransform): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className CharFXTransform, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `relativeIndex=`*(self: CharFXTransform; relativeIndex: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -147,7 +147,7 @@ proc glyphCount*(self: CharFXTransform): uint8 =
     methodbind = interface_ClassDB_getMethodBind(addr className CharFXTransform, addr name, 3905245786)
   var ret: encoded uint8
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint8)
+  (addr ret).decode_result(uint8)
 proc `glyphCount=`*(self: CharFXTransform; glyphCount: uint8) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -162,7 +162,7 @@ proc glyphFlags*(self: CharFXTransform): uint16 =
     methodbind = interface_ClassDB_getMethodBind(addr className CharFXTransform, addr name, 3905245786)
   var ret: encoded uint16
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint16)
+  (addr ret).decode_result(uint16)
 proc `glyphFlags=`*(self: CharFXTransform; glyphFlags: uint16) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -177,7 +177,7 @@ proc font*(self: CharFXTransform): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className CharFXTransform, addr name, 2944877500)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc `font=`*(self: CharFXTransform; font: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

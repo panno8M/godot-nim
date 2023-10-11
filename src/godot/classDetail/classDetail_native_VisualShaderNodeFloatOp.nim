@@ -19,4 +19,4 @@ proc operator*(self: VisualShaderNodeFloatOp): VisualShaderNodeFloatOp_Operator 
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeFloatOp, addr name, 1867979390)
   var ret: encoded VisualShaderNodeFloatOp_Operator
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VisualShaderNodeFloatOp_Operator)
+  (addr ret).decode_result(VisualShaderNodeFloatOp_Operator)

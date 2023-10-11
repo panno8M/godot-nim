@@ -19,7 +19,7 @@ proc voiceCount*(self: AudioEffectChorus): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectChorus, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setVoiceDelayMs*(self: AudioEffectChorus; voiceIdx: int32; delayMs: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -35,7 +35,7 @@ proc getVoiceDelayMs*(self: AudioEffectChorus; voiceIdx: int32): Float =
   var `?param` = [getPtr voiceIdx]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc setVoiceRateHz*(self: AudioEffectChorus; voiceIdx: int32; rateHz: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -51,7 +51,7 @@ proc getVoiceRateHz*(self: AudioEffectChorus; voiceIdx: int32): Float =
   var `?param` = [getPtr voiceIdx]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc setVoiceDepthMs*(self: AudioEffectChorus; voiceIdx: int32; depthMs: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -67,7 +67,7 @@ proc getVoiceDepthMs*(self: AudioEffectChorus; voiceIdx: int32): Float =
   var `?param` = [getPtr voiceIdx]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc setVoiceLevelDb*(self: AudioEffectChorus; voiceIdx: int32; levelDb: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -83,7 +83,7 @@ proc getVoiceLevelDb*(self: AudioEffectChorus; voiceIdx: int32): Float =
   var `?param` = [getPtr voiceIdx]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc setVoiceCutoffHz*(self: AudioEffectChorus; voiceIdx: int32; cutoffHz: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -99,7 +99,7 @@ proc getVoiceCutoffHz*(self: AudioEffectChorus; voiceIdx: int32): Float =
   var `?param` = [getPtr voiceIdx]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc setVoicePan*(self: AudioEffectChorus; voiceIdx: int32; pan: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -115,7 +115,7 @@ proc getVoicePan*(self: AudioEffectChorus; voiceIdx: int32): Float =
   var `?param` = [getPtr voiceIdx]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `wet=`*(self: AudioEffectChorus; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -130,7 +130,7 @@ proc wet*(self: AudioEffectChorus): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectChorus, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `dry=`*(self: AudioEffectChorus; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -145,4 +145,4 @@ proc dry*(self: AudioEffectChorus): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectChorus, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

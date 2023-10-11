@@ -12,7 +12,7 @@ proc `from`*(self: PhysicsTestMotionParameters3D): Transform3D =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionParameters3D, addr name, 3229777777)
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc `from=`*(self: PhysicsTestMotionParameters3D; `from`: Transform3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc motion*(self: PhysicsTestMotionParameters3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionParameters3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `motion=`*(self: PhysicsTestMotionParameters3D; motion: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc margin*(self: PhysicsTestMotionParameters3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionParameters3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `margin=`*(self: PhysicsTestMotionParameters3D; margin: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc maxCollisions*(self: PhysicsTestMotionParameters3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionParameters3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `maxCollisions=`*(self: PhysicsTestMotionParameters3D; maxCollisions: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -72,7 +72,7 @@ proc isCollideSeparationRayEnabled*(self: PhysicsTestMotionParameters3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionParameters3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `collideSeparationRayEnabled=`*(self: PhysicsTestMotionParameters3D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -87,7 +87,7 @@ proc excludeBodies*(self: PhysicsTestMotionParameters3D): TypedArray[RID] =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionParameters3D, addr name, 3995934104)
   var ret: encoded TypedArray[RID]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[RID])
+  (addr ret).decode_result(TypedArray[RID])
 proc `excludeBodies=`*(self: PhysicsTestMotionParameters3D; excludeList: TypedArray[RID]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -102,7 +102,7 @@ proc excludeObjects*(self: PhysicsTestMotionParameters3D): TypedArray[Int] =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionParameters3D, addr name, 3995934104)
   var ret: encoded TypedArray[Int]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Int])
+  (addr ret).decode_result(TypedArray[Int])
 proc `excludeObjects=`*(self: PhysicsTestMotionParameters3D; excludeList: TypedArray[Int]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -117,7 +117,7 @@ proc isRecoveryAsCollisionEnabled*(self: PhysicsTestMotionParameters3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsTestMotionParameters3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `recoveryAsCollisionEnabled=`*(self: PhysicsTestMotionParameters3D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

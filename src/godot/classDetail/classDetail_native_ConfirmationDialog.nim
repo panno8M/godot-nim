@@ -12,7 +12,7 @@ proc getCancelButton*(self: ConfirmationDialog): Button =
     methodbind = interface_ClassDB_getMethodBind(addr className ConfirmationDialog, addr name, 1856205918)
   var ret: encoded Button
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Button)
+  (addr ret).decode_result(Button)
 proc `cancelButtonText=`*(self: ConfirmationDialog; text: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,4 +27,4 @@ proc cancelButtonText*(self: ConfirmationDialog): String =
     methodbind = interface_ClassDB_getMethodBind(addr className ConfirmationDialog, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)

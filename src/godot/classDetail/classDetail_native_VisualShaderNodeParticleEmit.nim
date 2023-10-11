@@ -19,4 +19,4 @@ proc flags*(self: VisualShaderNodeParticleEmit): VisualShaderNodeParticleEmit_Em
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeParticleEmit, addr name, 171277835)
   var ret: encoded VisualShaderNodeParticleEmit_EmitFlags
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VisualShaderNodeParticleEmit_EmitFlags)
+  (addr ret).decode_result(VisualShaderNodeParticleEmit_EmitFlags)

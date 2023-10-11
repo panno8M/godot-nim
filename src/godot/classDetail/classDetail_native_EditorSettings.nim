@@ -13,7 +13,7 @@ proc hasSetting*(self: EditorSettings; name: String): Bool =
   var `?param` = [getPtr name]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setSetting*(self: EditorSettings; name: String; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -29,7 +29,7 @@ proc getSetting*(self: EditorSettings; name: String): Variant =
   var `?param` = [getPtr name]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc erase*(self: EditorSettings; property: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -66,7 +66,7 @@ proc getProjectMetadata*(self: EditorSettings; section: String; key: String; def
   var `?param` = [getPtr section, getPtr key, getPtr default]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)
 proc setFavorites*(self: EditorSettings; dirs: PackedStringArray) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -81,7 +81,7 @@ proc getFavorites*(self: EditorSettings): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorSettings, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc setRecentDirs*(self: EditorSettings; dirs: PackedStringArray) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -96,7 +96,7 @@ proc getRecentDirs*(self: EditorSettings): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorSettings, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc setBuiltinActionOverride*(self: EditorSettings; name: String; actionsList: TypedArray[InputEvent]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -112,7 +112,7 @@ proc checkChangedSettingsInGroup*(self: EditorSettings; settingPrefix: String): 
   var `?param` = [getPtr settingPrefix]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getChangedSettings*(self: EditorSettings): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -120,7 +120,7 @@ proc getChangedSettings*(self: EditorSettings): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorSettings, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc markSettingChanged*(self: EditorSettings; setting: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

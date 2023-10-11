@@ -19,4 +19,4 @@ proc size*(self: PlaceholderTexture3D): Vector3i =
     methodbind = interface_ClassDB_getMethodBind(addr className PlaceholderTexture3D, addr name, 2785653706)
   var ret: encoded Vector3i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3i)
+  (addr ret).decode_result(Vector3i)

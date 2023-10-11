@@ -19,7 +19,7 @@ proc createItem*(self: Tree; parent: TreeItem = nil; index: int32 = -1): TreeIte
   var `?param` = [getPtr parent, getPtr index]
   var ret: encoded TreeItem
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TreeItem)
+  (addr ret).decode_result(TreeItem)
 proc getRoot*(self: Tree): TreeItem =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc getRoot*(self: Tree): TreeItem =
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 1514277247)
   var ret: encoded TreeItem
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TreeItem)
+  (addr ret).decode_result(TreeItem)
 proc setColumnCustomMinimumWidth*(self: Tree; column: int32; minWidth: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc isColumnExpanding*(self: Tree; column: int32): Bool =
   var `?param` = [getPtr column]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isColumnClippingContent*(self: Tree; column: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -73,7 +73,7 @@ proc isColumnClippingContent*(self: Tree; column: int32): Bool =
   var `?param` = [getPtr column]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getColumnExpandRatio*(self: Tree; column: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -82,7 +82,7 @@ proc getColumnExpandRatio*(self: Tree; column: int32): int32 =
   var `?param` = [getPtr column]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getColumnWidth*(self: Tree; column: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -91,7 +91,7 @@ proc getColumnWidth*(self: Tree; column: int32): int32 =
   var `?param` = [getPtr column]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `hideRoot=`*(self: Tree; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -106,7 +106,7 @@ proc isRootHidden*(self: Tree): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getNextSelected*(self: Tree; `from`: TreeItem): TreeItem =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -115,7 +115,7 @@ proc getNextSelected*(self: Tree; `from`: TreeItem): TreeItem =
   var `?param` = [getPtr `from`]
   var ret: encoded TreeItem
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TreeItem)
+  (addr ret).decode_result(TreeItem)
 proc getSelected*(self: Tree): TreeItem =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -123,7 +123,7 @@ proc getSelected*(self: Tree): TreeItem =
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 1514277247)
   var ret: encoded TreeItem
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TreeItem)
+  (addr ret).decode_result(TreeItem)
 proc setSelected*(self: Tree; item: TreeItem; column: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -138,7 +138,7 @@ proc getSelectedColumn*(self: Tree): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getPressedButton*(self: Tree): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -146,7 +146,7 @@ proc getPressedButton*(self: Tree): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `selectMode=`*(self: Tree; mode: Tree_SelectMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -161,7 +161,7 @@ proc selectMode*(self: Tree): Tree_SelectMode =
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 100748571)
   var ret: encoded Tree_SelectMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Tree_SelectMode)
+  (addr ret).decode_result(Tree_SelectMode)
 proc deselectAll*(self: Tree) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -182,7 +182,7 @@ proc columns*(self: Tree): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getEdited*(self: Tree): TreeItem =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -190,7 +190,7 @@ proc getEdited*(self: Tree): TreeItem =
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 1514277247)
   var ret: encoded TreeItem
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TreeItem)
+  (addr ret).decode_result(TreeItem)
 proc getEditedColumn*(self: Tree): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -198,7 +198,7 @@ proc getEditedColumn*(self: Tree): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc editSelected*(self: Tree; forceEdit: Bool = false): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -207,7 +207,7 @@ proc editSelected*(self: Tree; forceEdit: Bool = false): Bool =
   var `?param` = [getPtr forceEdit]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getCustomPopupRect*(self: Tree): Rect2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -215,7 +215,7 @@ proc getCustomPopupRect*(self: Tree): Rect2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 1639390495)
   var ret: encoded Rect2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Rect2)
+  (addr ret).decode_result(Rect2)
 proc getItemAreaRect*(self: Tree; item: TreeItem; column: int32 = -1; buttonIndex: int32 = -1): Rect2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -224,7 +224,7 @@ proc getItemAreaRect*(self: Tree; item: TreeItem; column: int32 = -1; buttonInde
   var `?param` = [getPtr item, getPtr column, getPtr buttonIndex]
   var ret: encoded Rect2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Rect2)
+  (addr ret).decode_result(Rect2)
 proc getItemAtPosition*(self: Tree; position: Vector2): TreeItem =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -233,7 +233,7 @@ proc getItemAtPosition*(self: Tree; position: Vector2): TreeItem =
   var `?param` = [getPtr position]
   var ret: encoded TreeItem
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TreeItem)
+  (addr ret).decode_result(TreeItem)
 proc getColumnAtPosition*(self: Tree; position: Vector2): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -242,7 +242,7 @@ proc getColumnAtPosition*(self: Tree; position: Vector2): int32 =
   var `?param` = [getPtr position]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getDropSectionAtPosition*(self: Tree; position: Vector2): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -251,7 +251,7 @@ proc getDropSectionAtPosition*(self: Tree; position: Vector2): int32 =
   var `?param` = [getPtr position]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getButtonIdAtPosition*(self: Tree; position: Vector2): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -260,7 +260,7 @@ proc getButtonIdAtPosition*(self: Tree; position: Vector2): int32 =
   var `?param` = [getPtr position]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc ensureCursorIsVisible*(self: Tree) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -281,7 +281,7 @@ proc areColumnTitlesVisible*(self: Tree): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setColumnTitle*(self: Tree; column: int32; title: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -297,7 +297,7 @@ proc getColumnTitle*(self: Tree; column: int32): String =
   var `?param` = [getPtr column]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc setColumnTitleAlignment*(self: Tree; column: int32; titleAlignment: HorizontalAlignment) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -313,7 +313,7 @@ proc getColumnTitleAlignment*(self: Tree; column: int32): HorizontalAlignment =
   var `?param` = [getPtr column]
   var ret: encoded HorizontalAlignment
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(HorizontalAlignment)
+  (addr ret).decode_result(HorizontalAlignment)
 proc setColumnTitleDirection*(self: Tree; column: int32; direction: Control_TextDirection) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -329,7 +329,7 @@ proc getColumnTitleDirection*(self: Tree; column: int32): Control_TextDirection 
   var `?param` = [getPtr column]
   var ret: encoded Control_TextDirection
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Control_TextDirection)
+  (addr ret).decode_result(Control_TextDirection)
 proc setColumnTitleLanguage*(self: Tree; column: int32; language: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -345,7 +345,7 @@ proc getColumnTitleLanguage*(self: Tree; column: int32): String =
   var `?param` = [getPtr column]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getScroll*(self: Tree): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -353,7 +353,7 @@ proc getScroll*(self: Tree): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc scrollToItem*(self: Tree; item: TreeItem; centerOnItem: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -375,7 +375,7 @@ proc isHScrollEnabled*(self: Tree): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `vScrollEnabled=`*(self: Tree; hScroll: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -390,7 +390,7 @@ proc isVScrollEnabled*(self: Tree): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `hideFolding=`*(self: Tree; hide: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -405,7 +405,7 @@ proc isFoldingHidden*(self: Tree): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `enableRecursiveFolding=`*(self: Tree; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -420,7 +420,7 @@ proc isRecursiveFoldingEnabled*(self: Tree): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `dropModeFlags=`*(self: Tree; flags: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -435,7 +435,7 @@ proc dropModeFlags*(self: Tree): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `allowRmbSelect=`*(self: Tree; allow: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -450,7 +450,7 @@ proc allowRmbSelect*(self: Tree): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `allowReselect=`*(self: Tree; allow: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -465,7 +465,7 @@ proc allowReselect*(self: Tree): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `allowSearch=`*(self: Tree; allow: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -480,4 +480,4 @@ proc allowSearch*(self: Tree): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Tree, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

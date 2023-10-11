@@ -19,7 +19,7 @@ proc underTexture*(self: TextureProgressBar): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className TextureProgressBar, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc `progressTexture=`*(self: TextureProgressBar; tex: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc progressTexture*(self: TextureProgressBar): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className TextureProgressBar, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc `overTexture=`*(self: TextureProgressBar; tex: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc overTexture*(self: TextureProgressBar): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className TextureProgressBar, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc `fillMode=`*(self: TextureProgressBar; mode: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc fillMode*(self: TextureProgressBar): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextureProgressBar, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `tintUnder=`*(self: TextureProgressBar; tint: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc tintUnder*(self: TextureProgressBar): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className TextureProgressBar, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `tintProgress=`*(self: TextureProgressBar; tint: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc tintProgress*(self: TextureProgressBar): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className TextureProgressBar, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `tintOver=`*(self: TextureProgressBar; tint: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc tintOver*(self: TextureProgressBar): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className TextureProgressBar, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `textureProgressOffset=`*(self: TextureProgressBar; offset: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc textureProgressOffset*(self: TextureProgressBar): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextureProgressBar, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `radialInitialAngle=`*(self: TextureProgressBar; mode: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc radialInitialAngle*(self: TextureProgressBar): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className TextureProgressBar, addr name, 191475506)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `radialCenterOffset=`*(self: TextureProgressBar; mode: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -154,7 +154,7 @@ proc radialCenterOffset*(self: TextureProgressBar): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextureProgressBar, addr name, 1497962370)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `fillDegrees=`*(self: TextureProgressBar; mode: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -169,7 +169,7 @@ proc fillDegrees*(self: TextureProgressBar): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className TextureProgressBar, addr name, 191475506)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `stretchMargin=`*(self: TextureProgressBar; margin: Side; value: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -185,7 +185,7 @@ proc stretchMargin*(self: TextureProgressBar; margin: Side): int32 =
   var `?param` = [getPtr margin]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `ninePatchStretch=`*(self: TextureProgressBar; stretch: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -200,4 +200,4 @@ proc ninePatchStretch*(self: TextureProgressBar): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextureProgressBar, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

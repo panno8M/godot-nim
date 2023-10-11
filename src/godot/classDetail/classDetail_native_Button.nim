@@ -19,7 +19,7 @@ proc text*(self: Button): String =
     methodbind = interface_ClassDB_getMethodBind(addr className Button, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `textOverrunBehavior=`*(self: Button; overrunBehavior: TextServer_OverrunBehavior) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc textOverrunBehavior*(self: Button): TextServer_OverrunBehavior =
     methodbind = interface_ClassDB_getMethodBind(addr className Button, addr name, 3779142101)
   var ret: encoded TextServer_OverrunBehavior
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextServer_OverrunBehavior)
+  (addr ret).decode_result(TextServer_OverrunBehavior)
 proc `textDirection=`*(self: Button; direction: Control_TextDirection) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc textDirection*(self: Button): Control_TextDirection =
     methodbind = interface_ClassDB_getMethodBind(addr className Button, addr name, 797257663)
   var ret: encoded Control_TextDirection
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Control_TextDirection)
+  (addr ret).decode_result(Control_TextDirection)
 proc `language=`*(self: Button; language: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc language*(self: Button): String =
     methodbind = interface_ClassDB_getMethodBind(addr className Button, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `buttonIcon=`*(self: Button; texture: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc buttonIcon*(self: Button): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className Button, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc `flat=`*(self: Button; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc isFlat*(self: Button): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Button, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `clipText=`*(self: Button; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc clipText*(self: Button): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Button, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `textAlignment=`*(self: Button; alignment: HorizontalAlignment) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc textAlignment*(self: Button): HorizontalAlignment =
     methodbind = interface_ClassDB_getMethodBind(addr className Button, addr name, 341400642)
   var ret: encoded HorizontalAlignment
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(HorizontalAlignment)
+  (addr ret).decode_result(HorizontalAlignment)
 proc `iconAlignment=`*(self: Button; iconAlignment: HorizontalAlignment) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc iconAlignment*(self: Button): HorizontalAlignment =
     methodbind = interface_ClassDB_getMethodBind(addr className Button, addr name, 341400642)
   var ret: encoded HorizontalAlignment
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(HorizontalAlignment)
+  (addr ret).decode_result(HorizontalAlignment)
 proc `verticalIconAlignment=`*(self: Button; verticalIconAlignment: VerticalAlignment) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -154,7 +154,7 @@ proc verticalIconAlignment*(self: Button): VerticalAlignment =
     methodbind = interface_ClassDB_getMethodBind(addr className Button, addr name, 3274884059)
   var ret: encoded VerticalAlignment
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VerticalAlignment)
+  (addr ret).decode_result(VerticalAlignment)
 proc `expandIcon=`*(self: Button; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -169,4 +169,4 @@ proc isExpandIcon*(self: Button): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Button, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

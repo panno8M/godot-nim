@@ -76,7 +76,7 @@ proc getItemName*(self: MeshLibrary; id: int32): String =
   var `?param` = [getPtr id]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getItemMesh*(self: MeshLibrary; id: int32): Mesh =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -85,7 +85,7 @@ proc getItemMesh*(self: MeshLibrary; id: int32): Mesh =
   var `?param` = [getPtr id]
   var ret: encoded Mesh
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Mesh)
+  (addr ret).decode_result(Mesh)
 proc getItemMeshTransform*(self: MeshLibrary; id: int32): Transform3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc getItemMeshTransform*(self: MeshLibrary; id: int32): Transform3D =
   var `?param` = [getPtr id]
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc getItemNavigationMesh*(self: MeshLibrary; id: int32): NavigationMesh =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -103,7 +103,7 @@ proc getItemNavigationMesh*(self: MeshLibrary; id: int32): NavigationMesh =
   var `?param` = [getPtr id]
   var ret: encoded NavigationMesh
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(NavigationMesh)
+  (addr ret).decode_result(NavigationMesh)
 proc getItemNavigationMeshTransform*(self: MeshLibrary; id: int32): Transform3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -112,7 +112,7 @@ proc getItemNavigationMeshTransform*(self: MeshLibrary; id: int32): Transform3D 
   var `?param` = [getPtr id]
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc getItemNavigationLayers*(self: MeshLibrary; id: int32): uint32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -121,7 +121,7 @@ proc getItemNavigationLayers*(self: MeshLibrary; id: int32): uint32 =
   var `?param` = [getPtr id]
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc getItemShapes*(self: MeshLibrary; id: int32): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -130,7 +130,7 @@ proc getItemShapes*(self: MeshLibrary; id: int32): Array =
   var `?param` = [getPtr id]
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)
 proc getItemPreview*(self: MeshLibrary; id: int32): Texture2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc getItemPreview*(self: MeshLibrary; id: int32): Texture2D =
   var `?param` = [getPtr id]
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc removeItem*(self: MeshLibrary; id: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -155,7 +155,7 @@ proc findItemByName*(self: MeshLibrary; name: String): int32 =
   var `?param` = [getPtr name]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc clear*(self: MeshLibrary) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -169,7 +169,7 @@ proc getItemList*(self: MeshLibrary): PackedInt32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className MeshLibrary, addr name, 1930428628)
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc getLastUnusedItemId*(self: MeshLibrary): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -177,4 +177,4 @@ proc getLastUnusedItemId*(self: MeshLibrary): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className MeshLibrary, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)

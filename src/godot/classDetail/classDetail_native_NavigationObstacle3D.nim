@@ -12,7 +12,7 @@ proc getRid*(self: NavigationObstacle3D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationObstacle3D, addr name, 2944877500)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc `avoidanceEnabled=`*(self: NavigationObstacle3D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc avoidanceEnabled*(self: NavigationObstacle3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationObstacle3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setNavigationMap*(self: NavigationObstacle3D; navigationMap: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc getNavigationMap*(self: NavigationObstacle3D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationObstacle3D, addr name, 2944877500)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc `radius=`*(self: NavigationObstacle3D; radius: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc radius*(self: NavigationObstacle3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationObstacle3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `height=`*(self: NavigationObstacle3D; height: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -72,7 +72,7 @@ proc height*(self: NavigationObstacle3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationObstacle3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `velocity=`*(self: NavigationObstacle3D; velocity: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -87,7 +87,7 @@ proc velocity*(self: NavigationObstacle3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationObstacle3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `vertices=`*(self: NavigationObstacle3D; vertices: PackedVector3Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -102,7 +102,7 @@ proc vertices*(self: NavigationObstacle3D): PackedVector3Array =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationObstacle3D, addr name, 497664490)
   var ret: encoded PackedVector3Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedVector3Array)
+  (addr ret).decode_result(PackedVector3Array)
 proc `avoidanceLayers=`*(self: NavigationObstacle3D; layers: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -117,7 +117,7 @@ proc avoidanceLayers*(self: NavigationObstacle3D): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationObstacle3D, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc setAvoidanceLayerValue*(self: NavigationObstacle3D; layerNumber: int32; value: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -133,7 +133,7 @@ proc getAvoidanceLayerValue*(self: NavigationObstacle3D; layerNumber: int32): Bo
   var `?param` = [getPtr layerNumber]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `use3dAvoidance=`*(self: NavigationObstacle3D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -148,4 +148,4 @@ proc use3dAvoidance*(self: NavigationObstacle3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationObstacle3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

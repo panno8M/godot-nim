@@ -12,7 +12,7 @@ proc getWidth*(self: Texture2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Texture2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getHeight*(self: Texture2D): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -20,7 +20,7 @@ proc getHeight*(self: Texture2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Texture2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getSize*(self: Texture2D): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -28,7 +28,7 @@ proc getSize*(self: Texture2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Texture2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc hasAlpha*(self: Texture2D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -36,7 +36,7 @@ proc hasAlpha*(self: Texture2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Texture2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc draw*(self: Texture2D; canvasItem: RID; position: Vector2; modulate: Color = init_Color(1, 1, 1, 1); transpose: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -65,7 +65,7 @@ proc getImage*(self: Texture2D): Image =
     methodbind = interface_ClassDB_getMethodBind(addr className Texture2D, addr name, 4190603485)
   var ret: encoded Image
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Image)
+  (addr ret).decode_result(Image)
 proc createPlaceholder*(self: Texture2D): Resource =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -73,4 +73,4 @@ proc createPlaceholder*(self: Texture2D): Resource =
     methodbind = interface_ClassDB_getMethodBind(addr className Texture2D, addr name, 121922552)
   var ret: encoded Resource
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Resource)
+  (addr ret).decode_result(Resource)

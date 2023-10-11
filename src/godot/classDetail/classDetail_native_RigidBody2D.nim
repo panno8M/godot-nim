@@ -19,7 +19,7 @@ proc mass*(self: RigidBody2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className RigidBody2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc inertia*(self: RigidBody2D): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc inertia*(self: RigidBody2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className RigidBody2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `inertia=`*(self: RigidBody2D; inertia: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc centerOfMassMode*(self: RigidBody2D): RigidBody2D_CenterOfMassMode =
     methodbind = interface_ClassDB_getMethodBind(addr className RigidBody2D, addr name, 3277132817)
   var ret: encoded RigidBody2D_CenterOfMassMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RigidBody2D_CenterOfMassMode)
+  (addr ret).decode_result(RigidBody2D_CenterOfMassMode)
 proc `centerOfMass=`*(self: RigidBody2D; centerOfMass: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc centerOfMass*(self: RigidBody2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className RigidBody2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `physicsMaterialOverride=`*(self: RigidBody2D; physicsMaterialOverride: PhysicsMaterial) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc physicsMaterialOverride*(self: RigidBody2D): PhysicsMaterial =
     methodbind = interface_ClassDB_getMethodBind(addr className RigidBody2D, addr name, 2521850424)
   var ret: encoded PhysicsMaterial
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PhysicsMaterial)
+  (addr ret).decode_result(PhysicsMaterial)
 proc `gravityScale=`*(self: RigidBody2D; gravityScale: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc gravityScale*(self: RigidBody2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className RigidBody2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `linearDampMode=`*(self: RigidBody2D; linearDampMode: RigidBody2D_DampMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc linearDampMode*(self: RigidBody2D): RigidBody2D_DampMode =
     methodbind = interface_ClassDB_getMethodBind(addr className RigidBody2D, addr name, 2970511462)
   var ret: encoded RigidBody2D_DampMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RigidBody2D_DampMode)
+  (addr ret).decode_result(RigidBody2D_DampMode)
 proc `angularDampMode=`*(self: RigidBody2D; angularDampMode: RigidBody2D_DampMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc angularDampMode*(self: RigidBody2D): RigidBody2D_DampMode =
     methodbind = interface_ClassDB_getMethodBind(addr className RigidBody2D, addr name, 2970511462)
   var ret: encoded RigidBody2D_DampMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RigidBody2D_DampMode)
+  (addr ret).decode_result(RigidBody2D_DampMode)
 proc `linearDamp=`*(self: RigidBody2D; linearDamp: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc linearDamp*(self: RigidBody2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className RigidBody2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `angularDamp=`*(self: RigidBody2D; angularDamp: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -154,7 +154,7 @@ proc angularDamp*(self: RigidBody2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className RigidBody2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `linearVelocity=`*(self: RigidBody2D; linearVelocity: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -169,7 +169,7 @@ proc linearVelocity*(self: RigidBody2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className RigidBody2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `angularVelocity=`*(self: RigidBody2D; angularVelocity: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -184,7 +184,7 @@ proc angularVelocity*(self: RigidBody2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className RigidBody2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `maxContactsReported=`*(self: RigidBody2D; amount: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -199,7 +199,7 @@ proc maxContactsReported*(self: RigidBody2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RigidBody2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getContactCount*(self: RigidBody2D): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -207,7 +207,7 @@ proc getContactCount*(self: RigidBody2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RigidBody2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `useCustomIntegrator=`*(self: RigidBody2D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -222,7 +222,7 @@ proc isUsingCustomIntegrator*(self: RigidBody2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RigidBody2D, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `contactMonitor=`*(self: RigidBody2D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -237,7 +237,7 @@ proc isContactMonitorEnabled*(self: RigidBody2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RigidBody2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `continuousCollisionDetectionMode=`*(self: RigidBody2D; mode: RigidBody2D_CCDMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -252,7 +252,7 @@ proc continuousCollisionDetectionMode*(self: RigidBody2D): RigidBody2D_CCDMode =
     methodbind = interface_ClassDB_getMethodBind(addr className RigidBody2D, addr name, 815214376)
   var ret: encoded RigidBody2D_CCDMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RigidBody2D_CCDMode)
+  (addr ret).decode_result(RigidBody2D_CCDMode)
 proc setAxisVelocity*(self: RigidBody2D; axisVelocity: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -337,7 +337,7 @@ proc constantForce*(self: RigidBody2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className RigidBody2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `constantTorque=`*(self: RigidBody2D; torque: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -352,7 +352,7 @@ proc constantTorque*(self: RigidBody2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className RigidBody2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `sleeping=`*(self: RigidBody2D; sleeping: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -367,7 +367,7 @@ proc isSleeping*(self: RigidBody2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RigidBody2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `canSleep=`*(self: RigidBody2D; ableToSleep: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -382,7 +382,7 @@ proc isAbleToSleep*(self: RigidBody2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RigidBody2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `lockRotationEnabled=`*(self: RigidBody2D; lockRotation: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -397,7 +397,7 @@ proc isLockRotationEnabled*(self: RigidBody2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RigidBody2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `freezeEnabled=`*(self: RigidBody2D; freezeMode: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -412,7 +412,7 @@ proc isFreezeEnabled*(self: RigidBody2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RigidBody2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `freezeMode=`*(self: RigidBody2D; freezeMode: RigidBody2D_FreezeMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -427,7 +427,7 @@ proc freezeMode*(self: RigidBody2D): RigidBody2D_FreezeMode =
     methodbind = interface_ClassDB_getMethodBind(addr className RigidBody2D, addr name, 2016872314)
   var ret: encoded RigidBody2D_FreezeMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RigidBody2D_FreezeMode)
+  (addr ret).decode_result(RigidBody2D_FreezeMode)
 proc getCollidingBodies*(self: RigidBody2D): TypedArray[Node2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -435,4 +435,4 @@ proc getCollidingBodies*(self: RigidBody2D): TypedArray[Node2D] =
     methodbind = interface_ClassDB_getMethodBind(addr className RigidBody2D, addr name, 3995934104)
   var ret: encoded TypedArray[Node2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Node2D])
+  (addr ret).decode_result(TypedArray[Node2D])

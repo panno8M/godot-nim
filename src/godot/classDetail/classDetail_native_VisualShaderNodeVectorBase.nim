@@ -19,4 +19,4 @@ proc opType*(self: VisualShaderNodeVectorBase): VisualShaderNodeVectorBase_OpTyp
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeVectorBase, addr name, 2568738462)
   var ret: encoded VisualShaderNodeVectorBase_OpType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VisualShaderNodeVectorBase_OpType)
+  (addr ret).decode_result(VisualShaderNodeVectorBase_OpType)

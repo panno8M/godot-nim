@@ -12,7 +12,7 @@ proc getMode*(self: Shader): Shader_Mode =
     methodbind = interface_ClassDB_getMethodBind(addr className Shader, addr name, 3392948163)
   var ret: encoded Shader_Mode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Shader_Mode)
+  (addr ret).decode_result(Shader_Mode)
 proc `code=`*(self: Shader; code: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc code*(self: Shader): String =
     methodbind = interface_ClassDB_getMethodBind(addr className Shader, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc setDefaultTextureParameter*(self: Shader; name: StringName; texture: Texture2D; index: int32 = 0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -43,7 +43,7 @@ proc getDefaultTextureParameter*(self: Shader; name: StringName; index: int32 = 
   var `?param` = [getPtr name, getPtr index]
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc getShaderUniformList*(self: Shader; getGroups: Bool = false): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -52,4 +52,4 @@ proc getShaderUniformList*(self: Shader; getGroups: Bool = false): Array =
   var `?param` = [getPtr getGroups]
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)

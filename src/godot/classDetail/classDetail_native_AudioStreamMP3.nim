@@ -19,7 +19,7 @@ proc data*(self: AudioStreamMP3): PackedByteArray =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamMP3, addr name, 2362200018)
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)
 proc `loop=`*(self: AudioStreamMP3; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc hasLoop*(self: AudioStreamMP3): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamMP3, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `loopOffset=`*(self: AudioStreamMP3; seconds: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc loopOffset*(self: AudioStreamMP3): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamMP3, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc `bpm=`*(self: AudioStreamMP3; bpm: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc bpm*(self: AudioStreamMP3): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamMP3, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc `beatCount=`*(self: AudioStreamMP3; count: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc beatCount*(self: AudioStreamMP3): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamMP3, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `barBeats=`*(self: AudioStreamMP3; count: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,4 +94,4 @@ proc barBeats*(self: AudioStreamMP3): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamMP3, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)

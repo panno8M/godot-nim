@@ -19,7 +19,7 @@ proc ticks*(self: Slider): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Slider, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc ticksOnBorders*(self: Slider): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc ticksOnBorders*(self: Slider): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Slider, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `ticksOnBorders=`*(self: Slider; ticksOnBorder: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc isEditable*(self: Slider): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Slider, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `scrollable=`*(self: Slider; scrollable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,4 +64,4 @@ proc isScrollable*(self: Slider): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Slider, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

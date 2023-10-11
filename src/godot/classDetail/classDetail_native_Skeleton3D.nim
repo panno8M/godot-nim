@@ -20,7 +20,7 @@ proc findBone*(self: Skeleton3D; name: String): int32 =
   var `?param` = [getPtr name]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getBoneName*(self: Skeleton3D; boneIdx: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -29,7 +29,7 @@ proc getBoneName*(self: Skeleton3D; boneIdx: int32): String =
   var `?param` = [getPtr boneIdx]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc setBoneName*(self: Skeleton3D; boneIdx: int32; name: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -45,7 +45,7 @@ proc getBoneParent*(self: Skeleton3D; boneIdx: int32): int32 =
   var `?param` = [getPtr boneIdx]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setBoneParent*(self: Skeleton3D; boneIdx: int32; parentIdx: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -60,7 +60,7 @@ proc getBoneCount*(self: Skeleton3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Skeleton3D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getVersion*(self: Skeleton3D): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -68,7 +68,7 @@ proc getVersion*(self: Skeleton3D): uint64 =
     methodbind = interface_ClassDB_getMethodBind(addr className Skeleton3D, addr name, 3905245786)
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)
 proc unparentBoneAndRest*(self: Skeleton3D; boneIdx: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -84,7 +84,7 @@ proc getBoneChildren*(self: Skeleton3D; boneIdx: int32): PackedInt32Array =
   var `?param` = [getPtr boneIdx]
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc getParentlessBones*(self: Skeleton3D): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -92,7 +92,7 @@ proc getParentlessBones*(self: Skeleton3D): PackedInt32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className Skeleton3D, addr name, 1930428628)
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc getBoneRest*(self: Skeleton3D; boneIdx: int32): Transform3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -101,7 +101,7 @@ proc getBoneRest*(self: Skeleton3D; boneIdx: int32): Transform3D =
   var `?param` = [getPtr boneIdx]
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc setBoneRest*(self: Skeleton3D; boneIdx: int32; rest: Transform3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -117,7 +117,7 @@ proc getBoneGlobalRest*(self: Skeleton3D; boneIdx: int32): Transform3D =
   var `?param` = [getPtr boneIdx]
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc createSkinFromRestTransforms*(self: Skeleton3D): Skin =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -125,7 +125,7 @@ proc createSkinFromRestTransforms*(self: Skeleton3D): Skin =
     methodbind = interface_ClassDB_getMethodBind(addr className Skeleton3D, addr name, 1032037385)
   var ret: encoded Skin
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Skin)
+  (addr ret).decode_result(Skin)
 proc registerSkin*(self: Skeleton3D; skin: Skin): SkinReference =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -134,7 +134,7 @@ proc registerSkin*(self: Skeleton3D; skin: Skin): SkinReference =
   var `?param` = [getPtr skin]
   var ret: encoded SkinReference
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(SkinReference)
+  (addr ret).decode_result(SkinReference)
 proc localizeRests*(self: Skeleton3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -155,7 +155,7 @@ proc getBonePose*(self: Skeleton3D; boneIdx: int32): Transform3D =
   var `?param` = [getPtr boneIdx]
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc setBonePosePosition*(self: Skeleton3D; boneIdx: int32; position: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -185,7 +185,7 @@ proc getBonePosePosition*(self: Skeleton3D; boneIdx: int32): Vector3 =
   var `?param` = [getPtr boneIdx]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc getBonePoseRotation*(self: Skeleton3D; boneIdx: int32): Quaternion =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -194,7 +194,7 @@ proc getBonePoseRotation*(self: Skeleton3D; boneIdx: int32): Quaternion =
   var `?param` = [getPtr boneIdx]
   var ret: encoded Quaternion
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Quaternion)
+  (addr ret).decode_result(Quaternion)
 proc getBonePoseScale*(self: Skeleton3D; boneIdx: int32): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -203,7 +203,7 @@ proc getBonePoseScale*(self: Skeleton3D; boneIdx: int32): Vector3 =
   var `?param` = [getPtr boneIdx]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc resetBonePose*(self: Skeleton3D; boneIdx: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -225,7 +225,7 @@ proc isBoneEnabled*(self: Skeleton3D; boneIdx: int32): Bool =
   var `?param` = [getPtr boneIdx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setBoneEnabled*(self: Skeleton3D; boneIdx: int32; enabled: Bool = true) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -254,7 +254,7 @@ proc getBoneGlobalPoseOverride*(self: Skeleton3D; boneIdx: int32): Transform3D =
   var `?param` = [getPtr boneIdx]
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc getBoneGlobalPose*(self: Skeleton3D; boneIdx: int32): Transform3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -263,7 +263,7 @@ proc getBoneGlobalPose*(self: Skeleton3D; boneIdx: int32): Transform3D =
   var `?param` = [getPtr boneIdx]
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc getBoneGlobalPoseNoOverride*(self: Skeleton3D; boneIdx: int32): Transform3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -272,7 +272,7 @@ proc getBoneGlobalPoseNoOverride*(self: Skeleton3D; boneIdx: int32): Transform3D
   var `?param` = [getPtr boneIdx]
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc forceUpdateAllBoneTransforms*(self: Skeleton3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -300,7 +300,7 @@ proc motionScale*(self: Skeleton3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Skeleton3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `showRestOnly=`*(self: Skeleton3D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -315,7 +315,7 @@ proc isShowRestOnly*(self: Skeleton3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Skeleton3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `animatePhysicalBones=`*(self: Skeleton3D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -330,7 +330,7 @@ proc animatePhysicalBones*(self: Skeleton3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Skeleton3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc physicalBonesStopSimulation*(self: Skeleton3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

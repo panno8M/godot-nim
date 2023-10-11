@@ -19,7 +19,7 @@ proc uniformType*(self: RDUniform): RenderingDevice_UniformType =
     methodbind = interface_ClassDB_getMethodBind(addr className RDUniform, addr name, 475470040)
   var ret: encoded RenderingDevice_UniformType
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_UniformType)
+  (addr ret).decode_result(RenderingDevice_UniformType)
 proc `binding=`*(self: RDUniform; pMember: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc binding*(self: RDUniform): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RDUniform, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc addId*(self: RDUniform; id: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -55,4 +55,4 @@ proc getIds*(self: RDUniform): TypedArray[RID] =
     methodbind = interface_ClassDB_getMethodBind(addr className RDUniform, addr name, 3995934104)
   var ret: encoded TypedArray[RID]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[RID])
+  (addr ret).decode_result(TypedArray[RID])

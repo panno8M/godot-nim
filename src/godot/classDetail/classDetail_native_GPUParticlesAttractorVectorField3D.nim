@@ -19,7 +19,7 @@ proc size*(self: GPUParticlesAttractorVectorField3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesAttractorVectorField3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `texture=`*(self: GPUParticlesAttractorVectorField3D; texture: Texture3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,4 +34,4 @@ proc texture*(self: GPUParticlesAttractorVectorField3D): Texture3D =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesAttractorVectorField3D, addr name, 373985333)
   var ret: encoded Texture3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture3D)
+  (addr ret).decode_result(Texture3D)

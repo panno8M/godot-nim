@@ -19,4 +19,4 @@ proc delta*(self: InputEventPanGesture): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventPanGesture, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)

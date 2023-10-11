@@ -19,7 +19,7 @@ proc customSolverBias*(self: Shape3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Shape3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `margin=`*(self: Shape3D; margin: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc margin*(self: Shape3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Shape3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getDebugMesh*(self: Shape3D): ArrayMesh =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,4 +42,4 @@ proc getDebugMesh*(self: Shape3D): ArrayMesh =
     methodbind = interface_ClassDB_getMethodBind(addr className Shape3D, addr name, 1605880883)
   var ret: encoded ArrayMesh
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(ArrayMesh)
+  (addr ret).decode_result(ArrayMesh)

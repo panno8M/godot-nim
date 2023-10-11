@@ -19,7 +19,7 @@ proc enabled*(self: SkeletonModification2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2D, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getModificationStack*(self: SkeletonModification2D): SkeletonModificationStack2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc getModificationStack*(self: SkeletonModification2D): SkeletonModificationSt
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2D, addr name, 2137761694)
   var ret: encoded SkeletonModificationStack2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(SkeletonModificationStack2D)
+  (addr ret).decode_result(SkeletonModificationStack2D)
 proc setIsSetup*(self: SkeletonModification2D; isSetup: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc getIsSetup*(self: SkeletonModification2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `executionMode=`*(self: SkeletonModification2D; executionMode: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc executionMode*(self: SkeletonModification2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc clampAngle*(self: SkeletonModification2D; angle: Float; min: Float; max: Float; invert: Bool): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -66,7 +66,7 @@ proc clampAngle*(self: SkeletonModification2D; angle: Float; min: Float; max: Fl
   var `?param` = [getPtr angle, getPtr min, getPtr max, getPtr invert]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc setEditorDrawGizmo*(self: SkeletonModification2D; drawGizmo: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -81,4 +81,4 @@ proc getEditorDrawGizmo*(self: SkeletonModification2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

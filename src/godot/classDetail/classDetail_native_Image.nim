@@ -12,7 +12,7 @@ proc getWidth*(self: Image): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getHeight*(self: Image): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -20,7 +20,7 @@ proc getHeight*(self: Image): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getSize*(self: Image): Vector2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -28,7 +28,7 @@ proc getSize*(self: Image): Vector2i =
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 3690982128)
   var ret: encoded Vector2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2i)
+  (addr ret).decode_result(Vector2i)
 proc hasMipmaps*(self: Image): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -36,7 +36,7 @@ proc hasMipmaps*(self: Image): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getFormat*(self: Image): Image_Format =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -44,7 +44,7 @@ proc getFormat*(self: Image): Image_Format =
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 3847873762)
   var ret: encoded Image_Format
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Image_Format)
+  (addr ret).decode_result(Image_Format)
 proc getData*(self: Image): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -52,7 +52,7 @@ proc getData*(self: Image): PackedByteArray =
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 2362200018)
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)
 proc convert*(self: Image; format: Image_Format) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -68,7 +68,7 @@ proc getMipmapOffset*(self: Image; mipmap: int32): int32 =
   var `?param` = [getPtr mipmap]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc resizeToPo2*(self: Image; square: Bool = false; interpolation: Image_Interpolation = interpolateBilinear) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -116,7 +116,7 @@ proc generateMipmaps*(self: Image; renormalize: Bool = false): Error =
   var `?param` = [getPtr renormalize]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc clearMipmaps*(self: Image) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -131,7 +131,7 @@ proc create*(_: typedesc[Image]; width: int32; height: int32; useMipmaps: Bool; 
   var `?param` = [getPtr width, getPtr height, getPtr useMipmaps, getPtr format]
   var ret: encoded Image
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(Image)
+  (addr ret).decode_result(Image)
 proc createFromData*(_: typedesc[Image]; width: int32; height: int32; useMipmaps: Bool; format: Image_Format; data: PackedByteArray): Image =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -140,7 +140,7 @@ proc createFromData*(_: typedesc[Image]; width: int32; height: int32; useMipmaps
   var `?param` = [getPtr width, getPtr height, getPtr useMipmaps, getPtr format, getPtr data]
   var ret: encoded Image
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(Image)
+  (addr ret).decode_result(Image)
 proc setData*(self: Image; width: int32; height: int32; useMipmaps: Bool; format: Image_Format; data: PackedByteArray) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -155,7 +155,7 @@ proc isEmpty*(self: Image): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc load*(self: Image; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -164,7 +164,7 @@ proc load*(self: Image; path: String): Error =
   var `?param` = [getPtr path]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc loadFromFile*(_: typedesc[Image]; path: String): Image =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -173,7 +173,7 @@ proc loadFromFile*(_: typedesc[Image]; path: String): Image =
   var `?param` = [getPtr path]
   var ret: encoded Image
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode(Image)
+  (addr ret).decode_result(Image)
 proc savePng*(self: Image; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -182,7 +182,7 @@ proc savePng*(self: Image; path: String): Error =
   var `?param` = [getPtr path]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc savePngToBuffer*(self: Image): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -190,7 +190,7 @@ proc savePngToBuffer*(self: Image): PackedByteArray =
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 2362200018)
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)
 proc saveJpg*(self: Image; path: String; quality: Float = 0.75): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -199,7 +199,7 @@ proc saveJpg*(self: Image; path: String; quality: Float = 0.75): Error =
   var `?param` = [getPtr path, getPtr quality]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc saveJpgToBuffer*(self: Image; quality: Float = 0.75): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -208,7 +208,7 @@ proc saveJpgToBuffer*(self: Image; quality: Float = 0.75): PackedByteArray =
   var `?param` = [getPtr quality]
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)
 proc saveExr*(self: Image; path: String; grayscale: Bool = false): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -217,7 +217,7 @@ proc saveExr*(self: Image; path: String; grayscale: Bool = false): Error =
   var `?param` = [getPtr path, getPtr grayscale]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc saveExrToBuffer*(self: Image; grayscale: Bool = false): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -226,7 +226,7 @@ proc saveExrToBuffer*(self: Image; grayscale: Bool = false): PackedByteArray =
   var `?param` = [getPtr grayscale]
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)
 proc saveWebp*(self: Image; path: String; lossy: Bool = false; quality: Float = 0.75): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -235,7 +235,7 @@ proc saveWebp*(self: Image; path: String; lossy: Bool = false; quality: Float = 
   var `?param` = [getPtr path, getPtr lossy, getPtr quality]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc saveWebpToBuffer*(self: Image; lossy: Bool = false; quality: Float = 0.75): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -244,7 +244,7 @@ proc saveWebpToBuffer*(self: Image; lossy: Bool = false; quality: Float = 0.75):
   var `?param` = [getPtr lossy, getPtr quality]
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)
 proc detectAlpha*(self: Image): Image_AlphaMode =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -252,7 +252,7 @@ proc detectAlpha*(self: Image): Image_AlphaMode =
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 2030116505)
   var ret: encoded Image_AlphaMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Image_AlphaMode)
+  (addr ret).decode_result(Image_AlphaMode)
 proc isInvisible*(self: Image): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -260,7 +260,7 @@ proc isInvisible*(self: Image): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc detectUsedChannels*(self: Image; source: Image_CompressSource = compressSourceGeneric): Image_UsedChannels =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -269,7 +269,7 @@ proc detectUsedChannels*(self: Image; source: Image_CompressSource = compressSou
   var `?param` = [getPtr source]
   var ret: encoded Image_UsedChannels
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Image_UsedChannels)
+  (addr ret).decode_result(Image_UsedChannels)
 proc compress*(self: Image; mode: Image_CompressMode; source: Image_CompressSource = compressSourceGeneric; astcFormat: Image_ASTCFormat = astcFormat4x4): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -278,7 +278,7 @@ proc compress*(self: Image; mode: Image_CompressMode; source: Image_CompressSour
   var `?param` = [getPtr mode, getPtr source, getPtr astcFormat]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc compressFromChannels*(self: Image; mode: Image_CompressMode; channels: Image_UsedChannels; astcFormat: Image_ASTCFormat = astcFormat4x4): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -287,7 +287,7 @@ proc compressFromChannels*(self: Image; mode: Image_CompressMode; channels: Imag
   var `?param` = [getPtr mode, getPtr channels, getPtr astcFormat]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc decompress*(self: Image): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -295,7 +295,7 @@ proc decompress*(self: Image): Error =
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 166280745)
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc isCompressed*(self: Image): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -303,7 +303,7 @@ proc isCompressed*(self: Image): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc rotate90*(self: Image; direction: ClockDirection) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -348,7 +348,7 @@ proc rgbeToSrgb*(self: Image): Image =
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 564927088)
   var ret: encoded Image
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Image)
+  (addr ret).decode_result(Image)
 proc bumpMapToNormalMap*(self: Image; bumpScale: Float = 1.0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -364,7 +364,7 @@ proc computeImageMetrics*(self: Image; comparedImage: Image; useLuma: Bool): Dic
   var `?param` = [getPtr comparedImage, getPtr useLuma]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc blitRect*(self: Image; src: Image; srcRect: Rect2i; dst: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -414,7 +414,7 @@ proc getUsedRect*(self: Image): Rect2i =
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 410525958)
   var ret: encoded Rect2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Rect2i)
+  (addr ret).decode_result(Rect2i)
 proc getRegion*(self: Image; region: Rect2i): Image =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -423,7 +423,7 @@ proc getRegion*(self: Image; region: Rect2i): Image =
   var `?param` = [getPtr region]
   var ret: encoded Image
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Image)
+  (addr ret).decode_result(Image)
 proc copyFrom*(self: Image; src: Image) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -439,7 +439,7 @@ proc getPixelv*(self: Image; point: Vector2i): Color =
   var `?param` = [getPtr point]
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc getPixel*(self: Image; x: int32; y: int32): Color =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -448,7 +448,7 @@ proc getPixel*(self: Image; x: int32; y: int32): Color =
   var `?param` = [getPtr x, getPtr y]
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc setPixelv*(self: Image; point: Vector2i; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -478,7 +478,7 @@ proc loadPngFromBuffer*(self: Image; buffer: PackedByteArray): Error =
   var `?param` = [getPtr buffer]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc loadJpgFromBuffer*(self: Image; buffer: PackedByteArray): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -487,7 +487,7 @@ proc loadJpgFromBuffer*(self: Image; buffer: PackedByteArray): Error =
   var `?param` = [getPtr buffer]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc loadWebpFromBuffer*(self: Image; buffer: PackedByteArray): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -496,7 +496,7 @@ proc loadWebpFromBuffer*(self: Image; buffer: PackedByteArray): Error =
   var `?param` = [getPtr buffer]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc loadTgaFromBuffer*(self: Image; buffer: PackedByteArray): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -505,7 +505,7 @@ proc loadTgaFromBuffer*(self: Image; buffer: PackedByteArray): Error =
   var `?param` = [getPtr buffer]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc loadBmpFromBuffer*(self: Image; buffer: PackedByteArray): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -514,4 +514,4 @@ proc loadBmpFromBuffer*(self: Image; buffer: PackedByteArray): Error =
   var `?param` = [getPtr buffer]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)

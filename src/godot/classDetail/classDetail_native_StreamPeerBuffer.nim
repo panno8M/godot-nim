@@ -19,7 +19,7 @@ proc getSize*(self: StreamPeerBuffer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeerBuffer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getPosition*(self: StreamPeerBuffer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc getPosition*(self: StreamPeerBuffer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeerBuffer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc resize*(self: StreamPeerBuffer; size: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc dataArray*(self: StreamPeerBuffer): PackedByteArray =
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeerBuffer, addr name, 2362200018)
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)
 proc clear*(self: StreamPeerBuffer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -63,4 +63,4 @@ proc duplicate*(self: StreamPeerBuffer): StreamPeerBuffer =
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeerBuffer, addr name, 2474064677)
   var ret: encoded StreamPeerBuffer
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(StreamPeerBuffer)
+  (addr ret).decode_result(StreamPeerBuffer)

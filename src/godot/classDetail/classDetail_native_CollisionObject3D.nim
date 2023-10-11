@@ -19,7 +19,7 @@ proc collisionLayer*(self: CollisionObject3D): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionObject3D, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `collisionMask=`*(self: CollisionObject3D; mask: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc collisionMask*(self: CollisionObject3D): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionObject3D, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc setCollisionLayerValue*(self: CollisionObject3D; layerNumber: int32; value: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -50,7 +50,7 @@ proc getCollisionLayerValue*(self: CollisionObject3D; layerNumber: int32): Bool 
   var `?param` = [getPtr layerNumber]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setCollisionMaskValue*(self: CollisionObject3D; layerNumber: int32; value: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -66,7 +66,7 @@ proc getCollisionMaskValue*(self: CollisionObject3D; layerNumber: int32): Bool =
   var `?param` = [getPtr layerNumber]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `collisionPriority=`*(self: CollisionObject3D; priority: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -81,7 +81,7 @@ proc collisionPriority*(self: CollisionObject3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionObject3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `disableMode=`*(self: CollisionObject3D; mode: CollisionObject3D_DisableMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -96,7 +96,7 @@ proc disableMode*(self: CollisionObject3D): CollisionObject3D_DisableMode =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionObject3D, addr name, 410164780)
   var ret: encoded CollisionObject3D_DisableMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(CollisionObject3D_DisableMode)
+  (addr ret).decode_result(CollisionObject3D_DisableMode)
 proc `rayPickable=`*(self: CollisionObject3D; rayPickable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -111,7 +111,7 @@ proc isRayPickable*(self: CollisionObject3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionObject3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `captureInputOnDrag=`*(self: CollisionObject3D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -126,7 +126,7 @@ proc captureInputOnDrag*(self: CollisionObject3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionObject3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getRid*(self: CollisionObject3D): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -134,7 +134,7 @@ proc getRid*(self: CollisionObject3D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionObject3D, addr name, 2944877500)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc createShapeOwner*(self: CollisionObject3D; owner: Object): uint32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -143,7 +143,7 @@ proc createShapeOwner*(self: CollisionObject3D; owner: Object): uint32 =
   var `?param` = [getPtr owner]
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc removeShapeOwner*(self: CollisionObject3D; ownerId: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -158,7 +158,7 @@ proc getShapeOwners*(self: CollisionObject3D): PackedInt32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionObject3D, addr name, 969006518)
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc shapeOwnerSetTransform*(self: CollisionObject3D; ownerId: uint32; transform: Transform3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -174,7 +174,7 @@ proc shapeOwnerGetTransform*(self: CollisionObject3D; ownerId: uint32): Transfor
   var `?param` = [getPtr ownerId]
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc shapeOwnerGetOwner*(self: CollisionObject3D; ownerId: uint32): Object =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -183,7 +183,7 @@ proc shapeOwnerGetOwner*(self: CollisionObject3D; ownerId: uint32): Object =
   var `?param` = [getPtr ownerId]
   var ret: encoded Object
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Object)
+  (addr ret).decode_result(Object)
 proc shapeOwnerSetDisabled*(self: CollisionObject3D; ownerId: uint32; disabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -199,7 +199,7 @@ proc isShapeOwnerDisabled*(self: CollisionObject3D; ownerId: uint32): Bool =
   var `?param` = [getPtr ownerId]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc shapeOwnerAddShape*(self: CollisionObject3D; ownerId: uint32; shape: Shape3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -215,7 +215,7 @@ proc shapeOwnerGetShapeCount*(self: CollisionObject3D; ownerId: uint32): int32 =
   var `?param` = [getPtr ownerId]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc shapeOwnerGetShape*(self: CollisionObject3D; ownerId: uint32; shapeId: int32): Shape3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -224,7 +224,7 @@ proc shapeOwnerGetShape*(self: CollisionObject3D; ownerId: uint32; shapeId: int3
   var `?param` = [getPtr ownerId, getPtr shapeId]
   var ret: encoded Shape3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Shape3D)
+  (addr ret).decode_result(Shape3D)
 proc shapeOwnerGetShapeIndex*(self: CollisionObject3D; ownerId: uint32; shapeId: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -233,7 +233,7 @@ proc shapeOwnerGetShapeIndex*(self: CollisionObject3D; ownerId: uint32; shapeId:
   var `?param` = [getPtr ownerId, getPtr shapeId]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc shapeOwnerRemoveShape*(self: CollisionObject3D; ownerId: uint32; shapeId: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -256,4 +256,4 @@ proc shapeFindOwner*(self: CollisionObject3D; shapeIndex: int32): uint32 =
   var `?param` = [getPtr shapeIndex]
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)

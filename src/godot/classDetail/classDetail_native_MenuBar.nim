@@ -19,7 +19,7 @@ proc isSwitchOnHover*(self: MenuBar): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className MenuBar, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setDisableShortcuts*(self: MenuBar; disabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -41,7 +41,7 @@ proc isPreferGlobalMenu*(self: MenuBar): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className MenuBar, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isNativeMenu*(self: MenuBar): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc isNativeMenu*(self: MenuBar): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className MenuBar, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getMenuCount*(self: MenuBar): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc getMenuCount*(self: MenuBar): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className MenuBar, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `textDirection=`*(self: MenuBar; direction: Control_TextDirection) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -72,7 +72,7 @@ proc textDirection*(self: MenuBar): Control_TextDirection =
     methodbind = interface_ClassDB_getMethodBind(addr className MenuBar, addr name, 797257663)
   var ret: encoded Control_TextDirection
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Control_TextDirection)
+  (addr ret).decode_result(Control_TextDirection)
 proc `language=`*(self: MenuBar; language: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -87,7 +87,7 @@ proc language*(self: MenuBar): String =
     methodbind = interface_ClassDB_getMethodBind(addr className MenuBar, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `flat=`*(self: MenuBar; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -102,7 +102,7 @@ proc isFlat*(self: MenuBar): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className MenuBar, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `startIndex=`*(self: MenuBar; enabled: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -117,7 +117,7 @@ proc startIndex*(self: MenuBar): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className MenuBar, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setMenuTitle*(self: MenuBar; menu: int32; title: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -133,7 +133,7 @@ proc getMenuTitle*(self: MenuBar; menu: int32): String =
   var `?param` = [getPtr menu]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc setMenuTooltip*(self: MenuBar; menu: int32; tooltip: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -149,7 +149,7 @@ proc getMenuTooltip*(self: MenuBar; menu: int32): String =
   var `?param` = [getPtr menu]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc setMenuDisabled*(self: MenuBar; menu: int32; disabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -165,7 +165,7 @@ proc isMenuDisabled*(self: MenuBar; menu: int32): Bool =
   var `?param` = [getPtr menu]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setMenuHidden*(self: MenuBar; menu: int32; hidden: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -181,7 +181,7 @@ proc isMenuHidden*(self: MenuBar; menu: int32): Bool =
   var `?param` = [getPtr menu]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getMenuPopup*(self: MenuBar; menu: int32): PopupMenu =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -190,4 +190,4 @@ proc getMenuPopup*(self: MenuBar; menu: int32): PopupMenu =
   var `?param` = [getPtr menu]
   var ret: encoded PopupMenu
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PopupMenu)
+  (addr ret).decode_result(PopupMenu)

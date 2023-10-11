@@ -19,7 +19,7 @@ proc interactionProfilePath*(self: OpenXRInteractionProfile): String =
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRInteractionProfile, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getBindingCount*(self: OpenXRInteractionProfile): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc getBindingCount*(self: OpenXRInteractionProfile): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRInteractionProfile, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getBinding*(self: OpenXRInteractionProfile; index: int32): OpenXRIPBinding =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -36,7 +36,7 @@ proc getBinding*(self: OpenXRInteractionProfile; index: int32): OpenXRIPBinding 
   var `?param` = [getPtr index]
   var ret: encoded OpenXRIPBinding
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(OpenXRIPBinding)
+  (addr ret).decode_result(OpenXRIPBinding)
 proc `bindings=`*(self: OpenXRInteractionProfile; bindings: Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -51,4 +51,4 @@ proc bindings*(self: OpenXRInteractionProfile): Array =
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRInteractionProfile, addr name, 3995934104)
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)

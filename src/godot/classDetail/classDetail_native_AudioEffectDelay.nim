@@ -19,7 +19,7 @@ proc dry*(self: AudioEffectDelay): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDelay, addr name, 191475506)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `tap1Active=`*(self: AudioEffectDelay; amount: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc isTap1Active*(self: AudioEffectDelay): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDelay, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `tap1DelayMs=`*(self: AudioEffectDelay; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc tap1DelayMs*(self: AudioEffectDelay): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDelay, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `tap1LevelDb=`*(self: AudioEffectDelay; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc tap1LevelDb*(self: AudioEffectDelay): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDelay, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `tap1Pan=`*(self: AudioEffectDelay; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc tap1Pan*(self: AudioEffectDelay): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDelay, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `tap2Active=`*(self: AudioEffectDelay; amount: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc isTap2Active*(self: AudioEffectDelay): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDelay, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `tap2DelayMs=`*(self: AudioEffectDelay; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc tap2DelayMs*(self: AudioEffectDelay): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDelay, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `tap2LevelDb=`*(self: AudioEffectDelay; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc tap2LevelDb*(self: AudioEffectDelay): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDelay, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `tap2Pan=`*(self: AudioEffectDelay; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc tap2Pan*(self: AudioEffectDelay): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDelay, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `feedbackActive=`*(self: AudioEffectDelay; amount: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -154,7 +154,7 @@ proc isFeedbackActive*(self: AudioEffectDelay): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDelay, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `feedbackDelayMs=`*(self: AudioEffectDelay; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -169,7 +169,7 @@ proc feedbackDelayMs*(self: AudioEffectDelay): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDelay, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `feedbackLevelDb=`*(self: AudioEffectDelay; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -184,7 +184,7 @@ proc feedbackLevelDb*(self: AudioEffectDelay): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDelay, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `feedbackLowpass=`*(self: AudioEffectDelay; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -199,4 +199,4 @@ proc feedbackLowpass*(self: AudioEffectDelay): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectDelay, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

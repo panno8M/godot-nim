@@ -19,7 +19,7 @@ proc label*(self: EditorProperty): String =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorProperty, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `readOnly=`*(self: EditorProperty; readOnly: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc isReadOnly*(self: EditorProperty): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorProperty, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `checkable=`*(self: EditorProperty; checkable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc isCheckable*(self: EditorProperty): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorProperty, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `checked=`*(self: EditorProperty; checked: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc isChecked*(self: EditorProperty): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorProperty, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `drawWarning=`*(self: EditorProperty; drawWarning: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc isDrawWarning*(self: EditorProperty): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorProperty, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `keying=`*(self: EditorProperty; keying: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc isKeying*(self: EditorProperty): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorProperty, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `deletable=`*(self: EditorProperty; deletable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc isDeletable*(self: EditorProperty): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorProperty, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getEditedProperty*(self: EditorProperty): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -117,7 +117,7 @@ proc getEditedProperty*(self: EditorProperty): StringName =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorProperty, addr name, 2002593661)
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc getEditedObject*(self: EditorProperty): Object =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -125,7 +125,7 @@ proc getEditedObject*(self: EditorProperty): Object =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorProperty, addr name, 2050059866)
   var ret: encoded Object
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Object)
+  (addr ret).decode_result(Object)
 proc updateProperty*(self: EditorProperty) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

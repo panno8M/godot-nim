@@ -19,7 +19,7 @@ proc rootPath*(self: MultiplayerSynchronizer): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerSynchronizer, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc `replicationInterval=`*(self: MultiplayerSynchronizer; milliseconds: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc replicationInterval*(self: MultiplayerSynchronizer): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerSynchronizer, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc `deltaInterval=`*(self: MultiplayerSynchronizer; milliseconds: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc deltaInterval*(self: MultiplayerSynchronizer): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerSynchronizer, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc `replicationConfig=`*(self: MultiplayerSynchronizer; config: SceneReplicationConfig) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc replicationConfig*(self: MultiplayerSynchronizer): SceneReplicationConfig =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerSynchronizer, addr name, 3200254614)
   var ret: encoded SceneReplicationConfig
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(SceneReplicationConfig)
+  (addr ret).decode_result(SceneReplicationConfig)
 proc `visibilityUpdateMode=`*(self: MultiplayerSynchronizer; mode: MultiplayerSynchronizer_VisibilityUpdateMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc visibilityUpdateMode*(self: MultiplayerSynchronizer): MultiplayerSynchroniz
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerSynchronizer, addr name, 3352241418)
   var ret: encoded MultiplayerSynchronizer_VisibilityUpdateMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(MultiplayerSynchronizer_VisibilityUpdateMode)
+  (addr ret).decode_result(MultiplayerSynchronizer_VisibilityUpdateMode)
 proc updateVisibility*(self: MultiplayerSynchronizer; forPeer: int32 = 0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -101,7 +101,7 @@ proc isVisibilityPublic*(self: MultiplayerSynchronizer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerSynchronizer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc addVisibilityFilter*(self: MultiplayerSynchronizer; filter: Callable) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -131,4 +131,4 @@ proc getVisibilityFor*(self: MultiplayerSynchronizer; peer: int32): Bool =
   var `?param` = [getPtr peer]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

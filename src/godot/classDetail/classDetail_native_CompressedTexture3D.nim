@@ -13,7 +13,7 @@ proc `load=`*(self: CompressedTexture3D; path: String): Error =
   var `?param` = [getPtr path]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc loadPath*(self: CompressedTexture3D): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -21,4 +21,4 @@ proc loadPath*(self: CompressedTexture3D): String =
     methodbind = interface_ClassDB_getMethodBind(addr className CompressedTexture3D, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)

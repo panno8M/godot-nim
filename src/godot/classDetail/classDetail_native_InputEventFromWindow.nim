@@ -19,4 +19,4 @@ proc windowId*(self: InputEventFromWindow): int64 =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventFromWindow, addr name, 3905245786)
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int64)
+  (addr ret).decode_result(int64)

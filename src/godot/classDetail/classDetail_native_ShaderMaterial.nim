@@ -19,7 +19,7 @@ proc shader*(self: ShaderMaterial): Shader =
     methodbind = interface_ClassDB_getMethodBind(addr className ShaderMaterial, addr name, 2078273437)
   var ret: encoded Shader
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Shader)
+  (addr ret).decode_result(Shader)
 proc setShaderParameter*(self: ShaderMaterial; param: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -35,4 +35,4 @@ proc getShaderParameter*(self: ShaderMaterial; param: StringName): Variant =
   var `?param` = [getPtr param]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)

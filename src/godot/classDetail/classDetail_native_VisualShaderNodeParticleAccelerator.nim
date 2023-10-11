@@ -19,4 +19,4 @@ proc mode*(self: VisualShaderNodeParticleAccelerator): VisualShaderNodeParticleA
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeParticleAccelerator, addr name, 2660365633)
   var ret: encoded VisualShaderNodeParticleAccelerator_Mode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VisualShaderNodeParticleAccelerator_Mode)
+  (addr ret).decode_result(VisualShaderNodeParticleAccelerator_Mode)

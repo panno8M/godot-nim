@@ -13,4 +13,4 @@ proc mixAudio*(self: VideoStreamPlayback; numFrames: int32; buffer: PackedFloat3
   var `?param` = [getPtr numFrames, getPtr buffer, getPtr offset]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)

@@ -19,7 +19,7 @@ proc physicsTicksPerSecond*(self: Engine): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `maxPhysicsStepsPerFrame=`*(self: Engine; maxPhysicsSteps: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc maxPhysicsStepsPerFrame*(self: Engine): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `physicsJitterFix=`*(self: Engine; physicsJitterFix: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc physicsJitterFix*(self: Engine): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc getPhysicsInterpolationFraction*(self: Engine): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc getPhysicsInterpolationFraction*(self: Engine): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc `maxFps=`*(self: Engine; maxFps: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -72,7 +72,7 @@ proc maxFps*(self: Engine): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `timeScale=`*(self: Engine; timeScale: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -87,7 +87,7 @@ proc timeScale*(self: Engine): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 191475506)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc getFramesDrawn*(self: Engine): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -95,7 +95,7 @@ proc getFramesDrawn*(self: Engine): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getFramesPerSecond*(self: Engine): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -103,7 +103,7 @@ proc getFramesPerSecond*(self: Engine): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc getPhysicsFrames*(self: Engine): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -111,7 +111,7 @@ proc getPhysicsFrames*(self: Engine): uint64 =
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 3905245786)
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)
 proc getProcessFrames*(self: Engine): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -119,7 +119,7 @@ proc getProcessFrames*(self: Engine): uint64 =
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 3905245786)
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)
 proc getMainLoop*(self: Engine): MainLoop =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -127,7 +127,7 @@ proc getMainLoop*(self: Engine): MainLoop =
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 1016888095)
   var ret: encoded MainLoop
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(MainLoop)
+  (addr ret).decode_result(MainLoop)
 proc getVersionInfo*(self: Engine): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -135,7 +135,7 @@ proc getVersionInfo*(self: Engine): Dictionary =
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 3102165223)
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc getAuthorInfo*(self: Engine): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -143,7 +143,7 @@ proc getAuthorInfo*(self: Engine): Dictionary =
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 3102165223)
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc getCopyrightInfo*(self: Engine): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -151,7 +151,7 @@ proc getCopyrightInfo*(self: Engine): TypedArray[Dictionary] =
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 3995934104)
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Dictionary])
+  (addr ret).decode_result(TypedArray[Dictionary])
 proc getDonorInfo*(self: Engine): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -159,7 +159,7 @@ proc getDonorInfo*(self: Engine): Dictionary =
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 3102165223)
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc getLicenseInfo*(self: Engine): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -167,7 +167,7 @@ proc getLicenseInfo*(self: Engine): Dictionary =
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 3102165223)
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc getLicenseText*(self: Engine): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -175,7 +175,7 @@ proc getLicenseText*(self: Engine): String =
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getArchitectureName*(self: Engine): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -183,7 +183,7 @@ proc getArchitectureName*(self: Engine): String =
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc isInPhysicsFrame*(self: Engine): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -191,7 +191,7 @@ proc isInPhysicsFrame*(self: Engine): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc hasSingleton*(self: Engine; name: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -200,7 +200,7 @@ proc hasSingleton*(self: Engine; name: StringName): Bool =
   var `?param` = [getPtr name]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getSingleton*(self: Engine; name: StringName): Object =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -209,7 +209,7 @@ proc getSingleton*(self: Engine; name: StringName): Object =
   var `?param` = [getPtr name]
   var ret: encoded Object
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Object)
+  (addr ret).decode_result(Object)
 proc registerSingleton*(self: Engine; name: StringName; instance: Object) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -231,7 +231,7 @@ proc getSingletonList*(self: Engine): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc registerScriptLanguage*(self: Engine; language: ScriptLanguage): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -240,7 +240,7 @@ proc registerScriptLanguage*(self: Engine; language: ScriptLanguage): Error =
   var `?param` = [getPtr language]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc unregisterScriptLanguage*(self: Engine; language: ScriptLanguage): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -249,7 +249,7 @@ proc unregisterScriptLanguage*(self: Engine; language: ScriptLanguage): Error =
   var `?param` = [getPtr language]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc getScriptLanguageCount*(self: Engine): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -257,7 +257,7 @@ proc getScriptLanguageCount*(self: Engine): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getScriptLanguage*(self: Engine; index: int32): ScriptLanguage =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -266,7 +266,7 @@ proc getScriptLanguage*(self: Engine; index: int32): ScriptLanguage =
   var `?param` = [getPtr index]
   var ret: encoded ScriptLanguage
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(ScriptLanguage)
+  (addr ret).decode_result(ScriptLanguage)
 proc isEditorHint*(self: Engine): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -274,7 +274,7 @@ proc isEditorHint*(self: Engine): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getWriteMoviePath*(self: Engine): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -282,7 +282,7 @@ proc getWriteMoviePath*(self: Engine): String =
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `printErrorMessages=`*(self: Engine; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -297,4 +297,4 @@ proc isPrintingErrorMessages*(self: Engine): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Engine, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

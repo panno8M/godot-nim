@@ -12,7 +12,7 @@ proc getPhysicsRid*(self: SoftBody3D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className SoftBody3D, addr name, 2944877500)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc `collisionMask=`*(self: SoftBody3D; collisionMask: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc collisionMask*(self: SoftBody3D): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className SoftBody3D, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `collisionLayer=`*(self: SoftBody3D; collisionLayer: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc collisionLayer*(self: SoftBody3D): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className SoftBody3D, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc setCollisionMaskValue*(self: SoftBody3D; layerNumber: int32; value: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -58,7 +58,7 @@ proc getCollisionMaskValue*(self: SoftBody3D; layerNumber: int32): Bool =
   var `?param` = [getPtr layerNumber]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setCollisionLayerValue*(self: SoftBody3D; layerNumber: int32; value: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -74,7 +74,7 @@ proc getCollisionLayerValue*(self: SoftBody3D; layerNumber: int32): Bool =
   var `?param` = [getPtr layerNumber]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `parentCollisionIgnore=`*(self: SoftBody3D; parentCollisionIgnore: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -89,7 +89,7 @@ proc parentCollisionIgnore*(self: SoftBody3D): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className SoftBody3D, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc `disableMode=`*(self: SoftBody3D; mode: SoftBody3D_DisableMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -104,7 +104,7 @@ proc disableMode*(self: SoftBody3D): SoftBody3D_DisableMode =
     methodbind = interface_ClassDB_getMethodBind(addr className SoftBody3D, addr name, 4135042476)
   var ret: encoded SoftBody3D_DisableMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(SoftBody3D_DisableMode)
+  (addr ret).decode_result(SoftBody3D_DisableMode)
 proc getCollisionExceptions*(self: SoftBody3D): TypedArray[PhysicsBody3D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -112,7 +112,7 @@ proc getCollisionExceptions*(self: SoftBody3D): TypedArray[PhysicsBody3D] =
     methodbind = interface_ClassDB_getMethodBind(addr className SoftBody3D, addr name, 2915620761)
   var ret: encoded TypedArray[PhysicsBody3D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[PhysicsBody3D])
+  (addr ret).decode_result(TypedArray[PhysicsBody3D])
 proc addCollisionExceptionWith*(self: SoftBody3D; body: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -141,7 +141,7 @@ proc simulationPrecision*(self: SoftBody3D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className SoftBody3D, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `totalMass=`*(self: SoftBody3D; mass: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -156,7 +156,7 @@ proc totalMass*(self: SoftBody3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className SoftBody3D, addr name, 191475506)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `linearStiffness=`*(self: SoftBody3D; linearStiffness: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -171,7 +171,7 @@ proc linearStiffness*(self: SoftBody3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className SoftBody3D, addr name, 191475506)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `pressureCoefficient=`*(self: SoftBody3D; pressureCoefficient: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -186,7 +186,7 @@ proc pressureCoefficient*(self: SoftBody3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className SoftBody3D, addr name, 191475506)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `dampingCoefficient=`*(self: SoftBody3D; dampingCoefficient: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -201,7 +201,7 @@ proc dampingCoefficient*(self: SoftBody3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className SoftBody3D, addr name, 191475506)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `dragCoefficient=`*(self: SoftBody3D; dragCoefficient: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -216,7 +216,7 @@ proc dragCoefficient*(self: SoftBody3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className SoftBody3D, addr name, 191475506)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getPointTransform*(self: SoftBody3D; pointIndex: int32): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -225,7 +225,7 @@ proc getPointTransform*(self: SoftBody3D; pointIndex: int32): Vector3 =
   var `?param` = [getPtr pointIndex]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc setPointPinned*(self: SoftBody3D; pointIndex: int32; pinned: Bool; attachmentPath: NodePath = init_NodePath()) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -241,7 +241,7 @@ proc isPointPinned*(self: SoftBody3D; pointIndex: int32): Bool =
   var `?param` = [getPtr pointIndex]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `rayPickable=`*(self: SoftBody3D; rayPickable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -256,4 +256,4 @@ proc isRayPickable*(self: SoftBody3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className SoftBody3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

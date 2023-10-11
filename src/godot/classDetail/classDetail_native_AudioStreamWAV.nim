@@ -19,7 +19,7 @@ proc data*(self: AudioStreamWAV): PackedByteArray =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamWAV, addr name, 2362200018)
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedByteArray)
+  (addr ret).decode_result(PackedByteArray)
 proc `format=`*(self: AudioStreamWAV; format: AudioStreamWAV_Format) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc format*(self: AudioStreamWAV): AudioStreamWAV_Format =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamWAV, addr name, 3151724922)
   var ret: encoded AudioStreamWAV_Format
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AudioStreamWAV_Format)
+  (addr ret).decode_result(AudioStreamWAV_Format)
 proc `loopMode=`*(self: AudioStreamWAV; loopMode: AudioStreamWAV_LoopMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc loopMode*(self: AudioStreamWAV): AudioStreamWAV_LoopMode =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamWAV, addr name, 393560655)
   var ret: encoded AudioStreamWAV_LoopMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(AudioStreamWAV_LoopMode)
+  (addr ret).decode_result(AudioStreamWAV_LoopMode)
 proc `loopBegin=`*(self: AudioStreamWAV; loopBegin: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc loopBegin*(self: AudioStreamWAV): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamWAV, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `loopEnd=`*(self: AudioStreamWAV; loopEnd: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc loopEnd*(self: AudioStreamWAV): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamWAV, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `mixRate=`*(self: AudioStreamWAV; mixRate: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc mixRate*(self: AudioStreamWAV): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamWAV, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `stereo=`*(self: AudioStreamWAV; stereo: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc isStereo*(self: AudioStreamWAV): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamWAV, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc saveToWav*(self: AudioStreamWAV; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -118,4 +118,4 @@ proc saveToWav*(self: AudioStreamWAV; path: String): Error =
   var `?param` = [getPtr path]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)

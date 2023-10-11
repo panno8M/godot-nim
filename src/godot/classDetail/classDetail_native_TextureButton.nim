@@ -75,7 +75,7 @@ proc isFlippedH*(self: TextureButton): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextureButton, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `flipV=`*(self: TextureButton; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -90,7 +90,7 @@ proc isFlippedV*(self: TextureButton): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextureButton, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc textureNormal*(self: TextureButton): Texture2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -98,7 +98,7 @@ proc textureNormal*(self: TextureButton): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className TextureButton, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc texturePressed*(self: TextureButton): Texture2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -106,7 +106,7 @@ proc texturePressed*(self: TextureButton): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className TextureButton, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc textureHover*(self: TextureButton): Texture2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -114,7 +114,7 @@ proc textureHover*(self: TextureButton): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className TextureButton, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc textureDisabled*(self: TextureButton): Texture2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -122,7 +122,7 @@ proc textureDisabled*(self: TextureButton): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className TextureButton, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc textureFocused*(self: TextureButton): Texture2D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -130,7 +130,7 @@ proc textureFocused*(self: TextureButton): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className TextureButton, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc clickMask*(self: TextureButton): BitMap =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -138,7 +138,7 @@ proc clickMask*(self: TextureButton): BitMap =
     methodbind = interface_ClassDB_getMethodBind(addr className TextureButton, addr name, 2459671998)
   var ret: encoded BitMap
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(BitMap)
+  (addr ret).decode_result(BitMap)
 proc ignoreTextureSize*(self: TextureButton): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -146,7 +146,7 @@ proc ignoreTextureSize*(self: TextureButton): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextureButton, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc stretchMode*(self: TextureButton): TextureButton_StretchMode =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -154,4 +154,4 @@ proc stretchMode*(self: TextureButton): TextureButton_StretchMode =
     methodbind = interface_ClassDB_getMethodBind(addr className TextureButton, addr name, 33815122)
   var ret: encoded TextureButton_StretchMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextureButton_StretchMode)
+  (addr ret).decode_result(TextureButton_StretchMode)

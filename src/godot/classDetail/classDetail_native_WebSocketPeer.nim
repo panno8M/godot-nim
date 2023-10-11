@@ -13,7 +13,7 @@ proc connectToUrl*(self: WebSocketPeer; url: String; tlsClientOptions: TLSOption
   var `?param` = [getPtr url, getPtr tlsClientOptions]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc acceptStream*(self: WebSocketPeer; stream: StreamPeer): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc acceptStream*(self: WebSocketPeer; stream: StreamPeer): Error =
   var `?param` = [getPtr stream]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc send*(self: WebSocketPeer; message: PackedByteArray; writeMode: WebSocketPeer_WriteMode = writeModeBinary): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -31,7 +31,7 @@ proc send*(self: WebSocketPeer; message: PackedByteArray; writeMode: WebSocketPe
   var `?param` = [getPtr message, getPtr writeMode]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc sendText*(self: WebSocketPeer; message: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -40,7 +40,7 @@ proc sendText*(self: WebSocketPeer; message: String): Error =
   var `?param` = [getPtr message]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc wasStringPacket*(self: WebSocketPeer): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -48,7 +48,7 @@ proc wasStringPacket*(self: WebSocketPeer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className WebSocketPeer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc poll*(self: WebSocketPeer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -69,7 +69,7 @@ proc getConnectedHost*(self: WebSocketPeer): String =
     methodbind = interface_ClassDB_getMethodBind(addr className WebSocketPeer, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getConnectedPort*(self: WebSocketPeer): uint16 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -77,7 +77,7 @@ proc getConnectedPort*(self: WebSocketPeer): uint16 =
     methodbind = interface_ClassDB_getMethodBind(addr className WebSocketPeer, addr name, 3905245786)
   var ret: encoded uint16
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint16)
+  (addr ret).decode_result(uint16)
 proc getSelectedProtocol*(self: WebSocketPeer): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -85,7 +85,7 @@ proc getSelectedProtocol*(self: WebSocketPeer): String =
     methodbind = interface_ClassDB_getMethodBind(addr className WebSocketPeer, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getRequestedUrl*(self: WebSocketPeer): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -93,7 +93,7 @@ proc getRequestedUrl*(self: WebSocketPeer): String =
     methodbind = interface_ClassDB_getMethodBind(addr className WebSocketPeer, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc setNoDelay*(self: WebSocketPeer; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -108,7 +108,7 @@ proc getCurrentOutboundBufferedAmount*(self: WebSocketPeer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className WebSocketPeer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getReadyState*(self: WebSocketPeer): WebSocketPeer_State =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -116,7 +116,7 @@ proc getReadyState*(self: WebSocketPeer): WebSocketPeer_State =
     methodbind = interface_ClassDB_getMethodBind(addr className WebSocketPeer, addr name, 346482985)
   var ret: encoded WebSocketPeer_State
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(WebSocketPeer_State)
+  (addr ret).decode_result(WebSocketPeer_State)
 proc getCloseCode*(self: WebSocketPeer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc getCloseCode*(self: WebSocketPeer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className WebSocketPeer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getCloseReason*(self: WebSocketPeer): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -132,7 +132,7 @@ proc getCloseReason*(self: WebSocketPeer): String =
     methodbind = interface_ClassDB_getMethodBind(addr className WebSocketPeer, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc supportedProtocols*(self: WebSocketPeer): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -140,7 +140,7 @@ proc supportedProtocols*(self: WebSocketPeer): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className WebSocketPeer, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc `supportedProtocols=`*(self: WebSocketPeer; protocols: PackedStringArray) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -155,7 +155,7 @@ proc handshakeHeaders*(self: WebSocketPeer): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className WebSocketPeer, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc `handshakeHeaders=`*(self: WebSocketPeer; protocols: PackedStringArray) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -170,7 +170,7 @@ proc inboundBufferSize*(self: WebSocketPeer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className WebSocketPeer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `inboundBufferSize=`*(self: WebSocketPeer; bufferSize: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -185,7 +185,7 @@ proc outboundBufferSize*(self: WebSocketPeer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className WebSocketPeer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `outboundBufferSize=`*(self: WebSocketPeer; bufferSize: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -207,4 +207,4 @@ proc maxQueuedPackets*(self: WebSocketPeer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className WebSocketPeer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)

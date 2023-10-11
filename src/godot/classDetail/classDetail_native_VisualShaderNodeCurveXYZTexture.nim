@@ -19,4 +19,4 @@ proc texture*(self: VisualShaderNodeCurveXYZTexture): CurveXYZTexture =
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeCurveXYZTexture, addr name, 1950275015)
   var ret: encoded CurveXYZTexture
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(CurveXYZTexture)
+  (addr ret).decode_result(CurveXYZTexture)

@@ -13,7 +13,7 @@ proc addAnimation*(self: AnimationLibrary; name: StringName; animation: Animatio
   var `?param` = [getPtr name, getPtr animation]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc removeAnimation*(self: AnimationLibrary; name: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -36,7 +36,7 @@ proc hasAnimation*(self: AnimationLibrary; name: StringName): Bool =
   var `?param` = [getPtr name]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getAnimation*(self: AnimationLibrary; name: StringName): Animation =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -45,7 +45,7 @@ proc getAnimation*(self: AnimationLibrary; name: StringName): Animation =
   var `?param` = [getPtr name]
   var ret: encoded Animation
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Animation)
+  (addr ret).decode_result(Animation)
 proc getAnimationList*(self: AnimationLibrary): TypedArray[StringName] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -53,4 +53,4 @@ proc getAnimationList*(self: AnimationLibrary): TypedArray[StringName] =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationLibrary, addr name, 3995934104)
   var ret: encoded TypedArray[StringName]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[StringName])
+  (addr ret).decode_result(TypedArray[StringName])

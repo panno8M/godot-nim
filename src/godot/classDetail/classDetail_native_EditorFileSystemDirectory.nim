@@ -12,7 +12,7 @@ proc getSubdirCount*(self: EditorFileSystemDirectory): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFileSystemDirectory, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getSubdir*(self: EditorFileSystemDirectory; idx: int32): EditorFileSystemDirectory =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -21,7 +21,7 @@ proc getSubdir*(self: EditorFileSystemDirectory; idx: int32): EditorFileSystemDi
   var `?param` = [getPtr idx]
   var ret: encoded EditorFileSystemDirectory
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(EditorFileSystemDirectory)
+  (addr ret).decode_result(EditorFileSystemDirectory)
 proc getFileCount*(self: EditorFileSystemDirectory): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -29,7 +29,7 @@ proc getFileCount*(self: EditorFileSystemDirectory): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFileSystemDirectory, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getFile*(self: EditorFileSystemDirectory; idx: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -38,7 +38,7 @@ proc getFile*(self: EditorFileSystemDirectory; idx: int32): String =
   var `?param` = [getPtr idx]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getFilePath*(self: EditorFileSystemDirectory; idx: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -47,7 +47,7 @@ proc getFilePath*(self: EditorFileSystemDirectory; idx: int32): String =
   var `?param` = [getPtr idx]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getFileType*(self: EditorFileSystemDirectory; idx: int32): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -56,7 +56,7 @@ proc getFileType*(self: EditorFileSystemDirectory; idx: int32): StringName =
   var `?param` = [getPtr idx]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc getFileScriptClassName*(self: EditorFileSystemDirectory; idx: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -65,7 +65,7 @@ proc getFileScriptClassName*(self: EditorFileSystemDirectory; idx: int32): Strin
   var `?param` = [getPtr idx]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getFileScriptClassExtends*(self: EditorFileSystemDirectory; idx: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -74,7 +74,7 @@ proc getFileScriptClassExtends*(self: EditorFileSystemDirectory; idx: int32): St
   var `?param` = [getPtr idx]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getFileImportIsValid*(self: EditorFileSystemDirectory; idx: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -83,7 +83,7 @@ proc getFileImportIsValid*(self: EditorFileSystemDirectory; idx: int32): Bool =
   var `?param` = [getPtr idx]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getName*(self: EditorFileSystemDirectory): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -91,7 +91,7 @@ proc getName*(self: EditorFileSystemDirectory): String =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFileSystemDirectory, addr name, 2841200299)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getPath*(self: EditorFileSystemDirectory): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -99,7 +99,7 @@ proc getPath*(self: EditorFileSystemDirectory): String =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFileSystemDirectory, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getParent*(self: EditorFileSystemDirectory): EditorFileSystemDirectory =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -107,7 +107,7 @@ proc getParent*(self: EditorFileSystemDirectory): EditorFileSystemDirectory =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorFileSystemDirectory, addr name, 842323275)
   var ret: encoded EditorFileSystemDirectory
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(EditorFileSystemDirectory)
+  (addr ret).decode_result(EditorFileSystemDirectory)
 proc findFileIndex*(self: EditorFileSystemDirectory; name: String): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -116,7 +116,7 @@ proc findFileIndex*(self: EditorFileSystemDirectory; name: String): int32 =
   var `?param` = [getPtr name]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc findDirIndex*(self: EditorFileSystemDirectory; name: String): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -125,4 +125,4 @@ proc findDirIndex*(self: EditorFileSystemDirectory; name: String): int32 =
   var `?param` = [getPtr name]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)

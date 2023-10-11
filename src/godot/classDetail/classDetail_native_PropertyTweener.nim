@@ -13,7 +13,7 @@ proc `from`*(self: PropertyTweener; value: Variant): PropertyTweener =
   var `?param` = [getPtr value]
   var ret: encoded PropertyTweener
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PropertyTweener)
+  (addr ret).decode_result(PropertyTweener)
 proc fromCurrent*(self: PropertyTweener): PropertyTweener =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -21,7 +21,7 @@ proc fromCurrent*(self: PropertyTweener): PropertyTweener =
     methodbind = interface_ClassDB_getMethodBind(addr className PropertyTweener, addr name, 4279177709)
   var ret: encoded PropertyTweener
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PropertyTweener)
+  (addr ret).decode_result(PropertyTweener)
 proc asRelative*(self: PropertyTweener): PropertyTweener =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -29,7 +29,7 @@ proc asRelative*(self: PropertyTweener): PropertyTweener =
     methodbind = interface_ClassDB_getMethodBind(addr className PropertyTweener, addr name, 4279177709)
   var ret: encoded PropertyTweener
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PropertyTweener)
+  (addr ret).decode_result(PropertyTweener)
 proc setTrans*(self: PropertyTweener; trans: Tween_TransitionType): PropertyTweener =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -38,7 +38,7 @@ proc setTrans*(self: PropertyTweener; trans: Tween_TransitionType): PropertyTwee
   var `?param` = [getPtr trans]
   var ret: encoded PropertyTweener
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PropertyTweener)
+  (addr ret).decode_result(PropertyTweener)
 proc setEase*(self: PropertyTweener; ease: Tween_EaseType): PropertyTweener =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -47,7 +47,7 @@ proc setEase*(self: PropertyTweener; ease: Tween_EaseType): PropertyTweener =
   var `?param` = [getPtr ease]
   var ret: encoded PropertyTweener
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PropertyTweener)
+  (addr ret).decode_result(PropertyTweener)
 proc setDelay*(self: PropertyTweener; delay: float64): PropertyTweener =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -56,4 +56,4 @@ proc setDelay*(self: PropertyTweener; delay: float64): PropertyTweener =
   var `?param` = [getPtr delay]
   var ret: encoded PropertyTweener
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PropertyTweener)
+  (addr ret).decode_result(PropertyTweener)

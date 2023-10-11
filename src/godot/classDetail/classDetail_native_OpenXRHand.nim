@@ -19,7 +19,7 @@ proc hand*(self: OpenXRHand): OpenXRHand_Hands =
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRHand, addr name, 2850644561)
   var ret: encoded OpenXRHand_Hands
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(OpenXRHand_Hands)
+  (addr ret).decode_result(OpenXRHand_Hands)
 proc `handSkeleton=`*(self: OpenXRHand; handSkeleton: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc handSkeleton*(self: OpenXRHand): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRHand, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc `motionRange=`*(self: OpenXRHand; motionRange: OpenXRHand_MotionRange) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,4 +49,4 @@ proc motionRange*(self: OpenXRHand): OpenXRHand_MotionRange =
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRHand, addr name, 2191822314)
   var ret: encoded OpenXRHand_MotionRange
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(OpenXRHand_MotionRange)
+  (addr ret).decode_result(OpenXRHand_MotionRange)

@@ -19,7 +19,7 @@ proc getLocale*(self: TranslationServer): String =
     methodbind = interface_ClassDB_getMethodBind(addr className TranslationServer, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getToolLocale*(self: TranslationServer): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc getToolLocale*(self: TranslationServer): String =
     methodbind = interface_ClassDB_getMethodBind(addr className TranslationServer, addr name, 2841200299)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc compareLocales*(self: TranslationServer; localeA: String; localeB: String): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -36,7 +36,7 @@ proc compareLocales*(self: TranslationServer; localeA: String; localeB: String):
   var `?param` = [getPtr localeA, getPtr localeB]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc standardizeLocale*(self: TranslationServer; locale: String): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -45,7 +45,7 @@ proc standardizeLocale*(self: TranslationServer; locale: String): String =
   var `?param` = [getPtr locale]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getAllLanguages*(self: TranslationServer): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -53,7 +53,7 @@ proc getAllLanguages*(self: TranslationServer): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className TranslationServer, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc getLanguageName*(self: TranslationServer; language: String): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -62,7 +62,7 @@ proc getLanguageName*(self: TranslationServer; language: String): String =
   var `?param` = [getPtr language]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getAllScripts*(self: TranslationServer): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -70,7 +70,7 @@ proc getAllScripts*(self: TranslationServer): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className TranslationServer, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc getScriptName*(self: TranslationServer; script: String): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc getScriptName*(self: TranslationServer; script: String): String =
   var `?param` = [getPtr script]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getAllCountries*(self: TranslationServer): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -87,7 +87,7 @@ proc getAllCountries*(self: TranslationServer): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className TranslationServer, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc getCountryName*(self: TranslationServer; country: String): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -96,7 +96,7 @@ proc getCountryName*(self: TranslationServer; country: String): String =
   var `?param` = [getPtr country]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getLocaleName*(self: TranslationServer; locale: String): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -105,7 +105,7 @@ proc getLocaleName*(self: TranslationServer; locale: String): String =
   var `?param` = [getPtr locale]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc translate*(self: TranslationServer; message: StringName; context: StringName = ""): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -114,7 +114,7 @@ proc translate*(self: TranslationServer; message: StringName; context: StringNam
   var `?param` = [getPtr message, getPtr context]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc translatePlural*(self: TranslationServer; message: StringName; pluralMessage: StringName; n: int32; context: StringName = ""): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -123,7 +123,7 @@ proc translatePlural*(self: TranslationServer; message: StringName; pluralMessag
   var `?param` = [getPtr message, getPtr pluralMessage, getPtr n, getPtr context]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc addTranslation*(self: TranslationServer; translation: Translation) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -146,7 +146,7 @@ proc getTranslationObject*(self: TranslationServer; locale: String): Translation
   var `?param` = [getPtr locale]
   var ret: encoded Translation
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Translation)
+  (addr ret).decode_result(Translation)
 proc clear*(self: TranslationServer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -160,7 +160,7 @@ proc getLoadedLocales*(self: TranslationServer): PackedStringArray =
     methodbind = interface_ClassDB_getMethodBind(addr className TranslationServer, addr name, 1139954409)
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedStringArray)
+  (addr ret).decode_result(PackedStringArray)
 proc isPseudolocalizationEnabled*(self: TranslationServer): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -168,7 +168,7 @@ proc isPseudolocalizationEnabled*(self: TranslationServer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TranslationServer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `pseudolocalizationEnabled=`*(self: TranslationServer; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -190,4 +190,4 @@ proc pseudolocalize*(self: TranslationServer; message: StringName): StringName =
   var `?param` = [getPtr message]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)

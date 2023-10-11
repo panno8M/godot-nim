@@ -25,7 +25,7 @@ proc direction*(self: TextLine): TextServer_Direction =
     methodbind = interface_ClassDB_getMethodBind(addr className TextLine, addr name, 2516697328)
   var ret: encoded TextServer_Direction
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextServer_Direction)
+  (addr ret).decode_result(TextServer_Direction)
 proc `orientation=`*(self: TextLine; orientation: TextServer_Orientation) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -40,7 +40,7 @@ proc orientation*(self: TextLine): TextServer_Orientation =
     methodbind = interface_ClassDB_getMethodBind(addr className TextLine, addr name, 175768116)
   var ret: encoded TextServer_Orientation
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextServer_Orientation)
+  (addr ret).decode_result(TextServer_Orientation)
 proc `preserveInvalid=`*(self: TextLine; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -55,7 +55,7 @@ proc preserveInvalid*(self: TextLine): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextLine, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `preserveControl=`*(self: TextLine; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -70,7 +70,7 @@ proc preserveControl*(self: TextLine): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className TextLine, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setBidiOverride*(self: TextLine; override: Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -86,7 +86,7 @@ proc addString*(self: TextLine; text: String; font: Font; fontSize: int32; langu
   var `?param` = [getPtr text, getPtr font, getPtr fontSize, getPtr language, getPtr meta]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc addObject*(self: TextLine; key: Variant; size: Vector2; inlineAlign: InlineAlignment = inlineAlignmentCenter; length: int32 = 1; baseline: Float = 0.0): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -95,7 +95,7 @@ proc addObject*(self: TextLine; key: Variant; size: Vector2; inlineAlign: Inline
   var `?param` = [getPtr key, getPtr size, getPtr inlineAlign, getPtr length, getPtr baseline]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc resizeObject*(self: TextLine; key: Variant; size: Vector2; inlineAlign: InlineAlignment = inlineAlignmentCenter; baseline: Float = 0.0): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -104,7 +104,7 @@ proc resizeObject*(self: TextLine; key: Variant; size: Vector2; inlineAlign: Inl
   var `?param` = [getPtr key, getPtr size, getPtr inlineAlign, getPtr baseline]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `width=`*(self: TextLine; width: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -119,7 +119,7 @@ proc width*(self: TextLine): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className TextLine, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `horizontalAlignment=`*(self: TextLine; alignment: HorizontalAlignment) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -134,7 +134,7 @@ proc horizontalAlignment*(self: TextLine): HorizontalAlignment =
     methodbind = interface_ClassDB_getMethodBind(addr className TextLine, addr name, 341400642)
   var ret: encoded HorizontalAlignment
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(HorizontalAlignment)
+  (addr ret).decode_result(HorizontalAlignment)
 proc tabAlign*(self: TextLine; tabStops: PackedFloat32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -156,7 +156,7 @@ proc flags*(self: TextLine): set[TextServer_JustificationFlag] =
     methodbind = interface_ClassDB_getMethodBind(addr className TextLine, addr name, 1583363614)
   var ret: encoded set[TextServer_JustificationFlag]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(set[TextServer_JustificationFlag])
+  (addr ret).decode_result(set[TextServer_JustificationFlag])
 proc `textOverrunBehavior=`*(self: TextLine; overrunBehavior: TextServer_OverrunBehavior) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -171,7 +171,7 @@ proc textOverrunBehavior*(self: TextLine): TextServer_OverrunBehavior =
     methodbind = interface_ClassDB_getMethodBind(addr className TextLine, addr name, 3779142101)
   var ret: encoded TextServer_OverrunBehavior
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextServer_OverrunBehavior)
+  (addr ret).decode_result(TextServer_OverrunBehavior)
 proc getObjects*(self: TextLine): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -179,7 +179,7 @@ proc getObjects*(self: TextLine): Array =
     methodbind = interface_ClassDB_getMethodBind(addr className TextLine, addr name, 3995934104)
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)
 proc getObjectRect*(self: TextLine; key: Variant): Rect2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -188,7 +188,7 @@ proc getObjectRect*(self: TextLine; key: Variant): Rect2 =
   var `?param` = [getPtr key]
   var ret: encoded Rect2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Rect2)
+  (addr ret).decode_result(Rect2)
 proc getSize*(self: TextLine): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -196,7 +196,7 @@ proc getSize*(self: TextLine): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className TextLine, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getRid*(self: TextLine): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -204,7 +204,7 @@ proc getRid*(self: TextLine): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className TextLine, addr name, 2944877500)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc getLineAscent*(self: TextLine): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -212,7 +212,7 @@ proc getLineAscent*(self: TextLine): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className TextLine, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getLineDescent*(self: TextLine): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -220,7 +220,7 @@ proc getLineDescent*(self: TextLine): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className TextLine, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getLineWidth*(self: TextLine): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -228,7 +228,7 @@ proc getLineWidth*(self: TextLine): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className TextLine, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getLineUnderlinePosition*(self: TextLine): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -236,7 +236,7 @@ proc getLineUnderlinePosition*(self: TextLine): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className TextLine, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getLineUnderlineThickness*(self: TextLine): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -244,7 +244,7 @@ proc getLineUnderlineThickness*(self: TextLine): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className TextLine, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc draw*(self: TextLine; canvas: RID; pos: Vector2; color: Color = init_Color(1, 1, 1, 1)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -267,4 +267,4 @@ proc hitTest*(self: TextLine; coords: Float): int32 =
   var `?param` = [getPtr coords]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)

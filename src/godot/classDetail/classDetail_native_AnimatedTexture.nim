@@ -19,7 +19,7 @@ proc frames*(self: AnimatedTexture): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedTexture, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `currentFrame=`*(self: AnimatedTexture; frame: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc currentFrame*(self: AnimatedTexture): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedTexture, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `pause=`*(self: AnimatedTexture; pause: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc pause*(self: AnimatedTexture): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedTexture, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `oneShot=`*(self: AnimatedTexture; oneShot: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc oneShot*(self: AnimatedTexture): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedTexture, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `speedScale=`*(self: AnimatedTexture; scale: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc speedScale*(self: AnimatedTexture): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedTexture, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc setFrameTexture*(self: AnimatedTexture; frame: int32; texture: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -95,7 +95,7 @@ proc getFrameTexture*(self: AnimatedTexture; frame: int32): Texture2D =
   var `?param` = [getPtr frame]
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc setFrameDuration*(self: AnimatedTexture; frame: int32; duration: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -111,4 +111,4 @@ proc getFrameDuration*(self: AnimatedTexture; frame: int32): Float =
   var `?param` = [getPtr frame]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

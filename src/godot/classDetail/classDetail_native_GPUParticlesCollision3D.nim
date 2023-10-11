@@ -19,4 +19,4 @@ proc cullMask*(self: GPUParticlesCollision3D): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticlesCollision3D, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)

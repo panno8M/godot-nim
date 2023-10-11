@@ -12,7 +12,7 @@ proc getDataDir*(self: EditorPaths): String =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorPaths, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getConfigDir*(self: EditorPaths): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -20,7 +20,7 @@ proc getConfigDir*(self: EditorPaths): String =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorPaths, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getCacheDir*(self: EditorPaths): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -28,7 +28,7 @@ proc getCacheDir*(self: EditorPaths): String =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorPaths, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc isSelfContained*(self: EditorPaths): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -36,7 +36,7 @@ proc isSelfContained*(self: EditorPaths): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorPaths, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getSelfContainedFile*(self: EditorPaths): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -44,7 +44,7 @@ proc getSelfContainedFile*(self: EditorPaths): String =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorPaths, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getProjectSettingsDir*(self: EditorPaths): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -52,4 +52,4 @@ proc getProjectSettingsDir*(self: EditorPaths): String =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorPaths, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)

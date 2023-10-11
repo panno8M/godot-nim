@@ -19,7 +19,7 @@ proc transform*(self: Node3D): Transform3D =
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 3229777777)
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc `position=`*(self: Node3D; position: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc position*(self: Node3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `rotation=`*(self: Node3D; eulerRadians: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc rotation*(self: Node3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `rotationDegrees=`*(self: Node3D; eulerDegrees: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc rotationDegrees*(self: Node3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `rotationOrder=`*(self: Node3D; order: EulerOrder) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc rotationOrder*(self: Node3D): EulerOrder =
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 916939469)
   var ret: encoded EulerOrder
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(EulerOrder)
+  (addr ret).decode_result(EulerOrder)
 proc `rotationEditMode=`*(self: Node3D; editMode: Node3D_RotationEditMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc rotationEditMode*(self: Node3D): Node3D_RotationEditMode =
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 1572188370)
   var ret: encoded Node3D_RotationEditMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Node3D_RotationEditMode)
+  (addr ret).decode_result(Node3D_RotationEditMode)
 proc `scale=`*(self: Node3D; scale: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc scale*(self: Node3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `quaternion=`*(self: Node3D; quaternion: Quaternion) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc quaternion*(self: Node3D): Quaternion =
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 1222331677)
   var ret: encoded Quaternion
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Quaternion)
+  (addr ret).decode_result(Quaternion)
 proc `basis=`*(self: Node3D; basis: Basis) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc basis*(self: Node3D): Basis =
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 2716978435)
   var ret: encoded Basis
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Basis)
+  (addr ret).decode_result(Basis)
 proc `globalTransform=`*(self: Node3D; global: Transform3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -154,7 +154,7 @@ proc globalTransform*(self: Node3D): Transform3D =
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 3229777777)
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc `globalPosition=`*(self: Node3D; position: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -169,7 +169,7 @@ proc globalPosition*(self: Node3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `globalRotation=`*(self: Node3D; eulerRadians: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -184,7 +184,7 @@ proc globalRotation*(self: Node3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `globalRotationDegrees=`*(self: Node3D; eulerDegrees: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -199,7 +199,7 @@ proc globalRotationDegrees*(self: Node3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc getParentNode3d*(self: Node3D): Node3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -207,7 +207,7 @@ proc getParentNode3d*(self: Node3D): Node3D =
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 151077316)
   var ret: encoded Node3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Node3D)
+  (addr ret).decode_result(Node3D)
 proc setIgnoreTransformNotification*(self: Node3D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -229,7 +229,7 @@ proc isSetAsTopLevel*(self: Node3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setDisableScale*(self: Node3D; disable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -244,7 +244,7 @@ proc isScaleDisabled*(self: Node3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getWorld3d*(self: Node3D): World3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -252,7 +252,7 @@ proc getWorld3d*(self: Node3D): World3D =
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 317588385)
   var ret: encoded World3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(World3D)
+  (addr ret).decode_result(World3D)
 proc forceUpdateTransform*(self: Node3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -273,7 +273,7 @@ proc visibilityParent*(self: Node3D): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc updateGizmos*(self: Node3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -294,7 +294,7 @@ proc getGizmos*(self: Node3D): TypedArray[Node3DGizmo] =
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 3995934104)
   var ret: encoded TypedArray[Node3DGizmo]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Node3DGizmo])
+  (addr ret).decode_result(TypedArray[Node3DGizmo])
 proc clearGizmos*(self: Node3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -328,7 +328,7 @@ proc isVisible*(self: Node3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isVisibleInTree*(self: Node3D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -336,7 +336,7 @@ proc isVisibleInTree*(self: Node3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc show*(self: Node3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -363,7 +363,7 @@ proc isLocalTransformNotificationEnabled*(self: Node3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setNotifyTransform*(self: Node3D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -378,7 +378,7 @@ proc isTransformNotificationEnabled*(self: Node3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc rotate*(self: Node3D; axis: Vector3; angle: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -490,7 +490,7 @@ proc toLocal*(self: Node3D; globalPoint: Vector3): Vector3 =
   var `?param` = [getPtr globalPoint]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc toGlobal*(self: Node3D; localPoint: Vector3): Vector3 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -499,4 +499,4 @@ proc toGlobal*(self: Node3D; localPoint: Vector3): Vector3 =
   var `?param` = [getPtr localPoint]
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)

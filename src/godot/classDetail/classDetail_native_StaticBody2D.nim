@@ -26,7 +26,7 @@ proc constantLinearVelocity*(self: StaticBody2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className StaticBody2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc constantAngularVelocity*(self: StaticBody2D): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc constantAngularVelocity*(self: StaticBody2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className StaticBody2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `physicsMaterialOverride=`*(self: StaticBody2D; physicsMaterialOverride: PhysicsMaterial) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,4 +49,4 @@ proc physicsMaterialOverride*(self: StaticBody2D): PhysicsMaterial =
     methodbind = interface_ClassDB_getMethodBind(addr className StaticBody2D, addr name, 2521850424)
   var ret: encoded PhysicsMaterial
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PhysicsMaterial)
+  (addr ret).decode_result(PhysicsMaterial)

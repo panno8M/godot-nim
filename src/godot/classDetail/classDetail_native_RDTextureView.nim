@@ -19,7 +19,7 @@ proc formatOverride*(self: RDTextureView): RenderingDevice_DataFormat =
     methodbind = interface_ClassDB_getMethodBind(addr className RDTextureView, addr name, 2235804183)
   var ret: encoded RenderingDevice_DataFormat
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_DataFormat)
+  (addr ret).decode_result(RenderingDevice_DataFormat)
 proc `swizzleR=`*(self: RDTextureView; pMember: RenderingDevice_TextureSwizzle) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc swizzleR*(self: RDTextureView): RenderingDevice_TextureSwizzle =
     methodbind = interface_ClassDB_getMethodBind(addr className RDTextureView, addr name, 4150792614)
   var ret: encoded RenderingDevice_TextureSwizzle
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_TextureSwizzle)
+  (addr ret).decode_result(RenderingDevice_TextureSwizzle)
 proc `swizzleG=`*(self: RDTextureView; pMember: RenderingDevice_TextureSwizzle) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc swizzleG*(self: RDTextureView): RenderingDevice_TextureSwizzle =
     methodbind = interface_ClassDB_getMethodBind(addr className RDTextureView, addr name, 4150792614)
   var ret: encoded RenderingDevice_TextureSwizzle
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_TextureSwizzle)
+  (addr ret).decode_result(RenderingDevice_TextureSwizzle)
 proc `swizzleB=`*(self: RDTextureView; pMember: RenderingDevice_TextureSwizzle) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc swizzleB*(self: RDTextureView): RenderingDevice_TextureSwizzle =
     methodbind = interface_ClassDB_getMethodBind(addr className RDTextureView, addr name, 4150792614)
   var ret: encoded RenderingDevice_TextureSwizzle
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_TextureSwizzle)
+  (addr ret).decode_result(RenderingDevice_TextureSwizzle)
 proc `swizzleA=`*(self: RDTextureView; pMember: RenderingDevice_TextureSwizzle) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,4 +79,4 @@ proc swizzleA*(self: RDTextureView): RenderingDevice_TextureSwizzle =
     methodbind = interface_ClassDB_getMethodBind(addr className RDTextureView, addr name, 4150792614)
   var ret: encoded RenderingDevice_TextureSwizzle
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RenderingDevice_TextureSwizzle)
+  (addr ret).decode_result(RenderingDevice_TextureSwizzle)

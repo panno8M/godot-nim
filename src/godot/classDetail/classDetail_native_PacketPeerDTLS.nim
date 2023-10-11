@@ -19,7 +19,7 @@ proc connectToPeer*(self: PacketPeerDTLS; packetPeer: PacketPeerUDP; hostname: S
   var `?param` = [getPtr packetPeer, getPtr hostname, getPtr clientOptions]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc getStatus*(self: PacketPeerDTLS): PacketPeerDTLS_Status =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc getStatus*(self: PacketPeerDTLS): PacketPeerDTLS_Status =
     methodbind = interface_ClassDB_getMethodBind(addr className PacketPeerDTLS, addr name, 3248654679)
   var ret: encoded PacketPeerDTLS_Status
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PacketPeerDTLS_Status)
+  (addr ret).decode_result(PacketPeerDTLS_Status)
 proc disconnectFromPeer*(self: PacketPeerDTLS) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

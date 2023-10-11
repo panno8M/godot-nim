@@ -19,4 +19,4 @@ proc shortcut*(self: InputEventShortcut): Shortcut =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventShortcut, addr name, 3766804753)
   var ret: encoded Shortcut
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Shortcut)
+  (addr ret).decode_result(Shortcut)

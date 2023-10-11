@@ -19,7 +19,7 @@ proc polygon*(self: Polygon2D): PackedVector2Array =
     methodbind = interface_ClassDB_getMethodBind(addr className Polygon2D, addr name, 2961356807)
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedVector2Array)
+  (addr ret).decode_result(PackedVector2Array)
 proc `uv=`*(self: Polygon2D; uv: PackedVector2Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc uv*(self: Polygon2D): PackedVector2Array =
     methodbind = interface_ClassDB_getMethodBind(addr className Polygon2D, addr name, 2961356807)
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedVector2Array)
+  (addr ret).decode_result(PackedVector2Array)
 proc `color=`*(self: Polygon2D; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc color*(self: Polygon2D): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className Polygon2D, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `polygons=`*(self: Polygon2D; polygons: Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc polygons*(self: Polygon2D): Array =
     methodbind = interface_ClassDB_getMethodBind(addr className Polygon2D, addr name, 3995934104)
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)
 proc `vertexColors=`*(self: Polygon2D; vertexColors: PackedColorArray) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc vertexColors*(self: Polygon2D): PackedColorArray =
     methodbind = interface_ClassDB_getMethodBind(addr className Polygon2D, addr name, 1392750486)
   var ret: encoded PackedColorArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedColorArray)
+  (addr ret).decode_result(PackedColorArray)
 proc `texture=`*(self: Polygon2D; texture: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc texture*(self: Polygon2D): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className Polygon2D, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc `textureOffset=`*(self: Polygon2D; textureOffset: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc textureOffset*(self: Polygon2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Polygon2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `textureRotation=`*(self: Polygon2D; textureRotation: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc textureRotation*(self: Polygon2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Polygon2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `textureScale=`*(self: Polygon2D; textureScale: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc textureScale*(self: Polygon2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Polygon2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `invertEnabled=`*(self: Polygon2D; invert: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -154,7 +154,7 @@ proc invertEnabled*(self: Polygon2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Polygon2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `antialiased=`*(self: Polygon2D; antialiased: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -169,7 +169,7 @@ proc antialiased*(self: Polygon2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Polygon2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `invertBorder=`*(self: Polygon2D; invertBorder: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -184,7 +184,7 @@ proc invertBorder*(self: Polygon2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Polygon2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `offset=`*(self: Polygon2D; offset: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -199,7 +199,7 @@ proc offset*(self: Polygon2D): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className Polygon2D, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc addBone*(self: Polygon2D; path: NodePath; weights: PackedFloat32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -214,7 +214,7 @@ proc getBoneCount*(self: Polygon2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Polygon2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getBonePath*(self: Polygon2D; index: int32): NodePath =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -223,7 +223,7 @@ proc getBonePath*(self: Polygon2D; index: int32): NodePath =
   var `?param` = [getPtr index]
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc getBoneWeights*(self: Polygon2D; index: int32): PackedFloat32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -232,7 +232,7 @@ proc getBoneWeights*(self: Polygon2D; index: int32): PackedFloat32Array =
   var `?param` = [getPtr index]
   var ret: encoded PackedFloat32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedFloat32Array)
+  (addr ret).decode_result(PackedFloat32Array)
 proc eraseBone*(self: Polygon2D; index: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -274,7 +274,7 @@ proc skeleton*(self: Polygon2D): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className Polygon2D, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc `internalVertexCount=`*(self: Polygon2D; internalVertexCount: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -289,4 +289,4 @@ proc internalVertexCount*(self: Polygon2D): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className Polygon2D, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)

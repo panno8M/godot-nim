@@ -19,7 +19,7 @@ proc direction*(self: ParticleProcessMaterial): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `spread=`*(self: ParticleProcessMaterial; degrees: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc spread*(self: ParticleProcessMaterial): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `flatness=`*(self: ParticleProcessMaterial; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc flatness*(self: ParticleProcessMaterial): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `paramMin=`*(self: ParticleProcessMaterial; param: ParticleProcessMaterial_Parameter; value: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -65,7 +65,7 @@ proc paramMin*(self: ParticleProcessMaterial; param: ParticleProcessMaterial_Par
   var `?param` = [getPtr param]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `paramMax=`*(self: ParticleProcessMaterial; param: ParticleProcessMaterial_Parameter; value: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -81,7 +81,7 @@ proc paramMax*(self: ParticleProcessMaterial; param: ParticleProcessMaterial_Par
   var `?param` = [getPtr param]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `paramTexture=`*(self: ParticleProcessMaterial; param: ParticleProcessMaterial_Parameter; texture: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -97,7 +97,7 @@ proc paramTexture*(self: ParticleProcessMaterial; param: ParticleProcessMaterial
   var `?param` = [getPtr param]
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc `color=`*(self: ParticleProcessMaterial; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -112,7 +112,7 @@ proc color*(self: ParticleProcessMaterial): Color =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 3444240500)
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc `colorRamp=`*(self: ParticleProcessMaterial; ramp: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -127,7 +127,7 @@ proc colorRamp*(self: ParticleProcessMaterial): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc `colorInitialRamp=`*(self: ParticleProcessMaterial; ramp: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -142,7 +142,7 @@ proc colorInitialRamp*(self: ParticleProcessMaterial): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc `particleFlag=`*(self: ParticleProcessMaterial; particleFlag: ParticleProcessMaterial_ParticleFlags; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -158,7 +158,7 @@ proc particleFlag*(self: ParticleProcessMaterial; particleFlag: ParticleProcessM
   var `?param` = [getPtr particleFlag]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `emissionShape=`*(self: ParticleProcessMaterial; shape: ParticleProcessMaterial_EmissionShape) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -173,7 +173,7 @@ proc emissionShape*(self: ParticleProcessMaterial): ParticleProcessMaterial_Emis
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 3719733018)
   var ret: encoded ParticleProcessMaterial_EmissionShape
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(ParticleProcessMaterial_EmissionShape)
+  (addr ret).decode_result(ParticleProcessMaterial_EmissionShape)
 proc `emissionSphereRadius=`*(self: ParticleProcessMaterial; radius: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -188,7 +188,7 @@ proc emissionSphereRadius*(self: ParticleProcessMaterial): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `emissionBoxExtents=`*(self: ParticleProcessMaterial; extents: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -203,7 +203,7 @@ proc emissionBoxExtents*(self: ParticleProcessMaterial): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `emissionPointTexture=`*(self: ParticleProcessMaterial; texture: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -218,7 +218,7 @@ proc emissionPointTexture*(self: ParticleProcessMaterial): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc `emissionNormalTexture=`*(self: ParticleProcessMaterial; texture: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -233,7 +233,7 @@ proc emissionNormalTexture*(self: ParticleProcessMaterial): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc `emissionColorTexture=`*(self: ParticleProcessMaterial; texture: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -248,7 +248,7 @@ proc emissionColorTexture*(self: ParticleProcessMaterial): Texture2D =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 3635182373)
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc `emissionPointCount=`*(self: ParticleProcessMaterial; pointCount: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -263,7 +263,7 @@ proc emissionPointCount*(self: ParticleProcessMaterial): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `emissionRingAxis=`*(self: ParticleProcessMaterial; axis: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -278,7 +278,7 @@ proc emissionRingAxis*(self: ParticleProcessMaterial): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `emissionRingHeight=`*(self: ParticleProcessMaterial; height: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -293,7 +293,7 @@ proc emissionRingHeight*(self: ParticleProcessMaterial): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `emissionRingRadius=`*(self: ParticleProcessMaterial; radius: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -308,7 +308,7 @@ proc emissionRingRadius*(self: ParticleProcessMaterial): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `emissionRingInnerRadius=`*(self: ParticleProcessMaterial; innerRadius: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -323,7 +323,7 @@ proc emissionRingInnerRadius*(self: ParticleProcessMaterial): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc turbulenceEnabled*(self: ParticleProcessMaterial): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -331,7 +331,7 @@ proc turbulenceEnabled*(self: ParticleProcessMaterial): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `turbulenceEnabled=`*(self: ParticleProcessMaterial; turbulenceEnabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -346,7 +346,7 @@ proc turbulenceNoiseStrength*(self: ParticleProcessMaterial): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `turbulenceNoiseStrength=`*(self: ParticleProcessMaterial; turbulenceNoiseStrength: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -361,7 +361,7 @@ proc turbulenceNoiseScale*(self: ParticleProcessMaterial): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `turbulenceNoiseScale=`*(self: ParticleProcessMaterial; turbulenceNoiseScale: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -376,7 +376,7 @@ proc turbulenceNoiseSpeedRandom*(self: ParticleProcessMaterial): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `turbulenceNoiseSpeedRandom=`*(self: ParticleProcessMaterial; turbulenceNoiseSpeedRandom: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -391,7 +391,7 @@ proc turbulenceNoiseSpeed*(self: ParticleProcessMaterial): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `turbulenceNoiseSpeed=`*(self: ParticleProcessMaterial; turbulenceNoiseSpeed: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -406,7 +406,7 @@ proc gravity*(self: ParticleProcessMaterial): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `gravity=`*(self: ParticleProcessMaterial; accelVec: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -428,7 +428,7 @@ proc lifetimeRandomness*(self: ParticleProcessMaterial): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc subEmitterMode*(self: ParticleProcessMaterial): ParticleProcessMaterial_SubEmitterMode =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -436,7 +436,7 @@ proc subEmitterMode*(self: ParticleProcessMaterial): ParticleProcessMaterial_Sub
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 2399052877)
   var ret: encoded ParticleProcessMaterial_SubEmitterMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(ParticleProcessMaterial_SubEmitterMode)
+  (addr ret).decode_result(ParticleProcessMaterial_SubEmitterMode)
 proc `subEmitterMode=`*(self: ParticleProcessMaterial; mode: ParticleProcessMaterial_SubEmitterMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -451,7 +451,7 @@ proc subEmitterFrequency*(self: ParticleProcessMaterial): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc `subEmitterFrequency=`*(self: ParticleProcessMaterial; hz: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -466,7 +466,7 @@ proc subEmitterAmountAtEnd*(self: ParticleProcessMaterial): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `subEmitterAmountAtEnd=`*(self: ParticleProcessMaterial; amount: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -481,7 +481,7 @@ proc subEmitterAmountAtCollision*(self: ParticleProcessMaterial): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `subEmitterAmountAtCollision=`*(self: ParticleProcessMaterial; amount: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -496,7 +496,7 @@ proc subEmitterKeepVelocity*(self: ParticleProcessMaterial): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `subEmitterKeepVelocity=`*(self: ParticleProcessMaterial; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -518,7 +518,7 @@ proc isAttractorInteractionEnabled*(self: ParticleProcessMaterial): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `collisionMode=`*(self: ParticleProcessMaterial; mode: ParticleProcessMaterial_CollisionMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -533,7 +533,7 @@ proc collisionMode*(self: ParticleProcessMaterial): ParticleProcessMaterial_Coll
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 139371864)
   var ret: encoded ParticleProcessMaterial_CollisionMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(ParticleProcessMaterial_CollisionMode)
+  (addr ret).decode_result(ParticleProcessMaterial_CollisionMode)
 proc `collisionUseScale=`*(self: ParticleProcessMaterial; radius: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -548,7 +548,7 @@ proc isCollisionUsingScale*(self: ParticleProcessMaterial): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `collisionFriction=`*(self: ParticleProcessMaterial; friction: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -563,7 +563,7 @@ proc collisionFriction*(self: ParticleProcessMaterial): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `collisionBounce=`*(self: ParticleProcessMaterial; bounce: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -578,4 +578,4 @@ proc collisionBounce*(self: ParticleProcessMaterial): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

@@ -19,7 +19,7 @@ proc getSpawnableSceneCount*(self: MultiplayerSpawner): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerSpawner, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getSpawnableScene*(self: MultiplayerSpawner; index: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -28,7 +28,7 @@ proc getSpawnableScene*(self: MultiplayerSpawner; index: int32): String =
   var `?param` = [getPtr index]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc clearSpawnableScenes*(self: MultiplayerSpawner) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -43,7 +43,7 @@ proc spawn*(self: MultiplayerSpawner; data: Variant = default(Variant)): Node =
   var `?param` = [getPtr data]
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Node)
+  (addr ret).decode_result(Node)
 proc spawnPath*(self: MultiplayerSpawner): NodePath =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -51,7 +51,7 @@ proc spawnPath*(self: MultiplayerSpawner): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerSpawner, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc `spawnPath=`*(self: MultiplayerSpawner; path: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -66,7 +66,7 @@ proc spawnLimit*(self: MultiplayerSpawner): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerSpawner, addr name, 3905245786)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc `spawnLimit=`*(self: MultiplayerSpawner; limit: uint32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -81,7 +81,7 @@ proc spawnFunction*(self: MultiplayerSpawner): Callable =
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerSpawner, addr name, 1307783378)
   var ret: encoded Callable
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Callable)
+  (addr ret).decode_result(Callable)
 proc `spawnFunction=`*(self: MultiplayerSpawner; spawnFunction: Callable) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

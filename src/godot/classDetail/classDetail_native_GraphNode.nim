@@ -19,7 +19,7 @@ proc title*(self: GraphNode): String =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphNode, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `textDirection=`*(self: GraphNode; direction: Control_TextDirection) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc textDirection*(self: GraphNode): Control_TextDirection =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphNode, addr name, 797257663)
   var ret: encoded Control_TextDirection
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Control_TextDirection)
+  (addr ret).decode_result(Control_TextDirection)
 proc `language=`*(self: GraphNode; language: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc language*(self: GraphNode): String =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphNode, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc setSlot*(self: GraphNode; slotIndex: int32; enableLeftPort: Bool; typeLeft: int32; colorLeft: Color; enableRightPort: Bool; typeRight: int32; colorRight: Color; customIconLeft: Texture2D = default Texture2D; customIconRight: Texture2D = default Texture2D; drawStylebox: Bool = true) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -85,7 +85,7 @@ proc isSlotEnabledLeft*(self: GraphNode; slotIndex: int32): Bool =
   var `?param` = [getPtr slotIndex]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setSlotTypeLeft*(self: GraphNode; slotIndex: int32; `type`: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -101,7 +101,7 @@ proc getSlotTypeLeft*(self: GraphNode; slotIndex: int32): int32 =
   var `?param` = [getPtr slotIndex]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setSlotColorLeft*(self: GraphNode; slotIndex: int32; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -117,7 +117,7 @@ proc getSlotColorLeft*(self: GraphNode; slotIndex: int32): Color =
   var `?param` = [getPtr slotIndex]
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc setSlotEnabledRight*(self: GraphNode; slotIndex: int32; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -133,7 +133,7 @@ proc isSlotEnabledRight*(self: GraphNode; slotIndex: int32): Bool =
   var `?param` = [getPtr slotIndex]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setSlotTypeRight*(self: GraphNode; slotIndex: int32; `type`: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -149,7 +149,7 @@ proc getSlotTypeRight*(self: GraphNode; slotIndex: int32): int32 =
   var `?param` = [getPtr slotIndex]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc setSlotColorRight*(self: GraphNode; slotIndex: int32; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -165,7 +165,7 @@ proc getSlotColorRight*(self: GraphNode; slotIndex: int32): Color =
   var `?param` = [getPtr slotIndex]
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc isSlotDrawStylebox*(self: GraphNode; slotIndex: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -174,7 +174,7 @@ proc isSlotDrawStylebox*(self: GraphNode; slotIndex: int32): Bool =
   var `?param` = [getPtr slotIndex]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc setSlotDrawStylebox*(self: GraphNode; slotIndex: int32; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -196,7 +196,7 @@ proc positionOffset*(self: GraphNode): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphNode, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `comment=`*(self: GraphNode; comment: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -211,7 +211,7 @@ proc isComment*(self: GraphNode): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphNode, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `resizable=`*(self: GraphNode; resizable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -226,7 +226,7 @@ proc isResizable*(self: GraphNode): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphNode, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `draggable=`*(self: GraphNode; draggable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -241,7 +241,7 @@ proc isDraggable*(self: GraphNode): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphNode, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `selectable=`*(self: GraphNode; selectable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -256,7 +256,7 @@ proc isSelectable*(self: GraphNode): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphNode, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `selected=`*(self: GraphNode; selected: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -271,7 +271,7 @@ proc isSelected*(self: GraphNode): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphNode, addr name, 2240911060)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getConnectionInputCount*(self: GraphNode): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -279,7 +279,7 @@ proc getConnectionInputCount*(self: GraphNode): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphNode, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getConnectionInputHeight*(self: GraphNode; port: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -288,7 +288,7 @@ proc getConnectionInputHeight*(self: GraphNode; port: int32): int32 =
   var `?param` = [getPtr port]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getConnectionInputPosition*(self: GraphNode; port: int32): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -297,7 +297,7 @@ proc getConnectionInputPosition*(self: GraphNode; port: int32): Vector2 =
   var `?param` = [getPtr port]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getConnectionInputType*(self: GraphNode; port: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -306,7 +306,7 @@ proc getConnectionInputType*(self: GraphNode; port: int32): int32 =
   var `?param` = [getPtr port]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getConnectionInputColor*(self: GraphNode; port: int32): Color =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -315,7 +315,7 @@ proc getConnectionInputColor*(self: GraphNode; port: int32): Color =
   var `?param` = [getPtr port]
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc getConnectionInputSlot*(self: GraphNode; port: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -324,7 +324,7 @@ proc getConnectionInputSlot*(self: GraphNode; port: int32): int32 =
   var `?param` = [getPtr port]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getConnectionOutputCount*(self: GraphNode): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -332,7 +332,7 @@ proc getConnectionOutputCount*(self: GraphNode): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphNode, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getConnectionOutputHeight*(self: GraphNode; port: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -341,7 +341,7 @@ proc getConnectionOutputHeight*(self: GraphNode; port: int32): int32 =
   var `?param` = [getPtr port]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getConnectionOutputPosition*(self: GraphNode; port: int32): Vector2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -350,7 +350,7 @@ proc getConnectionOutputPosition*(self: GraphNode; port: int32): Vector2 =
   var `?param` = [getPtr port]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getConnectionOutputType*(self: GraphNode; port: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -359,7 +359,7 @@ proc getConnectionOutputType*(self: GraphNode; port: int32): int32 =
   var `?param` = [getPtr port]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getConnectionOutputColor*(self: GraphNode; port: int32): Color =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -368,7 +368,7 @@ proc getConnectionOutputColor*(self: GraphNode; port: int32): Color =
   var `?param` = [getPtr port]
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Color)
+  (addr ret).decode_result(Color)
 proc getConnectionOutputSlot*(self: GraphNode; port: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -377,7 +377,7 @@ proc getConnectionOutputSlot*(self: GraphNode; port: int32): int32 =
   var `?param` = [getPtr port]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `showCloseButton=`*(self: GraphNode; show: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -392,7 +392,7 @@ proc isCloseButtonVisible*(self: GraphNode): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphNode, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `overlay=`*(self: GraphNode; overlay: GraphNode_Overlay) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -407,4 +407,4 @@ proc overlay*(self: GraphNode): GraphNode_Overlay =
     methodbind = interface_ClassDB_getMethodBind(addr className GraphNode, addr name, 2854257040)
   var ret: encoded GraphNode_Overlay
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(GraphNode_Overlay)
+  (addr ret).decode_result(GraphNode_Overlay)

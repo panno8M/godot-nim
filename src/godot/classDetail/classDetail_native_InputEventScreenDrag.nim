@@ -19,7 +19,7 @@ proc index*(self: InputEventScreenDrag): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventScreenDrag, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `tilt=`*(self: InputEventScreenDrag; tilt: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc tilt*(self: InputEventScreenDrag): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventScreenDrag, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `pressure=`*(self: InputEventScreenDrag; pressure: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc pressure*(self: InputEventScreenDrag): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventScreenDrag, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `penInverted=`*(self: InputEventScreenDrag; penInverted: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc penInverted*(self: InputEventScreenDrag): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventScreenDrag, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `position=`*(self: InputEventScreenDrag; position: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc position*(self: InputEventScreenDrag): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventScreenDrag, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `relative=`*(self: InputEventScreenDrag; relative: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc relative*(self: InputEventScreenDrag): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventScreenDrag, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc `velocity=`*(self: InputEventScreenDrag; velocity: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,4 +109,4 @@ proc velocity*(self: InputEventScreenDrag): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className InputEventScreenDrag, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)

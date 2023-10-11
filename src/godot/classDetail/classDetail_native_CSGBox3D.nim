@@ -19,7 +19,7 @@ proc size*(self: CSGBox3D): Vector3 =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGBox3D, addr name, 3360562783)
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector3)
+  (addr ret).decode_result(Vector3)
 proc `material=`*(self: CSGBox3D; material: Material) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,4 +34,4 @@ proc material*(self: CSGBox3D): Material =
     methodbind = interface_ClassDB_getMethodBind(addr className CSGBox3D, addr name, 5934680)
   var ret: encoded Material
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Material)
+  (addr ret).decode_result(Material)

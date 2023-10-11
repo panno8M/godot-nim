@@ -19,7 +19,7 @@ proc waitTime*(self: Timer): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className Timer, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc `oneShot=`*(self: Timer; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc isOneShot*(self: Timer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Timer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `autostart=`*(self: Timer; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc hasAutostart*(self: Timer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Timer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc start*(self: Timer; timeSec: float64 = -1) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -77,7 +77,7 @@ proc isPaused*(self: Timer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Timer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc isStopped*(self: Timer): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -85,7 +85,7 @@ proc isStopped*(self: Timer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Timer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc timeLeft*(self: Timer): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -93,7 +93,7 @@ proc timeLeft*(self: Timer): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className Timer, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc `timerProcessCallback=`*(self: Timer; callback: Timer_TimerProcessCallback) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -108,4 +108,4 @@ proc timerProcessCallback*(self: Timer): Timer_TimerProcessCallback =
     methodbind = interface_ClassDB_getMethodBind(addr className Timer, addr name, 2672570227)
   var ret: encoded Timer_TimerProcessCallback
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Timer_TimerProcessCallback)
+  (addr ret).decode_result(Timer_TimerProcessCallback)

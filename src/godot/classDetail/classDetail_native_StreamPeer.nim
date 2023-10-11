@@ -13,7 +13,7 @@ proc putData*(self: StreamPeer; data: PackedByteArray): Error =
   var `?param` = [getPtr data]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc putPartialData*(self: StreamPeer; data: PackedByteArray): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc putPartialData*(self: StreamPeer; data: PackedByteArray): Array =
   var `?param` = [getPtr data]
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)
 proc getData*(self: StreamPeer; bytes: int32): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -31,7 +31,7 @@ proc getData*(self: StreamPeer; bytes: int32): Array =
   var `?param` = [getPtr bytes]
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)
 proc getPartialData*(self: StreamPeer; bytes: int32): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -40,7 +40,7 @@ proc getPartialData*(self: StreamPeer; bytes: int32): Array =
   var `?param` = [getPtr bytes]
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)
 proc getAvailableBytes*(self: StreamPeer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -48,7 +48,7 @@ proc getAvailableBytes*(self: StreamPeer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `bigEndian=`*(self: StreamPeer; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -63,7 +63,7 @@ proc isBigEndianEnabled*(self: StreamPeer): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeer, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc put8*(self: StreamPeer; value: int8) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -162,7 +162,7 @@ proc get8*(self: StreamPeer): int8 =
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeer, addr name, 2455072627)
   var ret: encoded int8
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int8)
+  (addr ret).decode_result(int8)
 proc getU8*(self: StreamPeer): uint8 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -170,7 +170,7 @@ proc getU8*(self: StreamPeer): uint8 =
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeer, addr name, 2455072627)
   var ret: encoded uint8
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint8)
+  (addr ret).decode_result(uint8)
 proc get16*(self: StreamPeer): int16 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -178,7 +178,7 @@ proc get16*(self: StreamPeer): int16 =
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeer, addr name, 2455072627)
   var ret: encoded int16
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int16)
+  (addr ret).decode_result(int16)
 proc getU16*(self: StreamPeer): uint16 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -186,7 +186,7 @@ proc getU16*(self: StreamPeer): uint16 =
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeer, addr name, 2455072627)
   var ret: encoded uint16
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint16)
+  (addr ret).decode_result(uint16)
 proc get32*(self: StreamPeer): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -194,7 +194,7 @@ proc get32*(self: StreamPeer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeer, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getU32*(self: StreamPeer): uint32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -202,7 +202,7 @@ proc getU32*(self: StreamPeer): uint32 =
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeer, addr name, 2455072627)
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint32)
+  (addr ret).decode_result(uint32)
 proc get64*(self: StreamPeer): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -210,7 +210,7 @@ proc get64*(self: StreamPeer): int64 =
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeer, addr name, 2455072627)
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int64)
+  (addr ret).decode_result(int64)
 proc getU64*(self: StreamPeer): uint64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -218,7 +218,7 @@ proc getU64*(self: StreamPeer): uint64 =
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeer, addr name, 2455072627)
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(uint64)
+  (addr ret).decode_result(uint64)
 proc getFloat*(self: StreamPeer): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -226,7 +226,7 @@ proc getFloat*(self: StreamPeer): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeer, addr name, 191475506)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getDouble*(self: StreamPeer): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -234,7 +234,7 @@ proc getDouble*(self: StreamPeer): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeer, addr name, 191475506)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc getString*(self: StreamPeer; bytes: int32 = -1): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -243,7 +243,7 @@ proc getString*(self: StreamPeer; bytes: int32 = -1): String =
   var `?param` = [getPtr bytes]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getUtf8String*(self: StreamPeer; bytes: int32 = -1): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -252,7 +252,7 @@ proc getUtf8String*(self: StreamPeer; bytes: int32 = -1): String =
   var `?param` = [getPtr bytes]
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc getVar*(self: StreamPeer; allowObjects: Bool = false): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -261,4 +261,4 @@ proc getVar*(self: StreamPeer; allowObjects: Bool = false): Variant =
   var `?param` = [getPtr allowObjects]
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Variant)
+  (addr ret).decode_result(Variant)

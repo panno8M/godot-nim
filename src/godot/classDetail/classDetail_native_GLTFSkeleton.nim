@@ -12,7 +12,7 @@ proc joints*(self: GLTFSkeleton): PackedInt32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkeleton, addr name, 969006518)
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc `joints=`*(self: GLTFSkeleton; joints: PackedInt32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc roots*(self: GLTFSkeleton): PackedInt32Array =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkeleton, addr name, 969006518)
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc `roots=`*(self: GLTFSkeleton; roots: PackedInt32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc getGodotSkeleton*(self: GLTFSkeleton): Skeleton3D =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkeleton, addr name, 1814733083)
   var ret: encoded Skeleton3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Skeleton3D)
+  (addr ret).decode_result(Skeleton3D)
 proc uniqueNames*(self: GLTFSkeleton): TypedArray[String] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -50,7 +50,7 @@ proc uniqueNames*(self: GLTFSkeleton): TypedArray[String] =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkeleton, addr name, 2915620761)
   var ret: encoded TypedArray[String]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[String])
+  (addr ret).decode_result(TypedArray[String])
 proc `uniqueNames=`*(self: GLTFSkeleton; uniqueNames: TypedArray[String]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -65,7 +65,7 @@ proc godotBoneNode*(self: GLTFSkeleton): Dictionary =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkeleton, addr name, 2382534195)
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc `godotBoneNode=`*(self: GLTFSkeleton; godotBoneNode: Dictionary) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -80,7 +80,7 @@ proc getBoneAttachmentCount*(self: GLTFSkeleton): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkeleton, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getBoneAttachment*(self: GLTFSkeleton; idx: int32): BoneAttachment3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -89,4 +89,4 @@ proc getBoneAttachment*(self: GLTFSkeleton; idx: int32): BoneAttachment3D =
   var `?param` = [getPtr idx]
   var ret: encoded BoneAttachment3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(BoneAttachment3D)
+  (addr ret).decode_result(BoneAttachment3D)

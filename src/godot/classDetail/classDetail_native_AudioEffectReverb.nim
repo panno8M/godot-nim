@@ -19,7 +19,7 @@ proc predelayMsec*(self: AudioEffectReverb): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectReverb, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `predelayFeedback=`*(self: AudioEffectReverb; feedback: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc predelayFeedback*(self: AudioEffectReverb): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectReverb, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `roomSize=`*(self: AudioEffectReverb; size: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc roomSize*(self: AudioEffectReverb): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectReverb, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `damping=`*(self: AudioEffectReverb; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc damping*(self: AudioEffectReverb): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectReverb, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `spread=`*(self: AudioEffectReverb; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc spread*(self: AudioEffectReverb): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectReverb, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `dry=`*(self: AudioEffectReverb; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc dry*(self: AudioEffectReverb): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectReverb, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `wet=`*(self: AudioEffectReverb; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc wet*(self: AudioEffectReverb): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectReverb, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `hpf=`*(self: AudioEffectReverb; amount: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,4 +124,4 @@ proc hpf*(self: AudioEffectReverb): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectReverb, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

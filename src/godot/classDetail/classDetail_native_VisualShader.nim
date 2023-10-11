@@ -27,7 +27,7 @@ proc getNode*(self: VisualShader; `type`: VisualShader_Type; id: int32): VisualS
   var `?param` = [getPtr `type`, getPtr id]
   var ret: encoded VisualShaderNode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(VisualShaderNode)
+  (addr ret).decode_result(VisualShaderNode)
 proc setNodePosition*(self: VisualShader; `type`: VisualShader_Type; id: int32; position: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -43,7 +43,7 @@ proc getNodePosition*(self: VisualShader; `type`: VisualShader_Type; id: int32):
   var `?param` = [getPtr `type`, getPtr id]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc getNodeList*(self: VisualShader; `type`: VisualShader_Type): PackedInt32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -52,7 +52,7 @@ proc getNodeList*(self: VisualShader; `type`: VisualShader_Type): PackedInt32Arr
   var `?param` = [getPtr `type`]
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(PackedInt32Array)
+  (addr ret).decode_result(PackedInt32Array)
 proc getValidNodeId*(self: VisualShader; `type`: VisualShader_Type): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -61,7 +61,7 @@ proc getValidNodeId*(self: VisualShader; `type`: VisualShader_Type): int32 =
   var `?param` = [getPtr `type`]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc removeNode*(self: VisualShader; `type`: VisualShader_Type; id: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -84,7 +84,7 @@ proc isNodeConnection*(self: VisualShader; `type`: VisualShader_Type; fromNode: 
   var `?param` = [getPtr `type`, getPtr fromNode, getPtr fromPort, getPtr toNode, getPtr toPort]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc canConnectNodes*(self: VisualShader; `type`: VisualShader_Type; fromNode: int32; fromPort: int32; toNode: int32; toPort: int32): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -93,7 +93,7 @@ proc canConnectNodes*(self: VisualShader; `type`: VisualShader_Type; fromNode: i
   var `?param` = [getPtr `type`, getPtr fromNode, getPtr fromPort, getPtr toNode, getPtr toPort]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc connectNodes*(self: VisualShader; `type`: VisualShader_Type; fromNode: int32; fromPort: int32; toNode: int32; toPort: int32): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -102,7 +102,7 @@ proc connectNodes*(self: VisualShader; `type`: VisualShader_Type; fromNode: int3
   var `?param` = [getPtr `type`, getPtr fromNode, getPtr fromPort, getPtr toNode, getPtr toPort]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc disconnectNodes*(self: VisualShader; `type`: VisualShader_Type; fromNode: int32; fromPort: int32; toNode: int32; toPort: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -125,7 +125,7 @@ proc getNodeConnections*(self: VisualShader; `type`: VisualShader_Type): TypedAr
   var `?param` = [getPtr `type`]
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(TypedArray[Dictionary])
+  (addr ret).decode_result(TypedArray[Dictionary])
 proc `graphOffset=`*(self: VisualShader; offset: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -140,7 +140,7 @@ proc graphOffset*(self: VisualShader): Vector2 =
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShader, addr name, 3341600327)
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc addVarying*(self: VisualShader; name: String; mode: VisualShader_VaryingMode; `type`: VisualShader_VaryingType) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -163,4 +163,4 @@ proc hasVarying*(self: VisualShader; name: String): Bool =
   var `?param` = [getPtr name]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

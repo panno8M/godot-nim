@@ -19,7 +19,7 @@ proc gradient*(self: GradientTexture1D): Gradient =
     methodbind = interface_ClassDB_getMethodBind(addr className GradientTexture1D, addr name, 132272999)
   var ret: encoded Gradient
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Gradient)
+  (addr ret).decode_result(Gradient)
 proc `width=`*(self: GradientTexture1D; width: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -41,4 +41,4 @@ proc isUsingHdr*(self: GradientTexture1D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className GradientTexture1D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

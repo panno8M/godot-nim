@@ -13,7 +13,7 @@ proc getSession*(self: EditorDebuggerPlugin; id: int32): EditorDebuggerSession =
   var `?param` = [getPtr id]
   var ret: encoded EditorDebuggerSession
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(EditorDebuggerSession)
+  (addr ret).decode_result(EditorDebuggerSession)
 proc getSessions*(self: EditorDebuggerPlugin): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -21,4 +21,4 @@ proc getSessions*(self: EditorDebuggerPlugin): Array =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorDebuggerPlugin, addr name, 2915620761)
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)

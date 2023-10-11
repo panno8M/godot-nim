@@ -13,7 +13,7 @@ proc getStoredValues*(self: InstancePlaceholder; withOrder: Bool = false): Dicti
   var `?param` = [getPtr withOrder]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc createInstance*(self: InstancePlaceholder; replace: Bool = false; customScene: PackedScene = default PackedScene): Node =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc createInstance*(self: InstancePlaceholder; replace: Bool = false; customSce
   var `?param` = [getPtr replace, getPtr customScene]
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Node)
+  (addr ret).decode_result(Node)
 proc getInstancePath*(self: InstancePlaceholder): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -30,4 +30,4 @@ proc getInstancePath*(self: InstancePlaceholder): String =
     methodbind = interface_ClassDB_getMethodBind(addr className InstancePlaceholder, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)

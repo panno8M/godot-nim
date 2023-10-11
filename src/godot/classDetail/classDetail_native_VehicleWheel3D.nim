@@ -19,7 +19,7 @@ proc radius*(self: VehicleWheel3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `suspensionRestLength=`*(self: VehicleWheel3D; length: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc suspensionRestLength*(self: VehicleWheel3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `suspensionTravel=`*(self: VehicleWheel3D; length: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc suspensionTravel*(self: VehicleWheel3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `suspensionStiffness=`*(self: VehicleWheel3D; length: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,7 +64,7 @@ proc suspensionStiffness*(self: VehicleWheel3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `suspensionMaxForce=`*(self: VehicleWheel3D; length: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -79,7 +79,7 @@ proc suspensionMaxForce*(self: VehicleWheel3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `dampingCompression=`*(self: VehicleWheel3D; length: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -94,7 +94,7 @@ proc dampingCompression*(self: VehicleWheel3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `dampingRelaxation=`*(self: VehicleWheel3D; length: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,7 +109,7 @@ proc dampingRelaxation*(self: VehicleWheel3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `useAsTraction=`*(self: VehicleWheel3D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -124,7 +124,7 @@ proc isUsedAsTraction*(self: VehicleWheel3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `useAsSteering=`*(self: VehicleWheel3D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -139,7 +139,7 @@ proc isUsedAsSteering*(self: VehicleWheel3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `frictionSlip=`*(self: VehicleWheel3D; length: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -154,7 +154,7 @@ proc frictionSlip*(self: VehicleWheel3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc isInContact*(self: VehicleWheel3D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -162,7 +162,7 @@ proc isInContact*(self: VehicleWheel3D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getContactBody*(self: VehicleWheel3D): Node3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -170,7 +170,7 @@ proc getContactBody*(self: VehicleWheel3D): Node3D =
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 151077316)
   var ret: encoded Node3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Node3D)
+  (addr ret).decode_result(Node3D)
 proc `rollInfluence=`*(self: VehicleWheel3D; rollInfluence: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -185,7 +185,7 @@ proc rollInfluence*(self: VehicleWheel3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getSkidinfo*(self: VehicleWheel3D): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -193,7 +193,7 @@ proc getSkidinfo*(self: VehicleWheel3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getRpm*(self: VehicleWheel3D): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -201,7 +201,7 @@ proc getRpm*(self: VehicleWheel3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `engineForce=`*(self: VehicleWheel3D; engineForce: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -216,7 +216,7 @@ proc engineForce*(self: VehicleWheel3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `brake=`*(self: VehicleWheel3D; brake: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -231,7 +231,7 @@ proc brake*(self: VehicleWheel3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `steering=`*(self: VehicleWheel3D; steering: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -246,4 +246,4 @@ proc steering*(self: VehicleWheel3D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className VehicleWheel3D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)

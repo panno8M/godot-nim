@@ -12,7 +12,7 @@ proc getParsedText*(self: RichTextLabel): String =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc addText*(self: RichTextLabel; text: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -48,7 +48,7 @@ proc removeParagraph*(self: RichTextLabel; paragraph: int32): Bool =
   var `?param` = [getPtr paragraph]
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc pushFont*(self: RichTextLabel; font: Font; fontSize: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -263,7 +263,7 @@ proc structuredTextBidiOverride*(self: RichTextLabel): TextServer_StructuredText
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 3385126229)
   var ret: encoded TextServer_StructuredTextParser
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextServer_StructuredTextParser)
+  (addr ret).decode_result(TextServer_StructuredTextParser)
 proc `structuredTextBidiOverrideOptions=`*(self: RichTextLabel; args: Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -278,7 +278,7 @@ proc structuredTextBidiOverrideOptions*(self: RichTextLabel): Array =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 3995934104)
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)
 proc `textDirection=`*(self: RichTextLabel; direction: Control_TextDirection) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -293,7 +293,7 @@ proc textDirection*(self: RichTextLabel): Control_TextDirection =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 797257663)
   var ret: encoded Control_TextDirection
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Control_TextDirection)
+  (addr ret).decode_result(Control_TextDirection)
 proc `language=`*(self: RichTextLabel; language: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -308,7 +308,7 @@ proc language*(self: RichTextLabel): String =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc `autowrapMode=`*(self: RichTextLabel; autowrapMode: TextServer_AutowrapMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -323,7 +323,7 @@ proc autowrapMode*(self: RichTextLabel): TextServer_AutowrapMode =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 1549071663)
   var ret: encoded TextServer_AutowrapMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextServer_AutowrapMode)
+  (addr ret).decode_result(TextServer_AutowrapMode)
 proc `metaUnderline=`*(self: RichTextLabel; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -338,7 +338,7 @@ proc isMetaUnderlined*(self: RichTextLabel): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `hintUnderline=`*(self: RichTextLabel; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -353,7 +353,7 @@ proc isHintUnderlined*(self: RichTextLabel): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `scrollActive=`*(self: RichTextLabel; active: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -368,7 +368,7 @@ proc isScrollActive*(self: RichTextLabel): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `scrollFollow=`*(self: RichTextLabel; follow: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -383,7 +383,7 @@ proc isScrollFollowing*(self: RichTextLabel): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getVScrollBar*(self: RichTextLabel): VScrollBar =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -391,7 +391,7 @@ proc getVScrollBar*(self: RichTextLabel): VScrollBar =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 2630340773)
   var ret: encoded VScrollBar
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(VScrollBar)
+  (addr ret).decode_result(VScrollBar)
 proc scrollToLine*(self: RichTextLabel; line: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -426,7 +426,7 @@ proc tabSize*(self: RichTextLabel): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `fitContent=`*(self: RichTextLabel; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -441,7 +441,7 @@ proc isFitContentEnabled*(self: RichTextLabel): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `selectionEnabled=`*(self: RichTextLabel; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -456,7 +456,7 @@ proc isSelectionEnabled*(self: RichTextLabel): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `contextMenuEnabled=`*(self: RichTextLabel; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -471,7 +471,7 @@ proc isContextMenuEnabled*(self: RichTextLabel): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `shortcutKeysEnabled=`*(self: RichTextLabel; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -486,7 +486,7 @@ proc isShortcutKeysEnabled*(self: RichTextLabel): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `deselectOnFocusLossEnabled=`*(self: RichTextLabel; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -501,7 +501,7 @@ proc isDeselectOnFocusLossEnabled*(self: RichTextLabel): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getSelectionFrom*(self: RichTextLabel): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -509,7 +509,7 @@ proc getSelectionFrom*(self: RichTextLabel): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getSelectionTo*(self: RichTextLabel): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -517,7 +517,7 @@ proc getSelectionTo*(self: RichTextLabel): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc selectAll*(self: RichTextLabel) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -531,7 +531,7 @@ proc getSelectedText*(self: RichTextLabel): String =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc deselect*(self: RichTextLabel) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -559,7 +559,7 @@ proc text*(self: RichTextLabel): String =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 201670096)
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(String)
+  (addr ret).decode_result(String)
 proc isReady*(self: RichTextLabel): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -567,7 +567,7 @@ proc isReady*(self: RichTextLabel): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `threaded=`*(self: RichTextLabel; threaded: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -582,7 +582,7 @@ proc isThreaded*(self: RichTextLabel): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc `progressBarDelay=`*(self: RichTextLabel; delayMs: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -597,7 +597,7 @@ proc progressBarDelay*(self: RichTextLabel): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `visibleCharacters=`*(self: RichTextLabel; amount: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -612,7 +612,7 @@ proc visibleCharacters*(self: RichTextLabel): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc visibleCharactersBehavior*(self: RichTextLabel): TextServer_VisibleCharactersBehavior =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -620,7 +620,7 @@ proc visibleCharactersBehavior*(self: RichTextLabel): TextServer_VisibleCharacte
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 258789322)
   var ret: encoded TextServer_VisibleCharactersBehavior
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TextServer_VisibleCharactersBehavior)
+  (addr ret).decode_result(TextServer_VisibleCharactersBehavior)
 proc `visibleCharactersBehavior=`*(self: RichTextLabel; behavior: TextServer_VisibleCharactersBehavior) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -642,7 +642,7 @@ proc visibleRatio*(self: RichTextLabel): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getCharacterLine*(self: RichTextLabel; character: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -651,7 +651,7 @@ proc getCharacterLine*(self: RichTextLabel; character: int32): int32 =
   var `?param` = [getPtr character]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getCharacterParagraph*(self: RichTextLabel; character: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -660,7 +660,7 @@ proc getCharacterParagraph*(self: RichTextLabel; character: int32): int32 =
   var `?param` = [getPtr character]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getTotalCharacterCount*(self: RichTextLabel): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -668,7 +668,7 @@ proc getTotalCharacterCount*(self: RichTextLabel): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc `useBbcode=`*(self: RichTextLabel; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -683,7 +683,7 @@ proc isUsingBbcode*(self: RichTextLabel): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc getLineCount*(self: RichTextLabel): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -691,7 +691,7 @@ proc getLineCount*(self: RichTextLabel): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getVisibleLineCount*(self: RichTextLabel): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -699,7 +699,7 @@ proc getVisibleLineCount*(self: RichTextLabel): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getParagraphCount*(self: RichTextLabel): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -707,7 +707,7 @@ proc getParagraphCount*(self: RichTextLabel): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getVisibleParagraphCount*(self: RichTextLabel): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -715,7 +715,7 @@ proc getVisibleParagraphCount*(self: RichTextLabel): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getContentHeight*(self: RichTextLabel): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -723,7 +723,7 @@ proc getContentHeight*(self: RichTextLabel): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getContentWidth*(self: RichTextLabel): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -731,7 +731,7 @@ proc getContentWidth*(self: RichTextLabel): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getLineOffset*(self: RichTextLabel; line: int32): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -740,7 +740,7 @@ proc getLineOffset*(self: RichTextLabel; line: int32): Float =
   var `?param` = [getPtr line]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc getParagraphOffset*(self: RichTextLabel; paragraph: int32): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -749,7 +749,7 @@ proc getParagraphOffset*(self: RichTextLabel; paragraph: int32): Float =
   var `?param` = [getPtr paragraph]
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc parseExpressionsForValues*(self: RichTextLabel; expressions: PackedStringArray): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -758,7 +758,7 @@ proc parseExpressionsForValues*(self: RichTextLabel; expressions: PackedStringAr
   var `?param` = [getPtr expressions]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc `effects=`*(self: RichTextLabel; effects: Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -773,7 +773,7 @@ proc effects*(self: RichTextLabel): Array =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 2915620761)
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Array)
+  (addr ret).decode_result(Array)
 proc installEffect*(self: RichTextLabel; effect: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -788,7 +788,7 @@ proc getMenu*(self: RichTextLabel): PopupMenu =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 229722558)
   var ret: encoded PopupMenu
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PopupMenu)
+  (addr ret).decode_result(PopupMenu)
 proc isMenuVisible*(self: RichTextLabel): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -796,7 +796,7 @@ proc isMenuVisible*(self: RichTextLabel): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className RichTextLabel, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)
 proc menuOption*(self: RichTextLabel; option: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

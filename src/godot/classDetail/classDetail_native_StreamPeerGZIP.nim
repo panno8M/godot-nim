@@ -13,7 +13,7 @@ proc startCompression*(self: StreamPeerGZIP; useDeflate: Bool = false; bufferSiz
   var `?param` = [getPtr useDeflate, getPtr bufferSize]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc startDecompression*(self: StreamPeerGZIP; useDeflate: Bool = false; bufferSize: int32 = 65535): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,7 +22,7 @@ proc startDecompression*(self: StreamPeerGZIP; useDeflate: Bool = false; bufferS
   var `?param` = [getPtr useDeflate, getPtr bufferSize]
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc finish*(self: StreamPeerGZIP): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -30,7 +30,7 @@ proc finish*(self: StreamPeerGZIP): Error =
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeerGZIP, addr name, 166280745)
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Error)
+  (addr ret).decode_result(Error)
 proc clear*(self: StreamPeerGZIP) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

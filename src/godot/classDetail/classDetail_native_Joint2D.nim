@@ -19,7 +19,7 @@ proc nodeA*(self: Joint2D): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className Joint2D, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc `nodeB=`*(self: Joint2D; node: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc nodeB*(self: Joint2D): NodePath =
     methodbind = interface_ClassDB_getMethodBind(addr className Joint2D, addr name, 4075236667)
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(NodePath)
+  (addr ret).decode_result(NodePath)
 proc `bias=`*(self: Joint2D; bias: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc bias*(self: Joint2D): Float =
     methodbind = interface_ClassDB_getMethodBind(addr className Joint2D, addr name, 1740695150)
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Float)
+  (addr ret).decode_result(Float)
 proc `excludeNodesFromCollision=`*(self: Joint2D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -64,4 +64,4 @@ proc excludeNodesFromCollision*(self: Joint2D): Bool =
     methodbind = interface_ClassDB_getMethodBind(addr className Joint2D, addr name, 36873697)
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Bool)
+  (addr ret).decode_result(Bool)

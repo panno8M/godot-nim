@@ -12,7 +12,7 @@ proc space*(self: World3D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className World3D, addr name, 2944877500)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc navigationMap*(self: World3D): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -20,7 +20,7 @@ proc navigationMap*(self: World3D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className World3D, addr name, 2944877500)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc scenario*(self: World3D): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -28,7 +28,7 @@ proc scenario*(self: World3D): RID =
     methodbind = interface_ClassDB_getMethodBind(addr className World3D, addr name, 2944877500)
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(RID)
+  (addr ret).decode_result(RID)
 proc `environment=`*(self: World3D; env: Environment) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -43,7 +43,7 @@ proc environment*(self: World3D): Environment =
     methodbind = interface_ClassDB_getMethodBind(addr className World3D, addr name, 3082064660)
   var ret: encoded Environment
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Environment)
+  (addr ret).decode_result(Environment)
 proc `fallbackEnvironment=`*(self: World3D; env: Environment) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -58,7 +58,7 @@ proc fallbackEnvironment*(self: World3D): Environment =
     methodbind = interface_ClassDB_getMethodBind(addr className World3D, addr name, 3082064660)
   var ret: encoded Environment
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Environment)
+  (addr ret).decode_result(Environment)
 proc `cameraAttributes=`*(self: World3D; attributes: CameraAttributes) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -73,7 +73,7 @@ proc cameraAttributes*(self: World3D): CameraAttributes =
     methodbind = interface_ClassDB_getMethodBind(addr className World3D, addr name, 3921283215)
   var ret: encoded CameraAttributes
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(CameraAttributes)
+  (addr ret).decode_result(CameraAttributes)
 proc directSpaceState*(self: World3D): PhysicsDirectSpaceState3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -81,4 +81,4 @@ proc directSpaceState*(self: World3D): PhysicsDirectSpaceState3D =
     methodbind = interface_ClassDB_getMethodBind(addr className World3D, addr name, 2069328350)
   var ret: encoded PhysicsDirectSpaceState3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(PhysicsDirectSpaceState3D)
+  (addr ret).decode_result(PhysicsDirectSpaceState3D)

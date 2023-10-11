@@ -19,7 +19,7 @@ proc rootBone*(self: SkeletonProfile): StringName =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonProfile, addr name, 2737447660)
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc `scaleBaseBone=`*(self: SkeletonProfile; boneName: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -34,7 +34,7 @@ proc scaleBaseBone*(self: SkeletonProfile): StringName =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonProfile, addr name, 2737447660)
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc `groupSize=`*(self: SkeletonProfile; size: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -49,7 +49,7 @@ proc groupSize*(self: SkeletonProfile): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonProfile, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getGroupName*(self: SkeletonProfile; groupIdx: int32): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -58,7 +58,7 @@ proc getGroupName*(self: SkeletonProfile; groupIdx: int32): StringName =
   var `?param` = [getPtr groupIdx]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc setGroupName*(self: SkeletonProfile; groupIdx: int32; groupName: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -74,7 +74,7 @@ proc getTexture*(self: SkeletonProfile; groupIdx: int32): Texture2D =
   var `?param` = [getPtr groupIdx]
   var ret: encoded Texture2D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Texture2D)
+  (addr ret).decode_result(Texture2D)
 proc setTexture*(self: SkeletonProfile; groupIdx: int32; texture: Texture2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -96,7 +96,7 @@ proc boneSize*(self: SkeletonProfile): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonProfile, addr name, 2455072627)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc findBone*(self: SkeletonProfile; boneName: StringName): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -105,7 +105,7 @@ proc findBone*(self: SkeletonProfile; boneName: StringName): int32 =
   var `?param` = [getPtr boneName]
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc getBoneName*(self: SkeletonProfile; boneIdx: int32): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -114,7 +114,7 @@ proc getBoneName*(self: SkeletonProfile; boneIdx: int32): StringName =
   var `?param` = [getPtr boneIdx]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc setBoneName*(self: SkeletonProfile; boneIdx: int32; boneName: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -130,7 +130,7 @@ proc getBoneParent*(self: SkeletonProfile; boneIdx: int32): StringName =
   var `?param` = [getPtr boneIdx]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc setBoneParent*(self: SkeletonProfile; boneIdx: int32; boneParent: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -146,7 +146,7 @@ proc getTailDirection*(self: SkeletonProfile; boneIdx: int32): SkeletonProfile_T
   var `?param` = [getPtr boneIdx]
   var ret: encoded SkeletonProfile_TailDirection
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(SkeletonProfile_TailDirection)
+  (addr ret).decode_result(SkeletonProfile_TailDirection)
 proc setTailDirection*(self: SkeletonProfile; boneIdx: int32; tailDirection: SkeletonProfile_TailDirection) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -162,7 +162,7 @@ proc getBoneTail*(self: SkeletonProfile; boneIdx: int32): StringName =
   var `?param` = [getPtr boneIdx]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc setBoneTail*(self: SkeletonProfile; boneIdx: int32; boneTail: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -178,7 +178,7 @@ proc getReferencePose*(self: SkeletonProfile; boneIdx: int32): Transform3D =
   var `?param` = [getPtr boneIdx]
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc setReferencePose*(self: SkeletonProfile; boneIdx: int32; boneName: Transform3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -194,7 +194,7 @@ proc getHandleOffset*(self: SkeletonProfile; boneIdx: int32): Vector2 =
   var `?param` = [getPtr boneIdx]
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Vector2)
+  (addr ret).decode_result(Vector2)
 proc setHandleOffset*(self: SkeletonProfile; boneIdx: int32; handleOffset: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -210,7 +210,7 @@ proc getGroup*(self: SkeletonProfile; boneIdx: int32): StringName =
   var `?param` = [getPtr boneIdx]
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StringName)
+  (addr ret).decode_result(StringName)
 proc setGroup*(self: SkeletonProfile; boneIdx: int32; group: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

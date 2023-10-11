@@ -12,7 +12,7 @@ proc worldScale*(self: XRServer): float64 =
     methodbind = interface_ClassDB_getMethodBind(addr className XRServer, addr name, 1740695150)
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(float64)
+  (addr ret).decode_result(float64)
 proc `worldScale=`*(self: XRServer; scale: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -27,7 +27,7 @@ proc worldOrigin*(self: XRServer): Transform3D =
     methodbind = interface_ClassDB_getMethodBind(addr className XRServer, addr name, 3229777777)
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc `worldOrigin=`*(self: XRServer; worldOrigin: Transform3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -42,7 +42,7 @@ proc getReferenceFrame*(self: XRServer): Transform3D =
     methodbind = interface_ClassDB_getMethodBind(addr className XRServer, addr name, 3229777777)
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc centerOnHmd*(self: XRServer; rotationMode: XRServer_RotationMode; keepHeight: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -57,7 +57,7 @@ proc getHmdTransform*(self: XRServer): Transform3D =
     methodbind = interface_ClassDB_getMethodBind(addr className XRServer, addr name, 4183770049)
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(Transform3D)
+  (addr ret).decode_result(Transform3D)
 proc addInterface*(self: XRServer; `interface`: XRInterface) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -72,7 +72,7 @@ proc getInterfaceCount*(self: XRServer): int32 =
     methodbind = interface_ClassDB_getMethodBind(addr className XRServer, addr name, 3905245786)
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(int32)
+  (addr ret).decode_result(int32)
 proc removeInterface*(self: XRServer; `interface`: XRInterface) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -88,7 +88,7 @@ proc getInterface*(self: XRServer; idx: int32): XRInterface =
   var `?param` = [getPtr idx]
   var ret: encoded XRInterface
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(XRInterface)
+  (addr ret).decode_result(XRInterface)
 proc getInterfaces*(self: XRServer): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -96,7 +96,7 @@ proc getInterfaces*(self: XRServer): TypedArray[Dictionary] =
     methodbind = interface_ClassDB_getMethodBind(addr className XRServer, addr name, 3995934104)
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(TypedArray[Dictionary])
+  (addr ret).decode_result(TypedArray[Dictionary])
 proc findInterface*(self: XRServer; name: String): XRInterface =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -105,7 +105,7 @@ proc findInterface*(self: XRServer; name: String): XRInterface =
   var `?param` = [getPtr name]
   var ret: encoded XRInterface
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(XRInterface)
+  (addr ret).decode_result(XRInterface)
 proc addTracker*(self: XRServer; tracker: XRPositionalTracker) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -128,7 +128,7 @@ proc getTrackers*(self: XRServer; trackerTypes: int32): Dictionary =
   var `?param` = [getPtr trackerTypes]
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(Dictionary)
+  (addr ret).decode_result(Dictionary)
 proc getTracker*(self: XRServer; trackerName: StringName): XRPositionalTracker =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -137,7 +137,7 @@ proc getTracker*(self: XRServer; trackerName: StringName): XRPositionalTracker =
   var `?param` = [getPtr trackerName]
   var ret: encoded XRPositionalTracker
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(XRPositionalTracker)
+  (addr ret).decode_result(XRPositionalTracker)
 proc primaryInterface*(self: XRServer): XRInterface =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -145,7 +145,7 @@ proc primaryInterface*(self: XRServer): XRInterface =
     methodbind = interface_ClassDB_getMethodBind(addr className XRServer, addr name, 2143545064)
   var ret: encoded XRInterface
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode(XRInterface)
+  (addr ret).decode_result(XRInterface)
 proc `primaryInterface=`*(self: XRServer; `interface`: XRInterface) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

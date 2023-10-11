@@ -41,4 +41,4 @@ proc getMaterial*(self: EditorNode3DGizmoPlugin; name: String; gizmo: EditorNode
   var `?param` = [getPtr name, getPtr gizmo]
   var ret: encoded StandardMaterial3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode(StandardMaterial3D)
+  (addr ret).decode_result(StandardMaterial3D)
