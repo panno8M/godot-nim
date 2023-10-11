@@ -1,8 +1,11 @@
 import godot
 
 type GodotSideTester* = ref object of Node
-  int_value_raw: int
-  float_value_raw: float
+  props: tuple[
+    int_value: int,
+    float_value: float,
+    icon: Texture2D,
+  ]
 # The source of inheritance must be a class known to Godot.
 # (Engine-Class, or Extension-Class from which register_class will be called)
 GodotSideTester.isInheritanceOf Node
@@ -24,16 +27,21 @@ proc helloworld*(_: typedesc[GodotSideTester]): string {.exportgd: Auto.} =
 # You can give an alias to publish to godot by put `{.exportgd: "alias".}`.
 # In this case you can call this method with `set_int_value(value)` from GDScript.
 proc `int_value=`*(self: GodotSideTester; value: int) {.exportgd: "set_int_value".} =
-  self.int_value_raw = value
+  self.props.int_value = value
 # If specify the symbol `Auto` on the name of `exportgd`, it uses Nim's one instead.
 # In this case, the name will be "set_float_value" automatically.
 proc set_float_value*(self: GodotSideTester; value: float) {.exportgd: Auto.} =
-  self.float_value_raw = value
+  self.props.float_value = value
 
 proc int_value*(self: GodotSideTester): int {.exportgd: "get_int_value".} =
-  self.int_value_raw
+  self.props.int_value
 proc get_float_value*(self: GodotSideTester): float {.exportgd: Auto.} =
-  self.float_value_raw
+  self.props.float_value
+
+proc `icon=`*(self: GodotSideTester; value: Texture2D) {.exportgd: "set_icon".} =
+  self.props.icon = value
+proc icon*(self: GodotSideTester): Texture2D {.exportgd: "get_icon".} =
+  self.props.icon
 
 # To register your property, you need to write this section.
 GodotSideTester.property(name= "int_value", type= int):
@@ -48,3 +56,7 @@ GodotSideTester.property(name= "int_value", type= int):
 GodotSideTester.property(name= "float_value", type= float):
   getter: "get_float_value"
   setter: "set_float_value"
+
+GodotSideTester.property(name= "icon", type= Texture2D):
+  getter: "get_icon"
+  setter: "set_icon"

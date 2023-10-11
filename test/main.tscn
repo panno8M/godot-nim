@@ -6,6 +6,7 @@
 [node name="Main" type="Node"]
 
 [node name="TesterGD" type="GodotSideTester" parent="."]
+icon = ExtResource("2_p8ptw")
 script = ExtResource("1_x2b6x")
 
 [node name="TesterNIM" type="NimSideTester" parent="."]
