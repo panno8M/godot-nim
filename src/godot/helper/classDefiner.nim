@@ -39,7 +39,7 @@ proc create_bind(T: typedesc[SomeUserClass]): ObjectPtr {.gdcall.} =
     me.debug "[Extent] create ", T
   let class = instantiate T
   GD_sync class
-  return class.owner
+  return GD_getObjectPtr class
 
 proc free_bind[T: SomeUserClass](class: T) =
   when TraceEngineAllocationCallback:

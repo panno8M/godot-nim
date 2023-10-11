@@ -12,9 +12,10 @@ converter toStringName*[T: SomeClass](_: typedesc[T]): var StringName =
 
 proc instantiate*(T: typedesc[SomeClass]): T =
   result = GD_create[T](interface_classdb_construct_object(addr className T.EngineClass))
+  let objectPtr = GD_getObjectPtr result
   when T is SomeUserClass:
-    interfaceObjectSetInstance(result.owner, addr T.className, cast[pointer](result))
-  interfaceObjectSetInstanceBinding(result.owner, token, cast[pointer](result), addr T.callbacks)
+    interfaceObjectSetInstance(objectPtr, addr T.className, cast[pointer](result))
+  interfaceObjectSetInstanceBinding(objectPtr, token, cast[pointer](result), addr T.callbacks)
   when T is SomeUserClass:
     `=init` result
 
@@ -26,14 +27,14 @@ proc getInstance*[T: SomeClass](p_engine_object: ObjectPtr; _: typedesc[T]): T =
 
   result = cast[T](interface_objectGetInstanceBinding(p_engine_object, token, addr T.callbacks))
   when T is RefCountedBase:
-    discard api.hook_unreference(result.owner)
+    discard api.hook_unreference(GD_getObjectPtr result)
 
 proc instanceID*(self: SomeClass): GDObjectInstanceID =
-  interface_Object_getInstanceId(self.owner)
+  interface_Object_getInstanceId GD_getObjectPtr self
 
 proc castTo*[T, S: SomeClass](self: T; _: typedesc[S]): S =
   if self.isNil: return
-  result = self.owner
+  result = GD_getObjectPtr(self)
     .interface_Object_castTo(interface_ClassDB_getClassTag(addr className S))
     .getInstance(S)
 

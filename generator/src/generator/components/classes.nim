@@ -58,8 +58,7 @@ proc renderClassDefine(class: NimClass): Statement =
     else: inherits
 
   return +$$..ParagraphSt():
-    &"type {name}_interface* = object of {inherits_override}_interface"
-    &"type {name}* = ref {name}_interface"
+    &"type {name}* = ref object of {inherits_override}"
     &"template Super*(_: typedesc[{name}]): typedesc = {inherits}"
     &"template EngineClass*(_: typedesc[{name}]): typedesc = {name}"
 proc renderLocalEnums(class: NimClass): Statement =

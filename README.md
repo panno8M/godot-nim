@@ -13,18 +13,6 @@ See **[test/](https://github.com/panno8M/godot-nim/tree/main/test)** to get an o
 * Initial loading of the extension fails
   > Initialization of the extension fails the first time. Reloading solves the problem.
 
-* Member variables of user-defined classes are not automatically released
-  > Explicitly define `=destroy` and describe the release process as follows:
-  ```nim
-  type
-    MyClass_interface* = object of Node
-      texture: Texture2D
-    MyClass* = ref MyClass_interface
-  proc `=destroy`(x: MyClass_interface) =
-    free x.texture
-    free x
-  ```
-
 ## Features
 
 This project is in the early stages of development and some features are not yet operational.

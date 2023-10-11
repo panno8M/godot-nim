@@ -27,7 +27,7 @@ proc initialize(T: typedesc[SomeEngineClass]; userdata: ClassRuntimeData) =
   userdata.callbacks.free_callback = proc (p_token: pointer; p_instance: pointer; p_binding: pointer) {.gdcall.} =
     when TraceEngineAllocationCallback:
       me_alloc.debug "[Engine] free ", T
-    GD_kill cast[T](p_instance)
+    GD_kill cast[T](p_binding)
 
 proc initialize(T: typedesc[SomeUserClass]; userdata: ClassRuntimeData) =
   userdata.callbacks.create_callback = proc (p_token: pointer; p_instance: pointer): pointer {.gdcall.} =

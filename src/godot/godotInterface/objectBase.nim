@@ -6,14 +6,16 @@ when TraceObjectHook:
   import ../logging
 
 type
-  ObjectBase_interface* = object of RootObj
+  ObjectControl* = object
     owner*: ObjectPtr
+    GD_enableRC*: bool
     GD_refcount*: int
-    GD_alive*: bool
-  ObjectBase* = ref ObjectBase_interface
 
-  RefCountedBase_interface* = object of ObjectBase_interface
-  RefCountedBase* = ref RefCountedBase_interface
+type
+  ObjectBase* = ref object of RootObj
+    control: ObjectControl
+
+  RefCountedBase* = ref object of ObjectBase
 
   SomeClass* = concept type t
     t is ObjectBase
@@ -25,31 +27,45 @@ type
     t.EngineClass isnot t
 
 {.push, raises: [].}
-proc `=destroy`*(x: ObjectBase_interface)
-proc `=destroy`*(x: RefCountedBase_interface)
+proc `=destroy`*(x: ObjectControl)
 {.pop.}
 
+proc GD_getObjectPtr*[T: SomeClass](class: T): ObjectPtr =
+  if class.isNil: return
+  class.control.owner
+proc GD_getObjectPtrPtr*[T: SomeClass](class: T): ptr ObjectPtr =
+  if class.isNil: return
+  if class.control.owner.isNil: return
+  addr class.control.owner
+
 proc GD_ref*(self: ObjectBase) =
-  inc self.GD_refcount
+  inc self.control.GD_refcount
   GC_ref self
 proc GD_unref*(self: ObjectBase) =
-  if self.GD_refcount == 0: return
-  dec self.GD_refcount
+  if self.control.GD_refcount <= 0: return
+  dec self.control.GD_refcount
   GC_unref self
 proc GD_kill*(self: ObjectBase) =
-  self.GD_alive = false
-  while self.GD_refcount > 0:
+  self.control.owner = nil
+  while self.control.GD_refcount > 0:
     GD_unref self
 
 proc GD_create*[T: SomeClass](o: ObjectPtr): T =
   new result
-  result.owner = o
-  result.GD_alive = true
+  result.control.owner = o
+  when T is RefCountedBase:
+    result.control.GD_enableRC = true
 
 proc GD_sync*[T: SomeClass](class: T) =
   GD_ref class
+  # Process for integrating Nim's ref and Godot's RefCounted, implemented in such a way
+  # that the reference count of RefCounted is always added by one while the ref is alive
+  # and subtracted by one when all refs are dead, since the reference count of ref cannot
+  # be obtained.
+  #
+  # Nim::RefCounted.count == Godot::RefCounted.count + (Nim::ref.count != 0)
   when T is RefCountedBase:
-    discard api.hook_reference(class.owner)
+    discard api.hook_reference(class.control.owner)
 
 method `=init`*(self: ObjectBase) {.base.} = discard
 
@@ -65,41 +81,19 @@ method get_propertyList*(self: ObjectBase; r_count: ptr uint32): ptr PropertyInf
 method free_propertyList*(self: ObjectBase; p_list: ptr PropertyInfo) {.base.} = discard
 
 {.push, raises: [].}
-proc `=destroy`*(x: ObjectBase_interface) =
+proc `=destroy`*(x: ObjectControl) =
   if x.owner.isNil: return
   try:
     when TraceObjectHook:
-      iam("Object-destroy-hook", stgLibrary).debug "Object(", api.className(x.owner), ")"
-    if x.GD_alive:
+      if x.GD_enableRC:
+        iam("RefCounted-destroy-hook", stgLibrary).debug "RefCounted(", api.className(x.owner), ", refc: ", api.hook_getReferenceCount(x.owner), ")"
+      else:
+        iam("Object-destroy-hook", stgLibrary).debug "Object(", api.className(x.owner), ")"
+
+    if x.GD_enableRC:
+      if api.hook_unreference(x.owner):
+        interfaceObjectDestroy(x.owner)
+    else:
       interfaceObjectDestroy(x.owner)
   except Exception: discard
-
-proc `=destroy`*(x: RefCountedBase_interface) =
-  if x.owner.isNil: return
-  try:
-    when TraceObjectHook:
-      iam("RefCounted-destroy-hook", stgLibrary).debug "Object(", api.className(x.owner), ")"
-    if api.hook_getReferenceCount(x.owner) > 0:
-      discard api.hook_unreference(x.owner)
-      if api.hook_getReferenceCount(x.owner) == 0:
-        `=destroy` ObjectBase_interface x
-  except Exception: discard
-
-proc free*[T: ObjectBase_interface](x: T) =
-  try:
-    `=destroy` ObjectBase_interface x
-  except: discard
-proc free*[T: RefCountedBase_interface](x: T) =
-  try:
-    `=destroy` RefCountedBase_interface x
-  except: discard
-
-proc free*[T: ObjectBase](x: T) =
-  try:
-    `=destroy` ObjectBase x
-  except: discard
-proc free*[T: RefCountedBase](x: T) =
-  try:
-    `=destroy` RefCountedBase x
-  except: discard
 {.pop.}
