@@ -138,13 +138,11 @@ proc get*(v: Variant; T: typedesc[ObjectPtr]): T =
 
 template encoded*[T: SomeClass](_: typedesc[T]): typedesc[ObjectPtr] = ObjectPtr
 template encode*[T: SomeClass](v: T; p: pointer) =
-  when T is RefCountedBase:
-    GD_ref v
+  GD_sync_encode v
   encode(GD_getObjectPtr v, p)
 proc decode*[T: SomeClass](p: pointer; _: typedesc[T]): T =
   result = p.decode(ObjectPtr).getInstance(T)
-  when T is RefCountedBase:
-    GD_unref result
+  GD_sync_decode result
 proc variant*[T: SomeClass](v: T): Variant =
   variant GD_getObjectPtr v
 proc get*[T: SomeClass](v: Variant; _: typedesc[T]): T =
@@ -154,8 +152,7 @@ proc get*[T: SomeClass](v: Variant; _: typedesc[T]): T =
 proc decode_result*[T: not RefCountedBase](p: pointer; _: typedesc[T]): T =
   p.decode(T)
 proc decode_result*[T: RefCountedBase](p: pointer; _: typedesc[T]): T =
-  result = p.decode(T)
-  when T is RefCountedBase:
-    discard api.hook_unreference(GD_getObjectPtr result)
+  result = p.decode(ObjectPtr).getInstance(T)
+  GD_sync_decode_result result
 
 {.pop.}

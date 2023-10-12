@@ -20,9 +20,8 @@ import ../helper/objectConverter
 
 const Auto* = ""
 
-when TraceEngineAllocationCallback:
+when TraceInitialization:
   import ../logging
-  template me: GDLogData = iam("allocation-hook", stgLibrary)
 
 template log_register(T: typedesc) =
   when TraceInitialization:
@@ -35,16 +34,12 @@ proc get_virtual_bind*(p_userdata: pointer; p_name: ConstStringNamePtr): ClassCa
   cast[ClassRuntimeData](p_userdata).virtualMethods.getOrDefault(p_name[], nil)
 
 proc create_bind(T: typedesc[SomeUserClass]): ObjectPtr {.gdcall.} =
-  when TraceEngineAllocationCallback:
-    me.debug "[Extent] create ", T
   let class = instantiate T
-  GD_sync class
+  GD_sync_create class
   return GD_getObjectPtr class
 
 proc free_bind[T: SomeUserClass](class: T) =
-  when TraceEngineAllocationCallback:
-    me.debug "[Extent] free ", get_runtimeData(T).className
-  GD_kill class
+  GD_sync_free class
 
 proc creationInfo(T: typedesc[SomeUserClass]; is_virtual, is_abstract: bool): ClassCreationInfo =
   let userdata = get_runtimeData(T)

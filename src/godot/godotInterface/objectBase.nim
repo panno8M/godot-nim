@@ -2,7 +2,7 @@ import ../godotInterface
 import ../pure/compileTimeSwitch
 import ../internal/api
 
-when TraceObjectHook:
+when TraceObjectHook or TraceEngineAllocationCallback or TraceEngineReferenceCallback:
   import ../logging
 
 type
@@ -38,14 +38,14 @@ proc GD_getObjectPtrPtr*[T: SomeClass](class: T): ptr ObjectPtr =
   if class.control.owner.isNil: return
   addr class.control.owner
 
-proc GD_ref*(self: ObjectBase) =
+proc GD_ref(self: ObjectBase) =
   inc self.control.GD_refcount
   GC_ref self
-proc GD_unref*(self: ObjectBase) =
+proc GD_unref(self: ObjectBase) =
   if self.control.GD_refcount <= 0: return
   dec self.control.GD_refcount
   GC_unref self
-proc GD_kill*(self: ObjectBase) =
+proc GD_kill(self: ObjectBase) =
   self.control.owner = nil
   while self.control.GD_refcount > 0:
     GD_unref self
@@ -56,7 +56,9 @@ proc GD_create*[T: SomeClass](o: ObjectPtr): T =
   when T is RefCountedBase:
     result.control.GD_enableRC = true
 
-proc GD_sync*[T: SomeClass](class: T) =
+proc GD_sync_create*[T: SomeClass](class: T) =
+  when TraceEngineAllocationCallback:
+    iam("allocation-hook", stgLibrary, "create " & $T).debug "DONE"
   GD_ref class
   # Process for integrating Nim's ref and Godot's RefCounted, implemented in such a way
   # that the reference count of RefCounted is always added by one while the ref is alive
@@ -66,6 +68,25 @@ proc GD_sync*[T: SomeClass](class: T) =
   # Nim::RefCounted.count == Godot::RefCounted.count + (Nim::ref.count != 0)
   when T is RefCountedBase:
     discard api.hook_reference(class.control.owner)
+proc GD_sync_free*[T: SomeClass](class: T) =
+  when TraceEngineAllocationCallback:
+    iam("allocation-hook", stgLibrary, "free " & $T).debug "DONE"
+  GD_kill class
+proc GD_sync_refer*[T: SomeClass](class: T; reference: bool): bool =
+  when TraceEngineReferenceCallback:
+    iam("reference-hook", stgLibrary,  "reference " & $T & " <reference= " & $p_reference & ">").debug "DONE"
+  true
+proc GD_sync_encode*[T: SomeClass](class: T) =
+  when T is RefCountedBase:
+    GD_ref class
+proc GD_sync_decode*[T: SomeClass](class: T) =
+  when T is RefCountedBase:
+    GD_unref class
+proc GD_sync_decode_result*[T: SomeClass](class: T) =
+  when T is RefCountedBase:
+    GD_unref class
+    discard api.hook_unreference(class.control.owner)
+
 
 method `=init`*(self: ObjectBase) {.base.} = discard
 

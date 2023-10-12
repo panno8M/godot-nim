@@ -1,13 +1,8 @@
 import std/tables
 import ../godotInterface
 import ../godotInterface/objectBase
-import ../pure/compileTimeSwitch
 import ../internal/initManager
 import ../internal/api
-
-when TraceEngineAllocationCallback:
-  import ../logging
-  template me_alloc: GDLogData = iam("allocation-callback", stgLibrary)
 
 type
   ClassRuntimeData* = ref object
@@ -19,23 +14,17 @@ type
 
 proc initialize(T: typedesc[SomeEngineClass]; userdata: ClassRuntimeData) =
   userdata.callbacks.create_callback = proc (p_token: pointer; p_instance: pointer): pointer {.gdcall.} =
-    when TraceEngineAllocationCallback:
-      me_alloc.debug "[Engine] create ", T
     let class = GD_create[T](cast[ObjectPtr](p_instance))
-    GD_sync class
+    GD_sync_create class
     result = cast[pointer](class)
   userdata.callbacks.free_callback = proc (p_token: pointer; p_instance: pointer; p_binding: pointer) {.gdcall.} =
-    when TraceEngineAllocationCallback:
-      me_alloc.debug "[Engine] free ", T
-    GD_kill cast[T](p_binding)
+    GD_sync_free cast[T](p_binding)
 
 proc initialize(T: typedesc[SomeUserClass]; userdata: ClassRuntimeData) =
   userdata.callbacks.create_callback = proc (p_token: pointer; p_instance: pointer): pointer {.gdcall.} =
-    when TraceEngineAllocationCallback:
-      me_alloc.debug "[Engine] create ", T
+    discard
   userdata.callbacks.free_callback = proc (p_token: pointer; p_instance: pointer; p_binding: pointer) {.gdcall.} =
-    when TraceEngineAllocationCallback:
-      me_alloc.debug "[Engine] free ", T
+    discard
 
 var runtimeDataTable: Table[StringName, ClassRuntimeData]
 proc get_runtimeData*(T: typedesc[SomeClass]): ClassRuntimeData =
@@ -49,9 +38,7 @@ proc get_runtimeData*(T: typedesc[SomeClass]): ClassRuntimeData =
       runtimeData.super = get_runtimeData(T.Super)
 
     runtimeData.callbacks.reference_callback = proc (p_token: pointer; p_binding: pointer; p_reference: Bool): Bool {.gdcall.} =
-      when TraceEngineReferenceCallback:
-        me_refer.debug "reference ", T, " <reference= ", p_reference, ">"
-      true
+      GD_sync_refer cast[T](p_binding), p_reference
 
     initialize(T, runtimeData)
     runtimeDataTable[runtimeData.className] = runtimeData
