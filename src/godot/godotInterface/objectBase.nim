@@ -74,7 +74,7 @@ proc GD_sync_free*[T: SomeClass](class: T) =
   GD_kill class
 proc GD_sync_refer*[T: SomeClass](class: T; reference: bool): bool =
   when TraceEngineReferenceCallback:
-    iam("reference-hook", stgLibrary,  "reference " & $T & " <reference= " & $p_reference & ">").debug "DONE"
+    iam("reference-hook", stgLibrary,  "reference " & $T & " <reference= " & $reference & ">").debug "DONE"
   true
 proc GD_sync_encode*[T: SomeClass](class: T) =
   when T is RefCountedBase:
