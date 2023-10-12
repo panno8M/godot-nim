@@ -5,8 +5,6 @@ import ./godotSideTester
 
 import ./geometrics; export geometrics
 
-include logging
-
 # Executed when this library is loaded (the godot project is executed)
 proc initialize(lvl: InitializationLevel): void =
   register_class NimSideTester

@@ -3,6 +3,7 @@ const
   DecimalPrecision* {.strdefine.} = "float" # ("double"|"float")
 
 const # Logging
+  UseDefaultLogger* {.booldefine.} = on
 
   TraceInitialization* {.booldefine.} = off
 

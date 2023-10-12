@@ -1,6 +1,7 @@
 import beyond/[logging_api, logging_formatshelf]
 import std/os
 import std/times
+import pure/compileTimeSwitch
 
 export logging_api, logging_formatshelf
 
@@ -50,3 +51,22 @@ when isMainModule:
   block:
     var nilString: string
     GDLogData(handler: "single-call", stage: stgUser, summary: "HELLO", level: lvlInfo).log("hello", nilString)
+
+when TraceAny and UseDefaultLogger:
+  import std/[
+    os,
+    sequtils,
+    strutils,
+    strformat,
+  ]
+  proc format(data: LogData; args: seq[string]): string {.gcsafe.} =
+    let data = GDLogData data
+    fmt "{levelname}-{stage} @{handler} >>> {summary}\n{args.join().splitLines().mapIt(\"  :: \"&it).join()}"
+
+  proc newDemoLogger: FileLogger =
+    createDir("log")
+    newFileLogger("log/demo.log", fmWrite, format= format)
+
+  defaultGroup.loggers.add newDemoLogger()
+  defaultGroup.loggers.add newConsoleLogger(format= format)
+

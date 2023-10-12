@@ -13,6 +13,7 @@ else:
 --define:"DecimalPrecision=float"
 
 # [Logging]
+--define:"UseDefaultLogger=on"
 --define:"TraceInitialization=off"
 --define:"TraceEngineAllocationCallback=off"
 --define:"TraceEngineReferenceCallback=off"
