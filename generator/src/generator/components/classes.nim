@@ -17,7 +17,7 @@ import ../tool/[
 type
   NimClass* = ref object of ObjectInfo
     inherits*: TypeName
-    enums*: seq[NimEnum]
+    enums*: seq[TypeName]
     json*: JsonClass
   NimClasses* = seq[NimClass]
   RenderedNimClass* = tuple
@@ -31,7 +31,7 @@ proc toNim*(class: JsonClass): NimClass =
     json: class,
   )
   result.bindName typeName class.name
-  result.enums = class.enums.get(@[]).mapIt it.toNim(result.name)
+  result.enums = class.enums.get(@[]).mapIt objectDB.register it.preconvert(result.name)
 
 proc toNim*(classes: JsonClasses): NimClasses = classes.mapIt it.toNim
 
@@ -63,8 +63,8 @@ proc renderClassDefine(class: NimClass): Statement =
     &"template EngineClass*(_: typedesc[{name}]): typedesc = {name}"
 proc renderLocalEnums(class: NimClass): Statement =
   result = ParagraphSt()
-  for e in class.enums:
-    result.children.add render e
+  for name in class.enums:
+    result.children.add objectDB.fetch name
   if class.enums.len != 0:
     result.children.add ""
 

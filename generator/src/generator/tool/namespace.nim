@@ -4,24 +4,22 @@ import std/[
   strformat,
   hashes,
   tables,
-  options,
   typetraits,
 ]
 
 const delim = "_"
 
 type
-  TypeNameObj* = object
+  TypeName* = ref object
     name*: string
     owner: TypeName
     children: Table[string, TypeName]
     cache: string
-    info*: Option[ObjectInfo]
-  TypeName* = ref TypeNameOBj
   ParamTypeAttr* = enum
     ptaNake
     ptaSet
     ptaTypedArray
+    ptaRef
   ParamType* = object of RootObj
     attribute*: ParamTypeAttr
     ptrdepth*: Natural
@@ -32,16 +30,28 @@ type
     isStatic*: bool
     isVar*: bool
 
-  ObjectInfo* = ref object of RootObj
+  ObjectInfo* = ref object of Statement
     name*: TypeName
+  ObjectDB* = ref object
+    table*: Table[TypeName, ObjectInfo]
 
 var root* = new TypeName
+var objectDB* = new ObjectDB
 var defaultObjectInfo = ObjectInfo()
 
-proc hash*(key: TypeName): Hash = hash cast[ptr TypeNameObj](key)
+method definition*(self: ObjectInfo): Statement {.base.} = discard
+method render*(self: ObjectInfo; cfg: RenderingConfig): seq[string] =
+  self.definition.render(cfg)
+
+proc hash*(key: TypeName): Hash = hash cast[pointer](key)
 proc bindName*[T: ObjectInfo](info: T; typeName: TypeName) =
-  typeName.info = some ObjectInfo info
+  objectDB.table[typeName] = info
   info.name = typeName
+proc register*(db: ObjectDB; info: ObjectInfo): TypeName =
+  objectDB.table[info.name] = info
+  info.name
+proc fetch*(db: ObjectDB; name: TypeName): ObjectInfo =
+  db.table[name]
 
 proc isInGlobal*(x: TypeName): bool = x == namespace.root or x.owner == namespace.root
 
@@ -60,7 +70,7 @@ proc `$`*(self: TypeName): string =
 
   result = $self.owner & delim & self.name
 
-method stringify*(info: ObjectInfo; param: ParamType): string {.base.} =
+method parameter*(info: ObjectInfo; param: ParamType): string {.base.} =
   let name = "ptr ".repeat(param.ptrdepth) & ($param.name)
   result = case param.attribute
   of ptaNake:
@@ -69,8 +79,10 @@ method stringify*(info: ObjectInfo; param: ParamType): string {.base.} =
     &"set[{name}]"
   of ptaTypedArray:
     &"TypedArray[{name}]"
+  of ptaRef:
+    &"GD_ref[{name}]"
 proc `$`*(self: ParamType): string =
-  self.name.info.get(ObjectInfo()).stringify(self)
+  objectDB.table.getOrDefault(self.name, defaultObjectInfo).parameter(self)
 proc `$`*(self: ArgType): string =
   $(ParamType self)
 proc `$`*(self: RetType): string =
@@ -207,7 +219,7 @@ method defaultValue*(info: ObjectInfo; value: string; argType: ArgType): string 
   return value
 
 proc defaultValue*(value: string; argType: ArgType): string =
-  argType.name.info.get(defaultObjectInfo).defaultValue(value, argType)
+  objectDB.table.getOrDefault(argType.name, defaultObjectInfo).defaultValue(value, argType)
 
 func constrLoader*(classname: string): string = &"load_{classname}_constr"
 func procLoader*(classname: string): string = &"load_{classname}_proc"

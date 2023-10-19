@@ -1,10 +1,10 @@
 import beyond/[logging]
 import std/[
-  json,
   os,
 ]
 import generator/tool/[
   moduleTree,
+  jsonapi,
 ]
 import generator/generate_api
 
@@ -14,8 +14,7 @@ when isMainModule:
 
   info "start generating..."
 
-  let api = json.parseFile "dump/extension_api.json"
-  generate api
+  generate fetch_api()
 
   block:
     debug "Generated-API-Structure:\n", dumpTree moduleTree.d_root

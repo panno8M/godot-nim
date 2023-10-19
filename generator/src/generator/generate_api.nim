@@ -2,11 +2,9 @@
 
 import beyond/meta/modules
 import std/[
-  json,
   strutils,
   strformat,
   sets,
-  options,
 ]
 import components/[
   gd_enum,
@@ -21,44 +19,16 @@ import tool/[
   jsonapi,
 ]
 
-proc obtain_keys(node: JsonNode): HashSet[string] =
-  if node.isNil: return
-  case node.kind:
-  of JObject:
-    for key in node.keys:
-      result.incl key
-  of JArray:
-    for sub in node:
-      result.incl sub.obtain_keys
-  else:
-    return
-
-proc find_key_missing_object(node: JsonNode; key_target: string): JsonNode =
-  if node.isNil: return nil
-  case node.kind:
-  of JObject:
-    for key in node.keys:
-      if key == key_target: return nil
-    return node
-  of JArray:
-    for sub in node:
-      result = find_key_missing_object(sub, key_target)
-      if not result.isNil: return result
-  else:
-    return nil
-
 proc modulate(globalEnums: seq[JsonEnum]) =
   let body = ParagraphSt()
   const ignore = "Variant"
   for item in globalEnums.items:
     if ignore in item.name: continue
-    discard body.add render item.toNim()
+    discard body.add objectDB.fetch objectDB.register preconvert item
   moduleTree.globalEnums.contents = body
 
 
-proc generate*(api: JsonNode) =
-  let api = api.to JsonAPI
-
+proc generate*(api: JsonAPI) =
   modulate api.global_enums
 
   let variants = api.builtin_classes.toNim

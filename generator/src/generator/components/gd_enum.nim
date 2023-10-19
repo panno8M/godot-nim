@@ -62,9 +62,9 @@ func flagkey(value: int; res: out int): bool =
     return false
 
 
-proc toNim*(e: JsonEnum; owner: TypeName = namespace.root): NimEnum =
-  new result
-  result.bindName owner.addget(e.name)
+proc preconvert*(e: JsonEnum; owner: TypeName = namespace.root): NimEnum =
+  result = new NimEnum
+  result.name = owner.addget(e.name)
 
   result.doExport = true
   result.pragmas = newseq[string]()
@@ -107,7 +107,7 @@ proc toNim*(e: JsonEnum; owner: TypeName = namespace.root): NimEnum =
 
   result.pragmas.add "size: sizeof(cuint)"
 
-proc render*(self: NimEnum): Statement =
+method definition*(self: NimEnum): Statement =
   result = ParagraphSt()
   let name = $self.name
   let nameExp = if self.doExport: name & "*" else: name

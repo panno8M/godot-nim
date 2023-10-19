@@ -21,7 +21,7 @@ import ../tool/[
 type
   NimBuiltinClass* = ref object
     name*: TypeName
-    enums*: seq[NimEnum]
+    enums*: seq[TypeName]
     json*: JsonBuiltinClass
 
 const ignoreConf: Table[string, IgnoreConf] = toTable {
@@ -216,7 +216,7 @@ proc toNim*(self: JsonBuiltinClass): NimBuiltinClass =
   result = NimBuiltinClass()
   result.name = typeName self.name
   if self.enums.isSome:
-    result.enums = self.enums.get.mapIt it.toNim(result.name)
+    result.enums = self.enums.get.mapIt objectDB.register it.preconvert(result.name)
 
   result.json = self
 
@@ -277,8 +277,8 @@ proc renderLocalEnums*(self: seq[NimBuiltinClass]): Statement =
   result = new ParagraphSt
   for variant in self:
     if variant.enums.len == 0: continue
-    discard +$$..result:
-      variant.enums.mapit it.render
+    for name in variant.enums:
+      result.children.add objectDB.fetch name
 
 proc `render[]`(self: NimBuiltinClass): Statement =
   if self.json.indexing_return_type.isNone: return

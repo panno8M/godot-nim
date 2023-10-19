@@ -1,4 +1,8 @@
-import std/options
+import std/[
+  json,
+  sets,
+  options,
+]
 
 type
   JsonEnumField* = ref object
@@ -105,3 +109,31 @@ type
     procedure_white*: seq[string]
 
 proc `$`*(x: JsonConstant): string = $x[]
+
+proc obtain_keys*(node: JsonNode): HashSet[string] =
+  if node.isNil: return
+  case node.kind:
+  of JObject:
+    for key in node.keys:
+      result.incl key
+  of JArray:
+    for sub in node:
+      result.incl sub.obtain_keys
+  else:
+    return
+
+proc find_key_missing_object*(node: JsonNode; key_target: string): JsonNode =
+  if node.isNil: return nil
+  case node.kind:
+  of JObject:
+    for key in node.keys:
+      if key == key_target: return nil
+    return node
+  of JArray:
+    for sub in node:
+      result = find_key_missing_object(sub, key_target)
+      if not result.isNil: return result
+  else:
+    return nil
+
+proc fetch_api*: JsonAPI = json.parseFile"dump/extension_api.json".to JsonAPI
