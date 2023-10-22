@@ -29,7 +29,7 @@ proc cancelRequest*(self: HTTPRequest) =
     let name = api.newStringName "cancel_request"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPRequest, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc setTlsOptions*(self: HTTPRequest; clientOptions: TLSOptions) =
+proc setTlsOptions*(self: HTTPRequest; clientOptions: GD_ref[TLSOptions]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_tls_options"

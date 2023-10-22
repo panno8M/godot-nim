@@ -221,7 +221,7 @@ proc mapForceUpdate*(self: NavigationServer3D; map: RID) =
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationServer3D, addr name, 2722037293)
   var `?param` = [getPtr map]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc queryPath*(self: NavigationServer3D; parameters: NavigationPathQueryParameters3D; retval: NavigationPathQueryResult3D) =
+proc queryPath*(self: NavigationServer3D; parameters: GD_ref[NavigationPathQueryParameters3D]; retval: GD_ref[NavigationPathQueryResult3D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "query_path"
@@ -348,14 +348,14 @@ proc regionSetTransform*(self: NavigationServer3D; region: RID; transform: Trans
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationServer3D, addr name, 3935195649)
   var `?param` = [getPtr region, getPtr transform]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc regionSetNavigationMesh*(self: NavigationServer3D; region: RID; navigationMesh: NavigationMesh) =
+proc regionSetNavigationMesh*(self: NavigationServer3D; region: RID; navigationMesh: GD_ref[NavigationMesh]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "region_set_navigation_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationServer3D, addr name, 2764952978)
   var `?param` = [getPtr region, getPtr navigationMesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc regionBakeNavigationMesh*(self: NavigationServer3D; navigationMesh: NavigationMesh; rootNode: Node) =
+proc regionBakeNavigationMesh*(self: NavigationServer3D; navigationMesh: GD_ref[NavigationMesh]; rootNode: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "region_bake_navigation_mesh"
@@ -818,14 +818,14 @@ proc obstacleSetAvoidanceLayers*(self: NavigationServer3D; obstacle: RID; layers
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationServer3D, addr name, 3411492887)
   var `?param` = [getPtr obstacle, getPtr layers]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc parseSourceGeometryData*(self: NavigationServer3D; navigationMesh: NavigationMesh; sourceGeometryData: NavigationMeshSourceGeometryData3D; rootNode: Node; callback: Callable = init_Callable()) =
+proc parseSourceGeometryData*(self: NavigationServer3D; navigationMesh: GD_ref[NavigationMesh]; sourceGeometryData: GD_ref[NavigationMeshSourceGeometryData3D]; rootNode: Node; callback: Callable = init_Callable()) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "parse_source_geometry_data"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationServer3D, addr name, 3703028813)
   var `?param` = [getPtr navigationMesh, getPtr sourceGeometryData, getPtr rootNode, getPtr callback]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc bakeFromSourceGeometryData*(self: NavigationServer3D; navigationMesh: NavigationMesh; sourceGeometryData: NavigationMeshSourceGeometryData3D; callback: Callable = init_Callable()) =
+proc bakeFromSourceGeometryData*(self: NavigationServer3D; navigationMesh: GD_ref[NavigationMesh]; sourceGeometryData: GD_ref[NavigationMeshSourceGeometryData3D]; callback: Callable = init_Callable()) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "bake_from_source_geometry_data"

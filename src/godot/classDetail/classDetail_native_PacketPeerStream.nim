@@ -5,21 +5,21 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_PacketPeer; export classDetail_native_PacketPeer
 
-proc `streamPeer=`*(self: PacketPeerStream; peer: StreamPeer) =
+proc `streamPeer=`*(self: PacketPeerStream; peer: GD_ref[StreamPeer]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_stream_peer"
     methodbind = interface_ClassDB_getMethodBind(addr className PacketPeerStream, addr name, 3281897016)
   var `?param` = [getPtr peer]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc streamPeer*(self: PacketPeerStream): StreamPeer =
+proc streamPeer*(self: PacketPeerStream): GD_ref[StreamPeer] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_stream_peer"
     methodbind = interface_ClassDB_getMethodBind(addr className PacketPeerStream, addr name, 2741655269)
-  var ret: encoded StreamPeer
+  var ret: encoded GD_ref[StreamPeer]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(StreamPeer)
+  (addr ret).decode_result(GD_ref[StreamPeer])
 proc `inputBufferMaxSize=`*(self: PacketPeerStream; maxSizeBytes: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

@@ -65,21 +65,21 @@ proc sectionSegments*(self: RibbonTrailMesh): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(int32)
-proc `curve=`*(self: RibbonTrailMesh; curve: Curve) =
+proc `curve=`*(self: RibbonTrailMesh; curve: GD_ref[Curve]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_curve"
     methodbind = interface_ClassDB_getMethodBind(addr className RibbonTrailMesh, addr name, 270443179)
   var `?param` = [getPtr curve]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc curve*(self: RibbonTrailMesh): Curve =
+proc curve*(self: RibbonTrailMesh): GD_ref[Curve] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_curve"
     methodbind = interface_ClassDB_getMethodBind(addr className RibbonTrailMesh, addr name, 2460114913)
-  var ret: encoded Curve
+  var ret: encoded GD_ref[Curve]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Curve)
+  (addr ret).decode_result(GD_ref[Curve])
 proc `shape=`*(self: RibbonTrailMesh; shape: RibbonTrailMesh_Shape) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

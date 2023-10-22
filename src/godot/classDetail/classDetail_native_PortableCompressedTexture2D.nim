@@ -5,7 +5,7 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Texture2D; export classDetail_native_Texture2D
 
-proc createFromImage*(self: PortableCompressedTexture2D; image: Image; compressionMode: PortableCompressedTexture2D_CompressionMode; normalMap: Bool = false; lossyQuality: Float = 0.8) =
+proc createFromImage*(self: PortableCompressedTexture2D; image: GD_ref[Image]; compressionMode: PortableCompressedTexture2D_CompressionMode; normalMap: Bool = false; lossyQuality: Float = 0.8) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "create_from_image"

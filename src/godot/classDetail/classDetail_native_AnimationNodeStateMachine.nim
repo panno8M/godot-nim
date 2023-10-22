@@ -5,29 +5,29 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_AnimationRootNode; export classDetail_native_AnimationRootNode
 
-proc addNode*(self: AnimationNodeStateMachine; name: StringName; node: AnimationNode; position: Vector2 = gdvec(0, 0)) =
+proc addNode*(self: AnimationNodeStateMachine; name: StringName; node: GD_ref[AnimationNode]; position: Vector2 = gdvec(0, 0)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_node"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachine, addr name, 2055804584)
   var `?param` = [getPtr name, getPtr node, getPtr position]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc replaceNode*(self: AnimationNodeStateMachine; name: StringName; node: AnimationNode) =
+proc replaceNode*(self: AnimationNodeStateMachine; name: StringName; node: GD_ref[AnimationNode]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "replace_node"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachine, addr name, 2559412862)
   var `?param` = [getPtr name, getPtr node]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getNode*(self: AnimationNodeStateMachine; name: StringName): AnimationNode =
+proc getNode*(self: AnimationNodeStateMachine; name: StringName): GD_ref[AnimationNode] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_node"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachine, addr name, 625644256)
   var `?param` = [getPtr name]
-  var ret: encoded AnimationNode
+  var ret: encoded GD_ref[AnimationNode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(AnimationNode)
+  (addr ret).decode_result(GD_ref[AnimationNode])
 proc removeNode*(self: AnimationNodeStateMachine; name: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -51,7 +51,7 @@ proc hasNode*(self: AnimationNodeStateMachine; name: StringName): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Bool)
-proc getNodeName*(self: AnimationNodeStateMachine; node: AnimationNode): StringName =
+proc getNodeName*(self: AnimationNodeStateMachine; node: GD_ref[AnimationNode]): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_node_name"
@@ -85,22 +85,22 @@ proc hasTransition*(self: AnimationNodeStateMachine; `from`: StringName; to: Str
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Bool)
-proc addTransition*(self: AnimationNodeStateMachine; `from`: StringName; to: StringName; transition: AnimationNodeStateMachineTransition) =
+proc addTransition*(self: AnimationNodeStateMachine; `from`: StringName; to: StringName; transition: GD_ref[AnimationNodeStateMachineTransition]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_transition"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachine, addr name, 795486887)
   var `?param` = [getPtr `from`, getPtr to, getPtr transition]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getTransition*(self: AnimationNodeStateMachine; idx: int32): AnimationNodeStateMachineTransition =
+proc getTransition*(self: AnimationNodeStateMachine; idx: int32): GD_ref[AnimationNodeStateMachineTransition] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_transition"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeStateMachine, addr name, 4192381260)
   var `?param` = [getPtr idx]
-  var ret: encoded AnimationNodeStateMachineTransition
+  var ret: encoded GD_ref[AnimationNodeStateMachineTransition]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(AnimationNodeStateMachineTransition)
+  (addr ret).decode_result(GD_ref[AnimationNodeStateMachineTransition])
 proc getTransitionFrom*(self: AnimationNodeStateMachine; idx: int32): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

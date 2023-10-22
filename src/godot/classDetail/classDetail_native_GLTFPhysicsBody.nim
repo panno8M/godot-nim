@@ -5,15 +5,15 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Resource; export classDetail_native_Resource
 
-proc fromNode*(_: typedesc[GLTFPhysicsBody]; bodyNode: CollisionObject3D): GLTFPhysicsBody =
+proc fromNode*(_: typedesc[GLTFPhysicsBody]; bodyNode: CollisionObject3D): GD_ref[GLTFPhysicsBody] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "from_node"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFPhysicsBody, addr name, 420544174)
   var `?param` = [getPtr bodyNode]
-  var ret: encoded GLTFPhysicsBody
+  var ret: encoded GD_ref[GLTFPhysicsBody]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode_result(GLTFPhysicsBody)
+  (addr ret).decode_result(GD_ref[GLTFPhysicsBody])
 proc toNode*(self: GLTFPhysicsBody): CollisionObject3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,15 +22,15 @@ proc toNode*(self: GLTFPhysicsBody): CollisionObject3D =
   var ret: encoded CollisionObject3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(CollisionObject3D)
-proc fromDictionary*(_: typedesc[GLTFPhysicsBody]; dictionary: Dictionary): GLTFPhysicsBody =
+proc fromDictionary*(_: typedesc[GLTFPhysicsBody]; dictionary: Dictionary): GD_ref[GLTFPhysicsBody] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "from_dictionary"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFPhysicsBody, addr name, 1177544336)
   var `?param` = [getPtr dictionary]
-  var ret: encoded GLTFPhysicsBody
+  var ret: encoded GD_ref[GLTFPhysicsBody]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode_result(GLTFPhysicsBody)
+  (addr ret).decode_result(GD_ref[GLTFPhysicsBody])
 proc toDictionary*(self: GLTFPhysicsBody): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

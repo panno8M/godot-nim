@@ -12,21 +12,21 @@ proc queueResourcePreview*(self: EditorResourcePreview; path: String; receiver: 
     methodbind = interface_ClassDB_getMethodBind(addr className EditorResourcePreview, addr name, 233177534)
   var `?param` = [getPtr path, getPtr receiver, getPtr receiverFunc, getPtr userdata]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc queueEditedResourcePreview*(self: EditorResourcePreview; resource: Resource; receiver: Object; receiverFunc: StringName; userdata: Variant) =
+proc queueEditedResourcePreview*(self: EditorResourcePreview; resource: GD_ref[Resource]; receiver: Object; receiverFunc: StringName; userdata: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "queue_edited_resource_preview"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorResourcePreview, addr name, 1608376650)
   var `?param` = [getPtr resource, getPtr receiver, getPtr receiverFunc, getPtr userdata]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addPreviewGenerator*(self: EditorResourcePreview; generator: EditorResourcePreviewGenerator) =
+proc addPreviewGenerator*(self: EditorResourcePreview; generator: GD_ref[EditorResourcePreviewGenerator]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_preview_generator"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorResourcePreview, addr name, 332288124)
   var `?param` = [getPtr generator]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removePreviewGenerator*(self: EditorResourcePreview; generator: EditorResourcePreviewGenerator) =
+proc removePreviewGenerator*(self: EditorResourcePreview; generator: GD_ref[EditorResourcePreviewGenerator]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "remove_preview_generator"

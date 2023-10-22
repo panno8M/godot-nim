@@ -5,29 +5,29 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Node; export classDetail_native_Node
 
-proc `world2d=`*(self: Viewport; world2d: World2D) =
+proc `world2d=`*(self: Viewport; world2d: GD_ref[World2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_world_2d"
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 2736080068)
   var `?param` = [getPtr world2d]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc world2d*(self: Viewport): World2D =
+proc world2d*(self: Viewport): GD_ref[World2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_world_2d"
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 2339128592)
-  var ret: encoded World2D
+  var ret: encoded GD_ref[World2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(World2D)
-proc findWorld2d*(self: Viewport): World2D =
+  (addr ret).decode_result(GD_ref[World2D])
+proc findWorld2d*(self: Viewport): GD_ref[World2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "find_world_2d"
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 2339128592)
-  var ret: encoded World2D
+  var ret: encoded GD_ref[World2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(World2D)
+  (addr ret).decode_result(GD_ref[World2D])
 proc `canvasTransform=`*(self: Viewport; xform: Transform2D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -211,14 +211,14 @@ proc getRenderInfo*(self: Viewport; `type`: Viewport_RenderInfoType; info: Viewp
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(int32)
-proc getTexture*(self: Viewport): ViewportTexture =
+proc getTexture*(self: Viewport): GD_ref[ViewportTexture] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 1746695840)
-  var ret: encoded ViewportTexture
+  var ret: encoded GD_ref[ViewportTexture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(ViewportTexture)
+  (addr ret).decode_result(GD_ref[ViewportTexture])
 proc `physicsObjectPicking=`*(self: Viewport; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -264,14 +264,14 @@ proc pushTextInput*(self: Viewport; text: String) =
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 83702148)
   var `?param` = [getPtr text]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc pushInput*(self: Viewport; event: InputEvent; inLocalCoords: Bool = false) =
+proc pushInput*(self: Viewport; event: GD_ref[InputEvent]; inLocalCoords: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "push_input"
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 3644664830)
   var `?param` = [getPtr event, getPtr inLocalCoords]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc pushUnhandledInput*(self: Viewport; event: InputEvent; inLocalCoords: Bool = false) =
+proc pushUnhandledInput*(self: Viewport; event: GD_ref[InputEvent]; inLocalCoords: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "push_unhandled_input"
@@ -616,29 +616,29 @@ proc meshLodThreshold*(self: Viewport): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Float)
-proc `world3d=`*(self: Viewport; world3d: World3D) =
+proc `world3d=`*(self: Viewport; world3d: GD_ref[World3D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_world_3d"
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 1400875337)
   var `?param` = [getPtr world3d]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc world3d*(self: Viewport): World3D =
+proc world3d*(self: Viewport): GD_ref[World3D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_world_3d"
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 317588385)
-  var ret: encoded World3D
+  var ret: encoded GD_ref[World3D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(World3D)
-proc findWorld3d*(self: Viewport): World3D =
+  (addr ret).decode_result(GD_ref[World3D])
+proc findWorld3d*(self: Viewport): GD_ref[World3D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "find_world_3d"
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 317588385)
-  var ret: encoded World3D
+  var ret: encoded GD_ref[World3D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(World3D)
+  (addr ret).decode_result(GD_ref[World3D])
 proc `useOwnWorld3d=`*(self: Viewport; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -782,18 +782,18 @@ proc vrsMode*(self: Viewport): Viewport_VRSMode =
   var ret: encoded Viewport_VRSMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Viewport_VRSMode)
-proc `vrsTexture=`*(self: Viewport; texture: Texture2D) =
+proc `vrsTexture=`*(self: Viewport; texture: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_vrs_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 4051416890)
   var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc vrsTexture*(self: Viewport): Texture2D =
+proc vrsTexture*(self: Viewport): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_vrs_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className Viewport, addr name, 3635182373)
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture2D)
+  (addr ret).decode_result(GD_ref[Texture2D])

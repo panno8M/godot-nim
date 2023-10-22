@@ -56,11 +56,11 @@ proc clear*(self: StreamPeerBuffer) =
     let name = api.newStringName "clear"
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeerBuffer, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc duplicate*(self: StreamPeerBuffer): StreamPeerBuffer =
+proc duplicate*(self: StreamPeerBuffer): GD_ref[StreamPeerBuffer] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "duplicate"
     methodbind = interface_ClassDB_getMethodBind(addr className StreamPeerBuffer, addr name, 2474064677)
-  var ret: encoded StreamPeerBuffer
+  var ret: encoded GD_ref[StreamPeerBuffer]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(StreamPeerBuffer)
+  (addr ret).decode_result(GD_ref[StreamPeerBuffer])

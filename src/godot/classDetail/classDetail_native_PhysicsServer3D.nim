@@ -766,7 +766,7 @@ proc bodySetRayPickable*(self: PhysicsServer3D; body: RID; enable: Bool) =
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsServer3D, addr name, 1265174801)
   var `?param` = [getPtr body, getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc bodyTestMotion*(self: PhysicsServer3D; body: RID; parameters: PhysicsTestMotionParameters3D; retval: PhysicsTestMotionResult3D = default PhysicsTestMotionResult3D): Bool =
+proc bodyTestMotion*(self: PhysicsServer3D; body: RID; parameters: GD_ref[PhysicsTestMotionParameters3D]; retval: GD_ref[PhysicsTestMotionResult3D] = default GD_ref[PhysicsTestMotionResult3D]): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "body_test_motion"

@@ -182,18 +182,18 @@ proc customAabb*(self: ArrayMesh): AABB =
   var ret: encoded AABB
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(AABB)
-proc `shadowMesh=`*(self: ArrayMesh; mesh: ArrayMesh) =
+proc `shadowMesh=`*(self: ArrayMesh; mesh: GD_ref[ArrayMesh]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_shadow_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className ArrayMesh, addr name, 3377897901)
   var `?param` = [getPtr mesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc shadowMesh*(self: ArrayMesh): ArrayMesh =
+proc shadowMesh*(self: ArrayMesh): GD_ref[ArrayMesh] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_shadow_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className ArrayMesh, addr name, 3206942465)
-  var ret: encoded ArrayMesh
+  var ret: encoded GD_ref[ArrayMesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(ArrayMesh)
+  (addr ret).decode_result(GD_ref[ArrayMesh])

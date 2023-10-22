@@ -93,7 +93,7 @@ proc setBidiOverride*(self: TextParagraph; override: Array) =
     methodbind = interface_ClassDB_getMethodBind(addr className TextParagraph, addr name, 381264803)
   var `?param` = [getPtr override]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setDropcap*(self: TextParagraph; text: String; font: Font; fontSize: int32; dropcapMargins: Rect2 = init_Rect2(0, 0, 0, 0); language: String = ""): Bool =
+proc setDropcap*(self: TextParagraph; text: String; font: GD_ref[Font]; fontSize: int32; dropcapMargins: Rect2 = init_Rect2(0, 0, 0, 0); language: String = ""): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_dropcap"
@@ -108,7 +108,7 @@ proc clearDropcap*(self: TextParagraph) =
     let name = api.newStringName "clear_dropcap"
     methodbind = interface_ClassDB_getMethodBind(addr className TextParagraph, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc addString*(self: TextParagraph; text: String; font: Font; fontSize: int32; language: String = ""; meta: Variant = default(Variant)): Bool =
+proc addString*(self: TextParagraph; text: String; font: GD_ref[Font]; fontSize: int32; language: String = ""; meta: Variant = default(Variant)): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_string"

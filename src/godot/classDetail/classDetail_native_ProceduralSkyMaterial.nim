@@ -65,21 +65,21 @@ proc skyEnergyMultiplier*(self: ProceduralSkyMaterial): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Float)
-proc `skyCover=`*(self: ProceduralSkyMaterial; skyCover: Texture2D) =
+proc `skyCover=`*(self: ProceduralSkyMaterial; skyCover: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_sky_cover"
     methodbind = interface_ClassDB_getMethodBind(addr className ProceduralSkyMaterial, addr name, 4051416890)
   var `?param` = [getPtr skyCover]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc skyCover*(self: ProceduralSkyMaterial): Texture2D =
+proc skyCover*(self: ProceduralSkyMaterial): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_sky_cover"
     methodbind = interface_ClassDB_getMethodBind(addr className ProceduralSkyMaterial, addr name, 3635182373)
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture2D)
+  (addr ret).decode_result(GD_ref[Texture2D])
 proc `skyCoverModulate=`*(self: ProceduralSkyMaterial; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

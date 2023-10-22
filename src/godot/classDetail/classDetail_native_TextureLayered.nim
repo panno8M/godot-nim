@@ -53,12 +53,12 @@ proc hasMipmaps*(self: TextureLayered): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Bool)
-proc getLayerData*(self: TextureLayered; layer: int32): Image =
+proc getLayerData*(self: TextureLayered; layer: int32): GD_ref[Image] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_layer_data"
     methodbind = interface_ClassDB_getMethodBind(addr className TextureLayered, addr name, 3655284255)
   var `?param` = [getPtr layer]
-  var ret: encoded Image
+  var ret: encoded GD_ref[Image]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Image)
+  (addr ret).decode_result(GD_ref[Image])

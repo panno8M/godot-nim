@@ -12,22 +12,22 @@ proc setMode*(self: VisualShader; mode: Shader_Mode) =
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShader, addr name, 3978014962)
   var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addNode*(self: VisualShader; `type`: VisualShader_Type; node: VisualShaderNode; position: Vector2; id: int32) =
+proc addNode*(self: VisualShader; `type`: VisualShader_Type; node: GD_ref[VisualShaderNode]; position: Vector2; id: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_node"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShader, addr name, 1560769431)
   var `?param` = [getPtr `type`, getPtr node, getPtr position, getPtr id]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getNode*(self: VisualShader; `type`: VisualShader_Type; id: int32): VisualShaderNode =
+proc getNode*(self: VisualShader; `type`: VisualShader_Type; id: int32): GD_ref[VisualShaderNode] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_node"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShader, addr name, 3784670312)
   var `?param` = [getPtr `type`, getPtr id]
-  var ret: encoded VisualShaderNode
+  var ret: encoded GD_ref[VisualShaderNode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(VisualShaderNode)
+  (addr ret).decode_result(GD_ref[VisualShaderNode])
 proc setNodePosition*(self: VisualShader; `type`: VisualShader_Type; id: int32; position: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

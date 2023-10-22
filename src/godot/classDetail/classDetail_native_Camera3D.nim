@@ -251,36 +251,36 @@ proc cullMask*(self: Camera3D): uint32 =
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(uint32)
-proc `environment=`*(self: Camera3D; env: Environment) =
+proc `environment=`*(self: Camera3D; env: GD_ref[Environment]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_environment"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 4143518816)
   var `?param` = [getPtr env]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc environment*(self: Camera3D): Environment =
+proc environment*(self: Camera3D): GD_ref[Environment] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_environment"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 3082064660)
-  var ret: encoded Environment
+  var ret: encoded GD_ref[Environment]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Environment)
-proc `attributes=`*(self: Camera3D; env: CameraAttributes) =
+  (addr ret).decode_result(GD_ref[Environment])
+proc `attributes=`*(self: Camera3D; env: GD_ref[CameraAttributes]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_attributes"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 2817810567)
   var `?param` = [getPtr env]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc attributes*(self: Camera3D): CameraAttributes =
+proc attributes*(self: Camera3D): GD_ref[CameraAttributes] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_attributes"
     methodbind = interface_ClassDB_getMethodBind(addr className Camera3D, addr name, 3921283215)
-  var ret: encoded CameraAttributes
+  var ret: encoded GD_ref[CameraAttributes]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(CameraAttributes)
+  (addr ret).decode_result(GD_ref[CameraAttributes])
 proc `keepAspectMode=`*(self: Camera3D; mode: Camera3D_KeepAspect) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

@@ -1421,22 +1421,22 @@ proc getLineGutterText*(self: TextEdit; line: int32; gutter: int32): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(String)
-proc setLineGutterIcon*(self: TextEdit; line: int32; gutter: int32; icon: Texture2D) =
+proc setLineGutterIcon*(self: TextEdit; line: int32; gutter: int32; icon: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_line_gutter_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 176101966)
   var `?param` = [getPtr line, getPtr gutter, getPtr icon]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getLineGutterIcon*(self: TextEdit; line: int32; gutter: int32): Texture2D =
+proc getLineGutterIcon*(self: TextEdit; line: int32; gutter: int32): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_line_gutter_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 2584904275)
   var `?param` = [getPtr line, getPtr gutter]
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Texture2D)
+  (addr ret).decode_result(GD_ref[Texture2D])
 proc setLineGutterItemColor*(self: TextEdit; line: int32; gutter: int32; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1485,21 +1485,21 @@ proc getLineBackgroundColor*(self: TextEdit; line: int32): Color =
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Color)
-proc `syntaxHighlighter=`*(self: TextEdit; syntaxHighlighter: SyntaxHighlighter) =
+proc `syntaxHighlighter=`*(self: TextEdit; syntaxHighlighter: GD_ref[SyntaxHighlighter]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_syntax_highlighter"
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 2765644541)
   var `?param` = [getPtr syntaxHighlighter]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc syntaxHighlighter*(self: TextEdit): SyntaxHighlighter =
+proc syntaxHighlighter*(self: TextEdit): GD_ref[SyntaxHighlighter] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_syntax_highlighter"
     methodbind = interface_ClassDB_getMethodBind(addr className TextEdit, addr name, 2721131626)
-  var ret: encoded SyntaxHighlighter
+  var ret: encoded GD_ref[SyntaxHighlighter]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(SyntaxHighlighter)
+  (addr ret).decode_result(GD_ref[SyntaxHighlighter])
 proc `highlightCurrentLine=`*(self: TextEdit; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

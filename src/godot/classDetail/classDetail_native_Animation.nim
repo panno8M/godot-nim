@@ -434,7 +434,7 @@ proc bezierTrackInterpolate*(self: Animation; trackIdx: int32; time: float64): F
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Float)
-proc audioTrackInsertKey*(self: Animation; trackIdx: int32; time: float64; stream: Resource; startOffset: Float = 0; endOffset: Float = 0): int32 =
+proc audioTrackInsertKey*(self: Animation; trackIdx: int32; time: float64; stream: GD_ref[Resource]; startOffset: Float = 0; endOffset: Float = 0): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "audio_track_insert_key"
@@ -443,7 +443,7 @@ proc audioTrackInsertKey*(self: Animation; trackIdx: int32; time: float64; strea
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(int32)
-proc audioTrackSetKeyStream*(self: Animation; trackIdx: int32; keyIdx: int32; stream: Resource) =
+proc audioTrackSetKeyStream*(self: Animation; trackIdx: int32; keyIdx: int32; stream: GD_ref[Resource]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "audio_track_set_key_stream"
@@ -464,15 +464,15 @@ proc audioTrackSetKeyEndOffset*(self: Animation; trackIdx: int32; keyIdx: int32;
     methodbind = interface_ClassDB_getMethodBind(addr className Animation, addr name, 3506521499)
   var `?param` = [getPtr trackIdx, getPtr keyIdx, getPtr offset]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc audioTrackGetKeyStream*(self: Animation; trackIdx: int32; keyIdx: int32): Resource =
+proc audioTrackGetKeyStream*(self: Animation; trackIdx: int32; keyIdx: int32): GD_ref[Resource] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "audio_track_get_key_stream"
     methodbind = interface_ClassDB_getMethodBind(addr className Animation, addr name, 635277205)
   var `?param` = [getPtr trackIdx, getPtr keyIdx]
-  var ret: encoded Resource
+  var ret: encoded GD_ref[Resource]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Resource)
+  (addr ret).decode_result(GD_ref[Resource])
 proc audioTrackGetKeyStartOffset*(self: Animation; trackIdx: int32; keyIdx: int32): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -583,7 +583,7 @@ proc clear*(self: Animation) =
     let name = api.newStringName "clear"
     methodbind = interface_ClassDB_getMethodBind(addr className Animation, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc copyTrack*(self: Animation; trackIdx: int32; toAnimation: Animation) =
+proc copyTrack*(self: Animation; trackIdx: int32; toAnimation: GD_ref[Animation]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "copy_track"

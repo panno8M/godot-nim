@@ -49,7 +49,7 @@ proc hasData*(self: NavigationMeshSourceGeometryData3D): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Bool)
-proc addMesh*(self: NavigationMeshSourceGeometryData3D; mesh: Mesh; xform: Transform3D) =
+proc addMesh*(self: NavigationMeshSourceGeometryData3D; mesh: GD_ref[Mesh]; xform: Transform3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_mesh"

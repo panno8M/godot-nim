@@ -129,22 +129,22 @@ proc getTabTitle*(self: TabContainer; tabIdx: int32): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(String)
-proc setTabIcon*(self: TabContainer; tabIdx: int32; icon: Texture2D) =
+proc setTabIcon*(self: TabContainer; tabIdx: int32; icon: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_tab_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 666127730)
   var `?param` = [getPtr tabIdx, getPtr icon]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getTabIcon*(self: TabContainer; tabIdx: int32): Texture2D =
+proc getTabIcon*(self: TabContainer; tabIdx: int32): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_tab_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 3536238170)
   var `?param` = [getPtr tabIdx]
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Texture2D)
+  (addr ret).decode_result(GD_ref[Texture2D])
 proc setTabDisabled*(self: TabContainer; tabIdx: int32; disabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -193,22 +193,22 @@ proc getTabMetadata*(self: TabContainer; tabIdx: int32): Variant =
   var ret: encoded Variant
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Variant)
-proc setTabButtonIcon*(self: TabContainer; tabIdx: int32; icon: Texture2D) =
+proc setTabButtonIcon*(self: TabContainer; tabIdx: int32; icon: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_tab_button_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 666127730)
   var `?param` = [getPtr tabIdx, getPtr icon]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getTabButtonIcon*(self: TabContainer; tabIdx: int32): Texture2D =
+proc getTabButtonIcon*(self: TabContainer; tabIdx: int32): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_tab_button_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className TabContainer, addr name, 3536238170)
   var `?param` = [getPtr tabIdx]
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Texture2D)
+  (addr ret).decode_result(GD_ref[Texture2D])
 proc getTabIdxAtPoint*(self: TabContainer; point: Vector2): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

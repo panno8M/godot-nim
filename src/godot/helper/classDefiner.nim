@@ -60,7 +60,7 @@ proc creationInfo(T: typedesc[SomeUserClass]; is_virtual, is_abstract: bool): Cl
     class_userdata: cast[pointer](userdata),
   )
 
-template isInheritanceOf*(Class: typedesc[SomeUserClass]; Inherits: typedesc[SomeClass]): untyped =
+template isInheritanceOf*[T: ObjectBase](Class: typedesc[SomeUserClass]; Inherits: typedesc[T]): untyped =
   template Super*(_: typedesc[Class]): typedesc[Inherits] = Inherits
 template isInitializedOn*(Class: typedesc[SomeUserClass]; level: InitializationLevel): untyped =
   get_registrationData(Class).initTarget = level

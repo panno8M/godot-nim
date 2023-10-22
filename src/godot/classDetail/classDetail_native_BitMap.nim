@@ -12,7 +12,7 @@ proc create*(self: BitMap; size: Vector2i) =
     methodbind = interface_ClassDB_getMethodBind(addr className BitMap, addr name, 1130785943)
   var `?param` = [getPtr size]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc createFromImageAlpha*(self: BitMap; image: Image; threshold: Float = 0.1) =
+proc createFromImageAlpha*(self: BitMap; image: GD_ref[Image]; threshold: Float = 0.1) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "create_from_image_alpha"
@@ -88,14 +88,14 @@ proc growMask*(self: BitMap; pixels: int32; rect: Rect2i) =
     methodbind = interface_ClassDB_getMethodBind(addr className BitMap, addr name, 3317281434)
   var `?param` = [getPtr pixels, getPtr rect]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc convertToImage*(self: BitMap): Image =
+proc convertToImage*(self: BitMap): GD_ref[Image] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "convert_to_image"
     methodbind = interface_ClassDB_getMethodBind(addr className BitMap, addr name, 4190603485)
-  var ret: encoded Image
+  var ret: encoded GD_ref[Image]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Image)
+  (addr ret).decode_result(GD_ref[Image])
 proc opaqueToPolygons*(self: BitMap; rect: Rect2i; epsilon: Float = 2.0): TypedArray[PackedVector2Array] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

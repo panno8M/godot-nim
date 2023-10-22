@@ -19,7 +19,7 @@ proc setItemName*(self: MeshLibrary; id: int32; name: String) =
     methodbind = interface_ClassDB_getMethodBind(addr className MeshLibrary, addr name, 501894301)
   var `?param` = [getPtr id, getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setItemMesh*(self: MeshLibrary; id: int32; mesh: Mesh) =
+proc setItemMesh*(self: MeshLibrary; id: int32; mesh: GD_ref[Mesh]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_item_mesh"
@@ -33,7 +33,7 @@ proc setItemMeshTransform*(self: MeshLibrary; id: int32; meshTransform: Transfor
     methodbind = interface_ClassDB_getMethodBind(addr className MeshLibrary, addr name, 3616898986)
   var `?param` = [getPtr id, getPtr meshTransform]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setItemNavigationMesh*(self: MeshLibrary; id: int32; navigationMesh: NavigationMesh) =
+proc setItemNavigationMesh*(self: MeshLibrary; id: int32; navigationMesh: GD_ref[NavigationMesh]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_item_navigation_mesh"
@@ -61,7 +61,7 @@ proc setItemShapes*(self: MeshLibrary; id: int32; shapes: Array) =
     methodbind = interface_ClassDB_getMethodBind(addr className MeshLibrary, addr name, 537221740)
   var `?param` = [getPtr id, getPtr shapes]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setItemPreview*(self: MeshLibrary; id: int32; texture: Texture2D) =
+proc setItemPreview*(self: MeshLibrary; id: int32; texture: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_item_preview"
@@ -77,15 +77,15 @@ proc getItemName*(self: MeshLibrary; id: int32): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(String)
-proc getItemMesh*(self: MeshLibrary; id: int32): Mesh =
+proc getItemMesh*(self: MeshLibrary; id: int32): GD_ref[Mesh] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_item_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshLibrary, addr name, 1576363275)
   var `?param` = [getPtr id]
-  var ret: encoded Mesh
+  var ret: encoded GD_ref[Mesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Mesh)
+  (addr ret).decode_result(GD_ref[Mesh])
 proc getItemMeshTransform*(self: MeshLibrary; id: int32): Transform3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -95,15 +95,15 @@ proc getItemMeshTransform*(self: MeshLibrary; id: int32): Transform3D =
   var ret: encoded Transform3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Transform3D)
-proc getItemNavigationMesh*(self: MeshLibrary; id: int32): NavigationMesh =
+proc getItemNavigationMesh*(self: MeshLibrary; id: int32): GD_ref[NavigationMesh] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_item_navigation_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshLibrary, addr name, 2729647406)
   var `?param` = [getPtr id]
-  var ret: encoded NavigationMesh
+  var ret: encoded GD_ref[NavigationMesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(NavigationMesh)
+  (addr ret).decode_result(GD_ref[NavigationMesh])
 proc getItemNavigationMeshTransform*(self: MeshLibrary; id: int32): Transform3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -131,15 +131,15 @@ proc getItemShapes*(self: MeshLibrary; id: int32): Array =
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Array)
-proc getItemPreview*(self: MeshLibrary; id: int32): Texture2D =
+proc getItemPreview*(self: MeshLibrary; id: int32): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_item_preview"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshLibrary, addr name, 3536238170)
   var `?param` = [getPtr id]
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Texture2D)
+  (addr ret).decode_result(GD_ref[Texture2D])
 proc removeItem*(self: MeshLibrary; id: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

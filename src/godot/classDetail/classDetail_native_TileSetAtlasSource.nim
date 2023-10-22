@@ -5,21 +5,21 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_TileSetSource; export classDetail_native_TileSetSource
 
-proc `texture=`*(self: TileSetAtlasSource; texture: Texture2D) =
+proc `texture=`*(self: TileSetAtlasSource; texture: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className TileSetAtlasSource, addr name, 4051416890)
   var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc texture*(self: TileSetAtlasSource): Texture2D =
+proc texture*(self: TileSetAtlasSource): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className TileSetAtlasSource, addr name, 3635182373)
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture2D)
+  (addr ret).decode_result(GD_ref[Texture2D])
 proc `margins=`*(self: TileSetAtlasSource; margins: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -119,7 +119,7 @@ proc hasRoomForTile*(self: TileSetAtlasSource; atlasCoords: Vector2i; size: Vect
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Bool)
-proc getTilesToBeRemovedOnChange*(self: TileSetAtlasSource; texture: Texture2D; margins: Vector2i; separation: Vector2i; textureRegionSize: Vector2i): PackedVector2Array =
+proc getTilesToBeRemovedOnChange*(self: TileSetAtlasSource; texture: GD_ref[Texture2D]; margins: Vector2i; separation: Vector2i; textureRegionSize: Vector2i): PackedVector2Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_tiles_to_be_removed_on_change"
@@ -284,14 +284,14 @@ proc getTileTextureRegion*(self: TileSetAtlasSource; atlasCoords: Vector2i; fram
   var ret: encoded Rect2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Rect2i)
-proc getRuntimeTexture*(self: TileSetAtlasSource): Texture2D =
+proc getRuntimeTexture*(self: TileSetAtlasSource): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_runtime_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className TileSetAtlasSource, addr name, 3635182373)
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture2D)
+  (addr ret).decode_result(GD_ref[Texture2D])
 proc getRuntimeTileTextureRegion*(self: TileSetAtlasSource; atlasCoords: Vector2i; frame: int32): Rect2i =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

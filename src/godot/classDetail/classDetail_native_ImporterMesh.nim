@@ -44,7 +44,7 @@ proc getBlendShapeMode*(self: ImporterMesh): Mesh_BlendShapeMode =
   var ret: encoded Mesh_BlendShapeMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Mesh_BlendShapeMode)
-proc addSurface*(self: ImporterMesh; primitive: Mesh_PrimitiveType; arrays: Array; blendShapes: TypedArray[Array] = init_TypedArray[Array](); lods: Dictionary = init_Dictionary(); material: Material = default Material; name: String = ""; flags: uint32 = 0'u32) =
+proc addSurface*(self: ImporterMesh; primitive: Mesh_PrimitiveType; arrays: Array; blendShapes: TypedArray[Array] = init_TypedArray[Array](); lods: Dictionary = init_Dictionary(); material: GD_ref[Material] = default GD_ref[Material]; name: String = ""; flags: uint32 = 0'u32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_surface"
@@ -122,15 +122,15 @@ proc getSurfaceLodIndices*(self: ImporterMesh; surfaceIdx: int32; lodIdx: int32)
   var ret: encoded PackedInt32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(PackedInt32Array)
-proc getSurfaceMaterial*(self: ImporterMesh; surfaceIdx: int32): Material =
+proc getSurfaceMaterial*(self: ImporterMesh; surfaceIdx: int32): GD_ref[Material] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_surface_material"
     methodbind = interface_ClassDB_getMethodBind(addr className ImporterMesh, addr name, 2897466400)
   var `?param` = [getPtr surfaceIdx]
-  var ret: encoded Material
+  var ret: encoded GD_ref[Material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Material)
+  (addr ret).decode_result(GD_ref[Material])
 proc getSurfaceFormat*(self: ImporterMesh; surfaceIdx: int32): uint32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -147,7 +147,7 @@ proc setSurfaceName*(self: ImporterMesh; surfaceIdx: int32; name: String) =
     methodbind = interface_ClassDB_getMethodBind(addr className ImporterMesh, addr name, 501894301)
   var `?param` = [getPtr surfaceIdx, getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setSurfaceMaterial*(self: ImporterMesh; surfaceIdx: int32; material: Material) =
+proc setSurfaceMaterial*(self: ImporterMesh; surfaceIdx: int32; material: GD_ref[Material]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_surface_material"
@@ -161,15 +161,15 @@ proc generateLods*(self: ImporterMesh; normalMergeAngle: Float; normalSplitAngle
     methodbind = interface_ClassDB_getMethodBind(addr className ImporterMesh, addr name, 2491878677)
   var `?param` = [getPtr normalMergeAngle, getPtr normalSplitAngle, getPtr boneTransformArray]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getMesh*(self: ImporterMesh; baseMesh: ArrayMesh = default ArrayMesh): ArrayMesh =
+proc getMesh*(self: ImporterMesh; baseMesh: GD_ref[ArrayMesh] = default GD_ref[ArrayMesh]): GD_ref[ArrayMesh] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className ImporterMesh, addr name, 1457573577)
   var `?param` = [getPtr baseMesh]
-  var ret: encoded ArrayMesh
+  var ret: encoded GD_ref[ArrayMesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(ArrayMesh)
+  (addr ret).decode_result(GD_ref[ArrayMesh])
 proc clear*(self: ImporterMesh) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

@@ -345,14 +345,14 @@ proc getCurrentCursorShape*(self: Input): Input_CursorShape =
   var ret: encoded Input_CursorShape
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Input_CursorShape)
-proc setCustomMouseCursor*(self: Input; image: Resource; shape: Input_CursorShape = cursorArrow; hotspot: Vector2 = gdvec(0, 0)) =
+proc setCustomMouseCursor*(self: Input; image: GD_ref[Resource]; shape: Input_CursorShape = cursorArrow; hotspot: Vector2 = gdvec(0, 0)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_custom_mouse_cursor"
     methodbind = interface_ClassDB_getMethodBind(addr className Input, addr name, 3489634142)
   var `?param` = [getPtr image, getPtr shape, getPtr hotspot]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc parseInputEvent*(self: Input; event: InputEvent) =
+proc parseInputEvent*(self: Input; event: GD_ref[InputEvent]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "parse_input_event"

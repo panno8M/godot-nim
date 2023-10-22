@@ -5,7 +5,7 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Resource; export classDetail_native_Resource
 
-proc appendFromFile*(self: GLTFDocument; path: String; state: GLTFState; flags: uint32 = 0'u32; basePath: String = ""): Error =
+proc appendFromFile*(self: GLTFDocument; path: String; state: GD_ref[GLTFState]; flags: uint32 = 0'u32; basePath: String = ""): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "append_from_file"
@@ -14,7 +14,7 @@ proc appendFromFile*(self: GLTFDocument; path: String; state: GLTFState; flags: 
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Error)
-proc appendFromBuffer*(self: GLTFDocument; bytes: PackedByteArray; basePath: String; state: GLTFState; flags: uint32 = 0'u32): Error =
+proc appendFromBuffer*(self: GLTFDocument; bytes: PackedByteArray; basePath: String; state: GD_ref[GLTFState]; flags: uint32 = 0'u32): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "append_from_buffer"
@@ -23,7 +23,7 @@ proc appendFromBuffer*(self: GLTFDocument; bytes: PackedByteArray; basePath: Str
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Error)
-proc appendFromScene*(self: GLTFDocument; node: Node; state: GLTFState; flags: uint32 = 0'u32): Error =
+proc appendFromScene*(self: GLTFDocument; node: Node; state: GD_ref[GLTFState]; flags: uint32 = 0'u32): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "append_from_scene"
@@ -32,7 +32,7 @@ proc appendFromScene*(self: GLTFDocument; node: Node; state: GLTFState; flags: u
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Error)
-proc generateScene*(self: GLTFDocument; state: GLTFState; bakeFps: Float = 30; trimming: Bool = false; removeImmutableTracks: Bool = true): Node =
+proc generateScene*(self: GLTFDocument; state: GD_ref[GLTFState]; bakeFps: Float = 30; trimming: Bool = false; removeImmutableTracks: Bool = true): Node =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "generate_scene"
@@ -41,7 +41,7 @@ proc generateScene*(self: GLTFDocument; state: GLTFState; bakeFps: Float = 30; t
   var ret: encoded Node
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Node)
-proc generateBuffer*(self: GLTFDocument; state: GLTFState): PackedByteArray =
+proc generateBuffer*(self: GLTFDocument; state: GD_ref[GLTFState]): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "generate_buffer"
@@ -50,7 +50,7 @@ proc generateBuffer*(self: GLTFDocument; state: GLTFState): PackedByteArray =
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(PackedByteArray)
-proc writeToFilesystem*(self: GLTFDocument; state: GLTFState; path: String): Error =
+proc writeToFilesystem*(self: GLTFDocument; state: GD_ref[GLTFState]; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "write_to_filesystem"
@@ -59,14 +59,14 @@ proc writeToFilesystem*(self: GLTFDocument; state: GLTFState; path: String): Err
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Error)
-proc registerGltfDocumentExtension*(_: typedesc[GLTFDocument]; extension: GLTFDocumentExtension; firstPriority: Bool = false) =
+proc registerGltfDocumentExtension*(_: typedesc[GLTFDocument]; extension: GD_ref[GLTFDocumentExtension]; firstPriority: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "register_gltf_document_extension"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFDocument, addr name, 3752678331)
   var `?param` = [getPtr extension, getPtr firstPriority]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], nil)
-proc unregisterGltfDocumentExtension*(_: typedesc[GLTFDocument]; extension: GLTFDocumentExtension) =
+proc unregisterGltfDocumentExtension*(_: typedesc[GLTFDocument]; extension: GD_ref[GLTFDocumentExtension]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "unregister_gltf_document_extension"

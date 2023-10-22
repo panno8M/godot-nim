@@ -20,21 +20,21 @@ proc background*(self: Environment): Environment_BGMode =
   var ret: encoded Environment_BGMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Environment_BGMode)
-proc `sky=`*(self: Environment; sky: Sky) =
+proc `sky=`*(self: Environment; sky: GD_ref[Sky]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_sky"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 3336722921)
   var `?param` = [getPtr sky]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc sky*(self: Environment): Sky =
+proc sky*(self: Environment): GD_ref[Sky] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_sky"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1177136966)
-  var ret: encoded Sky
+  var ret: encoded GD_ref[Sky]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Sky)
+  (addr ret).decode_result(GD_ref[Sky])
 proc `skyCustomFov=`*(self: Environment; scale: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -906,21 +906,21 @@ proc glowMapStrength*(self: Environment): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Float)
-proc `glowMap=`*(self: Environment; mode: Texture) =
+proc `glowMap=`*(self: Environment; mode: GD_ref[Texture]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_glow_map"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1790811099)
   var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc glowMap*(self: Environment): Texture =
+proc glowMap*(self: Environment): GD_ref[Texture] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_glow_map"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 4037048985)
-  var ret: encoded Texture
+  var ret: encoded GD_ref[Texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture)
+  (addr ret).decode_result(GD_ref[Texture])
 proc `fogEnabled=`*(self: Environment; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1311,18 +1311,18 @@ proc adjustmentSaturation*(self: Environment): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Float)
-proc `adjustmentColorCorrection=`*(self: Environment; colorCorrection: Texture) =
+proc `adjustmentColorCorrection=`*(self: Environment; colorCorrection: GD_ref[Texture]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_adjustment_color_correction"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 1790811099)
   var `?param` = [getPtr colorCorrection]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc adjustmentColorCorrection*(self: Environment): Texture =
+proc adjustmentColorCorrection*(self: Environment): GD_ref[Texture] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_adjustment_color_correction"
     methodbind = interface_ClassDB_getMethodBind(addr className Environment, addr name, 4037048985)
-  var ret: encoded Texture
+  var ret: encoded GD_ref[Texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture)
+  (addr ret).decode_result(GD_ref[Texture])

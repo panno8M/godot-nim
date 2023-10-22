@@ -5,7 +5,7 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_AudioStream; export classDetail_native_AudioStream
 
-proc addStream*(self: AudioStreamRandomizer; index: int32; stream: AudioStream; weight: Float = 1.0) =
+proc addStream*(self: AudioStreamRandomizer; index: int32; stream: GD_ref[AudioStream]; weight: Float = 1.0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_stream"
@@ -26,22 +26,22 @@ proc removeStream*(self: AudioStreamRandomizer; index: int32) =
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamRandomizer, addr name, 1286410249)
   var `?param` = [getPtr index]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setStream*(self: AudioStreamRandomizer; index: int32; stream: AudioStream) =
+proc setStream*(self: AudioStreamRandomizer; index: int32; stream: GD_ref[AudioStream]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_stream"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamRandomizer, addr name, 111075094)
   var `?param` = [getPtr index, getPtr stream]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getStream*(self: AudioStreamRandomizer; index: int32): AudioStream =
+proc getStream*(self: AudioStreamRandomizer; index: int32): GD_ref[AudioStream] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_stream"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamRandomizer, addr name, 2739380747)
   var `?param` = [getPtr index]
-  var ret: encoded AudioStream
+  var ret: encoded GD_ref[AudioStream]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(AudioStream)
+  (addr ret).decode_result(GD_ref[AudioStream])
 proc setStreamProbabilityWeight*(self: AudioStreamRandomizer; index: int32; weight: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

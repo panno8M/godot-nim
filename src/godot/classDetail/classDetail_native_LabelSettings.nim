@@ -20,21 +20,21 @@ proc lineSpacing*(self: LabelSettings): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Float)
-proc `font=`*(self: LabelSettings; font: Font) =
+proc `font=`*(self: LabelSettings; font: GD_ref[Font]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_font"
     methodbind = interface_ClassDB_getMethodBind(addr className LabelSettings, addr name, 1262170328)
   var `?param` = [getPtr font]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc font*(self: LabelSettings): Font =
+proc font*(self: LabelSettings): GD_ref[Font] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_font"
     methodbind = interface_ClassDB_getMethodBind(addr className LabelSettings, addr name, 3229501585)
-  var ret: encoded Font
+  var ret: encoded GD_ref[Font]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Font)
+  (addr ret).decode_result(GD_ref[Font])
 proc `fontSize=`*(self: LabelSettings; size: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

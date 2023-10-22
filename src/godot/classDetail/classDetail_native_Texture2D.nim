@@ -58,19 +58,19 @@ proc drawRectRegion*(self: Texture2D; canvasItem: RID; rect: Rect2; srcRect: Rec
     methodbind = interface_ClassDB_getMethodBind(addr className Texture2D, addr name, 1066564656)
   var `?param` = [getPtr canvasItem, getPtr rect, getPtr srcRect, getPtr modulate, getPtr transpose, getPtr clipUv]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getImage*(self: Texture2D): Image =
+proc getImage*(self: Texture2D): GD_ref[Image] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_image"
     methodbind = interface_ClassDB_getMethodBind(addr className Texture2D, addr name, 4190603485)
-  var ret: encoded Image
+  var ret: encoded GD_ref[Image]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Image)
-proc createPlaceholder*(self: Texture2D): Resource =
+  (addr ret).decode_result(GD_ref[Image])
+proc createPlaceholder*(self: Texture2D): GD_ref[Resource] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "create_placeholder"
     methodbind = interface_ClassDB_getMethodBind(addr className Texture2D, addr name, 121922552)
-  var ret: encoded Resource
+  var ret: encoded GD_ref[Resource]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Resource)
+  (addr ret).decode_result(GD_ref[Resource])

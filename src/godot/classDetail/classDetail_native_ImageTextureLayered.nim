@@ -5,7 +5,7 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_TextureLayered; export classDetail_native_TextureLayered
 
-proc createFromImages*(self: ImageTextureLayered; images: TypedArray[Image]): Error =
+proc createFromImages*(self: ImageTextureLayered; images: GD_ref[Image]): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "create_from_images"
@@ -14,7 +14,7 @@ proc createFromImages*(self: ImageTextureLayered; images: TypedArray[Image]): Er
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Error)
-proc updateLayer*(self: ImageTextureLayered; image: Image; layer: int32) =
+proc updateLayer*(self: ImageTextureLayered; image: GD_ref[Image]; layer: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "update_layer"

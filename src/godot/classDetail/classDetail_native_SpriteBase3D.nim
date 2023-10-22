@@ -254,11 +254,11 @@ proc getItemRect*(self: SpriteBase3D): Rect2 =
   var ret: encoded Rect2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Rect2)
-proc generateTriangleMesh*(self: SpriteBase3D): TriangleMesh =
+proc generateTriangleMesh*(self: SpriteBase3D): GD_ref[TriangleMesh] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "generate_triangle_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className SpriteBase3D, addr name, 3476533166)
-  var ret: encoded TriangleMesh
+  var ret: encoded GD_ref[TriangleMesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(TriangleMesh)
+  (addr ret).decode_result(GD_ref[TriangleMesh])

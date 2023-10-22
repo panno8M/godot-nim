@@ -5,7 +5,7 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_PacketPeer; export classDetail_native_PacketPeer
 
-proc connectToUrl*(self: WebSocketPeer; url: String; tlsClientOptions: TLSOptions = default TLSOptions): Error =
+proc connectToUrl*(self: WebSocketPeer; url: String; tlsClientOptions: GD_ref[TLSOptions] = default GD_ref[TLSOptions]): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "connect_to_url"
@@ -14,7 +14,7 @@ proc connectToUrl*(self: WebSocketPeer; url: String; tlsClientOptions: TLSOption
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Error)
-proc acceptStream*(self: WebSocketPeer; stream: StreamPeer): Error =
+proc acceptStream*(self: WebSocketPeer; stream: GD_ref[StreamPeer]): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "accept_stream"

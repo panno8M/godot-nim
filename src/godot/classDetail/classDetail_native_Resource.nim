@@ -85,12 +85,12 @@ proc emitChanged*(self: Resource) =
     let name = api.newStringName "emit_changed"
     methodbind = interface_ClassDB_getMethodBind(addr className Resource, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc duplicate*(self: Resource; subresources: Bool = false): Resource =
+proc duplicate*(self: Resource; subresources: Bool = false): GD_ref[Resource] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "duplicate"
     methodbind = interface_ClassDB_getMethodBind(addr className Resource, addr name, 482882304)
   var `?param` = [getPtr subresources]
-  var ret: encoded Resource
+  var ret: encoded GD_ref[Resource]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Resource)
+  (addr ret).decode_result(GD_ref[Resource])

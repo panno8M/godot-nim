@@ -13,7 +13,7 @@ proc getNextSourceId*(self: TileSet): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(int32)
-proc addSource*(self: TileSet; source: TileSetSource; atlasSourceIdOverride: int32 = -1): int32 =
+proc addSource*(self: TileSet; source: GD_ref[TileSetSource]; atlasSourceIdOverride: int32 = -1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_source"
@@ -62,15 +62,15 @@ proc hasSource*(self: TileSet; sourceId: int32): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Bool)
-proc getSource*(self: TileSet; sourceId: int32): TileSetSource =
+proc getSource*(self: TileSet; sourceId: int32): GD_ref[TileSetSource] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_source"
     methodbind = interface_ClassDB_getMethodBind(addr className TileSet, addr name, 1763540252)
   var `?param` = [getPtr sourceId]
-  var ret: encoded TileSetSource
+  var ret: encoded GD_ref[TileSetSource]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(TileSetSource)
+  (addr ret).decode_result(GD_ref[TileSetSource])
 proc `tileShape=`*(self: TileSet; shape: TileSet_TileShape) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -268,22 +268,22 @@ proc getPhysicsLayerCollisionMask*(self: TileSet; layerIndex: int32): uint32 =
   var ret: encoded uint32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(uint32)
-proc setPhysicsLayerPhysicsMaterial*(self: TileSet; layerIndex: int32; physicsMaterial: PhysicsMaterial) =
+proc setPhysicsLayerPhysicsMaterial*(self: TileSet; layerIndex: int32; physicsMaterial: GD_ref[PhysicsMaterial]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_physics_layer_physics_material"
     methodbind = interface_ClassDB_getMethodBind(addr className TileSet, addr name, 1018687357)
   var `?param` = [getPtr layerIndex, getPtr physicsMaterial]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getPhysicsLayerPhysicsMaterial*(self: TileSet; layerIndex: int32): PhysicsMaterial =
+proc getPhysicsLayerPhysicsMaterial*(self: TileSet; layerIndex: int32): GD_ref[PhysicsMaterial] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_physics_layer_physics_material"
     methodbind = interface_ClassDB_getMethodBind(addr className TileSet, addr name, 788318639)
   var `?param` = [getPtr layerIndex]
-  var ret: encoded PhysicsMaterial
+  var ret: encoded GD_ref[PhysicsMaterial]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(PhysicsMaterial)
+  (addr ret).decode_result(GD_ref[PhysicsMaterial])
 proc getTerrainSetsCount*(self: TileSet): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -639,7 +639,7 @@ proc clearTileProxies*(self: TileSet) =
     let name = api.newStringName "clear_tile_proxies"
     methodbind = interface_ClassDB_getMethodBind(addr className TileSet, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc addPattern*(self: TileSet; pattern: TileMapPattern; index: int32 = -1): int32 =
+proc addPattern*(self: TileSet; pattern: GD_ref[TileMapPattern]; index: int32 = -1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_pattern"
@@ -648,15 +648,15 @@ proc addPattern*(self: TileSet; pattern: TileMapPattern; index: int32 = -1): int
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(int32)
-proc getPattern*(self: TileSet; index: int32 = -1): TileMapPattern =
+proc getPattern*(self: TileSet; index: int32 = -1): GD_ref[TileMapPattern] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_pattern"
     methodbind = interface_ClassDB_getMethodBind(addr className TileSet, addr name, 4207737510)
   var `?param` = [getPtr index]
-  var ret: encoded TileMapPattern
+  var ret: encoded GD_ref[TileMapPattern]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(TileMapPattern)
+  (addr ret).decode_result(GD_ref[TileMapPattern])
 proc removePattern*(self: TileSet; index: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

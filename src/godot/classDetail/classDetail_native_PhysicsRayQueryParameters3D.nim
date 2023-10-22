@@ -5,15 +5,15 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 
-proc create*(_: typedesc[PhysicsRayQueryParameters3D]; `from`: Vector3; to: Vector3; collisionMask: uint32 = 4294967295'u32; exclude: TypedArray[RID] = init_TypedArray[RID]()): PhysicsRayQueryParameters3D =
+proc create*(_: typedesc[PhysicsRayQueryParameters3D]; `from`: Vector3; to: Vector3; collisionMask: uint32 = 4294967295'u32; exclude: TypedArray[RID] = init_TypedArray[RID]()): GD_ref[PhysicsRayQueryParameters3D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "create"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsRayQueryParameters3D, addr name, 680321959)
   var `?param` = [getPtr `from`, getPtr to, getPtr collisionMask, getPtr exclude]
-  var ret: encoded PhysicsRayQueryParameters3D
+  var ret: encoded GD_ref[PhysicsRayQueryParameters3D]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode_result(PhysicsRayQueryParameters3D)
+  (addr ret).decode_result(GD_ref[PhysicsRayQueryParameters3D])
 proc `from=`*(self: PhysicsRayQueryParameters3D; `from`: Vector3) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

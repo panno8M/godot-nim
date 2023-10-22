@@ -5,21 +5,21 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Node2D; export classDetail_native_Node2D
 
-proc `navigationPolygon=`*(self: NavigationRegion2D; navigationPolygon: NavigationPolygon) =
+proc `navigationPolygon=`*(self: NavigationRegion2D; navigationPolygon: GD_ref[NavigationPolygon]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_navigation_polygon"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationRegion2D, addr name, 1515040758)
   var `?param` = [getPtr navigationPolygon]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc navigationPolygon*(self: NavigationRegion2D): NavigationPolygon =
+proc navigationPolygon*(self: NavigationRegion2D): GD_ref[NavigationPolygon] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_navigation_polygon"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationRegion2D, addr name, 1046532237)
-  var ret: encoded NavigationPolygon
+  var ret: encoded GD_ref[NavigationPolygon]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(NavigationPolygon)
+  (addr ret).decode_result(GD_ref[NavigationPolygon])
 proc `enabled=`*(self: NavigationRegion2D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

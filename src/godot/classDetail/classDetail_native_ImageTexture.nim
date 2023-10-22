@@ -5,15 +5,15 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Texture2D; export classDetail_native_Texture2D
 
-proc createFromImage*(_: typedesc[ImageTexture]; image: Image): ImageTexture =
+proc createFromImage*(_: typedesc[ImageTexture]; image: GD_ref[Image]): GD_ref[ImageTexture] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "create_from_image"
     methodbind = interface_ClassDB_getMethodBind(addr className ImageTexture, addr name, 2775144163)
   var `?param` = [getPtr image]
-  var ret: encoded ImageTexture
+  var ret: encoded GD_ref[ImageTexture]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode_result(ImageTexture)
+  (addr ret).decode_result(GD_ref[ImageTexture])
 proc getFormat*(self: ImageTexture): Image_Format =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,14 +22,14 @@ proc getFormat*(self: ImageTexture): Image_Format =
   var ret: encoded Image_Format
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Image_Format)
-proc setImage*(self: ImageTexture; image: Image) =
+proc setImage*(self: ImageTexture; image: GD_ref[Image]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_image"
     methodbind = interface_ClassDB_getMethodBind(addr className ImageTexture, addr name, 532598488)
   var `?param` = [getPtr image]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc update*(self: ImageTexture; image: Image) =
+proc update*(self: ImageTexture; image: GD_ref[Image]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "update"

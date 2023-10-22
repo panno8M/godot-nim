@@ -124,29 +124,29 @@ proc translatePlural*(self: TranslationServer; message: StringName; pluralMessag
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(StringName)
-proc addTranslation*(self: TranslationServer; translation: Translation) =
+proc addTranslation*(self: TranslationServer; translation: GD_ref[Translation]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_translation"
     methodbind = interface_ClassDB_getMethodBind(addr className TranslationServer, addr name, 1466479800)
   var `?param` = [getPtr translation]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removeTranslation*(self: TranslationServer; translation: Translation) =
+proc removeTranslation*(self: TranslationServer; translation: GD_ref[Translation]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "remove_translation"
     methodbind = interface_ClassDB_getMethodBind(addr className TranslationServer, addr name, 1466479800)
   var `?param` = [getPtr translation]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getTranslationObject*(self: TranslationServer; locale: String): Translation =
+proc getTranslationObject*(self: TranslationServer; locale: String): GD_ref[Translation] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_translation_object"
     methodbind = interface_ClassDB_getMethodBind(addr className TranslationServer, addr name, 2065240175)
   var `?param` = [getPtr locale]
-  var ret: encoded Translation
+  var ret: encoded GD_ref[Translation]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Translation)
+  (addr ret).decode_result(GD_ref[Translation])
 proc clear*(self: TranslationServer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

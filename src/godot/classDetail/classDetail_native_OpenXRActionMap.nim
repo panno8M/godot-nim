@@ -28,32 +28,32 @@ proc getActionSetCount*(self: OpenXRActionMap): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(int32)
-proc findActionSet*(self: OpenXRActionMap; name: String): OpenXRActionSet =
+proc findActionSet*(self: OpenXRActionMap; name: String): GD_ref[OpenXRActionSet] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "find_action_set"
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRActionMap, addr name, 1888809267)
   var `?param` = [getPtr name]
-  var ret: encoded OpenXRActionSet
+  var ret: encoded GD_ref[OpenXRActionSet]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(OpenXRActionSet)
-proc getActionSet*(self: OpenXRActionMap; idx: int32): OpenXRActionSet =
+  (addr ret).decode_result(GD_ref[OpenXRActionSet])
+proc getActionSet*(self: OpenXRActionMap; idx: int32): GD_ref[OpenXRActionSet] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_action_set"
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRActionMap, addr name, 1789580336)
   var `?param` = [getPtr idx]
-  var ret: encoded OpenXRActionSet
+  var ret: encoded GD_ref[OpenXRActionSet]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(OpenXRActionSet)
-proc addActionSet*(self: OpenXRActionMap; actionSet: OpenXRActionSet) =
+  (addr ret).decode_result(GD_ref[OpenXRActionSet])
+proc addActionSet*(self: OpenXRActionMap; actionSet: GD_ref[OpenXRActionSet]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_action_set"
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRActionMap, addr name, 2093310581)
   var `?param` = [getPtr actionSet]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removeActionSet*(self: OpenXRActionMap; actionSet: OpenXRActionSet) =
+proc removeActionSet*(self: OpenXRActionMap; actionSet: GD_ref[OpenXRActionSet]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "remove_action_set"
@@ -83,32 +83,32 @@ proc getInteractionProfileCount*(self: OpenXRActionMap): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(int32)
-proc findInteractionProfile*(self: OpenXRActionMap; name: String): OpenXRInteractionProfile =
+proc findInteractionProfile*(self: OpenXRActionMap; name: String): GD_ref[OpenXRInteractionProfile] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "find_interaction_profile"
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRActionMap, addr name, 3095875538)
   var `?param` = [getPtr name]
-  var ret: encoded OpenXRInteractionProfile
+  var ret: encoded GD_ref[OpenXRInteractionProfile]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(OpenXRInteractionProfile)
-proc getInteractionProfile*(self: OpenXRActionMap; idx: int32): OpenXRInteractionProfile =
+  (addr ret).decode_result(GD_ref[OpenXRInteractionProfile])
+proc getInteractionProfile*(self: OpenXRActionMap; idx: int32): GD_ref[OpenXRInteractionProfile] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_interaction_profile"
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRActionMap, addr name, 2546151210)
   var `?param` = [getPtr idx]
-  var ret: encoded OpenXRInteractionProfile
+  var ret: encoded GD_ref[OpenXRInteractionProfile]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(OpenXRInteractionProfile)
-proc addInteractionProfile*(self: OpenXRActionMap; interactionProfile: OpenXRInteractionProfile) =
+  (addr ret).decode_result(GD_ref[OpenXRInteractionProfile])
+proc addInteractionProfile*(self: OpenXRActionMap; interactionProfile: GD_ref[OpenXRInteractionProfile]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_interaction_profile"
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRActionMap, addr name, 2697953512)
   var `?param` = [getPtr interactionProfile]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removeInteractionProfile*(self: OpenXRActionMap; interactionProfile: OpenXRInteractionProfile) =
+proc removeInteractionProfile*(self: OpenXRActionMap; interactionProfile: GD_ref[OpenXRInteractionProfile]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "remove_interaction_profile"

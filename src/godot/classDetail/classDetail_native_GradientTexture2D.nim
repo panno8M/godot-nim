@@ -5,21 +5,21 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Texture2D; export classDetail_native_Texture2D
 
-proc `gradient=`*(self: GradientTexture2D; gradient: Gradient) =
+proc `gradient=`*(self: GradientTexture2D; gradient: GD_ref[Gradient]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_gradient"
     methodbind = interface_ClassDB_getMethodBind(addr className GradientTexture2D, addr name, 2756054477)
   var `?param` = [getPtr gradient]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc gradient*(self: GradientTexture2D): Gradient =
+proc gradient*(self: GradientTexture2D): GD_ref[Gradient] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_gradient"
     methodbind = interface_ClassDB_getMethodBind(addr className GradientTexture2D, addr name, 132272999)
-  var ret: encoded Gradient
+  var ret: encoded GD_ref[Gradient]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Gradient)
+  (addr ret).decode_result(GD_ref[Gradient])
 proc `width=`*(self: GradientTexture2D; width: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

@@ -28,15 +28,15 @@ proc getBindingCount*(self: OpenXRInteractionProfile): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(int32)
-proc getBinding*(self: OpenXRInteractionProfile; index: int32): OpenXRIPBinding =
+proc getBinding*(self: OpenXRInteractionProfile; index: int32): GD_ref[OpenXRIPBinding] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_binding"
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRInteractionProfile, addr name, 3934429652)
   var `?param` = [getPtr index]
-  var ret: encoded OpenXRIPBinding
+  var ret: encoded GD_ref[OpenXRIPBinding]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(OpenXRIPBinding)
+  (addr ret).decode_result(GD_ref[OpenXRIPBinding])
 proc `bindings=`*(self: OpenXRInteractionProfile; bindings: Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

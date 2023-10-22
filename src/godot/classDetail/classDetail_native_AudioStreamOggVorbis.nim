@@ -5,21 +5,21 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_AudioStream; export classDetail_native_AudioStream
 
-proc `packetSequence=`*(self: AudioStreamOggVorbis; packetSequence: OggPacketSequence) =
+proc `packetSequence=`*(self: AudioStreamOggVorbis; packetSequence: GD_ref[OggPacketSequence]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_packet_sequence"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamOggVorbis, addr name, 438882457)
   var `?param` = [getPtr packetSequence]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc packetSequence*(self: AudioStreamOggVorbis): OggPacketSequence =
+proc packetSequence*(self: AudioStreamOggVorbis): GD_ref[OggPacketSequence] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_packet_sequence"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamOggVorbis, addr name, 2801636033)
-  var ret: encoded OggPacketSequence
+  var ret: encoded GD_ref[OggPacketSequence]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(OggPacketSequence)
+  (addr ret).decode_result(GD_ref[OggPacketSequence])
 proc `loop=`*(self: AudioStreamOggVorbis; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

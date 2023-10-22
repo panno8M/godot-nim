@@ -5,21 +5,21 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_VisualInstance3D; export classDetail_native_VisualInstance3D
 
-proc `lightData=`*(self: LightmapGI; data: LightmapGIData) =
+proc `lightData=`*(self: LightmapGI; data: GD_ref[LightmapGIData]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_light_data"
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGI, addr name, 1790597277)
   var `?param` = [getPtr data]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc lightData*(self: LightmapGI): LightmapGIData =
+proc lightData*(self: LightmapGI): GD_ref[LightmapGIData] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_light_data"
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGI, addr name, 290354153)
-  var ret: encoded LightmapGIData
+  var ret: encoded GD_ref[LightmapGIData]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(LightmapGIData)
+  (addr ret).decode_result(GD_ref[LightmapGIData])
 proc `bakeQuality=`*(self: LightmapGI; bakeQuality: LightmapGI_BakeQuality) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -95,21 +95,21 @@ proc environmentMode*(self: LightmapGI): LightmapGI_EnvironmentMode =
   var ret: encoded LightmapGI_EnvironmentMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(LightmapGI_EnvironmentMode)
-proc `environmentCustomSky=`*(self: LightmapGI; sky: Sky) =
+proc `environmentCustomSky=`*(self: LightmapGI; sky: GD_ref[Sky]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_environment_custom_sky"
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGI, addr name, 3336722921)
   var `?param` = [getPtr sky]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc environmentCustomSky*(self: LightmapGI): Sky =
+proc environmentCustomSky*(self: LightmapGI): GD_ref[Sky] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_environment_custom_sky"
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGI, addr name, 1177136966)
-  var ret: encoded Sky
+  var ret: encoded GD_ref[Sky]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Sky)
+  (addr ret).decode_result(GD_ref[Sky])
 proc `environmentCustomColor=`*(self: LightmapGI; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -200,18 +200,18 @@ proc isDirectional*(self: LightmapGI): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Bool)
-proc `cameraAttributes=`*(self: LightmapGI; cameraAttributes: CameraAttributes) =
+proc `cameraAttributes=`*(self: LightmapGI; cameraAttributes: GD_ref[CameraAttributes]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_camera_attributes"
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGI, addr name, 2817810567)
   var `?param` = [getPtr cameraAttributes]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc cameraAttributes*(self: LightmapGI): CameraAttributes =
+proc cameraAttributes*(self: LightmapGI): GD_ref[CameraAttributes] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_camera_attributes"
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGI, addr name, 3921283215)
-  var ret: encoded CameraAttributes
+  var ret: encoded GD_ref[CameraAttributes]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(CameraAttributes)
+  (addr ret).decode_result(GD_ref[CameraAttributes])

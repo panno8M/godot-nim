@@ -14,25 +14,25 @@ proc generateRandomBytes*(self: Crypto; size: int32): PackedByteArray =
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(PackedByteArray)
-proc generateRsa*(self: Crypto; size: int32): CryptoKey =
+proc generateRsa*(self: Crypto; size: int32): GD_ref[CryptoKey] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "generate_rsa"
     methodbind = interface_ClassDB_getMethodBind(addr className Crypto, addr name, 1237515462)
   var `?param` = [getPtr size]
-  var ret: encoded CryptoKey
+  var ret: encoded GD_ref[CryptoKey]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(CryptoKey)
-proc generateSelfSignedCertificate*(self: Crypto; key: CryptoKey; issuerName: String = "CN=myserver,O=myorganisation,C=IT"; notBefore: String = "20140101000000"; notAfter: String = "20340101000000"): X509Certificate =
+  (addr ret).decode_result(GD_ref[CryptoKey])
+proc generateSelfSignedCertificate*(self: Crypto; key: GD_ref[CryptoKey]; issuerName: String = "CN=myserver,O=myorganisation,C=IT"; notBefore: String = "20140101000000"; notAfter: String = "20340101000000"): GD_ref[X509Certificate] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "generate_self_signed_certificate"
     methodbind = interface_ClassDB_getMethodBind(addr className Crypto, addr name, 947314696)
   var `?param` = [getPtr key, getPtr issuerName, getPtr notBefore, getPtr notAfter]
-  var ret: encoded X509Certificate
+  var ret: encoded GD_ref[X509Certificate]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(X509Certificate)
-proc sign*(self: Crypto; hashType: HashingContext_HashType; hash: PackedByteArray; key: CryptoKey): PackedByteArray =
+  (addr ret).decode_result(GD_ref[X509Certificate])
+proc sign*(self: Crypto; hashType: HashingContext_HashType; hash: PackedByteArray; key: GD_ref[CryptoKey]): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "sign"
@@ -41,7 +41,7 @@ proc sign*(self: Crypto; hashType: HashingContext_HashType; hash: PackedByteArra
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(PackedByteArray)
-proc verify*(self: Crypto; hashType: HashingContext_HashType; hash: PackedByteArray; signature: PackedByteArray; key: CryptoKey): Bool =
+proc verify*(self: Crypto; hashType: HashingContext_HashType; hash: PackedByteArray; signature: PackedByteArray; key: GD_ref[CryptoKey]): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "verify"
@@ -50,7 +50,7 @@ proc verify*(self: Crypto; hashType: HashingContext_HashType; hash: PackedByteAr
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Bool)
-proc encrypt*(self: Crypto; key: CryptoKey; plaintext: PackedByteArray): PackedByteArray =
+proc encrypt*(self: Crypto; key: GD_ref[CryptoKey]; plaintext: PackedByteArray): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "encrypt"
@@ -59,7 +59,7 @@ proc encrypt*(self: Crypto; key: CryptoKey; plaintext: PackedByteArray): PackedB
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(PackedByteArray)
-proc decrypt*(self: Crypto; key: CryptoKey; ciphertext: PackedByteArray): PackedByteArray =
+proc decrypt*(self: Crypto; key: GD_ref[CryptoKey]; ciphertext: PackedByteArray): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "decrypt"

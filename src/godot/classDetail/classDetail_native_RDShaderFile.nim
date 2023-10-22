@@ -5,22 +5,22 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Resource; export classDetail_native_Resource
 
-proc setBytecode*(self: RDShaderFile; bytecode: RDShaderSPIRV; version: StringName = "") =
+proc setBytecode*(self: RDShaderFile; bytecode: GD_ref[RDShaderSPIRV]; version: StringName = "") =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_bytecode"
     methodbind = interface_ClassDB_getMethodBind(addr className RDShaderFile, addr name, 1558064255)
   var `?param` = [getPtr bytecode, getPtr version]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getSpirv*(self: RDShaderFile; version: StringName = ""): RDShaderSPIRV =
+proc getSpirv*(self: RDShaderFile; version: StringName = ""): GD_ref[RDShaderSPIRV] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_spirv"
     methodbind = interface_ClassDB_getMethodBind(addr className RDShaderFile, addr name, 3340165340)
   var `?param` = [getPtr version]
-  var ret: encoded RDShaderSPIRV
+  var ret: encoded GD_ref[RDShaderSPIRV]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(RDShaderSPIRV)
+  (addr ret).decode_result(GD_ref[RDShaderSPIRV])
 proc getVersionList*(self: RDShaderFile): TypedArray[StringName] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

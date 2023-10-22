@@ -5,7 +5,7 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_MultiplayerPeer; export classDetail_native_MultiplayerPeer
 
-proc createClient*(self: WebSocketMultiplayerPeer; url: String; tlsClientOptions: TLSOptions = default TLSOptions): Error =
+proc createClient*(self: WebSocketMultiplayerPeer; url: String; tlsClientOptions: GD_ref[TLSOptions] = default GD_ref[TLSOptions]): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "create_client"
@@ -14,7 +14,7 @@ proc createClient*(self: WebSocketMultiplayerPeer; url: String; tlsClientOptions
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Error)
-proc createServer*(self: WebSocketMultiplayerPeer; port: int32; bindAddress: String = "*"; tlsServerOptions: TLSOptions = default TLSOptions): Error =
+proc createServer*(self: WebSocketMultiplayerPeer; port: int32; bindAddress: String = "*"; tlsServerOptions: GD_ref[TLSOptions] = default GD_ref[TLSOptions]): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "create_server"
@@ -23,15 +23,15 @@ proc createServer*(self: WebSocketMultiplayerPeer; port: int32; bindAddress: Str
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Error)
-proc getPeer*(self: WebSocketMultiplayerPeer; peerId: int32): WebSocketPeer =
+proc getPeer*(self: WebSocketMultiplayerPeer; peerId: int32): GD_ref[WebSocketPeer] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_peer"
     methodbind = interface_ClassDB_getMethodBind(addr className WebSocketMultiplayerPeer, addr name, 1381378851)
   var `?param` = [getPtr peerId]
-  var ret: encoded WebSocketPeer
+  var ret: encoded GD_ref[WebSocketPeer]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(WebSocketPeer)
+  (addr ret).decode_result(GD_ref[WebSocketPeer])
 proc getPeerAddress*(self: WebSocketMultiplayerPeer; id: int32): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

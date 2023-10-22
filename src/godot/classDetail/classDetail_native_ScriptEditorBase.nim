@@ -13,7 +13,7 @@ proc getBaseEditor*(self: ScriptEditorBase): Control =
   var ret: encoded Control
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Control)
-proc addSyntaxHighlighter*(self: ScriptEditorBase; highlighter: EditorSyntaxHighlighter) =
+proc addSyntaxHighlighter*(self: ScriptEditorBase; highlighter: GD_ref[EditorSyntaxHighlighter]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_syntax_highlighter"

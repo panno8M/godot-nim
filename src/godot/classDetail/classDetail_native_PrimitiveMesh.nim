@@ -5,21 +5,21 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Mesh; export classDetail_native_Mesh
 
-proc `material=`*(self: PrimitiveMesh; material: Material) =
+proc `material=`*(self: PrimitiveMesh; material: GD_ref[Material]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_material"
     methodbind = interface_ClassDB_getMethodBind(addr className PrimitiveMesh, addr name, 2757459619)
   var `?param` = [getPtr material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc material*(self: PrimitiveMesh): Material =
+proc material*(self: PrimitiveMesh): GD_ref[Material] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_material"
     methodbind = interface_ClassDB_getMethodBind(addr className PrimitiveMesh, addr name, 5934680)
-  var ret: encoded Material
+  var ret: encoded GD_ref[Material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Material)
+  (addr ret).decode_result(GD_ref[Material])
 proc getMeshArrays*(self: PrimitiveMesh): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

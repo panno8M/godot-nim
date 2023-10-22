@@ -5,7 +5,7 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Mesh; export classDetail_native_Mesh
 
-proc surfaceBegin*(self: ImmediateMesh; primitive: Mesh_PrimitiveType; material: Material = default Material) =
+proc surfaceBegin*(self: ImmediateMesh; primitive: Mesh_PrimitiveType; material: GD_ref[Material] = default GD_ref[Material]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "surface_begin"

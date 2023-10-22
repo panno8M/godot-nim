@@ -5,15 +5,15 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 
-proc createFromString*(_: typedesc[RegEx]; pattern: String): RegEx =
+proc createFromString*(_: typedesc[RegEx]; pattern: String): GD_ref[RegEx] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "create_from_string"
     methodbind = interface_ClassDB_getMethodBind(addr className RegEx, addr name, 2150300909)
   var `?param` = [getPtr pattern]
-  var ret: encoded RegEx
+  var ret: encoded GD_ref[RegEx]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode_result(RegEx)
+  (addr ret).decode_result(GD_ref[RegEx])
 proc clear*(self: RegEx) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -29,24 +29,24 @@ proc compile*(self: RegEx; pattern: String): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Error)
-proc search*(self: RegEx; subject: String; offset: int32 = 0; `end`: int32 = -1): RegExMatch =
+proc search*(self: RegEx; subject: String; offset: int32 = 0; `end`: int32 = -1): GD_ref[RegExMatch] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "search"
     methodbind = interface_ClassDB_getMethodBind(addr className RegEx, addr name, 4087180739)
   var `?param` = [getPtr subject, getPtr offset, getPtr `end`]
-  var ret: encoded RegExMatch
+  var ret: encoded GD_ref[RegExMatch]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(RegExMatch)
-proc searchAll*(self: RegEx; subject: String; offset: int32 = 0; `end`: int32 = -1): TypedArray[RegExMatch] =
+  (addr ret).decode_result(GD_ref[RegExMatch])
+proc searchAll*(self: RegEx; subject: String; offset: int32 = 0; `end`: int32 = -1): GD_ref[RegExMatch] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "search_all"
     methodbind = interface_ClassDB_getMethodBind(addr className RegEx, addr name, 3354100289)
   var `?param` = [getPtr subject, getPtr offset, getPtr `end`]
-  var ret: encoded TypedArray[RegExMatch]
+  var ret: encoded GD_ref[RegExMatch]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(TypedArray[RegExMatch])
+  (addr ret).decode_result(GD_ref[RegExMatch])
 proc sub*(self: RegEx; subject: String; replacement: String; all: Bool = false; offset: int32 = 0; `end`: int32 = -1): String =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

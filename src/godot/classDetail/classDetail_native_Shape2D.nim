@@ -20,7 +20,7 @@ proc customSolverBias*(self: Shape2D): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Float)
-proc collide*(self: Shape2D; localXform: Transform2D; withShape: Shape2D; shapeXform: Transform2D): Bool =
+proc collide*(self: Shape2D; localXform: Transform2D; withShape: GD_ref[Shape2D]; shapeXform: Transform2D): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "collide"
@@ -29,7 +29,7 @@ proc collide*(self: Shape2D; localXform: Transform2D; withShape: Shape2D; shapeX
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Bool)
-proc collideWithMotion*(self: Shape2D; localXform: Transform2D; localMotion: Vector2; withShape: Shape2D; shapeXform: Transform2D; shapeMotion: Vector2): Bool =
+proc collideWithMotion*(self: Shape2D; localXform: Transform2D; localMotion: Vector2; withShape: GD_ref[Shape2D]; shapeXform: Transform2D; shapeMotion: Vector2): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "collide_with_motion"
@@ -38,7 +38,7 @@ proc collideWithMotion*(self: Shape2D; localXform: Transform2D; localMotion: Vec
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Bool)
-proc collideAndGetContacts*(self: Shape2D; localXform: Transform2D; withShape: Shape2D; shapeXform: Transform2D): PackedVector2Array =
+proc collideAndGetContacts*(self: Shape2D; localXform: Transform2D; withShape: GD_ref[Shape2D]; shapeXform: Transform2D): PackedVector2Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "collide_and_get_contacts"
@@ -47,7 +47,7 @@ proc collideAndGetContacts*(self: Shape2D; localXform: Transform2D; withShape: S
   var ret: encoded PackedVector2Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(PackedVector2Array)
-proc collideWithMotionAndGetContacts*(self: Shape2D; localXform: Transform2D; localMotion: Vector2; withShape: Shape2D; shapeXform: Transform2D; shapeMotion: Vector2): PackedVector2Array =
+proc collideWithMotionAndGetContacts*(self: Shape2D; localXform: Transform2D; localMotion: Vector2; withShape: GD_ref[Shape2D]; shapeXform: Transform2D; shapeMotion: Vector2): PackedVector2Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "collide_with_motion_and_get_contacts"

@@ -5,15 +5,15 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Resource; export classDetail_native_Resource
 
-proc fromNode*(_: typedesc[GLTFCamera]; cameraNode: Camera3D): GLTFCamera =
+proc fromNode*(_: typedesc[GLTFCamera]; cameraNode: Camera3D): GD_ref[GLTFCamera] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "from_node"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFCamera, addr name, 237784)
   var `?param` = [getPtr cameraNode]
-  var ret: encoded GLTFCamera
+  var ret: encoded GD_ref[GLTFCamera]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode_result(GLTFCamera)
+  (addr ret).decode_result(GD_ref[GLTFCamera])
 proc toNode*(self: GLTFCamera): Camera3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,15 +22,15 @@ proc toNode*(self: GLTFCamera): Camera3D =
   var ret: encoded Camera3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Camera3D)
-proc fromDictionary*(_: typedesc[GLTFCamera]; dictionary: Dictionary): GLTFCamera =
+proc fromDictionary*(_: typedesc[GLTFCamera]; dictionary: Dictionary): GD_ref[GLTFCamera] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "from_dictionary"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFCamera, addr name, 2495512509)
   var `?param` = [getPtr dictionary]
-  var ret: encoded GLTFCamera
+  var ret: encoded GD_ref[GLTFCamera]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode_result(GLTFCamera)
+  (addr ret).decode_result(GD_ref[GLTFCamera])
 proc toDictionary*(self: GLTFCamera): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

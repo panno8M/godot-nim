@@ -31,7 +31,7 @@ proc hasSceneTileId*(self: TileSetScenesCollectionSource; id: int32): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Bool)
-proc createSceneTile*(self: TileSetScenesCollectionSource; packedScene: PackedScene; idOverride: int32 = -1): int32 =
+proc createSceneTile*(self: TileSetScenesCollectionSource; packedScene: GD_ref[PackedScene]; idOverride: int32 = -1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "create_scene_tile"
@@ -47,22 +47,22 @@ proc setSceneTileId*(self: TileSetScenesCollectionSource; id: int32; newId: int3
     methodbind = interface_ClassDB_getMethodBind(addr className TileSetScenesCollectionSource, addr name, 3937882851)
   var `?param` = [getPtr id, getPtr newId]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setSceneTileScene*(self: TileSetScenesCollectionSource; id: int32; packedScene: PackedScene) =
+proc setSceneTileScene*(self: TileSetScenesCollectionSource; id: int32; packedScene: GD_ref[PackedScene]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_scene_tile_scene"
     methodbind = interface_ClassDB_getMethodBind(addr className TileSetScenesCollectionSource, addr name, 3435852839)
   var `?param` = [getPtr id, getPtr packedScene]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getSceneTileScene*(self: TileSetScenesCollectionSource; id: int32): PackedScene =
+proc getSceneTileScene*(self: TileSetScenesCollectionSource; id: int32): GD_ref[PackedScene] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_scene_tile_scene"
     methodbind = interface_ClassDB_getMethodBind(addr className TileSetScenesCollectionSource, addr name, 511017218)
   var `?param` = [getPtr id]
-  var ret: encoded PackedScene
+  var ret: encoded GD_ref[PackedScene]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(PackedScene)
+  (addr ret).decode_result(GD_ref[PackedScene])
 proc setSceneTileDisplayPlaceholder*(self: TileSetScenesCollectionSource; id: int32; displayPlaceholder: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

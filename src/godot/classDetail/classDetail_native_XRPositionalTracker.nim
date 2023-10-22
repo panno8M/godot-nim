@@ -89,15 +89,15 @@ proc hasPose*(self: XRPositionalTracker; name: StringName): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Bool)
-proc getPose*(self: XRPositionalTracker; name: StringName): XRPose =
+proc getPose*(self: XRPositionalTracker; name: StringName): GD_ref[XRPose] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_pose"
     methodbind = interface_ClassDB_getMethodBind(addr className XRPositionalTracker, addr name, 4099720006)
   var `?param` = [getPtr name]
-  var ret: encoded XRPose
+  var ret: encoded GD_ref[XRPose]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(XRPose)
+  (addr ret).decode_result(GD_ref[XRPose])
 proc invalidatePose*(self: XRPositionalTracker; name: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

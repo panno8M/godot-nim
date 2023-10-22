@@ -12,7 +12,7 @@ proc addItem*(self: OptionButton; label: String; id: int32 = -1) =
     methodbind = interface_ClassDB_getMethodBind(addr className OptionButton, addr name, 3043792800)
   var `?param` = [getPtr label, getPtr id]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addIconItem*(self: OptionButton; texture: Texture2D; label: String; id: int32 = -1) =
+proc addIconItem*(self: OptionButton; texture: GD_ref[Texture2D]; label: String; id: int32 = -1) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_icon_item"
@@ -26,7 +26,7 @@ proc setItemText*(self: OptionButton; idx: int32; text: String) =
     methodbind = interface_ClassDB_getMethodBind(addr className OptionButton, addr name, 501894301)
   var `?param` = [getPtr idx, getPtr text]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setItemIcon*(self: OptionButton; idx: int32; texture: Texture2D) =
+proc setItemIcon*(self: OptionButton; idx: int32; texture: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_item_icon"
@@ -70,15 +70,15 @@ proc getItemText*(self: OptionButton; idx: int32): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(String)
-proc getItemIcon*(self: OptionButton; idx: int32): Texture2D =
+proc getItemIcon*(self: OptionButton; idx: int32): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_item_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className OptionButton, addr name, 3536238170)
   var `?param` = [getPtr idx]
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Texture2D)
+  (addr ret).decode_result(GD_ref[Texture2D])
 proc getItemId*(self: OptionButton; idx: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

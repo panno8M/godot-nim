@@ -5,7 +5,7 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Node; export classDetail_native_Node
 
-proc addResource*(self: ResourcePreloader; name: StringName; resource: Resource) =
+proc addResource*(self: ResourcePreloader; name: StringName; resource: GD_ref[Resource]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_resource"
@@ -35,15 +35,15 @@ proc hasResource*(self: ResourcePreloader; name: StringName): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Bool)
-proc getResource*(self: ResourcePreloader; name: StringName): Resource =
+proc getResource*(self: ResourcePreloader; name: StringName): GD_ref[Resource] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_resource"
     methodbind = interface_ClassDB_getMethodBind(addr className ResourcePreloader, addr name, 3742749261)
   var `?param` = [getPtr name]
-  var ret: encoded Resource
+  var ret: encoded GD_ref[Resource]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Resource)
+  (addr ret).decode_result(GD_ref[Resource])
 proc getResourceList*(self: ResourcePreloader): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

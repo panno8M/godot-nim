@@ -46,14 +46,14 @@ proc isListening*(self: UDPServer): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Bool)
-proc takeConnection*(self: UDPServer): PacketPeerUDP =
+proc takeConnection*(self: UDPServer): GD_ref[PacketPeerUDP] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "take_connection"
     methodbind = interface_ClassDB_getMethodBind(addr className UDPServer, addr name, 808734560)
-  var ret: encoded PacketPeerUDP
+  var ret: encoded GD_ref[PacketPeerUDP]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(PacketPeerUDP)
+  (addr ret).decode_result(GD_ref[PacketPeerUDP])
 proc stop*(self: UDPServer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

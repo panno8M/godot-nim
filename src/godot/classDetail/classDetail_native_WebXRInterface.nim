@@ -89,15 +89,15 @@ proc isInputSourceActive*(self: WebXRInterface; inputSourceId: int32): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Bool)
-proc getInputSourceTracker*(self: WebXRInterface; inputSourceId: int32): XRPositionalTracker =
+proc getInputSourceTracker*(self: WebXRInterface; inputSourceId: int32): GD_ref[XRPositionalTracker] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_input_source_tracker"
     methodbind = interface_ClassDB_getMethodBind(addr className WebXRInterface, addr name, 636011756)
   var `?param` = [getPtr inputSourceId]
-  var ret: encoded XRPositionalTracker
+  var ret: encoded GD_ref[XRPositionalTracker]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(XRPositionalTracker)
+  (addr ret).decode_result(GD_ref[XRPositionalTracker])
 proc getInputSourceTargetRayMode*(self: WebXRInterface; inputSourceId: int32): WebXRInterface_TargetRayMode =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

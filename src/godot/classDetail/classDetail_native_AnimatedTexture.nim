@@ -80,22 +80,22 @@ proc speedScale*(self: AnimatedTexture): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Float)
-proc setFrameTexture*(self: AnimatedTexture; frame: int32; texture: Texture2D) =
+proc setFrameTexture*(self: AnimatedTexture; frame: int32; texture: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_frame_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedTexture, addr name, 666127730)
   var `?param` = [getPtr frame, getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getFrameTexture*(self: AnimatedTexture; frame: int32): Texture2D =
+proc getFrameTexture*(self: AnimatedTexture; frame: int32): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_frame_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedTexture, addr name, 3536238170)
   var `?param` = [getPtr frame]
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Texture2D)
+  (addr ret).decode_result(GD_ref[Texture2D])
 proc setFrameDuration*(self: AnimatedTexture; frame: int32; duration: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

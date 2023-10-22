@@ -35,11 +35,11 @@ proc format*(self: AudioEffectRecord): AudioStreamWAV_Format =
   var ret: encoded AudioStreamWAV_Format
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(AudioStreamWAV_Format)
-proc getRecording*(self: AudioEffectRecord): AudioStreamWAV =
+proc getRecording*(self: AudioEffectRecord): GD_ref[AudioStreamWAV] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_recording"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioEffectRecord, addr name, 2964110865)
-  var ret: encoded AudioStreamWAV
+  var ret: encoded GD_ref[AudioStreamWAV]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(AudioStreamWAV)
+  (addr ret).decode_result(GD_ref[AudioStreamWAV])

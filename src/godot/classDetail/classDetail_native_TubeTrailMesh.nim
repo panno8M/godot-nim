@@ -110,18 +110,18 @@ proc isCapBottom*(self: TubeTrailMesh): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Bool)
-proc `curve=`*(self: TubeTrailMesh; curve: Curve) =
+proc `curve=`*(self: TubeTrailMesh; curve: GD_ref[Curve]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_curve"
     methodbind = interface_ClassDB_getMethodBind(addr className TubeTrailMesh, addr name, 270443179)
   var `?param` = [getPtr curve]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc curve*(self: TubeTrailMesh): Curve =
+proc curve*(self: TubeTrailMesh): GD_ref[Curve] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_curve"
     methodbind = interface_ClassDB_getMethodBind(addr className TubeTrailMesh, addr name, 2460114913)
-  var ret: encoded Curve
+  var ret: encoded GD_ref[Curve]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Curve)
+  (addr ret).decode_result(GD_ref[Curve])

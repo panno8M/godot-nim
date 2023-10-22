@@ -35,11 +35,11 @@ proc margin*(self: Shape3D): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Float)
-proc getDebugMesh*(self: Shape3D): ArrayMesh =
+proc getDebugMesh*(self: Shape3D): GD_ref[ArrayMesh] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_debug_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className Shape3D, addr name, 1605880883)
-  var ret: encoded ArrayMesh
+  var ret: encoded GD_ref[ArrayMesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(ArrayMesh)
+  (addr ret).decode_result(GD_ref[ArrayMesh])

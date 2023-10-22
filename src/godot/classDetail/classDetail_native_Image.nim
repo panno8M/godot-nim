@@ -123,24 +123,24 @@ proc clearMipmaps*(self: Image) =
     let name = api.newStringName "clear_mipmaps"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc create*(_: typedesc[Image]; width: int32; height: int32; useMipmaps: Bool; format: Image_Format): Image =
+proc create*(_: typedesc[Image]; width: int32; height: int32; useMipmaps: Bool; format: Image_Format): GD_ref[Image] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "create"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 986942177)
   var `?param` = [getPtr width, getPtr height, getPtr useMipmaps, getPtr format]
-  var ret: encoded Image
+  var ret: encoded GD_ref[Image]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Image)
-proc createFromData*(_: typedesc[Image]; width: int32; height: int32; useMipmaps: Bool; format: Image_Format; data: PackedByteArray): Image =
+  (addr ret).decode_result(GD_ref[Image])
+proc createFromData*(_: typedesc[Image]; width: int32; height: int32; useMipmaps: Bool; format: Image_Format; data: PackedByteArray): GD_ref[Image] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "create_from_data"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 299398494)
   var `?param` = [getPtr width, getPtr height, getPtr useMipmaps, getPtr format, getPtr data]
-  var ret: encoded Image
+  var ret: encoded GD_ref[Image]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Image)
+  (addr ret).decode_result(GD_ref[Image])
 proc setData*(self: Image; width: int32; height: int32; useMipmaps: Bool; format: Image_Format; data: PackedByteArray) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -165,15 +165,15 @@ proc load*(self: Image; path: String): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Error)
-proc loadFromFile*(_: typedesc[Image]; path: String): Image =
+proc loadFromFile*(_: typedesc[Image]; path: String): GD_ref[Image] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "load_from_file"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 736337515)
   var `?param` = [getPtr path]
-  var ret: encoded Image
+  var ret: encoded GD_ref[Image]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Image)
+  (addr ret).decode_result(GD_ref[Image])
 proc savePng*(self: Image; path: String): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -341,14 +341,14 @@ proc normalMapToXy*(self: Image) =
     let name = api.newStringName "normal_map_to_xy"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc rgbeToSrgb*(self: Image): Image =
+proc rgbeToSrgb*(self: Image): GD_ref[Image] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "rgbe_to_srgb"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 564927088)
-  var ret: encoded Image
+  var ret: encoded GD_ref[Image]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Image)
+  (addr ret).decode_result(GD_ref[Image])
 proc bumpMapToNormalMap*(self: Image; bumpScale: Float = 1.0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -356,7 +356,7 @@ proc bumpMapToNormalMap*(self: Image; bumpScale: Float = 1.0) =
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 3423495036)
   var `?param` = [getPtr bumpScale]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc computeImageMetrics*(self: Image; comparedImage: Image; useLuma: Bool): Dictionary =
+proc computeImageMetrics*(self: Image; comparedImage: GD_ref[Image]; useLuma: Bool): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "compute_image_metrics"
@@ -365,28 +365,28 @@ proc computeImageMetrics*(self: Image; comparedImage: Image; useLuma: Bool): Dic
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Dictionary)
-proc blitRect*(self: Image; src: Image; srcRect: Rect2i; dst: Vector2i) =
+proc blitRect*(self: Image; src: GD_ref[Image]; srcRect: Rect2i; dst: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "blit_rect"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 2903928755)
   var `?param` = [getPtr src, getPtr srcRect, getPtr dst]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc blitRectMask*(self: Image; src: Image; mask: Image; srcRect: Rect2i; dst: Vector2i) =
+proc blitRectMask*(self: Image; src: GD_ref[Image]; mask: GD_ref[Image]; srcRect: Rect2i; dst: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "blit_rect_mask"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 3383581145)
   var `?param` = [getPtr src, getPtr mask, getPtr srcRect, getPtr dst]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc blendRect*(self: Image; src: Image; srcRect: Rect2i; dst: Vector2i) =
+proc blendRect*(self: Image; src: GD_ref[Image]; srcRect: Rect2i; dst: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "blend_rect"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 2903928755)
   var `?param` = [getPtr src, getPtr srcRect, getPtr dst]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc blendRectMask*(self: Image; src: Image; mask: Image; srcRect: Rect2i; dst: Vector2i) =
+proc blendRectMask*(self: Image; src: GD_ref[Image]; mask: GD_ref[Image]; srcRect: Rect2i; dst: Vector2i) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "blend_rect_mask"
@@ -415,16 +415,16 @@ proc getUsedRect*(self: Image): Rect2i =
   var ret: encoded Rect2i
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Rect2i)
-proc getRegion*(self: Image; region: Rect2i): Image =
+proc getRegion*(self: Image; region: Rect2i): GD_ref[Image] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_region"
     methodbind = interface_ClassDB_getMethodBind(addr className Image, addr name, 2601441065)
   var `?param` = [getPtr region]
-  var ret: encoded Image
+  var ret: encoded GD_ref[Image]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Image)
-proc copyFrom*(self: Image; src: Image) =
+  (addr ret).decode_result(GD_ref[Image])
+proc copyFrom*(self: Image; src: GD_ref[Image]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "copy_from"

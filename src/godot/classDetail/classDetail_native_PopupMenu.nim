@@ -12,7 +12,7 @@ proc addItem*(self: PopupMenu; label: String; id: int32 = -1; accel: Key = keyNo
     methodbind = interface_ClassDB_getMethodBind(addr className PopupMenu, addr name, 3224536192)
   var `?param` = [getPtr label, getPtr id, getPtr accel]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addIconItem*(self: PopupMenu; texture: Texture2D; label: String; id: int32 = -1; accel: Key = keyNone) =
+proc addIconItem*(self: PopupMenu; texture: GD_ref[Texture2D]; label: String; id: int32 = -1; accel: Key = keyNone) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_icon_item"
@@ -26,7 +26,7 @@ proc addCheckItem*(self: PopupMenu; label: String; id: int32 = -1; accel: Key = 
     methodbind = interface_ClassDB_getMethodBind(addr className PopupMenu, addr name, 3224536192)
   var `?param` = [getPtr label, getPtr id, getPtr accel]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addIconCheckItem*(self: PopupMenu; texture: Texture2D; label: String; id: int32 = -1; accel: Key = keyNone) =
+proc addIconCheckItem*(self: PopupMenu; texture: GD_ref[Texture2D]; label: String; id: int32 = -1; accel: Key = keyNone) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_icon_check_item"
@@ -40,7 +40,7 @@ proc addRadioCheckItem*(self: PopupMenu; label: String; id: int32 = -1; accel: K
     methodbind = interface_ClassDB_getMethodBind(addr className PopupMenu, addr name, 3224536192)
   var `?param` = [getPtr label, getPtr id, getPtr accel]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addIconRadioCheckItem*(self: PopupMenu; texture: Texture2D; label: String; id: int32 = -1; accel: Key = keyNone) =
+proc addIconRadioCheckItem*(self: PopupMenu; texture: GD_ref[Texture2D]; label: String; id: int32 = -1; accel: Key = keyNone) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_icon_radio_check_item"
@@ -54,42 +54,42 @@ proc addMultistateItem*(self: PopupMenu; label: String; maxStates: int32; defaul
     methodbind = interface_ClassDB_getMethodBind(addr className PopupMenu, addr name, 1585218420)
   var `?param` = [getPtr label, getPtr maxStates, getPtr defaultState, getPtr id, getPtr accel]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addShortcut*(self: PopupMenu; shortcut: Shortcut; id: int32 = -1; global: Bool = false) =
+proc addShortcut*(self: PopupMenu; shortcut: GD_ref[Shortcut]; id: int32 = -1; global: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_shortcut"
     methodbind = interface_ClassDB_getMethodBind(addr className PopupMenu, addr name, 2168272394)
   var `?param` = [getPtr shortcut, getPtr id, getPtr global]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addIconShortcut*(self: PopupMenu; texture: Texture2D; shortcut: Shortcut; id: int32 = -1; global: Bool = false) =
+proc addIconShortcut*(self: PopupMenu; texture: GD_ref[Texture2D]; shortcut: GD_ref[Shortcut]; id: int32 = -1; global: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_icon_shortcut"
     methodbind = interface_ClassDB_getMethodBind(addr className PopupMenu, addr name, 68101841)
   var `?param` = [getPtr texture, getPtr shortcut, getPtr id, getPtr global]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addCheckShortcut*(self: PopupMenu; shortcut: Shortcut; id: int32 = -1; global: Bool = false) =
+proc addCheckShortcut*(self: PopupMenu; shortcut: GD_ref[Shortcut]; id: int32 = -1; global: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_check_shortcut"
     methodbind = interface_ClassDB_getMethodBind(addr className PopupMenu, addr name, 2168272394)
   var `?param` = [getPtr shortcut, getPtr id, getPtr global]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addIconCheckShortcut*(self: PopupMenu; texture: Texture2D; shortcut: Shortcut; id: int32 = -1; global: Bool = false) =
+proc addIconCheckShortcut*(self: PopupMenu; texture: GD_ref[Texture2D]; shortcut: GD_ref[Shortcut]; id: int32 = -1; global: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_icon_check_shortcut"
     methodbind = interface_ClassDB_getMethodBind(addr className PopupMenu, addr name, 68101841)
   var `?param` = [getPtr texture, getPtr shortcut, getPtr id, getPtr global]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addRadioCheckShortcut*(self: PopupMenu; shortcut: Shortcut; id: int32 = -1; global: Bool = false) =
+proc addRadioCheckShortcut*(self: PopupMenu; shortcut: GD_ref[Shortcut]; id: int32 = -1; global: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_radio_check_shortcut"
     methodbind = interface_ClassDB_getMethodBind(addr className PopupMenu, addr name, 2168272394)
   var `?param` = [getPtr shortcut, getPtr id, getPtr global]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addIconRadioCheckShortcut*(self: PopupMenu; texture: Texture2D; shortcut: Shortcut; id: int32 = -1; global: Bool = false) =
+proc addIconRadioCheckShortcut*(self: PopupMenu; texture: GD_ref[Texture2D]; shortcut: GD_ref[Shortcut]; id: int32 = -1; global: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_icon_radio_check_shortcut"
@@ -124,7 +124,7 @@ proc setItemLanguage*(self: PopupMenu; index: int32; language: String) =
     methodbind = interface_ClassDB_getMethodBind(addr className PopupMenu, addr name, 501894301)
   var `?param` = [getPtr index, getPtr language]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setItemIcon*(self: PopupMenu; index: int32; icon: Texture2D) =
+proc setItemIcon*(self: PopupMenu; index: int32; icon: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_item_icon"
@@ -215,7 +215,7 @@ proc setItemTooltip*(self: PopupMenu; index: int32; tooltip: String) =
     methodbind = interface_ClassDB_getMethodBind(addr className PopupMenu, addr name, 501894301)
   var `?param` = [getPtr index, getPtr tooltip]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setItemShortcut*(self: PopupMenu; index: int32; shortcut: Shortcut; global: Bool = false) =
+proc setItemShortcut*(self: PopupMenu; index: int32; shortcut: GD_ref[Shortcut]; global: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_item_shortcut"
@@ -284,15 +284,15 @@ proc getItemLanguage*(self: PopupMenu; index: int32): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(String)
-proc getItemIcon*(self: PopupMenu; index: int32): Texture2D =
+proc getItemIcon*(self: PopupMenu; index: int32): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_item_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className PopupMenu, addr name, 3536238170)
   var `?param` = [getPtr index]
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Texture2D)
+  (addr ret).decode_result(GD_ref[Texture2D])
 proc getItemIconMaxWidth*(self: PopupMenu; index: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -419,15 +419,15 @@ proc getItemTooltip*(self: PopupMenu; index: int32): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(String)
-proc getItemShortcut*(self: PopupMenu; index: int32): Shortcut =
+proc getItemShortcut*(self: PopupMenu; index: int32): GD_ref[Shortcut] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_item_shortcut"
     methodbind = interface_ClassDB_getMethodBind(addr className PopupMenu, addr name, 1449483325)
   var `?param` = [getPtr index]
-  var ret: encoded Shortcut
+  var ret: encoded GD_ref[Shortcut]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Shortcut)
+  (addr ret).decode_result(GD_ref[Shortcut])
 proc getItemIndent*(self: PopupMenu; index: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

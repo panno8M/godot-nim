@@ -69,7 +69,7 @@ converter native*(a: openArray[PropertyInfoGlue]): ptr PropertyInfo =
   cast[ptr PropertyInfo](addr a[0])
 
 template propertyInfo_blueprint(Type: typedesc; body): untyped =
-  proc propertyInfo*(T {.inject.} : typedesc[Type];
+  proc propertyInfo*[S: Type](T {.inject.} : typedesc[S];
         name {.inject.} : StringName = "";
         class_name {.inject.} : StringName = "";
         hint {.inject.} : PropertyHint = propertyHint_None;
@@ -87,7 +87,7 @@ propertyInfo_blueprint(SomeVariants):
     hint_string: new hint_string,
     usage: usage,
   )
-propertyInfo_blueprint(SomeClass):
+propertyInfo_blueprint(ObjectBase):
   (ref PropertyInfoGlue)(
     type: VariantType_Object,
     name: new name,

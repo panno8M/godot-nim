@@ -21,14 +21,14 @@ proc getOpenScriptEditors*(self: ScriptEditor): TypedArray[ScriptEditorBase] =
   var ret: encoded TypedArray[ScriptEditorBase]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(TypedArray[ScriptEditorBase])
-proc registerSyntaxHighlighter*(self: ScriptEditor; syntaxHighlighter: EditorSyntaxHighlighter) =
+proc registerSyntaxHighlighter*(self: ScriptEditor; syntaxHighlighter: GD_ref[EditorSyntaxHighlighter]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "register_syntax_highlighter"
     methodbind = interface_ClassDB_getMethodBind(addr className ScriptEditor, addr name, 1092774468)
   var `?param` = [getPtr syntaxHighlighter]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc unregisterSyntaxHighlighter*(self: ScriptEditor; syntaxHighlighter: EditorSyntaxHighlighter) =
+proc unregisterSyntaxHighlighter*(self: ScriptEditor; syntaxHighlighter: GD_ref[EditorSyntaxHighlighter]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "unregister_syntax_highlighter"
@@ -42,22 +42,22 @@ proc gotoLine*(self: ScriptEditor; lineNumber: int32) =
     methodbind = interface_ClassDB_getMethodBind(addr className ScriptEditor, addr name, 1286410249)
   var `?param` = [getPtr lineNumber]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getCurrentScript*(self: ScriptEditor): Script =
+proc getCurrentScript*(self: ScriptEditor): GD_ref[Script] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_current_script"
     methodbind = interface_ClassDB_getMethodBind(addr className ScriptEditor, addr name, 2146468882)
-  var ret: encoded Script
+  var ret: encoded GD_ref[Script]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Script)
-proc getOpenScripts*(self: ScriptEditor): TypedArray[Script] =
+  (addr ret).decode_result(GD_ref[Script])
+proc getOpenScripts*(self: ScriptEditor): GD_ref[Script] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_open_scripts"
     methodbind = interface_ClassDB_getMethodBind(addr className ScriptEditor, addr name, 3995934104)
-  var ret: encoded TypedArray[Script]
+  var ret: encoded GD_ref[Script]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(TypedArray[Script])
+  (addr ret).decode_result(GD_ref[Script])
 proc openScriptCreateDialog*(self: ScriptEditor; baseName: String; basePath: String) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

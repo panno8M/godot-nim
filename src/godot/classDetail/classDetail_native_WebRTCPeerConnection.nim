@@ -21,15 +21,15 @@ proc initialize*(self: WebRTCPeerConnection; configuration: Dictionary = init_Di
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Error)
-proc createDataChannel*(self: WebRTCPeerConnection; label: String; options: Dictionary = init_Dictionary()): WebRTCDataChannel =
+proc createDataChannel*(self: WebRTCPeerConnection; label: String; options: Dictionary = init_Dictionary()): GD_ref[WebRTCDataChannel] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "create_data_channel"
     methodbind = interface_ClassDB_getMethodBind(addr className WebRTCPeerConnection, addr name, 3997447457)
   var `?param` = [getPtr label, getPtr options]
-  var ret: encoded WebRTCDataChannel
+  var ret: encoded GD_ref[WebRTCDataChannel]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(WebRTCDataChannel)
+  (addr ret).decode_result(GD_ref[WebRTCDataChannel])
 proc createOffer*(self: WebRTCPeerConnection): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

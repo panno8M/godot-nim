@@ -5,21 +5,21 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Resource; export classDetail_native_Resource
 
-proc `lightTexture=`*(self: LightmapGIData; lightTexture: TextureLayered) =
+proc `lightTexture=`*(self: LightmapGIData; lightTexture: GD_ref[TextureLayered]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_light_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGIData, addr name, 1278366092)
   var `?param` = [getPtr lightTexture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc lightTexture*(self: LightmapGIData): TextureLayered =
+proc lightTexture*(self: LightmapGIData): GD_ref[TextureLayered] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_light_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className LightmapGIData, addr name, 3984243839)
-  var ret: encoded TextureLayered
+  var ret: encoded GD_ref[TextureLayered]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(TextureLayered)
+  (addr ret).decode_result(GD_ref[TextureLayered])
 proc `usesSphericalHarmonics=`*(self: LightmapGIData; usesSphericalHarmonics: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

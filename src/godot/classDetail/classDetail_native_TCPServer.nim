@@ -38,14 +38,14 @@ proc getLocalPort*(self: TCPServer): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(int32)
-proc takeConnection*(self: TCPServer): StreamPeerTCP =
+proc takeConnection*(self: TCPServer): GD_ref[StreamPeerTCP] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "take_connection"
     methodbind = interface_ClassDB_getMethodBind(addr className TCPServer, addr name, 30545006)
-  var ret: encoded StreamPeerTCP
+  var ret: encoded GD_ref[StreamPeerTCP]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(StreamPeerTCP)
+  (addr ret).decode_result(GD_ref[StreamPeerTCP])
 proc stop*(self: TCPServer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

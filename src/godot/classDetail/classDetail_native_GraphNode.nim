@@ -50,7 +50,7 @@ proc language*(self: GraphNode): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(String)
-proc setSlot*(self: GraphNode; slotIndex: int32; enableLeftPort: Bool; typeLeft: int32; colorLeft: Color; enableRightPort: Bool; typeRight: int32; colorRight: Color; customIconLeft: Texture2D = default Texture2D; customIconRight: Texture2D = default Texture2D; drawStylebox: Bool = true) =
+proc setSlot*(self: GraphNode; slotIndex: int32; enableLeftPort: Bool; typeLeft: int32; colorLeft: Color; enableRightPort: Bool; typeRight: int32; colorRight: Color; customIconLeft: GD_ref[Texture2D] = default GD_ref[Texture2D]; customIconRight: GD_ref[Texture2D] = default GD_ref[Texture2D]; drawStylebox: Bool = true) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_slot"

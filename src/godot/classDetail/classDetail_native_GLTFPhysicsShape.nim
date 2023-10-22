@@ -5,15 +5,15 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Resource; export classDetail_native_Resource
 
-proc fromNode*(_: typedesc[GLTFPhysicsShape]; shapeNode: CollisionShape3D): GLTFPhysicsShape =
+proc fromNode*(_: typedesc[GLTFPhysicsShape]; shapeNode: CollisionShape3D): GD_ref[GLTFPhysicsShape] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "from_node"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFPhysicsShape, addr name, 3613751275)
   var `?param` = [getPtr shapeNode]
-  var ret: encoded GLTFPhysicsShape
+  var ret: encoded GD_ref[GLTFPhysicsShape]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode_result(GLTFPhysicsShape)
+  (addr ret).decode_result(GD_ref[GLTFPhysicsShape])
 proc toNode*(self: GLTFPhysicsShape; cacheShapes: Bool = false): CollisionShape3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -23,15 +23,15 @@ proc toNode*(self: GLTFPhysicsShape; cacheShapes: Bool = false): CollisionShape3
   var ret: encoded CollisionShape3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(CollisionShape3D)
-proc fromDictionary*(_: typedesc[GLTFPhysicsShape]; dictionary: Dictionary): GLTFPhysicsShape =
+proc fromDictionary*(_: typedesc[GLTFPhysicsShape]; dictionary: Dictionary): GD_ref[GLTFPhysicsShape] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "from_dictionary"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFPhysicsShape, addr name, 2390691823)
   var `?param` = [getPtr dictionary]
-  var ret: encoded GLTFPhysicsShape
+  var ret: encoded GD_ref[GLTFPhysicsShape]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode_result(GLTFPhysicsShape)
+  (addr ret).decode_result(GD_ref[GLTFPhysicsShape])
 proc toDictionary*(self: GLTFPhysicsShape): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -130,15 +130,15 @@ proc `meshIndex=`*(self: GLTFPhysicsShape; meshIndex: int32) =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFPhysicsShape, addr name, 1286410249)
   var `?param` = [getPtr meshIndex]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc importerMesh*(self: GLTFPhysicsShape): ImporterMesh =
+proc importerMesh*(self: GLTFPhysicsShape): GD_ref[ImporterMesh] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_importer_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFPhysicsShape, addr name, 3161779525)
-  var ret: encoded ImporterMesh
+  var ret: encoded GD_ref[ImporterMesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(ImporterMesh)
-proc `importerMesh=`*(self: GLTFPhysicsShape; importerMesh: ImporterMesh) =
+  (addr ret).decode_result(GD_ref[ImporterMesh])
+proc `importerMesh=`*(self: GLTFPhysicsShape; importerMesh: GD_ref[ImporterMesh]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_importer_mesh"

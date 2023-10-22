@@ -148,33 +148,33 @@ proc isShortcutFeedback*(self: BaseButton): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Bool)
-proc `shortcut=`*(self: BaseButton; shortcut: Shortcut) =
+proc `shortcut=`*(self: BaseButton; shortcut: GD_ref[Shortcut]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_shortcut"
     methodbind = interface_ClassDB_getMethodBind(addr className BaseButton, addr name, 857163497)
   var `?param` = [getPtr shortcut]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc shortcut*(self: BaseButton): Shortcut =
+proc shortcut*(self: BaseButton): GD_ref[Shortcut] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_shortcut"
     methodbind = interface_ClassDB_getMethodBind(addr className BaseButton, addr name, 3415666916)
-  var ret: encoded Shortcut
+  var ret: encoded GD_ref[Shortcut]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Shortcut)
-proc `buttonGroup=`*(self: BaseButton; buttonGroup: ButtonGroup) =
+  (addr ret).decode_result(GD_ref[Shortcut])
+proc `buttonGroup=`*(self: BaseButton; buttonGroup: GD_ref[ButtonGroup]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_button_group"
     methodbind = interface_ClassDB_getMethodBind(addr className BaseButton, addr name, 1794463739)
   var `?param` = [getPtr buttonGroup]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc buttonGroup*(self: BaseButton): ButtonGroup =
+proc buttonGroup*(self: BaseButton): GD_ref[ButtonGroup] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_button_group"
     methodbind = interface_ClassDB_getMethodBind(addr className BaseButton, addr name, 281644053)
-  var ret: encoded ButtonGroup
+  var ret: encoded GD_ref[ButtonGroup]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(ButtonGroup)
+  (addr ret).decode_result(GD_ref[ButtonGroup])

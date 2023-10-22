@@ -67,15 +67,15 @@ proc getNodeInstancePlaceholder*(self: SceneState; idx: int32): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(String)
-proc getNodeInstance*(self: SceneState; idx: int32): PackedScene =
+proc getNodeInstance*(self: SceneState; idx: int32): GD_ref[PackedScene] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_node_instance"
     methodbind = interface_ClassDB_getMethodBind(addr className SceneState, addr name, 511017218)
   var `?param` = [getPtr idx]
-  var ret: encoded PackedScene
+  var ret: encoded GD_ref[PackedScene]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(PackedScene)
+  (addr ret).decode_result(GD_ref[PackedScene])
 proc getNodeGroups*(self: SceneState; idx: int32): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

@@ -54,14 +54,14 @@ proc reload*(self: Script; keepState: Bool = false): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Error)
-proc getBaseScript*(self: Script): Script =
+proc getBaseScript*(self: Script): GD_ref[Script] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_base_script"
     methodbind = interface_ClassDB_getMethodBind(addr className Script, addr name, 278624046)
-  var ret: encoded Script
+  var ret: encoded GD_ref[Script]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Script)
+  (addr ret).decode_result(GD_ref[Script])
 proc getInstanceBaseType*(self: Script): StringName =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

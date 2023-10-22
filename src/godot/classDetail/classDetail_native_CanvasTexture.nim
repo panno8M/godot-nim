@@ -5,51 +5,51 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Texture2D; export classDetail_native_Texture2D
 
-proc `diffuseTexture=`*(self: CanvasTexture; texture: Texture2D) =
+proc `diffuseTexture=`*(self: CanvasTexture; texture: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_diffuse_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasTexture, addr name, 4051416890)
   var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc diffuseTexture*(self: CanvasTexture): Texture2D =
+proc diffuseTexture*(self: CanvasTexture): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_diffuse_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasTexture, addr name, 3635182373)
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture2D)
-proc `normalTexture=`*(self: CanvasTexture; texture: Texture2D) =
+  (addr ret).decode_result(GD_ref[Texture2D])
+proc `normalTexture=`*(self: CanvasTexture; texture: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_normal_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasTexture, addr name, 4051416890)
   var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc normalTexture*(self: CanvasTexture): Texture2D =
+proc normalTexture*(self: CanvasTexture): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_normal_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasTexture, addr name, 3635182373)
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture2D)
-proc `specularTexture=`*(self: CanvasTexture; texture: Texture2D) =
+  (addr ret).decode_result(GD_ref[Texture2D])
+proc `specularTexture=`*(self: CanvasTexture; texture: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_specular_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasTexture, addr name, 4051416890)
   var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc specularTexture*(self: CanvasTexture): Texture2D =
+proc specularTexture*(self: CanvasTexture): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_specular_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className CanvasTexture, addr name, 3635182373)
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture2D)
+  (addr ret).decode_result(GD_ref[Texture2D])
 proc `specularColor=`*(self: CanvasTexture; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

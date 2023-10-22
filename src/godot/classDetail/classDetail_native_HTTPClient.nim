@@ -5,7 +5,7 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 
-proc connectToHost*(self: HTTPClient; host: String; port: int32 = -1; tlsOptions: TLSOptions = default TLSOptions): Error =
+proc connectToHost*(self: HTTPClient; host: String; port: int32 = -1; tlsOptions: GD_ref[TLSOptions] = default GD_ref[TLSOptions]): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "connect_to_host"
@@ -14,21 +14,21 @@ proc connectToHost*(self: HTTPClient; host: String; port: int32 = -1; tlsOptions
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Error)
-proc `connection=`*(self: HTTPClient; connection: StreamPeer) =
+proc `connection=`*(self: HTTPClient; connection: GD_ref[StreamPeer]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_connection"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPClient, addr name, 3281897016)
   var `?param` = [getPtr connection]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc connection*(self: HTTPClient): StreamPeer =
+proc connection*(self: HTTPClient): GD_ref[StreamPeer] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_connection"
     methodbind = interface_ClassDB_getMethodBind(addr className HTTPClient, addr name, 2741655269)
-  var ret: encoded StreamPeer
+  var ret: encoded GD_ref[StreamPeer]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(StreamPeer)
+  (addr ret).decode_result(GD_ref[StreamPeer])
 proc requestRaw*(self: HTTPClient; `method`: HTTPClient_Method; url: String; headers: PackedStringArray; body: PackedByteArray): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

@@ -5,42 +5,42 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 
-proc open*(_: typedesc[FileAccess]; path: String; flags: FileAccess_ModeFlags): FileAccess =
+proc open*(_: typedesc[FileAccess]; path: String; flags: FileAccess_ModeFlags): GD_ref[FileAccess] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "open"
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 1247358404)
   var `?param` = [getPtr path, getPtr flags]
-  var ret: encoded FileAccess
+  var ret: encoded GD_ref[FileAccess]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode_result(FileAccess)
-proc openEncrypted*(_: typedesc[FileAccess]; path: String; modeFlags: FileAccess_ModeFlags; key: PackedByteArray): FileAccess =
+  (addr ret).decode_result(GD_ref[FileAccess])
+proc openEncrypted*(_: typedesc[FileAccess]; path: String; modeFlags: FileAccess_ModeFlags; key: PackedByteArray): GD_ref[FileAccess] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "open_encrypted"
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 1482131466)
   var `?param` = [getPtr path, getPtr modeFlags, getPtr key]
-  var ret: encoded FileAccess
+  var ret: encoded GD_ref[FileAccess]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode_result(FileAccess)
-proc openEncryptedWithPass*(_: typedesc[FileAccess]; path: String; modeFlags: FileAccess_ModeFlags; pass: String): FileAccess =
+  (addr ret).decode_result(GD_ref[FileAccess])
+proc openEncryptedWithPass*(_: typedesc[FileAccess]; path: String; modeFlags: FileAccess_ModeFlags; pass: String): GD_ref[FileAccess] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "open_encrypted_with_pass"
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 790283377)
   var `?param` = [getPtr path, getPtr modeFlags, getPtr pass]
-  var ret: encoded FileAccess
+  var ret: encoded GD_ref[FileAccess]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode_result(FileAccess)
-proc openCompressed*(_: typedesc[FileAccess]; path: String; modeFlags: FileAccess_ModeFlags; compressionMode: FileAccess_CompressionMode = compressionFastlz): FileAccess =
+  (addr ret).decode_result(GD_ref[FileAccess])
+proc openCompressed*(_: typedesc[FileAccess]; path: String; modeFlags: FileAccess_ModeFlags; compressionMode: FileAccess_CompressionMode = compressionFastlz): GD_ref[FileAccess] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "open_compressed"
     methodbind = interface_ClassDB_getMethodBind(addr className FileAccess, addr name, 2874458257)
   var `?param` = [getPtr path, getPtr modeFlags, getPtr compressionMode]
-  var ret: encoded FileAccess
+  var ret: encoded GD_ref[FileAccess]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode_result(FileAccess)
+  (addr ret).decode_result(GD_ref[FileAccess])
 proc getOpenError*(_: typedesc[FileAccess]): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

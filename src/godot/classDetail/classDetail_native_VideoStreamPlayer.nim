@@ -5,21 +5,21 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Control; export classDetail_native_Control
 
-proc `stream=`*(self: VideoStreamPlayer; stream: VideoStream) =
+proc `stream=`*(self: VideoStreamPlayer; stream: GD_ref[VideoStream]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_stream"
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayer, addr name, 2317102564)
   var `?param` = [getPtr stream]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc stream*(self: VideoStreamPlayer): VideoStream =
+proc stream*(self: VideoStreamPlayer): GD_ref[VideoStream] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_stream"
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayer, addr name, 438621487)
-  var ret: encoded VideoStream
+  var ret: encoded GD_ref[VideoStream]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(VideoStream)
+  (addr ret).decode_result(GD_ref[VideoStream])
 proc play*(self: VideoStreamPlayer) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -183,11 +183,11 @@ proc bus*(self: VideoStreamPlayer): StringName =
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(StringName)
-proc getVideoTexture*(self: VideoStreamPlayer): Texture2D =
+proc getVideoTexture*(self: VideoStreamPlayer): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_video_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className VideoStreamPlayer, addr name, 3635182373)
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture2D)
+  (addr ret).decode_result(GD_ref[Texture2D])

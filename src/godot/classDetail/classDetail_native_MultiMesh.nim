@@ -5,21 +5,21 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Resource; export classDetail_native_Resource
 
-proc `mesh=`*(self: MultiMesh; mesh: Mesh) =
+proc `mesh=`*(self: MultiMesh; mesh: GD_ref[Mesh]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiMesh, addr name, 194775623)
   var `?param` = [getPtr mesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc mesh*(self: MultiMesh): Mesh =
+proc mesh*(self: MultiMesh): GD_ref[Mesh] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiMesh, addr name, 1808005922)
-  var ret: encoded Mesh
+  var ret: encoded GD_ref[Mesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Mesh)
+  (addr ret).decode_result(GD_ref[Mesh])
 proc `useColors=`*(self: MultiMesh; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

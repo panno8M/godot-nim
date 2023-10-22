@@ -140,15 +140,15 @@ proc `jointIToName=`*(self: GLTFSkin; jointIToName: Dictionary) =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkin, addr name, 4155329257)
   var `?param` = [getPtr jointIToName]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc godotSkin*(self: GLTFSkin): Skin =
+proc godotSkin*(self: GLTFSkin): GD_ref[Skin] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_godot_skin"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSkin, addr name, 1032037385)
-  var ret: encoded Skin
+  var ret: encoded GD_ref[Skin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Skin)
-proc `godotSkin=`*(self: GLTFSkin; godotSkin: Skin) =
+  (addr ret).decode_result(GD_ref[Skin])
+proc `godotSkin=`*(self: GLTFSkin; godotSkin: GD_ref[Skin]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_godot_skin"

@@ -5,21 +5,21 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_GeometryInstance3D; export classDetail_native_GeometryInstance3D
 
-proc `mesh=`*(self: MeshInstance3D; mesh: Mesh) =
+proc `mesh=`*(self: MeshInstance3D; mesh: GD_ref[Mesh]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshInstance3D, addr name, 194775623)
   var `?param` = [getPtr mesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc mesh*(self: MeshInstance3D): Mesh =
+proc mesh*(self: MeshInstance3D): GD_ref[Mesh] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshInstance3D, addr name, 1808005922)
-  var ret: encoded Mesh
+  var ret: encoded GD_ref[Mesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Mesh)
+  (addr ret).decode_result(GD_ref[Mesh])
 proc `skeletonPath=`*(self: MeshInstance3D; skeletonPath: NodePath) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -35,21 +35,21 @@ proc skeletonPath*(self: MeshInstance3D): NodePath =
   var ret: encoded NodePath
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(NodePath)
-proc `skin=`*(self: MeshInstance3D; skin: Skin) =
+proc `skin=`*(self: MeshInstance3D; skin: GD_ref[Skin]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_skin"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshInstance3D, addr name, 3971435618)
   var `?param` = [getPtr skin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc skin*(self: MeshInstance3D): Skin =
+proc skin*(self: MeshInstance3D): GD_ref[Skin] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_skin"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshInstance3D, addr name, 2074563878)
-  var ret: encoded Skin
+  var ret: encoded GD_ref[Skin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Skin)
+  (addr ret).decode_result(GD_ref[Skin])
 proc getSurfaceOverrideMaterialCount*(self: MeshInstance3D): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -58,31 +58,31 @@ proc getSurfaceOverrideMaterialCount*(self: MeshInstance3D): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(int32)
-proc setSurfaceOverrideMaterial*(self: MeshInstance3D; surface: int32; material: Material) =
+proc setSurfaceOverrideMaterial*(self: MeshInstance3D; surface: int32; material: GD_ref[Material]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_surface_override_material"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshInstance3D, addr name, 3671737478)
   var `?param` = [getPtr surface, getPtr material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getSurfaceOverrideMaterial*(self: MeshInstance3D; surface: int32): Material =
+proc getSurfaceOverrideMaterial*(self: MeshInstance3D; surface: int32): GD_ref[Material] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_surface_override_material"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshInstance3D, addr name, 2897466400)
   var `?param` = [getPtr surface]
-  var ret: encoded Material
+  var ret: encoded GD_ref[Material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Material)
-proc getActiveMaterial*(self: MeshInstance3D; surface: int32): Material =
+  (addr ret).decode_result(GD_ref[Material])
+proc getActiveMaterial*(self: MeshInstance3D; surface: int32): GD_ref[Material] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_active_material"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshInstance3D, addr name, 2897466400)
   var `?param` = [getPtr surface]
-  var ret: encoded Material
+  var ret: encoded GD_ref[Material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Material)
+  (addr ret).decode_result(GD_ref[Material])
 proc createTrimeshCollision*(self: MeshInstance3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -96,7 +96,7 @@ proc createConvexCollision*(self: MeshInstance3D; clean: Bool = true; simplify: 
     methodbind = interface_ClassDB_getMethodBind(addr className MeshInstance3D, addr name, 2751962654)
   var `?param` = [getPtr clean, getPtr simplify]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc createMultipleConvexCollisions*(self: MeshInstance3D; settings: MeshConvexDecompositionSettings = default MeshConvexDecompositionSettings) =
+proc createMultipleConvexCollisions*(self: MeshInstance3D; settings: GD_ref[MeshConvexDecompositionSettings] = default GD_ref[MeshConvexDecompositionSettings]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "create_multiple_convex_collisions"

@@ -5,21 +5,21 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Resource; export classDetail_native_Resource
 
-proc `nextPass=`*(self: Material; nextPass: Material) =
+proc `nextPass=`*(self: Material; nextPass: GD_ref[Material]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_next_pass"
     methodbind = interface_ClassDB_getMethodBind(addr className Material, addr name, 2757459619)
   var `?param` = [getPtr nextPass]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc nextPass*(self: Material): Material =
+proc nextPass*(self: Material): GD_ref[Material] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_next_pass"
     methodbind = interface_ClassDB_getMethodBind(addr className Material, addr name, 5934680)
-  var ret: encoded Material
+  var ret: encoded GD_ref[Material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Material)
+  (addr ret).decode_result(GD_ref[Material])
 proc `renderPriority=`*(self: Material; priority: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -41,11 +41,11 @@ proc inspectNativeShaderCode*(self: Material) =
     let name = api.newStringName "inspect_native_shader_code"
     methodbind = interface_ClassDB_getMethodBind(addr className Material, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc createPlaceholder*(self: Material): Resource =
+proc createPlaceholder*(self: Material): GD_ref[Resource] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "create_placeholder"
     methodbind = interface_ClassDB_getMethodBind(addr className Material, addr name, 121922552)
-  var ret: encoded Resource
+  var ret: encoded GD_ref[Resource]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Resource)
+  (addr ret).decode_result(GD_ref[Resource])

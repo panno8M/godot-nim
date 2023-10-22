@@ -20,21 +20,21 @@ proc isActive*(self: AnimationTree): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Bool)
-proc `treeRoot=`*(self: AnimationTree; root: AnimationNode) =
+proc `treeRoot=`*(self: AnimationTree; root: GD_ref[AnimationNode]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_tree_root"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationTree, addr name, 712869711)
   var `?param` = [getPtr root]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc treeRoot*(self: AnimationTree): AnimationNode =
+proc treeRoot*(self: AnimationTree): GD_ref[AnimationNode] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_tree_root"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationTree, addr name, 1462070895)
-  var ret: encoded AnimationNode
+  var ret: encoded GD_ref[AnimationNode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(AnimationNode)
+  (addr ret).decode_result(GD_ref[AnimationNode])
 proc `processCallback=`*(self: AnimationTree; mode: AnimationTree_AnimationProcessCallback) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

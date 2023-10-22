@@ -94,7 +94,7 @@ proc blendAnimation*(self: AnimationNode; animation: StringName; time: float64; 
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNode, addr name, 11797022)
   var `?param` = [getPtr animation, getPtr time, getPtr delta, getPtr seeked, getPtr isExternalSeeking, getPtr blend, getPtr loopedFlag]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc blendNode*(self: AnimationNode; name: StringName; node: AnimationNode; time: float64; seek: Bool; isExternalSeeking: Bool; blend: Float; filter: AnimationNode_FilterAction = filterIgnore; sync: Bool = true; testOnly: Bool = false): float64 =
+proc blendNode*(self: AnimationNode; name: StringName; node: GD_ref[AnimationNode]; time: float64; seek: Bool; isExternalSeeking: Bool; blend: Float; filter: AnimationNode_FilterAction = filterIgnore; sync: Bool = true; testOnly: Bool = false): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "blend_node"

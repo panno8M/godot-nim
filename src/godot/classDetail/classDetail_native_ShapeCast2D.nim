@@ -20,21 +20,21 @@ proc isEnabled*(self: ShapeCast2D): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Bool)
-proc `shape=`*(self: ShapeCast2D; shape: Shape2D) =
+proc `shape=`*(self: ShapeCast2D; shape: GD_ref[Shape2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 771364740)
   var `?param` = [getPtr shape]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc shape*(self: ShapeCast2D): Shape2D =
+proc shape*(self: ShapeCast2D): GD_ref[Shape2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className ShapeCast2D, addr name, 522005891)
-  var ret: encoded Shape2D
+  var ret: encoded GD_ref[Shape2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Shape2D)
+  (addr ret).decode_result(GD_ref[Shape2D])
 proc `targetPosition=`*(self: ShapeCast2D; localPoint: Vector2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

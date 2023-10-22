@@ -5,7 +5,7 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Translation; export classDetail_native_Translation
 
-proc generate*(self: OptimizedTranslation; `from`: Translation) =
+proc generate*(self: OptimizedTranslation; `from`: GD_ref[Translation]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "generate"

@@ -5,21 +5,21 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Node2D; export classDetail_native_Node2D
 
-proc `stream=`*(self: AudioStreamPlayer2D; stream: AudioStream) =
+proc `stream=`*(self: AudioStreamPlayer2D; stream: GD_ref[AudioStream]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_stream"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer2D, addr name, 2210767741)
   var `?param` = [getPtr stream]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc stream*(self: AudioStreamPlayer2D): AudioStream =
+proc stream*(self: AudioStreamPlayer2D): GD_ref[AudioStream] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_stream"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer2D, addr name, 160907539)
-  var ret: encoded AudioStream
+  var ret: encoded GD_ref[AudioStream]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(AudioStream)
+  (addr ret).decode_result(GD_ref[AudioStream])
 proc `volumeDb=`*(self: AudioStreamPlayer2D; volumeDb: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -214,11 +214,11 @@ proc hasStreamPlayback*(self: AudioStreamPlayer2D): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Bool)
-proc getStreamPlayback*(self: AudioStreamPlayer2D): AudioStreamPlayback =
+proc getStreamPlayback*(self: AudioStreamPlayer2D): GD_ref[AudioStreamPlayback] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_stream_playback"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStreamPlayer2D, addr name, 210135309)
-  var ret: encoded AudioStreamPlayback
+  var ret: encoded GD_ref[AudioStreamPlayback]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(AudioStreamPlayback)
+  (addr ret).decode_result(GD_ref[AudioStreamPlayback])

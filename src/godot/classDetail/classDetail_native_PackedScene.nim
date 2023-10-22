@@ -31,11 +31,11 @@ proc canInstantiate*(self: PackedScene): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Bool)
-proc getState*(self: PackedScene): SceneState =
+proc getState*(self: PackedScene): GD_ref[SceneState] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_state"
     methodbind = interface_ClassDB_getMethodBind(addr className PackedScene, addr name, 3479783971)
-  var ret: encoded SceneState
+  var ret: encoded GD_ref[SceneState]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(SceneState)
+  (addr ret).decode_result(GD_ref[SceneState])

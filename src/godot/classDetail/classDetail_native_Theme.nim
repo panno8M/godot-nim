@@ -5,22 +5,22 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Resource; export classDetail_native_Resource
 
-proc setIcon*(self: Theme; name: StringName; themeType: StringName; texture: Texture2D) =
+proc setIcon*(self: Theme; name: StringName; themeType: StringName; texture: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className Theme, addr name, 2188371082)
   var `?param` = [getPtr name, getPtr themeType, getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getIcon*(self: Theme; name: StringName; themeType: StringName): Texture2D =
+proc getIcon*(self: Theme; name: StringName; themeType: StringName): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className Theme, addr name, 934555193)
   var `?param` = [getPtr name, getPtr themeType]
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Texture2D)
+  (addr ret).decode_result(GD_ref[Texture2D])
 proc hasIcon*(self: Theme; name: StringName; themeType: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -61,22 +61,22 @@ proc getIconTypeList*(self: Theme): PackedStringArray =
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(PackedStringArray)
-proc setStylebox*(self: Theme; name: StringName; themeType: StringName; texture: StyleBox) =
+proc setStylebox*(self: Theme; name: StringName; themeType: StringName; texture: GD_ref[StyleBox]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_stylebox"
     methodbind = interface_ClassDB_getMethodBind(addr className Theme, addr name, 2075907568)
   var `?param` = [getPtr name, getPtr themeType, getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getStylebox*(self: Theme; name: StringName; themeType: StringName): StyleBox =
+proc getStylebox*(self: Theme; name: StringName; themeType: StringName): GD_ref[StyleBox] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_stylebox"
     methodbind = interface_ClassDB_getMethodBind(addr className Theme, addr name, 3405608165)
   var `?param` = [getPtr name, getPtr themeType]
-  var ret: encoded StyleBox
+  var ret: encoded GD_ref[StyleBox]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(StyleBox)
+  (addr ret).decode_result(GD_ref[StyleBox])
 proc hasStylebox*(self: Theme; name: StringName; themeType: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -117,22 +117,22 @@ proc getStyleboxTypeList*(self: Theme): PackedStringArray =
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(PackedStringArray)
-proc setFont*(self: Theme; name: StringName; themeType: StringName; font: Font) =
+proc setFont*(self: Theme; name: StringName; themeType: StringName; font: GD_ref[Font]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_font"
     methodbind = interface_ClassDB_getMethodBind(addr className Theme, addr name, 177292320)
   var `?param` = [getPtr name, getPtr themeType, getPtr font]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getFont*(self: Theme; name: StringName; themeType: StringName): Font =
+proc getFont*(self: Theme; name: StringName; themeType: StringName): GD_ref[Font] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_font"
     methodbind = interface_ClassDB_getMethodBind(addr className Theme, addr name, 3445063586)
   var `?param` = [getPtr name, getPtr themeType]
-  var ret: encoded Font
+  var ret: encoded GD_ref[Font]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Font)
+  (addr ret).decode_result(GD_ref[Font])
 proc hasFont*(self: Theme; name: StringName; themeType: StringName): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -364,21 +364,21 @@ proc hasDefaultBaseScale*(self: Theme): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Bool)
-proc `defaultFont=`*(self: Theme; font: Font) =
+proc `defaultFont=`*(self: Theme; font: GD_ref[Font]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_default_font"
     methodbind = interface_ClassDB_getMethodBind(addr className Theme, addr name, 1262170328)
   var `?param` = [getPtr font]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc defaultFont*(self: Theme): Font =
+proc defaultFont*(self: Theme): GD_ref[Font] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_default_font"
     methodbind = interface_ClassDB_getMethodBind(addr className Theme, addr name, 3229501585)
-  var ret: encoded Font
+  var ret: encoded GD_ref[Font]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Font)
+  (addr ret).decode_result(GD_ref[Font])
 proc hasDefaultFont*(self: Theme): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -530,7 +530,7 @@ proc getTypeList*(self: Theme): PackedStringArray =
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(PackedStringArray)
-proc mergeWith*(self: Theme; other: Theme) =
+proc mergeWith*(self: Theme; other: GD_ref[Theme]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "merge_with"

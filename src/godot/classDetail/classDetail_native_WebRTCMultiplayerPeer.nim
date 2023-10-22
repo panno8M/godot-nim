@@ -32,7 +32,7 @@ proc createMesh*(self: WebRTCMultiplayerPeer; peerId: int32; channelsConfig: Arr
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Error)
-proc addPeer*(self: WebRTCMultiplayerPeer; peer: WebRTCPeerConnection; peerId: int32; unreliableLifetime: int32 = 1): Error =
+proc addPeer*(self: WebRTCMultiplayerPeer; peer: GD_ref[WebRTCPeerConnection]; peerId: int32; unreliableLifetime: int32 = 1): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_peer"

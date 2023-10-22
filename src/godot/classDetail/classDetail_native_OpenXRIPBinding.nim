@@ -5,21 +5,21 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Resource; export classDetail_native_Resource
 
-proc `action=`*(self: OpenXRIPBinding; action: OpenXRAction) =
+proc `action=`*(self: OpenXRIPBinding; action: GD_ref[OpenXRAction]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_action"
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRIPBinding, addr name, 349361333)
   var `?param` = [getPtr action]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc action*(self: OpenXRIPBinding): OpenXRAction =
+proc action*(self: OpenXRIPBinding): GD_ref[OpenXRAction] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_action"
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRIPBinding, addr name, 4072409085)
-  var ret: encoded OpenXRAction
+  var ret: encoded GD_ref[OpenXRAction]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(OpenXRAction)
+  (addr ret).decode_result(GD_ref[OpenXRAction])
 proc getPathCount*(self: OpenXRIPBinding): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

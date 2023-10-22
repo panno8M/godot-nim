@@ -75,14 +75,14 @@ proc getAnimationLoop*(self: SpriteFrames; anim: StringName): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Bool)
-proc addFrame*(self: SpriteFrames; anim: StringName; texture: Texture2D; duration: Float = 1.0; atPosition: int32 = -1) =
+proc addFrame*(self: SpriteFrames; anim: StringName; texture: GD_ref[Texture2D]; duration: Float = 1.0; atPosition: int32 = -1) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_frame"
     methodbind = interface_ClassDB_getMethodBind(addr className SpriteFrames, addr name, 407562921)
   var `?param` = [getPtr anim, getPtr texture, getPtr duration, getPtr atPosition]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setFrame*(self: SpriteFrames; anim: StringName; idx: int32; texture: Texture2D; duration: Float = 1.0) =
+proc setFrame*(self: SpriteFrames; anim: StringName; idx: int32; texture: GD_ref[Texture2D]; duration: Float = 1.0) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_frame"
@@ -105,15 +105,15 @@ proc getFrameCount*(self: SpriteFrames; anim: StringName): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(int32)
-proc getFrameTexture*(self: SpriteFrames; anim: StringName; idx: int32): Texture2D =
+proc getFrameTexture*(self: SpriteFrames; anim: StringName; idx: int32): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_frame_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className SpriteFrames, addr name, 2900517879)
   var `?param` = [getPtr anim, getPtr idx]
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Texture2D)
+  (addr ret).decode_result(GD_ref[Texture2D])
 proc getFrameDuration*(self: SpriteFrames; anim: StringName; idx: int32): Float =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

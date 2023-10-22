@@ -5,7 +5,7 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Resource; export classDetail_native_Resource
 
-proc addAnimation*(self: AnimationLibrary; name: StringName; animation: Animation): Error =
+proc addAnimation*(self: AnimationLibrary; name: StringName; animation: GD_ref[Animation]): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_animation"
@@ -37,15 +37,15 @@ proc hasAnimation*(self: AnimationLibrary; name: StringName): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Bool)
-proc getAnimation*(self: AnimationLibrary; name: StringName): Animation =
+proc getAnimation*(self: AnimationLibrary; name: StringName): GD_ref[Animation] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_animation"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationLibrary, addr name, 2933122410)
   var `?param` = [getPtr name]
-  var ret: encoded Animation
+  var ret: encoded GD_ref[Animation]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Animation)
+  (addr ret).decode_result(GD_ref[Animation])
 proc getAnimationList*(self: AnimationLibrary): TypedArray[StringName] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

@@ -45,7 +45,7 @@ template variantType*(_: typedesc[PackedColorArray]): VariantType = VariantType_
 # Object
 
 template variantType*(Type: typedesc[ObjectPtr]): Variant_Type = VariantType_Object
-template variantType*(Type: typedesc[SomeClass]): Variant_Type = VariantType_Object
+template variantType*(Type: typedesc[ObjectBase]): Variant_Type = VariantType_Object
 
 # Variant
 

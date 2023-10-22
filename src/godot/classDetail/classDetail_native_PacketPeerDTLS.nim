@@ -11,7 +11,7 @@ proc poll*(self: PacketPeerDTLS) =
     let name = api.newStringName "poll"
     methodbind = interface_ClassDB_getMethodBind(addr className PacketPeerDTLS, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc connectToPeer*(self: PacketPeerDTLS; packetPeer: PacketPeerUDP; hostname: String; clientOptions: TLSOptions = default TLSOptions): Error =
+proc connectToPeer*(self: PacketPeerDTLS; packetPeer: GD_ref[PacketPeerUDP]; hostname: String; clientOptions: GD_ref[TLSOptions] = default GD_ref[TLSOptions]): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "connect_to_peer"

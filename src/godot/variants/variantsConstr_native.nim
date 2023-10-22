@@ -7,7 +7,7 @@ import ./../helper/variantConstrDefiner
 var String_constr: array[4, PtrConstructor]
 proc load_String_constr* =
   for i in [0, 1, 2, 3]:
-    String_constr[i] = interface_Variant_getPtrConstructor(variantType String, uint32 i)
+    String_constr[i] = interface_Variant_getPtrConstructor(VariantType_String, uint32 i)
 
 proc init_String*(): String =
   String_constr[0](addr result, nil)
@@ -25,7 +25,7 @@ converter init_String*(`from`: NodePath): String =
 var Rect2_constr: array[5, PtrConstructor]
 proc load_Rect2_constr* =
   for i in [0, 1, 2, 3, 4]:
-    Rect2_constr[i] = interface_Variant_getPtrConstructor(variantType Rect2, uint32 i)
+    Rect2_constr[i] = interface_Variant_getPtrConstructor(VariantType_Rect2, uint32 i)
 
 proc init_Rect2*(): Rect2 =
   Rect2_constr[0](addr result, nil)
@@ -46,7 +46,7 @@ proc init_Rect2*(x: Float; y: Float; width: Float; height: Float): Rect2 =
 var Rect2i_constr: array[5, PtrConstructor]
 proc load_Rect2i_constr* =
   for i in [0, 1, 2, 3, 4]:
-    Rect2i_constr[i] = interface_Variant_getPtrConstructor(variantType Rect2i, uint32 i)
+    Rect2i_constr[i] = interface_Variant_getPtrConstructor(VariantType_Rect2i, uint32 i)
 
 proc init_Rect2i*(): Rect2i =
   Rect2i_constr[0](addr result, nil)
@@ -67,7 +67,7 @@ proc init_Rect2i*(x: Int; y: Int; width: Int; height: Int): Rect2i =
 var Transform2D_constr: array[5, PtrConstructor]
 proc load_Transform2D_constr* =
   for i in [0, 1, 2, 3, 4]:
-    Transform2D_constr[i] = interface_Variant_getPtrConstructor(variantType Transform2D, uint32 i)
+    Transform2D_constr[i] = interface_Variant_getPtrConstructor(VariantType_Transform2D, uint32 i)
 
 proc init_Transform2D*(): Transform2D =
   Transform2D_constr[0](addr result, nil)
@@ -88,7 +88,7 @@ proc init_Transform2D*(xAxis: Vector2; yAxis: Vector2; origin: Vector2): Transfo
 var Plane_constr: array[7, PtrConstructor]
 proc load_Plane_constr* =
   for i in [1, 2, 3, 4, 5]:
-    Plane_constr[i] = interface_Variant_getPtrConstructor(variantType Plane, uint32 i)
+    Plane_constr[i] = interface_Variant_getPtrConstructor(VariantType_Plane, uint32 i)
 
 converter init_Plane*(`from`: Plane): Plane =
   let argArr = [getPtr `from`]
@@ -110,7 +110,7 @@ proc init_Plane*(point1: Vector3; point2: Vector3; point3: Vector3): Plane =
 var Quaternion_constr: array[6, PtrConstructor]
 proc load_Quaternion_constr* =
   for i in [1, 2, 3, 4]:
-    Quaternion_constr[i] = interface_Variant_getPtrConstructor(variantType Quaternion, uint32 i)
+    Quaternion_constr[i] = interface_Variant_getPtrConstructor(VariantType_Quaternion, uint32 i)
 
 converter init_Quaternion*(`from`: Quaternion): Quaternion =
   let argArr = [getPtr `from`]
@@ -129,7 +129,7 @@ proc init_Quaternion*(arcFrom: Vector3; arcTo: Vector3): Quaternion =
 var AABB_constr: array[3, PtrConstructor]
 proc load_AABB_constr* =
   for i in [0, 1, 2]:
-    AABB_constr[i] = interface_Variant_getPtrConstructor(variantType AABB, uint32 i)
+    AABB_constr[i] = interface_Variant_getPtrConstructor(VariantType_AABB, uint32 i)
 
 proc init_AABB*(): AABB =
   AABB_constr[0](addr result, nil)
@@ -144,7 +144,7 @@ proc init_AABB*(position: Vector3; size: Vector3): AABB =
 var Basis_constr: array[5, PtrConstructor]
 proc load_Basis_constr* =
   for i in [0, 1, 2, 3, 4]:
-    Basis_constr[i] = interface_Variant_getPtrConstructor(variantType Basis, uint32 i)
+    Basis_constr[i] = interface_Variant_getPtrConstructor(VariantType_Basis, uint32 i)
 
 proc init_Basis*(): Basis =
   Basis_constr[0](addr result, nil)
@@ -165,7 +165,7 @@ proc init_Basis*(xAxis: Vector3; yAxis: Vector3; zAxis: Vector3): Basis =
 var Transform3D_constr: array[5, PtrConstructor]
 proc load_Transform3D_constr* =
   for i in [0, 1, 2, 3, 4]:
-    Transform3D_constr[i] = interface_Variant_getPtrConstructor(variantType Transform3D, uint32 i)
+    Transform3D_constr[i] = interface_Variant_getPtrConstructor(VariantType_Transform3D, uint32 i)
 
 proc init_Transform3D*(): Transform3D =
   Transform3D_constr[0](addr result, nil)
@@ -186,7 +186,7 @@ converter init_Transform3D*(`from`: Projection): Transform3D =
 var Projection_constr: array[4, PtrConstructor]
 proc load_Projection_constr* =
   for i in [0, 1, 2, 3]:
-    Projection_constr[i] = interface_Variant_getPtrConstructor(variantType Projection, uint32 i)
+    Projection_constr[i] = interface_Variant_getPtrConstructor(VariantType_Projection, uint32 i)
 
 proc init_Projection*(): Projection =
   Projection_constr[0](addr result, nil)
@@ -204,7 +204,7 @@ proc init_Projection*(xAxis: Vector4; yAxis: Vector4; zAxis: Vector4; wAxis: Vec
 var Color_constr: array[7, PtrConstructor]
 proc load_Color_constr* =
   for i in [5, 6]:
-    Color_constr[i] = interface_Variant_getPtrConstructor(variantType Color, uint32 i)
+    Color_constr[i] = interface_Variant_getPtrConstructor(VariantType_Color, uint32 i)
 
 converter init_Color*(code: String): Color =
   let argArr = [getPtr code]
@@ -217,7 +217,7 @@ proc init_Color*(code: String; alpha: Float): Color =
 var StringName_constr: array[3, PtrConstructor]
 proc load_StringName_constr* =
   for i in [0, 1, 2]:
-    StringName_constr[i] = interface_Variant_getPtrConstructor(variantType StringName, uint32 i)
+    StringName_constr[i] = interface_Variant_getPtrConstructor(VariantType_StringName, uint32 i)
 
 proc init_StringName*(): StringName =
   StringName_constr[0](addr result, nil)
@@ -232,7 +232,7 @@ converter init_StringName*(`from`: String): StringName =
 var NodePath_constr: array[3, PtrConstructor]
 proc load_NodePath_constr* =
   for i in [0, 1, 2]:
-    NodePath_constr[i] = interface_Variant_getPtrConstructor(variantType NodePath, uint32 i)
+    NodePath_constr[i] = interface_Variant_getPtrConstructor(VariantType_NodePath, uint32 i)
 
 proc init_NodePath*(): NodePath =
   NodePath_constr[0](addr result, nil)
@@ -247,7 +247,7 @@ converter init_NodePath*(`from`: String): NodePath =
 var RID_constr: array[2, PtrConstructor]
 proc load_RID_constr* =
   for i in [0, 1]:
-    RID_constr[i] = interface_Variant_getPtrConstructor(variantType RID, uint32 i)
+    RID_constr[i] = interface_Variant_getPtrConstructor(VariantType_RID, uint32 i)
 
 proc init_RID*(): RID =
   RID_constr[0](addr result, nil)
@@ -259,7 +259,7 @@ converter init_RID*(`from`: RID): RID =
 var Callable_constr: array[3, PtrConstructor]
 proc load_Callable_constr* =
   for i in [0, 1, 2]:
-    Callable_constr[i] = interface_Variant_getPtrConstructor(variantType Callable, uint32 i)
+    Callable_constr[i] = interface_Variant_getPtrConstructor(VariantType_Callable, uint32 i)
 
 proc init_Callable*(): Callable =
   Callable_constr[0](addr result, nil)
@@ -274,7 +274,7 @@ proc init_Callable*(`object`: Object; `method`: StringName): Callable =
 var Signal_constr: array[3, PtrConstructor]
 proc load_Signal_constr* =
   for i in [0, 1, 2]:
-    Signal_constr[i] = interface_Variant_getPtrConstructor(variantType Signal, uint32 i)
+    Signal_constr[i] = interface_Variant_getPtrConstructor(VariantType_Signal, uint32 i)
 
 proc init_Signal*(): Signal =
   Signal_constr[0](addr result, nil)
@@ -289,7 +289,7 @@ proc init_Signal*(`object`: Object; signal: StringName): Signal =
 var Dictionary_constr: array[2, PtrConstructor]
 proc load_Dictionary_constr* =
   for i in [0, 1]:
-    Dictionary_constr[i] = interface_Variant_getPtrConstructor(variantType Dictionary, uint32 i)
+    Dictionary_constr[i] = interface_Variant_getPtrConstructor(VariantType_Dictionary, uint32 i)
 
 proc init_Dictionary*(): Dictionary =
   Dictionary_constr[0](addr result, nil)
@@ -301,7 +301,7 @@ converter init_Dictionary*(`from`: Dictionary): Dictionary =
 var Array_constr: array[12, PtrConstructor]
 proc load_Array_constr* =
   for i in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]:
-    Array_constr[i] = interface_Variant_getPtrConstructor(variantType Array, uint32 i)
+    Array_constr[i] = interface_Variant_getPtrConstructor(VariantType_Array, uint32 i)
 
 proc init_Array*(): Array =
   Array_constr[0](addr result, nil)
@@ -343,7 +343,7 @@ converter init_Array*(`from`: PackedColorArray): Array =
 var PackedByteArray_constr: array[3, PtrConstructor]
 proc load_PackedByteArray_constr* =
   for i in [0, 1, 2]:
-    PackedByteArray_constr[i] = interface_Variant_getPtrConstructor(variantType PackedByteArray, uint32 i)
+    PackedByteArray_constr[i] = interface_Variant_getPtrConstructor(VariantType_PackedByteArray, uint32 i)
 
 proc init_PackedByteArray*(): PackedByteArray =
   PackedByteArray_constr[0](addr result, nil)
@@ -358,7 +358,7 @@ converter init_PackedByteArray*(`from`: Array): PackedByteArray =
 var PackedInt32Array_constr: array[3, PtrConstructor]
 proc load_PackedInt32Array_constr* =
   for i in [0, 1, 2]:
-    PackedInt32Array_constr[i] = interface_Variant_getPtrConstructor(variantType PackedInt32Array, uint32 i)
+    PackedInt32Array_constr[i] = interface_Variant_getPtrConstructor(VariantType_PackedInt32Array, uint32 i)
 
 proc init_PackedInt32Array*(): PackedInt32Array =
   PackedInt32Array_constr[0](addr result, nil)
@@ -373,7 +373,7 @@ converter init_PackedInt32Array*(`from`: Array): PackedInt32Array =
 var PackedInt64Array_constr: array[3, PtrConstructor]
 proc load_PackedInt64Array_constr* =
   for i in [0, 1, 2]:
-    PackedInt64Array_constr[i] = interface_Variant_getPtrConstructor(variantType PackedInt64Array, uint32 i)
+    PackedInt64Array_constr[i] = interface_Variant_getPtrConstructor(VariantType_PackedInt64Array, uint32 i)
 
 proc init_PackedInt64Array*(): PackedInt64Array =
   PackedInt64Array_constr[0](addr result, nil)
@@ -388,7 +388,7 @@ converter init_PackedInt64Array*(`from`: Array): PackedInt64Array =
 var PackedFloat32Array_constr: array[3, PtrConstructor]
 proc load_PackedFloat32Array_constr* =
   for i in [0, 1, 2]:
-    PackedFloat32Array_constr[i] = interface_Variant_getPtrConstructor(variantType PackedFloat32Array, uint32 i)
+    PackedFloat32Array_constr[i] = interface_Variant_getPtrConstructor(VariantType_PackedFloat32Array, uint32 i)
 
 proc init_PackedFloat32Array*(): PackedFloat32Array =
   PackedFloat32Array_constr[0](addr result, nil)
@@ -403,7 +403,7 @@ converter init_PackedFloat32Array*(`from`: Array): PackedFloat32Array =
 var PackedFloat64Array_constr: array[3, PtrConstructor]
 proc load_PackedFloat64Array_constr* =
   for i in [0, 1, 2]:
-    PackedFloat64Array_constr[i] = interface_Variant_getPtrConstructor(variantType PackedFloat64Array, uint32 i)
+    PackedFloat64Array_constr[i] = interface_Variant_getPtrConstructor(VariantType_PackedFloat64Array, uint32 i)
 
 proc init_PackedFloat64Array*(): PackedFloat64Array =
   PackedFloat64Array_constr[0](addr result, nil)
@@ -418,7 +418,7 @@ converter init_PackedFloat64Array*(`from`: Array): PackedFloat64Array =
 var PackedStringArray_constr: array[3, PtrConstructor]
 proc load_PackedStringArray_constr* =
   for i in [0, 1, 2]:
-    PackedStringArray_constr[i] = interface_Variant_getPtrConstructor(variantType PackedStringArray, uint32 i)
+    PackedStringArray_constr[i] = interface_Variant_getPtrConstructor(VariantType_PackedStringArray, uint32 i)
 
 proc init_PackedStringArray*(): PackedStringArray =
   PackedStringArray_constr[0](addr result, nil)
@@ -433,7 +433,7 @@ converter init_PackedStringArray*(`from`: Array): PackedStringArray =
 var PackedVector2Array_constr: array[3, PtrConstructor]
 proc load_PackedVector2Array_constr* =
   for i in [0, 1, 2]:
-    PackedVector2Array_constr[i] = interface_Variant_getPtrConstructor(variantType PackedVector2Array, uint32 i)
+    PackedVector2Array_constr[i] = interface_Variant_getPtrConstructor(VariantType_PackedVector2Array, uint32 i)
 
 proc init_PackedVector2Array*(): PackedVector2Array =
   PackedVector2Array_constr[0](addr result, nil)
@@ -448,7 +448,7 @@ converter init_PackedVector2Array*(`from`: Array): PackedVector2Array =
 var PackedVector3Array_constr: array[3, PtrConstructor]
 proc load_PackedVector3Array_constr* =
   for i in [0, 1, 2]:
-    PackedVector3Array_constr[i] = interface_Variant_getPtrConstructor(variantType PackedVector3Array, uint32 i)
+    PackedVector3Array_constr[i] = interface_Variant_getPtrConstructor(VariantType_PackedVector3Array, uint32 i)
 
 proc init_PackedVector3Array*(): PackedVector3Array =
   PackedVector3Array_constr[0](addr result, nil)
@@ -463,7 +463,7 @@ converter init_PackedVector3Array*(`from`: Array): PackedVector3Array =
 var PackedColorArray_constr: array[3, PtrConstructor]
 proc load_PackedColorArray_constr* =
   for i in [0, 1, 2]:
-    PackedColorArray_constr[i] = interface_Variant_getPtrConstructor(variantType PackedColorArray, uint32 i)
+    PackedColorArray_constr[i] = interface_Variant_getPtrConstructor(VariantType_PackedColorArray, uint32 i)
 
 proc init_PackedColorArray*(): PackedColorArray =
   PackedColorArray_constr[0](addr result, nil)

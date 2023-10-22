@@ -5,66 +5,66 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Node2D; export classDetail_native_Node2D
 
-proc `textureNormal=`*(self: TouchScreenButton; texture: Texture2D) =
+proc `textureNormal=`*(self: TouchScreenButton; texture: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_texture_normal"
     methodbind = interface_ClassDB_getMethodBind(addr className TouchScreenButton, addr name, 4051416890)
   var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc textureNormal*(self: TouchScreenButton): Texture2D =
+proc textureNormal*(self: TouchScreenButton): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_texture_normal"
     methodbind = interface_ClassDB_getMethodBind(addr className TouchScreenButton, addr name, 3635182373)
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture2D)
-proc `texturePressed=`*(self: TouchScreenButton; texture: Texture2D) =
+  (addr ret).decode_result(GD_ref[Texture2D])
+proc `texturePressed=`*(self: TouchScreenButton; texture: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_texture_pressed"
     methodbind = interface_ClassDB_getMethodBind(addr className TouchScreenButton, addr name, 4051416890)
   var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc texturePressed*(self: TouchScreenButton): Texture2D =
+proc texturePressed*(self: TouchScreenButton): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_texture_pressed"
     methodbind = interface_ClassDB_getMethodBind(addr className TouchScreenButton, addr name, 3635182373)
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture2D)
-proc `bitmask=`*(self: TouchScreenButton; bitmask: BitMap) =
+  (addr ret).decode_result(GD_ref[Texture2D])
+proc `bitmask=`*(self: TouchScreenButton; bitmask: GD_ref[BitMap]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_bitmask"
     methodbind = interface_ClassDB_getMethodBind(addr className TouchScreenButton, addr name, 698588216)
   var `?param` = [getPtr bitmask]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc bitmask*(self: TouchScreenButton): BitMap =
+proc bitmask*(self: TouchScreenButton): GD_ref[BitMap] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_bitmask"
     methodbind = interface_ClassDB_getMethodBind(addr className TouchScreenButton, addr name, 2459671998)
-  var ret: encoded BitMap
+  var ret: encoded GD_ref[BitMap]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(BitMap)
-proc `shape=`*(self: TouchScreenButton; shape: Shape2D) =
+  (addr ret).decode_result(GD_ref[BitMap])
+proc `shape=`*(self: TouchScreenButton; shape: GD_ref[Shape2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className TouchScreenButton, addr name, 771364740)
   var `?param` = [getPtr shape]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc shape*(self: TouchScreenButton): Shape2D =
+proc shape*(self: TouchScreenButton): GD_ref[Shape2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className TouchScreenButton, addr name, 522005891)
-  var ret: encoded Shape2D
+  var ret: encoded GD_ref[Shape2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Shape2D)
+  (addr ret).decode_result(GD_ref[Shape2D])
 proc `shapeCentered=`*(self: TouchScreenButton; bool: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

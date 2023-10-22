@@ -25,16 +25,16 @@ proc enableAllModifications*(self: SkeletonModificationStack2D; enabled: Bool) =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModificationStack2D, addr name, 2586408642)
   var `?param` = [getPtr enabled]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getModification*(self: SkeletonModificationStack2D; modIdx: int32): SkeletonModification2D =
+proc getModification*(self: SkeletonModificationStack2D; modIdx: int32): GD_ref[SkeletonModification2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_modification"
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModificationStack2D, addr name, 2570274329)
   var `?param` = [getPtr modIdx]
-  var ret: encoded SkeletonModification2D
+  var ret: encoded GD_ref[SkeletonModification2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(SkeletonModification2D)
-proc addModification*(self: SkeletonModificationStack2D; modification: SkeletonModification2D) =
+  (addr ret).decode_result(GD_ref[SkeletonModification2D])
+proc addModification*(self: SkeletonModificationStack2D; modification: GD_ref[SkeletonModification2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_modification"
@@ -48,7 +48,7 @@ proc deleteModification*(self: SkeletonModificationStack2D; modIdx: int32) =
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModificationStack2D, addr name, 1286410249)
   var `?param` = [getPtr modIdx]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setModification*(self: SkeletonModificationStack2D; modIdx: int32; modification: SkeletonModification2D) =
+proc setModification*(self: SkeletonModificationStack2D; modIdx: int32; modification: GD_ref[SkeletonModification2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_modification"

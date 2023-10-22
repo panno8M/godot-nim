@@ -200,7 +200,7 @@ proc isShapeOwnerDisabled*(self: CollisionObject3D; ownerId: uint32): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Bool)
-proc shapeOwnerAddShape*(self: CollisionObject3D; ownerId: uint32; shape: Shape3D) =
+proc shapeOwnerAddShape*(self: CollisionObject3D; ownerId: uint32; shape: GD_ref[Shape3D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "shape_owner_add_shape"
@@ -216,15 +216,15 @@ proc shapeOwnerGetShapeCount*(self: CollisionObject3D; ownerId: uint32): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(int32)
-proc shapeOwnerGetShape*(self: CollisionObject3D; ownerId: uint32; shapeId: int32): Shape3D =
+proc shapeOwnerGetShape*(self: CollisionObject3D; ownerId: uint32; shapeId: int32): GD_ref[Shape3D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "shape_owner_get_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionObject3D, addr name, 4015519174)
   var `?param` = [getPtr ownerId, getPtr shapeId]
-  var ret: encoded Shape3D
+  var ret: encoded GD_ref[Shape3D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Shape3D)
+  (addr ret).decode_result(GD_ref[Shape3D])
 proc shapeOwnerGetShapeIndex*(self: CollisionObject3D; ownerId: uint32; shapeId: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

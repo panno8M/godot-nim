@@ -5,16 +5,16 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_CollisionObject2D; export classDetail_native_CollisionObject2D
 
-proc moveAndCollide*(self: PhysicsBody2D; motion: Vector2; testOnly: Bool = false; safeMargin: Float = 0.08; recoveryAsCollision: Bool = false): KinematicCollision2D =
+proc moveAndCollide*(self: PhysicsBody2D; motion: Vector2; testOnly: Bool = false; safeMargin: Float = 0.08; recoveryAsCollision: Bool = false): GD_ref[KinematicCollision2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "move_and_collide"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsBody2D, addr name, 1529961754)
   var `?param` = [getPtr motion, getPtr testOnly, getPtr safeMargin, getPtr recoveryAsCollision]
-  var ret: encoded KinematicCollision2D
+  var ret: encoded GD_ref[KinematicCollision2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(KinematicCollision2D)
-proc testMove*(self: PhysicsBody2D; `from`: Transform2D; motion: Vector2; collision: KinematicCollision2D = default KinematicCollision2D; safeMargin: Float = 0.08; recoveryAsCollision: Bool = false): Bool =
+  (addr ret).decode_result(GD_ref[KinematicCollision2D])
+proc testMove*(self: PhysicsBody2D; `from`: Transform2D; motion: Vector2; collision: GD_ref[KinematicCollision2D] = default GD_ref[KinematicCollision2D]; safeMargin: Float = 0.08; recoveryAsCollision: Bool = false): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "test_move"

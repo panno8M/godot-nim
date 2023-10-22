@@ -5,15 +5,15 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Resource; export classDetail_native_Resource
 
-proc diffuseImg*(self: GLTFSpecGloss): Image =
+proc diffuseImg*(self: GLTFSpecGloss): GD_ref[Image] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_diffuse_img"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSpecGloss, addr name, 564927088)
-  var ret: encoded Image
+  var ret: encoded GD_ref[Image]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Image)
-proc `diffuseImg=`*(self: GLTFSpecGloss; diffuseImg: Image) =
+  (addr ret).decode_result(GD_ref[Image])
+proc `diffuseImg=`*(self: GLTFSpecGloss; diffuseImg: GD_ref[Image]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_diffuse_img"
@@ -65,15 +65,15 @@ proc `specularFactor=`*(self: GLTFSpecGloss; specularFactor: Color) =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSpecGloss, addr name, 2920490490)
   var `?param` = [getPtr specularFactor]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc specGlossImg*(self: GLTFSpecGloss): Image =
+proc specGlossImg*(self: GLTFSpecGloss): GD_ref[Image] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_spec_gloss_img"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFSpecGloss, addr name, 564927088)
-  var ret: encoded Image
+  var ret: encoded GD_ref[Image]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Image)
-proc `specGlossImg=`*(self: GLTFSpecGloss; specGlossImg: Image) =
+  (addr ret).decode_result(GD_ref[Image])
+proc `specGlossImg=`*(self: GLTFSpecGloss; specGlossImg: GD_ref[Image]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_spec_gloss_img"

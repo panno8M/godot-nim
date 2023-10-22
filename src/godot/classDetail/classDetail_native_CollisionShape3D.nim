@@ -5,28 +5,28 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Node3D; export classDetail_native_Node3D
 
-proc resourceChanged*(self: CollisionShape3D; resource: Resource) =
+proc resourceChanged*(self: CollisionShape3D; resource: GD_ref[Resource]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "resource_changed"
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionShape3D, addr name, 968641751)
   var `?param` = [getPtr resource]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc `shape=`*(self: CollisionShape3D; shape: Shape3D) =
+proc `shape=`*(self: CollisionShape3D; shape: GD_ref[Shape3D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionShape3D, addr name, 1549710052)
   var `?param` = [getPtr shape]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc shape*(self: CollisionShape3D): Shape3D =
+proc shape*(self: CollisionShape3D): GD_ref[Shape3D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className CollisionShape3D, addr name, 3214262478)
-  var ret: encoded Shape3D
+  var ret: encoded GD_ref[Shape3D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Shape3D)
+  (addr ret).decode_result(GD_ref[Shape3D])
 proc `disabled=`*(self: CollisionShape3D; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

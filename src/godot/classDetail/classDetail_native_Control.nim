@@ -371,21 +371,21 @@ proc vSizeFlags*(self: Control): set[Control_SizeFlags] =
   var ret: encoded set[Control_SizeFlags]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(set[Control_SizeFlags])
-proc `theme=`*(self: Control; theme: Theme) =
+proc `theme=`*(self: Control; theme: GD_ref[Theme]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_theme"
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 2326690814)
   var `?param` = [getPtr theme]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc theme*(self: Control): Theme =
+proc theme*(self: Control): GD_ref[Theme] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_theme"
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 3846893731)
-  var ret: encoded Theme
+  var ret: encoded GD_ref[Theme]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Theme)
+  (addr ret).decode_result(GD_ref[Theme])
 proc `themeTypeVariation=`*(self: Control; themeType: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -413,21 +413,21 @@ proc endBulkThemeOverride*(self: Control) =
     let name = api.newStringName "end_bulk_theme_override"
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc addThemeIconOverride*(self: Control; name: StringName; texture: Texture2D) =
+proc addThemeIconOverride*(self: Control; name: StringName; texture: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_theme_icon_override"
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 1373065600)
   var `?param` = [getPtr name, getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addThemeStyleboxOverride*(self: Control; name: StringName; stylebox: StyleBox) =
+proc addThemeStyleboxOverride*(self: Control; name: StringName; stylebox: GD_ref[StyleBox]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_theme_stylebox_override"
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 4188838905)
   var `?param` = [getPtr name, getPtr stylebox]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addThemeFontOverride*(self: Control; name: StringName; font: Font) =
+proc addThemeFontOverride*(self: Control; name: StringName; font: GD_ref[Font]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_theme_font_override"
@@ -497,33 +497,33 @@ proc removeThemeConstantOverride*(self: Control; name: StringName) =
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 3304788590)
   var `?param` = [getPtr name]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getThemeIcon*(self: Control; name: StringName; themeType: StringName = ""): Texture2D =
+proc getThemeIcon*(self: Control; name: StringName; themeType: StringName = ""): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_theme_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 2336455395)
   var `?param` = [getPtr name, getPtr themeType]
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Texture2D)
-proc getThemeStylebox*(self: Control; name: StringName; themeType: StringName = ""): StyleBox =
+  (addr ret).decode_result(GD_ref[Texture2D])
+proc getThemeStylebox*(self: Control; name: StringName; themeType: StringName = ""): GD_ref[StyleBox] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_theme_stylebox"
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 2759935355)
   var `?param` = [getPtr name, getPtr themeType]
-  var ret: encoded StyleBox
+  var ret: encoded GD_ref[StyleBox]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(StyleBox)
-proc getThemeFont*(self: Control; name: StringName; themeType: StringName = ""): Font =
+  (addr ret).decode_result(GD_ref[StyleBox])
+proc getThemeFont*(self: Control; name: StringName; themeType: StringName = ""): GD_ref[Font] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_theme_font"
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 387378635)
   var `?param` = [getPtr name, getPtr themeType]
-  var ret: encoded Font
+  var ret: encoded GD_ref[Font]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Font)
+  (addr ret).decode_result(GD_ref[Font])
 proc getThemeFontSize*(self: Control; name: StringName; themeType: StringName = ""): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -667,14 +667,14 @@ proc getThemeDefaultBaseScale*(self: Control): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Float)
-proc getThemeDefaultFont*(self: Control): Font =
+proc getThemeDefaultFont*(self: Control): GD_ref[Font] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_theme_default_font"
     methodbind = interface_ClassDB_getMethodBind(addr className Control, addr name, 3229501585)
-  var ret: encoded Font
+  var ret: encoded GD_ref[Font]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Font)
+  (addr ret).decode_result(GD_ref[Font])
 proc getThemeDefaultFontSize*(self: Control): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

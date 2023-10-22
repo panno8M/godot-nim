@@ -5,7 +5,7 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Object; export classDetail_native_Object
 
-proc textureCreate*(self: RenderingDevice; format: RDTextureFormat; view: RDTextureView; data: TypedArray[PackedByteArray] = init_TypedArray[PackedByteArray]()): RID =
+proc textureCreate*(self: RenderingDevice; format: GD_ref[RDTextureFormat]; view: GD_ref[RDTextureView]; data: TypedArray[PackedByteArray] = init_TypedArray[PackedByteArray]()): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "texture_create"
@@ -14,7 +14,7 @@ proc textureCreate*(self: RenderingDevice; format: RDTextureFormat; view: RDText
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(RID)
-proc textureCreateShared*(self: RenderingDevice; view: RDTextureView; withTexture: RID): RID =
+proc textureCreateShared*(self: RenderingDevice; view: GD_ref[RDTextureView]; withTexture: RID): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "texture_create_shared"
@@ -23,7 +23,7 @@ proc textureCreateShared*(self: RenderingDevice; view: RDTextureView; withTextur
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(RID)
-proc textureCreateSharedFromSlice*(self: RenderingDevice; view: RDTextureView; withTexture: RID; layer: uint32; mipmap: uint32; mipmaps: uint32 = 1'u32; sliceType: RenderingDevice_TextureSliceType = textureSlice2d): RID =
+proc textureCreateSharedFromSlice*(self: RenderingDevice; view: GD_ref[RDTextureView]; withTexture: RID; layer: uint32; mipmap: uint32; mipmaps: uint32 = 1'u32; sliceType: RenderingDevice_TextureSliceType = textureSlice2d): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "texture_create_shared_from_slice"
@@ -113,7 +113,7 @@ proc textureGetNativeHandle*(self: RenderingDevice; texture: RID): uint64 =
   var ret: encoded uint64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(uint64)
-proc framebufferFormatCreate*(self: RenderingDevice; attachments: TypedArray[RDAttachmentFormat]; viewCount: uint32 = 1'u32): int64 =
+proc framebufferFormatCreate*(self: RenderingDevice; attachments: GD_ref[RDAttachmentFormat]; viewCount: uint32 = 1'u32): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "framebuffer_format_create"
@@ -122,7 +122,7 @@ proc framebufferFormatCreate*(self: RenderingDevice; attachments: TypedArray[RDA
   var ret: encoded int64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(int64)
-proc framebufferFormatCreateMultipass*(self: RenderingDevice; attachments: TypedArray[RDAttachmentFormat]; passes: TypedArray[RDFramebufferPass]; viewCount: uint32 = 1'u32): int64 =
+proc framebufferFormatCreateMultipass*(self: RenderingDevice; attachments: GD_ref[RDAttachmentFormat]; passes: GD_ref[RDFramebufferPass]; viewCount: uint32 = 1'u32): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "framebuffer_format_create_multipass"
@@ -158,7 +158,7 @@ proc framebufferCreate*(self: RenderingDevice; textures: TypedArray[RID]; valida
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(RID)
-proc framebufferCreateMultipass*(self: RenderingDevice; textures: TypedArray[RID]; passes: TypedArray[RDFramebufferPass]; validateWithFormat: int64 = -1; viewCount: uint32 = 1'u32): RID =
+proc framebufferCreateMultipass*(self: RenderingDevice; textures: TypedArray[RID]; passes: GD_ref[RDFramebufferPass]; validateWithFormat: int64 = -1; viewCount: uint32 = 1'u32): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "framebuffer_create_multipass"
@@ -194,7 +194,7 @@ proc framebufferIsValid*(self: RenderingDevice; framebuffer: RID): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Bool)
-proc samplerCreate*(self: RenderingDevice; state: RDSamplerState): RID =
+proc samplerCreate*(self: RenderingDevice; state: GD_ref[RDSamplerState]): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "sampler_create"
@@ -221,7 +221,7 @@ proc vertexBufferCreate*(self: RenderingDevice; sizeBytes: uint32; data: PackedB
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(RID)
-proc vertexFormatCreate*(self: RenderingDevice; vertexDescriptions: TypedArray[RDVertexAttribute]): int64 =
+proc vertexFormatCreate*(self: RenderingDevice; vertexDescriptions: GD_ref[RDVertexAttribute]): int64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "vertex_format_create"
@@ -257,16 +257,16 @@ proc indexArrayCreate*(self: RenderingDevice; indexBuffer: RID; indexOffset: uin
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(RID)
-proc shaderCompileSpirvFromSource*(self: RenderingDevice; shaderSource: RDShaderSource; allowCache: Bool = true): RDShaderSPIRV =
+proc shaderCompileSpirvFromSource*(self: RenderingDevice; shaderSource: GD_ref[RDShaderSource]; allowCache: Bool = true): GD_ref[RDShaderSPIRV] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "shader_compile_spirv_from_source"
     methodbind = interface_ClassDB_getMethodBind(addr className RenderingDevice, addr name, 3459523685)
   var `?param` = [getPtr shaderSource, getPtr allowCache]
-  var ret: encoded RDShaderSPIRV
+  var ret: encoded GD_ref[RDShaderSPIRV]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(RDShaderSPIRV)
-proc shaderCompileBinaryFromSpirv*(self: RenderingDevice; spirvData: RDShaderSPIRV; name: String = ""): PackedByteArray =
+  (addr ret).decode_result(GD_ref[RDShaderSPIRV])
+proc shaderCompileBinaryFromSpirv*(self: RenderingDevice; spirvData: GD_ref[RDShaderSPIRV]; name: String = ""): PackedByteArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "shader_compile_binary_from_spirv"
@@ -275,7 +275,7 @@ proc shaderCompileBinaryFromSpirv*(self: RenderingDevice; spirvData: RDShaderSPI
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(PackedByteArray)
-proc shaderCreateFromSpirv*(self: RenderingDevice; spirvData: RDShaderSPIRV; name: String = ""): RID =
+proc shaderCreateFromSpirv*(self: RenderingDevice; spirvData: GD_ref[RDShaderSPIRV]; name: String = ""): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "shader_create_from_spirv"
@@ -329,7 +329,7 @@ proc textureBufferCreate*(self: RenderingDevice; sizeBytes: uint32; format: Rend
   var ret: encoded RID
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(RID)
-proc uniformSetCreate*(self: RenderingDevice; uniforms: TypedArray[RDUniform]; shader: RID; shaderSet: uint32): RID =
+proc uniformSetCreate*(self: RenderingDevice; uniforms: GD_ref[RDUniform]; shader: RID; shaderSet: uint32): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "uniform_set_create"
@@ -374,7 +374,7 @@ proc bufferGetData*(self: RenderingDevice; buffer: RID; offsetBytes: uint32 = 0'
   var ret: encoded PackedByteArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(PackedByteArray)
-proc renderPipelineCreate*(self: RenderingDevice; shader: RID; framebufferFormat: int64; vertexFormat: int64; primitive: RenderingDevice_RenderPrimitive; rasterizationState: RDPipelineRasterizationState; multisampleState: RDPipelineMultisampleState; stencilState: RDPipelineDepthStencilState; colorBlendState: RDPipelineColorBlendState; dynamicStateFlags: set[RenderingDevice_PipelineDynamicStateFlags] = {}; forRenderPass: uint32 = 0'u32; specializationConstants: TypedArray[RDPipelineSpecializationConstant] = init_TypedArray[RDPipelineSpecializationConstant]()): RID =
+proc renderPipelineCreate*(self: RenderingDevice; shader: RID; framebufferFormat: int64; vertexFormat: int64; primitive: RenderingDevice_RenderPrimitive; rasterizationState: GD_ref[RDPipelineRasterizationState]; multisampleState: GD_ref[RDPipelineMultisampleState]; stencilState: GD_ref[RDPipelineDepthStencilState]; colorBlendState: GD_ref[RDPipelineColorBlendState]; dynamicStateFlags: set[RenderingDevice_PipelineDynamicStateFlags] = {}; forRenderPass: uint32 = 0'u32; specializationConstants: GD_ref[RDPipelineSpecializationConstant] = init_TypedArray[RDPipelineSpecializationConstant]()): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "render_pipeline_create"
@@ -392,7 +392,7 @@ proc renderPipelineIsValid*(self: RenderingDevice; renderPipeline: RID): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Bool)
-proc computePipelineCreate*(self: RenderingDevice; shader: RID; specializationConstants: TypedArray[RDPipelineSpecializationConstant] = init_TypedArray[RDPipelineSpecializationConstant]()): RID =
+proc computePipelineCreate*(self: RenderingDevice; shader: RID; specializationConstants: GD_ref[RDPipelineSpecializationConstant] = init_TypedArray[RDPipelineSpecializationConstant]()): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "compute_pipeline_create"

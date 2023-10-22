@@ -28,7 +28,7 @@ proc hasValidEvent*(self: Shortcut): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Bool)
-proc matchesEvent*(self: Shortcut; event: InputEvent): Bool =
+proc matchesEvent*(self: Shortcut; event: GD_ref[InputEvent]): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "matches_event"

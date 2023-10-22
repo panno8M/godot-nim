@@ -79,21 +79,21 @@ proc width*(self: Line2D): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Float)
-proc `curve=`*(self: Line2D; curve: Curve) =
+proc `curve=`*(self: Line2D; curve: GD_ref[Curve]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_curve"
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 270443179)
   var `?param` = [getPtr curve]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc curve*(self: Line2D): Curve =
+proc curve*(self: Line2D): GD_ref[Curve] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_curve"
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 2460114913)
-  var ret: encoded Curve
+  var ret: encoded GD_ref[Curve]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Curve)
+  (addr ret).decode_result(GD_ref[Curve])
 proc `defaultColor=`*(self: Line2D; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -109,36 +109,36 @@ proc defaultColor*(self: Line2D): Color =
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Color)
-proc `gradient=`*(self: Line2D; color: Gradient) =
+proc `gradient=`*(self: Line2D; color: GD_ref[Gradient]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_gradient"
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 2756054477)
   var `?param` = [getPtr color]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc gradient*(self: Line2D): Gradient =
+proc gradient*(self: Line2D): GD_ref[Gradient] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_gradient"
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 132272999)
-  var ret: encoded Gradient
+  var ret: encoded GD_ref[Gradient]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Gradient)
-proc `texture=`*(self: Line2D; texture: Texture2D) =
+  (addr ret).decode_result(GD_ref[Gradient])
+proc `texture=`*(self: Line2D; texture: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 4051416890)
   var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc texture*(self: Line2D): Texture2D =
+proc texture*(self: Line2D): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className Line2D, addr name, 3635182373)
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture2D)
+  (addr ret).decode_result(GD_ref[Texture2D])
 proc `textureMode=`*(self: Line2D; mode: Line2D_LineTextureMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

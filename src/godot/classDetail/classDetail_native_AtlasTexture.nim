@@ -5,21 +5,21 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Texture2D; export classDetail_native_Texture2D
 
-proc `atlas=`*(self: AtlasTexture; atlas: Texture2D) =
+proc `atlas=`*(self: AtlasTexture; atlas: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_atlas"
     methodbind = interface_ClassDB_getMethodBind(addr className AtlasTexture, addr name, 4051416890)
   var `?param` = [getPtr atlas]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc atlas*(self: AtlasTexture): Texture2D =
+proc atlas*(self: AtlasTexture): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_atlas"
     methodbind = interface_ClassDB_getMethodBind(addr className AtlasTexture, addr name, 3635182373)
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture2D)
+  (addr ret).decode_result(GD_ref[Texture2D])
 proc `region=`*(self: AtlasTexture; region: Rect2) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

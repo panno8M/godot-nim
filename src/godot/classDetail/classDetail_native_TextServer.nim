@@ -586,22 +586,22 @@ proc fontRemoveTexture*(self: TextServer; fontRid: RID; size: Vector2i; textureI
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 3810512262)
   var `?param` = [getPtr fontRid, getPtr size, getPtr textureIndex]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontSetTextureImage*(self: TextServer; fontRid: RID; size: Vector2i; textureIndex: int64; image: Image) =
+proc fontSetTextureImage*(self: TextServer; fontRid: RID; size: Vector2i; textureIndex: int64; image: GD_ref[Image]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "font_set_texture_image"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 2354485091)
   var `?param` = [getPtr fontRid, getPtr size, getPtr textureIndex, getPtr image]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fontGetTextureImage*(self: TextServer; fontRid: RID; size: Vector2i; textureIndex: int64): Image =
+proc fontGetTextureImage*(self: TextServer; fontRid: RID; size: Vector2i; textureIndex: int64): GD_ref[Image] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "font_get_texture_image"
     methodbind = interface_ClassDB_getMethodBind(addr className TextServer, addr name, 2451761155)
   var `?param` = [getPtr fontRid, getPtr size, getPtr textureIndex]
-  var ret: encoded Image
+  var ret: encoded GD_ref[Image]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Image)
+  (addr ret).decode_result(GD_ref[Image])
 proc fontSetTextureOffsets*(self: TextServer; fontRid: RID; size: Vector2i; textureIndex: int64; offset: PackedInt32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

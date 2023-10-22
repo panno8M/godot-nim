@@ -65,21 +65,21 @@ proc centerOfMass*(self: RigidBody2D): Vector2 =
   var ret: encoded Vector2
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Vector2)
-proc `physicsMaterialOverride=`*(self: RigidBody2D; physicsMaterialOverride: PhysicsMaterial) =
+proc `physicsMaterialOverride=`*(self: RigidBody2D; physicsMaterialOverride: GD_ref[PhysicsMaterial]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_physics_material_override"
     methodbind = interface_ClassDB_getMethodBind(addr className RigidBody2D, addr name, 1784508650)
   var `?param` = [getPtr physicsMaterialOverride]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc physicsMaterialOverride*(self: RigidBody2D): PhysicsMaterial =
+proc physicsMaterialOverride*(self: RigidBody2D): GD_ref[PhysicsMaterial] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_physics_material_override"
     methodbind = interface_ClassDB_getMethodBind(addr className RigidBody2D, addr name, 2521850424)
-  var ret: encoded PhysicsMaterial
+  var ret: encoded GD_ref[PhysicsMaterial]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(PhysicsMaterial)
+  (addr ret).decode_result(GD_ref[PhysicsMaterial])
 proc `gravityScale=`*(self: RigidBody2D; gravityScale: Float) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

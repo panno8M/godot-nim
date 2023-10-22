@@ -66,16 +66,16 @@ proc setGroupName*(self: SkeletonProfile; groupIdx: int32; groupName: StringName
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonProfile, addr name, 3780747571)
   var `?param` = [getPtr groupIdx, getPtr groupName]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getTexture*(self: SkeletonProfile; groupIdx: int32): Texture2D =
+proc getTexture*(self: SkeletonProfile; groupIdx: int32): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonProfile, addr name, 3536238170)
   var `?param` = [getPtr groupIdx]
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Texture2D)
-proc setTexture*(self: SkeletonProfile; groupIdx: int32; texture: Texture2D) =
+  (addr ret).decode_result(GD_ref[Texture2D])
+proc setTexture*(self: SkeletonProfile; groupIdx: int32; texture: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_texture"

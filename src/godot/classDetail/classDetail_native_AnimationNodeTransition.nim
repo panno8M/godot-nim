@@ -59,21 +59,21 @@ proc xfadeTime*(self: AnimationNodeTransition): float64 =
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(float64)
-proc `xfadeCurve=`*(self: AnimationNodeTransition; curve: Curve) =
+proc `xfadeCurve=`*(self: AnimationNodeTransition; curve: GD_ref[Curve]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_xfade_curve"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeTransition, addr name, 270443179)
   var `?param` = [getPtr curve]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc xfadeCurve*(self: AnimationNodeTransition): Curve =
+proc xfadeCurve*(self: AnimationNodeTransition): GD_ref[Curve] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_xfade_curve"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeTransition, addr name, 2460114913)
-  var ret: encoded Curve
+  var ret: encoded GD_ref[Curve]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Curve)
+  (addr ret).decode_result(GD_ref[Curve])
 proc `allowTransitionToSelf=`*(self: AnimationNodeTransition; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

@@ -58,14 +58,14 @@ proc actions*(self: OpenXRActionSet): Array =
   var ret: encoded Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Array)
-proc addAction*(self: OpenXRActionSet; action: OpenXRAction) =
+proc addAction*(self: OpenXRActionSet; action: GD_ref[OpenXRAction]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_action"
     methodbind = interface_ClassDB_getMethodBind(addr className OpenXRActionSet, addr name, 349361333)
   var `?param` = [getPtr action]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removeAction*(self: OpenXRActionSet; action: OpenXRAction) =
+proc removeAction*(self: OpenXRActionSet; action: GD_ref[OpenXRAction]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "remove_action"

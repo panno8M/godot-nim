@@ -97,7 +97,7 @@ proc getRecentDirs*(self: EditorSettings): PackedStringArray =
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(PackedStringArray)
-proc setBuiltinActionOverride*(self: EditorSettings; name: String; actionsList: TypedArray[InputEvent]) =
+proc setBuiltinActionOverride*(self: EditorSettings; name: String; actionsList: GD_ref[InputEvent]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_builtin_action_override"

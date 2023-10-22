@@ -35,18 +35,18 @@ proc processMode*(self: Sky): Sky_ProcessMode =
   var ret: encoded Sky_ProcessMode
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Sky_ProcessMode)
-proc `material=`*(self: Sky; material: Material) =
+proc `material=`*(self: Sky; material: GD_ref[Material]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_material"
     methodbind = interface_ClassDB_getMethodBind(addr className Sky, addr name, 2757459619)
   var `?param` = [getPtr material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc material*(self: Sky): Material =
+proc material*(self: Sky): GD_ref[Material] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_material"
     methodbind = interface_ClassDB_getMethodBind(addr className Sky, addr name, 5934680)
-  var ret: encoded Material
+  var ret: encoded GD_ref[Material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Material)
+  (addr ret).decode_result(GD_ref[Material])

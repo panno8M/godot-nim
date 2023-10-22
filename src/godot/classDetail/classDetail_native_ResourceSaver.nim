@@ -5,7 +5,7 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Object; export classDetail_native_Object
 
-proc save*(self: ResourceSaver; resource: Resource; path: String = ""; flags: set[ResourceSaver_SaverFlags] = {}): Error =
+proc save*(self: ResourceSaver; resource: GD_ref[Resource]; path: String = ""; flags: set[ResourceSaver_SaverFlags] = {}): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "save"
@@ -14,7 +14,7 @@ proc save*(self: ResourceSaver; resource: Resource; path: String = ""; flags: se
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Error)
-proc getRecognizedExtensions*(self: ResourceSaver; `type`: Resource): PackedStringArray =
+proc getRecognizedExtensions*(self: ResourceSaver; `type`: GD_ref[Resource]): PackedStringArray =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_recognized_extensions"
@@ -23,14 +23,14 @@ proc getRecognizedExtensions*(self: ResourceSaver; `type`: Resource): PackedStri
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(PackedStringArray)
-proc addResourceFormatSaver*(self: ResourceSaver; formatSaver: ResourceFormatSaver; atFront: Bool = false) =
+proc addResourceFormatSaver*(self: ResourceSaver; formatSaver: GD_ref[ResourceFormatSaver]; atFront: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_resource_format_saver"
     methodbind = interface_ClassDB_getMethodBind(addr className ResourceSaver, addr name, 362894272)
   var `?param` = [getPtr formatSaver, getPtr atFront]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removeResourceFormatSaver*(self: ResourceSaver; formatSaver: ResourceFormatSaver) =
+proc removeResourceFormatSaver*(self: ResourceSaver; formatSaver: GD_ref[ResourceFormatSaver]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "remove_resource_format_saver"

@@ -49,7 +49,7 @@ proc globalMenuAddCheckItem*(self: DisplayServer; menuRoot: String; label: Strin
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(int32)
-proc globalMenuAddIconItem*(self: DisplayServer; menuRoot: String; icon: Texture2D; label: String; callback: Callable = init_Callable(); keyCallback: Callable = init_Callable(); tag: Variant = default(Variant); accelerator: Key = keyNone; index: int32 = -1): int32 =
+proc globalMenuAddIconItem*(self: DisplayServer; menuRoot: String; icon: GD_ref[Texture2D]; label: String; callback: Callable = init_Callable(); keyCallback: Callable = init_Callable(); tag: Variant = default(Variant); accelerator: Key = keyNone; index: int32 = -1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "global_menu_add_icon_item"
@@ -58,7 +58,7 @@ proc globalMenuAddIconItem*(self: DisplayServer; menuRoot: String; icon: Texture
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(int32)
-proc globalMenuAddIconCheckItem*(self: DisplayServer; menuRoot: String; icon: Texture2D; label: String; callback: Callable = init_Callable(); keyCallback: Callable = init_Callable(); tag: Variant = default(Variant); accelerator: Key = keyNone; index: int32 = -1): int32 =
+proc globalMenuAddIconCheckItem*(self: DisplayServer; menuRoot: String; icon: GD_ref[Texture2D]; label: String; callback: Callable = init_Callable(); keyCallback: Callable = init_Callable(); tag: Variant = default(Variant); accelerator: Key = keyNone; index: int32 = -1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "global_menu_add_icon_check_item"
@@ -76,7 +76,7 @@ proc globalMenuAddRadioCheckItem*(self: DisplayServer; menuRoot: String; label: 
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(int32)
-proc globalMenuAddIconRadioCheckItem*(self: DisplayServer; menuRoot: String; icon: Texture2D; label: String; callback: Callable = init_Callable(); keyCallback: Callable = init_Callable(); tag: Variant = default(Variant); accelerator: Key = keyNone; index: int32 = -1): int32 =
+proc globalMenuAddIconRadioCheckItem*(self: DisplayServer; menuRoot: String; icon: GD_ref[Texture2D]; label: String; callback: Callable = init_Callable(); keyCallback: Callable = init_Callable(); tag: Variant = default(Variant); accelerator: Key = keyNone; index: int32 = -1): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "global_menu_add_icon_radio_check_item"
@@ -238,15 +238,15 @@ proc globalMenuGetItemMaxStates*(self: DisplayServer; menuRoot: String; idx: int
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(int32)
-proc globalMenuGetItemIcon*(self: DisplayServer; menuRoot: String; idx: int32): Texture2D =
+proc globalMenuGetItemIcon*(self: DisplayServer; menuRoot: String; idx: int32): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "global_menu_get_item_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 3591713183)
   var `?param` = [getPtr menuRoot, getPtr idx]
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Texture2D)
+  (addr ret).decode_result(GD_ref[Texture2D])
 proc globalMenuGetItemIndentationLevel*(self: DisplayServer; menuRoot: String; idx: int32): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -347,7 +347,7 @@ proc globalMenuSetItemMaxStates*(self: DisplayServer; menuRoot: String; idx: int
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 3474840532)
   var `?param` = [getPtr menuRoot, getPtr idx, getPtr maxStates]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc globalMenuSetItemIcon*(self: DisplayServer; menuRoot: String; idx: int32; icon: Texture2D) =
+proc globalMenuSetItemIcon*(self: DisplayServer; menuRoot: String; idx: int32; icon: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "global_menu_set_item_icon"
@@ -677,15 +677,15 @@ proc screenGetPixel*(self: DisplayServer; position: Vector2i): Color =
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Color)
-proc screenGetImage*(self: DisplayServer; screen: int32 = -1): Image =
+proc screenGetImage*(self: DisplayServer; screen: int32 = -1): GD_ref[Image] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "screen_get_image"
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 3813388802)
   var `?param` = [getPtr screen]
-  var ret: encoded Image
+  var ret: encoded GD_ref[Image]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Image)
+  (addr ret).decode_result(GD_ref[Image])
 proc screenSetOrientation*(self: DisplayServer; orientation: DisplayServer_ScreenOrientation; screen: int32 = -1) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -1124,7 +1124,7 @@ proc cursorGetShape*(self: DisplayServer): DisplayServer_CursorShape =
   var ret: encoded DisplayServer_CursorShape
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(DisplayServer_CursorShape)
-proc cursorSetCustomImage*(self: DisplayServer; cursor: Resource; shape: DisplayServer_CursorShape = cursorArrow; hotspot: Vector2 = gdvec(0, 0)) =
+proc cursorSetCustomImage*(self: DisplayServer; cursor: GD_ref[Resource]; shape: DisplayServer_CursorShape = cursorArrow; hotspot: Vector2 = gdvec(0, 0)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "cursor_set_custom_image"
@@ -1233,7 +1233,7 @@ proc setNativeIcon*(self: DisplayServer; filename: String) =
     methodbind = interface_ClassDB_getMethodBind(addr className DisplayServer, addr name, 83702148)
   var `?param` = [getPtr filename]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setIcon*(self: DisplayServer; image: Image) =
+proc setIcon*(self: DisplayServer; image: GD_ref[Image]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_icon"

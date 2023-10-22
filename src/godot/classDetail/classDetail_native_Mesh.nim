@@ -62,61 +62,61 @@ proc surfaceGetBlendShapeArrays*(self: Mesh; surfIdx: int32): TypedArray[Array] 
   var ret: encoded TypedArray[Array]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(TypedArray[Array])
-proc surfaceSetMaterial*(self: Mesh; surfIdx: int32; material: Material) =
+proc surfaceSetMaterial*(self: Mesh; surfIdx: int32; material: GD_ref[Material]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "surface_set_material"
     methodbind = interface_ClassDB_getMethodBind(addr className Mesh, addr name, 3671737478)
   var `?param` = [getPtr surfIdx, getPtr material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc surfaceGetMaterial*(self: Mesh; surfIdx: int32): Material =
+proc surfaceGetMaterial*(self: Mesh; surfIdx: int32): GD_ref[Material] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "surface_get_material"
     methodbind = interface_ClassDB_getMethodBind(addr className Mesh, addr name, 2897466400)
   var `?param` = [getPtr surfIdx]
-  var ret: encoded Material
+  var ret: encoded GD_ref[Material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Material)
-proc createPlaceholder*(self: Mesh): Resource =
+  (addr ret).decode_result(GD_ref[Material])
+proc createPlaceholder*(self: Mesh): GD_ref[Resource] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "create_placeholder"
     methodbind = interface_ClassDB_getMethodBind(addr className Mesh, addr name, 121922552)
-  var ret: encoded Resource
+  var ret: encoded GD_ref[Resource]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Resource)
-proc createTrimeshShape*(self: Mesh): ConcavePolygonShape3D =
+  (addr ret).decode_result(GD_ref[Resource])
+proc createTrimeshShape*(self: Mesh): GD_ref[ConcavePolygonShape3D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "create_trimesh_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className Mesh, addr name, 4160111210)
-  var ret: encoded ConcavePolygonShape3D
+  var ret: encoded GD_ref[ConcavePolygonShape3D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(ConcavePolygonShape3D)
-proc createConvexShape*(self: Mesh; clean: Bool = true; simplify: Bool = false): ConvexPolygonShape3D =
+  (addr ret).decode_result(GD_ref[ConcavePolygonShape3D])
+proc createConvexShape*(self: Mesh; clean: Bool = true; simplify: Bool = false): GD_ref[ConvexPolygonShape3D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "create_convex_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className Mesh, addr name, 2529984628)
   var `?param` = [getPtr clean, getPtr simplify]
-  var ret: encoded ConvexPolygonShape3D
+  var ret: encoded GD_ref[ConvexPolygonShape3D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(ConvexPolygonShape3D)
-proc createOutline*(self: Mesh; margin: Float): Mesh =
+  (addr ret).decode_result(GD_ref[ConvexPolygonShape3D])
+proc createOutline*(self: Mesh; margin: Float): GD_ref[Mesh] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "create_outline"
     methodbind = interface_ClassDB_getMethodBind(addr className Mesh, addr name, 1208642001)
   var `?param` = [getPtr margin]
-  var ret: encoded Mesh
+  var ret: encoded GD_ref[Mesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Mesh)
-proc generateTriangleMesh*(self: Mesh): TriangleMesh =
+  (addr ret).decode_result(GD_ref[Mesh])
+proc generateTriangleMesh*(self: Mesh): GD_ref[TriangleMesh] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "generate_triangle_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className Mesh, addr name, 3476533166)
-  var ret: encoded TriangleMesh
+  var ret: encoded GD_ref[TriangleMesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(TriangleMesh)
+  (addr ret).decode_result(GD_ref[TriangleMesh])

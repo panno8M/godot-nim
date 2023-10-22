@@ -65,21 +65,21 @@ proc isCone*(self: CSGCylinder3D): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Bool)
-proc `material=`*(self: CSGCylinder3D; material: Material) =
+proc `material=`*(self: CSGCylinder3D; material: GD_ref[Material]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_material"
     methodbind = interface_ClassDB_getMethodBind(addr className CSGCylinder3D, addr name, 2757459619)
   var `?param` = [getPtr material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc material*(self: CSGCylinder3D): Material =
+proc material*(self: CSGCylinder3D): GD_ref[Material] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_material"
     methodbind = interface_ClassDB_getMethodBind(addr className CSGCylinder3D, addr name, 5934680)
-  var ret: encoded Material
+  var ret: encoded GD_ref[Material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Material)
+  (addr ret).decode_result(GD_ref[Material])
 proc `smoothFaces=`*(self: CSGCylinder3D; smoothFaces: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

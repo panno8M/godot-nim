@@ -96,7 +96,7 @@ proc asText*(self: InputEvent): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(String)
-proc isMatch*(self: InputEvent; event: InputEvent; exactMatch: Bool = true): Bool =
+proc isMatch*(self: InputEvent; event: GD_ref[InputEvent]; exactMatch: Bool = true): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "is_match"
@@ -113,7 +113,7 @@ proc isActionType*(self: InputEvent): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Bool)
-proc accumulate*(self: InputEvent; withEvent: InputEvent): Bool =
+proc accumulate*(self: InputEvent; withEvent: GD_ref[InputEvent]): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "accumulate"
@@ -122,12 +122,12 @@ proc accumulate*(self: InputEvent; withEvent: InputEvent): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Bool)
-proc xformedBy*(self: InputEvent; xform: Transform2D; localOfs: Vector2 = gdvec(0, 0)): InputEvent =
+proc xformedBy*(self: InputEvent; xform: Transform2D; localOfs: Vector2 = gdvec(0, 0)): GD_ref[InputEvent] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "xformed_by"
     methodbind = interface_ClassDB_getMethodBind(addr className InputEvent, addr name, 2747409789)
   var `?param` = [getPtr xform, getPtr localOfs]
-  var ret: encoded InputEvent
+  var ret: encoded GD_ref[InputEvent]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(InputEvent)
+  (addr ret).decode_result(GD_ref[InputEvent])

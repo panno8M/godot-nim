@@ -449,22 +449,22 @@ proc removeTexture*(self: FontFile; cacheIndex: int32; size: Vector2i; textureIn
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 2328951467)
   var `?param` = [getPtr cacheIndex, getPtr size, getPtr textureIndex]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setTextureImage*(self: FontFile; cacheIndex: int32; size: Vector2i; textureIndex: int32; image: Image) =
+proc setTextureImage*(self: FontFile; cacheIndex: int32; size: Vector2i; textureIndex: int32; image: GD_ref[Image]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_texture_image"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 4157974066)
   var `?param` = [getPtr cacheIndex, getPtr size, getPtr textureIndex, getPtr image]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getTextureImage*(self: FontFile; cacheIndex: int32; size: Vector2i; textureIndex: int32): Image =
+proc getTextureImage*(self: FontFile; cacheIndex: int32; size: Vector2i; textureIndex: int32): GD_ref[Image] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_texture_image"
     methodbind = interface_ClassDB_getMethodBind(addr className FontFile, addr name, 3878418953)
   var `?param` = [getPtr cacheIndex, getPtr size, getPtr textureIndex]
-  var ret: encoded Image
+  var ret: encoded GD_ref[Image]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Image)
+  (addr ret).decode_result(GD_ref[Image])
 proc setTextureOffsets*(self: FontFile; cacheIndex: int32; size: Vector2i; textureIndex: int32; offset: PackedInt32Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

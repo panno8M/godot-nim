@@ -5,51 +5,51 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Range; export classDetail_native_Range
 
-proc `underTexture=`*(self: TextureProgressBar; tex: Texture2D) =
+proc `underTexture=`*(self: TextureProgressBar; tex: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_under_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className TextureProgressBar, addr name, 4051416890)
   var `?param` = [getPtr tex]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc underTexture*(self: TextureProgressBar): Texture2D =
+proc underTexture*(self: TextureProgressBar): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_under_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className TextureProgressBar, addr name, 3635182373)
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture2D)
-proc `progressTexture=`*(self: TextureProgressBar; tex: Texture2D) =
+  (addr ret).decode_result(GD_ref[Texture2D])
+proc `progressTexture=`*(self: TextureProgressBar; tex: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_progress_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className TextureProgressBar, addr name, 4051416890)
   var `?param` = [getPtr tex]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc progressTexture*(self: TextureProgressBar): Texture2D =
+proc progressTexture*(self: TextureProgressBar): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_progress_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className TextureProgressBar, addr name, 3635182373)
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture2D)
-proc `overTexture=`*(self: TextureProgressBar; tex: Texture2D) =
+  (addr ret).decode_result(GD_ref[Texture2D])
+proc `overTexture=`*(self: TextureProgressBar; tex: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_over_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className TextureProgressBar, addr name, 4051416890)
   var `?param` = [getPtr tex]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc overTexture*(self: TextureProgressBar): Texture2D =
+proc overTexture*(self: TextureProgressBar): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_over_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className TextureProgressBar, addr name, 3635182373)
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture2D)
+  (addr ret).decode_result(GD_ref[Texture2D])
 proc `fillMode=`*(self: TextureProgressBar; mode: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

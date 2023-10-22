@@ -50,21 +50,21 @@ proc text*(self: TextMesh): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(String)
-proc `font=`*(self: TextMesh; font: Font) =
+proc `font=`*(self: TextMesh; font: GD_ref[Font]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_font"
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 1262170328)
   var `?param` = [getPtr font]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc font*(self: TextMesh): Font =
+proc font*(self: TextMesh): GD_ref[Font] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_font"
     methodbind = interface_ClassDB_getMethodBind(addr className TextMesh, addr name, 3229501585)
-  var ret: encoded Font
+  var ret: encoded GD_ref[Font]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Font)
+  (addr ret).decode_result(GD_ref[Font])
 proc `fontSize=`*(self: TextMesh; fontSize: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

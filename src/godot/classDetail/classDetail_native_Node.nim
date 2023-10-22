@@ -31,7 +31,7 @@ proc name*(self: Node): StringName =
     let name = api.newStringName "get_name"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 2002593661)
   var ret: encoded StringName
-  interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
+  interface_Object_methodBindPtrCall(methodbind, GD_getObjectPtr self, nil, addr ret)
   (addr ret).decode_result(StringName)
 proc addChild*(self: Node; node: Node; forceReadableName: Bool = false; internal: Node_InternalMode = internalModeDisabled) =
   var methodbind {.global.}: MethodBindPtr
@@ -580,14 +580,14 @@ proc getTree*(self: Node): SceneTree =
   var ret: encoded SceneTree
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(SceneTree)
-proc createTween*(self: Node): Tween =
+proc createTween*(self: Node): GD_ref[Tween] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "create_tween"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 3426978995)
-  var ret: encoded Tween
+  var ret: encoded GD_ref[Tween]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Tween)
+  (addr ret).decode_result(GD_ref[Tween])
 proc duplicate*(self: Node; flags: int32 = 15): Node =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -686,14 +686,14 @@ proc isMultiplayerAuthority*(self: Node): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Bool)
-proc multiplayer*(self: Node): MultiplayerAPI =
+proc multiplayer*(self: Node): GD_ref[MultiplayerAPI] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_multiplayer"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 406750475)
-  var ret: encoded MultiplayerAPI
+  var ret: encoded GD_ref[MultiplayerAPI]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(MultiplayerAPI)
+  (addr ret).decode_result(GD_ref[MultiplayerAPI])
 proc rpcConfig*(self: Node; `method`: StringName; config: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

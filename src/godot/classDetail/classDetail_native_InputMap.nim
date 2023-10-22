@@ -52,14 +52,14 @@ proc actionGetDeadzone*(self: InputMap; action: StringName): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Float)
-proc actionAddEvent*(self: InputMap; action: StringName; event: InputEvent) =
+proc actionAddEvent*(self: InputMap; action: StringName; event: GD_ref[InputEvent]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "action_add_event"
     methodbind = interface_ClassDB_getMethodBind(addr className InputMap, addr name, 518302593)
   var `?param` = [getPtr action, getPtr event]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc actionHasEvent*(self: InputMap; action: StringName; event: InputEvent): Bool =
+proc actionHasEvent*(self: InputMap; action: StringName; event: GD_ref[InputEvent]): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "action_has_event"
@@ -68,7 +68,7 @@ proc actionHasEvent*(self: InputMap; action: StringName; event: InputEvent): Boo
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Bool)
-proc actionEraseEvent*(self: InputMap; action: StringName; event: InputEvent) =
+proc actionEraseEvent*(self: InputMap; action: StringName; event: GD_ref[InputEvent]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "action_erase_event"
@@ -82,16 +82,16 @@ proc actionEraseEvents*(self: InputMap; action: StringName) =
     methodbind = interface_ClassDB_getMethodBind(addr className InputMap, addr name, 3304788590)
   var `?param` = [getPtr action]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc actionGetEvents*(self: InputMap; action: StringName): TypedArray[InputEvent] =
+proc actionGetEvents*(self: InputMap; action: StringName): GD_ref[InputEvent] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "action_get_events"
     methodbind = interface_ClassDB_getMethodBind(addr className InputMap, addr name, 689397652)
   var `?param` = [getPtr action]
-  var ret: encoded TypedArray[InputEvent]
+  var ret: encoded GD_ref[InputEvent]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(TypedArray[InputEvent])
-proc eventIsAction*(self: InputMap; event: InputEvent; action: StringName; exactMatch: Bool = false): Bool =
+  (addr ret).decode_result(GD_ref[InputEvent])
+proc eventIsAction*(self: InputMap; event: GD_ref[InputEvent]; action: StringName; exactMatch: Bool = false): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "event_is_action"

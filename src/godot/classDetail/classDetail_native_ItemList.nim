@@ -5,7 +5,7 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Control; export classDetail_native_Control
 
-proc addItem*(self: ItemList; text: String; icon: Texture2D = default Texture2D; selectable: Bool = true): int32 =
+proc addItem*(self: ItemList; text: String; icon: GD_ref[Texture2D] = default GD_ref[Texture2D]; selectable: Bool = true): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_item"
@@ -14,7 +14,7 @@ proc addItem*(self: ItemList; text: String; icon: Texture2D = default Texture2D;
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(int32)
-proc addIconItem*(self: ItemList; icon: Texture2D; selectable: Bool = true): int32 =
+proc addIconItem*(self: ItemList; icon: GD_ref[Texture2D]; selectable: Bool = true): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_icon_item"
@@ -39,22 +39,22 @@ proc getItemText*(self: ItemList; idx: int32): String =
   var ret: encoded String
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(String)
-proc setItemIcon*(self: ItemList; idx: int32; icon: Texture2D) =
+proc setItemIcon*(self: ItemList; idx: int32; icon: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_item_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className ItemList, addr name, 666127730)
   var `?param` = [getPtr idx, getPtr icon]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getItemIcon*(self: ItemList; idx: int32): Texture2D =
+proc getItemIcon*(self: ItemList; idx: int32): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_item_icon"
     methodbind = interface_ClassDB_getMethodBind(addr className ItemList, addr name, 3536238170)
   var `?param` = [getPtr idx]
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Texture2D)
+  (addr ret).decode_result(GD_ref[Texture2D])
 proc setItemTextDirection*(self: ItemList; idx: int32; direction: Control_TextDirection) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

@@ -20,21 +20,21 @@ proc source*(self: VisualShaderNodeTexture): VisualShaderNodeTexture_Source =
   var ret: encoded VisualShaderNodeTexture_Source
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(VisualShaderNodeTexture_Source)
-proc `texture=`*(self: VisualShaderNodeTexture; value: Texture2D) =
+proc `texture=`*(self: VisualShaderNodeTexture; value: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeTexture, addr name, 4051416890)
   var `?param` = [getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc texture*(self: VisualShaderNodeTexture): Texture2D =
+proc texture*(self: VisualShaderNodeTexture): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className VisualShaderNodeTexture, addr name, 3635182373)
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture2D)
+  (addr ret).decode_result(GD_ref[Texture2D])
 proc `textureType=`*(self: VisualShaderNodeTexture; value: VisualShaderNodeTexture_TextureType) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

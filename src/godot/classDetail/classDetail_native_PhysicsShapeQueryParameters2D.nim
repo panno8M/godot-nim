@@ -5,21 +5,21 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 
-proc `shape=`*(self: PhysicsShapeQueryParameters2D; shape: Resource) =
+proc `shape=`*(self: PhysicsShapeQueryParameters2D; shape: GD_ref[Resource]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsShapeQueryParameters2D, addr name, 968641751)
   var `?param` = [getPtr shape]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc shape*(self: PhysicsShapeQueryParameters2D): Resource =
+proc shape*(self: PhysicsShapeQueryParameters2D): GD_ref[Resource] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_shape"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicsShapeQueryParameters2D, addr name, 121922552)
-  var ret: encoded Resource
+  var ret: encoded GD_ref[Resource]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Resource)
+  (addr ret).decode_result(GD_ref[Resource])
 proc `shapeRid=`*(self: PhysicsShapeQueryParameters2D; shape: RID) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

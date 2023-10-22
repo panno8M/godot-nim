@@ -5,7 +5,7 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_AnimationRootNode; export classDetail_native_AnimationRootNode
 
-proc addBlendPoint*(self: AnimationNodeBlendSpace1D; node: AnimationRootNode; pos: Float; atIndex: int32 = -1) =
+proc addBlendPoint*(self: AnimationNodeBlendSpace1D; node: GD_ref[AnimationRootNode]; pos: Float; atIndex: int32 = -1) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_blend_point"
@@ -28,22 +28,22 @@ proc getBlendPointPosition*(self: AnimationNodeBlendSpace1D; point: int32): Floa
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Float)
-proc setBlendPointNode*(self: AnimationNodeBlendSpace1D; point: int32; node: AnimationRootNode) =
+proc setBlendPointNode*(self: AnimationNodeBlendSpace1D; point: int32; node: GD_ref[AnimationRootNode]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_blend_point_node"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendSpace1D, addr name, 4240341528)
   var `?param` = [getPtr point, getPtr node]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getBlendPointNode*(self: AnimationNodeBlendSpace1D; point: int32): AnimationRootNode =
+proc getBlendPointNode*(self: AnimationNodeBlendSpace1D; point: int32): GD_ref[AnimationRootNode] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_blend_point_node"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendSpace1D, addr name, 665599029)
   var `?param` = [getPtr point]
-  var ret: encoded AnimationRootNode
+  var ret: encoded GD_ref[AnimationRootNode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(AnimationRootNode)
+  (addr ret).decode_result(GD_ref[AnimationRootNode])
 proc removeBlendPoint*(self: AnimationNodeBlendSpace1D; point: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

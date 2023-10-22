@@ -185,21 +185,21 @@ proc outlineRenderPriority*(self: Label3D): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(int32)
-proc `font=`*(self: Label3D; font: Font) =
+proc `font=`*(self: Label3D; font: GD_ref[Font]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_font"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 1262170328)
   var `?param` = [getPtr font]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc font*(self: Label3D): Font =
+proc font*(self: Label3D): GD_ref[Font] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_font"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 3229501585)
-  var ret: encoded Font
+  var ret: encoded GD_ref[Font]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Font)
+  (addr ret).decode_result(GD_ref[Font])
 proc `fontSize=`*(self: Label3D; size: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -441,11 +441,11 @@ proc textureFilter*(self: Label3D): BaseMaterial3D_TextureFilter =
   var ret: encoded BaseMaterial3D_TextureFilter
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(BaseMaterial3D_TextureFilter)
-proc generateTriangleMesh*(self: Label3D): TriangleMesh =
+proc generateTriangleMesh*(self: Label3D): GD_ref[TriangleMesh] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "generate_triangle_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className Label3D, addr name, 3476533166)
-  var ret: encoded TriangleMesh
+  var ret: encoded GD_ref[TriangleMesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(TriangleMesh)
+  (addr ret).decode_result(GD_ref[TriangleMesh])

@@ -245,14 +245,14 @@ proc isScaleDisabled*(self: Node3D): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Bool)
-proc getWorld3d*(self: Node3D): World3D =
+proc getWorld3d*(self: Node3D): GD_ref[World3D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_world_3d"
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 317588385)
-  var ret: encoded World3D
+  var ret: encoded GD_ref[World3D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(World3D)
+  (addr ret).decode_result(GD_ref[World3D])
 proc forceUpdateTransform*(self: Node3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -280,28 +280,28 @@ proc updateGizmos*(self: Node3D) =
     let name = api.newStringName "update_gizmos"
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc addGizmo*(self: Node3D; gizmo: Node3DGizmo) =
+proc addGizmo*(self: Node3D; gizmo: GD_ref[Node3DGizmo]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_gizmo"
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 1544533845)
   var `?param` = [getPtr gizmo]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getGizmos*(self: Node3D): TypedArray[Node3DGizmo] =
+proc getGizmos*(self: Node3D): GD_ref[Node3DGizmo] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_gizmos"
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 3995934104)
-  var ret: encoded TypedArray[Node3DGizmo]
+  var ret: encoded GD_ref[Node3DGizmo]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(TypedArray[Node3DGizmo])
+  (addr ret).decode_result(GD_ref[Node3DGizmo])
 proc clearGizmos*(self: Node3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "clear_gizmos"
     methodbind = interface_ClassDB_getMethodBind(addr className Node3D, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc setSubgizmoSelection*(self: Node3D; gizmo: Node3DGizmo; id: int32; transform: Transform3D) =
+proc setSubgizmoSelection*(self: Node3D; gizmo: GD_ref[Node3DGizmo]; id: int32; transform: Transform3D) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_subgizmo_selection"

@@ -155,18 +155,18 @@ proc useDebanding*(self: PhysicalSkyMaterial): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Bool)
-proc `nightSky=`*(self: PhysicalSkyMaterial; nightSky: Texture2D) =
+proc `nightSky=`*(self: PhysicalSkyMaterial; nightSky: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_night_sky"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalSkyMaterial, addr name, 4051416890)
   var `?param` = [getPtr nightSky]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc nightSky*(self: PhysicalSkyMaterial): Texture2D =
+proc nightSky*(self: PhysicalSkyMaterial): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_night_sky"
     methodbind = interface_ClassDB_getMethodBind(addr className PhysicalSkyMaterial, addr name, 3635182373)
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture2D)
+  (addr ret).decode_result(GD_ref[Texture2D])

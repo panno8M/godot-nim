@@ -5,15 +5,15 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_RefCounted; export classDetail_native_RefCounted
 
-proc open*(_: typedesc[DirAccess]; path: String): DirAccess =
+proc open*(_: typedesc[DirAccess]; path: String): GD_ref[DirAccess] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "open"
     methodbind = interface_ClassDB_getMethodBind(addr className DirAccess, addr name, 1923528528)
   var `?param` = [getPtr path]
-  var ret: encoded DirAccess
+  var ret: encoded GD_ref[DirAccess]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode_result(DirAccess)
+  (addr ret).decode_result(GD_ref[DirAccess])
 proc getOpenError*(_: typedesc[DirAccess]): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

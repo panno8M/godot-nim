@@ -411,7 +411,7 @@ proc clearPolygons*(self: NavigationMesh) =
     let name = api.newStringName "clear_polygons"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationMesh, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc createFromMesh*(self: NavigationMesh; mesh: Mesh) =
+proc createFromMesh*(self: NavigationMesh; mesh: GD_ref[Mesh]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "create_from_mesh"

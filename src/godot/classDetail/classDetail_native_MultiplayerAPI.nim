@@ -13,15 +13,15 @@ proc hasMultiplayerPeer*(self: MultiplayerAPI): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Bool)
-proc multiplayerPeer*(self: MultiplayerAPI): MultiplayerPeer =
+proc multiplayerPeer*(self: MultiplayerAPI): GD_ref[MultiplayerPeer] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_multiplayer_peer"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerAPI, addr name, 3223692825)
-  var ret: encoded MultiplayerPeer
+  var ret: encoded GD_ref[MultiplayerPeer]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(MultiplayerPeer)
-proc `multiplayerPeer=`*(self: MultiplayerAPI; peer: MultiplayerPeer) =
+  (addr ret).decode_result(GD_ref[MultiplayerPeer])
+proc `multiplayerPeer=`*(self: MultiplayerAPI; peer: GD_ref[MultiplayerPeer]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_multiplayer_peer"
@@ -110,11 +110,11 @@ proc getDefaultInterface*(_: typedesc[MultiplayerAPI]): StringName =
   var ret: encoded StringName
   interface_Object_methodBindPtrCall(methodbind, nil, nil, addr ret)
   (addr ret).decode_result(StringName)
-proc createDefaultInterface*(_: typedesc[MultiplayerAPI]): MultiplayerAPI =
+proc createDefaultInterface*(_: typedesc[MultiplayerAPI]): GD_ref[MultiplayerAPI] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "create_default_interface"
     methodbind = interface_ClassDB_getMethodBind(addr className MultiplayerAPI, addr name, 3294156723)
-  var ret: encoded MultiplayerAPI
+  var ret: encoded GD_ref[MultiplayerAPI]
   interface_Object_methodBindPtrCall(methodbind, nil, nil, addr ret)
-  (addr ret).decode_result(MultiplayerAPI)
+  (addr ret).decode_result(GD_ref[MultiplayerAPI])

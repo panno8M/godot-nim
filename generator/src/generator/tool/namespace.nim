@@ -70,7 +70,10 @@ proc `$`*(self: TypeName): string =
 
   result = $self.owner & delim & self.name
 
-method parameter*(info: ObjectInfo; param: ParamType): string {.base.} =
+method modify*(info: ObjectInfo; param: ParamType): ParamType {.base.} = param
+method modify*(info: ObjectInfo; param: SelfType): SelfType {.base.} = param
+
+proc stringify*(param: ParamType): string =
   let name = "ptr ".repeat(param.ptrdepth) & ($param.name)
   result = case param.attribute
   of ptaNake:
@@ -82,13 +85,13 @@ method parameter*(info: ObjectInfo; param: ParamType): string {.base.} =
   of ptaRef:
     &"GD_ref[{name}]"
 proc `$`*(self: ParamType): string =
-  objectDB.table.getOrDefault(self.name, defaultObjectInfo).parameter(self)
+  stringify objectDB.table.getOrDefault(self.name, defaultObjectInfo).modify self
 proc `$`*(self: ArgType): string =
-  $(ParamType self)
+  stringify objectDB.table.getOrDefault(self.name, defaultObjectInfo).modify self
 proc `$`*(self: RetType): string =
-  $(ParamType self)
+  stringify objectDB.table.getOrDefault(self.name, defaultObjectInfo).modify self
 proc `$`*(self: SelfType): string =
-  result = $(ParamType self)
+  result = stringify objectDB.table.getOrDefault(self.name, defaultObjectInfo).modify self
   if self.isStatic:
     return &"typedesc[{result}]"
   if self.isVar:

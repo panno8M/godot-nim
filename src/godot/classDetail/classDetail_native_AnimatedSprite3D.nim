@@ -5,21 +5,21 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_SpriteBase3D; export classDetail_native_SpriteBase3D
 
-proc `spriteFrames=`*(self: AnimatedSprite3D; spriteFrames: SpriteFrames) =
+proc `spriteFrames=`*(self: AnimatedSprite3D; spriteFrames: GD_ref[SpriteFrames]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_sprite_frames"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedSprite3D, addr name, 905781144)
   var `?param` = [getPtr spriteFrames]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc spriteFrames*(self: AnimatedSprite3D): SpriteFrames =
+proc spriteFrames*(self: AnimatedSprite3D): GD_ref[SpriteFrames] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_sprite_frames"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimatedSprite3D, addr name, 3804851214)
-  var ret: encoded SpriteFrames
+  var ret: encoded GD_ref[SpriteFrames]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(SpriteFrames)
+  (addr ret).decode_result(GD_ref[SpriteFrames])
 proc `animation=`*(self: AnimatedSprite3D; name: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

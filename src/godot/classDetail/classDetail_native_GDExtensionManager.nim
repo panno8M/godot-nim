@@ -49,12 +49,12 @@ proc getLoadedExtensions*(self: GDExtensionManager): PackedStringArray =
   var ret: encoded PackedStringArray
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(PackedStringArray)
-proc getExtension*(self: GDExtensionManager; path: String): GDExtension =
+proc getExtension*(self: GDExtensionManager; path: String): GD_ref[GDExtension] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_extension"
     methodbind = interface_ClassDB_getMethodBind(addr className GDExtensionManager, addr name, 49743343)
   var `?param` = [getPtr path]
-  var ret: encoded GDExtension
+  var ret: encoded GD_ref[GDExtension]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(GDExtension)
+  (addr ret).decode_result(GD_ref[GDExtension])

@@ -13,23 +13,23 @@ proc getDeviceCount*(self: UPNP): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(int32)
-proc getDevice*(self: UPNP; index: int32): UPNPDevice =
+proc getDevice*(self: UPNP; index: int32): GD_ref[UPNPDevice] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_device"
     methodbind = interface_ClassDB_getMethodBind(addr className UPNP, addr name, 2193290270)
   var `?param` = [getPtr index]
-  var ret: encoded UPNPDevice
+  var ret: encoded GD_ref[UPNPDevice]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(UPNPDevice)
-proc addDevice*(self: UPNP; device: UPNPDevice) =
+  (addr ret).decode_result(GD_ref[UPNPDevice])
+proc addDevice*(self: UPNP; device: GD_ref[UPNPDevice]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_device"
     methodbind = interface_ClassDB_getMethodBind(addr className UPNP, addr name, 986715920)
   var `?param` = [getPtr device]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc setDevice*(self: UPNP; index: int32; device: UPNPDevice) =
+proc setDevice*(self: UPNP; index: int32; device: GD_ref[UPNPDevice]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_device"
@@ -49,14 +49,14 @@ proc clearDevices*(self: UPNP) =
     let name = api.newStringName "clear_devices"
     methodbind = interface_ClassDB_getMethodBind(addr className UPNP, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc getGateway*(self: UPNP): UPNPDevice =
+proc getGateway*(self: UPNP): GD_ref[UPNPDevice] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_gateway"
     methodbind = interface_ClassDB_getMethodBind(addr className UPNP, addr name, 2276800779)
-  var ret: encoded UPNPDevice
+  var ret: encoded GD_ref[UPNPDevice]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(UPNPDevice)
+  (addr ret).decode_result(GD_ref[UPNPDevice])
 proc discover*(self: UPNP; timeout: int32 = 2000; ttl: int32 = 2; deviceFilter: String = "InternetGatewayDevice"): int32 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

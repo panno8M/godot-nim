@@ -5,7 +5,7 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Object; export classDetail_native_Object
 
-proc intersectPoint*(self: PhysicsDirectSpaceState2D; parameters: PhysicsPointQueryParameters2D; maxRetvals: int32 = 32): TypedArray[Dictionary] =
+proc intersectPoint*(self: PhysicsDirectSpaceState2D; parameters: GD_ref[PhysicsPointQueryParameters2D]; maxRetvals: int32 = 32): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "intersect_point"
@@ -14,7 +14,7 @@ proc intersectPoint*(self: PhysicsDirectSpaceState2D; parameters: PhysicsPointQu
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(TypedArray[Dictionary])
-proc intersectRay*(self: PhysicsDirectSpaceState2D; parameters: PhysicsRayQueryParameters2D): Dictionary =
+proc intersectRay*(self: PhysicsDirectSpaceState2D; parameters: GD_ref[PhysicsRayQueryParameters2D]): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "intersect_ray"
@@ -23,7 +23,7 @@ proc intersectRay*(self: PhysicsDirectSpaceState2D; parameters: PhysicsRayQueryP
   var ret: encoded Dictionary
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Dictionary)
-proc intersectShape*(self: PhysicsDirectSpaceState2D; parameters: PhysicsShapeQueryParameters2D; maxRetvals: int32 = 32): TypedArray[Dictionary] =
+proc intersectShape*(self: PhysicsDirectSpaceState2D; parameters: GD_ref[PhysicsShapeQueryParameters2D]; maxRetvals: int32 = 32): TypedArray[Dictionary] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "intersect_shape"
@@ -32,7 +32,7 @@ proc intersectShape*(self: PhysicsDirectSpaceState2D; parameters: PhysicsShapeQu
   var ret: encoded TypedArray[Dictionary]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(TypedArray[Dictionary])
-proc castMotion*(self: PhysicsDirectSpaceState2D; parameters: PhysicsShapeQueryParameters2D): PackedFloat32Array =
+proc castMotion*(self: PhysicsDirectSpaceState2D; parameters: GD_ref[PhysicsShapeQueryParameters2D]): PackedFloat32Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "cast_motion"
@@ -41,7 +41,7 @@ proc castMotion*(self: PhysicsDirectSpaceState2D; parameters: PhysicsShapeQueryP
   var ret: encoded PackedFloat32Array
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(PackedFloat32Array)
-proc collideShape*(self: PhysicsDirectSpaceState2D; parameters: PhysicsShapeQueryParameters2D; maxRetvals: int32 = 32): TypedArray[Vector2] =
+proc collideShape*(self: PhysicsDirectSpaceState2D; parameters: GD_ref[PhysicsShapeQueryParameters2D]; maxRetvals: int32 = 32): TypedArray[Vector2] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "collide_shape"
@@ -50,7 +50,7 @@ proc collideShape*(self: PhysicsDirectSpaceState2D; parameters: PhysicsShapeQuer
   var ret: encoded TypedArray[Vector2]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(TypedArray[Vector2])
-proc getRestInfo*(self: PhysicsDirectSpaceState2D; parameters: PhysicsShapeQueryParameters2D): Dictionary =
+proc getRestInfo*(self: PhysicsDirectSpaceState2D; parameters: GD_ref[PhysicsShapeQueryParameters2D]): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_rest_info"

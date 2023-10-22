@@ -21,11 +21,11 @@ proc isMonophonic*(self: AudioStream): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Bool)
-proc instantiatePlayback*(self: AudioStream): AudioStreamPlayback =
+proc instantiatePlayback*(self: AudioStream): GD_ref[AudioStreamPlayback] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "instantiate_playback"
     methodbind = interface_ClassDB_getMethodBind(addr className AudioStream, addr name, 210135309)
-  var ret: encoded AudioStreamPlayback
+  var ret: encoded GD_ref[AudioStreamPlayback]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(AudioStreamPlayback)
+  (addr ret).decode_result(GD_ref[AudioStreamPlayback])

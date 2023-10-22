@@ -5,15 +5,15 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Resource; export classDetail_native_Resource
 
-proc profile*(self: BoneMap): SkeletonProfile =
+proc profile*(self: BoneMap): GD_ref[SkeletonProfile] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_profile"
     methodbind = interface_ClassDB_getMethodBind(addr className BoneMap, addr name, 4291782652)
-  var ret: encoded SkeletonProfile
+  var ret: encoded GD_ref[SkeletonProfile]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(SkeletonProfile)
-proc `profile=`*(self: BoneMap; profile: SkeletonProfile) =
+  (addr ret).decode_result(GD_ref[SkeletonProfile])
+proc `profile=`*(self: BoneMap; profile: GD_ref[SkeletonProfile]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_profile"

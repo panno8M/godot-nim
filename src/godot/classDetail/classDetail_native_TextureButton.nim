@@ -5,42 +5,42 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_BaseButton; export classDetail_native_BaseButton
 
-proc `textureNormal=`*(self: TextureButton; texture: Texture2D) =
+proc `textureNormal=`*(self: TextureButton; texture: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_texture_normal"
     methodbind = interface_ClassDB_getMethodBind(addr className TextureButton, addr name, 4051416890)
   var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc `texturePressed=`*(self: TextureButton; texture: Texture2D) =
+proc `texturePressed=`*(self: TextureButton; texture: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_texture_pressed"
     methodbind = interface_ClassDB_getMethodBind(addr className TextureButton, addr name, 4051416890)
   var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc `textureHover=`*(self: TextureButton; texture: Texture2D) =
+proc `textureHover=`*(self: TextureButton; texture: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_texture_hover"
     methodbind = interface_ClassDB_getMethodBind(addr className TextureButton, addr name, 4051416890)
   var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc `textureDisabled=`*(self: TextureButton; texture: Texture2D) =
+proc `textureDisabled=`*(self: TextureButton; texture: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_texture_disabled"
     methodbind = interface_ClassDB_getMethodBind(addr className TextureButton, addr name, 4051416890)
   var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc `textureFocused=`*(self: TextureButton; texture: Texture2D) =
+proc `textureFocused=`*(self: TextureButton; texture: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_texture_focused"
     methodbind = interface_ClassDB_getMethodBind(addr className TextureButton, addr name, 4051416890)
   var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc `clickMask=`*(self: TextureButton; mask: BitMap) =
+proc `clickMask=`*(self: TextureButton; mask: GD_ref[BitMap]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_click_mask"
@@ -91,54 +91,54 @@ proc isFlippedV*(self: TextureButton): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Bool)
-proc textureNormal*(self: TextureButton): Texture2D =
+proc textureNormal*(self: TextureButton): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_texture_normal"
     methodbind = interface_ClassDB_getMethodBind(addr className TextureButton, addr name, 3635182373)
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture2D)
-proc texturePressed*(self: TextureButton): Texture2D =
+  (addr ret).decode_result(GD_ref[Texture2D])
+proc texturePressed*(self: TextureButton): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_texture_pressed"
     methodbind = interface_ClassDB_getMethodBind(addr className TextureButton, addr name, 3635182373)
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture2D)
-proc textureHover*(self: TextureButton): Texture2D =
+  (addr ret).decode_result(GD_ref[Texture2D])
+proc textureHover*(self: TextureButton): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_texture_hover"
     methodbind = interface_ClassDB_getMethodBind(addr className TextureButton, addr name, 3635182373)
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture2D)
-proc textureDisabled*(self: TextureButton): Texture2D =
+  (addr ret).decode_result(GD_ref[Texture2D])
+proc textureDisabled*(self: TextureButton): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_texture_disabled"
     methodbind = interface_ClassDB_getMethodBind(addr className TextureButton, addr name, 3635182373)
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture2D)
-proc textureFocused*(self: TextureButton): Texture2D =
+  (addr ret).decode_result(GD_ref[Texture2D])
+proc textureFocused*(self: TextureButton): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_texture_focused"
     methodbind = interface_ClassDB_getMethodBind(addr className TextureButton, addr name, 3635182373)
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture2D)
-proc clickMask*(self: TextureButton): BitMap =
+  (addr ret).decode_result(GD_ref[Texture2D])
+proc clickMask*(self: TextureButton): GD_ref[BitMap] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_click_mask"
     methodbind = interface_ClassDB_getMethodBind(addr className TextureButton, addr name, 2459671998)
-  var ret: encoded BitMap
+  var ret: encoded GD_ref[BitMap]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(BitMap)
+  (addr ret).decode_result(GD_ref[BitMap])
 proc ignoreTextureSize*(self: TextureButton): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

@@ -50,14 +50,14 @@ proc clearPolygons*(self: NavigationPolygon) =
     let name = api.newStringName "clear_polygons"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPolygon, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc getNavigationMesh*(self: NavigationPolygon): NavigationMesh =
+proc getNavigationMesh*(self: NavigationPolygon): GD_ref[NavigationMesh] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_navigation_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationPolygon, addr name, 330232164)
-  var ret: encoded NavigationMesh
+  var ret: encoded GD_ref[NavigationMesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(NavigationMesh)
+  (addr ret).decode_result(GD_ref[NavigationMesh])
 proc addOutline*(self: NavigationPolygon; outline: PackedVector2Array) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

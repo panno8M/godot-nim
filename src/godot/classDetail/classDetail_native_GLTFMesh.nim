@@ -5,15 +5,15 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Resource; export classDetail_native_Resource
 
-proc mesh*(self: GLTFMesh): ImporterMesh =
+proc mesh*(self: GLTFMesh): GD_ref[ImporterMesh] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFMesh, addr name, 3754628756)
-  var ret: encoded ImporterMesh
+  var ret: encoded GD_ref[ImporterMesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(ImporterMesh)
-proc `mesh=`*(self: GLTFMesh; mesh: ImporterMesh) =
+  (addr ret).decode_result(GD_ref[ImporterMesh])
+proc `mesh=`*(self: GLTFMesh; mesh: GD_ref[ImporterMesh]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_mesh"
@@ -35,15 +35,15 @@ proc `blendWeights=`*(self: GLTFMesh; blendWeights: PackedFloat32Array) =
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFMesh, addr name, 2899603908)
   var `?param` = [getPtr blendWeights]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc instanceMaterials*(self: GLTFMesh): TypedArray[Material] =
+proc instanceMaterials*(self: GLTFMesh): GD_ref[Material] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_instance_materials"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFMesh, addr name, 2915620761)
-  var ret: encoded TypedArray[Material]
+  var ret: encoded GD_ref[Material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(TypedArray[Material])
-proc `instanceMaterials=`*(self: GLTFMesh; instanceMaterials: TypedArray[Material]) =
+  (addr ret).decode_result(GD_ref[Material])
+proc `instanceMaterials=`*(self: GLTFMesh; instanceMaterials: GD_ref[Material]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_instance_materials"

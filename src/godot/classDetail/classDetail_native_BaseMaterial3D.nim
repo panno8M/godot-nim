@@ -517,22 +517,22 @@ proc feature*(self: BaseMaterial3D; feature: BaseMaterial3D_Feature): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Bool)
-proc `texture=`*(self: BaseMaterial3D; param: BaseMaterial3D_TextureParam; texture: Texture2D) =
+proc `texture=`*(self: BaseMaterial3D; param: BaseMaterial3D_TextureParam; texture: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 464208135)
   var `?param` = [getPtr param, getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc texture*(self: BaseMaterial3D; param: BaseMaterial3D_TextureParam): Texture2D =
+proc texture*(self: BaseMaterial3D; param: BaseMaterial3D_TextureParam): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className BaseMaterial3D, addr name, 329605813)
   var `?param` = [getPtr param]
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Texture2D)
+  (addr ret).decode_result(GD_ref[Texture2D])
 proc `detailBlendMode=`*(self: BaseMaterial3D; detailBlendMode: BaseMaterial3D_BlendMode) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

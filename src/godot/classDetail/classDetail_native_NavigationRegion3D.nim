@@ -5,21 +5,21 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Node3D; export classDetail_native_Node3D
 
-proc `navigationMesh=`*(self: NavigationRegion3D; navigationMesh: NavigationMesh) =
+proc `navigationMesh=`*(self: NavigationRegion3D; navigationMesh: GD_ref[NavigationMesh]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_navigation_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationRegion3D, addr name, 2923361153)
   var `?param` = [getPtr navigationMesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc navigationMesh*(self: NavigationRegion3D): NavigationMesh =
+proc navigationMesh*(self: NavigationRegion3D): GD_ref[NavigationMesh] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_navigation_mesh"
     methodbind = interface_ClassDB_getMethodBind(addr className NavigationRegion3D, addr name, 1468720886)
-  var ret: encoded NavigationMesh
+  var ret: encoded GD_ref[NavigationMesh]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(NavigationMesh)
+  (addr ret).decode_result(GD_ref[NavigationMesh])
 proc `enabled=`*(self: NavigationRegion3D; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

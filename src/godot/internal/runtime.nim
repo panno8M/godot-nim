@@ -27,13 +27,13 @@ proc initialize(T: typedesc[SomeUserClass]; userdata: ClassRuntimeData) =
     discard
 
 var runtimeDataTable: Table[StringName, ClassRuntimeData]
-proc get_runtimeData*(T: typedesc[SomeClass]): ClassRuntimeData =
+proc get_runtimeData*[T: ObjectBase](_: typedesc[T]): ClassRuntimeData =
   var data {.global.} : pointer
   check_init initProgress > Interface
   if unlikely(data.isNil):
     let runtimeData = new ClassRuntimeData
     new runtimeData.virtualMethods
-    runtimeData.className = $T
+    runtimeData.className = api.newStringName $T
     when T.Super isnot ObjectBase:
       runtimeData.super = get_runtimeData(T.Super)
 
@@ -46,13 +46,13 @@ proc get_runtimeData*(T: typedesc[SomeClass]): ClassRuntimeData =
   cast[ClassRuntimeData](data)
 
 {.push, inline.}
-proc className*(T: typedesc[SomeClass]): var StringName =
+converter className*[T: ObjectBase](_: typedesc[T]): var StringName =
   get_runtimeData(T).className
 
-proc callbacks*(T: typedesc[SomeClass]): var InstanceBindingCallbacks =
+proc callbacks*[T: ObjectBase](_: typedesc[T]): var InstanceBindingCallbacks =
   get_runtimeData(T).callbacks
 
-proc vmethods*(T: typedesc[SomeClass]): TableRef[StringName, ClassCallVirtual] =
+proc vmethods*[T: ObjectBase](_: typedesc[T]): TableRef[StringName, ClassCallVirtual] =
   get_runtimeData(T).virtualMethods
 
 {.pop.}

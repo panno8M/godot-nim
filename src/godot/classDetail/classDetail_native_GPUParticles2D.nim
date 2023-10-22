@@ -89,7 +89,7 @@ proc `interpolate=`*(self: GPUParticles2D; enable: Bool) =
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles2D, addr name, 2586408642)
   var `?param` = [getPtr enable]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc `processMaterial=`*(self: GPUParticles2D; material: Material) =
+proc `processMaterial=`*(self: GPUParticles2D; material: GD_ref[Material]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_process_material"
@@ -206,14 +206,14 @@ proc interpolate*(self: GPUParticles2D): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Bool)
-proc processMaterial*(self: GPUParticles2D): Material =
+proc processMaterial*(self: GPUParticles2D): GD_ref[Material] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_process_material"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles2D, addr name, 5934680)
-  var ret: encoded Material
+  var ret: encoded GD_ref[Material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Material)
+  (addr ret).decode_result(GD_ref[Material])
 proc speedScale*(self: GPUParticles2D): float64 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -245,21 +245,21 @@ proc drawOrder*(self: GPUParticles2D): GPUParticles2D_DrawOrder =
   var ret: encoded GPUParticles2D_DrawOrder
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(GPUParticles2D_DrawOrder)
-proc `texture=`*(self: GPUParticles2D; texture: Texture2D) =
+proc `texture=`*(self: GPUParticles2D; texture: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles2D, addr name, 4051416890)
   var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc texture*(self: GPUParticles2D): Texture2D =
+proc texture*(self: GPUParticles2D): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className GPUParticles2D, addr name, 3635182373)
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture2D)
+  (addr ret).decode_result(GD_ref[Texture2D])
 proc captureRect*(self: GPUParticles2D): Rect2 =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

@@ -11,7 +11,7 @@ proc clear*(self: MeshDataTool) =
     let name = api.newStringName "clear"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshDataTool, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc createFromSurface*(self: MeshDataTool; mesh: ArrayMesh; surface: int32): Error =
+proc createFromSurface*(self: MeshDataTool; mesh: GD_ref[ArrayMesh]; surface: int32): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "create_from_surface"
@@ -20,7 +20,7 @@ proc createFromSurface*(self: MeshDataTool; mesh: ArrayMesh; surface: int32): Er
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Error)
-proc commitToSurface*(self: MeshDataTool; mesh: ArrayMesh): Error =
+proc commitToSurface*(self: MeshDataTool; mesh: GD_ref[ArrayMesh]): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "commit_to_surface"
@@ -300,18 +300,18 @@ proc getFaceNormal*(self: MeshDataTool; idx: int32): Vector3 =
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Vector3)
-proc setMaterial*(self: MeshDataTool; material: Material) =
+proc setMaterial*(self: MeshDataTool; material: GD_ref[Material]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_material"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshDataTool, addr name, 2757459619)
   var `?param` = [getPtr material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getMaterial*(self: MeshDataTool): Material =
+proc getMaterial*(self: MeshDataTool): GD_ref[Material] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_material"
     methodbind = interface_ClassDB_getMethodBind(addr className MeshDataTool, addr name, 5934680)
-  var ret: encoded Material
+  var ret: encoded GD_ref[Material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Material)
+  (addr ret).decode_result(GD_ref[Material])

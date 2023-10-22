@@ -29,15 +29,15 @@ proc destroy*(self: ENetConnection) =
     let name = api.newStringName "destroy"
     methodbind = interface_ClassDB_getMethodBind(addr className ENetConnection, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc connectToHost*(self: ENetConnection; address: String; port: int32; channels: int32 = 0; data: int32 = 0): ENetPacketPeer =
+proc connectToHost*(self: ENetConnection; address: String; port: int32; channels: int32 = 0; data: int32 = 0): GD_ref[ENetPacketPeer] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "connect_to_host"
     methodbind = interface_ClassDB_getMethodBind(addr className ENetConnection, addr name, 385984708)
   var `?param` = [getPtr address, getPtr port, getPtr channels, getPtr data]
-  var ret: encoded ENetPacketPeer
+  var ret: encoded GD_ref[ENetPacketPeer]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(ENetPacketPeer)
+  (addr ret).decode_result(GD_ref[ENetPacketPeer])
 proc service*(self: ENetConnection; timeout: int32 = 0): Array =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -81,7 +81,7 @@ proc compress*(self: ENetConnection; mode: ENetConnection_CompressionMode) =
     methodbind = interface_ClassDB_getMethodBind(addr className ENetConnection, addr name, 2660215187)
   var `?param` = [getPtr mode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc dtlsServerSetup*(self: ENetConnection; serverOptions: TLSOptions): Error =
+proc dtlsServerSetup*(self: ENetConnection; serverOptions: GD_ref[TLSOptions]): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "dtls_server_setup"
@@ -90,7 +90,7 @@ proc dtlsServerSetup*(self: ENetConnection; serverOptions: TLSOptions): Error =
   var ret: encoded Error
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Error)
-proc dtlsClientSetup*(self: ENetConnection; hostname: String; clientOptions: TLSOptions = default TLSOptions): Error =
+proc dtlsClientSetup*(self: ENetConnection; hostname: String; clientOptions: GD_ref[TLSOptions] = default GD_ref[TLSOptions]): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "dtls_client_setup"
@@ -131,14 +131,14 @@ proc getLocalPort*(self: ENetConnection): int32 =
   var ret: encoded int32
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(int32)
-proc getPeers*(self: ENetConnection): TypedArray[ENetPacketPeer] =
+proc getPeers*(self: ENetConnection): GD_ref[ENetPacketPeer] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_peers"
     methodbind = interface_ClassDB_getMethodBind(addr className ENetConnection, addr name, 2915620761)
-  var ret: encoded TypedArray[ENetPacketPeer]
+  var ret: encoded GD_ref[ENetPacketPeer]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(TypedArray[ENetPacketPeer])
+  (addr ret).decode_result(GD_ref[ENetPacketPeer])
 proc socketSend*(self: ENetConnection; destinationAddress: String; destinationPort: int32; packet: PackedByteArray) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

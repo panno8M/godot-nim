@@ -51,18 +51,18 @@ proc bakeSimplificationDistance*(self: OccluderInstance3D): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Float)
-proc `occluder=`*(self: OccluderInstance3D; occluder: Occluder3D) =
+proc `occluder=`*(self: OccluderInstance3D; occluder: GD_ref[Occluder3D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_occluder"
     methodbind = interface_ClassDB_getMethodBind(addr className OccluderInstance3D, addr name, 1664878165)
   var `?param` = [getPtr occluder]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc occluder*(self: OccluderInstance3D): Occluder3D =
+proc occluder*(self: OccluderInstance3D): GD_ref[Occluder3D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_occluder"
     methodbind = interface_ClassDB_getMethodBind(addr className OccluderInstance3D, addr name, 1696836198)
-  var ret: encoded Occluder3D
+  var ret: encoded GD_ref[Occluder3D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Occluder3D)
+  (addr ret).decode_result(GD_ref[Occluder3D])

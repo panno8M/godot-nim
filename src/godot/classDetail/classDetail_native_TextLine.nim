@@ -78,7 +78,7 @@ proc setBidiOverride*(self: TextLine; override: Array) =
     methodbind = interface_ClassDB_getMethodBind(addr className TextLine, addr name, 381264803)
   var `?param` = [getPtr override]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addString*(self: TextLine; text: String; font: Font; fontSize: int32; language: String = ""; meta: Variant = default(Variant)): Bool =
+proc addString*(self: TextLine; text: String; font: GD_ref[Font]; fontSize: int32; language: String = ""; meta: Variant = default(Variant)): Bool =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_string"

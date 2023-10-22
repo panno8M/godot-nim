@@ -80,18 +80,18 @@ proc edgeFade*(self: FogMaterial): Float =
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Float)
-proc `densityTexture=`*(self: FogMaterial; densityTexture: Texture3D) =
+proc `densityTexture=`*(self: FogMaterial; densityTexture: GD_ref[Texture3D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_density_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className FogMaterial, addr name, 1188404210)
   var `?param` = [getPtr densityTexture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc densityTexture*(self: FogMaterial): Texture3D =
+proc densityTexture*(self: FogMaterial): GD_ref[Texture3D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_density_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className FogMaterial, addr name, 373985333)
-  var ret: encoded Texture3D
+  var ret: encoded GD_ref[Texture3D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture3D)
+  (addr ret).decode_result(GD_ref[Texture3D])

@@ -5,21 +5,21 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Font; export classDetail_native_Font
 
-proc `baseFont=`*(self: FontVariation; font: Font) =
+proc `baseFont=`*(self: FontVariation; font: GD_ref[Font]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_base_font"
     methodbind = interface_ClassDB_getMethodBind(addr className FontVariation, addr name, 1262170328)
   var `?param` = [getPtr font]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc baseFont*(self: FontVariation): Font =
+proc baseFont*(self: FontVariation): GD_ref[Font] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_base_font"
     methodbind = interface_ClassDB_getMethodBind(addr className FontVariation, addr name, 3229501585)
-  var ret: encoded Font
+  var ret: encoded GD_ref[Font]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Font)
+  (addr ret).decode_result(GD_ref[Font])
 proc `variationOpentype=`*(self: FontVariation; coords: Dictionary) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

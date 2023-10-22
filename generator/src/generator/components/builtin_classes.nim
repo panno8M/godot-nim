@@ -262,7 +262,7 @@ proc renderConstructor*(self: NimBuiltinClass): Statement =
     &"var {constr}: array[{self.json.constructors.len}, PtrConstructor]"
     &"proc load_{constr}* ="
     &"  for i in {idxRange_str}:"
-    &"    {constr}[i] = interface_Variant_getPtrConstructor(variantType {self.name}, uint32 i)"
+    &"    {constr}[i] = interface_Variant_getPtrConstructor(VariantType_{self.name}, uint32 i)"
     ""
     constrs
     ""

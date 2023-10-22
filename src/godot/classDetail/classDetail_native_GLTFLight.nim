@@ -5,15 +5,15 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Resource; export classDetail_native_Resource
 
-proc fromNode*(_: typedesc[GLTFLight]; lightNode: Light3D): GLTFLight =
+proc fromNode*(_: typedesc[GLTFLight]; lightNode: Light3D): GD_ref[GLTFLight] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "from_node"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFLight, addr name, 3907677874)
   var `?param` = [getPtr lightNode]
-  var ret: encoded GLTFLight
+  var ret: encoded GD_ref[GLTFLight]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode_result(GLTFLight)
+  (addr ret).decode_result(GD_ref[GLTFLight])
 proc toNode*(self: GLTFLight): Light3D =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -22,15 +22,15 @@ proc toNode*(self: GLTFLight): Light3D =
   var ret: encoded Light3D
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Light3D)
-proc fromDictionary*(_: typedesc[GLTFLight]; dictionary: Dictionary): GLTFLight =
+proc fromDictionary*(_: typedesc[GLTFLight]; dictionary: Dictionary): GD_ref[GLTFLight] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "from_dictionary"
     methodbind = interface_ClassDB_getMethodBind(addr className GLTFLight, addr name, 4057087208)
   var `?param` = [getPtr dictionary]
-  var ret: encoded GLTFLight
+  var ret: encoded GD_ref[GLTFLight]
   interface_Object_methodBindPtrCall(methodbind, nil, addr `?param`[0], addr ret)
-  (addr ret).decode_result(GLTFLight)
+  (addr ret).decode_result(GD_ref[GLTFLight])
 proc toDictionary*(self: GLTFLight): Dictionary =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

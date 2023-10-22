@@ -100,6 +100,11 @@ proc renderDetail*(class: NimClass): RenderedNimClass =
   if localProcs.children.len != 0:
     result.detail = localProcs
 
+method modify*(info: NimClass; param: ParamType): ParamType =
+  result = param
+  if info.json.is_refcounted:
+    result.attribute = ptaRef
+
 method defaultValue*(info: NimClass; value: string; argType: ArgType): string =
   if value == "null":
     if info.json.is_refcounted:

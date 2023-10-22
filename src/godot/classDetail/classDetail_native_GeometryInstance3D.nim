@@ -5,36 +5,36 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_VisualInstance3D; export classDetail_native_VisualInstance3D
 
-proc `materialOverride=`*(self: GeometryInstance3D; material: Material) =
+proc `materialOverride=`*(self: GeometryInstance3D; material: GD_ref[Material]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_material_override"
     methodbind = interface_ClassDB_getMethodBind(addr className GeometryInstance3D, addr name, 2757459619)
   var `?param` = [getPtr material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc materialOverride*(self: GeometryInstance3D): Material =
+proc materialOverride*(self: GeometryInstance3D): GD_ref[Material] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_material_override"
     methodbind = interface_ClassDB_getMethodBind(addr className GeometryInstance3D, addr name, 5934680)
-  var ret: encoded Material
+  var ret: encoded GD_ref[Material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Material)
-proc `materialOverlay=`*(self: GeometryInstance3D; material: Material) =
+  (addr ret).decode_result(GD_ref[Material])
+proc `materialOverlay=`*(self: GeometryInstance3D; material: GD_ref[Material]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_material_overlay"
     methodbind = interface_ClassDB_getMethodBind(addr className GeometryInstance3D, addr name, 2757459619)
   var `?param` = [getPtr material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc materialOverlay*(self: GeometryInstance3D): Material =
+proc materialOverlay*(self: GeometryInstance3D): GD_ref[Material] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_material_overlay"
     methodbind = interface_ClassDB_getMethodBind(addr className GeometryInstance3D, addr name, 5934680)
-  var ret: encoded Material
+  var ret: encoded GD_ref[Material]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Material)
+  (addr ret).decode_result(GD_ref[Material])
 proc `castShadowsSetting=`*(self: GeometryInstance3D; shadowCastingSetting: GeometryInstance3D_ShadowCastingSetting) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

@@ -19,7 +19,7 @@ unittest.disableParamFiltering()
 
 type NimSideTester* = ref object of Node
   initialized: bool
-  texture: Texture2D
+  texture: gdref Texture2D
 
 # The source of inheritance must be a class known to Godot.
 # (Engine-Class, or Extension-Class from which register_class will be called)
@@ -124,17 +124,17 @@ proc test_Resource(self: NimSideTester) =
       let tex1 = sprite.texture
       self.texture = sprite.texture
 
-      let refc = tex1.getReferenceCount
+      let refc = tex1[].getReferenceCount
 
       block Scope1:
         let tex2 = sprite.texture
-        check tex1.getReferenceCount == refc
-        check tex2.getReferenceCount == refc
+        check tex1[].getReferenceCount == refc.succ
+        check tex2[].getReferenceCount == refc.succ
 
-      check tex1.getReferenceCount == refc
+      check tex1[].getReferenceCount == refc
     test "loading":
       let loader = /ResourceLoader
-      let icon = loader.load("res://icon.png")
+      let icon = loader.load("res://icon.png") as gdref Texture2D
       check icon == self.texture
 
 # To register custom signal, define proc with following those rules:
@@ -253,8 +253,8 @@ method ready(self: NimSideTester) =
   self.test_Signal()
   self.test_Variant()
 
-method input(self: NimSideTester; event: InputEvent) =
-  let evkey = event as InputEventKey
+method input(self: NimSideTester; event: gdref InputEvent) =
+  let evkey = event as gdref InputEventKey
   # Or, `let evkey = event.castTo InputEventKey`
-  if evkey.isNil: return
-  echo evkey, ": ", evkey.keyLabel
+  if evkey[].isNil: return
+  echo evkey[], ": ", evkey[].keyLabel

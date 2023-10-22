@@ -82,22 +82,22 @@ proc paramMax*(self: ParticleProcessMaterial; param: ParticleProcessMaterial_Par
   var ret: encoded Float
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Float)
-proc `paramTexture=`*(self: ParticleProcessMaterial; param: ParticleProcessMaterial_Parameter; texture: Texture2D) =
+proc `paramTexture=`*(self: ParticleProcessMaterial; param: ParticleProcessMaterial_Parameter; texture: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_param_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 526976089)
   var `?param` = [getPtr param, getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc paramTexture*(self: ParticleProcessMaterial; param: ParticleProcessMaterial_Parameter): Texture2D =
+proc paramTexture*(self: ParticleProcessMaterial; param: ParticleProcessMaterial_Parameter): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_param_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 3489372978)
   var `?param` = [getPtr param]
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Texture2D)
+  (addr ret).decode_result(GD_ref[Texture2D])
 proc `color=`*(self: ParticleProcessMaterial; color: Color) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -113,36 +113,36 @@ proc color*(self: ParticleProcessMaterial): Color =
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Color)
-proc `colorRamp=`*(self: ParticleProcessMaterial; ramp: Texture2D) =
+proc `colorRamp=`*(self: ParticleProcessMaterial; ramp: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_color_ramp"
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 4051416890)
   var `?param` = [getPtr ramp]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc colorRamp*(self: ParticleProcessMaterial): Texture2D =
+proc colorRamp*(self: ParticleProcessMaterial): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_color_ramp"
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 3635182373)
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture2D)
-proc `colorInitialRamp=`*(self: ParticleProcessMaterial; ramp: Texture2D) =
+  (addr ret).decode_result(GD_ref[Texture2D])
+proc `colorInitialRamp=`*(self: ParticleProcessMaterial; ramp: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_color_initial_ramp"
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 4051416890)
   var `?param` = [getPtr ramp]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc colorInitialRamp*(self: ParticleProcessMaterial): Texture2D =
+proc colorInitialRamp*(self: ParticleProcessMaterial): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_color_initial_ramp"
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 3635182373)
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture2D)
+  (addr ret).decode_result(GD_ref[Texture2D])
 proc `particleFlag=`*(self: ParticleProcessMaterial; particleFlag: ParticleProcessMaterial_ParticleFlags; enable: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -204,51 +204,51 @@ proc emissionBoxExtents*(self: ParticleProcessMaterial): Vector3 =
   var ret: encoded Vector3
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Vector3)
-proc `emissionPointTexture=`*(self: ParticleProcessMaterial; texture: Texture2D) =
+proc `emissionPointTexture=`*(self: ParticleProcessMaterial; texture: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_emission_point_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 4051416890)
   var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc emissionPointTexture*(self: ParticleProcessMaterial): Texture2D =
+proc emissionPointTexture*(self: ParticleProcessMaterial): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_emission_point_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 3635182373)
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture2D)
-proc `emissionNormalTexture=`*(self: ParticleProcessMaterial; texture: Texture2D) =
+  (addr ret).decode_result(GD_ref[Texture2D])
+proc `emissionNormalTexture=`*(self: ParticleProcessMaterial; texture: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_emission_normal_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 4051416890)
   var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc emissionNormalTexture*(self: ParticleProcessMaterial): Texture2D =
+proc emissionNormalTexture*(self: ParticleProcessMaterial): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_emission_normal_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 3635182373)
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture2D)
-proc `emissionColorTexture=`*(self: ParticleProcessMaterial; texture: Texture2D) =
+  (addr ret).decode_result(GD_ref[Texture2D])
+proc `emissionColorTexture=`*(self: ParticleProcessMaterial; texture: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_emission_color_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 4051416890)
   var `?param` = [getPtr texture]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc emissionColorTexture*(self: ParticleProcessMaterial): Texture2D =
+proc emissionColorTexture*(self: ParticleProcessMaterial): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_emission_color_texture"
     methodbind = interface_ClassDB_getMethodBind(addr className ParticleProcessMaterial, addr name, 3635182373)
-  var ret: encoded Texture2D
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Texture2D)
+  (addr ret).decode_result(GD_ref[Texture2D])
 proc `emissionPointCount=`*(self: ParticleProcessMaterial; pointCount: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

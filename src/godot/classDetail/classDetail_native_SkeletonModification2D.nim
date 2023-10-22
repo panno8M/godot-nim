@@ -20,14 +20,14 @@ proc enabled*(self: SkeletonModification2D): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Bool)
-proc getModificationStack*(self: SkeletonModification2D): SkeletonModificationStack2D =
+proc getModificationStack*(self: SkeletonModification2D): GD_ref[SkeletonModificationStack2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_modification_stack"
     methodbind = interface_ClassDB_getMethodBind(addr className SkeletonModification2D, addr name, 2137761694)
-  var ret: encoded SkeletonModificationStack2D
+  var ret: encoded GD_ref[SkeletonModificationStack2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(SkeletonModificationStack2D)
+  (addr ret).decode_result(GD_ref[SkeletonModificationStack2D])
 proc setIsSetup*(self: SkeletonModification2D; isSetup: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

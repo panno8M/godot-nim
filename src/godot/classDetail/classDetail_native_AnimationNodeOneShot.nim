@@ -20,21 +20,21 @@ proc fadeinTime*(self: AnimationNodeOneShot): float64 =
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(float64)
-proc `fadeinCurve=`*(self: AnimationNodeOneShot; curve: Curve) =
+proc `fadeinCurve=`*(self: AnimationNodeOneShot; curve: GD_ref[Curve]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_fadein_curve"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeOneShot, addr name, 270443179)
   var `?param` = [getPtr curve]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fadeinCurve*(self: AnimationNodeOneShot): Curve =
+proc fadeinCurve*(self: AnimationNodeOneShot): GD_ref[Curve] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_fadein_curve"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeOneShot, addr name, 2460114913)
-  var ret: encoded Curve
+  var ret: encoded GD_ref[Curve]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Curve)
+  (addr ret).decode_result(GD_ref[Curve])
 proc `fadeoutTime=`*(self: AnimationNodeOneShot; time: float64) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -50,21 +50,21 @@ proc fadeoutTime*(self: AnimationNodeOneShot): float64 =
   var ret: encoded float64
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(float64)
-proc `fadeoutCurve=`*(self: AnimationNodeOneShot; curve: Curve) =
+proc `fadeoutCurve=`*(self: AnimationNodeOneShot; curve: GD_ref[Curve]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_fadeout_curve"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeOneShot, addr name, 270443179)
   var `?param` = [getPtr curve]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc fadeoutCurve*(self: AnimationNodeOneShot): Curve =
+proc fadeoutCurve*(self: AnimationNodeOneShot): GD_ref[Curve] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_fadeout_curve"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeOneShot, addr name, 2460114913)
-  var ret: encoded Curve
+  var ret: encoded GD_ref[Curve]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Curve)
+  (addr ret).decode_result(GD_ref[Curve])
 proc `autorestart=`*(self: AnimationNodeOneShot; active: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

@@ -5,22 +5,22 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_AnimationRootNode; export classDetail_native_AnimationRootNode
 
-proc addNode*(self: AnimationNodeBlendTree; name: StringName; node: AnimationNode; position: Vector2 = gdvec(0, 0)) =
+proc addNode*(self: AnimationNodeBlendTree; name: StringName; node: GD_ref[AnimationNode]; position: Vector2 = gdvec(0, 0)) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_node"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendTree, addr name, 2055804584)
   var `?param` = [getPtr name, getPtr node, getPtr position]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getNode*(self: AnimationNodeBlendTree; name: StringName): AnimationNode =
+proc getNode*(self: AnimationNodeBlendTree; name: StringName): GD_ref[AnimationNode] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_node"
     methodbind = interface_ClassDB_getMethodBind(addr className AnimationNodeBlendTree, addr name, 625644256)
   var `?param` = [getPtr name]
-  var ret: encoded AnimationNode
+  var ret: encoded GD_ref[AnimationNode]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(AnimationNode)
+  (addr ret).decode_result(GD_ref[AnimationNode])
 proc removeNode*(self: AnimationNodeBlendTree; name: StringName) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

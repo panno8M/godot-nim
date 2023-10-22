@@ -139,33 +139,33 @@ proc isNormalized*(self: NoiseTexture2D): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Bool)
-proc `colorRamp=`*(self: NoiseTexture2D; gradient: Gradient) =
+proc `colorRamp=`*(self: NoiseTexture2D; gradient: GD_ref[Gradient]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_color_ramp"
     methodbind = interface_ClassDB_getMethodBind(addr className NoiseTexture2D, addr name, 2756054477)
   var `?param` = [getPtr gradient]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc colorRamp*(self: NoiseTexture2D): Gradient =
+proc colorRamp*(self: NoiseTexture2D): GD_ref[Gradient] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_color_ramp"
     methodbind = interface_ClassDB_getMethodBind(addr className NoiseTexture2D, addr name, 132272999)
-  var ret: encoded Gradient
+  var ret: encoded GD_ref[Gradient]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Gradient)
-proc `noise=`*(self: NoiseTexture2D; noise: Noise) =
+  (addr ret).decode_result(GD_ref[Gradient])
+proc `noise=`*(self: NoiseTexture2D; noise: GD_ref[Noise]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_noise"
     methodbind = interface_ClassDB_getMethodBind(addr className NoiseTexture2D, addr name, 4135492439)
   var `?param` = [getPtr noise]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc noise*(self: NoiseTexture2D): Noise =
+proc noise*(self: NoiseTexture2D): GD_ref[Noise] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_noise"
     methodbind = interface_ClassDB_getMethodBind(addr className NoiseTexture2D, addr name, 185851837)
-  var ret: encoded Noise
+  var ret: encoded GD_ref[Noise]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(Noise)
+  (addr ret).decode_result(GD_ref[Noise])

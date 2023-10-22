@@ -50,18 +50,18 @@ proc blendConstant*(self: RDPipelineColorBlendState): Color =
   var ret: encoded Color
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Color)
-proc `attachments=`*(self: RDPipelineColorBlendState; attachments: TypedArray[RDPipelineColorBlendStateAttachment]) =
+proc `attachments=`*(self: RDPipelineColorBlendState; attachments: GD_ref[RDPipelineColorBlendStateAttachment]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_attachments"
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineColorBlendState, addr name, 381264803)
   var `?param` = [getPtr attachments]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc attachments*(self: RDPipelineColorBlendState): TypedArray[RDPipelineColorBlendStateAttachment] =
+proc attachments*(self: RDPipelineColorBlendState): GD_ref[RDPipelineColorBlendStateAttachment] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_attachments"
     methodbind = interface_ClassDB_getMethodBind(addr className RDPipelineColorBlendState, addr name, 3995934104)
-  var ret: encoded TypedArray[RDPipelineColorBlendStateAttachment]
+  var ret: encoded GD_ref[RDPipelineColorBlendStateAttachment]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(TypedArray[RDPipelineColorBlendStateAttachment])
+  (addr ret).decode_result(GD_ref[RDPipelineColorBlendStateAttachment])

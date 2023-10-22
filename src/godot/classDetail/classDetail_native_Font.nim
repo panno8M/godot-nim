@@ -5,21 +5,21 @@
 import ./../helper/engineClassDefiner
 import ./classDetail_native_Resource; export classDetail_native_Resource
 
-proc setFallbacks*(self: Font; fallbacks: TypedArray[Font]) =
+proc setFallbacks*(self: Font; fallbacks: GD_ref[Font]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "set_fallbacks"
     methodbind = interface_ClassDB_getMethodBind(addr className Font, addr name, 381264803)
   var `?param` = [getPtr fallbacks]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc getFallbacks*(self: Font): TypedArray[Font] =
+proc getFallbacks*(self: Font): GD_ref[Font] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_fallbacks"
     methodbind = interface_ClassDB_getMethodBind(addr className Font, addr name, 3995934104)
-  var ret: encoded TypedArray[Font]
+  var ret: encoded GD_ref[Font]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(TypedArray[Font])
+  (addr ret).decode_result(GD_ref[Font])
 proc findVariation*(self: Font; variationCoordinates: Dictionary; faceIndex: int32 = 0; strength: Float = 0.0; transform: Transform2D = init_Transform2D()): RID =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

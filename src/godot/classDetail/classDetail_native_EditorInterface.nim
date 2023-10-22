@@ -52,23 +52,23 @@ proc getSelection*(self: EditorInterface): EditorSelection =
   var ret: encoded EditorSelection
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(EditorSelection)
-proc getEditorSettings*(self: EditorInterface): EditorSettings =
+proc getEditorSettings*(self: EditorInterface): GD_ref[EditorSettings] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "get_editor_settings"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 4086932459)
-  var ret: encoded EditorSettings
+  var ret: encoded GD_ref[EditorSettings]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
-  (addr ret).decode_result(EditorSettings)
-proc makeMeshPreviews*(self: EditorInterface; meshes: TypedArray[Mesh]; previewSize: int32): TypedArray[Texture2D] =
+  (addr ret).decode_result(GD_ref[EditorSettings])
+proc makeMeshPreviews*(self: EditorInterface; meshes: GD_ref[Mesh]; previewSize: int32): GD_ref[Texture2D] =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "make_mesh_previews"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 878078554)
   var `?param` = [getPtr meshes, getPtr previewSize]
-  var ret: encoded TypedArray[Texture2D]
+  var ret: encoded GD_ref[Texture2D]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(TypedArray[Texture2D])
+  (addr ret).decode_result(GD_ref[Texture2D])
 proc setPluginEnabled*(self: EditorInterface; plugin: String; enabled: Bool) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -221,7 +221,7 @@ proc inspectObject*(self: EditorInterface; `object`: Object; forProperty: String
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 2564140749)
   var `?param` = [getPtr `object`, getPtr forProperty, getPtr inspectorOnly]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc editResource*(self: EditorInterface; resource: Resource) =
+proc editResource*(self: EditorInterface; resource: GD_ref[Resource]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "edit_resource"
@@ -235,7 +235,7 @@ proc editNode*(self: EditorInterface; node: Node) =
     methodbind = interface_ClassDB_getMethodBind(addr className EditorInterface, addr name, 1078189570)
   var `?param` = [getPtr node]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc editScript*(self: EditorInterface; script: Script; line: int32 = -1; column: int32 = 0; grabFocus: Bool = true) =
+proc editScript*(self: EditorInterface; script: GD_ref[Script]; line: int32 = -1; column: int32 = 0; grabFocus: Bool = true) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "edit_script"

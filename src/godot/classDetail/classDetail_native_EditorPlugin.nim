@@ -78,7 +78,7 @@ proc getExportAsMenu*(self: EditorPlugin): PopupMenu =
   var ret: encoded PopupMenu
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(PopupMenu)
-proc addCustomType*(self: EditorPlugin; `type`: String; base: String; script: Script; icon: Texture2D) =
+proc addCustomType*(self: EditorPlugin; `type`: String; base: String; script: GD_ref[Script]; icon: GD_ref[Texture2D]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_custom_type"
@@ -155,112 +155,112 @@ proc queueSaveLayout*(self: EditorPlugin) =
     let name = api.newStringName "queue_save_layout"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorPlugin, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc addTranslationParserPlugin*(self: EditorPlugin; parser: EditorTranslationParserPlugin) =
+proc addTranslationParserPlugin*(self: EditorPlugin; parser: GD_ref[EditorTranslationParserPlugin]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_translation_parser_plugin"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorPlugin, addr name, 3116463128)
   var `?param` = [getPtr parser]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removeTranslationParserPlugin*(self: EditorPlugin; parser: EditorTranslationParserPlugin) =
+proc removeTranslationParserPlugin*(self: EditorPlugin; parser: GD_ref[EditorTranslationParserPlugin]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "remove_translation_parser_plugin"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorPlugin, addr name, 3116463128)
   var `?param` = [getPtr parser]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addImportPlugin*(self: EditorPlugin; importer: EditorImportPlugin; firstPriority: Bool = false) =
+proc addImportPlugin*(self: EditorPlugin; importer: GD_ref[EditorImportPlugin]; firstPriority: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_import_plugin"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorPlugin, addr name, 3113975762)
   var `?param` = [getPtr importer, getPtr firstPriority]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removeImportPlugin*(self: EditorPlugin; importer: EditorImportPlugin) =
+proc removeImportPlugin*(self: EditorPlugin; importer: GD_ref[EditorImportPlugin]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "remove_import_plugin"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorPlugin, addr name, 2312482773)
   var `?param` = [getPtr importer]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addSceneFormatImporterPlugin*(self: EditorPlugin; sceneFormatImporter: EditorSceneFormatImporter; firstPriority: Bool = false) =
+proc addSceneFormatImporterPlugin*(self: EditorPlugin; sceneFormatImporter: GD_ref[EditorSceneFormatImporter]; firstPriority: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_scene_format_importer_plugin"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorPlugin, addr name, 2764104752)
   var `?param` = [getPtr sceneFormatImporter, getPtr firstPriority]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removeSceneFormatImporterPlugin*(self: EditorPlugin; sceneFormatImporter: EditorSceneFormatImporter) =
+proc removeSceneFormatImporterPlugin*(self: EditorPlugin; sceneFormatImporter: GD_ref[EditorSceneFormatImporter]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "remove_scene_format_importer_plugin"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorPlugin, addr name, 2637776123)
   var `?param` = [getPtr sceneFormatImporter]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addScenePostImportPlugin*(self: EditorPlugin; sceneImportPlugin: EditorScenePostImportPlugin; firstPriority: Bool = false) =
+proc addScenePostImportPlugin*(self: EditorPlugin; sceneImportPlugin: GD_ref[EditorScenePostImportPlugin]; firstPriority: Bool = false) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_scene_post_import_plugin"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorPlugin, addr name, 3492436322)
   var `?param` = [getPtr sceneImportPlugin, getPtr firstPriority]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removeScenePostImportPlugin*(self: EditorPlugin; sceneImportPlugin: EditorScenePostImportPlugin) =
+proc removeScenePostImportPlugin*(self: EditorPlugin; sceneImportPlugin: GD_ref[EditorScenePostImportPlugin]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "remove_scene_post_import_plugin"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorPlugin, addr name, 3045178206)
   var `?param` = [getPtr sceneImportPlugin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addExportPlugin*(self: EditorPlugin; plugin: EditorExportPlugin) =
+proc addExportPlugin*(self: EditorPlugin; plugin: GD_ref[EditorExportPlugin]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_export_plugin"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorPlugin, addr name, 4095952207)
   var `?param` = [getPtr plugin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removeExportPlugin*(self: EditorPlugin; plugin: EditorExportPlugin) =
+proc removeExportPlugin*(self: EditorPlugin; plugin: GD_ref[EditorExportPlugin]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "remove_export_plugin"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorPlugin, addr name, 4095952207)
   var `?param` = [getPtr plugin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addNode3dGizmoPlugin*(self: EditorPlugin; plugin: EditorNode3DGizmoPlugin) =
+proc addNode3dGizmoPlugin*(self: EditorPlugin; plugin: GD_ref[EditorNode3DGizmoPlugin]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_node_3d_gizmo_plugin"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorPlugin, addr name, 1541015022)
   var `?param` = [getPtr plugin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removeNode3dGizmoPlugin*(self: EditorPlugin; plugin: EditorNode3DGizmoPlugin) =
+proc removeNode3dGizmoPlugin*(self: EditorPlugin; plugin: GD_ref[EditorNode3DGizmoPlugin]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "remove_node_3d_gizmo_plugin"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorPlugin, addr name, 1541015022)
   var `?param` = [getPtr plugin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addInspectorPlugin*(self: EditorPlugin; plugin: EditorInspectorPlugin) =
+proc addInspectorPlugin*(self: EditorPlugin; plugin: GD_ref[EditorInspectorPlugin]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_inspector_plugin"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorPlugin, addr name, 546395733)
   var `?param` = [getPtr plugin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removeInspectorPlugin*(self: EditorPlugin; plugin: EditorInspectorPlugin) =
+proc removeInspectorPlugin*(self: EditorPlugin; plugin: GD_ref[EditorInspectorPlugin]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "remove_inspector_plugin"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorPlugin, addr name, 546395733)
   var `?param` = [getPtr plugin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc addResourceConversionPlugin*(self: EditorPlugin; plugin: EditorResourceConversionPlugin) =
+proc addResourceConversionPlugin*(self: EditorPlugin; plugin: GD_ref[EditorResourceConversionPlugin]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_resource_conversion_plugin"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorPlugin, addr name, 2124849111)
   var `?param` = [getPtr plugin]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removeResourceConversionPlugin*(self: EditorPlugin; plugin: EditorResourceConversionPlugin) =
+proc removeResourceConversionPlugin*(self: EditorPlugin; plugin: GD_ref[EditorResourceConversionPlugin]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "remove_resource_conversion_plugin"
@@ -295,14 +295,14 @@ proc getScriptCreateDialog*(self: EditorPlugin): ScriptCreateDialog =
   var ret: encoded ScriptCreateDialog
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(ScriptCreateDialog)
-proc addDebuggerPlugin*(self: EditorPlugin; script: EditorDebuggerPlugin) =
+proc addDebuggerPlugin*(self: EditorPlugin; script: GD_ref[EditorDebuggerPlugin]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "add_debugger_plugin"
     methodbind = interface_ClassDB_getMethodBind(addr className EditorPlugin, addr name, 3749880309)
   var `?param` = [getPtr script]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc removeDebuggerPlugin*(self: EditorPlugin; script: EditorDebuggerPlugin) =
+proc removeDebuggerPlugin*(self: EditorPlugin; script: GD_ref[EditorDebuggerPlugin]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "remove_debugger_plugin"
