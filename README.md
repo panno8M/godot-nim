@@ -84,9 +84,7 @@ See **[NimSideTester](https://github.com/panno8M/godot-nim/tree/main/test/src/ni
 
 ### Bridge between Nim's ref and Godot's Refcounted
 
-`RefCounted` of Godot and Nim's ref are integrated.
-Every Godot's classes is defined as `ref object` in this library.
-RefCounted has =copy, =dup, and =destroy custom hooks defined, which automatically call RefCounted::reference(), RefCounted::unreference(), etc. inside the hooks.
+To handle godot's RefCounted, we have defined our own GD_ref type that wraps Nim's ref type. It calls reference/unreference at the appropriate time (copy, destruction, etc.).
 
 ### Various ways to fetch Godot's object
 
