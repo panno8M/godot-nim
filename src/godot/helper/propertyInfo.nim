@@ -1,7 +1,6 @@
 import std/macros
 import variantTypeSolver
 import ../godotInterface
-import ../godotInterface/objectBase
 import ../variants/variantsConstr_custom
 
 # Metadata
@@ -68,50 +67,25 @@ converter native*(p: PropertyInfoGlue): PropertyInfo =
 converter native*(a: openArray[PropertyInfoGlue]): ptr PropertyInfo =
   cast[ptr PropertyInfo](addr a[0])
 
-template propertyInfo_blueprint(Type: typedesc; body): untyped =
-  proc propertyInfo*[S: Type](T {.inject.} : typedesc[S];
-        name {.inject.} : StringName = "";
-        class_name {.inject.} : StringName = "";
-        hint {.inject.} : PropertyHint = propertyHint_None;
-        hint_string {.inject.} : String = "";
-        usage {.inject.} : system.set[PropertyUsageFlags] = PropertyUsageFlags.propertyUsageDefault
-      ): ref PropertyInfoGlue =
-    body
+template uniqueUsage*(T: typedesc): set[PropertyUsageFlags] = {}
+template uniqueUsage*(T: typedesc[Variant]): set[PropertyUsageFlags] = {propertyUsageNilIsVariant}
 
-propertyInfo_blueprint(SomeVariants):
+type SomeProperty* = concept type t
+  t.variantType is VariantType
+  t.uniqueUsage is set[PropertyUsageFlags]
+
+proc propertyInfo*[T: SomeProperty](_: typedesc[T];
+      name: StringName = "";
+      class_name: StringName = "";
+      hint: PropertyHint = propertyHint_None;
+      hint_string: String = "";
+      usage: system.set[PropertyUsageFlags] = PropertyUsageFlags.propertyUsageDefault
+    ): ref PropertyInfoGlue =
   (ref PropertyInfoGlue)(
-    type: variantType T,
+    type: T.variantType,
     name: new name,
     class_name: new class_name,
     hint: hint,
     hint_string: new hint_string,
-    usage: usage,
+    usage: usage + T.uniqueUsage,
   )
-propertyInfo_blueprint(ObjectBase):
-  (ref PropertyInfoGlue)(
-    type: VariantType_Object,
-    name: new name,
-    class_name: new class_name,
-    hint: hint,
-    hint_string: new hint_string,
-    usage: usage,
-  )
-
-propertyInfo_blueprint(Variant):
-  (ref PropertyInfoGlue)(
-    type: VariantType_Nil,
-    name: new name,
-    class_name: new class_name,
-    hint: hint,
-    hint_string: new hint_string,
-    usage: usage + {propertyUsageNilIsVariant},
-  )
-
-propertyInfo_blueprint(AltInt):
-  propertyInfo(Int, name, class_name, hint, hint_string, usage)
-propertyInfo_blueprint(enum):
-  propertyInfo(Int, name, class_name, hint, hint_string, usage)
-propertyInfo_blueprint(AltFloat):
-  propertyInfo(Float, name, class_name, hint, hint_string, usage)
-propertyInfo_blueprint(AltString):
-  propertyInfo(String, name, class_name, hint, hint_string, usage)

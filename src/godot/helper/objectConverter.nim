@@ -138,11 +138,9 @@ proc get*(v: Variant; T: typedesc[ObjectPtr]): T =
 
 template encoded*[T: ObjectBase](_: typedesc[T]): typedesc[ObjectPtr] = ObjectPtr
 template encode*[T: ObjectBase](v: T; p: pointer) =
-  GD_sync_encode v
   encode(GD_getObjectPtr v, p)
 proc decode*[T: ObjectBase](p: pointer; _: typedesc[T]): T =
   result = p.decode(ObjectPtr).getInstance(T)
-  GD_sync_decode result
 proc variant*[T: ObjectBase](v: T): Variant =
   variant GD_getObjectPtr v
 proc get*[T: ObjectBase](v: Variant; _: typedesc[T]): T =
@@ -151,20 +149,17 @@ proc get*[T: ObjectBase](v: Variant; _: typedesc[T]): T =
 
 template encoded*(_: typedesc[GD_ref]): typedesc[ObjectPtr] = ObjectPtr
 template encode*(v: GD_ref; p: pointer) =
-  GD_sync_encode v
   encode(GD_getObjectPtr v.handle, p)
 proc decode*(p: pointer; T: typedesc[GD_ref]): T =
   result = gdref p.decode(ObjectPtr).getInstance(T.T)
-  GD_sync_decode result.handle
 proc variant*(v: GD_ref): Variant =
   variant GD_getObjectPtr v.handle
 proc get*(v: Variant; T: typedesc[GD_ref]): T =
-  v.get(ObjectPtr).getInstance(T.T)
+  gdref v.get(ObjectPtr).getInstance(T.T)
 
 proc decode_result*[T](p: pointer; _: typedesc[T]): T =
   p.decode(T)
 proc decode_result*(p: pointer; T: typedesc[GD_ref]): T =
   result = gdref_conv p.decode(ObjectPtr).getInstance(T.T)
-  GD_sync_decode_result result.handle
 
 {.pop.}

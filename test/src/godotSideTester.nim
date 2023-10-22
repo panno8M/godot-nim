@@ -4,7 +4,7 @@ type GodotSideTester* = ref object of Node
   props: tuple[
     int_value: int,
     float_value: float,
-    icon: Texture2D,
+    icon: gdref Texture2D,
   ]
 # The source of inheritance must be a class known to Godot.
 # (Engine-Class, or Extension-Class from which register_class will be called)
@@ -38,9 +38,9 @@ proc int_value*(self: GodotSideTester): int {.exportgd: "get_int_value".} =
 proc get_float_value*(self: GodotSideTester): float {.exportgd: Auto.} =
   self.props.float_value
 
-proc `icon=`*(self: GodotSideTester; value: Texture2D) {.exportgd: "set_icon".} =
+proc `icon=`*(self: GodotSideTester; value: gdref Texture2D) {.exportgd: "set_icon".} =
   self.props.icon = value
-proc icon*(self: GodotSideTester): Texture2D {.exportgd: "get_icon".} =
+proc icon*(self: GodotSideTester): gdref Texture2D {.exportgd: "get_icon".} =
   self.props.icon
 
 # To register your property, you need to write this section.
