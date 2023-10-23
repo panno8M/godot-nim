@@ -202,7 +202,7 @@ proc `=copy`(dest: var Variant; source: Variant) =
 
 include "godotInterface/include/hook_define_Variants"
 
-proc init_interface*(getProcAddress: InterfaceGetProcAddress) =
+proc init_interface* =
   load_interface_api(getProcAddress)
   load_interface_VariantHook()
 

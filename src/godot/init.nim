@@ -27,11 +27,11 @@ proc initialize_module(userdata: pointer; p_level: InitializationLevel) {.gdcall
 
   if extcfg.initializer != nil:
     extcfg.initializer(p_level)
-  initProgress = case currentLevel
-  of Initialization_Core: Servers
-  of Initialization_Servers: Scene
-  of Initialization_Scene: Editor
-  of Initialization_Editor: Done
+  case currentLevel
+  of Initialization_Core: start init_core
+  of Initialization_Servers: start init_servers
+  of Initialization_Scene: start init_scene
+  of Initialization_Editor: start init_editor
 proc deinitialize_module(userdata: pointer; p_level: InitializationLevel) {.gdcall.} =
   currentLevel = p_level
   if extcfg.terminator != nil:
@@ -39,26 +39,34 @@ proc deinitialize_module(userdata: pointer; p_level: InitializationLevel) {.gdca
   # TODO Support edtior plugin development
   # EditorPlugins|>deinitialize(p_level)
 
-proc init*(p_get_proc_address: InterfaceGetProcAddress; p_library: ClassLibraryPtr; r_initialization: ptr Initialization): Bool {.gdcall.} =
-  try:
-    initProgress = InitProgress.Interface
-    godotInterface.getProcAddress = p_getProcAddress
-    godotInterface.library = p_library
-    godotInterface.token = p_library
-
-    init_interface(p_getProcAddress)
+let load_functions* = define Service:
+  [Unit]
+  Before = toHashSet [initManager.init_interface]
+  [Service]
+  ExecStart = proc(userdata: pointer) =
+    init_interface()
     interfaceGetGodotVersion addr godotVersion
     load_api()
     load_converter()
     load_Variants()
 
+
+proc init*(p_get_proc_address: InterfaceGetProcAddress; p_library: ClassLibraryPtr; r_initialization: ptr Initialization): Bool {.gdcall.} =
+  try:
+    initManager.install()
+
+    godotInterface.getProcAddress = p_getProcAddress
+    godotInterface.library = p_library
+    godotInterface.token = p_library
+
     r_initialization.initialize = initialize_module
     r_initialization.deinitialize = deinitialize_module
+
+    start load_functions
 
   except:
     iam("unhandled-exception", stgLibrary).error getCurrentExceptionMsg()
     return false
-  initProgress = InitProgress.Core
 
   return true
 

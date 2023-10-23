@@ -29,7 +29,6 @@ proc initialize(T: typedesc[SomeUserClass]; userdata: ClassRuntimeData) =
 var runtimeDataTable: Table[StringName, ClassRuntimeData]
 proc get_runtimeData*[T: ObjectBase](_: typedesc[T]): ClassRuntimeData =
   var data {.global.} : pointer
-  check_init initProgress > Interface
   if unlikely(data.isNil):
     let runtimeData = new ClassRuntimeData
     new runtimeData.virtualMethods

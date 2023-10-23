@@ -66,14 +66,13 @@ template isInitializedOn*(Class: typedesc[SomeUserClass]; level: InitializationL
   get_registrationData(Class).initTarget = level
 
 template register_class*(T: typedesc[SomeUserClass]) =
-  if get_registrationData(T).initTarget != initManager.currentLevel: return
+  let dataunit = get_registrationData(T)
+  if dataunit.initTarget != initManager.currentLevel: return
   (log_register T)
   let info = T.creationInfo(false, false)
   interfaceClassdbRegisterExtensionClass(library, addr className(T), addr className(T.Super), addr info)
   T.EngineClass.bind_virtuals(T)
-  for p in get_registrationData(T).methods: p()
-  for p in get_registrationData(T).props: p()
-  for p in get_registrationData(T).signals: p()
+  start dataunit
 
 # Signal
 # ------
@@ -165,13 +164,17 @@ macro property*(Class: typedesc[SomeUserClass]; name: string; `type`: typedesc; 
       `glue`.usage = `usage`
 
   quote do:
-    get_registrationData(`Class`).props.add proc() =
-      let `glue`: ref PropertyInfoGlue = propertyInfo(`type`, `name`)
-      `set_hint`
-      `set_usage`
-      let setter: StringName = `setter`
-      let getter: StringName = `getter`
-      interface_ClassDB_registerExtensionClassProperty(library, addr className(`Class`), native `glue`, addr setter, addr getter)
+    discard define Service:
+      [Unit]
+      Before = toHashSet [get_registrationData(typedesc `Class`).props]
+      [Service]
+      ExecStart = proc(userdata: pointer) =
+        let `glue`: ref PropertyInfoGlue = propertyInfo(`type`, `name`)
+        `set_hint`
+        `set_usage`
+        let setter: StringName = `setter`
+        let getter: StringName = `getter`
+        interface_ClassDB_registerExtensionClassProperty(library, addr className(`Class`), native `glue`, addr setter, addr getter)
 
 # Method
 # ------
@@ -192,17 +195,25 @@ proc exportgd_impl(body: NimNode; gdname: NimNode = nil): NimNode =
     if signal.isNil:
       let methodinfoDef = classMethodInfo_fromdef(procdef, gdname)
       result.add quote do:
-        get_registrationData(typedesc `arg0_T`).methods.add proc() =
-          let glue = `methodinfoDef`
-          interface_ClassDB_registerExtensionClassMethod(library, addr className(typedesc `arg0_T`), addr glue.info)
+        discard define Service:
+          [Unit]
+          Before = toHashSet [get_registrationData(typedesc `arg0_T`).methods]
+          [Service]
+          ExecStart = proc(userdata: pointer) =
+            let glue = `methodinfoDef`
+            interface_ClassDB_registerExtensionClassMethod(library, addr className(typedesc `arg0_T`), addr glue.info)
     else:
       let signalInfoDef = classSignalInfo_fromdef(procdef, gdname)
       procdef.body = procdef.signalBody(gdname)
 
       result.add quote do:
-        get_registrationData(typedesc `arg0_T`).signals.add proc() =
-          let info = `signalInfoDef`
-          interface_ClassDB_registerExtensionClassSignal(library, addr className(typedesc `arg0_T`), addr info.name, info.argumentHead, info.argumentSize)
+        discard define Service:
+          [Unit]
+          Before = toHashSet [get_registrationData(typedesc `arg0_T`).signals]
+          [Service]
+          ExecStart = proc(userdata: pointer) =
+            let info = `signalInfoDef`
+            interface_ClassDB_registerExtensionClassSignal(library, addr className(typedesc `arg0_T`), addr info.name, info.argumentHead, info.argumentSize)
     return
   else:
     warning $procdef.kind, procdef
