@@ -6,13 +6,18 @@ when TraceObjectHook or TraceEngineAllocationCallback or TraceEngineReferenceCal
   import ../logging
 
 type
+  ObjectControlFlag* = enum
+    OC_wasLocked
+
   ObjectControl* = object
     owner*: ObjectPtr
-    GD_engineHaveInstance: bool
+    flags*: set[ObjectControlFlag]
 
 type
   ObjectBase* = ref object of RootObj
     control: ObjectControl
+  SomeObject* = concept type t
+    t is ObjectBase
 
   RefCountedBase* = ref object of ObjectBase
   SomeRefCounted* = concept type t
@@ -27,10 +32,6 @@ type
 
 template className(o: ObjectBase): string = api.className(GD_getObjectPtr o)
 
-{.push, raises: [].}
-proc `=destroy`*(x: ObjectControl)
-{.pop.}
-
 template GD_getObjectPtr*(class: ObjectBase): ObjectPtr =
   if class.isNil: nil
   else: class.control.owner
@@ -39,12 +40,12 @@ template GD_getObjectPtrPtr*(class: ObjectBase): ptr ObjectPtr =
   else: addr class.control.owner
 
 template GD_lockDestroy(class: ObjectBase) =
-  class.control.GD_engineHaveInstance = true
+  class.control.flags.incl OC_wasLocked
   GC_ref class
 template GD_unlockDestroy(class: ObjectBase) =
-  if class.control.GD_engineHaveInstance:
+  if OC_wasLocked in class.control.flags:
     GC_unref class
-    class.control.GD_engineHaveInstance = false
+    class.control.flags.excl OC_wasLocked
 
 template GD_create*[T: ObjectBase](o: ObjectPtr): T =
   T(
@@ -85,14 +86,3 @@ method property_getRevert*(self: ObjectBase; p_name: ConstStringNamePtr; r_ret: 
 method toString*(self: ObjectBase; r_is_valid: ptr Bool; p_out: StringPtr) {.base.} = discard
 method get_propertyList*(self: ObjectBase; r_count: ptr uint32): ptr PropertyInfo {.base.} = r_count[] = 0
 method free_propertyList*(self: ObjectBase; p_list: ptr PropertyInfo) {.base.} = discard
-
-{.push, raises: [].}
-proc `=destroy`*(x: ObjectControl) =
-  if x.owner.isNil: return
-  try:
-    when TraceObjectHook:
-      iam("Object-destroy-hook", stgLibrary).debug "Object(", api.className(x.owner), ")"
-    if not x.GD_engineHaveInstance:
-      interfaceObjectDestroy(x.owner)
-  except Exception: discard
-{.pop.}

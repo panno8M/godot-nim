@@ -1,6 +1,6 @@
 import ../godotInterface
 import ../godotInterface/objectBase
-import ../gdrefs
+import ../smartptrs
 
 type AltInt* = #[int64|]#int32|int16|int8|uint64|uint32|uint16|uint8|byte
 type AltFloat* = #[float64|]#float32
@@ -49,6 +49,7 @@ template variantType*(Type: typedesc[ObjectPtr]): Variant_Type = VariantType_Obj
 template variantType*(Type: typedesc[ObjectBase]): Variant_Type = VariantType_Object
 
 template variantType*(Type: typedesc[GD_ref]): Variant_Type = VariantType_Object
+template variantType*(Type: typedesc[GD_original]): Variant_Type = VariantType_Object
 
 # Variant
 

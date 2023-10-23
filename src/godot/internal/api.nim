@@ -45,6 +45,11 @@ proc hook_getReferenceCount*(o: ObjectPtr): int32 {.raises: [].} =
     return int32 ret
   except: discard
 
+proc destroy*(o: ObjectPtr) {.raises: [].} =
+  try: interfaceObjectDestroy(o)
+  except: discard
+
+
 proc loadAPI* =
   newStringNameFromString = interfaceVariantGetPtrConstructor(VariantType_StringName, 2)
   newStringFromStringName = interfaceVariantGetPtrConstructor(VariantType_String, 2)

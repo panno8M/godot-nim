@@ -151,15 +151,15 @@ template encoded*(_: typedesc[GD_ref]): typedesc[ObjectPtr] = ObjectPtr
 template encode*(v: GD_ref; p: pointer) =
   encode(GD_getObjectPtr v.handle, p)
 proc decode*(p: pointer; T: typedesc[GD_ref]): T =
-  result = gdref p.decode(ObjectPtr).getInstance(T.T)
+  result = reference p.decode(ObjectPtr).getInstance(T.T)
 proc variant*(v: GD_ref): Variant =
   variant GD_getObjectPtr v.handle
 proc get*(v: Variant; T: typedesc[GD_ref]): T =
-  gdref v.get(ObjectPtr).getInstance(T.T)
+  reference v.get(ObjectPtr).getInstance(T.T)
 
 proc decode_result*[T](p: pointer; _: typedesc[T]): T =
   p.decode(T)
 proc decode_result*(p: pointer; T: typedesc[GD_ref]): T =
-  result = gdref_conv p.decode(ObjectPtr).getInstance(T.T)
+  result = gdref p.decode(ObjectPtr).getInstance(T.T)
 
 {.pop.}

@@ -71,8 +71,8 @@ proc test_SomeVariants(self: NimSideTester) =
 proc test_Object(self: NimSideTester) =
   suite "Object":
     test "instantiate":
-      let obj = instantiate Object
-      check GD_getObjectPtr(obj) != nil
+      let obj: original Object = instantiate Object
+      check GD_getObjectPtr(obj[]) != nil
 
     test "singleton":
       # `/T` is same as `T.singleton`
@@ -84,9 +84,14 @@ proc test_Object(self: NimSideTester) =
 proc test_RefCounted(self: NimSideTester) =
   suite "RefCounted":
     test "reference counting":
+      let refc: gdref RefCounted = instantiate RefCounted
+      check refc[].getReferenceCount == 1
       block Scope:
-        let refc = instantiate RefCounted
-        check get_reference_count(refc) == 1
+        let refc2 = refc
+        check refc[].getReferenceCount == 2
+        check refc2[].getReferenceCount == 2
+      check refc[].getReferenceCount == 1
+
 
 proc test_Node(self: NimSideTester) =
   suite "Node":
@@ -94,6 +99,13 @@ proc test_Node(self: NimSideTester) =
     # let node1 = instantiate(Node2D)
     # node1.name = "MyNode2D"
     let node = instantiate(Node2D, "MyNode2D")
+    # No need to have `original Node2D` since ownership of node will pass to `self` when call `addChild`.
+    # Or you can call `release(original T): T` like:
+    # ```
+    # let node = original instantiate(Node2D, "MyNode2D")
+    # self.addChild release node
+    # ```
+    # to dispose ownership.
 
     test "get node from tree":
       self.addChild node
@@ -173,11 +185,12 @@ proc test_Variant(self: NimSideTester) =
 
   suite "Variant":
     test "identity":
+      let obj = original instantiate Object
       test_identity "identity-gd.Int", Int 10
       test_identity "identity-gd.Float", Float 10
       test_identity "identity-gd.String", init_String "String"
       test_identity "identity-gd.StringName", init_StringName "StringName"
-      test_identity "identity-gd.Object", instantiate Object
+      test_identity "identity-gd.Object", obj[]
       test_identity "identity-int", 11
       test_identity "identity-int32", 12'i32
       test_identity "identity-int16", 13'i16
@@ -209,14 +222,14 @@ proc test_Variant(self: NimSideTester) =
       var arr = init_Array()
       discard arr.resize(2)
       var dict = init_Dictionary()
-      var keyObj = instantiate Object
+      var keyObj = original instantiate Object
 
       var expect = toTable {
         variant 0: variant 0,
         variant 1: variant 1,
         variant "Key0": variant 0,
         variant "Key1": variant 1,
-        variant keyObj: variant 2,
+        variant keyObj[]: variant 2,
       }
 
       var vdict: Variant = variant dict
@@ -226,7 +239,7 @@ proc test_Variant(self: NimSideTester) =
       varr[1] = variant 1
       vdict["Key0"] = variant 0
       vdict["Key1"] = variant 1
-      vdict[variant keyObj] = variant 2
+      vdict[variant keyObj[]] = variant 2
 
       for key, item in varr.pairs:
         check item == expect[key]

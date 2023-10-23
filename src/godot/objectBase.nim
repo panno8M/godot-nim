@@ -1,7 +1,7 @@
 import std/strutils
 import godotInterface
 import godotInterface/objectBase; export objectBase
-import gdrefs; export gdrefs
+import smartptrs; export smartptrs
 import internal/runtime
 import internal/api
 
@@ -33,12 +33,12 @@ proc castTo*[T: ObjectBase](self: ObjectBase; _: typedesc[T]): T =
 
 {.push, inline.}
 proc castTo*[T: RefCountedBase](self: ObjectBase; _: typedesc[GD_ref[T]]): GD_ref[T] =
-  gdref_conv self.castTo T
+  gdref self.castTo T
 
 proc castTo*[T: RefCountedBase; S: ObjectBase](self: GD_ref[T]; _: typedesc[S]): S =
   self.handle.castTo S
 proc castTo*[T: RefCountedBase; S: RefCountedBase](self: GD_ref[T]; _: typedesc[GD_ref[S]]): GD_ref[S] =
-  gdref_conv self.handle.castTo S
+  gdref self.handle.castTo S
 
 proc `as`*[T: ObjectBase](self: ObjectBase; _: typedesc[T]): T = castTo(self, T)
 proc `as`*[T: RefCountedBase](self: ObjectBase; _: typedesc[GD_ref[T]]): GD_ref[T] = castTo(self, GD_ref[T])
