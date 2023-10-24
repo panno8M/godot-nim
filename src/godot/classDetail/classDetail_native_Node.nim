@@ -31,7 +31,7 @@ proc name*(self: Node): StringName =
     let name = api.newStringName "get_name"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 2002593661)
   var ret: encoded StringName
-  interface_Object_methodBindPtrCall(methodbind, GD_getObjectPtr self, nil, addr ret)
+  interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(StringName)
 proc addChild*(self: Node; node: Node; forceReadableName: Bool = false; internal: Node_InternalMode = internalModeDisabled) =
   var methodbind {.global.}: MethodBindPtr

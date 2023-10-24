@@ -117,9 +117,12 @@ type
     proxy: pointer
     data_unsafe*: ptr UncheckedArray[Color]
 
-  Variant* {.byref.} = object
-    `type`: uint64
-    opaque: Opaque[4]
+  Variant* {.byref.} = object of RootObj
+    data*: tuple[
+      `type`: uint64,
+      opaque: Opaque[4],
+    ]
+
 
 type SomePackedArray* =
   PackedByteArray    |
@@ -202,10 +205,6 @@ proc `=copy`(dest: var Variant; source: Variant) =
 
 include "godotInterface/include/hook_define_Variants"
 
-proc init_interface* =
-  load_interface_api(getProcAddress)
-  load_interface_VariantHook()
-
 template Item*(T: typedesc[PackedByteArray]): typedesc = byte
 template Item*(T: typedesc[PackedColorArray]): typedesc = Color
 template Item*(T: typedesc[PackedFloat32Array]): typedesc = float32
@@ -218,3 +217,7 @@ template Item*(T: typedesc[PackedVector3Array]): typedesc = Vector3
 template Item*(T: typedesc[String]): typedesc = Rune
 template Item*(T: typedesc[Array]): typedesc = Variant
 template Item*(T: typedesc[Dictionary]): typedesc = Variant
+
+proc init_interface* =
+  load_interface_api(getProcAddress)
+  load_interface_VariantHook()
