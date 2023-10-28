@@ -159,10 +159,18 @@ proc custom_signal*(self: NimSideTester; value: int): Error {.exportgd: Auto, si
 
 proc simple_signal*(self: NimSideTester): Error {.exportgd: Auto, signal.}
 
-proc test_Signal*(self: NimSideTester) =
-  suite "Signal":
-    test "send":
+var result_call_group: bool
+proc lesten_call_group(self: NimSideTester, str: string) {.exportgd: Auto.} =
+  result_callGroup = str == "Hello, world!"
+
+proc test_FirstClassFunction(self: NimSideTester) =
+  suite "First-class function":
+    test "execute call_group":
+      self.getTree.callGroup(&"tester", &"lesten_call_group", variant "Hello, world!")
+      check result_call_group
+    test "send Signal":
       check self.custom_signal(10) == ok
+
 
 proc variant_signal*(self: NimSideTester; value: Variant): Error {.exportgd: Auto, signal.}
 var emitteds: array[VariantType.low..VariantType.high, Variant]
@@ -251,13 +259,6 @@ proc test_Variant(self: NimSideTester) =
 template connect_all*(self: NimSideTester) =
   echo self.connect("variant_signal", self.init_Callable("_on_variant_signal"))
 
-
-template `<!>`*[T](v: T): Variant = variant v
-
-proc echo(self: NimSideTester, str: string) {.exportgd: Auto.} =
-  echo str
-
-
 # Using `method` to override virtual functions of Engine-Class.
 # No specific pragma is needed.
 # based on Node.ready()
@@ -270,10 +271,8 @@ method ready(self: NimSideTester) =
   self.test_RefCounted()
   self.test_Node()
   self.test_Resource()
-  self.test_Signal()
+  self.test_FirstclassFunction()
   self.test_Variant()
-
-  self.getTree.callGroup(&"tester", &"echo", variant "Hello, world!")
 
 method input(self: NimSideTester; event: gdref InputEvent) =
   let evkey = event as gdref InputEventKey
