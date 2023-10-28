@@ -13,3 +13,5 @@ template getPtr*[T: ObjectBase](v: T): pointer =
     cast[pointer](GD_getObjectPtrPtr v)
 template getPtr*[T: RefCountedBase](v: GD_ref[T]): pointer =
   getPtr v.handle
+
+template getTypedPtr*(v: Variant): VariantPtr = addr v

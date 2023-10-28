@@ -181,33 +181,45 @@ proc hasUserSignal*(self: Object; signal: StringName): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(Bool)
-proc emitSignal*(self: Object; signal: StringName): Error =
+proc emitSignal*(self: Object; signal: Variant; args: varargs[Variant]): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "emit_signal"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 4047867050)
-  var `?param` = [getPtr signal]
-  var ret: encoded Error
-  interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Error)
-proc call*(self: Object; `method`: StringName): Variant =
+  var `?param` = newSeqOfCap[VariantPtr](1+args.len)
+  `?param`.add [getTypedPtr signal]
+  for arg in args: `?param`.add addr arg
+  var ret: Variant
+  var err: CallError
+  interface_Object_methodBindCall(methodbind, getOwner self, addr `?param`[0], `?param`.len, addr ret, addr err)
+  ret.get(Error)
+template emitSignal*(self: Object; signal: StringName; args: varargs[Variant]): Error = emitSignal(self, variant signal, args)
+proc call*(self: Object; `method`: Variant; args: varargs[Variant]): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "call"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 3400424181)
-  var `?param` = [getPtr `method`]
-  var ret: encoded Variant
-  interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Variant)
-proc callDeferred*(self: Object; `method`: StringName): Variant =
+  var `?param` = newSeqOfCap[VariantPtr](1+args.len)
+  `?param`.add [getTypedPtr `method`]
+  for arg in args: `?param`.add addr arg
+  var ret: Variant
+  var err: CallError
+  interface_Object_methodBindCall(methodbind, getOwner self, addr `?param`[0], `?param`.len, addr ret, addr err)
+  ret.get(Variant)
+template call*(self: Object; `method`: StringName; args: varargs[Variant]): Variant = call(self, variant `method`, args)
+proc callDeferred*(self: Object; `method`: Variant; args: varargs[Variant]): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "call_deferred"
     methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 3400424181)
-  var `?param` = [getPtr `method`]
-  var ret: encoded Variant
-  interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Variant)
+  var `?param` = newSeqOfCap[VariantPtr](1+args.len)
+  `?param`.add [getTypedPtr `method`]
+  for arg in args: `?param`.add addr arg
+  var ret: Variant
+  var err: CallError
+  interface_Object_methodBindCall(methodbind, getOwner self, addr `?param`[0], `?param`.len, addr ret, addr err)
+  ret.get(Variant)
+template callDeferred*(self: Object; `method`: StringName; args: varargs[Variant]): Variant = callDeferred(self, variant `method`, args)
 proc setDeferred*(self: Object; property: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

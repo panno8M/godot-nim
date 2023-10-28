@@ -15,7 +15,6 @@ import ../internal/runtime
 import ../internal/initManager
 import ../internal/api
 
-import ../helper/methodDefiner
 import ../helper/objectConverter
 
 const Auto* = ""
@@ -78,16 +77,6 @@ template register_class*(T: typedesc[SomeUserClass]) =
 # ------
 
 template signal* {.pragma.}
-import ../classIndex
-proc emit_signal_internal(self: Object; paramhead: ptr VariantPtr; paramcount: int): Error =
-  var methodbind {.global.}: MethodBindPtr
-  if unlikely(methodbind.isNil):
-    let name: StringName = "emit_signal"
-    methodbind = interface_ClassDB_getMethodBind(addr className Object, addr name, 4047867050)
-  var ret: Variant
-  var err: CallError
-  interface_Object_methodBindCall(methodbind, getOwner self, paramhead, paramcount, addr ret, addr err)
-  return ret.get(Error)
 
 type ClassSignalInfo = ref object
   name: StringName
@@ -115,28 +104,22 @@ proc classSignalInfo_fromdef*(procdef: NimNode; gdname: NimNode): NimNode =
     )
 proc signalBody*(procdef: NimNode; gdname: NimNode): NimNode =
   var self: NimNode
-  let signalName = genSym(nskVar, "signalName")
-  let variantArr = genSym(nskLet, "variantArr")
   let variantArrDef = newNimNode nnkBracket
-  let variantPtrArrDef = newNimNode nnkBracket
   for i, (name, Type, default) in procdef.params.breakArgs:
     if i == 0:
-      variantPtrArrDef.add bindSym"addr".newCall signalName
       self = name
     else:
       variantArrDef.add bindSym"variant".newCall(name)
-      variantPtrArrDef.add bindSym"addr".newCall nnkBracketExpr.newTree(variantArr, newlit i.pred)
   if variantArrDef.len == 0:
     variantArrDef.add nnkObjConstr.newTree(bindSym"Variant")
 
   quote do:
-    var `signalName` {.global.}: Variant
+    var signalName {.global.}: Variant
     once:
-      `signalName` = variant init_StringName `gdname`
+      signalName = variant init_StringName `gdname`
 
-    let `variantArr` = `variantArrDef`
-    let variantPtrArr = `variantPtrArrDef`
-    `self`.emit_signal_internal(addr variantPtrArr[0], variantPtrArr.len)
+    let variantArr = `variantArrDef`
+    `self`.emitSignal(signalName, variantArr)
 
 # Property
 # --------

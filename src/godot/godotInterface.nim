@@ -117,7 +117,7 @@ type
     proxy: pointer
     data_unsafe*: ptr UncheckedArray[Color]
 
-  Variant* {.byref.} = object of RootObj
+  Variant* {.byref.} = object
     data*: tuple[
       `type`: uint64,
       opaque: Opaque[4],

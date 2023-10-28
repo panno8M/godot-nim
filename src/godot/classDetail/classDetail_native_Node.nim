@@ -731,39 +731,51 @@ proc isUniqueNameInOwner*(self: Node): Bool =
   var ret: encoded Bool
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, addr ret)
   (addr ret).decode_result(Bool)
-proc rpc*(self: Node; `method`: StringName): Error =
+proc rpc*(self: Node; `method`: Variant; args: varargs[Variant]): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "rpc"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 4047867050)
-  var `?param` = [getPtr `method`]
-  var ret: encoded Error
-  interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Error)
-proc rpcId*(self: Node; peerId: Int; `method`: StringName): Error =
+  var `?param` = newSeqOfCap[VariantPtr](1+args.len)
+  `?param`.add [getTypedPtr `method`]
+  for arg in args: `?param`.add addr arg
+  var ret: Variant
+  var err: CallError
+  interface_Object_methodBindCall(methodbind, getOwner self, addr `?param`[0], `?param`.len, addr ret, addr err)
+  ret.get(Error)
+template rpc*(self: Node; `method`: StringName; args: varargs[Variant]): Error = rpc(self, variant `method`, args)
+proc rpcId*(self: Node; peerId: Variant; `method`: Variant; args: varargs[Variant]): Error =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "rpc_id"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 361499283)
-  var `?param` = [getPtr peerId, getPtr `method`]
-  var ret: encoded Error
-  interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Error)
+  var `?param` = newSeqOfCap[VariantPtr](2+args.len)
+  `?param`.add [getTypedPtr peerId, getTypedPtr `method`]
+  for arg in args: `?param`.add addr arg
+  var ret: Variant
+  var err: CallError
+  interface_Object_methodBindCall(methodbind, getOwner self, addr `?param`[0], `?param`.len, addr ret, addr err)
+  ret.get(Error)
+template rpcId*(self: Node; peerId: Int; `method`: StringName; args: varargs[Variant]): Error = rpcId(self, variant peerId, variant `method`, args)
 proc updateConfigurationWarnings*(self: Node) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "update_configuration_warnings"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 3218959716)
   interface_Object_methodBindPtrCall(methodbind, getOwner self, nil, nil)
-proc callDeferredThreadGroup*(self: Node; `method`: StringName): Variant =
+proc callDeferredThreadGroup*(self: Node; `method`: Variant; args: varargs[Variant]): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "call_deferred_thread_group"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 3400424181)
-  var `?param` = [getPtr `method`]
-  var ret: encoded Variant
-  interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Variant)
+  var `?param` = newSeqOfCap[VariantPtr](1+args.len)
+  `?param`.add [getTypedPtr `method`]
+  for arg in args: `?param`.add addr arg
+  var ret: Variant
+  var err: CallError
+  interface_Object_methodBindCall(methodbind, getOwner self, addr `?param`[0], `?param`.len, addr ret, addr err)
+  ret.get(Variant)
+template callDeferredThreadGroup*(self: Node; `method`: StringName; args: varargs[Variant]): Variant = callDeferredThreadGroup(self, variant `method`, args)
 proc setDeferredThreadGroup*(self: Node; property: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -778,15 +790,19 @@ proc notifyDeferredThreadGroup*(self: Node; what: int32) =
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 1286410249)
   var `?param` = [getPtr what]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc callThreadSafe*(self: Node; `method`: StringName): Variant =
+proc callThreadSafe*(self: Node; `method`: Variant; args: varargs[Variant]): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "call_thread_safe"
     methodbind = interface_ClassDB_getMethodBind(addr className Node, addr name, 3400424181)
-  var `?param` = [getPtr `method`]
-  var ret: encoded Variant
-  interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Variant)
+  var `?param` = newSeqOfCap[VariantPtr](1+args.len)
+  `?param`.add [getTypedPtr `method`]
+  for arg in args: `?param`.add addr arg
+  var ret: Variant
+  var err: CallError
+  interface_Object_methodBindCall(methodbind, getOwner self, addr `?param`[0], `?param`.len, addr ret, addr err)
+  ret.get(Variant)
+template callThreadSafe*(self: Node; `method`: StringName; args: varargs[Variant]): Variant = callThreadSafe(self, variant `method`, args)
 proc setThreadSafe*(self: Node; property: StringName; value: Variant) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

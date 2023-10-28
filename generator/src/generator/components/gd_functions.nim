@@ -56,6 +56,8 @@ proc `$`*(self: seq[GodotParam]): string =
 
 proc get_args(self: JsonMethod): seq[GodotParam] =
   result.add self.arguments.get(@[]).mapIt it.toNim
+  if self.is_vararg:
+    result.add (name: NimVar.imitate"args", type: argType "varargs[Variant]", default_raw: none string)
 
 proc get_return(self: JsonMethod): Option[RetType] =
   if self.return_type.isSome:
@@ -78,7 +80,7 @@ proc get_name(self: JsonMethod; attr: ClassMethodAttribute): NimVar =
   of Getter:
     return Snake.scan(self.name.replace("get_", ""))
 
-proc prerender_classMethod*(self: JsonMethod; self_type: SelfType; attr: ClassMethodAttribute): GodotProcSt =
+proc prepare_proc_base(self: JsonMethod; self_type: SelfType; attr: ClassMethodAttribute): GodotProcSt =
   result = GodotProcSt(
     kind: npkProc,
     name: self.get_name(attr),
@@ -88,16 +90,16 @@ proc prerender_classMethod*(self: JsonMethod; self_type: SelfType; attr: ClassMe
     result: self.get_return(),
   )
 
-  var paramptr = "nil"
-  var retptr = "nil"
+proc prerender_classMethod_ptrcall(self: JsonMethod; self_type: SelfType; attr: ClassMethodAttribute): GodotProcSt =
+  result = prepare_proc_base(self, self_type, attr)
+
+  var selfptr, paramptr, retptr = "nil"
   var paramArrayDef = ParagraphSt()
   var retDef = ParagraphSt()
   var injection: seq[string]
   var paramcount: int
 
-  let selfptr =
-    if result.self.isStatic: "nil"
-    else: &"getOwner {result.self.argname}"
+  if not result.self.isStatic: selfptr = &"getOwner {result.self.argname}"
 
   for i, arg in result.args:
     injection.add &"getPtr {arg.name}"
@@ -122,6 +124,61 @@ proc prerender_classMethod*(self: JsonMethod; self_type: SelfType; attr: ClassMe
     &"interface_Object_methodBindPtrCall(methodbind, {selfptr}, {paramptr}, {retptr})"
   if result.result.isSome:
       result.children.add &"(addr ret).decode_result({get result.result})"
+
+proc prerender_classMethod_varargs_variant(self: JsonMethod; self_type: SelfType; attr: ClassMethodAttribute): GodotProcSt =
+  result = prepare_proc_base(self, self_type, attr)
+  let argtype_Variant = argType"Variant"
+  for i, a in result.args.mpairs:
+    if i == result.args.high: break
+    a.`type` = argtype_Variant
+
+  let argCount = $result.args.len.pred & "+" & result.args[^1].name & ".len"
+  let vararg = result.args[^1]
+
+  var selfptr, paramptr = "nil"
+  var paramArrayDef = ParagraphSt()
+
+  if not result.self.isStatic:
+    selfptr = &"getOwner {result.self.argname}"
+
+  let fixedargarr = "[" & result.args[0..^2].mapIt("getTypedPtr " & it.name).join(", ") & "]"
+  discard +$$..paramArrayDef:
+    fmt"var `?param` = newSeqOfCap[VariantPtr]({argCount})"
+    fmt"`?param`.add {fixedargarr}"
+    fmt"for arg in {vararg.name}: `?param`.add addr arg"
+  paramptr = case result.args.len:
+    of 0: "nil"
+    of 1: "if `?param`.len != 0: addr `?param`[0] else: nil" # expect varargs[Variant]
+    else: "addr `?param`[0]"
+
+  discard +$$..result:
+    &"var methodbind {{.global.}}: MethodBindPtr"
+    &"if unlikely(methodbind.isNil):"
+    &"  let name = api.newStringName \"{self.name}\""
+    &"  methodbind = interface_ClassDB_getMethodBind(addr className {self_type.name}, addr name, {get self.hash})"
+    paramArrayDef
+    "var ret: Variant"
+    "var err: CallError"
+    &"interface_Object_methodBindCall(methodbind, {selfptr}, {paramptr}, `?param`.len, addr ret, addr err)"
+  if result.result.isSome:
+      result.children.add &"ret.get({get result.result})"
+
+proc prerender_classMethod_varargs_typed(self: JsonMethod; self_type: SelfType; attr: ClassMethodAttribute): GodotProcSt =
+  result = prepare_proc_base(self, self_type, attr)
+  result.kind = npkTemplate
+  let fixed_args = result.args[0..^2].mapIt("variant " & it.name).join(", ")
+  let var_args = result.args[^1].name
+  result.children.add fmt"{result.name}({result.self.argname}, {fixed_args}, {var_args})"
+
+proc prerender_classMethod*(self: JsonMethod; self_type: SelfType; attr: ClassMethodAttribute): ParagraphSt =
+  if self.is_vararg:
+    +$$..ParagraphSt():
+      prerender_classMethod_varargs_variant(self, self_type, attr)
+      prerender_classMethod_varargs_typed(self, self_type, attr)
+  else:
+    +$$..ParagraphSt():
+      prerender_classMethod_ptrcall(self, self_type, attr)
+
 
 proc prerender_virtual*(self: JsonMethod; self_type: SelfType): GodotProcSt =
   result = GodotProcSt(
@@ -152,6 +209,11 @@ proc prerender_variantMethod*(self: JsonMethod; self_type: SelfType, ignore: Ign
   result.load = +$$..ParagraphSt():
     &"proc_name = api.newStringName \"{self.name}\""
     &"{container} = interface_Variant_getPtrBuiltinMethod(variantType {self_type.name}, addr proc_name, {get self.hash})"
+
+  # TODO: Support varargs
+  if self.is_vararg:
+    result.procdef.pragmas.add "error"
+    return
 
   let argArr = ParagraphSt()
   if result.procdef.args.len != 0:

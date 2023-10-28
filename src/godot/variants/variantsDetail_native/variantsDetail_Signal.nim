@@ -27,7 +27,7 @@ proc isConnected*(self: Signal; callable: Callable): Bool =
   let argArr = [getPtr callable]
   Signal_isConnected(addr self, addr argArr[0], addr result, 1)
 proc getConnections*(self: Signal): Array = Signal_getConnections(addr self, nil, addr result, 0)
-proc emit*(self: Signal) = Signal_emit(addr self, nil, nil, 0)
+proc emit*(self: Signal; args: varargs[Variant]) {.error.}
 proc load_Signal_proc =
   var proc_name: StringName
   proc_name = api.newStringName "is_null"

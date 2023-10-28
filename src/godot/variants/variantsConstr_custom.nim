@@ -27,6 +27,8 @@ converter init_StringName*(str: string): StringName =
 converter init_NodePath*(str: string): NodePath =
   init_NodePath init_String str
 
+proc `&`*(str: string): StringName = init_StringName str
+
 proc init_Color*(): Color = Color(r: 0, g: 0, b: 0, a: 1)
 proc init_Color*(src: Color): Color = src
 proc init_Color*(src: Color; alpha: float32): Color = Color(r: src.r, g: src.g, b: src.b, a: alpha)

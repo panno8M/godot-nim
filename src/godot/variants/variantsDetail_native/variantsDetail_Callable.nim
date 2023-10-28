@@ -41,13 +41,11 @@ proc bindv*(self: var Callable; arguments: Array): Callable =
 proc unbind*(self: Callable; argcount: Int): Callable =
   let argArr = [getPtr argcount]
   Callable_unbind(addr self, addr argArr[0], addr result, 1)
-proc call*(self: Callable): Variant = Callable_call(addr self, nil, addr result, 0)
-proc callDeferred*(self: Callable) = Callable_callDeferred(addr self, nil, nil, 0)
-proc rpc*(self: Callable) = Callable_rpc(addr self, nil, nil, 0)
-proc rpcId*(self: Callable; peerId: Int) =
-  let argArr = [getPtr peerId]
-  Callable_rpcId(addr self, addr argArr[0], nil, 1)
-proc `bind`*(self: Callable): Callable = Callable_bind(addr self, nil, addr result, 0)
+proc call*(self: Callable; args: varargs[Variant]): Variant {.error.}
+proc callDeferred*(self: Callable; args: varargs[Variant]) {.error.}
+proc rpc*(self: Callable; args: varargs[Variant]) {.error.}
+proc rpcId*(self: Callable; peerId: Int; args: varargs[Variant]) {.error.}
+proc `bind`*(self: Callable; args: varargs[Variant]): Callable {.error.}
 proc load_Callable_proc =
   var proc_name: StringName
   proc_name = api.newStringName "callv"

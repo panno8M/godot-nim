@@ -9,7 +9,7 @@
 icon = ExtResource("2_p8ptw")
 script = ExtResource("1_x2b6x")
 
-[node name="TesterNIM" type="NimSideTester" parent="."]
+[node name="TesterNIM" type="NimSideTester" parent="." groups=["tester"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="TesterNIM"]
 texture = ExtResource("2_p8ptw")

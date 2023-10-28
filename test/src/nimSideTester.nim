@@ -1,11 +1,12 @@
 import std/unittest
 import std/tables
-import std/strformat
+import std/strformat except `&`
 import std/strutils
 import godot
 
 # sugar of `import godot/classDetail/classDetail_native_T`
 # Since this library is still early stage, we recommend to use this sugar for portability
+importClass SceneTree
 importClass Node
 importClass RefCounted
 importClass InputEventKey
@@ -117,7 +118,7 @@ proc test_Node(self: NimSideTester) =
       check node == node2
 
     test "stringify":
-      echo &"{node=}"
+      echo fmt"{node=}"
       check "MyNode2D" in $node
 
     test "get node from tree (using sugar)":
@@ -251,6 +252,12 @@ template connect_all*(self: NimSideTester) =
   echo self.connect("variant_signal", self.init_Callable("_on_variant_signal"))
 
 
+template `<!>`*[T](v: T): Variant = variant v
+
+proc echo(self: NimSideTester, str: string) {.exportgd: Auto.} =
+  echo str
+
+
 # Using `method` to override virtual functions of Engine-Class.
 # No specific pragma is needed.
 # based on Node.ready()
@@ -265,6 +272,8 @@ method ready(self: NimSideTester) =
   self.test_Resource()
   self.test_Signal()
   self.test_Variant()
+
+  self.getTree.callGroup(&"tester", &"echo", variant "Hello, world!")
 
 method input(self: NimSideTester; event: gdref InputEvent) =
   let evkey = event as gdref InputEventKey

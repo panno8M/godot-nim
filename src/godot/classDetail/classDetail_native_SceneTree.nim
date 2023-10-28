@@ -182,13 +182,18 @@ proc queueDelete*(self: SceneTree; obj: Object) =
     methodbind = interface_ClassDB_getMethodBind(addr className SceneTree, addr name, 3975164845)
   var `?param` = [getPtr obj]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc callGroupFlags*(self: SceneTree; flags: Int; group: StringName; `method`: StringName) =
+proc callGroupFlags*(self: SceneTree; flags: Variant; group: Variant; `method`: Variant; args: varargs[Variant]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "call_group_flags"
     methodbind = interface_ClassDB_getMethodBind(addr className SceneTree, addr name, 1527739229)
-  var `?param` = [getPtr flags, getPtr group, getPtr `method`]
-  interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
+  var `?param` = newSeqOfCap[VariantPtr](3+args.len)
+  `?param`.add [getTypedPtr flags, getTypedPtr group, getTypedPtr `method`]
+  for arg in args: `?param`.add addr arg
+  var ret: Variant
+  var err: CallError
+  interface_Object_methodBindCall(methodbind, getOwner self, addr `?param`[0], `?param`.len, addr ret, addr err)
+template callGroupFlags*(self: SceneTree; flags: Int; group: StringName; `method`: StringName; args: varargs[Variant]) = callGroupFlags(self, variant flags, variant group, variant `method`, args)
 proc notifyGroupFlags*(self: SceneTree; callFlags: uint32; group: StringName; notification: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
@@ -203,13 +208,18 @@ proc setGroupFlags*(self: SceneTree; callFlags: uint32; group: StringName; prope
     methodbind = interface_ClassDB_getMethodBind(addr className SceneTree, addr name, 3497599527)
   var `?param` = [getPtr callFlags, getPtr group, getPtr property, getPtr value]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc callGroup*(self: SceneTree; group: StringName; `method`: StringName) =
+proc callGroup*(self: SceneTree; group: Variant; `method`: Variant; args: varargs[Variant]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "call_group"
     methodbind = interface_ClassDB_getMethodBind(addr className SceneTree, addr name, 1257962832)
-  var `?param` = [getPtr group, getPtr `method`]
-  interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
+  var `?param` = newSeqOfCap[VariantPtr](2+args.len)
+  `?param`.add [getTypedPtr group, getTypedPtr `method`]
+  for arg in args: `?param`.add addr arg
+  var ret: Variant
+  var err: CallError
+  interface_Object_methodBindCall(methodbind, getOwner self, addr `?param`[0], `?param`.len, addr ret, addr err)
+template callGroup*(self: SceneTree; group: StringName; `method`: StringName; args: varargs[Variant]) = callGroup(self, variant group, variant `method`, args)
 proc notifyGroup*(self: SceneTree; group: StringName; notification: int32) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):

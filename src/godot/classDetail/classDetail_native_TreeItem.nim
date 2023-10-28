@@ -821,10 +821,15 @@ proc moveAfter*(self: TreeItem; item: TreeItem) =
     methodbind = interface_ClassDB_getMethodBind(addr className TreeItem, addr name, 1819951137)
   var `?param` = [getPtr item]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
-proc callRecursive*(self: TreeItem; `method`: StringName) =
+proc callRecursive*(self: TreeItem; `method`: Variant; args: varargs[Variant]) =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "call_recursive"
     methodbind = interface_ClassDB_getMethodBind(addr className TreeItem, addr name, 2866548813)
-  var `?param` = [getPtr `method`]
-  interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], nil)
+  var `?param` = newSeqOfCap[VariantPtr](1+args.len)
+  `?param`.add [getTypedPtr `method`]
+  for arg in args: `?param`.add addr arg
+  var ret: Variant
+  var err: CallError
+  interface_Object_methodBindCall(methodbind, getOwner self, addr `?param`[0], `?param`.len, addr ret, addr err)
+template callRecursive*(self: TreeItem; `method`: StringName; args: varargs[Variant]) = callRecursive(self, variant `method`, args)

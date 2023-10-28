@@ -32,15 +32,19 @@ proc createCallback*(self: JavaScriptBridge; callable: Callable): GD_ref[JavaScr
   var ret: encoded GD_ref[JavaScriptObject]
   interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
   (addr ret).decode_result(GD_ref[JavaScriptObject])
-proc createObject*(self: JavaScriptBridge; `object`: String): Variant =
+proc createObject*(self: JavaScriptBridge; `object`: Variant; args: varargs[Variant]): Variant =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
     let name = api.newStringName "create_object"
     methodbind = interface_ClassDB_getMethodBind(addr className JavaScriptBridge, addr name, 3093893586)
-  var `?param` = [getPtr `object`]
-  var ret: encoded Variant
-  interface_Object_methodBindPtrCall(methodbind, getOwner self, addr `?param`[0], addr ret)
-  (addr ret).decode_result(Variant)
+  var `?param` = newSeqOfCap[VariantPtr](1+args.len)
+  `?param`.add [getTypedPtr `object`]
+  for arg in args: `?param`.add addr arg
+  var ret: Variant
+  var err: CallError
+  interface_Object_methodBindCall(methodbind, getOwner self, addr `?param`[0], `?param`.len, addr ret, addr err)
+  ret.get(Variant)
+template createObject*(self: JavaScriptBridge; `object`: String; args: varargs[Variant]): Variant = createObject(self, variant `object`, args)
 proc downloadBuffer*(self: JavaScriptBridge; buffer: PackedByteArray; name: String; mime: String = "application/octet-stream") =
   var methodbind {.global.}: MethodBindPtr
   if unlikely(methodbind.isNil):
