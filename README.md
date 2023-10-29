@@ -6,12 +6,14 @@ Based on **[godot-cpp 4.1 stable](https://github.com/godotengine/godot-cpp/tree/
 
 ## How to use
 
-See **[test/](https://github.com/panno8M/godot-nim/tree/main/test)** to get an overview of the binding interface.
+* See **[test/](https://github.com/panno8M/godot-nim/tree/main/test)** to get an overview of the binding interface.
+* There is a nim implementation of Dodge the Creeps! at **[demo/](https://github.com/panno8M/godot-nim/tree/main/demo).
 
 ### Known Issues
 
 * Initial loading of the extension fails
   > Initialization of the extension fails the first time. Reloading solves the problem.
+* AudioStreamPlayer causes a leak in the resources used by this node. We have seen this happen in the demo project.
 
 ## Features
 
