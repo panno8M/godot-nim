@@ -11,8 +11,13 @@ Based on **[godot-cpp 4.1 stable](https://github.com/godotengine/godot-cpp/tree/
 
 ### Known Issues
 
+#### Caused in this library
+
 * Initial loading of the extension fails
   > Initialization of the extension fails the first time. Reloading solves the problem.
+
+#### Caused in Engine
+
 * AudioStreamPlayer causes a leak in the resources used by this node. We have seen this happen in the demo project.
 
 ## Features
