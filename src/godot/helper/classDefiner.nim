@@ -76,7 +76,6 @@ macro gdClass*(typeDef: untyped): untyped =
     newCall(bindSym"isInheritanceOf", innerTypeName, inheritName),
     innerTypeName
   ))
-  debugEcho result.repr
 
 
 template isInitializedOn*(Class: typedesc[SomeUserClass]; level: InitializationLevel): untyped =
