@@ -61,6 +61,24 @@ proc creationInfo(T: typedesc[SomeUserClass]; is_virtual, is_abstract: bool): Cl
 
 template isInheritanceOf*[T: ObjectBase](Class: typedesc[SomeUserClass]; Inherits: typedesc[T]): untyped =
   template Super*(_: typedesc[Class]): typedesc[Inherits] = Inherits
+
+macro gdClass*(typeDef: untyped): untyped =
+  typeDef.expectKind nnkTypeDef
+  typeDef[2].expectKind nnkRefTy
+  typeDef[2][0].expectKind nnkObjectTy
+  typeDef[2][0][1].expectKind nnkOfInherit
+  let typeName = typeDef[0][0]
+  let inheritName = typeDef[2][0][1][0]
+  let innerTypeName = genSym(nskType, "inner")
+  typeDef[0][0] = innerTypeName
+  result = nnkTypeDef.newTree(typeName, newEmptyNode(), newStmtList(
+    nnkTypeSection.newTree(typeDef),
+    newCall(bindSym"isInheritanceOf", innerTypeName, inheritName),
+    innerTypeName
+  ))
+  debugEcho result.repr
+
+
 template isInitializedOn*(Class: typedesc[SomeUserClass]; level: InitializationLevel): untyped =
   get_registrationData(Class).initTarget = level
 
