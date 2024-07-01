@@ -1,5 +1,13 @@
 # Godot-Nim v4.1
 
+## Notice
+
+A [successor project](https://github.com/godot-nim) is currently underway. Future updates will be made to this project.
+
+This repository may be operated as a mirror of the said project, but this has not been decided yet.
+
+## Description
+
 It enable us to work godot-4.x with Nim.
 
 Based on **[godot-cpp 4.1 stable](https://github.com/godotengine/godot-cpp/tree/godot-4.1-stable)**
